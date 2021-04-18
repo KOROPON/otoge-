@@ -1,0 +1,33 @@
+{
+  "title": "testsong",
+  "taps": [{
+    "start": 0,
+    "channel": 0
+  }, {
+    "start": 0.5,
+    "channel": 2
+  }, {
+    "start": 1,
+    "channel": 1
+  }, {
+    "start": 1.5,
+    "channel": 3
+  }],
+  "holds": [{
+    "start": 2,
+    "end": 3,
+    "channel": 3
+  }, {
+    "start": 3.5,
+    "end": 4.5,
+    "channel": 2
+  }, {
+    "start": 5,
+    "end": 6,
+    "channel": 1
+  }, {
+    "start": 6.5,
+    "end": 8,
+    "channel": 0
+  }]
+}
