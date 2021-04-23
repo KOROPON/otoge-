@@ -9,14 +9,24 @@ public class NoteSpawner : MonoBehaviour {
 
   private Song song;
 
+  private static float channelWidth = 10f / 4f;
+  private static float channelOffset = channelWidth * 3f / 2f;
+
+  private static float getChannelX(int channel) {
+    return -channel * channelWidth + channelOffset;
+  }
+
+
   void Start() {
     song = JsonUtility.FromJson<Song>(songFile.text);
+    float zScale = -10f;
     foreach (Tap tap in song.taps) {
-      Instantiate(tapPrefab, new Vector3(tap.channel + 4, -0.5f, tap.start), Quaternion.identity);
+      Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale), Quaternion.identity);
     }
     foreach (Hold hold in song.holds) {
-      GameObject obj = Instantiate(holdPrefab, new Vector3(hold.channel + 4, -0.5f, hold.start), Quaternion.identity);
-      obj.transform.localScale = new Vector3(1, 1, hold.end - hold.start);
+      float zLength = (hold.end - hold.start) * -zScale;
+      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2), Quaternion.identity);
+      obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y, zLength);
     }
   }
 }

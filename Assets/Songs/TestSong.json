@@ -1,8 +1,15 @@
 {
   "title": "testsong",
   "taps": [{
-    "start": -20,
-    "channel": 0
-  }],
-  "holds": []
+    "start": 2,
+    "channel": 1
+  }, {
+    "start": 5,
+    "channel": 2
+    }],
+  "holds": [{
+    "start": 2,
+    "end": 5,
+    "channel": 3
+    }]
 }
