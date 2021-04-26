@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,29 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &274349569 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5962668599233554510, guid: b5d5553b330f74997aa6131308886566, type: 3}
-  m_PrefabInstance: {fileID: 5962668598968915535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &274349570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5962668599233554509, guid: b5d5553b330f74997aa6131308886566, type: 3}
   m_PrefabInstance: {fileID: 5962668598968915535}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &274349571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274349569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7f7a5e36e414634a78691346f90b35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spd: 10
 --- !u!1 &526856650
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 710420023}
   - component: {fileID: 710420022}
+  - component: {fileID: 710420024}
   m_Layer: 0
   m_Name: Run Programs
   m_TagString: Untagged
@@ -540,6 +523,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &710420024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710420021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110c96d7bd550cb4b83e56f5e4f06bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  a: 0
+  b: 0
+  c: 0
 --- !u!1 &745843763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 416871471698319060, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
@@ -550,7 +549,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 416871471698319059, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
   m_PrefabInstance: {fileID: 416871472441998055}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &745843765
+--- !u!114 &745843769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -559,10 +558,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 745843763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7f7a5e36e414634a78691346f90b35, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spd: 10
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!850595691 &764456892
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -747,7 +750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1261,6 +1264,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 622.0103
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: -373292132458709197, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1365,6 +1376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tap Note
       objectReference: {fileID: 0}
+    - target: {fileID: 4759466073829151831, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
 --- !u!1001 &5962668598968915535
@@ -1374,9 +1389,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2108975832}
     m_Modifications:
+    - target: {fileID: 1233397701716532656, guid: b5d5553b330f74997aa6131308886566, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5962668599233554509, guid: b5d5553b330f74997aa6131308886566, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962668599233554509, guid: b5d5553b330f74997aa6131308886566, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5962668599233554509, guid: b5d5553b330f74997aa6131308886566, type: 3}
       propertyPath: m_LocalPosition.x
