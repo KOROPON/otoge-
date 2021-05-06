@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class NoteJudge : MonoBehaviour
 {
+    public Text Text1;
     public int score;       //ƒXƒRƒA
     public bool a = false;
     public bool b = false;
@@ -34,5 +35,32 @@ public class NoteJudge : MonoBehaviour
     }
     public void HoldIn() {      //–ß‚Á‚Ä‚«‚½‚Æ‚«
 
+    }
+
+    public void Perfect()
+    {
+        Text1.text = "Perfect!!!";
+    }
+    public void Great()
+    {
+        Text1.text = "Great!!";
+    } 
+    public void Good()
+    {
+        Text1.text = "good!";
+
+    }
+    public void Miss()
+    {
+        Text1.text = "Tap";
+    }
+
+    public void Tap()
+    {
+        Text1.text = "Miss...";
+    }
+    public void JudgeLine()
+    {
+        Text1.text = "touch judge line";
     }
 }
