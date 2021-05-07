@@ -12,6 +12,8 @@ public class NoteSpawner : MonoBehaviour {
   private static float channelWidth = 10f / 4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
+  public float spd = 1;
+
   private static float getChannelX(int channel) {
     return -channel * channelWidth + channelOffset;
   }
@@ -29,4 +31,14 @@ public class NoteSpawner : MonoBehaviour {
       obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y, zLength);
     }
   }
+
+//   void Update() {
+//       Vector3 pos = gameObject.transform.position;
+//       foreach (Tap tap in song.taps) {
+//         tap.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
+//       }
+//       foreach (Hold hold in song.holds) {
+//         hold.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
+//       }
+//   }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 416871471698319056}
   - component: {fileID: 416871471698319057}
   - component: {fileID: 416871471698319058}
+  - component: {fileID: 6375735970966381840}
   m_Layer: 0
   m_Name: Tap Note
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416871471698319060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 106.32107, y: 121.93547, z: -446.68478}
   m_LocalScale: {x: 2.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,3 +96,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6375735970966381840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416871471698319060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7f7a5e36e414634a78691346f90b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spd: 1
