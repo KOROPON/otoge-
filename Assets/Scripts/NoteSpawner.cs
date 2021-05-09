@@ -32,13 +32,4 @@ public class NoteSpawner : MonoBehaviour {
     }
   }
 
-//   void Update() {
-//       Vector3 pos = gameObject.transform.position;
-//       foreach (Tap tap in song.taps) {
-//         tap.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
-//       }
-//       foreach (Hold hold in song.holds) {
-//         hold.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
-//       }
-//   }
 }

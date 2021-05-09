@@ -8,7 +8,7 @@ public class PlayNote : MonoBehaviour {
   void Update() {
       Vector3 pos = this.gameObject.transform.position;
       if(pos.z > -5000) {
-        this.gameObject.transform.position = new Vector3(pos.x,pos.y,pos.z + spd / 10);
+        this.gameObject.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
     }
   }
 
