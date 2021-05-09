@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayNote : MonoBehaviour {
-  public int spd = 1;
+  public float spd = 1f;
 
   void Update() {
-      Vector3 pos = gameObject.transform.position;
-      gameObject.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
+      Vector3 pos = this.gameObject.transform.position;
+      if(pos.z > -5000) {
+        this.gameObject.transform.position = new Vector3(pos.x,pos.y,pos.z + spd / 10);
+    }
   }
 
   public void Plus() {
