@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NoteBase
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NoteBase
   - Water
   - UI
   - 
@@ -40,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NoteBase
+    uniqueID: 1729655047
     locked: 0

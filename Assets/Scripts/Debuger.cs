@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class NoteJudge : MonoBehaviour
+public class Debuger : MonoBehaviour
 {
     public Text Text1;
-    public int score;       //ÉXÉRÉA
-    public bool a = false;
-    public bool b = false;
-    public bool c = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Text1.text = "pppppppppppppppppppppp";
     }
 
+    
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     
     //TapNote
@@ -52,12 +49,12 @@ public class NoteJudge : MonoBehaviour
     }
     public void Miss()
     {
-        Text1.text = "Tap";
+        Text1.text = "Miss...";
     }
 
     public void Tap()
     {
-        Text1.text = "Miss...";
+        Text1.text = "Tap";
     }
     public void JudgeLine()
     {
