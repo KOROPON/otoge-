@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MusicNumManage : MonoBehaviour
+public class MusicNumInfo : MonoBehaviour
 {
     public int music_number;
     public void music1() {

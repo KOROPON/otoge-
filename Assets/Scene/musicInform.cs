@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-public class MusicInfo : MonoBehaviour
+public class MusicInform : MonoBehaviour
 {
   void musicInfo(string music_name,string musicPath,int score) {
     GameObject.Find("ジャケット1").GetComponent<RawImage>().texture=AssetDatabase.LoadAssetAtPath(musicPath,typeof(Texture2D))as Texture2D;
@@ -13,10 +13,10 @@ public class MusicInfo : MonoBehaviour
     void Update()
     {
         if (GetComponent<MusicNumManage>().music_number==1){
-          musicInfo("Devourer Of Sol_Ⅲ","Assets/Scene/ResultBack.png",1000000);
+          musicInfo("Devourer Of Sol_Ⅲ","Assets/Scenes/ResultBack.png",1000000);
         }
         if (GetComponent<MusicNumManage>().music_number==2){
-          musicInfo("Collide","Assets/Scene/Music_Is_My_Suicide_Jacket.png",1000000);
+          musicInfo("Collide","Assets/Scenes/Music_Is_My_Suicide_Jacket.png",1000000);
         }
 
     }
