@@ -6,6 +6,12 @@
   }, {
     "start": 6,
     "channel": 0
+  }, {
+    "start": 15,
+    "channel": 1
+  }, {
+    "start": 18,
+    "channel": 3
   }],
   "holds": [{
     "start": 8,
