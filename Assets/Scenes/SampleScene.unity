@@ -589,8 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e404af020db9f469a228ab25e87cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text1: {fileID: 290794424}
-  songFile: {fileID: 0}
 --- !u!4 &710420023
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tapPrefab: {fileID: 416871471698319060, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
   holdPrefab: {fileID: 5962668599233554510, guid: b5d5553b330f74997aa6131308886566, type: 3}
-  songFile: {fileID: 4900000, guid: ea2641dfef6e34ab4b553b136fe656f0, type: 3}
+  songFile: {fileID: 4900000, guid: 32a6c0d5115ff4741a76195bcc094ea5, type: 3}
   spd: 1
 --- !u!4 &781631094
 Transform:
