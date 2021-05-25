@@ -1,0 +1,19 @@
+{
+  "title": "collide",
+  "taps": [{
+    "start": ,
+    "channel": ,
+  }, {
+    "start" ,
+    "channel": ,
+  }],
+  "holds": [{
+    "start" ,
+    "end" ,
+    "channel" ,
+    }, {
+    "start" ,
+    "end" ,
+    "channel" ,
+  }]
+}
