@@ -1,19 +1,19 @@
 {
   "title": "collide",
   "taps": [{
-    "start": ,
-    "channel": ,
+    "start": 4,
+    "channel": 0
   }, {
-    "start" ,
-    "channel": ,
+    "start": 6,
+    "channel": 0
   }],
   "holds": [{
-    "start" ,
-    "end" ,
-    "channel" ,
+    "start": 8,
+    "end": 10,
+    "channel": 3
     }, {
-    "start" ,
-    "end" ,
-    "channel" ,
+    "start": 11,
+    "end": 13,
+    "channel": 2
   }]
 }
