@@ -16,7 +16,7 @@ public class Variable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //score•\Ž¦
+        //scoreï¿½\ï¿½ï¿½
         text2.text = score.ToString();
     }
 }
