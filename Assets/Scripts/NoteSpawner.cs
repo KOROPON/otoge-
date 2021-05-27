@@ -49,8 +49,8 @@ public class NoteSpawner : MonoBehaviour {
     }
   }
 
-  [ContextMenu("Save File")]
-  void SaveFile() {
+  //[ContextMenu("Save File")]
+  //void SaveFile() {
 
-  }
+  //}
 }

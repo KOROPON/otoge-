@@ -113,6 +113,6 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             Debug.Log("Miss...");
 
         }
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

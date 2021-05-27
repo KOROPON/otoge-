@@ -104,7 +104,8 @@ public class HoldJudge : MonoBehaviour
     }
     public void OnBecameInvisible()   //ƒJƒƒ‰‚©‚çŒ©‚¦‚È‚­‚È‚Á‚½‚Æ‚«
     {
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
+        Debug.Log("Lost");
     }
 
     public void OnMouseEnter()
