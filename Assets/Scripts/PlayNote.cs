@@ -11,7 +11,7 @@ public class PlayNote : MonoBehaviour {
     }
     //void Main() {
     //var timer = new Timer(30);
-    // ƒ^ƒCƒ}[‚Ìˆ—
+    // Âƒ^ÂƒCÂƒ}Â[Â‚ÃŒÂÂˆÂ—Â
     //timer.Elapsed += (sender, e) => {
     //Debug.Log("");
     //Vector3 pos = this.gameObject.transform.position;
