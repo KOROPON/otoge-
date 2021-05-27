@@ -2,107 +2,117 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class TapJudge : MonoBehaviour
+using UnityEngine.EventSystems;
+public class TapJudge : MonoBehaviour, IPointerClickHandler
 {
     public Text Text1;
-    public bool judge = false;
+    public bool judge;
     public System.Diagnostics.Stopwatch judger = new System.Diagnostics.Stopwatch();
-    public bool even = true;
-    //public bool test = true;
-    public bool stopperfect = false;
+    public bool even = false;
+    public bool onlytap = true;
+    //public bool stopperfect = false;
     public GameObject runProgrum;
+    public Debuger script;
+    public int a = 0;
     // Start is called before the first frame update
     void Start()
     {
         //this.gameObject.AddComponent<>(); 
+        script = GameObject.Find("Run Programs").GetComponent<Debuger>();
+        judge = false;
+        even = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void OnPointerClick(PointerEventData eventData)   //タップされたとき
     {
-        if(runProgrum.ToString() != "Run Programs")
+        //double time = judger.Elapsed.TotalSeconds;
+        if (even == false)
         {
-            runProgrum = GameObject.Find("Run Programs");
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (judge == false)
-        {
-            judger.Start();
-            judge = true;
-            stopperfect = true;
-            runProgrum.GetComponent<NoteJudge>().JudgeLine();
-        }
-        else
-        {
-            var time = judger.Elapsed.TotalSeconds;
-            if (time < 0.1)
+            //runProgrum.GetComponent<NoteJudge>().Tap();
+            //script.Tap();
+            if (onlytap)
             {
-                if (stopperfect)
+                //{
+                if (!judge)
                 {
-                    runProgrum.GetComponent<NoteJudge>().Perfect();
-                    even = false;
+                    judge = true;
+                    judger.Start();//stopWatch
+                    a++;
+                }
+                else
+                {
+                    var time = judger.Elapsed.TotalSeconds;
+                    even = true;
+                    if (time < 0.1)
+                    {
+                        script.Perfect();
+                        Debug.Log("Perfect2");
+                    }
+                    else if (time < 0.3)
+                    {
+                        script.Great();
+                        Debug.Log("Great2");
+                    }
+                    else if (time < 0.5)
+                    {
+                        script.Good();
+                        Debug.Log("Good2");
+                    }
+                    else
+                    {
+                        script.Miss();
+                        Debug.Log("Miss...");
+                    }
+                    //test = false;
+                }
+                //}
+                onlytap = false;
+            }
+        }
+    }
+    public void TrueJudge()          //真ん中がラインに触れたとき
+    {
+        if (even == false)
+        {
+            if (!judge)
+            {
+                judger.Start();
+                judge = true;
+            }
+            else
+            {
+                double time = judger.Elapsed.TotalSeconds;
+                even = true;
+                if (time < 0.1)
+                {
+                    script.Perfect();
+                    Debug.Log("Perfect1");
+                }
+                else if (time < 0.3)
+                {
+                    script.Great();
+                    Debug.Log("Great1");
+                }
+                else if (time < 0.5)
+                {
+                    script.Good();
+                    Debug.Log("Good1");
+                }
+                else
+                {
+                    script.Miss();
+                    Debug.Log("Miss...");
                 }
             }
-            else if (time < 0.3)
-            {
-                runProgrum.GetComponent<NoteJudge>().Great();
-                even = false;
-            }
-            else if (time < 0.5)
-            {
-                runProgrum.GetComponent<NoteJudge>().Good();
-                even = false;
-            }
-            //test = false;
         }
-
     }
-
-    public void Tap()
+    public void OnBecameInvisible()   //カメラから見えなくなったとき
     {
-        runProgrum.GetComponent<NoteJudge>().Tap();
-        //if (test)
-        //{
-        if (judge == false)
+        if(even == false)
         {
-            judger.Start();
-            judge = true;
-            stopperfect = true;
-        }
-        else
-        {
-            var time = judger.Elapsed.TotalSeconds;
-            if (time < 0.1)
-            {
-                if (stopperfect)
-                {
-                    runProgrum.GetComponent<NoteJudge>().Perfect();
-                    even = false;
-                }
-            }
-            else if (time < 0.3)
-            {
-                runProgrum.GetComponent<NoteJudge>().Great();
-                even = false;
-            }
-            else if (time < 0.5)
-            {
-                runProgrum.GetComponent<NoteJudge>().Good();
-                even = false;
-            }
-            //test = false;
-        }
-        //}
-    }
+            script.Miss();
+            Debug.Log("Miss...");
 
-    private void OnBecameInvisible()
-    {
-        if(even)
-        {
-            //runProgrum.GetComponent<NoteJudge>().Miss();
         }
+        Destroy(transform.root.gameObject);
     }
 }

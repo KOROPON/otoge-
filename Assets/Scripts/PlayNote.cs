@@ -1,22 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public class PlayNote : MonoBehaviour {
-  public float spd = 1f;
-
-  void Update() {
-      Vector3 pos = this.gameObject.transform.position;
-      if(pos.z > -5000) {
-        this.gameObject.transform.position = new Vector3(pos.x,pos.y,pos.z + spd);
+    public float spd;
+    
+    void Start()
+    {
+      spd = Variable.speed;
     }
-  }
 
-  public void Plus() {
-    spd += 5;
-  }
-
-  public void Minus() {
-    spd -= 5;
+    void Update() {
+    Vector3 pos = this.gameObject.transform.position;
+    this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd);
   }
 }

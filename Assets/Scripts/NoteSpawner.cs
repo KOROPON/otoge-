@@ -13,7 +13,13 @@ public class NoteSpawner : MonoBehaviour {
   private static float channelWidth = 10f / 4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
-  public float spd = 1;
+  public float spd = Variable.speed;
+
+  public float zScale {
+    get {
+      return spd * -10f;
+    }
+  }
 
   private static float getChannelX(int channel) {
     return -channel * channelWidth + channelOffset;
@@ -32,7 +38,6 @@ public class NoteSpawner : MonoBehaviour {
     }
 
     song = JsonUtility.FromJson<Song>(songFile.text);
-    float zScale = -10f;
     foreach (Tap tap in song.taps) {
       Debug.Log(tap);
       Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale), Quaternion.identity, transform);
@@ -46,5 +51,6 @@ public class NoteSpawner : MonoBehaviour {
 
   [ContextMenu("Save File")]
   void SaveFile() {
+
   }
 }
