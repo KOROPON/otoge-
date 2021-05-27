@@ -8,53 +8,48 @@ public class HoldJudge : MonoBehaviour
 {
     Timer timer = new Timer(300);
     public Text Text1;
-    public bool judge;
+    public bool judge1 = false;
+    public bool judge2 = false;
     public System.Diagnostics.Stopwatch judger = new System.Diagnostics.Stopwatch();
+    public System.Diagnostics.Stopwatch lineOver = new System.Diagnostics.Stopwatch();
     public bool miss = true;
     public bool even = false;
     public bool onlytap = true;
     //public bool stopperfect = false;
     public GameObject runProgrum;
     public Debuger script;
-    public int a = 0;
     public HoldMain cs;
     // Start is called before the first frame update
     void Start()
     {
         //this.gameObject.AddComponent<>(); 
         script = GameObject.Find("Run Programs").GetComponent<Debuger>();
-        judge = false;
         miss = true;
         cs = transform.parent.gameObject.transform.Find("HoldNote2").gameObject.GetComponent<HoldMain>();
     }
     void Update()
     {
         double time = judger.Elapsed.TotalSeconds;
-        if (time > 0.4 && miss)
+        if (time > 0.4 && miss &&lineOver.Elapsed.TotalSeconds > 0.4)
         {
             miss = false;
             if (!even)
             {
                 Debug.Log("miss...");
+                script.Miss();
             }
         }
     }
     public void OnMouseDown()   //タップされたとき
     {
-        Debug.Log("タップをされたよ");
-        even = true;
-        //runProgrum.GetComponent<NoteJudge>().Tap();
-        //script.Tap();
         if (onlytap)
         {
+            //if (!judge1)
             //{
-            if (!judge)
-            {
-                judge = true;
-                judger.Start();//stopWatch
-                a++;
-            }
-            else
+                judge1 = true;
+                judger.Restart();//stopWatch
+            //}
+            if(judge2)
             {
                 var time = judger.Elapsed.TotalSeconds;
                 if (time < 0.1)
@@ -73,21 +68,20 @@ public class HoldJudge : MonoBehaviour
                     script.Good();
                     Debug.Log("Good2");
                 }
-                //test = false;
+                even = true;
             }
-            //}
             onlytap = false;
         }
     }
     public void TrueJudge()          //真ん中がラインに触れたとき
     {
-        Debug.Log("真ん中触れたよ");
-        if (!judge)
-        {
+        lineOver.Start();
+        //if (!judge2)
+        //{
             judger.Start();
-            judge = true;
-        }
-        else
+            judge2 = true;
+        //}
+        if(judge1)
         {
             double time = judger.Elapsed.TotalSeconds;
             if (time < 0.1)
@@ -105,6 +99,7 @@ public class HoldJudge : MonoBehaviour
                 script.Good();
                 Debug.Log("Good1");
             }
+            even = true;
         }
     }
     public void OnBecameInvisible()   //カメラから見えなくなったとき

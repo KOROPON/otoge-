@@ -20,7 +20,6 @@ public class HoldMain : MonoBehaviour
         if (count == false)
         {
             var cs = transform.parent.gameObject.transform.Find("Base").gameObject.GetComponent<HoldJudge>();
-            Debug.Log(cs);
             cs.TrueJudge();
             IEnumerator holdJudge = TestCoroutine();
             StartCoroutine(holdJudge);
@@ -29,16 +28,13 @@ public class HoldMain : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         roop = true;
-        Debug.Log("Fin.");
     }
     public void Enter()
     {
-        Debug.Log("Tap");
         a = true;
     }
     public void Exit()
     {
-        Debug.Log("Exit");
         a = false;
     }
     private IEnumerator TestCoroutine()

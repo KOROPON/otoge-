@@ -8,15 +8,17 @@ public class Debuger : MonoBehaviour
     public void Perfect()
     {
         Text1.text = "Perfect!!!";
+        GameObject.Find("Run Programs").GetComponent<Variable>().score += 1000;
     }
     public void Great()
     {
         Text1.text = "Great!!";
+        GameObject.Find("Run Programs").GetComponent<Variable>().score += 750;
     } 
     public void Good()
     {
         Text1.text = "good!";
-
+        GameObject.Find("Run Programs").GetComponent<Variable>().score += 500;
     }
     public void Miss()
     {

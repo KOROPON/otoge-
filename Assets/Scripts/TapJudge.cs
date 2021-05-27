@@ -109,8 +109,6 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
     {
         if(even == false)
         {
-            //RunPrograms.GetComponent<NoteJudge>().Miss();
-            Debuger script = GameObject.Find("Run Programs").GetComponent<Debuger>();
             script.Miss();
             Debug.Log("Miss...");
 
