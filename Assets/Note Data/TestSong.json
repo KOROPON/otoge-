@@ -1,18 +1,13 @@
 {
   "title": "testsong",
-  "taps": [{
-    "start": 4,
-    "channel": 1
-  }, {
-    "start": 14,
-    "channel": 2
-    },{
-    "start": 30,
-    "channel":0
-    }],
+  "taps":null,
   "holds": [{
     "start": 7,
-    "end": 9,
+    "end": 15,
     "channel": 3
+    },{
+    "start": 20,
+    "end":28,
+    "channel": 1
     }]
 }

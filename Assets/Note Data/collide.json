@@ -1,19 +1,44 @@
 {
   "title": "collide",
-  "taps": [{
-    "start": ,
-    "channel": ,
+  "taps": [ {
+    "start": 21,
+    "channel": 0
   }, {
-    "start" ,
-    "channel": ,
+    "start":23.5,
+    "channel":0
+  },{
+    "start":43,
+    "channel":0
+  }, {
+    "start":45.5,
+    "channel":0
+  }, {
+    "start":48.5,
+    "channel":2
   }],
   "holds": [{
-    "start" ,
-    "end" ,
-    "channel" ,
+    "start": 4,
+    "end": 8,
+    "channel": 3
     }, {
-    "start" ,
-    "end" ,
-    "channel" ,
-  }]
+    "start": 9.5,
+    "end": 13.5,
+    "channel": 2
+    }, {
+    "start":15,
+    "end":19,
+    "channel":1
+    }, {
+    "start":26.5,
+    "end":30.5,
+    "channel":3
+    }, {
+    "start":32,
+    "end":36,
+    "channel":2
+    }, {
+    "start":37.5,
+    "end":41.5,
+    "channel":1
+    }]
 }
