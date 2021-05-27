@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Variable : MonoBehaviour
 {
     public int score = 0;
-    public float speed = 1f;
+    public static float speed = 1f;
     public Text text2;
     // Start is called before the first frame update
     void Start()

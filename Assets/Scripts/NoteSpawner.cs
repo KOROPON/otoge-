@@ -13,7 +13,7 @@ public class NoteSpawner : MonoBehaviour {
   private static float channelWidth = 10f / 4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
-  public float spd = 1f;
+  public float spd = Variable.speed;
 
   public float zScale {
     get {
