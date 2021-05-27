@@ -7,6 +7,7 @@ public class Variable : MonoBehaviour
     public int score = 0;
     public static float speed = 1f;
     public Text text2;
+    public static int bpm = 140;
     // Start is called before the first frame update
     void Start()
     {

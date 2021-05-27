@@ -10,14 +10,17 @@ public class NoteSpawner : MonoBehaviour {
 
   private Song song;
 
+  public float spd;// = Variable.speed;
+  public int localbpm;// = Variable.bpm;
+
   private static float channelWidth = 10f / 4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
-  public float spd = Variable.speed;
-
+  
   public float zScale {
     get {
-      return spd * -10f;
+      //return spd * -10f;
+      return -1000 * spd / localbpm;    //1000 * spd / bpm * Json‚Ì”’l = z
     }
   }
 
@@ -27,6 +30,8 @@ public class NoteSpawner : MonoBehaviour {
 
 
   void Start() {
+    spd = Variable.speed;
+    localbpm = Variable.bpm;
     while(transform.childCount > 0) {
       Transform child = transform.GetChild(0);
       if (Application.isPlaying) {
@@ -39,7 +44,6 @@ public class NoteSpawner : MonoBehaviour {
 
     song = JsonUtility.FromJson<Song>(songFile.text);
     foreach (Tap tap in song.taps) {
-      Debug.Log(tap);
       Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale), Quaternion.identity, transform);
     }
     foreach (Hold hold in song.holds) {
@@ -49,8 +53,8 @@ public class NoteSpawner : MonoBehaviour {
     }
   }
 
-  //[ContextMenu("Save File")]
-  //void SaveFile() {
+  [ContextMenu("Save File")]
+  void SaveFile() {
 
-  //}
+  }
 }
