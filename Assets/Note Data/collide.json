@@ -13,11 +13,38 @@
     "start":69,
     "channel":0
   }, {
-    "start":74,
+    "start":73.5,
     "channel":2
   },  {
-    "start":77,
+    "start":78,
     "channel":1
+  }, {
+    "start":81.5,
+    "channel":3
+  }, {
+    "start":86,
+    "channel":2
+  }, {
+    "start":89.5,
+    "channel":0
+  },{
+    "start":94,
+    "channel":1
+  }, {
+    "start":98.5,
+    "channel":0
+  }, {
+    "start":103,
+    "channel":0
+  }, {
+    "start":107.5,
+    "channel":1
+  }, {
+    "start":112,
+    "channel":1
+  }, {
+    "start":116.5,
+    "channel":2
   }],
   "holds": [ {
     "start": 6,
