@@ -5,35 +5,6 @@ using UnityEngine.UI;
 public class Debuger : MonoBehaviour
 {
     public Text Text1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Text1.text = "pppppppppppppppppppppp";
-    }
-
-    
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    
-    //TapNote
-    public void TapOn() {
-        
-    }
-
-    //HoldNote
-    public void HoldOn() {      //ç≈èâÇÃÉ^ÉbÉv
-
-    }
-    public void HoldOut() {     //Ç∏ÇÍÇÈoró£Ç∑
-
-    }
-    public void HoldIn() {      //ñﬂÇ¡ÇƒÇ´ÇΩÇ∆Ç´
-
-    }
-
     public void Perfect()
     {
         Text1.text = "Perfect!!!";

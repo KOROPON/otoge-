@@ -41,23 +41,26 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
                 else
                 {
                     var time = judger.Elapsed.TotalSeconds;
+                    even = true;
                     if (time < 0.1)
                     {
                         script.Perfect();
                         Debug.Log("Perfect2");
-                        even = true;
                     }
                     else if (time < 0.3)
                     {
                         script.Great();
                         Debug.Log("Great2");
-                        even = true;
                     }
                     else if (time < 0.5)
                     {
                         script.Good();
                         Debug.Log("Good2");
-                        even = true;
+                    }
+                    else
+                    {
+                        script.Miss();
+                        Debug.Log("Miss...");
                     }
                     //test = false;
                 }
@@ -78,50 +81,30 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             else
             {
                 double time = judger.Elapsed.TotalSeconds;
+                even = true;
                 if (time < 0.1)
                 {
                     script.Perfect();
                     Debug.Log("Perfect1");
-                    even = true;
                 }
                 else if (time < 0.3)
                 {
                     script.Great();
                     Debug.Log("Great1");
-                    even = true;
                 }
                 else if (time < 0.5)
                 {
                     script.Good();
                     Debug.Log("Good1");
-                    even = true;
+                }
+                else
+                {
+                    script.Miss();
+                    Debug.Log("Miss...");
                 }
             }
         }
     }
-    // Update is called once per frame
-    /*void Update()
-    {
-        if(runProgrum.ToString() != "Run Programs")
-        {
-            runProgrum = GameObject.Find("Run Programs");
-
-        }
-        if(Text1 == null)
-        {
-            Text1 = GameObject.Find("Text1").GetComponent<Text>();
-            //Text1 = Text.FindObjectOfType<Text>();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.ToString() == "JudgeLineVisual")
-        {
-            Debug.Log(other);
-        }
-    }*/
-
     public void OnBecameInvisible()   //ÉJÉÅÉâÇ©ÇÁå©Ç¶Ç»Ç≠Ç»Ç¡ÇΩÇ∆Ç´
     {
         if(even == false)
@@ -130,6 +113,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             Debuger script = GameObject.Find("Run Programs").GetComponent<Debuger>();
             script.Miss();
             Debug.Log("Miss...");
+
         }
         Destroy(transform.root.gameObject);
     }

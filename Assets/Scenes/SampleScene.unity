@@ -589,8 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e404af020db9f469a228ab25e87cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text1: {fileID: 290794424}
-  songFile: {fileID: 0}
 --- !u!4 &710420023
 Transform:
   m_ObjectHideFlags: 0
@@ -1158,7 +1156,7 @@ MonoBehaviour:
   m_EventMask:
     serializedVersion: 2
     m_Bits: 8
-  m_MaxRayIntersections: 1
+  m_MaxRayIntersections: 2
 --- !u!1 &1226873273
 GameObject:
   m_ObjectHideFlags: 0
