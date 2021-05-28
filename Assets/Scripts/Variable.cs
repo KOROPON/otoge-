@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class Variable : MonoBehaviour
 {
     public int score = 0;
-    public static float speed = 1f;
+    public static float speed = 4f;
     public Text text2;
-    public static int bpm = 140;
+    public static int bpm = 150;
     // Start is called before the first frame update
     void Start()
     {

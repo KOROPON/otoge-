@@ -1,6 +1,14 @@
 {
   "title": "testsong",
-  "taps":null,
+  "taps": [{
+    "start": 0,
+    "channel": 1
+  },{
+    "start": 12,
+    "channel": 1
+  }
+
+  ],
   "holds": [{
     "start": 0,
     "end": 12,

@@ -20,7 +20,7 @@ public class NoteSpawner : MonoBehaviour {
   public float zScale {
     get {
       //return spd * -10f;
-      return -1000 * spd / localbpm;    //1000 * spd / bpm * JsonÇÃêîíl = z
+      return -1000 * spd / 2 / localbpm;    //1000 * spd / bpm * JsonÇÃêîíl = z
     }
   }
 
@@ -44,11 +44,11 @@ public class NoteSpawner : MonoBehaviour {
 
     song = JsonUtility.FromJson<Song>(songFile.text);
     foreach (Tap tap in song.taps) {
-      Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale), Quaternion.identity, transform);
+      Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale - 160 * spd), Quaternion.identity, transform);
     }
     foreach (Hold hold in song.holds) {
       float zLength = (hold.end - hold.start) * -zScale;
-      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2), Quaternion.identity, transform);
+      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2 - 160 * spd), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y, zLength);
     }
   }
