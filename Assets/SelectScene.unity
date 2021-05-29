@@ -288,8 +288,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 177617723}
   - {fileID: 1964056754}
+  - {fileID: 177617723}
   m_Father: {fileID: 1450880440}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 177617724}
   - component: {fileID: 177617726}
   m_Layer: 5
-  m_Name: "\u66F2\u67A01"
+  m_Name: "\u66F2\u67A02"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,7 +409,7 @@ RectTransform:
   m_Children:
   - {fileID: 723163249}
   m_Father: {fileID: 93868658}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -43}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -482,7 +482,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 808788351}
           m_TargetAssemblyTypeName: MusicNumManage, Assembly-CSharp
-          m_MethodName: music1
+          m_MethodName: music2
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2260,7 +2260,7 @@ GameObject:
   - component: {fileID: 1964056755}
   - component: {fileID: 1964056757}
   m_Layer: 5
-  m_Name: "\u66F2\u67A01 (1)"
+  m_Name: "\u66F2\u67A01 "
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2279,7 +2279,7 @@ RectTransform:
   m_Children:
   - {fileID: 576125404}
   m_Father: {fileID: 93868658}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -43}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2352,7 +2352,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 808788351}
           m_TargetAssemblyTypeName: MusicNumManage, Assembly-CSharp
-          m_MethodName: music2
+          m_MethodName: music1
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2531,5 +2531,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RunProgram_musicselect
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 785381101910642080, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
