@@ -6,9 +6,8 @@ using UnityEditor;
 public class MusicInfo : MonoBehaviour
 {
   void musicInfo(string music_name,string musicPath,int score) {
-    GameObject.Find("ジャケット1").GetComponent<RawImage>().texture=AssetDatabase.LoadAssetAtPath(musicPath,typeof(Texture2D))as Texture2D;
+    GameObject.Find("ジャケット1").GetComponent<RawImage>().texture=Resources.Load<Texture2D>(musicPath);
     GameObject.Find("タイトル").GetComponent<Text>().text=music_name;
-
   }
     void Update()
     {
