@@ -168,8 +168,53 @@
   },{
     "start": 1101,
     "channel": 2
+  },{
+    "start": 1152,
+    "channel": 3
+  },{
+    "start": 1164,
+    "channel": 2
+  },{
+    "start": 1176,
+    "channel": 1
+  },{
+    "start": 1188,
+    "channel": 0
+  },{
+    "start": 1200,
+    "channel": 0
+  },{
+    "start": 1212,
+    "channel": 1
+  },{
+    "start": 1224,
+    "channel": 2
+  },{
+    "start": 1236,
+    "channel": 3
+  },{
+    "start": 1248,
+    "channel": 0
+  },{
+    "start": 1260,
+    "channel": 1
+  },{
+    "start": 1272,
+    "channel": 2
+  },{
+    "start": 1284,
+    "channel": 3
+  },{
+    "start": 1296,
+    "channel": 2
+  },{
+    "start": 1308,
+    "channel": 1
+  },{
+    "start": 1320,
+    "channel": 0
   }
-],
+  ],
   "holds": [ {
     "start": 96,
     "end": 120,
