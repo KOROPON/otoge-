@@ -4,74 +4,74 @@
     "start": 0,
     "channel": 0
   },{
-    "start": 30,
-    "channel": 0
+    "start": 24,
+    "channel": 3
   }, {
-    "start":35,
-    "channel":0
-  }, {
-    "start":64,
-    "channel":0
-  }, {
-    "start":69,
-    "channel":0
-  }, {
-    "start":73.5,
+    "start":96,
     "channel":2
-  },  {
-    "start":78,
+  }, {
+    "start":120,
     "channel":1
   }, {
-    "start":81.5,
+    "start":192,
+    "channel":0
+  }, {
+    "start":192,
+    "channel":1
+  },  {
+    "start":216,
+    "channel":2
+  }, {
+    "start":216,
     "channel":3
   }, {
-    "start":86,
+    "start":864,
     "channel":2
   }, {
-    "start":89.5,
+    "start":895,
     "channel":0
   },{
-    "start":94,
+    "start":954,
     "channel":1
   }, {
-    "start":98.5,
+    "start":985,
     "channel":0
   }, {
-    "start":103,
+    "start":1203,
     "channel":0
   }, {
-    "start":107.5,
+    "start":1072.5,
     "channel":1
   }, {
-    "start":112,
+    "start":1112,
     "channel":1
   }, {
-    "start":116.5,
+    "start":1216.5,
     "channel":2
   }],
   "holds": [ {
-    "start": 6,
-    "end": 11,
-    "channel": 3
-    }, {
-    "start": 14,
-    "end": 19,
+    "start": 48,
+    "end": 60,
     "channel": 2
     }, {
-    "start":22,
-    "end":27,
-    "channel":1
+    "start": 72,
+    "end": 84,
+    "channel": 1
     }, {
-    "start":40,
-    "end":45,
+    "start":144,
+    "end":156,
+    "channel":0
+    }, {
+    "start":168,
+    "end":180,
     "channel":3
     }, {
-    "start":48,
-    "end":53,
+    "start":4821,
+    "end":5213,
     "channel":2
     }, {
-    "start":56,
-    "end":61,
+    "start":1536,
+    "end":6311,
     "channel":1
     }]
 }
