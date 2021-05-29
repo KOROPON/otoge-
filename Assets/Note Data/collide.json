@@ -4,74 +4,224 @@
     "start": 0,
     "channel": 0
   },{
-    "start": 24,
+    "start": 48,
     "channel": 3
   }, {
-    "start":96,
+    "start":192,
     "channel":2
   }, {
-    "start":120,
+    "start":240,
     "channel":1
   }, {
-    "start":192,
+    "start":384,
     "channel":0
   }, {
-    "start":192,
+    "start":384,
     "channel":1
   },  {
-    "start":216,
+    "start":432,
     "channel":2
   }, {
-    "start":216,
+    "start":432,
     "channel":3
   }, {
-    "start":864,
+    "start":576,
+    "channel":0
+  }, {
+    "start":576,
+    "channel":3
+  },{
+    "start":624,
+    "channel":1
+  }, {
+    "start":624,
     "channel":2
   }, {
-    "start":895,
+    "start":768,
+    "channel":0
+  }, {
+    "start":780,
+    "channel":0
+  }, {
+    "start":792,
+    "channel":0
+  }, {
+    "start":804,
     "channel":0
   },{
-    "start":954,
-    "channel":1
-  }, {
-    "start":985,
-    "channel":0
-  }, {
-    "start":1203,
-    "channel":0
-  }, {
-    "start":1072.5,
-    "channel":1
-  }, {
-    "start":1112,
-    "channel":1
-  }, {
-    "start":1216.5,
-    "channel":2
-  }],
+    "start": 816,
+    "channel": 1
+  },{
+    "start": 828,
+    "channel": 1
+  },{
+    "start": 840,
+    "channel": 1
+  },{
+    "start": 852,
+    "channel": 1
+  },{
+    "start": 864,
+    "channel": 2
+  },{
+    "start": 876,
+    "channel": 2
+  },{
+    "start": 888,
+    "channel": 2
+  },{
+    "start": 900,
+    "channel": 2
+  },{
+    "start": 912,
+    "channel": 3
+  },{
+    "start": 924,
+    "channel": 3
+  },{
+    "start": 936,
+    "channel": 3
+  },{
+    "start": 948,
+    "channel": 3
+  },{
+    "start": 960,
+    "channel": 0
+  },{
+    "start": 972,
+    "channel": 1
+  },{
+    "start": 984,
+    "channel": 3
+  },{
+    "start": 996,
+    "channel": 2
+  },{
+    "start": 1008,
+    "channel": 0
+  },{
+    "start": 1008,
+    "channel": 1
+  },{
+    "start": 1020,
+    "channel": 1
+  },{
+    "start": 1020,
+    "channel": 2
+  },{
+    "start": 1032,
+    "channel": 2
+  },{
+    "start": 1032,
+    "channel": 3
+  },{
+    "start": 1044,
+    "channel": 1
+  },{
+    "start": 1044,
+    "channel": 2
+  },{
+    "start": 1056,
+    "channel": 0
+  },{
+    "start": 1059,
+    "channel": 3
+  },{
+    "start": 1062,
+    "channel": 0
+  },{
+    "start": 1065,
+    "channel": 3
+  },{
+    "start": 1068,
+    "channel": 1
+  },{
+    "start": 1071,
+    "channel": 2
+  },{
+    "start": 1074,
+    "channel": 1
+  },{
+    "start": 1077,
+    "channel": 2
+  },{
+    "start": 1080,
+    "channel": 0
+  },{
+    "start": 1083,
+    "channel": 3
+  },{
+    "start": 1086,
+    "channel": 1
+  },{
+    "start": 1089,
+    "channel": 2
+  },{
+    "start": 1092,
+    "channel": 0
+  },{
+    "start": 1095,
+    "channel": 3
+  },{
+    "start": 1098,
+    "channel": 1
+  },{
+    "start": 1101,
+    "channel": 2
+  }
+],
   "holds": [ {
-    "start": 48,
-    "end": 60,
+    "start": 96,
+    "end": 120,
     "channel": 2
     }, {
-    "start": 72,
-    "end": 84,
+    "start": 144,
+    "end": 168,
     "channel": 1
     }, {
-    "start":144,
-    "end":156,
+    "start":288,
+    "end":312,
     "channel":0
     }, {
-    "start":168,
-    "end":180,
+    "start":336,
+    "end":360,
     "channel":3
     }, {
-    "start":4821,
-    "end":5213,
+    "start":480,
+    "end":504,
     "channel":2
     }, {
-    "start":1536,
-    "end":6311,
-    "channel":1
-    }]
+    "start":480,
+    "end":504,
+    "channel":3
+    },{
+      "start": 528,
+      "end": 552,
+      "channel": 0
+    },{
+      "start": 528,
+      "end": 552,
+      "channel": 1
+    },{
+      "start": 672,
+      "end": 696,
+      "channel": 1
+    },{
+      "start": 672,
+      "end": 696,
+      "channel": 2
+    },{
+      "start": 720,
+      "end": 744,
+      "channel": 0
+    },{
+      "start": 720,
+      "end": 744,
+      "channel": 3
+    },{
+      "start": 1104,
+      "end": 1140,
+      "channel": 1
+    }
+  ]
 }
