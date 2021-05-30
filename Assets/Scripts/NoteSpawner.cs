@@ -11,7 +11,7 @@ public class NoteSpawner : MonoBehaviour {
   private Song song;
 
   public float spd;// = Variable.speed;
-  public int localbpm;// = Variable.bpm;
+  public float localbpm;// = Variable.bpm;
 
   private static float channelWidth = 10f / 4f;
   private static float channelOffset = channelWidth * 3f / 2f;
@@ -20,7 +20,7 @@ public class NoteSpawner : MonoBehaviour {
   public float zScale {
     get {
       //return spd * -10f;
-      return -1000 * spd / 2 / localbpm;    //1000 * spd / bpm * Json‚Ì”’l = z
+      return -300f * spd / localbpm;    //1000 * spd / bpm * Json‚Ì”’l = z
     }
   }
 
