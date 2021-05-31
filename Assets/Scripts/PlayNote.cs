@@ -5,14 +5,25 @@ using UnityEngine;
 
 public class PlayNote : MonoBehaviour {
     public float spd;
-    
+    public bool a = false;
     void Start()
     {
       spd = Variable.speed;
+        StartCoroutine("MoveNote");
     }
 
-    void Update() {
-    Vector3 pos = this.gameObject.transform.position;
-    this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd);
-  }
+    void Update()
+    {
+        if (a)
+        {
+            Vector3 pos = this.gameObject.transform.position;
+            this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd);
+        }
+    }
+
+    IEnumerator MoveNote()
+    {
+        yield return new WaitForSeconds(15);
+        a = true;
+    }
 }
