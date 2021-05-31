@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class NoteSpawner : MonoBehaviour {
   public GameObject tapPrefab = null;
   public GameObject holdPrefab = null;
@@ -13,7 +13,7 @@ public class NoteSpawner : MonoBehaviour {
   public float spd;// = Variable.speed;
   public float localbpm;// = Variable.bpm;
 
-  private static float channelWidth = 10f / 4f;
+  private static float channelWidth = 2.4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
   
@@ -29,7 +29,7 @@ public class NoteSpawner : MonoBehaviour {
   }
 
 
-  void Start() {
+  void Awake() {
     spd = Variable.speed;
     localbpm = Variable.bpm;
     while(transform.childCount > 0) {
@@ -44,17 +44,18 @@ public class NoteSpawner : MonoBehaviour {
 
     song = JsonUtility.FromJson<Song>(songFile.text);
     foreach (Tap tap in song.taps) {
-      Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale - 160 * spd), Quaternion.identity, transform);
+      GameObject obj = Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale - (28800 / localbpm * spd)), Quaternion.identity, transform);
+      obj.transform.localScale = new Vector3(2.4f,obj.transform.localScale.y,transform.localScale.z);
     }
     foreach (Hold hold in song.holds) {
       float zLength = (hold.end - hold.start) * -zScale;
-      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2 - 160 * spd), Quaternion.identity, transform);
-      obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y, zLength);
+      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2 - (28800 / localbpm * spd)), Quaternion.identity, transform);
+      obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, zLength);
     }
   }
 
-  [ContextMenu("Save File")]
-  void SaveFile() {
+  //[ContextMenu("Save File")]
+  //void SaveFile() {
 
-  }
+  //}
 }
