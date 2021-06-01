@@ -31106,7 +31106,7 @@ Transform:
   m_GameObject: {fileID: 1983333440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 2}
+  m_LocalScale: {x: 2.5, y: 0, z: 1}
   m_Children:
   - {fileID: 745843764}
   m_Father: {fileID: 0}
@@ -34009,7 +34009,7 @@ Transform:
   m_GameObject: {fileID: 2108975831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_Children:
   - {fileID: 274349570}
   m_Father: {fileID: 0}
@@ -34359,6 +34359,10 @@ PrefabInstance:
       value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 416871471698319059, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 416871471698319059, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -34414,6 +34418,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6805522128838556368, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6907323016635253956, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
       propertyPath: Text1
       value: 
@@ -34459,6 +34467,10 @@ PrefabInstance:
       value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 5962668599233554509, guid: b5d5553b330f74997aa6131308886566, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962668599233554509, guid: b5d5553b330f74997aa6131308886566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -34501,6 +34513,10 @@ PrefabInstance:
     - target: {fileID: 5962668599233554510, guid: b5d5553b330f74997aa6131308886566, type: 3}
       propertyPath: m_Name
       value: Hold Note
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793157946919732378, guid: b5d5553b330f74997aa6131308886566, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1233397701716532656, guid: b5d5553b330f74997aa6131308886566, type: 3}

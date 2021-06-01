@@ -16,11 +16,11 @@ public class NoteSpawner : MonoBehaviour {
   private static float channelWidth = 2.4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
-  
+
   public float zScale {
     get {
       //return spd * -10f;
-      return -300f * spd / localbpm;    //1000 * spd / bpm * Json‚Ì”’l = z
+      return -300f * spd / localbpm;    //1000 * spd / bpm * Jsonï¿½Ìï¿½ï¿½l = z
     }
   }
 
