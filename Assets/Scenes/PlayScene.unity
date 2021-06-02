@@ -12939,7 +12939,7 @@ GameObject:
   - component: {fileID: 781631094}
   - component: {fileID: 781631093}
   m_Layer: 0
-  m_Name: Song
+  m_Name: Note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12960,6 +12960,8 @@ MonoBehaviour:
   tapPrefab: {fileID: 416871471698319060, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
   holdPrefab: {fileID: 5962668599233554510, guid: b5d5553b330f74997aa6131308886566, type: 3}
   songFile: {fileID: 4900000, guid: 32a6c0d5115ff4741a76195bcc094ea5, type: 3}
+  far: 0
+  wait: 0
   spd: 4
   localbpm: 170
 --- !u!4 &781631094
@@ -26214,7 +26216,7 @@ RectTransform:
   - {fileID: 620664341}
   - {fileID: 646217736}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

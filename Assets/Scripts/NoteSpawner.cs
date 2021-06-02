@@ -10,6 +10,7 @@ public class NoteSpawner : MonoBehaviour {
   public float far;
   private Song song;
   public bool wait;
+
   public float spd;// = Variable.speed;
   public float localbpm;// = Variable.bpm;
 
@@ -71,6 +72,7 @@ public class NoteSpawner : MonoBehaviour {
   private void Update() {
     if(wait) {
       far += spd;
+      Debug.Log(far);
     }
   }
 }
