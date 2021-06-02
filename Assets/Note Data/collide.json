@@ -261,8 +261,7 @@
   },{
     "start": 1530,
     "channel": 3
-  }
-  ],
+  }],
   "holds": [ {
     "start": 96,
     "end": 120,
@@ -288,41 +287,40 @@
     "end":504,
     "channel":3
     },{
-      "start": 528,
-      "end": 552,
-      "channel": 0
+    "start": 528,
+    "end": 552,
+    "channel": 0
     },{
-      "start": 528,
-      "end": 552,
-      "channel": 1
+    "start": 528,
+    "end": 552,
+    "channel": 1
     },{
-      "start": 672,
-      "end": 696,
-      "channel": 1
+    "start": 672,
+    "end": 696,
+    "channel": 1
     },{
-      "start": 672,
-      "end": 696,
-      "channel": 2
+    "start": 672,
+    "end": 696,
+    "channel": 2
     },{
-      "start": 720,
-      "end": 744,
-      "channel": 0
+    "start": 720,
+    "end": 744,
+    "channel": 0
     },{
-      "start": 720,
-      "end": 744,
-      "channel": 3
+    "start": 720,
+    "end": 744,
+    "channel": 3
     },{
-      "start": 1104,
-      "end": 1140,
-      "channel": 1
+    "start": 1104,
+    "end": 1140,
+    "channel": 1
     },{
-      "start": 1512,
-      "end": 1521,
-      "channel": 3
+    "start": 1512,
+    "end": 1521,
+    "channel": 3
     },{
-      "start": 1521,
-      "end": 1530,
-      "channel": 1
-    }
-  ]
+    "start": 1521,
+    "end": 1530,
+    "channel": 1
+  }]
 }
