@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Variable : MonoBehaviour
 {
     public int score = 0;
-    public static float speed = 1f;
+    public static float speed = 4f;
     public Text text2;
     public static float beat = 4f;
     public static float bpm = 170f;
@@ -26,7 +26,7 @@ public class Variable : MonoBehaviour
 
     private IEnumerator PlayMusic()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(5);
         music.Play();
     }
 }
