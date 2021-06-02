@@ -24,6 +24,7 @@ public class PlayNote : MonoBehaviour {
     IEnumerator MoveNote()
     {
         yield return new WaitForSeconds(5);
+        GameObject.Find("Run Programs").GetComponent<NoteSpawner>().wait = true;
         a = true;
     }
 }
