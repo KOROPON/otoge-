@@ -21,7 +21,7 @@ public class Variable : MonoBehaviour
     void Update()
     {
         //score�\��
-        text2.text = score.ToString();
+        // text2.text = score.ToString();
     }
 
     private IEnumerator PlayMusic()
