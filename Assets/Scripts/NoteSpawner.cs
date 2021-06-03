@@ -7,8 +7,9 @@ public class NoteSpawner : MonoBehaviour {
   public GameObject tapPrefab = null;
   public GameObject holdPrefab = null;
   public TextAsset songFile;
-
+  public float far;
   private Song song;
+  public bool wait;
 
   public float spd;// = Variable.speed;
   public float localbpm;// = Variable.bpm;
@@ -46,11 +47,13 @@ public class NoteSpawner : MonoBehaviour {
     foreach (Tap tap in song.taps) {
       GameObject obj = Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale - (28800 / localbpm * spd)), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(2.4f,obj.transform.localScale.y,transform.localScale.z);
+      obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z + 10 * spd);
     }
     foreach (Hold hold in song.holds) {
       float zLength = (hold.end - hold.start) * -zScale;
       GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2 - (28800 / localbpm * spd)), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, zLength);
+      obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z);
     }
   }
 
@@ -58,4 +61,18 @@ public class NoteSpawner : MonoBehaviour {
   //void SaveFile() {
 
   //}
+
+  public void TapSpawn() {
+
+  }
+  public void Holdspawn() {
+
+  }
+
+  private void Update() {
+    if(wait) {
+      far += spd;
+      Debug.Log(far);
+    }
+  }
 }
