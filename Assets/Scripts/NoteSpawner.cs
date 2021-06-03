@@ -7,8 +7,9 @@ public class NoteSpawner : MonoBehaviour {
   public GameObject tapPrefab = null;
   public GameObject holdPrefab = null;
   public TextAsset songFile;
-
+  public float far;
   private Song song;
+  public bool wait;
 
   public float spd;// = Variable.speed;
   public float localbpm;// = Variable.bpm;
@@ -60,4 +61,18 @@ public class NoteSpawner : MonoBehaviour {
   //void SaveFile() {
 
   //}
+
+  public void TapSpawn() {
+
+  }
+  public void Holdspawn() {
+
+  }
+
+  private void Update() {
+    if(wait) {
+      far += spd;
+      Debug.Log(far);
+    }
+  }
 }
