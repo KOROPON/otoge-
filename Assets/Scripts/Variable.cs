@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Variable : MonoBehaviour
 {
     public int score = 0;
-    public static float speed = 1f;
+    public static float speed=Setting.getRate();
     public Text text2;
     public static float beat = 4f;
     public static float bpm = 170f;
