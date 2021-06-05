@@ -53,7 +53,7 @@ public class NoteSpawner : MonoBehaviour {
       float zLength = (hold.end - hold.start) * -zScale;
       GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2 - (28800 / localbpm * spd)), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, zLength);
-      obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z);
+      obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1 + 1 / zLength * 10 * spd);
     }
   }
 
@@ -71,8 +71,7 @@ public class NoteSpawner : MonoBehaviour {
 
   private void Update() {
     if(wait) {
-      far += spd;
-      Debug.Log(far);
+      far += spd * Time.deltaTime;
     }
   }
 }

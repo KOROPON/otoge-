@@ -9,7 +9,7 @@ public class PlayNote : MonoBehaviour {
     NoteSpawner sc;
     void Start()
     {
-      spd = Variable.speed;
+        spd = Variable.speed;
         sc = GameObject.Find("Note").GetComponent<NoteSpawner>();
         StartCoroutine("MoveNote");
     }
@@ -19,13 +19,13 @@ public class PlayNote : MonoBehaviour {
         if (a)
         {
             Vector3 pos = this.gameObject.transform.position;
-            this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd);
+            this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd * Time.deltaTime * 60);
         }
     }
 
     IEnumerator MoveNote()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         sc.wait = true;
         a = true;
     }

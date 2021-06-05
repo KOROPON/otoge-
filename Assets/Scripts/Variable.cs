@@ -26,7 +26,7 @@ public class Variable : MonoBehaviour
 
     private IEnumerator PlayMusic()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         music.Play();
     }
 }
