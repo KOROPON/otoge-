@@ -10,8 +10,8 @@ public class PlayNote : MonoBehaviour {
     void Start()
     {
       spd = Variable.speed;
-        sc = GameObject.Find("Note").GetComponent<NoteSpawner>();
-        StartCoroutine("MoveNote");
+      sc = GameObject.Find("Note").GetComponent<NoteSpawner>();
+      StartCoroutine("MoveNote");
     }
 
     void Update()

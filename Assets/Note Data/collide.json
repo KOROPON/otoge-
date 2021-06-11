@@ -1,6 +1,6 @@
 {
   "title": "collide",
-  "taps": [ {
+  "taps": [{
     "start": 0,
     "channel": 0
   },{
