@@ -21,7 +21,7 @@ public class NoteSpawner : MonoBehaviour {
   public float zScale {
     get {
       //return spd * -10f;
-      return -300f * spd / localbpm;    //1000 * spd / bpm * Json�̐��l = z
+      return -60f * spd;    //1000 * spd / bpm * Json�̐��l = z
     }
   }
 
@@ -45,15 +45,15 @@ public class NoteSpawner : MonoBehaviour {
 
     song = JsonUtility.FromJson<Song>(songFile.text);
     foreach (Tap tap in song.taps) {
-      GameObject obj = Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale - (28800 / localbpm * spd)), Quaternion.identity, transform);
+      GameObject obj = Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(2.4f,obj.transform.localScale.y,transform.localScale.z);
       obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z + 10 * spd);
     }
     foreach (Hold hold in song.holds) {
       float zLength = (hold.end - hold.start) * -zScale;
-      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale - zLength / 2 - (28800 / localbpm * spd)), Quaternion.identity, transform);
+      GameObject obj = Instantiate(holdPrefab, new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, zLength);
-      obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z);
+      obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1 + 1 / zLength * 10 * spd);
     }
   }
 
@@ -71,8 +71,7 @@ public class NoteSpawner : MonoBehaviour {
 
   private void Update() {
     if(wait) {
-      far += spd;
-      Debug.Log(far);
+      far += spd * Time.deltaTime;
     }
   }
 }
