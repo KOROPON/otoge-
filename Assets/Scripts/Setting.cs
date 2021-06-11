@@ -6,10 +6,7 @@ using UnityEngine.UI;
 public class Setting : MonoBehaviour
 {
   //下準備
-  public static string rate="4.3";
-  public static float getRate(){
-    return float.Parse(rate);
-  }
+  string rate="";
   public void RateChange(double change_value){
     GameObject.Find("rate").GetComponent<Text>().text=(double.Parse(GameObject.Find("rate").GetComponent<Text>().text)+change_value).ToString();
   }
@@ -19,9 +16,11 @@ public class Setting : MonoBehaviour
     alter.SetActive(true);
   }
   //使用関数
-  public void check(){
-    rate=GameObject.Find("rate").GetComponent<Text>().text;
+  public void SettingClose(){
     GameObject.Find("設定画面").SetActive(false);
+  }
+  public void reserve(){
+    rate=GameObject.Find("rate").GetComponent<Text>().text;
   }
   public void cancel(){
     GameObject.Find("rate").GetComponent<Text>().text=rate;
@@ -38,8 +37,5 @@ public class Setting : MonoBehaviour
   }
   public void shiftDown(){
     RateChange(-1);
-  }
-  void Update(){
-
   }
 }

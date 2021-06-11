@@ -26,9 +26,7 @@ public class Variable : MonoBehaviour
 
     private IEnumerator PlayMusic()
     {
-      Debug.Log(string.Format("before{0:N3}", Time.time));
-      yield return new WaitForSeconds(5);
-      Debug.Log(string.Format("after{0:N3}", Time.time));
-      music.Play();
+        yield return new WaitForSeconds(5);
+        music.Play();
     }
 }
