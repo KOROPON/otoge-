@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 //[ExecuteInEditMode]
 public class NoteSpawner : MonoBehaviour {
   public GameObject tapPrefab = null;
   public GameObject holdPrefab = null;
-  public TextAsset songFile;
   public float far;
   private Song song;
   public bool wait;
@@ -17,6 +17,32 @@ public class NoteSpawner : MonoBehaviour {
   private static float channelWidth = 2.4f;
   private static float channelOffset = channelWidth * 3f / 2f;
 
+  [Tooltip("譜面作成の時はユーザーのフォルダーからロードする")]
+  public bool loadFromUserFolder = false;
+  [Tooltip("ゲーム自体のプレイ画面用のテキストアセット")]
+  public TextAsset songFile;
+  [Tooltip("譜面作成のユーザーがつけたファイル名")]
+  public string songFileName = "";
+
+  private string songPath {
+    get {
+      if (songFileName == "") {
+        return "";
+      }
+      return Application.persistentDataPath + "/" + songFileName;
+    }
+  }
+
+  private string jsonString {
+    get {
+      if (loadFromUserFolder) {
+        using (StreamReader reader = new StreamReader(songPath)) {
+          return reader.ReadToEnd();
+        }
+      }
+      return songFile.text;
+    }
+  }
 
   public float zScale {
     get {
@@ -28,6 +54,7 @@ public class NoteSpawner : MonoBehaviour {
   private static float getChannelX(int channel) {
     return -channel * channelWidth + channelOffset;
   }
+
 
 
   void Awake() {
@@ -43,7 +70,7 @@ public class NoteSpawner : MonoBehaviour {
       }
     }
 
-    song = JsonUtility.FromJson<Song>(songFile.text);
+    song = JsonUtility.FromJson<Song>(jsonString);
     foreach (Tap tap in song.taps) {
       GameObject obj = Instantiate(tapPrefab, new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale), Quaternion.identity, transform);
       obj.transform.localScale = new Vector3(2.4f,obj.transform.localScale.y,transform.localScale.z);
