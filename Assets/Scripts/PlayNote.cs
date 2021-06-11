@@ -6,11 +6,9 @@ using UnityEngine;
 public class PlayNote : MonoBehaviour {
     public float spd;
     public bool a = false;
-    NoteSpawner sc;
     void Start()
     {
         spd = Variable.speed;
-        sc = GameObject.Find("Note").GetComponent<NoteSpawner>();
         StartCoroutine("MoveNote");
     }
 
@@ -26,7 +24,6 @@ public class PlayNote : MonoBehaviour {
     IEnumerator MoveNote()
     {
         yield return new WaitForSeconds(3);
-        sc.wait = true;
         a = true;
     }
 }
