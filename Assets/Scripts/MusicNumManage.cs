@@ -6,23 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class MusicNumManage : MonoBehaviour
 {
-    void musicInfo(string music_name,string musicPath,int score) {
-      GameObject.Find("ジャケット1").GetComponent<RawImage>().texture=Resources.Load<Texture2D>(musicPath);
-      GameObject.Find("タイトル").GetComponent<Text>().text=music_name;
-    }
+    RawImage jack;
+    public Text text1;
+    public AudioSource aud;
     public int music_number;
-    public void music1() {
-      musicInfo("Collide","Music_Is_My_Suicide_Jacket",1000000);
-      if (music_number==1){
-        SceneManager.LoadScene("PlayScene");
-      }
-      music_number=1;
+    public AudioClip colide;
+    public AudioClip devou;
+
+    void Start() {
+      jack = GameObject.Find("ジャケット1").GetComponent<RawImage>();
     }
-    public void music2(){
-      musicInfo("Devourer Of Sol_Ⅲ","uchuu",1000000);
-      if (music_number==2){
+    void musicInfo(string music_name,string musicPath,int score) {
+      jack.texture = Resources.Load<Texture2D>(musicPath);
+      text1.text = music_name;
+    }
+    public void Music1() {
+      musicInfo("Collide","Music_Is_My_Suicide_Jacket",1000000);
+      aud.clip = colide;
+      aud.Play();
+      if (music_number == 1) {
         SceneManager.LoadScene("PlayScene");
       }
-      music_number=2;
+      music_number = 1;
+    }
+    public void Music2() {
+      musicInfo("Devourer Of Sol_Ⅲ","uchuu",1000000);
+      aud.clip = devou;
+      aud.Play();
+      if (music_number == 2) {
+        SceneManager.LoadScene("PlayScene");
+      }
+      music_number = 2;
     }
 }

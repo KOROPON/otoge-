@@ -512,43 +512,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 808788351}
           m_TargetAssemblyTypeName: MusicNumManage, Assembly-CSharp
-          m_MethodName: music2
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 834546826}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 731267806}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Stop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1431239657}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Pause
+          m_MethodName: Music2
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1127,11 +1091,11 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1485,7 +1449,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3010,43 +2974,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 808788351}
           m_TargetAssemblyTypeName: MusicNumManage, Assembly-CSharp
-          m_MethodName: music1
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 731267806}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 834546826}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Stop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1431239657}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Pause
+          m_MethodName: Music1
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3313,6 +3241,22 @@ PrefabInstance:
       propertyPath: alter
       value: 
       objectReference: {fileID: 2006518412}
+    - target: {fileID: 785381101910642081, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
+      propertyPath: aud
+      value: 
+      objectReference: {fileID: 731267806}
+    - target: {fileID: 785381101910642081, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
+      propertyPath: devou
+      value: 
+      objectReference: {fileID: 8300000, guid: adb4cb2739961744fb86777e62d02733, type: 3}
+    - target: {fileID: 785381101910642081, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
+      propertyPath: text1
+      value: 
+      objectReference: {fileID: 1788348301}
+    - target: {fileID: 785381101910642081, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
+      propertyPath: colide
+      value: 
+      objectReference: {fileID: 8300000, guid: 60a829635f48a2142b05d66a5fb2a9ab, type: 3}
     - target: {fileID: 785381101910642083, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
       propertyPath: m_Name
       value: RunProgram_musicselect
