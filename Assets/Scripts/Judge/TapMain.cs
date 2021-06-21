@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 public class TapMain : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter()
     {
         var sc = transform.parent.gameObject.transform.Find("Base").gameObject.GetComponent<TapJudge>();
         sc.TrueJudge();

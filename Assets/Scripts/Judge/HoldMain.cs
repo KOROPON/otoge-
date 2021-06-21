@@ -10,12 +10,11 @@ public class HoldMain : MonoBehaviour
     bool roop = false;
     bool a = false;
     public Debuger script;
-    private IEnumerator holdJudge;
     void Start()
     {
         script = GameObject.Find("Run Programs").GetComponent<Debuger>();
     }
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter()
     {
         if (count == false)
         {
@@ -25,7 +24,7 @@ public class HoldMain : MonoBehaviour
             StartCoroutine(holdJudge);
         }
     }
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit()
     {
         roop = true;
     }
