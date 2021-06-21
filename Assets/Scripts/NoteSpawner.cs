@@ -46,8 +46,7 @@ public class NoteSpawner : MonoBehaviour {
 
   public float zScale {
     get {
-      //return spd * -10f;
-      return -60f * spd;    //1000 * spd / bpm * Json�̐��l = z
+      return -60f * spd;
     }
   }
 
