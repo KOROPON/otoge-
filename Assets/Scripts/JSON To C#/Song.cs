@@ -2,7 +2,7 @@
 
 public class Song {
   public string title;
-  public float bpm;
+  public string bpm;
   public Tap[] taps;
   public Hold[] holds;
 }
