@@ -1,6 +1,8 @@
 {
   "title": "collide",
   "bpm": "170",
+  "audSelect":
+  "audPlay": 
   "taps": [{
     "start":3,
     "channel":0
