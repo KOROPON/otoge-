@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class TapJudge : MonoBehaviour, IPointerClickHandler
 {
     public Text Text1;
+    public AudioSource aud;
+    public AudioClip audC;
     public bool judge;
     public System.Diagnostics.Stopwatch judger = new System.Diagnostics.Stopwatch();
     public bool even = false;
@@ -21,9 +23,11 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
         script = GameObject.Find("Run Programs").GetComponent<Debuger>();
         judge = false;
         even = false;
+        aud = GameObject.Find("TapMusic").GetComponent<AudioSource>();
     }
     public void OnPointerClick(PointerEventData eventData)   //ƒ^ƒbƒv‚³‚ê‚½‚Æ‚«
     {
+        aud.Play();
         //double time = judger.Elapsed.TotalSeconds;
         if (even == false)
         {

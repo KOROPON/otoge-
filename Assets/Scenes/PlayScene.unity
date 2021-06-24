@@ -376,6 +376,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -491,6 +493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -714,6 +718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -829,6 +835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -1052,6 +1060,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -1167,6 +1177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -1282,6 +1294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -1935,6 +1949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -2344,6 +2360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -2459,6 +2477,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -2682,6 +2702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -4183,6 +4205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -4617,6 +4641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -4732,6 +4758,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -5043,6 +5071,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -5158,6 +5188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -5381,6 +5413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -6053,6 +6087,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -6168,6 +6204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -6648,6 +6686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -8999,6 +9039,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -9243,6 +9285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -9760,6 +9804,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -10581,6 +10627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -11313,6 +11361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -12833,6 +12883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -13102,6 +13154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -13813,6 +13867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -14232,6 +14288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -14347,6 +14405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -15220,6 +15280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -15335,6 +15397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -15660,6 +15724,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -16403,6 +16469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -16591,12 +16659,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947960481}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1405749, y: 1.8748281, z: -390.8304}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -284.2642, y: -290.9552, z: -427.23105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1681527751}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949135129
 GameObject:
@@ -16805,8 +16873,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EventMask:
     serializedVersion: 2
-    m_Bits: 8
-  m_MaxRayIntersections: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!45 &963194230
 Skybox:
   m_ObjectHideFlags: 0
@@ -16961,6 +17029,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -17076,6 +17146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -17346,6 +17418,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -17823,6 +17897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -18211,6 +18287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -18326,6 +18404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -18549,6 +18629,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -19035,6 +19117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -19468,6 +19552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -19905,6 +19991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -20662,6 +20750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -20777,6 +20867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -21445,6 +21537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -21766,6 +21860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -21989,6 +22085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -22104,6 +22202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -23192,6 +23292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -23873,6 +23975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -24117,6 +24221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -24232,6 +24338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -24461,6 +24569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -24576,6 +24686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -25004,6 +25116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -25653,6 +25767,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -25800,6 +25916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -26023,6 +26141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -26445,6 +26565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -26560,6 +26682,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -26675,6 +26799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -26898,6 +27024,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -27584,6 +27712,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680288235}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1681527750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681527751}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1681527751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681527750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 284.12363, y: 292.83002, z: 36.400635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1936441979}
+  - {fileID: 947960483}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694081004
 GameObject:
   m_ObjectHideFlags: 0
@@ -27631,6 +27791,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -28069,6 +28231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -28390,6 +28554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -28613,6 +28779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -28943,6 +29111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -29058,6 +29228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -29397,6 +29569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -29512,6 +29686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -29900,6 +30076,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -30211,6 +30389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -30434,6 +30614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -30816,6 +30998,133 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932697558}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1936441978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936441979}
+  - component: {fileID: 1936441980}
+  m_Layer: 0
+  m_Name: TapMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1936441979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936441978}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -284.2642, y: -290.9552, z: -427.23105}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1681527751}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1936441980
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936441978}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6e00c06622c5c324e93228ec70ea3a77, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1937785819
 GameObject:
   m_ObjectHideFlags: 0
@@ -31083,6 +31392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -31327,6 +31638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -31911,6 +32224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -32191,6 +32506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -32677,6 +32994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -32792,6 +33111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -33100,6 +33421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -33739,6 +34062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -33966,6 +34291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -34081,6 +34408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -34227,6 +34556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -34342,6 +34673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1
@@ -34576,6 +34909,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3867254283802108706, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
+      propertyPath: aud
+      value: 
+      objectReference: {fileID: 947960482}
+    - target: {fileID: 3867254283802108706, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -34588,9 +34925,17 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6907323016635253956, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
+      propertyPath: aud
+      value: 
+      objectReference: {fileID: 1936441980}
+    - target: {fileID: 6907323016635253956, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
+      propertyPath: audC
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e00c06622c5c324e93228ec70ea3a77, type: 3}
+    - target: {fileID: 6907323016635253956, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
       propertyPath: Text1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 620664342}
     - target: {fileID: 6907323016635253956, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
       propertyPath: runProgrum
       value: 
