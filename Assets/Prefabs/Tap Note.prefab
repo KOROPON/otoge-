@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 416871471698319056}
   - component: {fileID: 416871471698319057}
   - component: {fileID: 4759466073829151831}
+  - component: {fileID: 1488163715370944008}
   m_Layer: 0
   m_Name: Tap Note
   m_TagString: Untagged
@@ -98,6 +99,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spd: 1
   a: 0
+--- !u!114 &1488163715370944008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416871471698319060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344d22162e6c7417a841b3276bd0e75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1738313391275172703
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text1: {fileID: 0}
+  aud: {fileID: 0}
+  audC: {fileID: 0}
   judge: 0
   even: 1
   onlytap: 1

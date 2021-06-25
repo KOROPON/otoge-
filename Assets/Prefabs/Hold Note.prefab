@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6793157946919732378}
   - component: {fileID: 6670832720847153588}
-  - component: {fileID: 3084159441686718265}
   m_Layer: 0
   m_Name: HoldNote2
   m_TagString: Untagged
@@ -45,19 +44,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3084159441686718265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267136182316948047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f412d7879da664aa0a45f868c218e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  script: {fileID: 0}
 --- !u!1 &5962668599233554510
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,6 +57,7 @@ GameObject:
   - component: {fileID: 5962668599233554507}
   - component: {fileID: 5962668599233554508}
   - component: {fileID: 1233397701716532656}
+  - component: {fileID: 6278664511839254824}
   m_Layer: 0
   m_Name: Hold Note
   m_TagString: Untagged
@@ -170,6 +157,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spd: 1
   a: 0
+--- !u!114 &6278664511839254824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962668599233554510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01b191d97164427bbabb399f08f5d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7842382056645932170
 GameObject:
   m_ObjectHideFlags: 0
