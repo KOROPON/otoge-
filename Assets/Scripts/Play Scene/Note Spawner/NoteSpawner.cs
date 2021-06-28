@@ -83,10 +83,29 @@ public class NoteSpawner : MonoBehaviour {
     }
   }
 
-  //[ContextMenu("Save File")]
-  //void SaveFile() {
-
-  //}
+  [ContextMenu("Save File")]
+  void SaveFile() {
+    Song song = new Song();
+    TapComponent[] tcs = GetComponentsInChildren<TapComponent>();
+    song.taps = new Tap[tcs.Length];
+    for (int i = 0; i < tcs.Length; i++) {
+      Tap tap = new Tap();
+      tap.channel = tcs[i].channel;
+      tap.start = tcs[i].start;
+      song.taps[i] = tap;
+    }
+    HoldComponents[] hcs = GetComponentsInChildren<HoldComponents>();
+    song.holds = new Hold[hcs.Length];
+    for (int i = 0; i < hcs.Length; i++) {
+      Hold hold = new Hold();
+      hold.channel = hcs[i].channel;
+      hold.start = hcs[i].start;
+      song.holds[i] = hold;
+    }
+    using (StreamWriter writer = new StreamWriter(songPath)) {
+      writer.WriteLine(JsonUtility.ToJson(song, true));
+    }
+  }
 
   public void TapSpawn() {
 

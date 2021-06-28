@@ -8,9 +8,9 @@ public class MusicNumManage : MonoBehaviour
 {
     RawImage jack;
     public Text text1;
-    public AudioSource aud;
+    public AudioSource audioSource;
     public int music_number;
-    public AudioClip colide;
+    public AudioClip collide;
     public AudioClip devou;
 
     void Start() {
@@ -22,8 +22,8 @@ public class MusicNumManage : MonoBehaviour
     }
     public void Music1() {
       musicInfo("Collide","Music_Is_My_Suicide_Jacket",1000000);
-      aud.clip = colide;
-      aud.Play();
+      audioSource.clip = collide;
+      audioSource.Play();
       if (music_number == 1) {
         SceneManager.LoadScene("PlayScene");
       }
@@ -31,8 +31,8 @@ public class MusicNumManage : MonoBehaviour
     }
     public void Music2() {
       musicInfo("Devourer Of Sol_Ⅲ","uchuu",1000000);
-      aud.clip = devou;
-      aud.Play();
+      audioSource.clip = devou;
+      audioSource.Play();
       if (music_number == 2) {
         SceneManager.LoadScene("PlayScene");
       }
