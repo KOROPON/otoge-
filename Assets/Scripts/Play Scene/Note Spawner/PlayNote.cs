@@ -4,26 +4,26 @@ using System.Timers;
 using UnityEngine;
 
 public class PlayNote : MonoBehaviour {
-    public float spd;
-    public bool a = false;
-    void Start()
-    {
-        spd = Variable.speed;
-        StartCoroutine("MoveNote");
-    }
+  public float spd;
+  public bool a = false;
 
-    void Update()
-    {
-        if (a)
-        {
-            Vector3 pos = this.gameObject.transform.position;
-            this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd * Time.deltaTime * 60);
-        }
-    }
+  [Tooltip("NoteSpawnerから譜面作成用にPlayNoteをオフにする")]
+  public bool togglePlayNote = true;
 
-    IEnumerator MoveNote()
-    {
-        yield return new WaitForSeconds(3);
-        a = true;
+  void Start() {
+    spd = Variable.speed;
+    StartCoroutine("MoveNote");
+  }
+
+  void Update() {
+    if (a && togglePlayNote) {
+      Vector3 pos = this.gameObject.transform.position;
+      this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd * Time.deltaTime * 60);
     }
+  }
+
+  IEnumerator MoveNote() {
+    yield return new WaitForSeconds(3);
+    a = true;
+  }
 }

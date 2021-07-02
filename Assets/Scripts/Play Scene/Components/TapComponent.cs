@@ -6,13 +6,13 @@ public class TapComponent : MonoBehaviour
 {
   public int channel {
     get {
-      return (int)Mathf.Round(transform.position.x);
+      return (int)Mathf.Round(transform.localPosition.x);
     }
   }
 
   public float start {
     get {
-      return transform.position.z;
+      return transform.localPosition.z;
     }
   }
 }

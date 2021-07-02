@@ -12,13 +12,13 @@ public class HoldComponents : MonoBehaviour
 
   public int channel {
     get {
-      return (int)Mathf.Round(transform.position.x);
+      return (int)Mathf.Round(transform.localPosition.x);
     }
   }
 
   public float start {
     get {
-      return (transform.position.z + transform.localScale.z / 2) / zScale;
+      return (transform.localPosition.z + transform.localScale.z / 2) / zScale;
     }
   }
 

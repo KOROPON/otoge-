@@ -16,10 +16,12 @@ public class MusicNumManage : MonoBehaviour
     void Start() {
       jack = GameObject.Find("ジャケット1").GetComponent<RawImage>();
     }
+
     void musicInfo(string music_name,string musicPath,int score) {
       jack.texture = Resources.Load<Texture2D>(musicPath);
       text1.text = music_name;
     }
+
     public void Music1() {
       musicInfo("Collide","Music_Is_My_Suicide_Jacket",1000000);
       audioSource.clip = collide;
