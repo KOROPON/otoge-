@@ -8,6 +8,10 @@ public class TapComponent : MonoBehaviour
     get {
       return (int)Mathf.Round(transform.localPosition.x);
     }
+
+    set {
+      transform.position = new Vector3(NoteSpawner.getChannelX(value), transform.position.y, transform.position.z);
+    }
   }
 
   public float start {

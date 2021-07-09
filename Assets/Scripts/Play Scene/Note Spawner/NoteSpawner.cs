@@ -53,11 +53,13 @@ public class NoteSpawner : MonoBehaviour {
     }
   }
 
-  private static float getChannelX(int channel) {
+  public static float getChannelX(int channel) {
     return -channel * channelWidth + channelOffset;
   }
 
-
+  public static int getChannelFromX(float x) {
+    return (int)Mathf.Round(Mathf.Clamp(-(x - channelOffset) / channelWidth, 0f, 3f));
+  }
 
   void Awake() {
     spd = Variable.speed;
