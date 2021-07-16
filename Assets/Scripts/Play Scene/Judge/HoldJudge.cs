@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Timers;
+
 public class HoldJudge : MonoBehaviour
 {
     Timer timer = new Timer(300);
@@ -22,7 +23,7 @@ public class HoldJudge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //this.gameObject.AddComponent<>(); 
+        //this.gameObject.AddComponent<>();
         script = GameObject.Find("Run Programs").GetComponent<Debuger>();
         miss = true;
         cs = transform.parent.gameObject.transform.Find("HoldNote2").gameObject.GetComponent<HoldMain>();
@@ -40,7 +41,7 @@ public class HoldJudge : MonoBehaviour
             }
         }
     }
-    public void OnMouseDown()   //ƒ^ƒbƒv‚³‚ê‚½‚Æ‚«
+    public void OnMouseDown()   //ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½
     {
         if (onlytap)
         {
@@ -73,7 +74,7 @@ public class HoldJudge : MonoBehaviour
             onlytap = false;
         }
     }
-    public void TrueJudge()          //^‚ñ’†‚ªƒ‰ƒCƒ“‚ÉG‚ê‚½‚Æ‚«
+    public void TrueJudge()          //ï¿½^ï¿½ñ’†‚ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ÉGï¿½ê‚½ï¿½Æ‚ï¿½
     {
         lineOver.Start();
         //if (!judge2)
@@ -102,7 +103,7 @@ public class HoldJudge : MonoBehaviour
             even = true;
         }
     }
-    public void OnBecameInvisible()   //ƒJƒƒ‰‚©‚çŒ©‚¦‚È‚­‚È‚Á‚½‚Æ‚«
+    public void OnBecameInvisible()   //ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŒ©ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
     {
         Destroy(transform.parent.gameObject);
         Debug.Log("Lost");

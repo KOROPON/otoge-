@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class TapComponent : MonoBehaviour
 {
-  public int channel {
-    get {
-      return (int)Mathf.Round(transform.localPosition.x);
+    public int channel
+    {
+        get
+        {
+            return (int)Mathf.Round(transform.localPosition.x);
+        }
+
+        set
+        {
+            transform.localPosition = new Vector3(NoteSpawner.getChannelX(value), transform.localPosition.y, transform.localPosition.z);
+        }
     }
 
-    set {
-      transform.position = new Vector3(NoteSpawner.getChannelX(value), transform.position.y, transform.position.z);
+    public float start
+    {
+        get
+        {
+            return transform.localPosition.z;
+        }
     }
-  }
-
-  public float start {
-    get {
-      return transform.localPosition.z;
-    }
-  }
 }
