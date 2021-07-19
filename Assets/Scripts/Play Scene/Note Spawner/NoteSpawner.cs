@@ -78,7 +78,7 @@ public class NoteSpawner : MonoBehaviour
     {
         spd = Variable.speed;
         localbpm = Variable.bpm;
-        while(transform.childCount > 0)
+        while (transform.childCount > 0)
         {
             Transform child = transform.GetChild(0);
             if (Application.isPlaying)
@@ -91,7 +91,7 @@ public class NoteSpawner : MonoBehaviour
                 DestroyImmediate(child.gameObject);
             }
         }
-
+    }
   public void TapSpawn() {
         song = JsonUtility.FromJson<Song>(jsonString);
         foreach (Tap tap in song.taps)
@@ -112,7 +112,7 @@ public class NoteSpawner : MonoBehaviour
             obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1 + 1 / zLength * 10 * spd);
             obj.GetComponent<PlayNote>().togglePlayNote = togglePlayNote;
         }
-    }
+  }
 
     [ContextMenu("Save File")]
     void SaveFile()
@@ -140,10 +140,6 @@ public class NoteSpawner : MonoBehaviour
         {
             writer.WriteLine(JsonUtility.ToJson(song, true));
         }
-    }
-
-    public void TapSpawn()
-    {
     }
 
     public void Holdspawn()

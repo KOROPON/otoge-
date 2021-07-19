@@ -8,11 +8,17 @@ public class TapComponent : MonoBehaviour
     get {
       return (int)Mathf.Round(transform.position.x);
     }
+    set {
+      
+    }
   }
 
   public float start {
     get {
       return transform.position.z;
+    }
+    set {
+      
     }
   }
 }
