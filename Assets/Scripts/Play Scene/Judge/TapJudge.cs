@@ -16,16 +16,19 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
     public GameObject runProgrum;
     public Debuger script;
     public int a = 0;
-    // Start is called before the first frame update
+
+    [Tooltip("NoteSpawnerã‹ã‚‰è­œé¢ä½œæˆç”¨ã«OnBecameInvisibleã‚’ã‚ªãƒ•ã«ã™ã‚‹")]
+    public bool toggleJudge = true;
+
     void Start()
     {
-        //this.gameObject.AddComponent<>(); 
+        //this.gameObject.AddComponent<>();
         script = GameObject.Find("Run Programs").GetComponent<Debuger>();
         judge = false;
         even = false;
         aud = GameObject.Find("TapMusic").GetComponent<AudioSource>();
     }
-    public void OnPointerClick(PointerEventData eventData)   //ƒ^ƒbƒv‚³‚ê‚½‚Æ‚«
+    public void OnPointerClick(PointerEventData eventData)   //ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½
     {
         aud.Play();
         //double time = judger.Elapsed.TotalSeconds;
@@ -73,7 +76,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             }
         }
     }
-    public void TrueJudge()          //^‚ñ’†‚ªƒ‰ƒCƒ“‚ÉG‚ê‚½‚Æ‚«
+    public void TrueJudge()          //ï¿½^ï¿½ñ’†‚ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ÉGï¿½ê‚½ï¿½Æ‚ï¿½
     {
         if (even == false)
         {
@@ -109,7 +112,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             }
         }
     }
-    public void OnBecameInvisible()   //ƒJƒƒ‰‚©‚çŒ©‚¦‚È‚­‚È‚Á‚½‚Æ‚«
+    public void OnBecameInvisible()   //ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŒ©ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
     {
         if(even == false)
         {
@@ -117,6 +120,9 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             Debug.Log("Miss...");
 
         }
-        Destroy(transform.parent.gameObject);
+        if (toggleJudge)
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 }
