@@ -209,6 +209,9 @@
   }, {
     "start":50.0,
     "channel":2
+  }, {
+    "start":50.1,
+    "channel":1
   }],
   "holds": [{
     "start":25.4,
