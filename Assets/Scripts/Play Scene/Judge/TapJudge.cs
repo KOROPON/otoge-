@@ -28,11 +28,11 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
         even = false;
         aud = GameObject.Find("TapMusic").GetComponent<AudioSource>();
     }
+
     public void OnPointerClick(PointerEventData eventData)   //�^�b�v���ꂽ�Ƃ�
     {
-        aud.Play();
         //double time = judger.Elapsed.TotalSeconds;
-        if (even == false)
+        if (!even && toggleJudge)
         {
             //runProgrum.GetComponent<NoteJudge>().Tap();
             //script.Tap();
@@ -76,9 +76,10 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
     public void TrueJudge()          //�^�񒆂����C���ɐG�ꂽ�Ƃ�
     {
-        if (even == false)
+        if (!even && toggleJudge)
         {
             if (!judge)
             {
@@ -112,9 +113,10 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
     public void OnBecameInvisible()   //�J�������猩���Ȃ��Ȃ����Ƃ�
     {
-        if(even == false)
+        if(!even && toggleJudge)
         {
             script.Miss();
             Debug.Log("Miss...");
