@@ -1,0 +1,4 @@
+(s)|{"appid":"editor","userid":"2a6f9bad8c1a54782a20978ae6742068","sessionid":5802216359938651385,"platform":"OSXEditor","platformid":0,"sdk_ver":"u2020.3.0f1","sdk_rev":"c7b5465681fb","session_count":101,"debug_device":true,"clouduserid":"15668351475268","localprojectid":"04ca07b0c31b0484980acc1991ff9734","machineid":"xo/3yE5cFdHkhersDIlnYPYLF1I=","deviceid":"C78A810A-ADF7-564C-A279-5F51F18E2892","identity_token":"2a6f9bad8c1a54782a20978ae6742068","license_hash":"6ced36527f0394470b781c847e5926230e81d788","license_kind":"Unity Personal","hub_session_guid":"d57336d0-eb54-11eb-baa9-3b713e997e1c"}
+(g)|2
+{"type":"editor.appRunning.v1","msg":{"usability_count":2,"duration":5335,"focus_duration":321,"play_duration":5238,"user_duration":83,"focus_count":12,"play_count":1,"user_active_count":8,"local_time_offset":-32400000,"ts":1627009413187,"t_since_start":5350814106}}
+(1){"type":"editor.appStop.v1","msg":{"ts":1627009413187,"t_since_start":5350814529}}

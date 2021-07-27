@@ -17,7 +17,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
     public Debuger script;
     public int a = 0;
 
-    [Tooltip("NoteSpawnerから譜面作成用にOnBecameInvisibleをオフにする")]
+    [Tooltip("NoteSpawnerから譜面作成用にJudgeをオフにする")]
     public bool toggleJudge = true;
 
     void Start()
