@@ -14,7 +14,6 @@ public class NoteSpawner : MonoBehaviour
 
     [Tooltip("trueならばPlayNoteを起動")]
     public bool togglePlayNote = true;
-    public bool toggleJudge = true;
 
     public float spd;// = Variable.speed;
     public float localbpm;// = Variable.bpm;
@@ -100,7 +99,6 @@ public class NoteSpawner : MonoBehaviour
             obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, obj.transform.localScale.z);
             obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z + 10 * spd);
             obj.GetComponent<PlayNote>().togglePlayNote = togglePlayNote;
-            obj.GetComponent<TapJudge>().toggleJudge = toggleJudge;
         }
         foreach (Hold hold in song.holds)
         {

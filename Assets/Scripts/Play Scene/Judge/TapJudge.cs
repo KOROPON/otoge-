@@ -17,8 +17,6 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
     public Debuger script;
     public int a = 0;
 
-    [Tooltip("NoteSpawnerから譜面作成用にJudgeをオフにする")]
-    public bool toggleJudge = true;
 
     void Start()
     {
@@ -32,7 +30,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)   //�^�b�v���ꂽ�Ƃ�
     {
         //double time = judger.Elapsed.TotalSeconds;
-        if (!even && toggleJudge)
+        if (!even)
         {
             //runProgrum.GetComponent<NoteJudge>().Tap();
             //script.Tap();
@@ -79,7 +77,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
 
     public void TrueJudge()          //�^�񒆂����C���ɐG�ꂽ�Ƃ�
     {
-        if (!even && toggleJudge)
+        if (!even)
         {
             if (!judge)
             {
@@ -116,15 +114,12 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
 
     public void OnBecameInvisible()   //�J�������猩���Ȃ��Ȃ����Ƃ�
     {
-        if(!even && toggleJudge)
+        if(!even)
         {
             script.Miss();
             Debug.Log("Miss...");
 
         }
-        if (toggleJudge)
-        {
-            Destroy(transform.parent.gameObject);
-        }
+        Destroy(transform.parent.gameObject);
     }
 }
