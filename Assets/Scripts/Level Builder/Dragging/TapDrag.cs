@@ -17,17 +17,23 @@ class TapDragAction : IUndo
 
     public void Undo()
     {
+        Debug.Log(transform.localPosition);
+        Debug.Log(startPosition);
         transform.localPosition = startPosition;
     }
 
     public void Redo()
     {
+        Debug.Log(transform.localPosition);
+        Debug.Log(endPosition);
         transform.localPosition = endPosition;
     }
 }
 
 public class TapDrag : MonoBehaviour
 {
+    public Transform noteRoot;
+
     private TapComponent tap;
 
     private Vector3 screenPoint;
@@ -47,7 +53,7 @@ public class TapDrag : MonoBehaviour
     {
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-        startPosition = transform.localPosition;
+        startPosition = noteRoot.localPosition;
     }
 
     void OnMouseDrag()
@@ -61,7 +67,7 @@ public class TapDrag : MonoBehaviour
 
     void OnMouseUp()
     {
-        undo.Add(new TapDragAction(startPosition, transform.localPosition, transform));
+        undo.Add(new TapDragAction(startPosition, noteRoot.localPosition, noteRoot));
     }
 
     void Update()

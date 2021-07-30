@@ -18,6 +18,7 @@ public class UndoAction : MonoBehaviour
 
     public void Undo()
     {
+        Debug.Log(undo.Count);
         if (undo.Count > 0)
         {
             IUndo action = undo.Pop();
@@ -28,6 +29,7 @@ public class UndoAction : MonoBehaviour
 
     public void Redo()
     {
+        Debug.Log(undo.Count);
         if (redo.Count > 0)
         {
             IUndo action = redo.Pop();

@@ -14,6 +14,7 @@ public class NoteSpawner : MonoBehaviour
 
     [Tooltip("trueならばPlayNoteを起動")]
     public bool togglePlayNote = true;
+    public bool toggleJudge = true;
 
     public float spd;// = Variable.speed;
     public float localbpm;// = Variable.bpm;
@@ -95,6 +96,10 @@ public class NoteSpawner : MonoBehaviour
         foreach (Tap tap in song.taps)
         {
             GameObject obj = Instantiate(tapPrefab, transform, false);
+            if (!toggleJudge && Application.isPlaying)
+            {
+                Destroy(obj.GetComponentInChildren<TapJudge>());
+            }
             obj.transform.localPosition = new Vector3(getChannelX(tap.channel), -0.5f, tap.start * zScale);
             obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, obj.transform.localScale.z);
             obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, obj.transform.localScale.z + 10 * spd);
@@ -104,6 +109,10 @@ public class NoteSpawner : MonoBehaviour
         {
             float zLength = (hold.end - hold.start) * -zScale;
             GameObject obj = Instantiate(holdPrefab, transform, false);
+            if (!toggleJudge && Application.isPlaying)
+            {
+                Destroy(obj.GetComponentInChildren<HoldJudge>());
+            }
             obj.transform.localPosition = new Vector3(getChannelX(hold.channel), -0.5f, hold.start * zScale);
             obj.transform.localScale = new Vector3(2.4f, obj.transform.localScale.y, zLength);
             obj.transform.GetChild(0).localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1 + 1 / zLength * 10 * spd);
