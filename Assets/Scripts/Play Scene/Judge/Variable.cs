@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Variable : MonoBehaviour
 {
     public int score = 0;
@@ -10,7 +11,9 @@ public class Variable : MonoBehaviour
     public static float beat = 4f;
     public static float bpm = 170f;
     public AudioSource music;
+
     NoteSpawner sc;
+
     // Start is called before the first frame update
     void Start()
     {
