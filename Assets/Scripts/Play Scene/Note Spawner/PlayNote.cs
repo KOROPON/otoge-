@@ -21,6 +21,8 @@ public class PlayNote : MonoBehaviour
     {
         if (a && togglePlayNote)
         {
+            //ノーツの速度の改変のためノーツを速度ではなく位置で管理する。位置は z=-spd*t^2/2+spd*t(tは曲が始まってからの時間
+            //ー判定する時間)で計算する
             Vector3 pos = this.gameObject.transform.position;
             this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z + spd * Time.deltaTime * 60);
         }

@@ -114,4 +114,4 @@ MonoBehaviour:
   height: 50
   quality: 100
   isOutward: 0
-  color: {r: 0, g: 1, b: 0, a: 0}
+  color: {r: 1, g: 0.029075107, b: 0, a: 0}
