@@ -17,7 +17,7 @@ public class PlayNote : MonoBehaviour
         StartCoroutine("MoveNote");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (a && togglePlayNote)
         {

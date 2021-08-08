@@ -112,7 +112,7 @@ public class TapJudge : MonoBehaviour, IPointerClickHandler
             }
         }
     }
-    public void OnBecameInvisible()   //�J�������猩���Ȃ��Ȃ����Ƃ�
+    public void OnBecameInvisible()   //カメラから見えなくなったとき
     {
         if(even == false)
         {
