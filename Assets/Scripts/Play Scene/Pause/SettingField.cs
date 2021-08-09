@@ -56,11 +56,13 @@ public class SettingField : MonoBehaviour
 
     public void Retry()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("PlayScene");
     }
 
     public void Back()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("SelectScene");
     }
 }

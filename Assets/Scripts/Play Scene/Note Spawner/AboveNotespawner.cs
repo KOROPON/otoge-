@@ -18,33 +18,40 @@ public class AboveNotespawner : MonoBehaviour {
 	private Vector3[] vertices; //頂点
 	private int[] triangles;    //index
 
-	private void makeParams(){
+	private void makeParams()
+	{
 		List<Vector3> vertList = new List<Vector3>();
 		List<int> triList = new List<int>();
 
-    float th,v1,v2;
-		int max=(int)quality*areaAngle/360;
-    for (int i=0;i<=max;i++){
-			th=i*areaAngle/max + startAngle;
-			v1=Mathf.Sin(th * Mathf.Deg2Rad);
-			v2=Mathf.Cos(th * Mathf.Deg2Rad);
-			vertList.Add(new Vector3(v1,0,v2));
-			vertList.Add(new Vector3(v1,height,v2));
-			if(i<=max-1){
-				if(isOutward){
-					triList.Add(2*i);triList.Add(2*i+3);triList.Add(2*i+1);
-	  				triList.Add(2*i);triList.Add(2*i+2);triList.Add(2*i+3);
-				}else{
-  					triList.Add(2*i);triList.Add(2*i+1);triList.Add(2*i+3);
-	  				triList.Add(2*i);triList.Add(2*i+3);triList.Add(2*i+2);
+		float th, v1, v2;
+		int max = (int)quality * areaAngle / 360;
+		for (int i = 0; i <= max; i++)
+		{
+			th = i * areaAngle / max + startAngle;
+			v1 = Mathf.Sin(th * Mathf.Deg2Rad);
+			v2 = Mathf.Cos(th * Mathf.Deg2Rad);
+			vertList.Add(new Vector3(v1, 0, v2));
+			vertList.Add(new Vector3(v1, height, v2));
+			if (i <= max - 1)
+			{
+				if (isOutward)
+				{
+					triList.Add(2 * i); triList.Add(2 * i + 3); triList.Add(2 * i + 1);
+					triList.Add(2 * i); triList.Add(2 * i + 2); triList.Add(2 * i + 3);
+				}
+				else
+				{
+					triList.Add(2 * i); triList.Add(2 * i + 1); triList.Add(2 * i + 3);
+					triList.Add(2 * i); triList.Add(2 * i + 3); triList.Add(2 * i + 2);
 				}
 			}
-    }
-    vertices  = vertList.ToArray();
+		}
+		vertices = vertList.ToArray();
 		triangles = triList.ToArray();
 	}
 
-	private void setParams(){
+	private void setParams()
+	{
 		Mesh mesh = new Mesh();
 
 		mesh.vertices = vertices;
@@ -64,7 +71,8 @@ public class AboveNotespawner : MonoBehaviour {
 		GetComponent<MeshRenderer>().material.color = color;
 	}
 
-	void Start(){
+	void Start()
+	{
 		makeParams();
 		setParams();
 	}

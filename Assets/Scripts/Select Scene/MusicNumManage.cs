@@ -11,14 +11,17 @@ public class MusicNumManage : MonoBehaviour
     RawImage jack;
     public Text text1;
     public AudioSource audioSource;
-    public int music_number = -1;
-    public AudioClip collide;
-    public AudioClip devou;
+    int music_number = -1;
+    //public AudioClip collide;
+    //public AudioClip devou;
 
     void Start()
     {
         jack = GameObject.Find("ジャケット1").GetComponent<RawImage>();
         audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
+        //audioSource.clip =  前にプレイしていた曲のクリップ取得(わからなかったので誰かお願いします)
+        audioSource.Play();
+        Debug.Log(music_number.ToString());
     }
 
     void musicInfo(string music_name,string jacketPath,int score) {

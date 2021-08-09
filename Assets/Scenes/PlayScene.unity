@@ -25,8 +25,8 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.2347945, g: 0.23867998, b: 0.24157104, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110c96d7bd550cb4b83e56f5e4f06bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text1: {fileID: 620664342}
+  text2: {fileID: 646217737}
 --- !u!4 &745843764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416871471698319059, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
@@ -1341,7 +1341,7 @@ Skybox:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CustomSkybox: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
 --- !u!1 &1019345295
 GameObject:
@@ -3333,6 +3333,10 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2307879285864630353, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -9222979511359688303, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
     - target: {fileID: -2182639032505388213, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -3352,6 +3356,10 @@ PrefabInstance:
     - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
       propertyPath: m_Depth
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
       propertyPath: orthographic
@@ -3375,6 +3383,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
       propertyPath: near clip plane
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_BackGroundColor.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
@@ -3405,6 +3425,10 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 805098333363774982, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -9130586711530211351, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
     - target: {fileID: 919132149155446097, guid: 9f3f82d48404241a28739aef6f779005, type: 3}
       propertyPath: m_Name
       value: "\u97F3\u30B1\u3099\u30FC2Blender"
