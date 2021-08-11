@@ -41,24 +41,11 @@ namespace Reilas
 
             _triangles = new int[(xDivision - 1) * 6 * (zDivision - 1)];
 
-            Debug.LogWarning("xDivision: " + xDivision);
-            Debug.LogWarning("zDivision: " + zDivision);
-            Debug.LogWarning("_verticesN: " + _vertices.Length);
-            Debug.LogWarning("TriNum: " + _triangles.Length);
-
-
-            // 012
-            // 345
-            // 678
-
             for (var z = 0; z < zDivision - 1; z++)
             {
                 var n = z * (xDivision - 1) * 6;
                 for (var x = 0; x < xDivision - 1; x++)
                 {
-                    Debug.LogWarning("I: " + (n + x * 6 + 0) + " -" + (n + x * 6 + 5));
-
-
                     _triangles[n + x * 6 + 0] = z * (xDivision) + x;
                     _triangles[n + x * 6 + 1] = z * (xDivision) + x + 1;
                     _triangles[n + x * 6 + 2] = (z + 1) * (xDivision) + x;
@@ -126,43 +113,10 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-
                     var outerPoint = new Vector3(outerX, outerY, currentZ);
 
-
-                    //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
-
                     _vertices[(_entity.Head.Size + 1) * z + x] = outerPoint;
-
-
                     _uv[z * (_entity.Head.Size + 1) + x] = new Vector2(1f / _entity.Head.Size * x, 1f / (zDiv - 1) * z);
-
-                    /*
-                    float uvX = 1f / _entity.Size * x;
-
-                    float alpha = 1f;
-                    // 手前
-                    if (z == 0)
-                    {
-                        if (_uv != null)
-                        {
-                            _uv[x * 2 + 0] = new Vector3(uvX, 0.5f, alpha);
-                            _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
-                        }
-                    }
-                    // 奥
-                    else
-                    {
-                        var w = z * (_entity.Size + 1) * 2 + (x * 2);
-
-                        if (_uv != null)
-                        {
-                            _uv[w + 0] = new Vector3(uvX, 1f, alpha);
-                            _uv[w + 1] = new Vector3(0, 0, alpha);
-                        }
-                    }
-                    */
                 }
             }
 
