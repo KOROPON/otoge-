@@ -12,14 +12,6 @@ namespace Reilas
 
         protected override int GetNoteType(NoteJsonData noteJsonData)
         {
-            /*
-            if (noteJsonData.type == "tap")
-            {
-                return (int)NoteType.Lim;
-            }
-            */
-
-
             NoteType noteType = noteJsonData.type switch
             {
                 "tap" => NoteType.Tap,
@@ -31,13 +23,13 @@ namespace Reilas
                 _ => NoteType.None
             };
 
-            return (int)noteType;
+            return (int) noteType;
         }
 
         public override void Initialize(NoteJsonData note, float judgeTime)
         {
             base.Initialize(note, judgeTime);
-            Type = (NoteType)IntType;
+            Type = (NoteType) IntType;
 
             // LanePosition = LanePosition * 9;
             // Size = Size * 9;
