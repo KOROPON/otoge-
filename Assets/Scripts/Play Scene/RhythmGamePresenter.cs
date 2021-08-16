@@ -147,6 +147,7 @@ namespace Reilas
         private ReilasChartEntity _chartEntity;
 
         public int CurrentCombo;
+        public static string musicname;
 
         /// <summary>
         /// 判定結果を処理する
@@ -168,7 +169,7 @@ namespace Reilas
         {
             FindObjectOfType<Variable>().enabled = false;
 
-            var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/I") as TextAsset;
+            var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/"+musicname+".Hard") as TextAsset;
 
             if (chartTextAsset == null)
             {

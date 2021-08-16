@@ -12,10 +12,11 @@ namespace Reilas
     {
         private const float BelowNoteWidth = 2.5f;
         private const float LeftPosition = -5f;
-
+        public static float speedvariable = 5f;
         public static Vector3 GetPosition(NoteEntity entity, float currentTime)
         {
-            const float highSpeed = 300f;
+
+            const float highSpeed = 200f;
 
             var size = entity.Size * BelowNoteWidth;
             var left = size / 2f;
@@ -40,16 +41,16 @@ namespace Reilas
                 return new Vector3(999, 999, 999);
             }
 
-            if (normalizedTime <= 0)
+            if (normalizedTime < 0)
             {
                 // 判定ライン超えてるよ
                 return new Vector3(999, 999, 999);
             }
 
             // 0 ~ 1 の数字を
-            normalizedTime = Easing.ExpIn(normalizedTime, 1, 0, 1);
+            normalizedTime = Easing.CircIn(normalizedTime,1,0,1);
 
-            return new Vector3(x, 0f, normalizedTime * highSpeed * -1f);
+            return new Vector3(x, 0f, normalizedTime * highSpeed * speedvariable * -1f);
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)
