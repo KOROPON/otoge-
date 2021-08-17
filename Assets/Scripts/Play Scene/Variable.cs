@@ -13,17 +13,16 @@ public class Variable : MonoBehaviour
     public static float bpm = 170f;
     public AudioSource music;
 
-    NoteSpawner sc;
+//    NoteSpawner sc;
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
-        sc = GameObject.Find("Note").GetComponent<NoteSpawner>();
+      //  sc = GameObject.Find("Note").GetComponent<NoteSpawner>();
         StartCoroutine("PlayMusic");
     }
-
-    // Update is called once per frame
+   // Update is called once per frame
     void Update()
     {
         //score�\��
@@ -33,7 +32,7 @@ public class Variable : MonoBehaviour
     private IEnumerator PlayMusic()
     {
         yield return new WaitForSeconds(3);
-        sc.wait = true;
+    //    sc.wait = true;
         music.Play();
     }
 }
