@@ -136,7 +136,7 @@ namespace Reilas
         [SerializeField] private HoldNote _holdNotePrefab = null!;
         [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
         [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
-
+        
         [SerializeField] private AudioSource _audioSource = null!;
 
         private readonly List<TapNote> _tapNotes = new List<TapNote>();

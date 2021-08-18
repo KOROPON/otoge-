@@ -34,23 +34,28 @@ namespace Reilas
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
             float normalizedTime = (entity.JudgeTime - currentTime) / 何秒後のノーツまで描画するか;
+            GameObject tapNote =　GameObject.Find("Tap Note");
 
-            if (normalizedTime >= 1f)
+            if (normalizedTime >= 1f || normalizedTime < 0)
             {
-                // 表示しません
+                // 表示しません // 判定ライン超えてるよ
+                // tapNote.SetActive(false);
                 return new Vector3(999, 999, 999);
+            } else
+            {
+                // tapNote.SetActive(true);
+                float t = -normalizedTime * 何秒後のノーツまで描画するか;
+                return new Vector3(x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
             }
 
-            if (normalizedTime < 0)
-            {
-                // 判定ライン超えてるよ
-                return new Vector3(999, 999, 999);
-            }
+            // if (normalizedTime < 0)
+            // {
+            //     return new Vector3(999, 999, 999);
+            // }
 
             // 0 ~ 1 の数字を
-            normalizedTime = Easing.CircIn(normalizedTime,1,0,1);
+            // normalizedTime = Easing.CircIn(normalizedTime,1,0,1);
 
-            return new Vector3(x, 0f, normalizedTime * highSpeed * speedvariable * -1f);
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)

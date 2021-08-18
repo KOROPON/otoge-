@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 781631094}
   - component: {fileID: 781631093}
   m_Layer: 0
-  m_Name: Note
+  m_Name: Notes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,6 +1302,7 @@ MonoBehaviour:
   _aboveTapNotePrefab: {fileID: 1318370044206668128, guid: 317099b47c56742d59638d02f46e1ce2, type: 3}
   _aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   _audioSource: {fileID: 947960482}
+  CurrentCombo: 0
 --- !u!1 &1127278211
 GameObject:
   m_ObjectHideFlags: 0
