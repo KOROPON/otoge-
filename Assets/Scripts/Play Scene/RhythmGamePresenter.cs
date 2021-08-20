@@ -136,7 +136,7 @@ namespace Reilas
         [SerializeField] private HoldNote _holdNotePrefab = null!;
         [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
         [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
-        
+
         [SerializeField] private AudioSource _audioSource = null!;
 
         private readonly List<TapNote> _tapNotes = new List<TapNote>();
@@ -148,6 +148,8 @@ namespace Reilas
 
         public int CurrentCombo;
         public static string musicname;
+
+        private string dif = MusicNumManage.difficulty;
 
         /// <summary>
         /// 判定結果を処理する
@@ -169,7 +171,7 @@ namespace Reilas
         {
             FindObjectOfType<Variable>().enabled = false;
 
-            var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/"+musicname+".Hard") as TextAsset;
+            var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/"+musicname+"."+dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/"+musicname+".Hard") as TextAsset;
 
             if (chartTextAsset == null)
             {
