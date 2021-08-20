@@ -1029,6 +1029,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 808788351}
+        m_TargetAssemblyTypeName: Reilas.MusicNumManage, Assembly-CSharp
+        m_MethodName: Difficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 637727039}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &637727043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,7 +1444,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 785381101910642081, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
   m_PrefabInstance: {fileID: 785381101102525662}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1512446367}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 328361a9234b0504599869c5b40be898, type: 3}
@@ -1443,7 +1455,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 785381101910642015, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
   m_PrefabInstance: {fileID: 785381101102525662}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1512446367}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b326ade1fc2723249820407a9ac33c49, type: 3}
@@ -1936,7 +1948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -40.00006, y: -300}
+  m_AnchoredPosition: {x: -40.000183, y: -300}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1139419976
@@ -1986,7 +1998,7 @@ GameObject:
   - component: {fileID: 1171169524}
   - component: {fileID: 1171169523}
   m_Layer: 5
-  m_Name: flame
+  m_Name: frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2448,6 +2460,23 @@ Skybox:
   m_GameObject: {fileID: 1502029458}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!1 &1512446367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 785381101910642083, guid: 86b8910b87aee954c9c7bb527e11d54d, type: 3}
+  m_PrefabInstance: {fileID: 785381101102525662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1512446368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512446367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ae8088e8ce4bf6b894da152725841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514031045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3088,6 +3117,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 808788351}
+        m_TargetAssemblyTypeName: Reilas.MusicNumManage, Assembly-CSharp
+        m_MethodName: Difficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1860244528}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1860244531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3570,6 +3611,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 808788351}
+        m_TargetAssemblyTypeName: Reilas.MusicNumManage, Assembly-CSharp
+        m_MethodName: Difficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2147467965}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
