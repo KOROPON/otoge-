@@ -13,6 +13,7 @@ namespace Reilas
     {
         Perfect,
         Good,
+        Bad,
         Miss
     }
 
@@ -107,7 +108,7 @@ namespace Reilas
                                 });
 
                                 // メインのクラスに判定結果を伝えます
-                                GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult();
+                                GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult(JudgeResultType.Perfect);
                             }
 
                             if (Mathf.Abs(note.JudgeTime - currentTime) < 0.4f)
@@ -147,13 +148,14 @@ namespace Reilas
         private ReilasChartEntity _chartEntity;
 
         public int CurrentCombo;
-        public static string musicname;
+        public static string musicname = null!;
 
         /// <summary>
         /// 判定結果を処理する
         /// </summary>
-        public void HandleJudgeResult()
+        public void HandleJudgeResult(JudgeResultType judgeResultType)
         {
+
         }
 
         public void OnAddCombo()
@@ -179,8 +181,17 @@ namespace Reilas
 
             var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
             var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
+            var noteJsonDeta = JsonUtility.FromJson<NoteJsonData>(chartTextAsset.text);
+            var timeLineJsonData = JsonUtility.FromJson<TimelineJsonData>(chartTextAsset.text);
+
+            //Debug.Log();
 
             Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
+
+            /*foreach (NoteJsonData noteJsonData in timeLineJsonData.notes) 
+            {
+                
+            }*/
 
             var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
             var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
@@ -238,18 +249,20 @@ namespace Reilas
             }
         }
 
+        // 譜面情報に存在してる
+        List<ReilasNoteEntity> notes = new List<ReilasNoteEntity>();
+
+        // まだ判定されていないノーツ
+        List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
+
         private void Update()
         {
             var currentTime = _audioSource.time - _chartEntity.StartTime;
 
 
-            // 譜面情報に存在してる
-            List<ReilasNoteEntity> notes = new List<ReilasNoteEntity>();
 
             var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
-            // まだ判定されていないノーツ
-            List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
 
             var judgeService = new JudgeService();
