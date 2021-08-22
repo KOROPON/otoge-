@@ -30,6 +30,7 @@ namespace Reilas
     /// </summary>
     public class JudgeService
     {
+        public static List<JudgeResultType> alljudgetype = new List<JudgeResultType>();
         private readonly InputService _inputService = new InputService();
 
         private List<JudgeResult> _result = new List<JudgeResult>(10);
@@ -169,11 +170,15 @@ namespace Reilas
             AwakeAsync().Forget();
         }
 
+
+
         private async UniTask AwakeAsync()
         {
             FindObjectOfType<Variable>().enabled = false;
 
             var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/"+musicname+"."+dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/"+musicname+".Hard") as TextAsset;
+
+
 
             if (chartTextAsset == null)
             {
@@ -187,12 +192,13 @@ namespace Reilas
             var timeLineJsonData = JsonUtility.FromJson<TimelineJsonData>(chartTextAsset.text);
 
             //Debug.Log();
+            ScoreComboCaliculator.sumScore = chartEntity.Notes.Count * 4;
+            
 
-            Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
 
-            /*foreach (NoteJsonData noteJsonData in timeLineJsonData.notes) 
+            /*foreach (NoteJsonData noteJsonData in timeLineJsonData.notes)
             {
-                
+
             }*/
 
             var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);

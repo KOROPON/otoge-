@@ -21,7 +21,7 @@ namespace Reilas
             audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         }
 
-        private void musicInfo(string music_name,string jacketPath,int score)
+        private void musicInfo(string music_name,string jacketPath,float score)
         {
             audioSource.clip = Resources.Load<AudioClip>(music_name);
             audioSource.Play();
