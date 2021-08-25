@@ -1,54 +1,54 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Rhythmium;
-using Reilas;
 
-public class ScoreComboCaliculator : MonoBehaviour
+namespace Reilas
 {
-
-    public static int sumScore = 1;
-    public float currentScore;
-    public int currentCombo;
-    private int score = 1;
-
-    List<JudgeResult> alljudge;
-
-    public Text comboText;
-    public Text scoreText;
-    void LateUpdate()
+    public class ScoreComboCaliculator : MonoBehaviour
     {
-        alljudge = JudgeService.allJudgeType;
-        foreach (JudgeResult judgeResult in alljudge)
+
+        public static int sumScore = 1;
+        public float currentScore;
+        public int currentCombo;
+        private int score = 1;
+
+        List<JudgeResult> alljudge;
+
+        public Text comboText;
+        public Text scoreText;
+        void LateUpdate()
         {
-            var judgetype = judgeResult.ResultType;
-            if (judgetype == JudgeResultType.Perfect)
+            alljudge = JudgeService.allJudgeType;
+            foreach (JudgeResult judgeResult in alljudge)
             {
-                currentCombo++;
-                score += 4;
+                var judgetype = judgeResult.ResultType;
+                if (judgetype == JudgeResultType.Perfect)
+                {
+                    currentCombo++;
+                    score += 4;
+                }
+                else if (judgetype == JudgeResultType.Good)
+                {
+                    currentCombo++;
+                    score += 2;
+                }
+                else if (judgetype == JudgeResultType.Bad)
+                {
+                    currentCombo++;
+                    score += 1;
+                }
+                else
+                {
+                    currentCombo = 0;
+                }
             }
-            else if (judgetype == JudgeResultType.Good)
-            {
-                currentCombo++;
-                score += 2;
-            }
-            else if (judgetype == JudgeResultType.Bad)
-            {
-                currentCombo++;
-                score += 1;
-            }
-            else
-            {
-                currentCombo = 0;
-            }
+            JudgeService.allJudgeType.Clear();
+
+            currentScore = Mathf.Floor(1000000 * score / sumScore);
+            comboText.text = currentCombo.ToString();
+            scoreText.text = currentScore.ToString();
+            Debug.Log(currentScore);
         }
-        JudgeService.allJudgeType.Clear();
 
-        currentScore = Mathf.Floor(1000000 * score / sumScore);
-        comboText.text = currentCombo.ToString();
-        scoreText.text = currentScore.ToString();
-        Debug.Log(currentScore);
     }
-
 }

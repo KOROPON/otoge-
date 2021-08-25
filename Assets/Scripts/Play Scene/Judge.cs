@@ -1,8 +1,6 @@
 #nullable enable
 
 using System.Collections.Generic;
-using System.Linq;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Reilas;
 
@@ -58,7 +56,7 @@ public class JudgeService
                 {
 
                     // 判定ラインを過ぎて 0.75 秒経ったらミスにする
-                    if (currentTime - note.JudgeTime > 0.75f)
+                    if (currentTime - note.JudgeTime > 0.075f)
                     {
                         allJudgeType.Add(new JudgeResult
                         {
@@ -82,7 +80,7 @@ public class JudgeService
                             // 今押された瞬間だよ
                             if (tapState.TapStating)
                             {
-                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.2f)
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
                                 {
                                     // パーフェクト
                                     notJudgedNotes.RemoveAt(0);
@@ -92,11 +90,13 @@ public class JudgeService
                                         ResultType = JudgeResultType.Perfect
                                     });
 
+                                    Debug.Log("Perfect");
+
                                     // メインのクラスに判定結果を伝えます
-                                    GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult(JudgeResultType.Perfect);
+                                    //GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult(JudgeResultType.Perfect);
                                 }
 
-                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.4f)
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
                                 {
                                     // GOOD
                                     notJudgedNotes.RemoveAt(0);
@@ -105,6 +105,32 @@ public class JudgeService
                                     {
                                         ResultType = JudgeResultType.Good
                                     });
+
+                                    Debug.Log("Good");
+                                }
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
+                                {
+                                    // BAD
+                                    notJudgedNotes.RemoveAt(0);
+
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Bad
+                                    });
+
+                                    Debug.Log("Bad");
+                                }
+                                if (Mathf.Abs(note.JudgeTime - currentTime) >= 0.075f)
+                                {
+                                    // MISS
+                                    notJudgedNotes.RemoveAt(0);
+
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Miss
+                                    });
+
+                                    Debug.Log("Miss");
                                 }
                             }
                         }
@@ -112,7 +138,6 @@ public class JudgeService
                 }
             }
         }
-        //notJudgedNotes.RemoveAt(0);
     }
 }
 
