@@ -148,7 +148,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private readonly List<HoldNote> _holdNoteLines = new List<HoldNote>();
     private readonly List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
-    private ReilasChartEntity _chartEntity;
+    private ReilasChartEntity _chartEntity = null!;
 
     public int CurrentCombo;
     public static string musicname = null!;
@@ -188,6 +188,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
         var noteJsonDeta = JsonUtility.FromJson<NoteJsonData>(chartTextAsset.text);
         var timeLineJsonData = JsonUtility.FromJson<TimelineJsonData>(chartTextAsset.text);
+
+
+        notJudgedNotes = chartEntity.Notes;
+        notes = chartEntity.Notes;
 
         //Debug.Log();
 
@@ -269,6 +273,23 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         new Vector3(1.25f, 0, 0),
         new Vector3(-1.25f, 0, 0),
         new Vector3(-2.5f, 0, 0),
+
+        new Vector3(4.5f,0.3f,0),
+        new Vector3(4.3f,1.3f,0),
+        new Vector3(4f,2.3f,0),
+        new Vector3(3.5f,3.2f,0),
+        new Vector3(2.9f,3.95f,0),
+        new Vector3(2.1f,4.5f,0),
+        new Vector3(1.3f,4.9f,0),
+        new Vector3(0.5f,5.1f,0),
+        new Vector3(-0.5f,5.1f,0),
+        new Vector3(-1.3f,4.9f,0),
+        new Vector3(-2.1f,4.5f,0),
+        new Vector3(-2.9f,3.95f,0),
+        new Vector3(-3.5f,3.2f,0),
+        new Vector3(-4f,2.3f,0),
+        new Vector3(-4.3f,1.3f,0),
+        new Vector3(-4.5f,0.3f,0),
     };
 
      IEnumerable<Vector3> screenPoints = lanePositions.Select(lanePosition3D => Camera.main.WorldToScreenPoint(lanePosition3D));// Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //

@@ -16,9 +16,12 @@ namespace Reilas
             {
                 "tap" => NoteType.Tap,
                 "hold" => NoteType.Hold,
+                "hold-internal" => NoteType.HoldInternal,
                 "above-tap" => NoteType.AboveTap,
                 "above-hold" => NoteType.AboveHold,
+                "above-hold-internal" => NoteType.HoldInternal,
                 "above-slide" => NoteType.AboveSlide,
+                "above-slide-internal" => NoteType.AboveSlideInternal,
                 "above-chain" => NoteType.AboveChain,
                 _ => NoteType.None
             };

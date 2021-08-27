@@ -35,24 +35,33 @@ public class JudgeService
     {
         const float noJudgeTime = 1f; //一番近いノーツがこれより離れてると判定しない
 
+        bool alreadyJudge = false;
+        int laneNum;
         //var inputService = _inputService;
         //int judgeNoteCount = 0;
 
         foreach (var note in notJudgedNotes) //ノーツ情報の取得
         {
-            /*
-            judgeNoteCount++;
-            
-            if(judgeNoteCount > 4) // 1フレームに判定するのは 4 つまで (リミット)
+
+            if (note.JudgeTime - currentTime >= noJudgeTime) // 次の判定するべきノーツが1秒以上離れてたらBreak
             {
+                aboveTapState.Clear();
                 break;
             }
-            */
 
             foreach (var tapState in aboveTapState) //タップ情報で周回
             {
+               // Debug.Log(note.LanePosition + "Lane");
+                if(note.Type == NoteType.AboveChain || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlide || note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveTap)
+                {
+                    laneNum = note.LanePosition + 4;
+                }
+                else
+                {
+                    laneNum = note.LanePosition;
+                }
 
-                if (note.LanePosition == tapState.laneNumber) //レーン番号が同じとき
+                if (laneNum == tapState.laneNumber) //レーン番号が同じとき
                 {
 
                     // 判定ラインを過ぎて 0.75 秒経ったらミスにする
@@ -67,72 +76,75 @@ public class JudgeService
                     }
 
 
-                    if (note.JudgeTime - currentTime >= noJudgeTime)
-                    {
-                        break;
-                    }
 
-                    if (note.Type == NoteType.Tap)
+                    if (!alreadyJudge)//タップ、ホールドとスライドの始点は一回のタップで一度まで判定
                     {
-                        for (var i = 0; i < note.Size; i++)
+                        if (note.Type == NoteType.Tap)
                         {
-
-                            // 今押された瞬間だよ
-                            if (tapState.TapStating)
+                            for (var i = 0; i < note.Size; i++)
                             {
-                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
+
+                                // 今押された瞬間だよ
+                                if (tapState.TapStating)
                                 {
-                                    // パーフェクト
-                                    notJudgedNotes.RemoveAt(0);
-
-                                    allJudgeType.Add(new JudgeResult
+                                    if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
                                     {
-                                        ResultType = JudgeResultType.Perfect
-                                    });
+                                        // パーフェクト
+                                        notJudgedNotes.RemoveAt(0);
 
-                                    Debug.Log("Perfect");
+                                        allJudgeType.Add(new JudgeResult
+                                        {
+                                            ResultType = JudgeResultType.Perfect
+                                        });
 
-                                    // メインのクラスに判定結果を伝えます
-                                    //GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult(JudgeResultType.Perfect);
-                                }
+                                        Debug.Log("Perfect");
 
-                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
-                                {
-                                    // GOOD
-                                    notJudgedNotes.RemoveAt(0);
+                                        // メインのクラスに判定結果を伝えます
+                                        //GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult(JudgeResultType.Perfect);
+                                    }
 
-                                    allJudgeType.Add(new JudgeResult
+                                    if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
                                     {
-                                        ResultType = JudgeResultType.Good
-                                    });
+                                        // GOOD
+                                        notJudgedNotes.RemoveAt(0);
 
-                                    Debug.Log("Good");
-                                }
-                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
-                                {
-                                    // BAD
-                                    notJudgedNotes.RemoveAt(0);
+                                        allJudgeType.Add(new JudgeResult
+                                        {
+                                            ResultType = JudgeResultType.Good
+                                        });
 
-                                    allJudgeType.Add(new JudgeResult
+                                        Debug.Log("Good");
+                                    }
+                                    if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
                                     {
-                                        ResultType = JudgeResultType.Bad
-                                    });
+                                        // BAD
+                                        notJudgedNotes.RemoveAt(0);
 
-                                    Debug.Log("Bad");
-                                }
-                                if (Mathf.Abs(note.JudgeTime - currentTime) >= 0.075f)
-                                {
-                                    // MISS
-                                    notJudgedNotes.RemoveAt(0);
+                                        allJudgeType.Add(new JudgeResult
+                                        {
+                                            ResultType = JudgeResultType.Bad
+                                        });
 
-                                    allJudgeType.Add(new JudgeResult
+                                        Debug.Log("Bad");
+                                    }
+                                    if (Mathf.Abs(note.JudgeTime - currentTime) >= 0.075f)
                                     {
-                                        ResultType = JudgeResultType.Miss
-                                    });
+                                        // MISS
+                                        notJudgedNotes.RemoveAt(0);
 
-                                    Debug.Log("Miss");
+                                        allJudgeType.Add(new JudgeResult
+                                        {
+                                            ResultType = JudgeResultType.Miss
+                                        });
+
+                                        Debug.Log("Miss");
+                                    }
                                 }
                             }
+                        }
+                        if(note.Type == NoteType.AboveTap)
+                        {
+
                         }
                     }
                 }
