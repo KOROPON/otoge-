@@ -16,7 +16,7 @@ namespace Reilas
         public static Vector3 GetPosition(NoteEntity entity, float currentTime)
         {
 
-            const float highSpeed = 200f;
+            float highSpeed = 120f * speedvariable;
 
             var size = entity.Size * BelowNoteWidth;
             var left = size / 2f;
