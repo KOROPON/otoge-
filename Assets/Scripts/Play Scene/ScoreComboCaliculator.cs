@@ -13,11 +13,13 @@ namespace Reilas
         private int score = 1;
 
         List<JudgeResult> alljudge;
+        List<float> judgeInHold;
 
         public Text comboText;
         public Text scoreText;
         void LateUpdate()
         {
+            judgeInHold = JudgeService.judgedInHold; // “à•””»’è‚ÌŽó‚¯“n‚µ
             alljudge = JudgeService.allJudgeType;
             foreach (JudgeResult judgeResult in alljudge)
             {
@@ -47,7 +49,7 @@ namespace Reilas
             currentScore = Mathf.Floor(1000000 * score / sumScore);
             comboText.text = currentCombo.ToString();
             scoreText.text = currentScore.ToString();
-            Debug.Log(currentScore);
+            //Debug.Log(currentScore);
         }
 
     }

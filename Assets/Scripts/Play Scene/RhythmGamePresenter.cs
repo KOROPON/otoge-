@@ -8,131 +8,6 @@ using Rhythmium;
 using UnityEngine;
 using Reilas;
 
-/*
-
-public enum JudgeResultType
-{
-    Perfect,
-    Good,
-    Bad,
-    Miss
-}
-
-/// <summary>
-/// 判定結果
-/// </summary>
-public class JudgeResult
-{
-    public JudgeResultType ResultType;
-}
-
-/// <summary>
-/// 判定を行うサービス
-/// </summary>
-public class JudgeService
-{
-    public static List<JudgeResultType> allJudgeType = new List<JudgeResultType>();
-
-    private readonly InputService _inputService = new InputService();
-
-    private List<JudgeResult> _result = new List<JudgeResult>(10);
-
-    public List<JudgeResult> Judge(List<ReilasNoteEntity> notJudgedNotes, float currentTime)
-    {
-        var lanePositions = new Vector3[]
-        {
-                new Vector3(-5f, 0, 0),
-                new Vector3(-2.5f, 0, 0),
-                new Vector3(2.5f, 0, 0),
-                new Vector3(2.5f, 0, 0),
-        };
-
-        var screenPoints = lanePositions.Select(lanePosition3D => Camera.main.WorldToScreenPoint(lanePosition3D));
-
-        var touches = Input.touches;
-        foreach (var touch in touches)
-        {
-            var 一番近いレーンのインデックス = screenPoints
-                .Select((screenPoint, index) => (screenPoint, index))
-                .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position))
-                .First().index;
-
-            // touch.position
-            // このフレームで押されたよん
-            if (touch.phase == TouchPhase.Began)
-            {
-            }
-        }
-
-        _result.Clear();
-
-        const float 判定外秒数 = 1f;
-
-        var inputService = _inputService;
-
-        foreach (var note in notJudgedNotes)
-        {
-            // 判定ラインを超えているか
-            // 判定ラインを過ぎて 0.2 秒経ったらミスにする
-            if (note.JudgeTime - currentTime < 0.2f)
-            {
-                _result.Add(new JudgeResult
-                {
-                    ResultType = JudgeResultType.Miss
-                });
-
-                continue;
-            }
-
-
-            if (Mathf.Abs(note.JudgeTime - currentTime) >= 判定外秒数)
-            {
-                break;
-            }
-
-            if (note.Type == NoteType.Tap)
-            {
-                for (var i = 0; i < note.Size; i++)
-                {
-                    // 現在チェックするレーン番号
-                    var laneIndex = note.LanePosition + i;
-
-                    // 今押された瞬間だよ
-                    if (inputService.LaneTapStates[laneIndex].TapStating)
-                    {
-                        if (Mathf.Abs(note.JudgeTime - currentTime) < 0.2f)
-                        {
-                            // パーフェクト
-                            notJudgedNotes.RemoveAt(0);
-
-                            _result.Add(new JudgeResult
-                            {
-                                ResultType = JudgeResultType.Perfect
-                            });
-
-                            // メインのクラスに判定結果を伝えます
-                            GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult(JudgeResultType.Perfect);
-                        }
-
-                        if (Mathf.Abs(note.JudgeTime - currentTime) < 0.4f)
-                        {
-                            // GOOD
-                            notJudgedNotes.RemoveAt(0);
-
-                            _result.Add(new JudgeResult
-                            {
-                                ResultType = JudgeResultType.Good
-                            });
-                        }
-                    }
-                }
-            }
-        }
-
-        return _result;
-    }
-}
-*/
 
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
@@ -192,6 +67,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
+
+        foreach(var note in chartEntity.Notes)
+        {
+            Debug.Log(note.Type + "," + note.LanePosition + " " + note.Size);
+        }
 
         //Debug.Log();
 
@@ -269,11 +149,13 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     static Vector3[] lanePositions = new Vector3[]
     {
-        new Vector3(2.5f, 0, 0),
-        new Vector3(1.25f, 0, 0),
-        new Vector3(-1.25f, 0, 0),
+        //上のレーン
         new Vector3(-2.5f, 0, 0),
+        new Vector3(-1.25f, 0, 0),
+        new Vector3(1.25f, 0, 0),
+        new Vector3(2.5f, 0, 0),
 
+        //下のレーン
         new Vector3(4.5f,0.3f,0),
         new Vector3(4.3f,1.3f,0),
         new Vector3(4f,2.3f,0),
@@ -301,32 +183,32 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var touches = Input.touches;
 
 
-        Debug.Log(touches);
         foreach (var touch in touches)
         {
             var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
-            Debug.Log(nearestLaneIndex);
-
+            //Debug.Log(nearestLaneIndex);
+            bool end = false;
+            bool start = false;
             // touch.position
             // このフレームで押されたよん
             if (touch.phase == TouchPhase.Began)
             {
-                InputService.aboveLaneTapStates.Add(new LaneTapState
-                {
-                    laneNumber = nearestLaneIndex,
-                    IsHold = true,
-                    TapStating = true
-                });
+                start = true;
             }
-            else
+            if (touch.phase == TouchPhase.Ended)
             {
-                InputService.aboveLaneTapStates.Add(new LaneTapState
-                {
-                    laneNumber = nearestLaneIndex,
-                    IsHold = true,
-                    TapStating = false
-                });
+                end = true;
             }
+
+
+            InputService.aboveLaneTapStates.Add(new LaneTapState
+            {
+                laneNumber = nearestLaneIndex,
+                IsHold = true,
+                TapStating = start,
+                tapEnding = end
+            });
+
         }
 
 
@@ -375,6 +257,9 @@ public class LaneTapState
 
     // このフレームにタップしたか
     public bool TapStating;
+
+    //このフレームで指を離したか
+    public bool tapEnding;
 }
 
 public class InputService

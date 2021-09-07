@@ -24,7 +24,7 @@ namespace Reilas
 
             pos += entity.LanePosition * BelowNoteWidth;
 
-            var toLeft = left - LeftPosition;
+            //var toLeft = left - LeftPosition;
 
             var x = pos;
 
@@ -34,7 +34,6 @@ namespace Reilas
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
             float normalizedTime = (entity.JudgeTime - currentTime) / 何秒後のノーツまで描画するか;
-            GameObject tapNote =　GameObject.Find("Tap Note");
 
             if (normalizedTime >= 1f || normalizedTime < 0)
             {
@@ -88,7 +87,7 @@ public class Easing
         t /= totaltime / 2;
         if (t < 1) return max / 2 * t * t + min;
 
-        t = t - 1;
+        t--;
         return -max / 2 * (t * (t - 2) - 1) + min;
     }
 
@@ -112,7 +111,7 @@ public class Easing
         t /= totaltime / 2;
         if (t < 1) return max / 2 * t * t * t + min;
 
-        t = t - 2;
+        t -= 2;
         return max / 2 * (t * t * t + 2) + min;
     }
 
@@ -136,7 +135,7 @@ public class Easing
         t /= totaltime / 2;
         if (t < 1) return max / 2 * t * t * t * t + min;
 
-        t = t - 2;
+        t -= 2;
         return -max / 2 * (t * t * t * t - 2) + min;
     }
 
@@ -160,7 +159,7 @@ public class Easing
         t /= totaltime / 2;
         if (t < 1) return max / 2 * t * t * t * t * t + min;
 
-        t = t - 2;
+        t -= 2;
         return max / 2 * (t * t * t * t * t + 2) + min;
     }
 
@@ -203,7 +202,7 @@ public class Easing
 
         if (t < 1) return max / 2 * Mathf.Pow(2, 10 * (t - 1)) + min;
 
-        t = t - 1;
+        t--;
         return max / 2 * (-Mathf.Pow(2, -10 * t) + 2) + min;
     }
 
@@ -227,7 +226,7 @@ public class Easing
         t /= totaltime / 2;
         if (t < 1) return -max / 2 * (Mathf.Sqrt(1 - t * t) - 1) + min;
 
-        t = t - 2;
+        t -= 2;
         return max / 2 * (Mathf.Sqrt(1 - t * t) + 1) + min;
     }
 
@@ -253,7 +252,7 @@ public class Easing
             s = p / (2 * Mathf.PI) * Mathf.Asin(max / a);
         }
 
-        t = t - 1;
+        t--;
         return -(a * Mathf.Pow(2, 10 * t) * Mathf.Sin((t * totaltime - s) * (2 * Mathf.PI) / p)) + min;
     }
 
@@ -311,7 +310,7 @@ public class Easing
                    min;
         }
 
-        t = t - 1;
+        t--;
         return a * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * totaltime - s) * (2 * Mathf.PI) / p) * 0.5f + max + min;
     }
 
@@ -336,7 +335,7 @@ public class Easing
         t /= totaltime / 2;
         if (t < 1) return max / 2 * (t * t * ((s + 1) * t - s)) + min;
 
-        t = t - 2;
+        t -= 2;
         return max / 2 * (t * t * ((s + 1) * t + s) + 2) + min;
     }
 

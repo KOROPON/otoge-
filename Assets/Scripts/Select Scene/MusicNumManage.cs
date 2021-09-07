@@ -18,7 +18,7 @@ namespace Reilas
             audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         }
 
-        private void musicInfo(string music_name,string jacketPath,float score)
+        private void MusicInfo(string music_name,string jacketPath,float score)
         {
             audioSource.clip = Resources.Load<AudioClip>(music_name);
             audioSource.Play();
@@ -37,7 +37,7 @@ namespace Reilas
             {
                 music_number = obj.transform.GetSiblingIndex();
             }
-            musicInfo("Songs/Music Select/" + obj.name + "_intro", "Jacket/" + obj.name + "_jacket", 1000000);
+            MusicInfo("Songs/Music Select/" + obj.name + "_intro", "Jacket/" + obj.name + "_jacket", 1000000);
         }
 
         public void Difficulty(GameObject dif)
