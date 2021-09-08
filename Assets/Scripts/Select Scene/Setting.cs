@@ -1,18 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Reilas
 {
     public class Setting : MonoBehaviour
     {
         //下準備
+        public Text rateText;
+        [SerializeField] GameObject alter;
 
+        public static float rate = 3.5f;
+        public static float judgegap = 0f;
+        public static float audiogap = 0f;
+        public static float volume = 5f;
+
+        private double Clamp(double input, float min, float max)
+        {
+          float output = Mathf.Max( (float) input, max);
+          output = Mathf.Min(output,min);
+          return (double) output;
+        }
 
         public void RateChange(double change_value)
         {
-            GameObject.Find("rate").GetComponent<Text>().text = (double.Parse(GameObject.Find("rate").GetComponent<Text>().text) + change_value).ToString();
+            rateText.text = (double.Parse(rateText.text) + change_value).ToString();
         }
-        [SerializeField] GameObject alter;
         public void SettingOpen()
         {
             alter.SetActive(true);
@@ -20,13 +33,14 @@ namespace Reilas
         //使用関数
         public void Check()
         {
-            NotePositionCalculatorService.speedvariable = float.Parse(GameObject.Find("rate").GetComponent<Text>().text);
-            GameObject.Find("設定画面").SetActive(false);
+            alter.SetActive(false);
         }
+
+
         public void Cancel()
         {
-            GameObject.Find("rate").GetComponent<Text>().text = NotePositionCalculatorService.speedvariable.ToString();
-            GameObject.Find("設定画面").SetActive(false);
+
+            alter.SetActive(false);
         }
         public void Up()
         {
@@ -44,11 +58,6 @@ namespace Reilas
         {
             RateChange(-1);
         }
-        public static float GetRate()
-        {
-            return NotePositionCalculatorService.speedvariable;
-        }
-
     }
 
 }

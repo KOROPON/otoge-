@@ -178,7 +178,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
-        
+
 
         var touches = Input.touches;
 
@@ -213,6 +213,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         var currentTime = _audioSource.time - _chartEntity.StartTime;
+        var judgeTime = currentTime + Setting.judgegap;
+        var audioTime = currentTime + Setting.audiogap;
+
 
 
 
@@ -222,27 +225,27 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         //var judgeService = new JudgeService();
 
 
-        JudgeService.Judge(notJudgedNotes, currentTime,InputService.aboveLaneTapStates);
+        JudgeService.Judge(notJudgedNotes, judgeTime,InputService.aboveLaneTapStates);
 
 
         foreach (var tapNote in _tapNotes)
         {
-            tapNote.Render(currentTime);
+            tapNote.Render(audioTime);
         }
 
         foreach (var note in _aboveTapNotes)
         {
-            note.Render(currentTime);
+            note.Render(audioTime);
         }
 
         foreach (var note in _holdNoteLines)
         {
-            note.Render(currentTime);
+            note.Render(audioTime);
         }
 
         foreach (var note in _aboveSlideNotes)
         {
-            note.Render(currentTime);
+            note.Render(audioTime);
         }
     }
 }
