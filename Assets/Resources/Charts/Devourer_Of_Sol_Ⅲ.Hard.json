@@ -12891,27 +12891,6 @@
         "customProps": {}
       },
       {
-        "guid": "e716d0531f2f28db85b31e4837d1509a",
-        "editorProps": {
-          "time": 33.94736842105263
-        },
-        "measureIndex": 26,
-        "measurePosition": {
-          "numerator": 14,
-          "denominator": 16
-        },
-        "horizontalSize": 20,
-        "horizontalPosition": {
-          "numerator": 14,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "466baeeeff998bcbec25067f5c36a014",
-        "customProps": {}
-      },
-      {
         "guid": "b8b647208981b4b17ca369b39243ac78",
         "editorProps": {
           "time": 34.421052631578945
