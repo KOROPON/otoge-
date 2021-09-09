@@ -386,7 +386,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e9cac5d873ddd1e4aaaadef3a5c9bb16, type: 3}
     m_FontSize: 90
     m_FontStyle: 1
     m_BestFit: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ce089fbc7235f27489aaa96bf6775683, type: 3}
+  m_Texture: {fileID: 2800000, guid: f1da1e2f46388a44183010aa21632c86, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 4c684ad608d813c44a51a6d9667e4ca0, type: 3}
+  m_Texture: {fileID: 2800000, guid: ebb6422c41508c54689107ceeec0d256, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2705,7 +2705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3587c6797513ee4489334e276f6e99ed, type: 3}
+  m_Texture: {fileID: 2800000, guid: cb2f3a7e3d8ef414c827d9847323b77b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3012,7 +3012,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: be2890854016c3a4090d6d5e07e0bc85, type: 3}
     m_FontSize: 95
     m_FontStyle: 2
     m_BestFit: 0
@@ -3250,7 +3250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ce089fbc7235f27489aaa96bf6775683, type: 3}
+  m_Texture: {fileID: 2800000, guid: f1da1e2f46388a44183010aa21632c86, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3384,7 +3384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 94dac529c82645347a8a50c9b82d5b16, type: 3}
+  m_Texture: {fileID: 2800000, guid: b1b5cbf588e56fd48afe5cb9827844f6, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
