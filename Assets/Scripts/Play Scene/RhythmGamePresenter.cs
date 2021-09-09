@@ -221,6 +221,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         var currentTime = _audioSource.time - _chartEntity.StartTime;
+        var judgeTime = currentTime + Setting.judgegap;
+        var audioTime = currentTime + Setting.audiogap;
+
 
 
 
@@ -236,22 +239,22 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         foreach (var tapNote in _tapNotes)
         {
-            tapNote.Render(currentTime);
+            tapNote.Render(audioTime);
         }
 
         foreach (var note in _aboveTapNotes)
         {
-            note.Render(currentTime);
+            note.Render(audioTime);
         }
 
         foreach (var note in _holdNoteLines)
         {
-            note.Render(currentTime);
+            note.Render(audioTime);
         }
 
         foreach (var note in _aboveSlideNotes)
         {
-            note.Render(currentTime);
+            note.Render(audioTime);
         }
     }
 }
