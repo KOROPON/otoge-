@@ -75,6 +75,7 @@ public class GetHighScores : MonoBehaviour
         Difficulty diff = GetDiff(songName, difficulty);
         if (diff != null)
         {
+            Debug.Log(diff.highScore);
             return diff.highScore;
         }
         else
