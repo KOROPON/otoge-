@@ -44,128 +44,50 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     }
 
     public void OnAddCombo()
-
-namespace Reilas
-{
-    public enum JudgeResultType
     {
-        Perfect,
-        Good,
-        Miss
     }
 
-    /// <summary>
-    /// 判定結果
-    /// </summary>
-    public class JudgeResult
+    private void Awake()
     {
-        public JudgeResultType ResultType;
+        AwakeAsync().Forget();
     }
 
-    /// <summary>
-    /// 判定を行うサービス
-    /// </summary>
-    public class JudgeService
+    private async UniTask AwakeAsync()
     {
-        private readonly InputService _inputService = new InputService();
+        FindObjectOfType<Variable>().enabled = false;
 
-        private List<JudgeResult> _result = new List<JudgeResult>(10);
+        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
 
-        public List<JudgeResult> Judge(List<ReilasNoteEntity> notJudgedNotes, float currentTime)
+        if (chartTextAsset == null)
         {
-            var lanePositions = new Vector3[]
-            {
-                new Vector3(-5f, 0, 0),
-                new Vector3(-2.5f, 0, 0),
-                new Vector3(2.5f, 0, 0),
-                new Vector3(2.5f, 0, 0),
-            };
+            Debug.LogError("譜面データが見つかりませんでした");
+            return;
+        }
 
-            var screenPoints = lanePositions.Select(lanePosition3D => Camera.main.WorldToScreenPoint(lanePosition3D));
+        var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
+        var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
+        var noteJsonDeta = JsonUtility.FromJson<NoteJsonData>(chartTextAsset.text);
+        var timeLineJsonData = JsonUtility.FromJson<TimelineJsonData>(chartTextAsset.text);
+
 
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
         notJudgedNotes.OrderBy(notes => notes.JudgeTime);
 
-            var inputService = _inputService;
-
-            foreach (var note in notJudgedNotes)
-            {
-                // 判定ラインを超えているか
-                // 判定ラインを過ぎて 0.2 秒経ったらミスにする
-                if (note.JudgeTime - currentTime < 0.2f)
-                {
-                    _result.Add(new JudgeResult
-                    {
-                        ResultType = JudgeResultType.Miss
-                    });
-
-                    continue;
-                }
+        Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
 
 
-                if (Mathf.Abs(note.JudgeTime - currentTime) >= 判定外秒数)
-                {
-                    break;
-                }
+        
 
-                if (note.Type == NoteType.Tap)
-                {
-                    for (var i = 0; i < note.Size; i++)
-                    {
-                        // 現在チェックするレーン番号
-                        var laneIndex = note.LanePosition + i;
+        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
+        var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
 
-                        // 今押された瞬間だよ
-                        if (inputService.LaneTapStates[laneIndex].TapStating)
-                        {
-                            if (Mathf.Abs(note.JudgeTime - currentTime) < 0.2f)
-                            {
-                                // パーフェクト
-                                notJudgedNotes.RemoveAt(0);
+        _audioSource.clip = audioClip;
 
-                                _result.Add(new JudgeResult
-                                {
-                                    ResultType = JudgeResultType.Perfect
-                                });
+        _audioSource.Play();
 
-                                // メインのクラスに判定結果を伝えます
-                                GameObject.FindObjectOfType<RhythmGamePresenter>().HandleJudgeResult();
-                            }
-
-                            if (Mathf.Abs(note.JudgeTime - currentTime) < 0.4f)
-                            {
-                                // GOOD
-                                notJudgedNotes.RemoveAt(0);
-
-                                _result.Add(new JudgeResult
-                                {
-                                    ResultType = JudgeResultType.Good
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-
-            return _result;
-        }
-    }
-
-
-    public sealed class RhythmGamePresenter : MonoBehaviour
-    {
-        [SerializeField] private TapNote _tapNotePrefab = null!;
-        [SerializeField] private HoldNote _holdNotePrefab = null!;
-        [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
-        [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
-
-        [SerializeField] private AudioSource _audioSource = null!;
-
-        private readonly List<TapNote> _tapNotes = new List<TapNote>();
-        private readonly List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
-        private readonly List<HoldNote> _holdNoteLines = new List<HoldNote>();
-        private readonly List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
+        // chartEntity
+        _chartEntity = chartEntity;
 
         SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
         SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
@@ -174,21 +96,25 @@ namespace Reilas
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
     }
 
-        public int CurrentCombo;
-        public static string musicname;
-
-        private string dif = MusicNumManage.difficulty;
-
-        /// <summary>
-        /// 判定結果を処理する
-        /// </summary>
-        public void HandleJudgeResult()
+    private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
+    {
+        foreach (var note in notes)
         {
+            var tapNote = Instantiate(_tapNotePrefab);
+            tapNote.Initialize(note);
+            _tapNotes.Add(tapNote);
         }
+    }
 
-        public void OnAddCombo()
+    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes)
+    {
+        foreach (var note in notes)
         {
+            var tapNote = Instantiate(_aboveTapNotePrefab);
+            tapNote.Initialize(note);
+            _aboveTapNotes.Add(tapNote);
         }
+    }
 
     private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes)
     {
@@ -204,23 +130,28 @@ namespace Reilas
     {
         foreach (var note in notes)
         {
-            AwakeAsync().Forget();
+            var tapNote = Instantiate(_holdNotePrefab);
+            tapNote.Initialize(note);
+            _holdNoteLines.Add(tapNote);
         }
+    }
 
-        private async UniTask AwakeAsync()
+    private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    {
+        foreach (var note in notes)
         {
-            FindObjectOfType<Variable>().enabled = false;
+            var tapNote = Instantiate(_aboveSlideNotePrefab);
+            tapNote.Initialize(note);
+            _aboveSlideNotes.Add(tapNote);
+        }
+    }
 
-            var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/"+musicname+"."+dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/"+musicname+".Hard") as TextAsset;
+    // 譜面情報に存在してる
+    List<ReilasNoteEntity> notes = new List<ReilasNoteEntity>();
 
-            if (chartTextAsset == null)
-            {
-                Debug.LogError("譜面データが見つかりませんでした");
-                return;
-            }
+    // まだ判定されていないノーツ
+    List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
-            var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
-            var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
 
     static Vector3[] lanePositions = new Vector3[]
     {
@@ -262,117 +193,92 @@ namespace Reilas
 
         foreach (var touch in touches)
         {
-            foreach (var note in notes)
+            var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
+            //Debug.Log(nearestLaneIndex);
+            bool end = false;
+            bool start = false;
+            // touch.position
+            // このフレームで押されたよん
+            if (touch.phase == TouchPhase.Began)
             {
                 start = true;
                 //touch.phase = false;
             }
-        }
-
-        private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes)
-        {
-            foreach (var note in notes)
-            {
-                var tapNote = Instantiate(_aboveTapNotePrefab);
-                tapNote.Initialize(note);
-                _aboveTapNotes.Add(tapNote);
-            }
-        }
-
-        private void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
-        {
-            foreach (var note in notes)
-            {
-                var tapNote = Instantiate(_holdNotePrefab);
-                tapNote.Initialize(note);
-                _holdNoteLines.Add(tapNote);
-            }
             if (touch.phase == TouchPhase.Ended)
-        }
-
-        private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes)
-        {
-            foreach (var note in notes)
             {
                 end = true;
-                var tapNote = Instantiate(_aboveSlideNotePrefab);
-                tapNote.Initialize(note);
-                _aboveSlideNotes.Add(tapNote);
             }
+            Debug.Log(touch.phase);
+
+            InputService.aboveLaneTapStates.Add(new LaneTapState
+            {
+                laneNumber = nearestLaneIndex,
+                IsHold = true,
+                TapStating = start,
+                tapEnding = end
+            });
         }
 
-        private void Update()
-        {
-            var currentTime = _audioSource.time - _chartEntity.StartTime;
+
+        var currentTime = _audioSource.time - _chartEntity.StartTime;
+        var judgeTime = currentTime + Setting.judgegap;
+        var audioTime = currentTime + Setting.audiogap;
 
 
-            // 譜面情報に存在してる
-            List<ReilasNoteEntity> notes = new List<ReilasNoteEntity>();
 
-            var orderedNotes = notes.OrderBy(note => note.JudgeTime);
-
-            // まだ判定されていないノーツ
-            List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
-
-
-            var judgeService = new JudgeService();
 
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
-            var judgeResults = judgeService.Judge(notJudgedNotes, currentTime);
-
-            foreach (var judgeResult in judgeResults)
-            {
-                if (judgeResult.ResultType > JudgeResultType.Miss)
-                {
-                    CurrentCombo++;
-                }
-
-                if (judgeResult.ResultType == JudgeResultType.Miss)
-                {
-                    CurrentCombo = 0;
-                }
-            }
+        //var judgeService = new JudgeService();
+        foreach(var a in InputService.aboveLaneTapStates)
+        {
+            Debug.Log(a.laneNumber + "," + a.IsHold) ;
+        }
+        JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
 
-            foreach (var tapNote in _tapNotes)
-            {
-                tapNote.Render(currentTime);
-            }
+        foreach (var tapNote in _tapNotes)
+        {
+            tapNote.Render(audioTime);
+        }
 
-            foreach (var note in _aboveTapNotes)
-            {
-                note.Render(currentTime);
-            }
+        foreach (var note in _aboveTapNotes)
+        {
+            note.Render(audioTime);
+        }
 
-            foreach (var note in _holdNoteLines)
-            {
-                note.Render(currentTime);
-            }
+        foreach (var note in _holdNoteLines)
+        {
+            note.Render(audioTime);
+        }
 
-            foreach (var note in _aboveSlideNotes)
-            {
-                note.Render(currentTime);
-            }
+        foreach (var note in _aboveSlideNotes)
+        {
+            note.Render(audioTime);
         }
     }
 }
 
 // レーンの押されている状態
-class LaneTapState
+public class LaneTapState
 {
+    //レーンの番号
+    public int laneNumber;
     // 今のフレーム押されているか
     public bool IsHold;
 
     // このフレームにタップしたか
     public bool TapStating;
+
+    //このフレームで指を離したか
+    public bool tapEnding;
 }
 
-class InputService
+public class InputService
 {
-    // 上レーン 36 個
-    public List<LaneTapState> aboveLaneTapStates = new List<LaneTapState>();
+    // 上レーン 最大 36 個
+    public static List<LaneTapState> aboveLaneTapStates = new List<LaneTapState>();
 
-    // 下レーン 4 つ
-    public List<LaneTapState> LaneTapStates = new List<LaneTapState>();
+    // 下レーン 最大 4 つ
+    //public static List<LaneTapState> LaneTapStates = new List<LaneTapState>();
 }
