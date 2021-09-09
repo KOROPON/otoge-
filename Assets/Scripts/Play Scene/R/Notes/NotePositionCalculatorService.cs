@@ -15,7 +15,12 @@ namespace Reilas
         public static Vector3 GetPosition(NoteEntity entity, float currentTime)
         {
 
-            float highSpeed = 120f * Setting.rate;
+            float highSpeed = 120 * 3.5f;
+            if (PlayerPrefs.HasKey("rate"))
+            {
+              highSpeed = 120 * PlayerPrefs.GetFloat("rate");
+            }
+
 
             var size = entity.Size * BelowNoteWidth;
             var left = size / 2f;
