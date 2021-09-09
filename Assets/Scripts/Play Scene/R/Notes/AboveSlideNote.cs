@@ -9,12 +9,12 @@ namespace Reilas
         [SerializeField] private MeshFilter _meshFilter = null!;
 
         private Vector3[]? _vertices;
-        private Vector2[] _uv = null!;
+        private Vector2[]? _uv;
         private int[]? _triangles;
 
         private Mesh? _mesh;
 
-        private ReilasNoteLineEntity _entity = null!;
+        private ReilasNoteLineEntity _entity;
 
         public void Initialize(ReilasNoteLineEntity entity)
         {
@@ -30,7 +30,7 @@ namespace Reilas
             if (_meshFilter == null)
             {
                 throw new Exception();
-                //return;
+                return;
             }
 
             var xDivision = _entity.Head.Size + 1;
@@ -99,7 +99,7 @@ namespace Reilas
 
                     const float outerLaneRadius = 4.5f;
 
-                    //float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
+                    float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
 
 
                     const float div = 36f;

@@ -7,9 +7,9 @@ namespace Reilas
 {
     public sealed class HoldNote : MonoBehaviour
     {
-        //[SerializeField] private SpriteRenderer _spriteRenderer = null!;
+        [SerializeField] private SpriteRenderer _spriteRenderer = null!;
 
-        private ReilasNoteLineEntity _entity = null!;
+        private ReilasNoteLineEntity _entity;
 
         public void Initialize(ReilasNoteLineEntity entity)
         {

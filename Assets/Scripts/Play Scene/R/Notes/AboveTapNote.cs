@@ -14,7 +14,7 @@ namespace Reilas
 
         private Mesh? _mesh;
 
-        private ReilasNoteEntity _entity = null!;
+        private ReilasNoteEntity _entity;
 
         public void Initialize(ReilasNoteEntity entity)
         {
@@ -30,7 +30,7 @@ namespace Reilas
             if (_meshFilter == null)
             {
                 throw new Exception();
-                //return;
+                return;
             }
 
             var size = _entity.Size + 1;
@@ -105,7 +105,7 @@ namespace Reilas
 
                     const float outerLaneRadius = 4.5f;
 
-                    //const float sizeY = 0.075f;
+                    const float sizeY = 0.075f;
                     float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
 
                     float zz = z == 0 ? sizeZ : -sizeZ;

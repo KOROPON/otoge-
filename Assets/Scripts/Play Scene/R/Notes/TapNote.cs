@@ -7,7 +7,7 @@ namespace Reilas
 {
     public sealed class TapNote : MonoBehaviour
     {
-        private NoteEntity _entity = null!;
+        private NoteEntity _entity;
 
         public void Initialize(NoteEntity entity)
         {

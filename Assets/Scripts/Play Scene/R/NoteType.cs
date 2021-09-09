@@ -7,12 +7,9 @@ namespace Reilas
         None,
         Tap,
         Hold,
-        HoldInternal,
         AboveTap,
         AboveHold,
-        AboveHoldInternal,
         AboveSlide,
-        AboveSlideInternal,
         AboveChain
     }
 }
