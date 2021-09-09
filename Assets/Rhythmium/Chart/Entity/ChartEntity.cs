@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Guid = System.String;
 
 // ReSharper disable InconsistentNaming
 
