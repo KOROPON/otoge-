@@ -9,13 +9,14 @@ namespace Reilas
     {
         RawImage jack;
         private AudioSource audioSource;
-        public int music_number = -1;
+        public int music_number;
         public static string difficulty;
 
         void Start()
         {
             jack = GameObject.Find("ジャケット1").GetComponent<RawImage>();
             audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
+            music_number = -1;
         }
 
         private void MusicInfo(string music_name,string jacketPath,float score)

@@ -7,19 +7,24 @@ using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
 using Reilas;
-
+using System;
+using UnityEngine.UI;
 
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
+    public Text text1;
+
     [SerializeField] private TapNote _tapNotePrefab = null!;
     [SerializeField] private HoldNote _holdNotePrefab = null!;
     [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
+    [SerializeField] private AboveChainNote _aboveChainNotePrefab = null!;
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
 
     [SerializeField] private AudioSource _audioSource = null!;
 
     private readonly List<TapNote> _tapNotes = new List<TapNote>();
     private readonly List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
+    private readonly List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
     private readonly List<HoldNote> _holdNoteLines = new List<HoldNote>();
     private readonly List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
@@ -67,22 +72,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
-
-        foreach(var note in chartEntity.Notes)
-        {
-            Debug.Log(note.Type + "," + note.LanePosition + " " + note.Size);
-        }
-
-        //Debug.Log();
+        notJudgedNotes.OrderBy(notes => notes.JudgeTime);
 
         Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
 
-        /*
-        foreach (var noteJsonData in timeLineJsonData.notes)
-        {
 
-        }
-        */
+        
 
         var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
@@ -95,6 +90,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         _chartEntity = chartEntity;
 
         SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
+        SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
         SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
@@ -117,6 +113,16 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveTapNotePrefab);
             tapNote.Initialize(note);
             _aboveTapNotes.Add(tapNote);
+        }
+    }
+
+    private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes)
+    {
+        foreach (var note in notes)
+        {
+            var tapNote = Instantiate(_aboveChainNotePrefab);
+            tapNote.Initialize(note);
+            _aboveChainNotes.Add(tapNote);
         }
     }
 
@@ -178,10 +184,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
+        text1.text = JudgeService.aa;
         
-
+        InputService.aboveLaneTapStates.Clear();
+        var alltouch = Input.touches;
+        Array.Resize(ref alltouch,0);
         var touches = Input.touches;
-
 
         foreach (var touch in touches)
         {
@@ -194,12 +202,13 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 start = true;
+                //touch.phase = false;
             }
             if (touch.phase == TouchPhase.Ended)
             {
                 end = true;
             }
-
+            Debug.Log(touch.phase);
 
             InputService.aboveLaneTapStates.Add(new LaneTapState
             {
@@ -208,7 +217,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 TapStating = start,
                 tapEnding = end
             });
-
         }
 
 
@@ -218,11 +226,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
-
         //var judgeService = new JudgeService();
-
-
-        JudgeService.Judge(notJudgedNotes, currentTime,InputService.aboveLaneTapStates);
+        foreach(var a in InputService.aboveLaneTapStates)
+        {
+            Debug.Log(a.laneNumber + "," + a.IsHold) ;
+        }
+        JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
 
         foreach (var tapNote in _tapNotes)

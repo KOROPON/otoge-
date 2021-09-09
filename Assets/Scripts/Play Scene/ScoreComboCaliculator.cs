@@ -13,7 +13,7 @@ namespace Reilas
         private int score = 1;
 
         List<JudgeResult> alljudge;
-        List<float> judgeInHold;
+        List<JudgeResultInHold> judgeInHold;
 
         public Text comboText;
         public Text scoreText;
