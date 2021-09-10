@@ -77,7 +77,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
 
 
-        
+
 
         var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
@@ -185,7 +185,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Update()
     {
         text1.text = JudgeService.aa;
-        
+
         InputService.aboveLaneTapStates.Clear();
         var alltouch = Input.touches;
         Array.Resize(ref alltouch,0);
@@ -221,9 +221,13 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         var currentTime = _audioSource.time - _chartEntity.StartTime;
-        var judgeTime = currentTime + Setting.judgegap;
-        var audioTime = currentTime + Setting.audiogap;
-
+        var judgeTime = currentTime;
+        var audioTime = currentTime;
+        if (PlayerPrefs.HasKey("judgegap"))
+        {
+          judgeTime += PlayerPrefs.GetFloat("judgegap");
+          audioTime += PlayerPrefs.GetFloat("audiogap");
+        }
 
 
 
