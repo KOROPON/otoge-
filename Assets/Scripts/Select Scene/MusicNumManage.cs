@@ -48,6 +48,9 @@ public class MusicNumManage : MonoBehaviour
         {
             music_number = obj.transform.GetSiblingIndex();
             songName = obj.name;
+            Debug.Log(obj.name);
+            Debug.Log(music_number);
+            Debug.Log(obj);
         }
         MusicInfo("Songs/Music Select/" + obj.name + "_intro", "Jacket/" + obj.name + "_jacket", 1000000);
     }
@@ -56,6 +59,6 @@ public class MusicNumManage : MonoBehaviour
     {
          difficulty = dif.name;
          highScore.text = String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty));
-         Debug.Log(highScore.text);
+         // Debug.Log(highScore.text);
     }
 }

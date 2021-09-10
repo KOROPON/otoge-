@@ -43,6 +43,8 @@ public class GetHighScores : MonoBehaviour
     {
       for (int i = 0; i < highScore.songs.Length; i++)
       {
+          Debug.Log(title);
+          Debug.Log(highScore.songs[i].title);
           if (title == highScore.songs[i].title)
           {
               return highScore.songs[i];
@@ -58,6 +60,7 @@ public class GetHighScores : MonoBehaviour
     private Difficulty GetDiff(string title, string difficulty)
     {
         Song songName = GetSong(title);
+        Debug.Log(songName.title);
 
         Difficulty diff = difficulty switch
         {
@@ -65,7 +68,7 @@ public class GetHighScores : MonoBehaviour
             "Hard" => songName.Hard,
             "Extreme" => songName.Extreme,
             "KUJO" => songName.KUJO,
-            _ => null,
+            _ => null
         };
         return diff;
     }
@@ -80,6 +83,7 @@ public class GetHighScores : MonoBehaviour
         }
         else
         {
+            Debug.Log("diff is null");
             return 0;
         }
     }
