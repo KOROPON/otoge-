@@ -7,10 +7,15 @@ namespace Reilas
     public class ScoreComboCaliculator : MonoBehaviour
     {
 
-        public static int sumScore = 1;
-        public float currentScore;
+        public static int sumPerfect;
+        public static int sumGood;
+        public static int sumBad;
+        public static int sumMiss;
         public int currentCombo;
-        private int score = 1;
+        public static int highCombo=0;
+        public float sumScore = 1 * 4;ã€€
+        public staticã€€float currentScore;
+        private float score = 1;
 
         List<JudgeResult> alljudge;
         List<JudgeResultInHold> judgeInHold;
@@ -19,7 +24,7 @@ namespace Reilas
         public Text scoreText;
         void LateUpdate()
         {
-            judgeInHold = JudgeService.judgedInHold; // “à•””»’è‚ÌŽó‚¯“n‚µ
+            judgeInHold = JudgeService.judgedInHold; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌŽó‚¯“nï¿½ï¿½
             alljudge = JudgeService.allJudgeType;
             foreach (JudgeResult judgeResult in alljudge)
             {
@@ -28,20 +33,28 @@ namespace Reilas
                 {
                     currentCombo++;
                     score += 4;
+                    sumPerfect++;
                 }
                 else if (judgetype == JudgeResultType.Good)
                 {
                     currentCombo++;
                     score += 2;
+                    sumGood++;
                 }
                 else if (judgetype == JudgeResultType.Bad)
                 {
                     currentCombo++;
                     score += 1;
+                    sumBad++;
                 }
                 else
                 {
+                    if (highCombo < currentCombo)
+                    {
+                      highCombo = currentCombo;
+                    }
                     currentCombo = 0;
+                    sumMiss++;
                 }
             }
             JudgeService.allJudgeType.Clear();
