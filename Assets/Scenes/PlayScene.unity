@@ -794,6 +794,7 @@ GameObject:
   - component: {fileID: 710420023}
   - component: {fileID: 710420025}
   - component: {fileID: 710420022}
+  - component: {fileID: 710420024}
   m_Layer: 0
   m_Name: Run Programs
   m_TagString: Untagged
@@ -830,6 +831,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &710420024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710420021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35dedded6766a6945ac6d5432458dde5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 7400000, guid: 20f3159aaa7849a488f121752d04062e, type: 2}
 --- !u!114 &710420025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,7 +1176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 2.467642, z: 14}
+  m_LocalPosition: {x: 0, y: 2.467642, z: 18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
