@@ -1638,6 +1638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music_number: 0
+  highScore: {fileID: 114619935}
+  scrollView: {fileID: 735294400}
 --- !u!4 &808788352
 Transform:
   m_ObjectHideFlags: 0

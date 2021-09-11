@@ -34,9 +34,6 @@ public class GetHighScores : MonoBehaviour
         {
             StreamWrite();
         }
-        SetHighScore("Collide", "Hard", 98543);
-        SetHighScore("Devourer_Of_Sol_Ⅲ", "Extreme", 7);
-        Debug.Log(highScore.songs[0].Hard);
     }
 
     private Song GetSong(string title)
@@ -60,7 +57,6 @@ public class GetHighScores : MonoBehaviour
     private Difficulty GetDiff(string title, string difficulty)
     {
         Song songName = GetSong(title);
-        Debug.Log(songName.title);
 
         Difficulty diff = difficulty switch
         {
@@ -78,12 +74,10 @@ public class GetHighScores : MonoBehaviour
         Difficulty diff = GetDiff(songName, difficulty);
         if (diff != null)
         {
-            Debug.Log(diff.highScore);
             return diff.highScore;
         }
         else
         {
-            Debug.Log("diff is null");
             return 0;
         }
     }

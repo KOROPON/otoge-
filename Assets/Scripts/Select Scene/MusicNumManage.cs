@@ -18,6 +18,7 @@ public class MusicNumManage : MonoBehaviour
   private string songName;
   public int music_number = -1;
   public Text highScore;
+  public GameObject scrollView;
 
   public static string difficulty;
 
@@ -38,7 +39,6 @@ public class MusicNumManage : MonoBehaviour
 
     public void Tap(GameObject obj)
     {
-        Debug.Log(obj.name + "_intro");
         if(music_number == obj.transform.GetSiblingIndex())
         {
             RhythmGamePresenter.musicname = obj.name;
@@ -57,8 +57,8 @@ public class MusicNumManage : MonoBehaviour
 
     public void Difficulty(GameObject dif)
     {
-         difficulty = dif.name;
-         highScore.text = String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty));
-         // Debug.Log(highScore.text);
+        //GetComponentsInChildren
+        difficulty = dif.name;
+        highScore.text = String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty));
     }
 }

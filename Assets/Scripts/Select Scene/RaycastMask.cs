@@ -81,8 +81,6 @@ public class RaycastMask : MonoBehaviour, ICanvasRaycastFilter
                 break;
         }
 
-        // return true;
-
         // destroy component if texture import settings are wrong
         try
         {
