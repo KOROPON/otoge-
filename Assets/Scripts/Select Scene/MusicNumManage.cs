@@ -12,53 +12,80 @@ using Reilas;
 
 public class MusicNumManage : MonoBehaviour
 {
-  RawImage jack;
-  private AudioSource audioSource;
-  private GetHighScores getHighScores;
-  private string songName;
-  public int music_number = -1;
-  public Text highScore;
+    Image jack;
+    private AudioSource audioSource;
+    private GetHighScores getHighScores;
+    private string songName;
+    public int music_number = -1;
+    public Text highScore;
+    public GameObject scrollviewContent;
 
-  public static string difficulty;
+    public static string difficulty;
+
+    private GameObject GetDifficulty(string diff)
+    {
+        GameObject getDiff = diff switch
+        {
+            "Easy" => GameObject.Find("Easy"),
+            "Hard" => GameObject.Find("Hard"),
+            "Extreme" => GameObject.Find("Extreme"),
+            "KUJO" => GameObject.Find("KUJO"),
+            _ => null
+        };
+        return getDiff;
+    }
 
     void Start()
     {
-        jack = GameObject.Find("ジャケット1").GetComponent<RawImage>();
+        jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
+        scrollviewContent = GameObject.Find("Content");
         getHighScores = FindObjectOfType<GetHighScores>();
         music_number = -1;
+
+        if (!PlayerPrefs.HasKey("selected_song"))
+        {
+            PlayerPrefs.SetString("selectedSong", "Collide");
+        }
+
+        if (!PlayerPrefs.HasKey("difficulty"))
+        {
+            PlayerPrefs.SetString("difficulty", "Easy");
+        }
+
+        Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
     }
 
-    private void MusicInfo(string music_name,string jacketPath,float score)
+    private void MusicInfo(string music_name,string jacketPath)
     {
         audioSource.clip = Resources.Load<AudioClip>(music_name);
         audioSource.Play();
-        jack.texture = Resources.Load<Texture2D>(jacketPath);
+        jack.sprite = Resources.Load<Sprite>(jacketPath);
     }
 
     public void Tap(GameObject obj)
     {
-        Debug.Log(obj.name + "_intro");
-        if(music_number == obj.transform.GetSiblingIndex())
+        if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
             RhythmGamePresenter.musicname = obj.name;
             SceneManager.LoadScene("PlayScene");
         }
         else
         {
-            music_number = obj.transform.GetSiblingIndex();
+            PlayerPrefs.SetString("selected_song", obj.name);
             songName = obj.name;
-            Debug.Log(obj.name);
-            Debug.Log(music_number);
-            Debug.Log(obj);
         }
-        MusicInfo("Songs/Music Select/" + obj.name + "_intro", "Jacket/" + obj.name + "_jacket", 1000000);
+        MusicInfo("Songs/Music Select/" + obj.name + "_intro", "Jacket/" + obj.name + "_jacket");
     }
 
     public void Difficulty(GameObject dif)
     {
-         difficulty = dif.name;
-         highScore.text = String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty));
-         // Debug.Log(highScore.text);
+        difficulty = dif.name;
+        highScore.text = getHighScores.GetHighScore(songName, difficulty) != 0 ? String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty)) : "";
+
+        for (int i = 0; i < scrollviewContent.transform.childCount; i++)
+        {
+            GameObject song = scrollviewContent.transform.GetChild(i).gameObject;
+        }
     }
 }

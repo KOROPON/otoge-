@@ -30,8 +30,12 @@ public class ResultScore{
     difficultyinResult.text =MusicNumManage.difficulty.ToString();
     jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleinResult.text + "_jacket");
 
-
-
+    ScoreComboCaliculator.currentScore = 0;
+    ScoreComboCaliculator.highCombo = 0;
+    ScoreComboCaliculator.sumPerfect = 0;
+    ScoreComboCaliculator.sumGood = 0;
+    ScoreComboCaliculator.sumBad = 0;
+    ScoreComboCaliculator.sumMiss = 0;
   }
 
   public void Back()
@@ -41,7 +45,6 @@ public class ResultScore{
 
   public void Retry()
   {
-
     SceneManager.LoadScene("PlayScene");
   }
 }

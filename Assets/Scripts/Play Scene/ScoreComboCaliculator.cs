@@ -6,7 +6,6 @@ namespace Reilas
 {
     public class ScoreComboCaliculator : MonoBehaviour
     {
-
         public static int sumPerfect;
         public static int sumGood;
         public static int sumBad;
@@ -22,6 +21,7 @@ namespace Reilas
 
         public Text comboText;
         public Text scoreText;
+        
         void LateUpdate()
         {
             judgeInHold = JudgeService.judgedInHold; // ���������̎󂯓n��
