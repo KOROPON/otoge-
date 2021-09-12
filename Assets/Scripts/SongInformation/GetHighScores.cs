@@ -29,11 +29,12 @@ public class GetHighScores : MonoBehaviour
     void Awake()
     {
         jsonFilePath = Application.persistentDataPath + "/SongInformation.json";
-        highScore = SongInfo(jsonFilePath);
         if (!File.Exists(jsonFilePath))
         {
+            highScore = new HighScores();
             StreamWrite();
         }
+        highScore = SongInfo(jsonFilePath);
     }
 
     private Song GetSong(string title)
