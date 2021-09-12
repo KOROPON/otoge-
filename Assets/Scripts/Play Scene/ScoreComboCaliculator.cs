@@ -6,7 +6,6 @@ namespace Reilas
 {
     public class ScoreComboCaliculator : MonoBehaviour
     {
-
         public static int sumPerfect;
         public static int sumGood;
         public static int sumBad;
