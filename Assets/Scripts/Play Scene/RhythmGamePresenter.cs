@@ -56,7 +56,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         FindObjectOfType<Variable>().enabled = false;
 
-        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
+        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset;
+        //var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
 
         if (chartTextAsset == null)
         {
@@ -66,7 +67,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
-        var noteJsonDeta = JsonUtility.FromJson<NoteJsonData>(chartTextAsset.text);
         var timeLineJsonData = JsonUtility.FromJson<TimelineJsonData>(chartTextAsset.text);
 
 
@@ -208,7 +208,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             {
                 end = true;
             }
-            Debug.Log(touch.phase);
 
             InputService.aboveLaneTapStates.Add(new LaneTapState
             {
