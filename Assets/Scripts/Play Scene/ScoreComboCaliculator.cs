@@ -21,6 +21,7 @@ namespace Reilas
 
         public Text comboText;
         public Text scoreText;
+        
         void LateUpdate()
         {
             judgeInHold = JudgeService.judgedInHold; // ���������̎󂯓n��
