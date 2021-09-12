@@ -14,11 +14,11 @@ namespace Reilas
 
         private Mesh? _mesh;
 
-        private ReilasNoteEntity _entity = null!;
+        private ReilasNoteEntity _entity;
 
         public void Initialize(ReilasNoteEntity entity)
         {
-            _entity = entity;
+          //  _entity = entity;
             InitializeMesh();
 
             transform.localScale = Vector3.one;

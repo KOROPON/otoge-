@@ -15,13 +15,14 @@ namespace Reilas
         public float sumScore = 1 * 4;　
         public static　float currentScore;
         private float score = 1;
+        public static string scoreRank;
 
         List<JudgeResult> alljudge;
         List<JudgeResultInHold> judgeInHold;
 
         public Text comboText;
         public Text scoreText;
-        
+
         void LateUpdate()
         {
             judgeInHold = JudgeService.judgedInHold; // ���������̎󂯓n��
