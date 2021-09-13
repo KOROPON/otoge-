@@ -18,7 +18,7 @@ namespace Reilas
 
         public void Initialize(ReilasNoteEntity entity)
         {
-          //  _entity = entity;
+            _entity = entity;
             InitializeMesh();
 
             transform.localScale = Vector3.one;

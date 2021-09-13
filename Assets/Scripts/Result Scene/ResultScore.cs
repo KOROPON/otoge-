@@ -29,7 +29,7 @@ public class ResultScore : MonoBehaviour
     goodCom.text = ScoreComboCaliculator.sumGood.ToString();
     badCom.text = ScoreComboCaliculator.sumBad.ToString();
     missCom.text = ScoreComboCaliculator.sumMiss.ToString();
-    titleinResult.text = "Collide";//RhythmGamePresenter.musicname;
+    titleinResult.text = RhythmGamePresenter.musicname;
     difficultyinResult.text =MusicNumManage.difficulty;
     jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleinResult.text + "_jacket");
     rankinResult.sprite = Resources.Load<Sprite>("Rank/score_"+ScoreComboCaliculator.scoreRank);

@@ -226,6 +226,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgegap"))
         {
           judgeTime += PlayerPrefs.GetFloat("judgegap");
+        }
+        if (PlayerPrefs.HasKey("audiogap"))
+        {
           audioTime += PlayerPrefs.GetFloat("audiogap");
         }
 
