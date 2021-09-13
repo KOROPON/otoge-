@@ -3,9 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Rhythmium;
 using Reilas;
-using UnityEngine.UI;
 
 public enum JudgeResultType
 {

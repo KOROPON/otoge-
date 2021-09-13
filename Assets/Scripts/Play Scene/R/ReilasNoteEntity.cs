@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using Rhythmium;
+using UnityEngine;
 
 namespace Reilas
 {
@@ -16,15 +17,16 @@ namespace Reilas
             {
                 "tap" => NoteType.Tap,
                 "hold" => NoteType.Hold,
-                "hold-internal" => NoteType.HoldInternal,
+                "hold-judge-note" => NoteType.HoldInternal,
                 "above-tap" => NoteType.AboveTap,
                 "above-hold" => NoteType.AboveHold,
-                "above-hold-internal" => NoteType.HoldInternal,
+                "above-hold-judge-note" => NoteType.HoldInternal,
                 "above-slide" => NoteType.AboveSlide,
-                "above-slide-internal" => NoteType.AboveSlideInternal,
+                "above-slide-judge-note" => NoteType.AboveSlideInternal,
                 "above-chain" => NoteType.AboveChain,
                 _ => NoteType.None
             };
+
 
             return (int) noteType;
         }
