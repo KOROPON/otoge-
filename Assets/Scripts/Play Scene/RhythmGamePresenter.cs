@@ -56,8 +56,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         FindObjectOfType<Variable>().enabled = false;
 
-        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset;
-        //var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
+        //var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset;
+        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
 
         if (chartTextAsset == null)
         {
@@ -79,16 +79,15 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         for (int i = 0; i < noteJsonData.Length; i++)
         {
             Debug.Log(noteJsonData[i].type);
-            /*
-            if (noteJsonData[i].type == NoteType.AboveSlide)
+            
+            if (noteJsonData[i].type == NoteType.AboveSlide.ToString())
             {
 
             }
-            else
+            else if(noteJsonData[i].type == NoteType.AboveHold.ToString() || noteJsonData[i].type == NoteType.Hold.ToString())
             {
                 //NoteLin
             }
-            */
         }
 
         Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
