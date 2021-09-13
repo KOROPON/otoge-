@@ -27,24 +27,6 @@ namespace Reilas
                 _ => NoteType.None
             };
 
-            if(noteType == NoteType.Hold || noteType == NoteType.AboveHold || noteType == NoteType.AboveSlide)
-            {
-                var guid = noteJsonData.guid;//このノーツの guid
-                Rhythmium.NoteLineJsonData[] allguid = null!;
-                allguid = TimelineJsonData.noteLines; //NoteLineJsonData を取得したい
-                Debug.Log(Rhythmium.TimelineJsonData.noteLines);
-                /*
-                foreach(NoteLineJsonData noteline in allguid)
-                {
-
-                }
-                */
-                foreach (var noteLineJsonData in Rhythmium.TimelineJsonData.noteLines)
-                {
-
-                }
-                //Guidのノーツの取得
-            }
 
             return (int) noteType;
         }

@@ -8,7 +8,7 @@ namespace Rhythmium
     public sealed class TimelineJsonData
     {
         public NoteJsonData[] notes;
-        public static NoteLineJsonData[] noteLines;
+        public NoteLineJsonData[] noteLines;
         public MeasureJsonData[] measures;
         public OtherObjectJsonData[] otherObjects;
     }

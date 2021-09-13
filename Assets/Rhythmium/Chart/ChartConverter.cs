@@ -132,7 +132,7 @@ namespace Rhythmium
 
             // ノートラインを生成する
             chart.NoteLines = new List<TNoteLineEntity>();
-            foreach (var noteLineJsonData in TimelineJsonData.noteLines)
+            foreach (var noteLineJsonData in chartJsonData.timeline.noteLines)
             {
                 var headNote = noteGuidMap[noteLineJsonData.head];
                 var tailNote = noteGuidMap[noteLineJsonData.tail];
