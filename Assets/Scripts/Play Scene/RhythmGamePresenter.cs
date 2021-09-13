@@ -56,7 +56,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         FindObjectOfType<Variable>().enabled = false;
 
-        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
+        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset;
+        //var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
 
         if (chartTextAsset == null)
         {
@@ -66,13 +67,29 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
-        var noteJsonDeta = JsonUtility.FromJson<NoteJsonData>(chartTextAsset.text);
-        var timeLineJsonData = JsonUtility.FromJson<TimelineJsonData>(chartTextAsset.text);
 
 
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
         notJudgedNotes.OrderBy(notes => notes.JudgeTime);
+
+
+        NoteJsonData[] noteJsonData = chartJsonData.timeline.notes;
+
+        for (int i = 0; i < noteJsonData.Length; i++)
+        {
+            Debug.Log(noteJsonData[i].type);
+            /*
+            if (noteJsonData[i].type == NoteType.AboveSlide)
+            {
+
+            }
+            else
+            {
+                //NoteLin
+            }
+            */
+        }
 
         Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
 
@@ -94,6 +111,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
+
+        
     }
 
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
@@ -208,7 +227,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             {
                 end = true;
             }
-            Debug.Log(touch.phase);
 
             InputService.aboveLaneTapStates.Add(new LaneTapState
             {

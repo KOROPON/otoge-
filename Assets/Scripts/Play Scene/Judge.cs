@@ -3,9 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Rhythmium;
 using Reilas;
-using UnityEngine.UI;
 
 public enum JudgeResultType
 {
@@ -16,7 +14,7 @@ public enum JudgeResultType
 }
 
 /// <summary>
-/// ”»’èŒ‹‰Ê
+/// ï¿½ï¿½ï¿½èŒ‹ï¿½ï¿½
 /// </summary>
 public class JudgeResult
 {
@@ -36,12 +34,12 @@ public class DelNote
 
 
 /// <summary>
-/// ”»’è‚ğs‚¤ƒT[ƒrƒX
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Tï¿½[ï¿½rï¿½X
 /// </summary>
 public class JudgeService : MonoBehaviour
 {
-    public static List<JudgeResult> allJudgeType = new List<JudgeResult>();//”»’è‚ğ“`‚¦‚é
-    public static List<JudgeResultInHold> judgedInHold = new List<JudgeResultInHold>(); //’·‰Ÿ‚µƒm[ƒc‚Ì“à•””»’è‚ğ“`‚¦‚é
+    public static List<JudgeResult> allJudgeType = new List<JudgeResult>();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½
+    public static List<JudgeResultInHold> judgedInHold = new List<JudgeResultInHold>(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½[ï¿½cï¿½Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½
 
     public static string aa = null!;
     public static int per;
@@ -50,11 +48,11 @@ public class JudgeService : MonoBehaviour
     public static int miss;
 
 
-    public static void Judge(List<ReilasNoteEntity> notJudgedNotes, float currentTime, List<LaneTapState> aboveTapState) //Judge(ƒm[ƒcî•ñ,Ä¶ŠÔ,ƒ^ƒbƒvî•ñ){}
+    public static void Judge(List<ReilasNoteEntity> notJudgedNotes, float currentTime, List<LaneTapState> aboveTapState) //Judge(ï¿½mï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½,ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½){}
     {
-        Debug.Log("Judge");
-        const float noJudgeTime = 0.090f; //ˆê”Ô‹ß‚¢ƒm[ƒc‚ª‚±‚ê‚æ‚è—£‚ê‚Ä‚é‚Æ”»’è‚µ‚È‚¢
-        float tapTime = 0; //“¯‚¶ŠÔ‚Éƒ^ƒbƒv‚ª‚ ‚éA‚»‚ÌŠÔ
+        //Debug.Log("Judge");
+        const float noJudgeTime = 0.090f; //ï¿½ï¿½ï¿½Ô‹ß‚ï¿½ï¿½mï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è—£ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Æ”ï¿½ï¿½è‚µï¿½È‚ï¿½
+        float tapTime = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Éƒ^ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½éï¿½Aï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 
         bool firstTap = true;
         bool alreadyJudge = false;
@@ -73,17 +71,17 @@ public class JudgeService : MonoBehaviour
 
 
 
-        foreach (LaneTapState tapState in aboveTapState) //ƒ^ƒbƒvî•ñ‚Åü‰ñ
+        foreach (LaneTapState tapState in aboveTapState) //ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Åï¿½ï¿½ï¿½
         {
-            Debug.Log(tapState.TapStating);
+            // Debug.Log(tapState.TapStating);
 
-            foreach (ReilasNoteEntity note in notJudgedNotes) //ƒm[ƒcî•ñ‚Ìæ“¾
+            foreach (ReilasNoteEntity note in notJudgedNotes) //ï¿½mï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½Ìæ“¾
             {
                 //Debug.Log(note.Type);
 
-                if (note.JudgeTime - currentTime > noJudgeTime) // Ÿ‚Ì”»’è‚·‚é‚×‚«ƒm[ƒc‚ª‘O‚É 0.090 •b ˆÈã—£‚ê‚Ä‚½‚ç returns
+                if (note.JudgeTime - currentTime > noJudgeTime) // ï¿½ï¿½ï¿½Ì”ï¿½ï¿½è‚·ï¿½ï¿½ï¿½×‚ï¿½ï¿½mï¿½[ï¿½cï¿½ï¿½ï¿½Oï¿½ï¿½ 0.090 ï¿½b ï¿½Èã—£ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ returns
                 {
-                    Debug.Log("return");
+                    //Debug.Log("return");
                     aboveTapState.Clear();
                     return;
                 }
@@ -92,10 +90,10 @@ public class JudgeService : MonoBehaviour
 
 
                 ///<summary>
-                ///ƒm[ƒc‚ÌƒŒ[ƒ“î•ñ‚ğæ“¾
+                ///ï¿½mï¿½[ï¿½cï¿½Ìƒï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
                 ///
-                /// ã‚Ìƒm[ƒc‚Í Json ‚ÌƒŒ[ƒ“”Ô†‚É +4
-                /// ‰º‚Ìƒm[ƒc‚Í‚»‚Ì‚Ü‚Ü
+                /// ï¿½ï¿½ï¿½Ìƒmï¿½[ï¿½cï¿½ï¿½ Json ï¿½Ìƒï¿½ï¿½[ï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ +4
+                /// ï¿½ï¿½ï¿½Ìƒmï¿½[ï¿½cï¿½Í‚ï¿½ï¿½Ì‚Ü‚ï¿½
                 ///
                 ///</summary>
                 if (note.Type == NoteType.AboveChain || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlide || note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveTap)
@@ -117,22 +115,22 @@ public class JudgeService : MonoBehaviour
                 }
 
 
-                if (laneNumMin <= tapState.laneNumber && tapState.laneNumber <= laneNumMax) //ƒŒ[ƒ“”Ô†‚ª“¯‚¶‚Æ‚«
+                if (laneNumMin <= tapState.laneNumber && tapState.laneNumber <= laneNumMax) //ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
                 {
 
-                    if (note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide)//ƒ^ƒbƒvAƒz[ƒ‹ƒh‚ÆƒXƒ‰ƒCƒh‚Ìn“_‚Íˆê‰ñ‚Ìƒ^ƒbƒv‚Åˆê“x‚Ü‚Å”»’èA“¯‚¶ŠÔ‚È‚ç•¡”
+                    if (note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide)//ï¿½^ï¿½bï¿½vï¿½Aï¿½zï¿½[ï¿½ï¿½ï¿½hï¿½ÆƒXï¿½ï¿½ï¿½Cï¿½hï¿½Ìnï¿½_ï¿½Íˆï¿½ï¿½ï¿½ï¿½Ìƒ^ï¿½bï¿½vï¿½Åˆï¿½ï¿½xï¿½Ü‚Å”ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚È‚ç•¡ï¿½ï¿½
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
                             //for (var i = 0; i < note.Size; i++)
                             //{
 
-                            // ¡‰Ÿ‚³‚ê‚½uŠÔ‚¾‚æ
+                            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½uï¿½Ô‚ï¿½ï¿½ï¿½
                             if (tapState.TapStating)
                             {
                                 if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
                                 {
-                                    // ƒp[ƒtƒFƒNƒg
+                                    // ï¿½pï¿½[ï¿½tï¿½Fï¿½Nï¿½g
                                     removeNoteNum.Add(new DelNote
                                     {
                                         noteTime = note.JudgeTime,
@@ -199,7 +197,7 @@ public class JudgeService : MonoBehaviour
                             alreadyJudge = true;
                         }
                     }
-                    else if (note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal) //’·‰Ÿ‚µŒnƒm[ƒc‚Ì“à•””»’è‚Í‘O‚É 90
+                    else if (note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½mï¿½[ï¿½cï¿½Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‘Oï¿½ï¿½ 90
                     {
                         if (note.JudgeTime - currentTime < 0.090f || note.JudgeTime - currentTime > 0)
                         {
@@ -225,7 +223,7 @@ public class JudgeService : MonoBehaviour
                             miss++;
                         }
                     }
-                    else if (note.Type == NoteType.AboveChain) //ƒ`ƒFƒCƒ“ƒm[ƒc‚ÍŒã‚ë‚É 25 ‚Ì”»’è•
+                    else if (note.Type == NoteType.AboveChain) //ï¿½`ï¿½Fï¿½Cï¿½ï¿½ï¿½mï¿½[ï¿½cï¿½ÍŒï¿½ï¿½ï¿½ï¿½ï¿½ 25 ï¿½Ì”ï¿½ï¿½è•
                     {
                         if (currentTime - note.JudgeTime >= 0 || currentTime - note.JudgeTime <= 0.025f)
                         {
@@ -264,7 +262,7 @@ public class JudgeService : MonoBehaviour
 
 
 
-        foreach (ReilasNoteEntity note in notJudgedNotes) //ƒ^ƒbƒv‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Ég—p‚³‚ê‚é Miss ”»’è
+        foreach (ReilasNoteEntity note in notJudgedNotes) //ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½Égï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Miss ï¿½ï¿½ï¿½ï¿½
         {
             if(note.JudgeTime - currentTime > 0.075f)
             {
@@ -335,7 +333,6 @@ public class JudgeService : MonoBehaviour
         RemoveNoteInList(removeNoteNum);
 
         aa = ("Perfect:" + per.ToString() + "  Good:" + good.ToString() + "  Bad:" + bad.ToString() + "  Miss:" + miss.ToString());
-        
+
     }
 }
-
