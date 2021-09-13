@@ -16,8 +16,12 @@ public class MusicNumManage : MonoBehaviour
     private AudioSource audioSource;
     private GetHighScores getHighScores;
     private string songName;
+    private string _jacketPath;
+
+
     public int music_number = -1;
     public Text highScore;
+    public Text title;
     public GameObject scrollviewContent;
 
     public static string difficulty;
@@ -35,17 +39,33 @@ public class MusicNumManage : MonoBehaviour
         return getDiff;
     }
 
+    private void MusicInfo(string music_name,string jacketPath)
+    {
+        _jacketPath = jacketPath;
+        audioSource.clip = Resources.Load<AudioClip>(music_name);
+        audioSource.Play();
+        jack.sprite = Resources.Load<Sprite>(_jacketPath);
+    }
+
+    private void SelectSong(string musicname)
+    {
+        _jacketPath = "Jacket/" + musicname + "_jacket";
+        MusicInfo("Songs/Music Select/" + musicname + "_intro", _jacketPath);
+        title.text = musicname;
+        PlayerPrefs.SetString("selected_song", musicname);
+        songName = musicname;
+    }
+
     void Start()
     {
         jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         scrollviewContent = GameObject.Find("Content");
         getHighScores = FindObjectOfType<GetHighScores>();
-        music_number = -1;
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
-            PlayerPrefs.SetString("selectedSong", "Collide");
+            PlayerPrefs.SetString("selected_song", "Collide");
         }
 
         if (!PlayerPrefs.HasKey("difficulty"))
@@ -53,14 +73,8 @@ public class MusicNumManage : MonoBehaviour
             PlayerPrefs.SetString("difficulty", "Easy");
         }
 
+        SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
-    }
-
-    private void MusicInfo(string music_name,string jacketPath)
-    {
-        audioSource.clip = Resources.Load<AudioClip>(music_name);
-        audioSource.Play();
-        jack.sprite = Resources.Load<Sprite>(jacketPath);
     }
 
     public void Tap(GameObject obj)
@@ -72,10 +86,8 @@ public class MusicNumManage : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetString("selected_song", obj.name);
-            songName = obj.name;
+            SelectSong(obj.name);
         }
-        MusicInfo("Songs/Music Select/" + obj.name + "_intro", "Jacket/" + obj.name + "_jacket");
     }
 
     public void Difficulty(GameObject dif)
