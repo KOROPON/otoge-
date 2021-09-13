@@ -14,7 +14,7 @@ namespace Reilas
 
         private Mesh? _mesh;
 
-        private ReilasNoteEntity _entity = null!;
+        private ReilasNoteEntity _entity;
 
         public void Initialize(ReilasNoteEntity entity)
         {

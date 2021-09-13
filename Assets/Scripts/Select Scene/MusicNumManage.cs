@@ -81,7 +81,7 @@ public class MusicNumManage : MonoBehaviour
     public void Difficulty(GameObject dif)
     {
         difficulty = dif.name;
-        highScore.text = getHighScores.GetHighScore(songName, difficulty) != 0 ? String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty)) : "";
+        highScore.text = String.Format("{0, 9: 0,000,000}", getHighScores.GetHighScore(songName, difficulty));
 
         for (int i = 0; i < scrollviewContent.transform.childCount; i++)
         {
