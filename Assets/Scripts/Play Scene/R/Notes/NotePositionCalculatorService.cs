@@ -35,7 +35,7 @@ namespace Reilas
             var x = pos;
 
             // 何秒後のノーツまで描画するか
-            const float 何秒後のノーツまで描画するか = 3f;
+            float 何秒後のノーツまで描画するか = 600f / highSpeed;
 
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
