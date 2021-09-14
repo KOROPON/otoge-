@@ -1645,6 +1645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music_number: 0
   highScore: {fileID: 114619935}
+  title: {fileID: 1788348301}
   scrollviewContent: {fileID: 0}
 --- !u!4 &808788352
 Transform:
@@ -3641,7 +3642,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: be2890854016c3a4090d6d5e07e0bc85, type: 3}
     m_FontSize: 95
     m_FontStyle: 3
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 200
     m_Alignment: 3
