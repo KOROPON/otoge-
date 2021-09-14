@@ -33,7 +33,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public int CurrentCombo;
     public static string musicname = null!;
 
-    private string dif = MusicNumManage.difficulty;
+    private readonly string _dif = MusicNumManage.difficulty;
+    private Image _backGroundJacket;
 
     /// <summary>
     /// 判定結果を処理する
@@ -50,6 +51,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         AwakeAsync().Forget();
+        _backGroundJacket = GameObject.Find("背景").GetComponent<Image>();
+        _backGroundJacket.sprite = Resources.Load<Sprite>("Jacket/" + musicname + "_jacket");
     }
 
     private async UniTask AwakeAsync()
@@ -57,7 +60,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         FindObjectOfType<Variable>().enabled = false;
 
         //var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset;
-        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Hard") as TextAsset;
+        var chartTextAsset = _dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + _dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Easy") as TextAsset;
 
         if (chartTextAsset == null)
         {
