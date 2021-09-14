@@ -39,7 +39,7 @@ namespace Reilas
             _uv = new Vector3[size * 2 * 2];
             _triangles = new int[size * 6 * 2 + 12];
 
-            // ‘O–Ê
+            // ï¿½Oï¿½ï¿½
             for (var i = 0; i < size - 1; i++)
             {
                 _triangles[i * 6 + 0] = 0 + i * 2;
@@ -50,7 +50,7 @@ namespace Reilas
                 _triangles[i * 6 + 5] = 1 + i * 2;
             }
 
-            // ã–Ê
+            // ï¿½ï¿½ï¿½
             for (var i = 0; i < size - 1; i++)
             {
                 var p = size + i;
@@ -63,7 +63,7 @@ namespace Reilas
                 _triangles[p * 6 + 5] = 2 + i * 2;
             }
 
-            // ¶
+            // ï¿½ï¿½
             _triangles[size * 6 * 2 + 0] = 0;
             _triangles[size * 6 * 2 + 1] = 1;
             _triangles[size * 6 * 2 + 2] = size * 2;
@@ -71,7 +71,7 @@ namespace Reilas
             _triangles[size * 6 * 2 + 4] = size * 2;
             _triangles[size * 6 * 2 + 5] = size * 2 + 1;
 
-            // ‰E
+            // ï¿½E
             _triangles[size * 6 * 2 + 6] = 0 + size * 2 - 2;
             _triangles[size * 6 * 2 + 7] = 1 + size * 2 - 2;
             _triangles[size * 6 * 2 + 8] = size * 2 + size * 2 - 2;
@@ -79,7 +79,7 @@ namespace Reilas
             _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
             _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
 
-            // ƒƒbƒVƒ…‚ð¶¬‚·‚é
+            // ï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
             _mesh = new Mesh
             {
                 vertices = _vertices,
@@ -125,7 +125,7 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime).z;
+                    var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
 
                     zPos += zz;
 
@@ -146,7 +146,7 @@ namespace Reilas
                     float uvX = 1f / _entity.Size * x;
 
                     float alpha = 1f;
-                    // Žè‘O
+                    // ï¿½ï¿½O
                     if (z == 0)
                     {
                         if (_uv != null)
@@ -155,7 +155,7 @@ namespace Reilas
                             _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
                         }
                     }
-                    // ‰œ
+                    // ï¿½ï¿½
                     else
                     {
                         var w = z * (_entity.Size + 1) * 2 + (x * 2);

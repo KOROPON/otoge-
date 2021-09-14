@@ -12,7 +12,7 @@ namespace Reilas
     {
         private const float BelowNoteWidth = 2.5f;
         private const float LeftPosition = -5f;
-        public static Vector3 GetPosition(NoteEntity entity, float currentTime)
+        public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap)
         {
 
             float highSpeed = 120 * 3.5f;
@@ -26,6 +26,8 @@ namespace Reilas
             var left = size / 2f;
             var pos = LeftPosition + (left);
 
+            Vector3 notePos;
+
             pos += entity.LanePosition * BelowNoteWidth;
 
             //var toLeft = left - LeftPosition;
@@ -38,27 +40,32 @@ namespace Reilas
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
             float normalizedTime = (entity.JudgeTime - currentTime) / 何秒後のノーツまで描画するか;
-
-            if (normalizedTime >= 1f || normalizedTime < 0)
+            float t = -normalizedTime * 何秒後のノーツまで描画するか;
+            
+            if (checkIfTap)
             {
-                // 表示しません // 判定ライン超えてるよ
-                // tapNote.SetActive(false);
-                return new Vector3(999, 999, 999);
-            } else
+                if (normalizedTime < 0 || normalizedTime >= 1)
+                {
+                    notePos = new Vector3(0f, 0f, 999f);
+                }
+                else
+                {
+                    notePos = new Vector3(x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
+                }
+            }
+            else
             {
-                // tapNote.SetActive(true);
-                float t = -normalizedTime * 何秒後のノーツまで描画するか;
-                return new Vector3(x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
+                if (normalizedTime < 0)
+                {
+                    notePos = new Vector3(x, 0f, highSpeed * t);
+                } 
+                else
+                {
+                    notePos = new Vector3(x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
+                }
             }
 
-            // if (normalizedTime < 0)
-            // {
-            //     return new Vector3(999, 999, 999);
-            // }
-
-            // 0 ~ 1 の数字を
-            // normalizedTime = Easing.CircIn(normalizedTime,1,0,1);
-
+            return notePos;
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)

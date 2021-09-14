@@ -17,7 +17,7 @@ namespace Reilas
 
         public void Render(float currentTime)
         {
-            transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime);
+            transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, true);
         }
     }
 }
