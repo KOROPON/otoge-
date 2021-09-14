@@ -6,51 +6,45 @@ using UnityEngine;
 
 public class GetHighScores : MonoBehaviour
 {
-    private string jsonFilePath;
-    private HighScores highScore;
+    private string _jsonFilePath;
+    private HighScores _highScore;
 
     private HighScores SongInfo(string songPath)
     {
-        using (StreamReader reader = new StreamReader(songPath))
-        {
-            string jsonString = reader.ReadToEnd();
-            return JsonUtility.FromJson<HighScores>(jsonString);
-        }
+        using StreamReader reader = new StreamReader(songPath);
+        string jsonString = reader.ReadToEnd();
+        return JsonUtility.FromJson<HighScores>(jsonString);
     }
 
     private void StreamWrite()
     {
-        using (StreamWriter writer = new StreamWriter(jsonFilePath))
-        {
-            writer.WriteLine(JsonUtility.ToJson(highScore, true));
-        }
+        using StreamWriter writer = new StreamWriter(_jsonFilePath);
+        writer.WriteLine(JsonUtility.ToJson(_highScore, true));
     }
 
     void Awake()
     {
-        jsonFilePath = Application.persistentDataPath + "/SongInformation.json";
-        if (!File.Exists(jsonFilePath))
+        _jsonFilePath = Application.persistentDataPath + "/SongInformation.json";
+        if (!File.Exists(_jsonFilePath))
         {
-            highScore = new HighScores();
+            _highScore = new HighScores();
             StreamWrite();
         }
-        highScore = SongInfo(jsonFilePath);
+        _highScore = SongInfo(_jsonFilePath);
     }
 
     private Song GetSong(string title)
     {
-        for (int i = 0; i < highScore.songs.Length; i++)
+        foreach (var t in _highScore.songs)
         {
-            Debug.Log(title);
-            Debug.Log(highScore.songs[i].title);
-            if (title == highScore.songs[i].title)
+            if (title == t.title)
             {
-                return highScore.songs[i];
+                return t;
             }
         }
         Song emptySong = new Song();
-        Array.Resize(ref highScore.songs, highScore.songs.Length + 1);
-        highScore.songs[highScore.songs.Length - 1] = emptySong;
+        Array.Resize(ref _highScore.songs, _highScore.songs.Length + 1);
+        _highScore.songs[_highScore.songs.Length - 1] = emptySong;
         emptySong.title = title;
         return emptySong;
     }
