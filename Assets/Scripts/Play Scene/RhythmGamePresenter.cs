@@ -74,19 +74,42 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         notJudgedNotes.OrderBy(notes => notes.JudgeTime);
 
 
-        NoteJsonData[] noteJsonData = chartJsonData.timeline.notes;
+        NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
-        for (int i = 0; i < noteJsonData.Length; i++)
+        for (int i = 0; i < notJudgedNotes.Count; i++)
         {
-            Debug.Log(noteJsonData[i].type);
-            
-            if (noteJsonData[i].type == NoteType.AboveSlide.ToString())
-            {
+            ReilasNoteEntity reilasNoteEntity = notJudgedNotes[i];
 
-            }
-            else if(noteJsonData[i].type == NoteType.AboveHold.ToString() || noteJsonData[i].type == NoteType.Hold.ToString())
+            if (reilasNoteEntity.Type == NoteType.AboveSlide)
             {
-                //NoteLin
+                for(int k = 0; k < noteJsonData.Length; k++)
+                {
+                    if (reilasNoteEntity.JsonData.guid == noteJsonData[k].tail)
+                    {
+                        notJudgedNotes[i].Type = NoteType.AboveSlideInternal;
+                        break;
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            else if(reilasNoteEntity.Type == NoteType.AboveHold || reilasNoteEntity.Type == NoteType.Hold)
+            {
+                for (int k = 0; k < noteJsonData.Length; k++)
+                {
+
+                    if (reilasNoteEntity.JsonData.guid == noteJsonData[k].tail)
+                    {
+                        notJudgedNotes[i].Type = NoteType.AboveSlideInternal;
+                        break;
+                    }
+                    else
+                    {
+
+                    }
+                }
             }
         }
 

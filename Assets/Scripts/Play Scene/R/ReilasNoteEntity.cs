@@ -8,7 +8,7 @@ namespace Reilas
 {
     public sealed class ReilasNoteEntity : NoteEntity
     {
-        public NoteType Type { get; private set; }
+        public NoteType Type { get; set; }
 
 
         protected override int GetNoteType(NoteJsonData noteJsonData)
