@@ -9,9 +9,9 @@ namespace Reilas
     public class Setting : MonoBehaviour
     {
         //下準備
-        public Image Frame;
         public Image Color;
         public GameObject rating;
+        public Image frame;
         [SerializeField] Text RateText;
         [SerializeField] GameObject alter;
 
@@ -67,7 +67,7 @@ namespace Reilas
           max = changePath[Item.name][2];
           RateText.text = changePath[Item.name][3].ToString();
           pathKey = Item.name;
-
+          frame.sprite = Resources.Load<Sprite>("Frame/Frame_" + Item.name);
         }
 
         public void SettingOpen(GameObject rating)
