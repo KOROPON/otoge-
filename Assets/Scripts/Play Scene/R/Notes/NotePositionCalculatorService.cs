@@ -55,14 +55,7 @@ namespace Reilas
             }
             else
             {
-                if (normalizedTime < 0)
-                {
-                    notePos = new Vector3(x, 0f, highSpeed * t);
-                } 
-                else
-                {
-                    notePos = new Vector3(x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
-                }
+                notePos = normalizedTime < 0 ? new Vector3(x, 0f, highSpeed * t) : new Vector3(x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
             }
 
             return notePos;

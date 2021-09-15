@@ -31,9 +31,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private ReilasChartEntity _chartEntity = null!;
 
     public int CurrentCombo;
-    public static string musicname = null!;
-
-    private readonly string _dif = MusicNumManage.difficulty;
+    public static string musicname = null!; 
+    public static string dif = null!;
+    
     private Image _backGroundJacket;
 
     /// <summary>
@@ -59,8 +59,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         FindObjectOfType<Variable>().enabled = false;
 
-        //var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/ena_Sample") as TextAsset;
-        var chartTextAsset = _dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + _dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Easy") as TextAsset;
+        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Easy") as TextAsset;
 
         if (chartTextAsset == null)
         {
