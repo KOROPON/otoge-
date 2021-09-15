@@ -13,7 +13,7 @@ namespace Reilas
         public int currentCombo;
         public static int highCombo=0;
         public float sumScore = 1 * 4;　
-        public static　float currentScore;
+        public static　int currentScore;
         private float score = 1;
         public static string scoreRank;
 
