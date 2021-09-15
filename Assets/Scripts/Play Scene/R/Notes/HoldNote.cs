@@ -21,8 +21,8 @@ namespace Reilas
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
 
 
-            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime);
-            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime);
+            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false);
+            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false);
 
 
             scale.z = tailPos.z - headPos.z;

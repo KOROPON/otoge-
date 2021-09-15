@@ -41,6 +41,7 @@ namespace Reilas
 
             _triangles = new int[(xDivision - 1) * 6 * (zDivision - 1)];
 
+            //前面
             for (var z = 0; z < zDivision - 1; z++)
             {
                 var n = z * (xDivision - 1) * 6;
@@ -52,6 +53,22 @@ namespace Reilas
                     _triangles[n + x * 6 + 3] = z * (xDivision) + x + 1;
                     _triangles[n + x * 6 + 4] = (z + 1) * (xDivision) + x + 1;
                     _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
+                }
+            }
+            
+            //上面
+            for (int z = 0; z < zDivision - 1; z++)
+            {
+                int n = z * (xDivision - 1) * 6;
+                for (int x = 0; x < xDivision - 1; x++)
+                {
+                    int p = xDivision + 1;
+                    _triangles[n + p * 6 + 0] = z * (xDivision) + x;
+                    _triangles[n + p * 6 + 1] = z * (xDivision) + x + 1;
+                    _triangles[n + p * 6 + 2] = (z + 1) * (xDivision) + x;
+                    _triangles[n + p * 6 + 3] = z * (xDivision) + x + 1;
+                    _triangles[n + p * 6 + 4] = (z + 1) * (xDivision) + x + 1;
+                    _triangles[n + p * 6 + 5] = (z + 1) * (xDivision) + x;
                 }
             }
 
@@ -84,8 +101,9 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false
+            ).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false).z;
 
             for (var z = 0; z < zDiv; z++)
             {

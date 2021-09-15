@@ -125,7 +125,7 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime).z;
+                    var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
 
                     zPos += zz;
 

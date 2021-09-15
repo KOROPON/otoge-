@@ -24,7 +24,6 @@ public class MusicNumManage : MonoBehaviour
     public Text title;
     public GameObject scrollviewContent;
 
-    public static string difficulty;
 
 
     private GameObject GetDifficulty(string diff)
@@ -92,11 +91,11 @@ public class MusicNumManage : MonoBehaviour
         }
     }
 
-    public void Difficulty(GameObject dif)
+    public void Difficulty(GameObject diff)
     {
-        PlayerPrefs.SetString("difficulty", dif.name);
-        difficulty = PlayerPrefs.GetString("difficulty");
-        highScore.text = $"{_getHighScores.GetHighScore(_songName, difficulty),9: 0,000,000}";
+        PlayerPrefs.SetString("difficulty", diff.name);
+        RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
+        highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
 
         for (int i = 0; i < scrollviewContent.transform.childCount; i++)
         {
