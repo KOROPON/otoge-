@@ -57,7 +57,7 @@ namespace Reilas
             }
             
             //上面
-            for (int z = 0; z < zDivision - 1; z++)
+            /*for (int z = 0; z < zDivision - 1; z++)
             {
                 int n = z * (xDivision - 1) * 6;
                 for (int x = 0; x < xDivision - 1; x++)
@@ -70,7 +70,7 @@ namespace Reilas
                     _triangles[n + p * 6 + 4] = (z + 1) * (xDivision) + x + 1;
                     _triangles[n + p * 6 + 5] = (z + 1) * (xDivision) + x;
                 }
-            }
+            }*/
 
             // メッシュを生成する
             _mesh = new Mesh
@@ -101,8 +101,7 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false
-            ).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false).z;
             var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false).z;
 
             for (var z = 0; z < zDiv; z++)
