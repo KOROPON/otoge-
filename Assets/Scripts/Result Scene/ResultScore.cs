@@ -36,7 +36,7 @@ public class ResultScore : MonoBehaviour
         badCom.text = ScoreComboCaliculator.sumBad.ToString();
         missCom.text = ScoreComboCaliculator.sumMiss.ToString();
         titleinResult.text = RhythmGamePresenter.musicname;
-        difficultyinResult.text = RhythmGamePresenter.difficulty;
+        difficultyinResult.text = RhythmGamePresenter.dif;
         jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleinResult.text + "_jacket");
         rankinResult.sprite = Resources.Load<Sprite>("Rank/score_" + ScoreComboCaliculator.scoreRank); //まだやってない
         previousScore.text = String.Format("{0, 9: 0,000,000}", PlayerPrefs.GetFloat("previousScore"));

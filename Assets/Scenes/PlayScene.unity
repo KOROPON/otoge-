@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1118,6 +1118,7 @@ GameObject:
   - component: {fileID: 710420025}
   - component: {fileID: 710420022}
   - component: {fileID: 710420024}
+  - component: {fileID: 710420026}
   m_Layer: 0
   m_Name: Run Programs
   m_TagString: Untagged
@@ -1183,6 +1184,19 @@ MonoBehaviour:
   pauseButton: {fileID: 224080482}
   pausePanel: {fileID: 123215197}
   countCanvas: {fileID: 1272937406}
+--- !u!114 &710420026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710420021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b97c8be546faf4abca119010f621cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  song: {fileID: 947960482}
 --- !u!4 &745843764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416871471698319059, guid: 1c6c48538bf2643f68a0441564684655, type: 3}

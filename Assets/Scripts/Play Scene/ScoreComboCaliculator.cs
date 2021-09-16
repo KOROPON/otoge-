@@ -60,7 +60,7 @@ namespace Reilas
             }
             JudgeService.allJudgeType.Clear();
 
-            currentScore = Mathf.Floor(1000000 * score / sumScore);
+            currentScore = (int) Mathf.Floor(1000000 * score / sumScore);
             comboText.text = currentCombo.ToString();
             scoreText.text = currentScore.ToString();
             //Debug.Log(currentScore);

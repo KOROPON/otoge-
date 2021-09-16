@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rhythmium;
+using Reilas;
 
 public class ChangeScene_PlayScene : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
       StartCoroutine(Checking( ()=>{
         //曲終了時
         getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
-        getHighScores.GetHighScore();
+        getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
         SceneManager.LoadScene("ResultScene");
      } ));
     }
