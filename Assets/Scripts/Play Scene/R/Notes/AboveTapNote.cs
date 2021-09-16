@@ -16,8 +16,11 @@ namespace Reilas
 
         private ReilasNoteEntity _entity;
 
+        public float aboveTapTime;
+
         public void Initialize(ReilasNoteEntity entity)
         {
+            aboveTapTime = entity.JudgeTime;
             _entity = entity;
             InitializeMesh();
 

@@ -291,12 +291,15 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
 
+        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 10f);
+        //var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 10f);
+
         foreach (var tapNote in _tapNotes)
         {
             tapNote.Render(audioTime);
         }
 
-        foreach (var note in _aboveTapNotes)
+        foreach (var note in _aboveNearestTap)
         {
             note.Render(audioTime);
         }
