@@ -16,7 +16,8 @@ public class ChangeScene_PlayScene : MonoBehaviour
         getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
         getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
         SceneManager.LoadScene("ResultScene");
-     } ));
+        ScoreComboCaliculator.currentCombo = 0;
+      } ));
     }
     public delegate void functionType();
     private IEnumerator Checking (functionType callback) {

@@ -31,9 +31,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private ReilasChartEntity _chartEntity = null!;
 
     public int CurrentCombo;
-    public static string musicname = null!; 
+    public static string musicname = null!;
     public static string dif = null!;
-    
+
     private Image _backGroundJacket;
 
     /// <summary>

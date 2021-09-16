@@ -10,12 +10,11 @@ namespace Reilas
         public static int sumGood;
         public static int sumBad;
         public static int sumMiss;
-        public int currentCombo;
+        public static int currentCombo;
         public static int highCombo=0;
         public float sumScore = 1 * 4;　
         public static　int currentScore;
         private float score = 1;
-        public static string scoreRank;
 
         List<JudgeResult> alljudge;
         List<JudgeResultInHold> judgeInHold;

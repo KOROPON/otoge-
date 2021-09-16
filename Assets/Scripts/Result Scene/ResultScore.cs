@@ -21,15 +21,28 @@ public class ResultScore : MonoBehaviour
     public Image rankinResult;
     public Image colorinResult;
     public Image clear;
+    private string scoreRank;
+    private float score;
 
     void Start()
     {
+        
+        score = ScoreComboCaliculator.currentScore;
+        switch (score)
+        {
+          //case int n when n >= 995000: scoreRank = "SSS"; break;
+          case float n when n >= 990000: scoreRank = "SS"; break;
+          case float n when n >= 980000: scoreRank = "S"; break;
+          case float n when n >= 950000: scoreRank = "A"; break;
+          case float n when n >= 900000: scoreRank = "B"; break;
+          case float n when n >= 800000: scoreRank = "C"; break;
+          case float n when n < 800000: scoreRank = "D";break;
+        }
         if (PlayerPrefs.HasKey("currentScore") == false)
         {
             PlayerPrefs.SetFloat("currentScore", 0f);
         }
-
-        scoreinResult.text = String.Format("{0, 9: 0,000,000}", ScoreComboCaliculator.currentScore);
+        scoreinResult.text = String.Format("{0, 9: 0,000,000}", score);
         maxCombo.text = ScoreComboCaliculator.highCombo.ToString();
         perfectCom.text = ScoreComboCaliculator.sumPerfect.ToString();
         goodCom.text = ScoreComboCaliculator.sumGood.ToString();
@@ -38,17 +51,16 @@ public class ResultScore : MonoBehaviour
         titleinResult.text = RhythmGamePresenter.musicname;
         difficultyinResult.text = RhythmGamePresenter.dif;
         jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleinResult.text + "_jacket");
-        rankinResult.sprite = Resources.Load<Sprite>("Rank/score_" + ScoreComboCaliculator.scoreRank); //まだやってない
-        previousScore.text = String.Format("{0, 9: 0,000,000}", PlayerPrefs.GetFloat("previousScore"));
-        scoreGap.text = PlayerPrefs.GetFloat("previousScore") <= ScoreComboCaliculator.currentScore
+        rankinResult.sprite = Resources.Load<Sprite>("Rank/score_" + scoreRank);
+        previousScore.text = String.Format("{0, 9: 0,000,000}", PlayerPrefs.GetFloat("currentScore"));
+        scoreGap.text = PlayerPrefs.GetFloat("currentScore") <= score
             ? "+" + String.Format("{0, 9: 0,000,000}",
-                ScoreComboCaliculator.currentScore - PlayerPrefs.GetFloat("previousScore"))
+                score - PlayerPrefs.GetFloat("currentScore"))
             : "-" + String.Format("{0, 9: 0,000,000}",
-                PlayerPrefs.GetFloat("previousScore") - ScoreComboCaliculator.currentScore);
-        if (PlayerPrefs.HasKey("currentScore") == false ||
-            ScoreComboCaliculator.currentScore > PlayerPrefs.GetFloat("previousScore"))
+                PlayerPrefs.GetFloat("currentScore") - score);
+        if (score > PlayerPrefs.GetFloat("currentScore"))
         {
-            PlayerPrefs.SetFloat("currentScore", ScoreComboCaliculator.currentScore);
+            PlayerPrefs.SetFloat("currentScore", score);
         }
         //clear.sprite =Resources.Load<Sprite>()
         //rankDifficulty =
