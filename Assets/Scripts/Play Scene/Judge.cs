@@ -118,7 +118,7 @@ public class JudgeService : MonoBehaviour
                 if (laneNumMin <= tapState.laneNumber && tapState.laneNumber <= laneNumMax) //���[���ԍ��������Ƃ�
                 {
 
-                    if (note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide)//�^�b�v�A�z�[���h�ƃX���C�h�̎n�_�͈����̃^�b�v�ň��x�܂Ŕ����A�������ԂȂ畡��
+                    if (note.Type == NoteType.Tap)//�^�b�v�A�z�[���h�ƃX���C�h�̎n�_�͈����̃^�b�v�ň��x�܂Ŕ����A�������ԂȂ畡��
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
@@ -135,7 +135,7 @@ public class JudgeService : MonoBehaviour
                                     {
                                         noteTime = note.JudgeTime,
                                         noteNum = notJudgedNotes.IndexOf(note)
-                                    }); ;
+                                    });
                                     per++;
                                     allJudgeType.Add(new JudgeResult
                                     {
@@ -197,8 +197,382 @@ public class JudgeService : MonoBehaviour
                             alreadyJudge = true;
                         }
                     }
-                    else if (note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal) //�������n�m�[�c�̓��������͑O�� 90
+                    else if(note.Type == NoteType.AboveTap)
                     {
+
+                        if (!alreadyJudge || tapTime == note.JudgeTime)
+                        {
+                            //for (var i = 0; i < note.Size; i++)
+                            //{
+
+                            // �������ꂽ�u�Ԃ���
+                            if (tapState.TapStating)
+                            {
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
+                                {
+                                    // �p�[�t�F�N�g
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    });
+                                    per++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Perfect
+                                    });
+
+                                    //Debug.Log("Perfect");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
+                                {
+                                    // GOOD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    good++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Good
+                                    });
+
+                                    //Debug.Log("Good");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
+                                {
+                                    // BAD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    bad++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Bad
+                                    });
+
+                                    //Debug.Log("Bad");
+                                }
+                                else if (currentTime - note.JudgeTime >= 0.075f)
+                                {
+                                    // MISS
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    miss++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Miss
+                                    });
+
+                                    //Debug.Log("Miss");
+                                }
+                                //}
+                            }
+                            alreadyJudge = true;
+                        }
+                    }
+                    else if(note.Type == NoteType.Hold)
+                    {
+
+                        if (!alreadyJudge || tapTime == note.JudgeTime)
+                        {
+                            //for (var i = 0; i < note.Size; i++)
+                            //{
+
+                            // �������ꂽ�u�Ԃ���
+                            if (tapState.TapStating)
+                            {
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
+                                {
+                                    // �p�[�t�F�N�g
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    });
+                                    per++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Perfect
+                                    });
+
+                                    //Debug.Log("Perfect");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
+                                {
+                                    // GOOD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    good++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Good
+                                    });
+
+                                    //Debug.Log("Good");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
+                                {
+                                    // BAD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    bad++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Bad
+                                    });
+
+                                    //Debug.Log("Bad");
+                                }
+                                else if (currentTime - note.JudgeTime >= 0.075f)
+                                {
+                                    // MISS
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    miss++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Miss
+                                    });
+
+                                    //Debug.Log("Miss");
+                                }
+                                //}
+                            }
+                            alreadyJudge = true;
+                        }
+                    }
+                    else if(note.Type == NoteType.AboveSlide)
+                    {
+
+                        if (!alreadyJudge || tapTime == note.JudgeTime)
+                        {
+                            //for (var i = 0; i < note.Size; i++)
+                            //{
+
+                            // �������ꂽ�u�Ԃ���
+                            if (tapState.TapStating)
+                            {
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
+                                {
+                                    // �p�[�t�F�N�g
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    });
+                                    per++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Perfect
+                                    });
+
+                                    //Debug.Log("Perfect");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
+                                {
+                                    // GOOD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    good++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Good
+                                    });
+
+                                    //Debug.Log("Good");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
+                                {
+                                    // BAD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    bad++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Bad
+                                    });
+
+                                    //Debug.Log("Bad");
+                                }
+                                else if (currentTime - note.JudgeTime >= 0.075f)
+                                {
+                                    // MISS
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    miss++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Miss
+                                    });
+
+                                    //Debug.Log("Miss");
+                                }
+                                //}
+                            }
+                            alreadyJudge = true;
+                        }
+                    }
+                    else if(note.Type == NoteType.AboveHold)
+                    {
+
+                        if (!alreadyJudge || tapTime == note.JudgeTime)
+                        {
+                            //for (var i = 0; i < note.Size; i++)
+                            //{
+
+                            // �������ꂽ�u�Ԃ���
+                            if (tapState.TapStating)
+                            {
+                                if (Mathf.Abs(note.JudgeTime - currentTime) < 0.041f)
+                                {
+                                    // �p�[�t�F�N�g
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    });
+                                    per++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Perfect
+                                    });
+
+                                    //Debug.Log("Perfect");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.058f)
+                                {
+                                    // GOOD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    good++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Good
+                                    });
+
+                                    //Debug.Log("Good");
+                                }
+                                else if (Mathf.Abs(note.JudgeTime - currentTime) < 0.075f)
+                                {
+                                    // BAD
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    bad++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Bad
+                                    });
+
+                                    //Debug.Log("Bad");
+                                }
+                                else if (currentTime - note.JudgeTime >= 0.075f)
+                                {
+                                    // MISS
+                                    removeNoteNum.Add(new DelNote
+                                    {
+                                        noteTime = note.JudgeTime,
+                                        noteNum = notJudgedNotes.IndexOf(note)
+                                    }); ;
+                                    miss++;
+                                    allJudgeType.Add(new JudgeResult
+                                    {
+                                        ResultType = JudgeResultType.Miss
+                                    });
+
+                                    //Debug.Log("Miss");
+                                }
+                                //}
+                            }
+                            alreadyJudge = true;
+                        }
+                    }
+                    else if (note.Type == NoteType.HoldInternal) //�������n�m�[�c�̓��������͑O�� 90
+                    {
+                        if (note.JudgeTime - currentTime < 0.090f || note.JudgeTime - currentTime > 0)
+                        {
+                            judgedInHold.Add(new JudgeResultInHold
+                            {
+                                time = note.JudgeTime,
+                                perfect = true
+                            });
+                            per++;
+                            removeNoteNum.Add(new DelNote
+                            {
+                                noteTime = note.JudgeTime,
+                                noteNum = notJudgedNotes.IndexOf(note)
+                            }); ;
+                        }
+                        else if (note.JudgeTime - currentTime < 0)
+                        {
+                            judgedInHold.Add(new JudgeResultInHold
+                            {
+                                time = note.JudgeTime,
+                                perfect = false
+                            });
+                            miss++;
+                        }
+                    }
+                    else if(note.Type == NoteType.AboveHoldInternal)
+                    {
+
+                        if (note.JudgeTime - currentTime < 0.090f || note.JudgeTime - currentTime > 0)
+                        {
+                            judgedInHold.Add(new JudgeResultInHold
+                            {
+                                time = note.JudgeTime,
+                                perfect = true
+                            });
+                            per++;
+                            removeNoteNum.Add(new DelNote
+                            {
+                                noteTime = note.JudgeTime,
+                                noteNum = notJudgedNotes.IndexOf(note)
+                            }); ;
+                        }
+                        else if (note.JudgeTime - currentTime < 0)
+                        {
+                            judgedInHold.Add(new JudgeResultInHold
+                            {
+                                time = note.JudgeTime,
+                                perfect = false
+                            });
+                            miss++;
+                        }
+                    }
+                    else if(note.Type == NoteType.AboveSlideInternal)
+                    {
+
                         if (note.JudgeTime - currentTime < 0.090f || note.JudgeTime - currentTime > 0)
                         {
                             judgedInHold.Add(new JudgeResultInHold
@@ -269,7 +643,7 @@ public class JudgeService : MonoBehaviour
                 break;
             }
 
-            if(note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.HoldInternal)
+            if(note.Type == NoteType.AboveSlideInternal)
             {
                 if(note.JudgeTime - currentTime >= 0)
                 {
@@ -289,9 +663,135 @@ public class JudgeService : MonoBehaviour
                     miss++;
                 }
             }
-            else if(note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide)
+            else if (note.Type == NoteType.AboveHoldInternal)
+            {
+
+                if (note.JudgeTime - currentTime >= 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    removeNoteNum.Add(new DelNote
+                    {
+                        noteTime = note.JudgeTime,
+                        noteNum = notJudgedNotes.IndexOf(note)
+                    }); ;
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    miss++;
+                }
+            }
+            else if(note.Type == NoteType.HoldInternal)
+            {
+
+                if (note.JudgeTime - currentTime >= 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    removeNoteNum.Add(new DelNote
+                    {
+                        noteTime = note.JudgeTime,
+                        noteNum = notJudgedNotes.IndexOf(note)
+                    }); ;
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    miss++;
+                }
+            }
+            else if(note.Type == NoteType.Tap)
             {
                 if(currentTime - note.JudgeTime > 0.075f)
+                {
+                    removeNoteNum.Add(new DelNote
+                    {
+                        noteTime = note.JudgeTime,
+                        noteNum = notJudgedNotes.IndexOf(note)
+                    }); ;
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    miss++;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else if(note.Type == NoteType.Hold)
+            {
+
+                if (currentTime - note.JudgeTime > 0.075f)
+                {
+                    removeNoteNum.Add(new DelNote
+                    {
+                        noteTime = note.JudgeTime,
+                        noteNum = notJudgedNotes.IndexOf(note)
+                    }); ;
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    miss++;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else if(note.Type == NoteType.AboveTap)
+            {
+
+                if (currentTime - note.JudgeTime > 0.075f)
+                {
+                    removeNoteNum.Add(new DelNote
+                    {
+                        noteTime = note.JudgeTime,
+                        noteNum = notJudgedNotes.IndexOf(note)
+                    }); ;
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    miss++;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else if(note.Type == NoteType.AboveHold)
+            {
+
+                if (currentTime - note.JudgeTime > 0.075f)
+                {
+                    removeNoteNum.Add(new DelNote
+                    {
+                        noteTime = note.JudgeTime,
+                        noteNum = notJudgedNotes.IndexOf(note)
+                    }); ;
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    miss++;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else if(note.Type == NoteType.AboveSlide)
+            {
+
+                if (currentTime - note.JudgeTime > 0.075f)
                 {
                     removeNoteNum.Add(new DelNote
                     {

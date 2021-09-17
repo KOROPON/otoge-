@@ -22,11 +22,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     [SerializeField] private AudioSource _audioSource = null!;
 
-    private readonly List<TapNote> _tapNotes = new List<TapNote>();
-    private readonly List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
-    private readonly List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
-    private readonly List<HoldNote> _holdNoteLines = new List<HoldNote>();
-    private readonly List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
+    static List<TapNote> _tapNotes = new List<TapNote>();
+    static List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
+    static List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
+    static List<HoldNote> _holdNoteLines = new List<HoldNote>();
+    static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
     private ReilasChartEntity _chartEntity = null!;
 
@@ -34,7 +34,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static string musicname = null!;
     public static string dif = null!;
 
-    private Image _backGroundJacket;
 
     /// <summary>
     /// 判定結果を処理する
@@ -139,6 +138,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_tapNotePrefab);
+            tapNote.transform.position = new Vector3(0, 0, 999);
             tapNote.Initialize(note);
             _tapNotes.Add(tapNote);
         }
@@ -281,10 +281,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
 
-        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 10f);
-        //var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 10f);
+        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 5f);
+        var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 5f);
 
-        foreach (var tapNote in _tapNotes)
+        foreach (var tapNote in _tapNote)
         {
             tapNote.Render(audioTime);
         }
