@@ -43,6 +43,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         AwakeAsync().Forget();
+      //  _backGroundJacket = GameObject.Find("背景").GetComponent<Image>();
+      //  _backGroundJacket.sprite = Resources.Load<Sprite>("Jacket/" + musicname + "_jacket");
     }
 
     private async UniTask AwakeAsync()
