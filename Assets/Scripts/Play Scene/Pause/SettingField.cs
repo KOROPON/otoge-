@@ -55,7 +55,6 @@ public class SettingField : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1;
-        aud.Stop();
         SceneManager.LoadScene("PlayScene");
     }
 
