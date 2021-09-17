@@ -21,5 +21,10 @@ namespace Reilas
         {
             transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, true);
         }
+
+        public void NoteDestroy()
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

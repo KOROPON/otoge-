@@ -10,6 +10,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
     public AudioSource song;
     void Start()
     {
+        
       GetHighScores getHighScores = new GetHighScores();
       StartCoroutine(Checking( ()=>{
         //曲終了時

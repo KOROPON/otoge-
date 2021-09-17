@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
     public Text text1;
+    public Text text2;
 
     [SerializeField] private TapNote _tapNotePrefab = null!;
     [SerializeField] private HoldNote _holdNotePrefab = null!;
@@ -22,19 +23,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     [SerializeField] private AudioSource _audioSource = null!;
 
-    private readonly List<TapNote> _tapNotes = new List<TapNote>();
-    private readonly List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
-    private readonly List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
-    private readonly List<HoldNote> _holdNoteLines = new List<HoldNote>();
-    private readonly List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
+    public static List<TapNote> _tapNotes = new List<TapNote>();
+    public static List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
+    public static List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
+    public static List<HoldNote> _holdNoteLines = new List<HoldNote>();
+    public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
     private ReilasChartEntity _chartEntity = null!;
 
-    public int CurrentCombo;
     public static string musicname = null!;
     public static string dif = null!;
 
-    private Image _backGroundJacket;
 
     /// <summary>
     /// 判定結果を処理する
@@ -43,8 +42,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         AwakeAsync().Forget();
-      //  _backGroundJacket = GameObject.Find("背景").GetComponent<Image>();
-      //  _backGroundJacket.sprite = Resources.Load<Sprite>("Jacket/" + musicname + "_jacket");
     }
 
     private async UniTask AwakeAsync()
@@ -59,16 +56,40 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             return;
         }
 
+
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
-
-
+        
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
         notJudgedNotes.OrderBy(notes => notes.JudgeTime);
 
+        Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
+
+        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
+        var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
+
+        _audioSource.clip = audioClip;
+
+        if (PlayerPrefs.HasKey("volume"))
+        {
+        // tap音調整
+        }
+
+        _audioSource.Play();
+
+        // chartEntity
+        _chartEntity = chartEntity;
+
+        SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
+        SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
+        SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
+        SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
+        SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
+
+
 
         for (int i = 0; i < notJudgedNotes.Count; i++)
         {
@@ -106,34 +127,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
-
-
-
-
-        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
-        var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
-
-        _audioSource.clip = audioClip;
-
-        if (PlayerPrefs.HasKey("volume"))
-        {
-        // tap音調整
-        }
-
-
-        // chartEntity
-        _chartEntity = chartEntity;
-
-        SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
-        SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
-        SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
-        SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
-        SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
-
-        //シャッター上げる
-        _audioSource.Play();
     }
 
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
@@ -141,6 +134,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_tapNotePrefab);
+            tapNote.transform.position = new Vector3(0, 0, 999);
             tapNote.Initialize(note);
             _tapNotes.Add(tapNote);
         }
@@ -227,9 +221,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         text1.text = JudgeService.aa;
 
         InputService.aboveLaneTapStates.Clear();
+
         var alltouch = Input.touches;
         Array.Resize(ref alltouch,0);
         var touches = Input.touches;
+        text2.text = touches.Count().ToString();
 
         foreach (var touch in touches)
         {
@@ -275,6 +271,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
+        Debug.Log("");
         //var judgeService = new JudgeService();
         foreach(var a in InputService.aboveLaneTapStates)
         {
@@ -283,10 +280,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
 
-        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 10f);
-        //var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 10f);
+        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 5f);
+        var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 5f);
 
-        foreach (var tapNote in _tapNotes)
+        foreach (var tapNote in _tapNote)
         {
             tapNote.Render(audioTime);
         }
