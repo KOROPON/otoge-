@@ -55,7 +55,7 @@ namespace Reilas
                     _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
                 }
             }
-            
+
             //上面
             /*for (int z = 0; z < zDivision - 1; z++)
             {

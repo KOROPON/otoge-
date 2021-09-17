@@ -10,6 +10,7 @@ class HighScores
 class Song
 {
     public string title;
+    public bool extremeLock;
     public Difficulty Easy;
     public Difficulty Hard;
     public Difficulty Extreme;

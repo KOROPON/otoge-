@@ -1,0 +1,18 @@
+{
+    "songs": [
+        {
+            "title": "Collide",
+            "Easy": 3,
+            "Hard": 6,
+            "Extreme": 8,
+            "KUJO": 0
+        },
+        {
+            "title": "Devourer_Of_Sol_Ⅲ",
+            "Easy": 3,
+            "Hard": 6,
+            "Extreme": 9,
+            "KUJO": 0
+        }
+    ]
+}

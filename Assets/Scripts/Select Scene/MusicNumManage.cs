@@ -1,19 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
-using Reilas;
-using UnityEngine.Serialization;
 
 
 public class MusicNumManage : MonoBehaviour
 {
-    Image _jack;
+    private Image _jack;
+    private Image _rank;
     private AudioSource _audioSource;
     private GetHighScores _getHighScores;
     private string _songName;
@@ -22,6 +15,10 @@ public class MusicNumManage : MonoBehaviour
 
     public Text highScore;
     public Text title;
+    public Text easyLevel;
+    public Text hardLevel;
+    public Text extremeLevel;
+    public Text kujoLevel;
     public GameObject scrollviewContent;
 
 
@@ -47,6 +44,19 @@ public class MusicNumManage : MonoBehaviour
         _jack.sprite = Resources.Load<Sprite>(_jacketPath);
     }
 
+    private void DisplayRank(string songName, string diff)
+    {
+        string rank = _getHighScores.GetRank(songName, diff);
+        if (rank != "")
+        {
+            _rank.sprite = Resources.Load<Sprite>("Rank/score_" + rank);
+        }
+        else
+        {
+            _rank.sprite = null;
+        }
+    }
+
     private void SelectSong(string musicName)
     {
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -54,12 +64,15 @@ public class MusicNumManage : MonoBehaviour
         title.text = musicName;
         PlayerPrefs.SetString("selected_song", musicName);
         _songName = musicName;
-        highScore.text = $"{_getHighScores.GetHighScore(_songName, PlayerPrefs.GetString("difficulty")),9: 0,000,000}";
+		    string diff = PlayerPrefs.GetString("difficulty");
+        highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
+        DisplayRank(_songName, diff);
     }
 
     void Start()
     {
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
+        _rank = GameObject.Find("ランク").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
@@ -96,6 +109,8 @@ public class MusicNumManage : MonoBehaviour
         PlayerPrefs.SetString("difficulty", diff.name);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
+        DisplayRank(_songName, diff.name);
+
 
         for (int i = 0; i < scrollviewContent.transform.childCount; i++)
         {

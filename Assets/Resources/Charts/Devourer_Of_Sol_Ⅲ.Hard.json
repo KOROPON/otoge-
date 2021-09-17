@@ -9,7 +9,7 @@
     }
   ],
   "name": "新規譜面",
-  "difficulty": 0,
+  "difficulty": 5,
   "audioSource": "de_4counts.mp3",
   "startTime": 0,
   "customProps": {},
