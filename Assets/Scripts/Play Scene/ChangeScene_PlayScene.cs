@@ -13,10 +13,14 @@ public class ChangeScene_PlayScene : MonoBehaviour
       GetHighScores getHighScores = new GetHighScores();
       StartCoroutine(Checking( ()=>{
         //曲終了時
+        //Clear表示
+        getHighScores.Awake();
         getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
+        //シャッター閉じる
         getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
-        SceneManager.LoadScene("ResultScene");
         ScoreComboCaliculator.currentCombo = 0;
+        SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
       } ));
     }
     public delegate void functionType();

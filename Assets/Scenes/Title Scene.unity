@@ -404,7 +404,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 253
@@ -807,11 +807,11 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1564492722}
           m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-          m_MethodName: DelayChange
-          m_Mode: 1
+          m_MethodName: Change
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1476230221}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

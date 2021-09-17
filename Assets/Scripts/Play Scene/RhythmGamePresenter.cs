@@ -122,7 +122,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         // tap音調整
         }
 
-        _audioSource.Play();
 
         // chartEntity
         _chartEntity = chartEntity;
@@ -133,7 +132,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
 
-
+        //シャッター上げる
+        _audioSource.Play();
     }
 
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)

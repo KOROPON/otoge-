@@ -2414,8 +2414,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 710420025}
-        m_TargetAssemblyTypeName: SettingField, Assembly-CSharp
+      - m_Target: {fileID: 2316003947195936359, guid: 5c9403e3d73bb9b4a9884da8049f7d1f, type: 3}
+        m_TargetAssemblyTypeName: SceneChange_ingame, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -2715,7 +2715,7 @@ Canvas:
   m_GameObject: {fileID: 1606502938}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 17
   m_PixelPerfect: 0

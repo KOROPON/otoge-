@@ -1681,6 +1681,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScore: {fileID: 114619935}
   title: {fileID: 1788348301}
+  easyLevel: {fileID: 0}
+  hardLevel: {fileID: 0}
+  extremeLevel: {fileID: 0}
+  kujoLevel: {fileID: 0}
+  selectMusic: {fileID: 834546826}
   scrollviewContent: {fileID: 0}
 --- !u!4 &808788352
 Transform:
