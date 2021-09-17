@@ -59,7 +59,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
-        
+
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
         notJudgedNotes.OrderBy(notes => notes.JudgeTime);
@@ -78,7 +78,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         // tap音調整
         }
 
-        _audioSource.Play();
+        
 
         // chartEntity
         _chartEntity = chartEntity;
@@ -127,6 +127,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
+        //シーンを開く
+        _audioSource.Play();
     }
 
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
