@@ -56,22 +56,6 @@ namespace Reilas
                 }
             }
 
-            //上面
-            /*for (int z = 0; z < zDivision - 1; z++)
-            {
-                int n = z * (xDivision - 1) * 6;
-                for (int x = 0; x < xDivision - 1; x++)
-                {
-                    int p = xDivision + 1;
-                    _triangles[n + p * 6 + 0] = z * (xDivision) + x;
-                    _triangles[n + p * 6 + 1] = z * (xDivision) + x + 1;
-                    _triangles[n + p * 6 + 2] = (z + 1) * (xDivision) + x;
-                    _triangles[n + p * 6 + 3] = z * (xDivision) + x + 1;
-                    _triangles[n + p * 6 + 4] = (z + 1) * (xDivision) + x + 1;
-                    _triangles[n + p * 6 + 5] = (z + 1) * (xDivision) + x;
-                }
-            }*/
-
             // メッシュを生成する
             _mesh = new Mesh
             {
