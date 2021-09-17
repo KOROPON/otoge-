@@ -38,20 +38,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     /// <summary>
     /// 判定結果を処理する
     /// </summary>
-    public void HandleJudgeResult(JudgeResultType judgeResultType)
-    {
-
-    }
-
-    public void OnAddCombo()
-    {
-    }
 
     private void Awake()
     {
         AwakeAsync().Forget();
-      //  _backGroundJacket = GameObject.Find("背景").GetComponent<Image>();
-      //  _backGroundJacket.sprite = Resources.Load<Sprite>("Jacket/" + musicname + "_jacket");
     }
 
     private async UniTask AwakeAsync()

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -22,7 +20,7 @@ public class GetHighScores : MonoBehaviour
         writer.WriteLine(JsonUtility.ToJson(_highScore, true));
     }
 
-    void Awake()
+    public void Awake()
     {
         _jsonFilePath = Application.persistentDataPath + "/SongInformation.json";
         if (!File.Exists(_jsonFilePath))
@@ -35,7 +33,7 @@ public class GetHighScores : MonoBehaviour
 
     private Song GetSong(string title)
     {
-        foreach (var t in _highScore.songs)
+        foreach (Song t in _highScore.songs)
         {
             if (title == t.title)
             {
@@ -63,6 +61,28 @@ public class GetHighScores : MonoBehaviour
         };
         return diff;
     }
+    
+    private string RankCalculator(int score)
+    {
+        switch (score)
+        {
+            case int n when n >= 995000:
+                return "SSS";
+            case int n when n >= 990000:
+                return "SS";
+            case int n when n >= 980000:
+                return "S";
+            case int n when n >= 950000:
+                return "A";
+            case int n when n >= 900000:
+                return "B";
+            case int n when n >= 800000:
+                return "C";
+            case int n when n > 0:
+                return "D";
+            default: return "";
+        }
+    }
 
     public int GetHighScore(string songName, string difficulty)
     {
@@ -77,14 +97,24 @@ public class GetHighScores : MonoBehaviour
         }
     }
 
-    public void SetHighScore(string songName, string difficulty, int score)
+    public string GetRank(string songName, string difficulty)
     {
         Difficulty diff = GetDiff(songName, difficulty);
-        if (diff == null)
+        if (diff != null)
         {
-            diff = new Difficulty();
+            return diff.rank;
         }
+        else
+        {
+            return "";
+        }
+    }
+    
+    public void SetHighScore(string songName, string difficulty, int score)
+    {
+        Difficulty diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
+        diff.rank = RankCalculator(score);
         StreamWrite();
     }
 }

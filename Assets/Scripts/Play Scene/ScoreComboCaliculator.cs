@@ -12,8 +12,8 @@ namespace Reilas
         public static int sumMiss;
         public static int currentCombo;
         public static int highCombo=0;
-        public float sumScore = 1 * 4;　
-        public static　int currentScore;
+        public float sumScore = 1 * 4;　//総コンボ数　* 4;
+        public static　int currentScore = 0;
         private float score = 1;
 
         List<JudgeResult> alljudge;
