@@ -56,13 +56,16 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             return;
         }
 
+
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
         
         notJudgedNotes = chartEntity.Notes;
         notes = chartEntity.Notes;
         notJudgedNotes.OrderBy(notes => notes.JudgeTime);
-        
+
+        Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
+
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
         var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
@@ -86,32 +89,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
 
-
-        Debug.Log("最大コンボ数: " + chartEntity.Notes.Count);
-
-
-
-
-        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
-        var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
-
-        _audioSource.clip = audioClip;
-
-        if (PlayerPrefs.HasKey("volume"))
-        {
-        // tap音調整
-        }
-
-        _audioSource.Play();
-
-        // chartEntity
-        _chartEntity = chartEntity;
-
-        SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
-        SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
-        SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
-        SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
-        SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
 
 
         for (int i = 0; i < notJudgedNotes.Count; i++)
