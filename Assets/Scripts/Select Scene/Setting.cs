@@ -12,6 +12,7 @@ namespace Reilas
         public Image Color;
         public GameObject rating;
         public Image frame;
+        public Text infoT;
         [SerializeField] Text RateText;
         [SerializeField] GameObject alter;
 
@@ -68,6 +69,13 @@ namespace Reilas
           RateText.text = changePath[Item.name][3].ToString();
           pathKey = Item.name;
           frame.sprite = Resources.Load<Sprite>("Frame/Frame_" + Item.name);
+          switch (Item.name)
+          {
+            case "ノーツ速度": infoT.text = "ノーツの流れる速度を設定します"; break;
+            case "音量": infoT.text = "ノーツを叩いたときに発生するタップ音量を調整します"; break;
+            case "判定": infoT.text = "流れてくるノーツに対する判定を行うタイミングを調整します\n例：(判定タイミングが遅いとき…　)"; break;
+            case "音": infoT.text = "曲とノーツが流れてくるタイミングのズレを修正します\n例：（曲よりも早くノーツが流れてくるとき…　　）"; break;
+          }
         }
 
         public void SettingOpen(GameObject rating)

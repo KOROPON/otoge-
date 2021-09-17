@@ -22,7 +22,7 @@ public class GetHighScores : MonoBehaviour
         writer.WriteLine(JsonUtility.ToJson(_highScore, true));
     }
 
-    void Awake()
+    public void Awake()
     {
         _jsonFilePath = Application.persistentDataPath + "/SongInformation.json";
         if (!File.Exists(_jsonFilePath))

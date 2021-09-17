@@ -26,7 +26,7 @@ public class ResultScore : MonoBehaviour
 
     void Start()
     {
-        
+
         score = ScoreComboCaliculator.currentScore;
         switch (score)
         {
@@ -42,7 +42,7 @@ public class ResultScore : MonoBehaviour
         {
             PlayerPrefs.SetFloat("currentScore", 0f);
         }
-        scoreinResult.text = String.Format("{0, 9: 0,000,000}", score);
+        scoreinResult.text = String.Format("{0, 9: 0,000,000}",(float) score);
         maxCombo.text = ScoreComboCaliculator.highCombo.ToString();
         perfectCom.text = ScoreComboCaliculator.sumPerfect.ToString();
         goodCom.text = ScoreComboCaliculator.sumGood.ToString();

@@ -13,6 +13,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
       GetHighScores getHighScores = new GetHighScores();
       StartCoroutine(Checking( ()=>{
         //曲終了時
+        getHighScores.Awake();
         getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
         getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
         SceneManager.LoadScene("ResultScene");
