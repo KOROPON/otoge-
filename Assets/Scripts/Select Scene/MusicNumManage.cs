@@ -9,6 +9,7 @@ public class MusicNumManage : MonoBehaviour
     private Image _rank;
     private AudioSource _audioSource;
     private GetHighScores _getHighScores;
+    private LevelConverter _levelConverter;
     private string _songName;
     private string _jacketPath;
 
@@ -18,7 +19,7 @@ public class MusicNumManage : MonoBehaviour
     public Text easyLevel;
     public Text hardLevel;
     public Text extremeLevel;
-    public Text kujoLevel;
+    //public Text kujoLevel;
     public GameObject scrollviewContent;
 
 
@@ -57,6 +58,14 @@ public class MusicNumManage : MonoBehaviour
         }
     }
 
+    private void DisplayLevel(string songName)
+    {
+        easyLevel.text = _levelConverter.GetLevel(songName, "Easy").ToString();
+        hardLevel.text = _levelConverter.GetLevel(songName, "Hard").ToString();
+        extremeLevel.text = _levelConverter.GetLevel(songName, "Extreme").ToString();
+        //kujoLevel.text = _levelConverter.GetLevel(songName, "KUJO").ToString();
+    }
+
     private void SelectSong(string musicName)
     {
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -64,9 +73,10 @@ public class MusicNumManage : MonoBehaviour
         title.text = musicName;
         PlayerPrefs.SetString("selected_song", musicName);
         _songName = musicName;
-		    string diff = PlayerPrefs.GetString("difficulty");
+        string diff = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
         DisplayRank(_songName, diff);
+        DisplayLevel(_songName);
     }
 
     void Start()
@@ -76,6 +86,8 @@ public class MusicNumManage : MonoBehaviour
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
+        _levelConverter = FindObjectOfType<LevelConverter>();
+        
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {

@@ -4,16 +4,12 @@ using UnityEngine;
 public class LevelConverter : MonoBehaviour
 {
     private Level _level;
-    private Level JsonFileReader()
-    {
-        using StreamReader reader = new StreamReader("Scripts/SongInformation/JsonToC#/Level");
-        string jsonString = reader.ReadToEnd();
-        return JsonUtility.FromJson<Level>(jsonString);
-    }
+    private TextAsset _jsonFile;
 
     void Start()
     {
-        _level = JsonFileReader();
+        _jsonFile = Resources.Load<TextAsset>("Level/level");
+        _level = JsonUtility.FromJson<Level>(_jsonFile.text);
     }
 
     public int GetLevel(string songName, string diff)

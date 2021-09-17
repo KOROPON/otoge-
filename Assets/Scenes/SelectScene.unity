@@ -1660,6 +1660,7 @@ GameObject:
   - component: {fileID: 808788351}
   - component: {fileID: 808788353}
   - component: {fileID: 1512446369}
+  - component: {fileID: 808788350}
   m_Layer: 0
   m_Name: RunProgram_musicselect
   m_TagString: Untagged
@@ -1667,6 +1668,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &808788350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808788349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd445f60af11a4bb0a3ca2a2225fd286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &808788351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,6 +1694,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScore: {fileID: 114619935}
   title: {fileID: 1788348301}
+  easyLevel: {fileID: 1553910840}
+  hardLevel: {fileID: 901885262}
+  extremeLevel: {fileID: 846677256}
+  kujoLevel: {fileID: 0}
   scrollviewContent: {fileID: 0}
 --- !u!4 &808788352
 Transform:
