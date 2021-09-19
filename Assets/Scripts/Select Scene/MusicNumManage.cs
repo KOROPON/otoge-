@@ -12,7 +12,7 @@ public class MusicNumManage : MonoBehaviour
     private LevelConverter _levelConverter;
     private string _songName;
     private string _jacketPath;
-    private bool selectBool;
+    private bool _selectBool;
 
 
     public Text highScore;
@@ -71,7 +71,7 @@ public class MusicNumManage : MonoBehaviour
 
     void Start()
     {
-        selectBool = true;
+        _selectBool = true;
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         _rank = GameObject.Find("ランク").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
@@ -100,9 +100,9 @@ public class MusicNumManage : MonoBehaviour
     {
         if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
-            if (selectBool)
+            if (_selectBool)
             {
-              selectBool = false;
+              _selectBool = false;
               _audioSource.Stop();
               //シャッター閉じる;
               RhythmGamePresenter.musicname = obj.name;

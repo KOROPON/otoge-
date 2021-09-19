@@ -81,7 +81,6 @@ public class RaycastMask : MonoBehaviour, ICanvasRaycastFilter
                 }
                 break;
         }
-        Debug.Log(_sprite.texture.GetPixel(x,y).a);
         return _sprite.texture.GetPixel(x,y).a > 0;
 　　}
 }
