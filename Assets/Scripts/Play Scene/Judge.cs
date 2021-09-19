@@ -192,6 +192,8 @@ public class JudgeService : MonoBehaviour
 
                                     //Debug.Log("Miss");
                                 }
+                                RhythmGamePresenter._tapNotes[0].NoteDestroy();
+                                RhythmGamePresenter._tapNotes.RemoveAt(0);
                                 //}
                             }
                             alreadyJudge = true;
@@ -272,6 +274,8 @@ public class JudgeService : MonoBehaviour
 
                                     //Debug.Log("Miss");
                                 }
+                                RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
+                                RhythmGamePresenter._aboveTapNotes.RemoveAt(0);
                                 //}
                             }
                             alreadyJudge = true;
@@ -627,6 +631,8 @@ public class JudgeService : MonoBehaviour
                             });
                             miss++;
                         }
+                        RhythmGamePresenter._aboveChainNotes[0].NoteDeestroy();
+                        RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
                     }
                 }
             }
@@ -719,6 +725,9 @@ public class JudgeService : MonoBehaviour
                         ResultType = JudgeResultType.Miss
                     });
                     miss++;
+                    RhythmGamePresenter._tapNotes[0].NoteDestroy();
+                    Debug.Log("Destroy Tap");
+                    RhythmGamePresenter._tapNotes.RemoveAt(0);
                 }
                 else
                 {
@@ -761,6 +770,8 @@ public class JudgeService : MonoBehaviour
                         ResultType = JudgeResultType.Miss
                     });
                     miss++;
+                    RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
+                    RhythmGamePresenter._aboveTapNotes.RemoveAt(0);
                 }
                 else
                 {
@@ -823,6 +834,8 @@ public class JudgeService : MonoBehaviour
                         ResultType = JudgeResultType.Miss
                     });
                     miss++;
+                    RhythmGamePresenter._aboveChainNotes[0].NoteDeestroy();
+                    RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
                 }
                 else
                 {

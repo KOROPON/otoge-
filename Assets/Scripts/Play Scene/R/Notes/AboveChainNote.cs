@@ -182,5 +182,10 @@ namespace Reilas
                 _meshFilter.mesh = _mesh;
             }
         }
+
+        public void NoteDeestroy()
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -21,12 +21,12 @@ public class ResultScore : MonoBehaviour
     public Image rankinResult;
     public Image colorinResult;
     public Image clear;
+    public AudioSource resultMusic;
     private string scoreRank;
     private float score;
 
     void Start()
     {
-
         score = ScoreComboCaliculator.currentScore;
         switch (score)
         {
@@ -42,7 +42,7 @@ public class ResultScore : MonoBehaviour
         {
             PlayerPrefs.SetFloat("currentScore", 0f);
         }
-        scoreinResult.text = String.Format("{0, 9: 0,000,000}",(float) score);
+        scoreinResult.text = String.Format("{0, 9: 0,000,000}", score);
         maxCombo.text = ScoreComboCaliculator.highCombo.ToString();
         perfectCom.text = ScoreComboCaliculator.sumPerfect.ToString();
         goodCom.text = ScoreComboCaliculator.sumGood.ToString();
@@ -73,15 +73,24 @@ public class ResultScore : MonoBehaviour
         ScoreComboCaliculator.sumGood = 0;
         ScoreComboCaliculator.sumBad = 0;
         ScoreComboCaliculator.sumMiss = 0;
+
+        //シャッター上げる
+        resultMusic.Play();
     }
 
     public void Back()
     {
-        SceneManager.LoadScene("SelectScene");
+        resultMusic.Stop();
+        //シャッター下げる
+        SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
     }
 
     public void Retry()
     {
-        SceneManager.LoadScene("PlayScene");
+        resultMusic.Stop();
+        //シャッター下げる
+        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
     }
 }

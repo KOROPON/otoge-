@@ -61,7 +61,7 @@ public class GetHighScores : MonoBehaviour
         };
         return diff;
     }
-    
+
     private string RankCalculator(int score)
     {
         switch (score)
@@ -109,7 +109,7 @@ public class GetHighScores : MonoBehaviour
             return "";
         }
     }
-    
+
     public void SetHighScore(string songName, string difficulty, int score)
     {
         Difficulty diff = GetDiff(songName, difficulty) ?? new Difficulty();

@@ -1219,7 +1219,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a317fd4116136bb4183af73ddfa703ef, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1773,6 +1773,7 @@ MonoBehaviour:
   rankinResult: {fileID: 1907612562}
   colorinResult: {fileID: 1333589291}
   clear: {fileID: 1468880452}
+  resultMusic: {fileID: 1199543551}
 --- !u!1 &1594226238
 GameObject:
   m_ObjectHideFlags: 0

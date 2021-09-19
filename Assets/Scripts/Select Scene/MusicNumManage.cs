@@ -41,7 +41,6 @@ public class MusicNumManage : MonoBehaviour
     {
         _jacketPath = jacketPath;
         _audioSource.clip = Resources.Load<AudioClip>(musicName);
-        _audioSource.Play();
         _jack.sprite = Resources.Load<Sprite>(_jacketPath);
     }
 
@@ -81,6 +80,7 @@ public class MusicNumManage : MonoBehaviour
 
     void Start()
     {
+        SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         _rank = GameObject.Find("ランク").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
@@ -101,14 +101,20 @@ public class MusicNumManage : MonoBehaviour
 
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
+        //シャッター上げる to三ツ口 Startで必要な動作はここまでに抑えといてね
+        _audioSource.Play();
     }
 
     public void Tap(GameObject obj)
     {
         if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
+            _audioSource.Stop();
+            //シャッター閉じる;
             RhythmGamePresenter.musicname = obj.name;
-            SceneManager.LoadScene("PlayScene");
+            SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+            SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
+
         }
         else
         {
