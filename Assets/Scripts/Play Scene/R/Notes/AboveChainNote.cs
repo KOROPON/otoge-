@@ -128,19 +128,19 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    //float zPos = 0;
-                    /*
+                    float zPos = 0;
+                    
                     if (!this.gameObject.activeSelf)
                     {
 
-                        if (_entity.JudgeTime - currentTime < 10f)
+                        if (_entity.JudgeTime - currentTime < 5f)
                         {
                             this.gameObject.SetActive(true);
                         }
                     }
-                    else
-                    {*/
-                        var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    //else
+                    //{
+                        zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
                     //}
 
                     zPos += zz;

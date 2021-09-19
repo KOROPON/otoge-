@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -844,9 +844,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 100
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 300
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1506,15 +1506,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1c43ed99184c7a88b7bd820988ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text1: {fileID: 1027403000}
+  text1: {fileID: 646217737}
   text2: {fileID: 620664342}
   _tapNotePrefab: {fileID: 8406595844416957594, guid: 1a8325871074846c39d66be6929f121a, type: 3}
   _holdNotePrefab: {fileID: 158867706336414473, guid: be9527020d91e4427bc90b1b562d62c4, type: 3}
   _aboveTapNotePrefab: {fileID: 1318370044206668128, guid: 317099b47c56742d59638d02f46e1ce2, type: 3}
   _aboveChainNotePrefab: {fileID: 777972371875304921, guid: 24af6f1023309cb4796baba66b9a8ecf, type: 3}
-  _aboveHoldNotePrefab: {fileID: 598716245686726615, guid: 26defb944969b47068d25bd24769348d, type: 3}
-  _aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   _aboveHoldNotePrefab: {fileID: 8610339511716983441, guid: 1063adec9cacb6e4dba2eda270908352, type: 3}
+  _aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   _audioSource: {fileID: 947960482}
 --- !u!1 &1127278211
 GameObject:

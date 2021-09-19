@@ -1,5 +1,4 @@
 #nullable enable
-
 using System;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Reilas
 
         private Mesh? _mesh;
 
-        private ReilasNoteEntity _entity;
+        private ReilasNoteEntity _entity = null!;
 
         public float aboveTapTime;
 
@@ -64,7 +63,7 @@ namespace Reilas
                 _triangles[p * 6 + 4] = 0 + i * 2;
                 _triangles[p * 6 + 5] = 2 + i * 2;
             }
-
+            
             // 左
             _triangles[size * 6 * 2 + 0] = 0;
             _triangles[size * 6 * 2 + 1] = 1;
@@ -80,7 +79,7 @@ namespace Reilas
             _triangles[size * 6 * 2 + 9] = 1 + size * 2 - 2;
             _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
             _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
-
+            
             // メッシュを生成する
             _mesh = new Mesh
             {
@@ -136,7 +135,7 @@ namespace Reilas
                     if (!this.gameObject.activeSelf)
                     {
 
-                        if (_entity.JudgeTime - currentTime < 10f)
+                        if (_entity.JudgeTime - currentTime < 5f)
                         {
                             this.gameObject.SetActive(true);
                         }

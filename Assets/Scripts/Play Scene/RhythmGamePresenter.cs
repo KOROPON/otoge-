@@ -167,7 +167,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             tapNote.Initialize(note);
             //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
             _aboveChainNotes.Add(tapNote);
-            //tapNote.gameObject.SetActive(false);
+            tapNote.gameObject.SetActive(false);
         }
     }
 
@@ -294,10 +294,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
         //var judgeService = new JudgeService();
-        foreach(var a in InputService.aboveLaneTapStates)
-        {
-            Debug.Log(a.laneNumber + "," + a.IsHold) ;
-        }
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
         

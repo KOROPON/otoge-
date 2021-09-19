@@ -50,6 +50,8 @@ public class JudgeService : MonoBehaviour
 
     public static void Judge(List<ReilasNoteEntity> notJudgedNotes, float currentTime, List<LaneTapState> aboveTapState) //Judge(�m�[�c����,�Đ�����,�^�b�v����){}
     {
+        Debug.Log("judge");
+
         const float noJudgeTime = 0.090f; //���ԋ߂��m�[�c���������藣���Ă��Ɣ��肵�Ȃ�
         float tapTime = 0; //�������ԂɃ^�b�v�����鎞�A���̎���
 
@@ -643,6 +645,7 @@ public class JudgeService : MonoBehaviour
 
         foreach (ReilasNoteEntity note in notJudgedNotes) //�^�b�v�����Ă��Ȃ��ꍇ�Ɏg�p������ Miss ����
         {
+            Debug.Log("missJudge");
             if(note.JudgeTime - currentTime > 0.075f)
             {
                 break;
@@ -845,6 +848,7 @@ public class JudgeService : MonoBehaviour
         RemoveNoteInList(removeNoteNum);
 
         aa = ("Perfect:" + per.ToString() + "  Good:" + good.ToString() + "  Bad:" + bad.ToString() + "  Miss:" + miss.ToString());
+        Debug.Log(aa);
 
     }
 }

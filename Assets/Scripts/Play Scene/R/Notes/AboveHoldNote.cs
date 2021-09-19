@@ -98,7 +98,7 @@ namespace Reilas
                 {
                     var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + x;
 
-                    const float outerLaneRadius = 4.5f;
+                    const float outerLaneRadius = 4.4f;
 
                     //float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
 
