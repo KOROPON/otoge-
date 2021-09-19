@@ -21,7 +21,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private AboveChainNote _aboveChainNotePrefab = null!;
     [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
-    [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
 
 
     [SerializeField] private AudioSource _audioSource = null!;
@@ -32,7 +31,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<HoldNote> _holdNoteLines = new List<HoldNote>();
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
-    public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
 
     private ReilasChartEntity _chartEntity = null!;
 
@@ -94,7 +92,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
-        SpawnAboveHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
 
 
 
@@ -200,15 +197,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveSlideNotePrefab);
             tapNote.Initialize(note);
             _aboveSlideNotes.Add(tapNote);
-        }
-    }
-    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
-    {
-        foreach (var note in notes)
-        {
-            var tapNote = Instantiate(_aboveHoldNotePrefab);
-            tapNote.Initialize(note);
-            _aboveHoldNotes.Add(tapNote);
         }
     }
 
