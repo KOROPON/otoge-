@@ -16,9 +16,6 @@ public class MusicNumManage : MonoBehaviour
 
     public Text highScore;
     public Text title;
-    public Text easyLevel;
-    public Text hardLevel;
-    public Text extremeLevel;
     //public Text kujoLevel;
     public GameObject scrollviewContent;
 
@@ -56,15 +53,7 @@ public class MusicNumManage : MonoBehaviour
             _rank.sprite = null;
         }
     }
-
-    private void DisplayLevel(string songName)
-    {
-        easyLevel.text = _levelConverter.GetLevel(songName, "Easy").ToString();
-        hardLevel.text = _levelConverter.GetLevel(songName, "Hard").ToString();
-        extremeLevel.text = _levelConverter.GetLevel(songName, "Extreme").ToString();
-        //kujoLevel.text = _levelConverter.GetLevel(songName, "KUJO").ToString();
-    }
-
+    
     private void SelectSong(string musicName)
     {
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -75,7 +64,7 @@ public class MusicNumManage : MonoBehaviour
         string diff = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
         DisplayRank(_songName, diff);
-        DisplayLevel(_songName);
+        _levelConverter.GetLevel(musicName);
     }
 
     void Start()
