@@ -12,6 +12,7 @@ public class MusicNumManage : MonoBehaviour
     private LevelConverter _levelConverter;
     private string _songName;
     private string _jacketPath;
+    private bool selectBool;
 
 
     public Text highScore;
@@ -53,7 +54,7 @@ public class MusicNumManage : MonoBehaviour
             _rank.sprite = null;
         }
     }
-    
+
     private void SelectSong(string musicName)
     {
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -65,18 +66,19 @@ public class MusicNumManage : MonoBehaviour
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
         DisplayRank(_songName, diff);
         _levelConverter.GetLevel(musicName);
+        _audioSource.Play();
     }
 
     void Start()
     {
-        SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
+        selectBool = true;
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         _rank = GameObject.Find("ランク").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
-        
+
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
@@ -98,12 +100,15 @@ public class MusicNumManage : MonoBehaviour
     {
         if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
-            _audioSource.Stop();
-            //シャッター閉じる;
-            RhythmGamePresenter.musicname = obj.name;
-            SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-            SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
-
+            if (selectBool)
+            {
+              selectBool = false;
+              _audioSource.Stop();
+              //シャッター閉じる;
+              RhythmGamePresenter.musicname = obj.name;
+              SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+              SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
+            }
         }
         else
         {

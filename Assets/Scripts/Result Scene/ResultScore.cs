@@ -24,9 +24,14 @@ public class ResultScore : MonoBehaviour
     public AudioSource resultMusic;
     private string scoreRank;
     private float score;
+    private bool backBool;
+    private bool retryBool;
+
 
     void Start()
     {
+        backBool = true;
+        retryBool = true;
         score = ScoreComboCaliculator.currentScore;
         switch (score)
         {
@@ -80,17 +85,25 @@ public class ResultScore : MonoBehaviour
 
     public void Back()
     {
-        resultMusic.Stop();
-        //シャッター下げる
-        SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+        if (backBool)
+        {
+          backBool = false;
+          resultMusic.Stop();
+          //シャッター下げる
+          SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
+          SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+        }
     }
 
     public void Retry()
     {
-        resultMusic.Stop();
-        //シャッター下げる
-        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+        if (retryBool)
+        {
+          retryBool = false;
+          resultMusic.Stop();
+          //シャッター下げる
+          SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+          SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+        }
     }
 }
