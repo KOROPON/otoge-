@@ -20,6 +20,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
     [SerializeField] private AboveChainNote _aboveChainNotePrefab = null!;
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
+    [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
+
 
     [SerializeField] private AudioSource _audioSource = null!;
 
@@ -28,6 +30,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
     public static List<HoldNote> _holdNoteLines = new List<HoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
+    public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
 
     private ReilasChartEntity _chartEntity = null!;
 
@@ -88,6 +91,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
+        SpawnAboveHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
 
 
 
@@ -136,9 +140,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_tapNotePrefab);
-            tapNote.transform.position = new Vector3(0, 0, 999);
             tapNote.Initialize(note);
+            tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
             _tapNotes.Add(tapNote);
+            tapNote.gameObject.SetActive(false);
         }
     }
 
@@ -148,7 +153,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(_aboveTapNotePrefab);
             tapNote.Initialize(note);
+            //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
             _aboveTapNotes.Add(tapNote);
+            tapNote.gameObject.SetActive(false);
         }
     }
 
@@ -158,7 +165,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(_aboveChainNotePrefab);
             tapNote.Initialize(note);
+            //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
             _aboveChainNotes.Add(tapNote);
+            //tapNote.gameObject.SetActive(false);
         }
     }
 
@@ -181,6 +190,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             _aboveSlideNotes.Add(tapNote);
         }
     }
+    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    {
+        foreach (var note in notes)
+        {
+            var tapNote = Instantiate(_aboveHoldNotePrefab);
+            tapNote.Initialize(note);
+            _aboveHoldNotes.Add(tapNote);
+        }
+    }
+
+
 
     // 譜面情報に存在してる
     List<ReilasNoteEntity> notes = new List<ReilasNoteEntity>();
@@ -273,7 +293,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
-        Debug.Log("");
         //var judgeService = new JudgeService();
         foreach(var a in InputService.aboveLaneTapStates)
         {
@@ -281,9 +300,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         }
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
-
+        
         var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 5f);
         var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 5f);
+        var _chainNote = _aboveChainNotes.Where(note => note.aboveChainTime - currentTime < 5f);
 
         foreach (var tapNote in _tapNote)
         {
@@ -291,6 +311,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         }
 
         foreach (var note in _aboveNearestTap)
+        {
+            note.Render(audioTime);
+        }
+
+        foreach (var note in _chainNote)
         {
             note.Render(audioTime);
         }
@@ -304,6 +329,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             note.Render(audioTime);
         }
+        
     }
 }
 

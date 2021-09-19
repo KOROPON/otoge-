@@ -87,7 +87,7 @@ public class MusicNumManage : MonoBehaviour
         scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
-        
+        Debug.Log(_levelConverter);
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {

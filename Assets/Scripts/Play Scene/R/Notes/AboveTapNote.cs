@@ -25,7 +25,6 @@ namespace Reilas
             InitializeMesh();
 
             transform.localScale = Vector3.one;
-            ;
         }
 
         private void InitializeMesh()
@@ -98,7 +97,11 @@ namespace Reilas
 
         private void RenderMesh(float currentTime)
         {
-            if (_meshFilter == null) return;
+            if (_meshFilter == null)
+            {
+                Debug.Log("return");
+                return;
+            }
 
             for (var z = 0; z < 2; z++)
             {
@@ -128,7 +131,21 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    float zPos = 0;
+
+                    if (!this.gameObject.activeSelf)
+                    {
+
+                        if (_entity.JudgeTime - currentTime < 10f)
+                        {
+                            this.gameObject.SetActive(true);
+                        }
+                    }
+                    //else
+                    //{
+                        zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    //}
+
 
                     zPos += zz;
 
