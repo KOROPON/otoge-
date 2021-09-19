@@ -17,7 +17,6 @@ namespace Reilas
 
         private ReilasNoteLineEntity _entity = null!;
 
-        public float aboveTapTime;
 
         public void Initialize(ReilasNoteLineEntity entity)
         {

@@ -13,6 +13,8 @@ public class MusicNumManage : MonoBehaviour
     private string _songName;
     private string _jacketPath;
 
+    private bool _checkIfFirstTime = true;
+
 
     public Text highScore;
     public Text title;
@@ -99,7 +101,7 @@ public class MusicNumManage : MonoBehaviour
         if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
             _audioSource.Stop();
-            //シャッター閉じる;
+            //シャッター閉じる
             RhythmGamePresenter.musicname = obj.name;
             SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
             SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
@@ -108,6 +110,7 @@ public class MusicNumManage : MonoBehaviour
         else
         {
             SelectSong(obj.name);
+            _audioSource.Play();
         }
     }
 
