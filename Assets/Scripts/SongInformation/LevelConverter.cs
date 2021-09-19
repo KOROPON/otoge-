@@ -1,9 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelConverter : MonoBehaviour
 {
     private Level _level;
     private TextAsset _jsonFile;
+    
+    public Text easyLevel;
+    public Text hardLevel;
+    public Text extremeLevel;
+
+    
 
     void Start()
     {
@@ -11,22 +18,16 @@ public class LevelConverter : MonoBehaviour
         _level = JsonUtility.FromJson<Level>(_jsonFile.text);
     }
 
-    public int GetLevel(string songName, string diff)
+    public void GetLevel(string songName)
     {
         foreach (SongName song in _level.songs)
         {
             if (song.title == songName)
             {
-                return diff switch
-                {
-                    "Easy" => song.Easy,
-                    "Hard" => song.Hard,
-                    "Extreme" => song.Extreme,
-                    "KUJO" => song.KUJO,
-                    _ => 0
-                };
+                easyLevel.text = song.Easy.ToString();
+                hardLevel.text = song.Hard.ToString();
+                extremeLevel.text = song.Extreme.ToString();
             }
         }
-        return 0;
     }
 }

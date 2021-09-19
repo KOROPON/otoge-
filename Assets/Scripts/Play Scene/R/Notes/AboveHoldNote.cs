@@ -41,7 +41,7 @@ namespace Reilas
 
             _triangles = new int[(xDivision - 1) * 6 * (zDivision - 1)];
 
-            //‘O–Ê
+            //å‰é¢
             for (var z = 0; z < zDivision - 1; z++)
             {
                 var n = z * (xDivision - 1) * 6;
@@ -56,7 +56,7 @@ namespace Reilas
                 }
             }
 
-            // ƒƒbƒVƒ…‚ğ¶¬‚·‚é
+            // ãƒ¡ãƒƒã‚·ãƒ¥ã‚’ç”Ÿæˆã™ã‚‹
             _mesh = new Mesh
             {
                 vertices = _vertices,

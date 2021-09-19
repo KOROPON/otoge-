@@ -1,4 +1,5 @@
 #nullable enable
+
 using System;
 using UnityEngine;
 
@@ -32,7 +33,6 @@ namespace Reilas
             if (_meshFilter == null)
             {
                 throw new Exception();
-                //return;
             }
 
             var size = _entity.Size + 1;
