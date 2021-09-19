@@ -1,11 +1,11 @@
-#nullable enable
+/*#nullable enable
 
 using System;
 using UnityEngine;
 
 namespace Reilas
 {
-    public sealed class AboveTapNote : MonoBehaviour
+    public sealed class AboveHoldNote : MonoBehaviour
     {
         [SerializeField] private MeshFilter _meshFilter = null!;
 
@@ -15,13 +15,12 @@ namespace Reilas
 
         private Mesh? _mesh;
 
-        private ReilasNoteEntity _entity;
+        private ReilasNoteLineEntity _entity = null!;
 
         public float aboveTapTime;
 
-        public void Initialize(ReilasNoteEntity entity)
+        public void Initialize(ReilasNoteLineEntity entity)
         {
-            aboveTapTime = entity.JudgeTime;
             _entity = entity;
             InitializeMesh();
 
@@ -89,12 +88,25 @@ namespace Reilas
             };
             _mesh.MarkDynamic();
         }
-
+        
         public void Render(float currentTime)
         {
             RenderMesh(currentTime);
-        }
+            
+            var scale = NotePositionCalculatorService.GetScale(_entity.Head);
 
+
+            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false);
+            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false);
+
+
+            scale.z = tailPos.z - headPos.z;
+            ;
+            transform.localScale = scale; // NotePositionCalculatorService.GetScale(_entity.Head);
+
+            transform.position = (headPos + tailPos) / 2f;
+        }
+        
         private void RenderMesh(float currentTime)
         {
             if (_meshFilter == null) return;
@@ -185,4 +197,4 @@ namespace Reilas
             }
         }
     }
-}
+}*/

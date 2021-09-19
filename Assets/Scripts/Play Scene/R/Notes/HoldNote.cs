@@ -1,13 +1,11 @@
 #nullable enable
 
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
 {
     public sealed class HoldNote : MonoBehaviour
     {
-        //[SerializeField] private SpriteRenderer _spriteRenderer = null!;
 
         private ReilasNoteLineEntity _entity = null!;
 
