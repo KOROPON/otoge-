@@ -1697,7 +1697,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScore: {fileID: 114619935}
   title: {fileID: 1788348301}
-  scrollviewContent: {fileID: 0}
+  easyLevel: {fileID: 1553910840}
+  hardLevel: {fileID: 901885262}
+  extremeLevel: {fileID: 846677256}
+  scrollviewContent: {fileID: 93868657}
 --- !u!4 &808788352
 Transform:
   m_ObjectHideFlags: 0

@@ -28,8 +28,8 @@ public class RaycastMask : MonoBehaviour, ICanvasRaycastFilter
         var spriteRect = _sprite.textureRect;
         var maskRect = rectTransform.rect;
 
-        var x = 0;
-        var y = 0;
+        int x;
+        int y;
         // convert to texture space
         switch (_image.type)
         {
@@ -37,6 +37,7 @@ public class RaycastMask : MonoBehaviour, ICanvasRaycastFilter
             case Image.Type.Sliced:
             {
                 var border = _sprite.border;
+                Debug.Log(maskRect.width - border.z);
                 // x slicing
                 if (localPosition.x < border.x)
                 {
@@ -80,7 +81,6 @@ public class RaycastMask : MonoBehaviour, ICanvasRaycastFilter
                 }
                 break;
         }
-        Debug.Log(_sprite.texture.GetPixel(x,y).a);
         return _sprite.texture.GetPixel(x,y).a > 0;
 　　}
 }

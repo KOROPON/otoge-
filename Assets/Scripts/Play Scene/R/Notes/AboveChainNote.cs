@@ -16,8 +16,11 @@ namespace Reilas
 
         private ReilasNoteEntity _entity = null!;
 
+        public float aboveChainTime;
+
         public void Initialize(ReilasNoteEntity entity)
         {
+            aboveChainTime = entity.JudgeTime;
             _entity = entity;
             InitializeMesh();
 
@@ -125,7 +128,20 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    float zPos = 0;
+                    
+                    if (!this.gameObject.activeSelf)
+                    {
+
+                        if (_entity.JudgeTime - currentTime < 5f)
+                        {
+                            this.gameObject.SetActive(true);
+                        }
+                    }
+                    //else
+                    //{
+                        zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    //}
 
                     zPos += zz;
 

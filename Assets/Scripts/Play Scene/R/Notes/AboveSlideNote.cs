@@ -55,8 +55,9 @@ namespace Reilas
                     _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
                 }
             }
-
-            // メッシュを生成する
+             
+           
+            // メッシュを生成する.
             _mesh = new Mesh
             {
                 vertices = _vertices,
@@ -98,7 +99,7 @@ namespace Reilas
                 {
                     var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + x;
 
-                    const float outerLaneRadius = 4.5f;
+                    const float outerLaneRadius = 4.4f;
 
                     //float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
 
