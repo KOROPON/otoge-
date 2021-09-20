@@ -78,8 +78,7 @@ public class ResultScore : MonoBehaviour
         ScoreComboCaliculator.sumGood = 0;
         ScoreComboCaliculator.sumBad = 0;
         ScoreComboCaliculator.sumMiss = 0;
-
-        //シャッター上げる
+        Shutter.blChange = "ToR_open";
         resultMusic.Play();
     }
 

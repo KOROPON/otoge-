@@ -92,7 +92,7 @@ public class MusicNumManage : MonoBehaviour
 
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
-        Shutter.blTs_F_op = true;
+        Shutter.blChange = "ToS_F_open";
         _audioSource.Play();
     }
 
@@ -103,9 +103,9 @@ public class MusicNumManage : MonoBehaviour
             if (selectBool)
             {
               selectBool = false;
-              Shutter.blTpFs_cl = true;
-              _audioSource.Stop();
+              Shutter.blChange = "ToPFrS_close";
               RhythmGamePresenter.musicname = obj.name;
+              Invoke("StopAudio",0.6f);
             }
         }
         else
@@ -126,5 +126,9 @@ public class MusicNumManage : MonoBehaviour
         {
             GameObject song = scrollviewContent.transform.GetChild(i).gameObject;
         }
+    }
+    private void StopAudio()
+    {
+      _audioSource.Stop();
     }
 }

@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Rhythmium;
+using Reilas;
 
 public class Shutter : MonoBehaviour
 {
   private Animator anim;
-  public static bool blTs_F_cl;
-  public static bool blTs_F_op;
-  public static bool blTpFs_cl;
-  public static bool blTpFs_op;
-  public static AnimationEvent evt;
-  public AnimationClip closeC;
-  public AnimationClip openC;
+  public static string blChange;
   public AudioSource openSE;
   public AudioSource closeSE;
 
@@ -23,25 +19,14 @@ public class Shutter : MonoBehaviour
 
    void Update()
    {
-     if (blTs_F_cl)
+     switch (blChange)
      {
-       blTs_F_cl = false;
-       anim.SetBool("blTs_F",true);
-     }
-     if (blTs_F_op)
-     {
-       blTs_F_op = false;
-       anim.SetBool("blTs_F",false);
-     }
-     if (blTpFs_cl)
-     {
-       blTpFs_cl = false;
-       anim.SetBool("blTpFs",true);
-     }
-     if (blTpFs_op)
-     {
-       blTpFs_op = false;
-       anim.SetBool("blTpFs",false);
+       case "ToPFrS_close": blChange = "";anim.SetBool("blTpFs",true);break;
+       case "ToPFrS_open": blChange = "";anim.SetBool("blTpFs",false);break;
+       case "ToR_close": blChange = "";anim.SetBool("blTr",true);break;
+       case "ToR_open": blChange = "";anim.SetBool("blTr",false);break;
+       case "ToS_F_close": blChange = "";anim.SetBool("blTs_F",true);break;
+       case "ToS_F_open": blChange = "";anim.SetBool("blTs_F",false);break;
      }
    }
 
@@ -53,16 +38,31 @@ public class Shutter : MonoBehaviour
    {
      closeSE.Play();
    }
+   void PlayAudio()
+   {
+     RhythmGamePresenter.PlaySongs();
+     ChangeScene_PlayScene.playNoticed =true;
+   }
+   void PlaySongAudio()
+   {
+     Invoke("PlayAudio",1f);
+   }
 
 
-   void SelectLoad()
+
+   void SelectLoadFirst()
    {
      SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
      SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
    }
-   void PlayLoad()
+   void PlayLoadFromSelect()
    {
      SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
      SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
+   }
+   void ResultLoad()
+   {
+     SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
+     SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
    }
 }

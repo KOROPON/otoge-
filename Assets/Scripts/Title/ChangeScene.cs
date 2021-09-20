@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
   private bool startBool;
+  public AudioSource titleMusic;
   void Start()
   {
     startBool = true;
     SceneManager.LoadScene("ShutterScene", LoadSceneMode.Additive);
   }
-  public void Change(AudioSource titleMusic)
+  public void Change()
   {
     if(startBool)
     {
       startBool = false;
-      Shutter.blTs_F_cl = true;
-      titleMusic.Stop();
+      Shutter.blChange = "ToS_F_close";
+      Invoke("StopTitle",0.5f);
     }
   }
-
+  private void StopTitle()
+  {
+    titleMusic.Stop();
+  }
 }

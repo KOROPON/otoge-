@@ -14,6 +14,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 {
     public Text text1;
     public Text text2;
+    public AudioSource songAudio;
 
     [SerializeField] private TapNote _tapNotePrefab = null!;
     [SerializeField] private HoldNote _holdNotePrefab = null!;
@@ -23,7 +24,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
 
 
-    [SerializeField] private AudioSource _audioSource = null!;
+    [SerializeField] private static AudioSource _audioSource = null!;
 
     public static List<TapNote> _tapNotes = new List<TapNote>();
     public static List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
@@ -45,6 +46,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         AwakeAsync().Forget();
+
     }
 
     private async UniTask AwakeAsync()
@@ -73,7 +75,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
-
+        _audioSource = songAudio;
         _audioSource.clip = audioClip;
 
         if (PlayerPrefs.HasKey("volume"))
@@ -131,8 +133,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
-        Shutter.blTpFs_op = true;//シーンを開く
-        _audioSource.Play();
+        Shutter.blChange = "ToPFrS_open";//シーンを開く
+    }
+
+    public static void PlaySongs()
+    {
+      _audioSource.Play();
     }
 
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
@@ -240,6 +246,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
+        if (_audioSource == null)
+        {
+          return;
+        }
         text1.text = JudgeService.aa;
 
         InputService.aboveLaneTapStates.Clear();
@@ -277,7 +287,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         }
 
 
-        var currentTime = _audioSource.time - _chartEntity.StartTime;
+        var currentTime = _audioSource.time;
         var judgeTime = currentTime;
         var audioTime = currentTime;
         if (PlayerPrefs.HasKey("judgegap"))
@@ -296,7 +306,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         //var judgeService = new JudgeService();
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
-        
+
         var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 5f);
         var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 5f);
         var _chainNote = _aboveChainNotes.Where(note => note.aboveChainTime - currentTime < 5f);
@@ -330,7 +340,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             note.Render(audioTime);
         }
-        
+
     }
 }
 
