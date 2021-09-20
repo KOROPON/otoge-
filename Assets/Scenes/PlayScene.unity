@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1176,7 +1176,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9632a6801f876764d96261f279340a00, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.34
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1514,7 +1514,6 @@ MonoBehaviour:
   _aboveChainNotePrefab: {fileID: 777972371875304921, guid: 24af6f1023309cb4796baba66b9a8ecf, type: 3}
   _aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   _audioSource: {fileID: 947960482}
-  CurrentCombo: 0
 --- !u!1 &1127278211
 GameObject:
   m_ObjectHideFlags: 0

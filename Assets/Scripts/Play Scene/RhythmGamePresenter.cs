@@ -78,7 +78,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         // tap音調整
         }
 
-        
+
 
         // chartEntity
         _chartEntity = chartEntity;
@@ -127,7 +127,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
-        //シーンを開く
+        Shutter.blTpFs_op = true;//シーンを開く
         _audioSource.Play();
     }
 

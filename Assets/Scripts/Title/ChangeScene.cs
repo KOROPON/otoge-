@@ -15,10 +15,9 @@ public class ChangeScene : MonoBehaviour
     if(startBool)
     {
       startBool = false;
+      Shutter.blTs_F_cl = true;
       titleMusic.Stop();
-      //シャッターを閉じる
-      SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-      SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
     }
   }
+
 }

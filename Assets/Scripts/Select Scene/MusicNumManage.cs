@@ -92,7 +92,7 @@ public class MusicNumManage : MonoBehaviour
 
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
-        //シャッター上げる to三ツ口 Startで必要な動作はここまでに抑えといてね
+        Shutter.blTs_F_op = true;
         _audioSource.Play();
     }
 
@@ -103,11 +103,9 @@ public class MusicNumManage : MonoBehaviour
             if (selectBool)
             {
               selectBool = false;
+              Shutter.blTpFs_cl = true;
               _audioSource.Stop();
-              //シャッター閉じる;
               RhythmGamePresenter.musicname = obj.name;
-              SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-              SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
             }
         }
         else
