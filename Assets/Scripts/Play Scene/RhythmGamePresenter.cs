@@ -133,7 +133,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
-        Shutter.blChange = "ToPFrS_open";//シーンを開く
+        Shutter.blChange = "Open";//シーンを開く
     }
 
     public static void PlaySongs()
