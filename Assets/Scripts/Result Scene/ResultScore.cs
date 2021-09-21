@@ -78,7 +78,7 @@ public class ResultScore : MonoBehaviour
         ScoreComboCaliculator.sumGood = 0;
         ScoreComboCaliculator.sumBad = 0;
         ScoreComboCaliculator.sumMiss = 0;
-        Shutter.blChange = "ToR_open";
+        Shutter.blChange = "Open";
         resultMusic.Play();
     }
 
@@ -88,9 +88,8 @@ public class ResultScore : MonoBehaviour
         {
           backBool = false;
           resultMusic.Stop();
-          //シャッター下げる
-          SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-          SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+          Shutter.blChange = "ToSFrR";//シャッター下げる
+          Invoke("ResultStop",0.5f);
         }
     }
 
@@ -99,10 +98,12 @@ public class ResultScore : MonoBehaviour
         if (retryBool)
         {
           retryBool = false;
-          resultMusic.Stop();
-          //シャッター下げる
-          SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-          SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+          Shutter.blChange = "ToPFrR";//シャッター下げる
+          Invoke("ResultStop",0.5f);
         }
+    }
+    private void ResultStop()
+    {
+      resultMusic.Stop();
     }
 }

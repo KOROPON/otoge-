@@ -9,9 +9,14 @@ public class ChangeScene_PlayScene : MonoBehaviour
 {
     public AudioSource song;
     public static bool playNoticed;
+    public static bool playStopped;
+    void Start()
+    {
+      playStopped = true;
+    }
     void Update()
     {
-       if (playNoticed)
+       if (playNoticed && playStopped)
        {
          playNoticed =false;
          GetHighScores getHighScores = new GetHighScores();
@@ -19,12 +24,15 @@ public class ChangeScene_PlayScene : MonoBehaviour
          StartCoroutine(Checking( ()=>{
            //曲終了時
            //Clear表示
-           getHighScores.Awake();
-           getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
-           getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
-           ScoreComboCaliculator.currentCombo = 0;
-           Shutter.blChange = "ToR_close";
-         } ));
+           if (playStopped)
+           {
+             getHighScores.Awake();
+             getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
+             getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
+             ScoreComboCaliculator.currentCombo = 0;
+             Shutter.blChange = "ToR";
+           }
+                   } ));
        }
 
     }

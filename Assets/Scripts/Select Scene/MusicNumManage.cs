@@ -92,7 +92,7 @@ public class MusicNumManage : MonoBehaviour
 
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
-        Shutter.blChange = "ToS_F_open";
+        Shutter.blChange = "Open";
         _audioSource.Play();
     }
 
@@ -103,7 +103,7 @@ public class MusicNumManage : MonoBehaviour
             if (selectBool)
             {
               selectBool = false;
-              Shutter.blChange = "ToPFrS_close";
+              Shutter.blChange = "ToPFrS";
               RhythmGamePresenter.musicname = obj.name;
               Invoke("StopAudio",0.6f);
             }
