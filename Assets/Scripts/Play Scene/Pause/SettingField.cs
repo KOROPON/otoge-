@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SettingField : MonoBehaviour
 {
     private bool resume;
-    private bool Setbool;
+    public static bool SetBool;
     public Text text;
     public AudioSource aud;
     int resumetime = 180;
@@ -17,7 +17,10 @@ public class SettingField : MonoBehaviour
 
     public void GamePause()
     {
-        if (!SetBool) return;
+        if (!SetBool)
+        {
+          return;
+        }
         aud.Pause();
         Time.timeScale = 0;
         pausePanel.SetActive(true);
@@ -56,13 +59,14 @@ public class SettingField : MonoBehaviour
 
     public void Back()
     {
-
         Time.timeScale = 1;
         ChangeScene_PlayScene.playStopped = false;
         Shutter.blChange = "ToSFrP";
-
     }
-
-
-
+    public void Retry()
+    {
+      Time.timeScale = 1;
+      ChangeScene_PlayScene.playStopped = false;
+      Shutter.blChange = "ToPFrP";
+    }
 }

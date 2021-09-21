@@ -24,8 +24,10 @@ public class Shutter : MonoBehaviour
      {
        case "Open": blChange = "";reserver = true;anim.SetBool("blOpen",true);  anim.SetBool("blTpFs",false); anim.SetBool("blTsFr",false);
                     anim.SetBool("blTpFr",false); anim.SetBool("blTsFp",false); anim.SetBool("blTr",false); anim.SetBool("blTs_F",false);
+                    anim.SetBool("blTpFp",false);
                     break;
        case "ToPFrS": blChange = ""; if (reserver) anim.SetBool("blOpen",false); anim.SetBool("blTpFs",true);break;
+       case "ToPFrP": blChange = ""; if (reserver) anim.SetBool("blOpen",false); anim.SetBool("blTpFp",true);break;
        case "ToSFrR": blChange = ""; if (reserver) anim.SetBool("blOpen",false); anim.SetBool("blTsFr",true);break;
        case "ToPFrR": blChange = ""; if (reserver) anim.SetBool("blOpen",false); anim.SetBool("blTpFr",true);break;
        case "ToSFrP": blChange = ""; if (reserver) anim.SetBool("blOpen",false); anim.SetBool("blTsFp",true);break;
@@ -85,5 +87,10 @@ public class Shutter : MonoBehaviour
    {
      SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
      SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+   }
+   void PlayLoadFromPlay()
+   {
+     SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+     SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
    }
 }
