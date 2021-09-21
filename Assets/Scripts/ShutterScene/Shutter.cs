@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rhythmium;
-using Reilas;
 
 public class Shutter : MonoBehaviour
 {
@@ -49,7 +46,7 @@ public class Shutter : MonoBehaviour
    {
      RhythmGamePresenter.PlaySongs();
      ChangeScene_PlayScene.playNoticed =true;
-     SettingField.SetBool = true;
+     SettingField.Setbool = true;
    }
    void PlaySongAudio()
    {

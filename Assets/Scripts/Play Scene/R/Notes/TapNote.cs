@@ -10,7 +10,7 @@ namespace Reilas
         private NoteEntity _entity = null!;
         public float _tapTime;
 
-        public void Initialize(NoteEntity entity)
+        public void Initialize(ReilasNoteEntity entity)
         {
             _tapTime = entity.JudgeTime;
             _entity = entity;

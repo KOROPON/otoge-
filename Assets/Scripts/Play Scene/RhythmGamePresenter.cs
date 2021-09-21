@@ -29,7 +29,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<TapNote> _tapNotes = new List<TapNote>();
     public static List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
     public static List<AboveChainNote> _aboveChainNotes = new List<AboveChainNote>();
-    public static List<HoldNote> _holdNoteLines = new List<HoldNote>();
+    public static List<HoldNote> _holdNotes = new List<HoldNote>();
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
@@ -163,6 +163,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             _aboveTapNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
         }
+        Debug.Log(_aboveTapNotes.Count());
     }
 
     private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes)
@@ -183,7 +184,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(_holdNotePrefab);
             tapNote.Initialize(note);
-            _holdNoteLines.Add(tapNote);
+            _holdNotes.Add(tapNote);
         }
     }
 
@@ -212,7 +213,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     List<ReilasNoteEntity> notes = new List<ReilasNoteEntity>();
 
     // まだ判定されていないノーツ
-    List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
+    public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
 
     static Vector3[] lanePositions = new Vector3[]
@@ -288,6 +289,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         var currentTime = _audioSource.time;
+        Debug.Log(currentTime);
         var judgeTime = currentTime;
         var audioTime = currentTime;
         if (PlayerPrefs.HasKey("judgegap"))
@@ -326,7 +328,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             note.Render(audioTime);
         }
 
-        foreach (var note in _holdNoteLines)
+        foreach (var note in _holdNotes)
         {
             note.Render(audioTime);
         }
