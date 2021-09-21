@@ -125,6 +125,7 @@ public class MusicNumManage : MonoBehaviour
         for (int i = 0; i < scrollviewContent.transform.childCount; i++)
         {
             GameObject song = scrollviewContent.transform.GetChild(i).gameObject;
+            song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
         }
     }
     private void StopAudio()
