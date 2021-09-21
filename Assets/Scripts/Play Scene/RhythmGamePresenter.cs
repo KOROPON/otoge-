@@ -163,6 +163,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             _aboveTapNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
         }
+        Debug.Log(_aboveTapNotes.Count());
     }
 
     private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes)
@@ -288,6 +289,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         var currentTime = _audioSource.time;
+        Debug.Log(currentTime);
         var judgeTime = currentTime;
         var audioTime = currentTime;
         if (PlayerPrefs.HasKey("judgegap"))
