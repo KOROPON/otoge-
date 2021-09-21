@@ -44,7 +44,7 @@ public class Shutter : MonoBehaviour
    {
      RhythmGamePresenter.PlaySongs();
      ChangeScene_PlayScene.playNoticed =true;
-     SettingField.SetBool = true;
+     SettingField.Setbool = true;
    }
    void PlaySongAudio()
    {

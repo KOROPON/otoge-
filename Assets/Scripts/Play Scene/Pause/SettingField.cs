@@ -4,10 +4,11 @@ using UnityEngine.UI;
 public class SettingField : MonoBehaviour
 {
     private bool resume;
-    public static bool SetBool;
     public Text text;
     public AudioSource aud;
     int resumetime = 180;
+    
+    public static bool Setbool;
 
     [SerializeField]
     public GameObject pauseButton;
@@ -16,7 +17,7 @@ public class SettingField : MonoBehaviour
 
     public void GamePause()
     {
-        if (!SetBool) return;
+        if (!Setbool) return;
         aud.Pause();
         Time.timeScale = 0;
         pausePanel.SetActive(true);
