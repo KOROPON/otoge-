@@ -1,7 +1,6 @@
 using System;
 using Reilas;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResultScore : MonoBehaviour

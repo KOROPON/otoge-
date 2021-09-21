@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingField : MonoBehaviour
 {
     private bool resume;
-    private bool Setbool;
+    public static bool SetBool;
     public Text text;
     public AudioSource aud;
     int resumetime = 180;
@@ -64,5 +63,14 @@ public class SettingField : MonoBehaviour
     }
 
 
-
+    public void AllNoteDestroy()
+    {
+        RhythmGamePresenter._tapNotes.Clear();
+        RhythmGamePresenter._holdNotes.Clear();
+        RhythmGamePresenter._aboveTapNotes.Clear();
+        RhythmGamePresenter._aboveSlideNotes.Clear();
+        RhythmGamePresenter._aboveHoldNotes.Clear();
+        RhythmGamePresenter._aboveChainNotes.Clear();
+        RhythmGamePresenter.notJudgedNotes.Clear();
+    }
 }

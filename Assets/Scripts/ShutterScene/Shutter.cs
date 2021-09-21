@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rhythmium;
-using Reilas;
 
 public class Shutter : MonoBehaviour
 {
