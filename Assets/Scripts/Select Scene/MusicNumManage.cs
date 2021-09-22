@@ -63,7 +63,7 @@ public class MusicNumManage : MonoBehaviour
         hardLevel.text = _levelConverter.GetLevel(songName, "Hard").ToString();
         extremeLevel.text = _levelConverter.GetLevel(songName, "Extreme").ToString();
     }
-
+    
     private void SelectSong(string musicName)
     {
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -88,7 +88,7 @@ public class MusicNumManage : MonoBehaviour
         _scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
-
+        Debug.Log(_levelConverter);
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
@@ -99,7 +99,7 @@ public class MusicNumManage : MonoBehaviour
         {
             PlayerPrefs.SetString("difficulty", "Easy");
         }
-
+        
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
         Shutter.blChange = "Open";
