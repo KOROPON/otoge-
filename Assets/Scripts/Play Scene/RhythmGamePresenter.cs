@@ -38,7 +38,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static string musicname = null!;
     public static string dif = null!;
 
-
+    float judgeTime;
+    float audioTime;
     /// <summary>
     /// 判定結果を処理する
     /// </summary>
@@ -289,9 +290,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         var currentTime = _audioSource.time;
-        Debug.Log(currentTime);
-        var judgeTime = currentTime;
-        var audioTime = currentTime;
+        judgeTime = currentTime;
+        audioTime = currentTime;
         if (PlayerPrefs.HasKey("judgegap"))
         {
           judgeTime += PlayerPrefs.GetFloat("judgegap") / 1000;
@@ -308,10 +308,13 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         //var judgeService = new JudgeService();
         JudgeService.Judge(notJudgedNotes, _audioSource.time,InputService.aboveLaneTapStates);
 
+    }
 
-        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - currentTime < 5f);
-        var _tapNote = _tapNotes.Where(note => note._tapTime - currentTime < 5f);
-        var _chainNote = _aboveChainNotes.Where(note => note.aboveChainTime - currentTime < 5f);
+    void LateUpdate()
+    {
+        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - audioTime < 5f);
+        var _tapNote = _tapNotes.Where(note => note._tapTime - audioTime < 5f);
+        var _chainNote = _aboveChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
 
         foreach (var tapNote in _tapNote)
         {
@@ -342,7 +345,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             note.Render(audioTime);
         }
-
     }
 }
 

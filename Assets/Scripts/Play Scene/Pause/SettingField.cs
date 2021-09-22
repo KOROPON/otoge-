@@ -18,7 +18,7 @@ public class SettingField : MonoBehaviour
     {
         if (!SetBool)
         {
-          return;
+            return;
         }
         aud.Pause();
         Time.timeScale = 0;
@@ -64,9 +64,8 @@ public class SettingField : MonoBehaviour
     }
     public void Retry()
     {
-      Time.timeScale = 1;
-      ChangeScene_PlayScene.playStopped = false;
-      Shutter.blChange = "ToPFrP";
+        Time.timeScale = 1;
+        ChangeScene_PlayScene.playStopped = false;
+        Shutter.blChange = "ToPFrP";
     }
-
 }

@@ -186,11 +186,12 @@ public class JudgeService : MonoBehaviour
 
 
                                 int indexNum = 0;
-                                foreach(ReilasNoteEntity reilas in notJudgedNotes)
+                                foreach (ReilasNoteEntity reilas in notJudgedNotes)
                                 {
-                                    if(reilas.Type == NoteType.Tap)
+                                    if (reilas.Type == NoteType.Tap)
                                     {
-                                        if(reilas == note)
+                                        Debug.Log(reilas.JudgeTime);
+                                        if (reilas == note)
                                         {
                                             break;
                                         }
@@ -199,14 +200,14 @@ public class JudgeService : MonoBehaviour
                                 }
 
                                 RhythmGamePresenter._tapNotes[indexNum].NoteDestroy();
-                                Debug.Log("TapDestroy");
+                                Debug.Log("TapDestroy  " + indexNum);
                                 RhythmGamePresenter._tapNotes.RemoveAt(indexNum);
                                 //}
                             }
                             alreadyJudge = true;
                         }
                     }
-                    else if(note.Type == NoteType.AboveTap)
+                    else if (note.Type == NoteType.AboveTap)
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
@@ -283,14 +284,14 @@ public class JudgeService : MonoBehaviour
                                 }
 
                                 RhythmGamePresenter._aboveTapNotes[indexNum].NoteDestroy();
-                                Debug.Log("AboveTapDestroy");
+                                Debug.Log("AboveTapDestroy  " + indexNum);
                                 RhythmGamePresenter._aboveTapNotes.RemoveAt(indexNum);
                                 //}
                             }
                             alreadyJudge = true;
                         }
                     }
-                    else if(note.Type == NoteType.Hold)
+                    else if (note.Type == NoteType.Hold)
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
@@ -357,7 +358,7 @@ public class JudgeService : MonoBehaviour
                             alreadyJudge = true;
                         }
                     }
-                    else if(note.Type == NoteType.AboveSlide)
+                    else if (note.Type == NoteType.AboveSlide)
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
@@ -424,7 +425,7 @@ public class JudgeService : MonoBehaviour
                             alreadyJudge = true;
                         }
                     }
-                    else if(note.Type == NoteType.AboveHold)
+                    else if (note.Type == NoteType.AboveHold)
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
@@ -512,7 +513,7 @@ public class JudgeService : MonoBehaviour
                             continue;
                         }
                     }
-                    else if(note.Type == NoteType.AboveHoldInternal)
+                    else if (note.Type == NoteType.AboveHoldInternal)
                     {
 
                         if (currentTime - note.JudgeTime <= 0.090f && currentTime - note.JudgeTime >= 0)
@@ -534,7 +535,7 @@ public class JudgeService : MonoBehaviour
                             continue;
                         }
                     }
-                    else if(note.Type == NoteType.AboveSlideInternal)
+                    else if (note.Type == NoteType.AboveSlideInternal)
                     {
 
                         if (currentTime - note.JudgeTime <= 0.090f && currentTime - note.JudgeTime >= 0)
@@ -593,7 +594,7 @@ public class JudgeService : MonoBehaviour
                         }
 
                         RhythmGamePresenter._aboveChainNotes[indexNum].NoteDestroy();
-                        Debug.Log("ChainDestroy");
+                        Debug.Log("ChainDestroy  " + indexNum);
                         RhythmGamePresenter._aboveChainNotes.RemoveAt(indexNum);
                     }
                 }
@@ -606,14 +607,14 @@ public class JudgeService : MonoBehaviour
 
         foreach (ReilasNoteEntity note in notJudgedNotes) //�^�b�v�����Ă��Ȃ��ꍇ�Ɏg�p������ Miss ����
         {
-            if(note.JudgeTime - currentTime > 0f)
+            if (note.JudgeTime - currentTime > 0f)
             {
                 break;
             }
 
-            if(note.Type == NoteType.AboveSlideInternal)
+            if (note.Type == NoteType.AboveSlideInternal)
             {
-                if(currentTime - note.JudgeTime <= 0.090f)
+                if (currentTime - note.JudgeTime <= 0.090f)
                 {
                     continue;
                 }
@@ -654,7 +655,7 @@ public class JudgeService : MonoBehaviour
                     Debug.Log("tuuka");
                 }
             }
-            else if(note.Type == NoteType.HoldInternal)
+            else if (note.Type == NoteType.HoldInternal)
             {
 
                 if (currentTime - note.JudgeTime <= 0.090f)
@@ -676,9 +677,9 @@ public class JudgeService : MonoBehaviour
                     Debug.Log("tuuka");
                 }
             }
-            else if(note.Type == NoteType.Tap)
+            else if (note.Type == NoteType.Tap)
             {
-                if(currentTime - note.JudgeTime > 0.075f)
+                if (currentTime - note.JudgeTime > 0.075f)
                 {
                     removeNoteNum.Add(new DelNote
                     {
@@ -700,7 +701,7 @@ public class JudgeService : MonoBehaviour
                     continue;
                 }
             }
-            else if(note.Type == NoteType.Hold)
+            else if (note.Type == NoteType.Hold)
             {
 
                 if (currentTime - note.JudgeTime > 0.075f)
@@ -722,7 +723,7 @@ public class JudgeService : MonoBehaviour
                     continue;
                 }
             }
-            else if(note.Type == NoteType.AboveTap)
+            else if (note.Type == NoteType.AboveTap)
             {
 
                 if (currentTime - note.JudgeTime > 0.075f)
@@ -739,14 +740,14 @@ public class JudgeService : MonoBehaviour
                     miss++;
                     Debug.Log("AboveTapDestroy  tuuka");
                     RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
-                    RhythmGamePresenter._tapNotes.RemoveAt(0);
+                    RhythmGamePresenter._aboveTapNotes.RemoveAt(0);
                 }
                 else
                 {
                     continue;
                 }
             }
-            else if(note.Type == NoteType.AboveHold)
+            else if (note.Type == NoteType.AboveHold)
             {
 
                 if (currentTime - note.JudgeTime > 0.075f)
@@ -768,7 +769,7 @@ public class JudgeService : MonoBehaviour
                     continue;
                 }
             }
-            else if(note.Type == NoteType.AboveSlide)
+            else if (note.Type == NoteType.AboveSlide)
             {
 
                 if (currentTime - note.JudgeTime > 0.075f)
@@ -790,9 +791,9 @@ public class JudgeService : MonoBehaviour
                     continue;
                 }
             }
-            else if(note.Type == NoteType.AboveChain)
+            else if (note.Type == NoteType.AboveChain)
             {
-                if(currentTime - note.JudgeTime > 0.025f)
+                if (currentTime - note.JudgeTime > 0.025f)
                 {
                     removeNoteNum.Add(new DelNote
                     {
@@ -806,7 +807,7 @@ public class JudgeService : MonoBehaviour
                     miss++;
                     Debug.Log("ChainDestroy  tuuka");
                     RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
-                    RhythmGamePresenter._tapNotes.RemoveAt(0);
+                    RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
                 }
                 else
                 {
