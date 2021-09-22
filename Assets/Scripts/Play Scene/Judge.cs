@@ -547,7 +547,7 @@ public class JudgeService : MonoBehaviour
                             continue;
                         }
                         Debug.Log("ChainDestroy");
-                        RhythmGamePresenter._aboveChainNotes[0].NoteDeestroy();
+                        RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
                         RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
                     }
                 }
@@ -759,7 +759,7 @@ public class JudgeService : MonoBehaviour
                     });
                     miss++;
                     Debug.Log("ChainDestroy  tuuka");
-                    RhythmGamePresenter._aboveChainNotes[0].NoteDeestroy();
+                    RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
                     RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
                 }
                 else

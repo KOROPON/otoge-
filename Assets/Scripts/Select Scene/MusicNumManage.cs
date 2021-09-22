@@ -1,24 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
 
 public class MusicNumManage : MonoBehaviour
 {
     private Image _jack;
     private Image _rank;
+    private Image _frame;
     private AudioSource _audioSource;
+    private GameObject _scrollviewContent;
     private GetHighScores _getHighScores;
     private LevelConverter _levelConverter;
     private string _songName;
     private string _jacketPath;
-    private bool selectBool;
-
+    private bool _selectBool;
 
     public Text highScore;
     public Text title;
+    public Text easyLevel;
+    public Text hardLevel;
+    public Text extremeLevel;
+    
     //public Text kujoLevel;
-    public GameObject scrollviewContent;
 
 
 
@@ -55,6 +57,13 @@ public class MusicNumManage : MonoBehaviour
         }
     }
 
+    private void ChangeLevel(string songName)
+    {
+        easyLevel.text = _levelConverter.GetLevel(songName, "Easy").ToString();
+        hardLevel.text = _levelConverter.GetLevel(songName, "Hard").ToString();
+        extremeLevel.text = _levelConverter.GetLevel(songName, "Extreme").ToString();
+    }
+
     private void SelectSong(string musicName)
     {
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -65,17 +74,18 @@ public class MusicNumManage : MonoBehaviour
         string diff = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
         DisplayRank(_songName, diff);
-        _levelConverter.GetLevel(musicName);
+        ChangeLevel(musicName);
         _audioSource.Play();
     }
 
     void Start()
     {
-        selectBool = true;
+        _selectBool = true;
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         _rank = GameObject.Find("ランク").GetComponent<Image>();
+        _frame = GameObject.Find("Frame").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
-        scrollviewContent = GameObject.Find("Content");
+        _scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
 
@@ -100,9 +110,9 @@ public class MusicNumManage : MonoBehaviour
     {
         if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
-            if (selectBool)
+            if (_selectBool)
             {
-              selectBool = false;
+              _selectBool = false;
               Shutter.blChange = "ToPFrS";
               RhythmGamePresenter.musicname = obj.name;
               Invoke("StopAudio",0.6f);
@@ -114,18 +124,46 @@ public class MusicNumManage : MonoBehaviour
         }
     }
 
+    public Color32 GetColor(string diff)
+    {
+        return diff switch
+        {
+            "Easy" => new Color32(9, 135, 128, 255),
+            "Hard" => new Color32(135, 133, 9, 255),
+            "Extreme" => new Color32(128, 9, 135, 255),
+            _ => new Color32()
+        };
+    }
+
     public void Difficulty(GameObject diff)
     {
         PlayerPrefs.SetString("difficulty", diff.name);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
         DisplayRank(_songName, diff.name);
+        _frame.color = GetColor(diff.name);//new Color32(color.color.r, color.color.g, color.color.b, color.color.a);
 
-
-        for (int i = 0; i < scrollviewContent.transform.childCount; i++)
+        for (int i = 0; i < _scrollviewContent.transform.childCount; i++)
         {
-            GameObject song = scrollviewContent.transform.GetChild(i).gameObject;
+            GameObject song = _scrollviewContent.transform.GetChild(i).gameObject;
             song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
+            Image rankSprite = song.GetComponentsInChildren<Image>()[1];
+            string rank = _getHighScores.GetRank(song.name, diff.name);
+            if (rank != "")
+            {
+                rankSprite.sprite = Resources.Load<Sprite>("Rank/score_" + rank);
+            }
+            else
+            {
+                rankSprite.color = Color.clear;
+            }
+            foreach (Text t in song.GetComponentsInChildren<Text>())
+            {
+                if (t.name == "Level")
+                {
+                    t.text = _levelConverter.GetLevel(song.name, diff.name).ToString();
+                }
+            }
         }
     }
     private void StopAudio()
