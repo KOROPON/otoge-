@@ -201,8 +201,8 @@ namespace Reilas
 
         public void NoteDestroy()
         {
+            Debug.Log(this.gameObject);
             Destroy(this.gameObject);
-            Destroy(this);
         }
     }
 }
