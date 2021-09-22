@@ -206,6 +206,7 @@ namespace Reilas
         {
             Debug.Log(this.gameObject);
             Destroy(this.gameObject);
+            RhythmGamePresenter._aboveTapNotes.Remove(this);
         }
     }
 }

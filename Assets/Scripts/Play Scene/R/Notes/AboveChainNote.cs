@@ -203,6 +203,7 @@ namespace Reilas
         {
             Debug.Log(this.gameObject);
             Destroy(this.gameObject);
+            RhythmGamePresenter._aboveChainNotes.Remove(this);
         }
     }
 }
