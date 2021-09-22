@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingField : MonoBehaviour
@@ -68,5 +67,17 @@ public class SettingField : MonoBehaviour
       Time.timeScale = 1;
       ChangeScene_PlayScene.playStopped = false;
       Shutter.blChange = "ToPFrP";
+    }
+
+
+    public void AllNoteDestroy()
+    {
+        RhythmGamePresenter._tapNotes.Clear();
+        RhythmGamePresenter._holdNotes.Clear();
+        RhythmGamePresenter._aboveTapNotes.Clear();
+        RhythmGamePresenter._aboveSlideNotes.Clear();
+        RhythmGamePresenter._aboveHoldNotes.Clear();
+        RhythmGamePresenter._aboveChainNotes.Clear();
+        RhythmGamePresenter.notJudgedNotes.Clear();
     }
 }

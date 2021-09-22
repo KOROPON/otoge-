@@ -36,6 +36,7 @@ namespace Reilas
         public void NoteDestroy()
         {
             Destroy(this.gameObject);
+            Destroy(this);
         }
     }
 }

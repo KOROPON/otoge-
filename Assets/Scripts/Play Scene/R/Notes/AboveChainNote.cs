@@ -199,9 +199,10 @@ namespace Reilas
             }
         }
 
-        public void NoteDeestroy()
+        public void NoteDestroy()
         {
             Destroy(this.gameObject);
+            Destroy(this);
         }
     }
 }
