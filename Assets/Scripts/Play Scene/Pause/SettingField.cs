@@ -69,15 +69,4 @@ public class SettingField : MonoBehaviour
       Shutter.blChange = "ToPFrP";
     }
 
-
-    public void AllNoteDestroy()
-    {
-        RhythmGamePresenter._tapNotes.Clear();
-        RhythmGamePresenter._holdNotes.Clear();
-        RhythmGamePresenter._aboveTapNotes.Clear();
-        RhythmGamePresenter._aboveSlideNotes.Clear();
-        RhythmGamePresenter._aboveHoldNotes.Clear();
-        RhythmGamePresenter._aboveChainNotes.Clear();
-        RhythmGamePresenter.notJudgedNotes.Clear();
-    }
 }
