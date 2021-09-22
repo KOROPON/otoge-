@@ -1,15 +1,13 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingField : MonoBehaviour
 {
     private bool resume;
+    public static bool SetBool;
     public Text text;
     public AudioSource aud;
     int resumetime = 180;
-    
-    public static bool Setbool;
 
     [SerializeField]
     public GameObject pauseButton;
@@ -18,7 +16,10 @@ public class SettingField : MonoBehaviour
 
     public void GamePause()
     {
-        if (!Setbool) return;
+        if (!SetBool)
+        {
+          return;
+        }
         aud.Pause();
         Time.timeScale = 0;
         pausePanel.SetActive(true);
@@ -57,13 +58,26 @@ public class SettingField : MonoBehaviour
 
     public void Back()
     {
-
         Time.timeScale = 1;
         ChangeScene_PlayScene.playStopped = false;
         Shutter.blChange = "ToSFrP";
-
+    }
+    public void Retry()
+    {
+      Time.timeScale = 1;
+      ChangeScene_PlayScene.playStopped = false;
+      Shutter.blChange = "ToPFrP";
     }
 
 
-
+    public void AllNoteDestroy()
+    {
+        RhythmGamePresenter._tapNotes.Clear();
+        RhythmGamePresenter._holdNotes.Clear();
+        RhythmGamePresenter._aboveTapNotes.Clear();
+        RhythmGamePresenter._aboveSlideNotes.Clear();
+        RhythmGamePresenter._aboveHoldNotes.Clear();
+        RhythmGamePresenter._aboveChainNotes.Clear();
+        RhythmGamePresenter.notJudgedNotes.Clear();
+    }
 }
