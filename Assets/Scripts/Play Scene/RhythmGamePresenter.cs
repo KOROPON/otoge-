@@ -54,7 +54,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         FindObjectOfType<Variable>().enabled = false;
 
-        var chartTextAsset = dif != null ? await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset : await Resources.LoadAsync<TextAsset>("Charts/" + musicname + ".Easy") as TextAsset;
+        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset;
 
         if (chartTextAsset == null)
         {
