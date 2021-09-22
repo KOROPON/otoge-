@@ -8,6 +8,7 @@ public class MusicNumManage : MonoBehaviour
     private Image _jack;
     private Image _rank;
     private AudioSource _audioSource;
+    private AudioSource __audioSource;
     private GetHighScores _getHighScores;
     private LevelConverter _levelConverter;
     private string _songName;
@@ -75,6 +76,7 @@ public class MusicNumManage : MonoBehaviour
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         _rank = GameObject.Find("ランク").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
+        __audioSource = Shutter.music_m;
         scrollviewContent = GameObject.Find("Content");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
@@ -105,7 +107,8 @@ public class MusicNumManage : MonoBehaviour
               selectBool = false;
               Shutter.blChange = "ToPFrS";
               RhythmGamePresenter.musicname = obj.name;
-              Invoke("StopAudio",0.6f);
+              _audioSource.Stop();
+              __audioSource.Play();
             }
         }
         else
@@ -121,15 +124,10 @@ public class MusicNumManage : MonoBehaviour
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
         DisplayRank(_songName, diff.name);
 
-
         for (int i = 0; i < scrollviewContent.transform.childCount; i++)
         {
             GameObject song = scrollviewContent.transform.GetChild(i).gameObject;
             song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
         }
-    }
-    private void StopAudio()
-    {
-      _audioSource.Stop();
     }
 }

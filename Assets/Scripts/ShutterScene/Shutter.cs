@@ -8,10 +8,12 @@ public class Shutter : MonoBehaviour
     private bool reserver;
     public AudioSource openSE;
     public AudioSource closeSE;
+    public static AudioSource music_m;
 
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        music_m = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
