@@ -207,7 +207,7 @@ public class JudgeService : MonoBehaviour
                             alreadyJudge = true;
                         }
                     }
-                    else if (note.Type == NoteType.AboveTap)
+                    else if(note.Type == NoteType.AboveTap)
                     {
                         if (!alreadyJudge || tapTime == note.JudgeTime)
                         {
