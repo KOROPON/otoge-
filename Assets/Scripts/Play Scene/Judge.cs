@@ -55,6 +55,8 @@ public class JudgeService : MonoBehaviour
         const float noJudgeTime = 0.090f; //���ԋ߂��m�[�c���������藣���Ă��Ɣ��肵�Ȃ�
         float tapTime = 0; //�������ԂɃ^�b�v�����鎞�A���̎���
 
+        int destroyNum;
+
         bool firstTap = true;
         bool alreadyJudge = false;
         int laneNumMin;
@@ -181,9 +183,24 @@ public class JudgeService : MonoBehaviour
                                 {
                                     continue;
                                 }
+
+
+                                int indexNum = 0;
+                                foreach(ReilasNoteEntity reilas in notJudgedNotes)
+                                {
+                                    if(reilas.Type == NoteType.Tap)
+                                    {
+                                        if(reilas == note)
+                                        {
+                                            break;
+                                        }
+                                        indexNum++;
+                                    }
+                                }
+
+                                RhythmGamePresenter._tapNotes[indexNum].NoteDestroy();
                                 Debug.Log("TapDestroy");
-                                RhythmGamePresenter._tapNotes[0].NoteDestroy();
-                                RhythmGamePresenter._tapNotes.RemoveAt(0);
+                                RhythmGamePresenter._tapNotes.RemoveAt(indexNum);
                                 //}
                             }
                             alreadyJudge = true;
@@ -251,9 +268,23 @@ public class JudgeService : MonoBehaviour
                                 {
                                     continue;
                                 }
+
+                                int indexNum = 0;
+                                foreach (ReilasNoteEntity reilas in notJudgedNotes)
+                                {
+                                    if (reilas.Type == NoteType.AboveTap)
+                                    {
+                                        if (reilas == note)
+                                        {
+                                            break;
+                                        }
+                                        indexNum++;
+                                    }
+                                }
+
+                                RhythmGamePresenter._aboveTapNotes[indexNum].NoteDestroy();
                                 Debug.Log("AboveTapDestroy");
-                                RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
-                                RhythmGamePresenter._aboveTapNotes.RemoveAt(0);
+                                RhythmGamePresenter._aboveTapNotes.RemoveAt(indexNum);
                                 //}
                             }
                             alreadyJudge = true;
@@ -546,9 +577,24 @@ public class JudgeService : MonoBehaviour
                         {
                             continue;
                         }
+
+
+                        int indexNum = 0;
+                        foreach (ReilasNoteEntity reilas in notJudgedNotes)
+                        {
+                            if (reilas.Type == NoteType.AboveChain)
+                            {
+                                if (reilas == note)
+                                {
+                                    break;
+                                }
+                                indexNum++;
+                            }
+                        }
+
+                        RhythmGamePresenter._aboveChainNotes[indexNum].NoteDestroy();
                         Debug.Log("ChainDestroy");
-                        RhythmGamePresenter._aboveChainNotes[0].NoteDeestroy();
-                        RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
+                        RhythmGamePresenter._aboveChainNotes.RemoveAt(indexNum);
                     }
                 }
             }
@@ -693,7 +739,7 @@ public class JudgeService : MonoBehaviour
                     miss++;
                     Debug.Log("AboveTapDestroy  tuuka");
                     RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
-                    RhythmGamePresenter._aboveTapNotes.RemoveAt(0);
+                    RhythmGamePresenter._tapNotes.RemoveAt(0);
                 }
                 else
                 {
@@ -759,8 +805,8 @@ public class JudgeService : MonoBehaviour
                     });
                     miss++;
                     Debug.Log("ChainDestroy  tuuka");
-                    RhythmGamePresenter._aboveChainNotes[0].NoteDeestroy();
-                    RhythmGamePresenter._aboveChainNotes.RemoveAt(0);
+                    RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
+                    RhythmGamePresenter._tapNotes.RemoveAt(0);
                 }
                 else
                 {
