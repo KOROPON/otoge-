@@ -47,7 +47,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         AwakeAsync().Forget();
-
     }
 
     private async UniTask AwakeAsync()

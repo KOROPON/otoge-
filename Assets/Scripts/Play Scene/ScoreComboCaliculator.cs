@@ -16,17 +16,17 @@ namespace Reilas
         public static　int currentScore = 0;
         private float score = 1;
 
-        List<JudgeResult> alljudge;
-        List<JudgeResultInHold> judgeInHold;
+        List<JudgeResult> _alljudge;
+        List<JudgeResultInHold> _judgeInHold;
 
         public Text comboText;
         public Text scoreText;
 
         void LateUpdate()
         {
-            judgeInHold = JudgeService.judgedInHold; // ���������̎󂯓n��
-            alljudge = JudgeService.allJudgeType;
-            foreach (JudgeResult judgeResult in alljudge)
+            _judgeInHold = JudgeService.judgedInHold; // ���������̎󂯓n��
+            _alljudge = JudgeService.allJudgeType;
+            foreach (JudgeResult judgeResult in _alljudge)
             {
                 var judgetype = judgeResult.ResultType;
                 if (judgetype == JudgeResultType.Perfect)
