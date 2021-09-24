@@ -300,7 +300,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         }
 
 
-
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
         //var judgeService = new JudgeService();
@@ -311,6 +310,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     void LateUpdate()
     {
         var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - audioTime < 5f);
+        //Debug.Log(_tapNotes.Count());
         var _tapNote = _tapNotes.Where(note => note._tapTime - audioTime < 5f);
         var _chainNote = _aboveChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
 
