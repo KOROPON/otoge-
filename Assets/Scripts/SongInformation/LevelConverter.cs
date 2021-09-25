@@ -15,7 +15,6 @@ public class LevelConverter : MonoBehaviour
     {
         foreach (SongName song in _level.songs)
         {
-            Debug.Log(song);
             if (song.title == songName)
             {
                 return difficulty switch
