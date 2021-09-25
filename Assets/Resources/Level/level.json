@@ -13,6 +13,41 @@
             "Hard": 6,
             "Extreme": 9,
             "KUJO": 0
+        },
+        {
+            "title": "Kawaii_OD",
+            "Easy": 1,
+            "Hard": 5,
+            "Extreme": 8,
+            "KUJO": 0
+        },
+        {
+            "title": "DNB",
+            "Easy": 2,
+            "Hard": 4,
+            "Extreme": 7,
+            "KUJO":0
+        },
+        {
+            "title": "ChocoM1ntice",
+            "Easy": 1,
+            "Hard": 4,
+            "Extreme": 6,
+            "KUJO": 0
+        },
+        {
+            "title": "Music is my suiside",
+            "Easy": 2,
+            "Hard": 5,
+            "Extreme": 8,
+            "KUJO": 0
+        },
+        {
+            "title": "REILAS",
+            "Easy": 4,
+            "Hard": 7,
+            "Extreme": 9,
+            "KUJO": 10
         }
     ]
 }
