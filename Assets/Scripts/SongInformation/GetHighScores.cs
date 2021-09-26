@@ -84,6 +84,19 @@ public class GetHighScores : MonoBehaviour
         }
     }
 
+    public bool GetLock(string songName)
+    {
+        Song song = GetSong(songName);
+        if (song != null)
+        {
+            return song.extremeLock;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public int GetHighScore(string songName, string difficulty)
     {
         Difficulty diff = GetDiff(songName, difficulty);
@@ -115,6 +128,10 @@ public class GetHighScores : MonoBehaviour
         Difficulty diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
         diff.rank = RankCalculator(score);
+        if (difficulty == "Hard" && diff.highScore >= 980000)
+        {
+            GetSong(songName).extremeLock = true;
+        }
         StreamWrite();
     }
 }

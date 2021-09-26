@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,9 @@ public class MusicNumManage : MonoBehaviour
     private Image _rank;
     private Image _frame;
     private AudioSource _audioSource;
-    private GameObject _scrollviewContent;
     private GetHighScores _getHighScores;
+    private Transform _scrollView;
+    private Transform _scrollviewContent;
     private LevelConverter _levelConverter;
     private string _songName;
     private string _jacketPath;
@@ -63,6 +65,26 @@ public class MusicNumManage : MonoBehaviour
         hardLevel.text = _levelConverter.GetLevel(songName, "Hard").ToString();
         extremeLevel.text = _levelConverter.GetLevel(songName, "Extreme").ToString();
     }
+
+    private IEnumerator JumpToSong(string songName)
+    {
+        for (int i = 0; i < _scrollviewContent.childCount; i++)
+        {
+            Transform childSongTrans = _scrollviewContent.GetChild(i);
+            if (childSongTrans.gameObject.name == songName)
+            {
+                Vector3 localPosition = _scrollviewContent.localPosition;
+                Vector3 goal = new Vector3(localPosition.x, -childSongTrans.localPosition.y,
+                    localPosition.z);
+                while (Vector3.Distance(_scrollviewContent.localPosition, goal) > 1)
+                {
+                    _scrollviewContent.localPosition = Vector3.Lerp(_scrollviewContent.localPosition,
+                       goal, 0.2f);
+                    yield return null;
+                }
+            }
+        }
+    }
     
     private void SelectSong(string musicName)
     {
@@ -71,6 +93,7 @@ public class MusicNumManage : MonoBehaviour
         title.text = musicName;
         PlayerPrefs.SetString("selected_song", musicName);
         _songName = musicName;
+        StartCoroutine(JumpToSong(_songName));
         string diff = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
         DisplayRank(_songName, diff);
@@ -85,10 +108,12 @@ public class MusicNumManage : MonoBehaviour
         _rank = GameObject.Find("ランク").GetComponent<Image>();
         _frame = GameObject.Find("Frame").GetComponent<Image>();
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
-        _scrollviewContent = GameObject.Find("Content");
+        _scrollView = GameObject.Find("Scroll View").transform;
+        _scrollviewContent = _scrollView.GetChild(0);
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
-        Debug.Log(_levelConverter);
+        
+        FindObjectOfType<SongButtonSpawner>().SpawnSongs();
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
@@ -143,9 +168,9 @@ public class MusicNumManage : MonoBehaviour
         DisplayRank(_songName, diff.name);
         _frame.color = GetColor(diff.name);//new Color32(color.color.r, color.color.g, color.color.b, color.color.a);
 
-        for (int i = 0; i < _scrollviewContent.transform.childCount; i++)
+        for (int i = 0; i < _scrollviewContent.childCount; i++)
         {
-            GameObject song = _scrollviewContent.transform.GetChild(i).gameObject;
+            GameObject song = _scrollviewContent.GetChild(i).gameObject;
             song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
             Image rankSprite = song.GetComponentsInChildren<Image>()[1];
             string rank = _getHighScores.GetRank(song.name, diff.name);

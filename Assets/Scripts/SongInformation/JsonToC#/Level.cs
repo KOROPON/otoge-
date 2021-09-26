@@ -1,11 +1,11 @@
 [System.Serializable]
-class Level
+public class Level
 {
     public SongName[] songs;
 }
 
 [System.Serializable]
-class SongName
+public class SongName
 {
     public string title;
     public int Easy;

@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class LevelConverter : MonoBehaviour
 {
-    private Level _level;
     private TextAsset _jsonFile;
+    
+    public static Level level;
     
     void Start()
     {
         _jsonFile = Resources.Load<TextAsset>("Level/level");
-        _level = JsonUtility.FromJson<Level>(_jsonFile.text);
+        level = JsonUtility.FromJson<Level>(_jsonFile.text);
     }
 
     public int? GetLevel(string songName, string difficulty)
     {
-        foreach (SongName song in _level.songs)
+        foreach (SongName song in level.songs)
         {
-            Debug.Log(song);
             if (song.title == songName)
             {
                 return difficulty switch
