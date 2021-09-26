@@ -8,7 +8,7 @@ public class SongButtonSpawner : MonoBehaviour
     private Level _level;
     private Transform _content;
 
-    public void SpawnSongs(Transform scrollView)
+    public void SpawnSongs()
     {
         _level = LevelConverter.level;
         _content = GameObject.Find("Content").transform;
@@ -17,7 +17,6 @@ public class SongButtonSpawner : MonoBehaviour
             SongName song = _level.songs[i];
             GameObject songButton = Instantiate(songPrefab, _content);
             songButton.transform.localPosition = new Vector3(400, -175 - 250 * (i - 1), 0);
-            Debug.Log(scrollView.position.x);
             songButton.name = song.title;
             for (int j = 0; j < songButton.transform.childCount; j++)
             {
