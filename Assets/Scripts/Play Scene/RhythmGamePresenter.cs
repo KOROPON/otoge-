@@ -303,7 +303,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             InputService.aboveLaneTapStates.Add(new LaneTapState
             {
                 laneNumber = nearestLaneIndex,
-                TapStating = start,
+                tapStarting = start,
                 tapEnding = end
             });
         }
@@ -376,7 +376,7 @@ public class LaneTapState
     public int laneNumber;
 
     // このフレームにタップしたか
-    public bool TapStating;
+    public bool tapStarting;
 
     //このフレームで指を離したか
     public bool tapEnding;
