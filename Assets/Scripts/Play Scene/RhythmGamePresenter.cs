@@ -38,6 +38,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static string musicname = null!;
     public static string dif = null!;
 
+    JudgeService judgeService;
+
     float judgeTime;
     float audioTime;
     /// <summary>
@@ -46,6 +48,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private void Awake()
     {
+        judgeService = new JudgeService();
         AwakeAsync().Forget();
     }
 
@@ -303,7 +306,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var orderedNotes = notes.OrderBy(note => note.JudgeTime);
 
         //var judgeService = new JudgeService();
-        JudgeService.Judge(notJudgedNotes, currentTime,InputService.aboveLaneTapStates);
+        judgeService.Judge(notJudgedNotes, currentTime,InputService.aboveLaneTapStates);
 
     }
 

@@ -26,11 +26,6 @@ public class JudgeResultInHold
     public bool perfect;
 }
 
-public class DelNote
-{
-    public float noteTime;
-    public int noteNum;
-}
 
 
 /// <summary>
@@ -48,47 +43,39 @@ public class JudgeService : MonoBehaviour
     static int miss;
 
     
-    static List<DelNote> removeNoteNum = new List<DelNote>();
-    static bool TapJudgeSystem(ReilasNoteEntity note, float time, List<ReilasNoteEntity> notJudgedNotes)
+    bool TapJudgeSystem(float noteTime, float currentTime)
     {
 
-        if (Mathf.Abs(note.JudgeTime - time) <= 0.041f) // perfect
+        if (Mathf.Abs(noteTime - currentTime) <= 0.041f) // perfect
         {
             Debug.Log("perfect");
-            removeNoteNum.Add(new DelNote
-            {
-                noteTime = note.JudgeTime,
-                noteNum = notJudgedNotes.IndexOf(note)
-            });
-            allJudgeType.Add(new JudgeResult
-            {
-                ResultType = JudgeResultType.Perfect
-            });
         }
-        else if (Mathf.Abs(note.JudgeTime - time) <= 0.058f) // good
+        else if (Mathf.Abs(noteTime - currentTime) <= 0.058f) // good
         {
             Debug.Log("good");
-            removeNoteNum.Add(new DelNote
-            {
-                noteTime = note.JudgeTime,
-                noteNum = notJudgedNotes.IndexOf(note)
-            });
-            allJudgeType.Add(new JudgeResult
-            {
-                ResultType = JudgeResultType.Good
-            });
         }
-        else if (Mathf.Abs(note.JudgeTime - time) <= 0.075f) // bad
+        else if (Mathf.Abs(noteTime - currentTime) <= 0.075f) // bad
         {
             Debug.Log("bad");
-            removeNoteNum.Add(new DelNote
+        }
+        else
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool InternalJudgeSystem(float noteTime, float currentTime)
+    {
+
+        if (noteTime - currentTime <= 0.090f)
+        {
+            Debug.Log("perfect");
+            judgedInHold.Add(new JudgeResultInHold
             {
-                noteTime = note.JudgeTime,
-                noteNum = notJudgedNotes.IndexOf(note)
-            });
-            allJudgeType.Add(new JudgeResult
-            {
-                ResultType = JudgeResultType.Bad
+                time = noteTime,
+                perfect = true
             });
         }
         else
@@ -99,26 +86,215 @@ public class JudgeService : MonoBehaviour
         return false;
     }
 
-    static void InternalJudgeSystem(ReilasNoteEntity note, float time, List<ReilasNoteEntity> notJudgedNotes)
+    void RemoveNoteInList(List<int> noteNum, List<List<float>> noteList)
     {
-
-        if (time - note.JudgeTime <= 0.090f && time - note.JudgeTime >= 0f)
+        for (int i = noteNum.Count - 1; i >= 0; i--)
         {
-            Debug.Log("perfect");
-            judgedInHold.Add(new JudgeResultInHold
-            {
-                time = note.JudgeTime,
-                perfect = true
-            });
-            removeNoteNum.Add(new DelNote
-            {
-                noteTime = note.JudgeTime,
-                noteNum = notJudgedNotes.IndexOf(note)
-            });
+            noteList.RemoveAt(noteNum[i]);
         }
     }
 
-    public static void Judge(List<ReilasNoteEntity> notJudgedNotes, float currentTime, List<LaneTapState> aboveTapState) //Judge(�m�[�c����,�Đ�����,�^�b�v����){}
+
+    List<float> TapJudge(List<List<float>> tapList, float currentTime, List<LaneTapState> lanetapStates, NoteType type)
+    {
+        float laneNumMin;
+        float laneNumMax;
+        List<int> allDelNums = new List<int>();
+        foreach (LaneTapState tapstate in lanetapStates)
+        {
+            allDelNums.Clear();
+            int delNum = 0;
+            foreach (List<float> list in tapList)
+            {
+                delNum++;
+
+                ///<summary>
+                /// レーン情報の取得
+                ///</summary>
+                if (type == NoteType.Tap) //下のレーン
+                {
+                    laneNumMin = list[1];
+                    laneNumMax = list[1];
+                }
+                else    //上のレーン
+                {
+                    if (list[1] == 0)
+                    {
+                        laneNumMin = 4;
+                    }
+                    else
+                    {
+                        laneNumMin = list[1] + 3;
+                    }
+                    laneNumMax = list[1] + list[2] + 3;
+                }
+
+                if (laneNumMin <= tapstate.laneNumber && tapstate.laneNumber <= laneNumMax && tapstate.TapStating)
+                {
+                    if (TapJudgeSystem(list[0], currentTime))
+                    {
+                        //判定なし
+                        continue;
+                    }
+
+                    allDelNums.Add(delNum); // tapList , RhythmGamePresenter._***Notes  から delNum 番目の要素を削除
+                }
+            }
+
+            RemoveNoteInList(allDelNums, tapList); // tapList からDelete
+
+            if (type == NoteType.Tap)
+            {
+                for (int i = allDelNums.Count - 1; i >= 0; i--)
+                {
+                    RhythmGamePresenter._tapNotes.RemoveAt(allDelNums[i]);
+                }
+            }
+            else if (type == NoteType.AboveTap)
+            {
+                for (int i = allDelNums.Count - 1; i >= 0; i--)
+                {
+                    RhythmGamePresenter._aboveTapNotes.RemoveAt(allDelNums[i]);
+                }
+            }
+        }
+    }
+
+    private void InternalJudge(List<List<float>> internalList, float currentTime, List<LaneTapState> laneTapStates, NoteType type)
+    {
+
+        float laneNumMin;
+        float laneNumMax;
+        List<int> allDelNums = new List<int>();
+        foreach (LaneTapState tapstate in laneTapStates)
+        {
+            allDelNums.Clear();
+            int delNum = 0;
+            foreach (List<float> list in internalList)
+            {
+                delNum++;
+
+                ///<summary>
+                /// レーン情報の取得
+                ///</summary>
+                if (type == NoteType.Hold) //下のレーン
+                {
+                    laneNumMin = list[1];
+                    laneNumMax = list[1];
+                }
+                else    //上のレーン
+                {
+                    if (list[1] == 0)
+                    {
+                        laneNumMin = 4;
+                    }
+                    else
+                    {
+                        laneNumMin = list[1] + 3;
+                    }
+                    laneNumMax = list[1] + list[2] + 3;
+                }
+
+                if (laneNumMin <= tapstate.laneNumber && tapstate.laneNumber <= laneNumMax)
+                {
+                    if (InternalJudgeSystem(list[0], currentTime))
+                    {
+                        //判定なし
+                        continue;
+                    }
+
+                    allDelNums.Add(delNum); // internalList , RhythmGamePresenter._***Notes  から delNum 番目の要素を削除
+                }
+            }
+            
+            RemoveNoteInList(allDelNums, internalList); // internalList からDelete
+        }
+    }
+
+    void ChainJudge(List<List<float>> chainList, float currentTime, List<LaneTapState> laneTapStates, NoteType type)
+    {
+        float laneNumMin;
+        float laneNumMax;
+        List<int> allDelNums = new List<int>();
+        foreach (LaneTapState tapstate in laneTapStates)
+        {
+            allDelNums.Clear();
+            int delNum = 0;
+            foreach (List<float> list in chainList)
+            {
+                delNum++;
+
+                ///<summary>
+                /// レーン情報の取得
+                ///</summary>
+                if (type == NoteType.Tap) //下のレーン
+                {
+                    laneNumMin = list[1];
+                    laneNumMax = list[1];
+                }
+                else    //上のレーン
+                {
+                    if (list[1] == 0)
+                    {
+                        laneNumMin = 4;
+                    }
+                    else
+                    {
+                        laneNumMin = list[1] + 3;
+                    }
+                    laneNumMax = list[1] + list[2] + 3;
+                }
+
+                if (laneNumMin <= tapstate.laneNumber && tapstate.laneNumber <= laneNumMax && tapstate.TapStating)
+                {
+                    if (currentTime - list[0] <= 0.025f)
+                    {
+                        Debug.Log("perfect");
+                        allJudgeType.Add(new JudgeResult
+                        {
+                            ResultType = JudgeResultType.Perfect
+                        });
+                    }
+                    else
+                    {
+                        // 判定なし
+                        continue;
+                    }
+
+                    allDelNums.Add(delNum); // tapList , RhythmGamePresenter._***Notes  から delNum 番目の要素を削除
+                }
+            }
+
+            RemoveNoteInList(allDelNums, chainList); // tapList からDelete
+
+            if (type == NoteType.Tap)
+            {
+                for (int i = allDelNums.Count - 1; i >= 0; i--)
+                {
+                    RhythmGamePresenter._aboveChainNotes.RemoveAt(allDelNums[i]);
+                }
+            }
+        }
+    }
+
+    public void Judge(float currentTime, List<LaneTapState> tapStates)
+    {
+        TapJudge();
+        TapJudge();
+
+        TapJudge();
+        TapJudge();
+        TapJudge();
+        
+        InternalJudge();
+        InternalJudge();
+        InternalJudge();
+        
+        ChainJudge();
+    }
+
+
+    public void aaaaaaaaaaaaaJudge(List<ReilasNoteEntity> notJudgedNotes, float currentTime, List<LaneTapState> aboveTapState) //Judge(�m�[�c����,�Đ�����,�^�b�v����){}
     {
         //Debug.Log(currentTime);
         removeNoteNum.Clear();
@@ -132,14 +308,6 @@ public class JudgeService : MonoBehaviour
         int laneNumMin;
         int laneNumMax;
 
-        void RemoveNoteInList(List<DelNote> noteNum)
-        {
-            noteNum.OrderBy(note => note.noteTime);
-            for (var i = noteNum.Count - 1; i >= 0; i--)
-            {
-                notJudgedNotes.RemoveAt(noteNum[i].noteNum);
-            }
-        }
 
 
 
