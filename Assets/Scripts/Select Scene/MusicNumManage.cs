@@ -112,6 +112,8 @@ public class MusicNumManage : MonoBehaviour
         _scrollviewContent = _scrollView.GetChild(0);
         _getHighScores = FindObjectOfType<GetHighScores>();
         _levelConverter = FindObjectOfType<LevelConverter>();
+        
+        FindObjectOfType<SongButtonSpawner>().SpawnSongs(_scrollView);
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
