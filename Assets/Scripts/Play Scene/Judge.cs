@@ -86,11 +86,11 @@ public class JudgeService : MonoBehaviour
         return false;
     }
 
-    void RemoveNoteInList(List<int> noteNum, List<List<float>> noteList)
+    void RemoveNoteInList(List<int> delNums, List<List<float>> noteList)
     {
-        for (int i = noteNum.Count - 1; i >= 0; i--)
+        for (int i = delNums.Count - 1; i >= 0; i--)
         {
-            noteList.RemoveAt(noteNum[i]);
+            noteList.RemoveAt(delNums[i]);
         }
     }
 
@@ -277,22 +277,131 @@ public class JudgeService : MonoBehaviour
         }
     }
 
-    public void Judge(float currentTime, List<LaneTapState> tapStates, List<List<float>> notJudgedTap, List<List<float>> notJudgedAboveTap, List<List<float>> notJudgedHold, List<List<float>> notJudgedAboveHold, List<List<float>> notJudgedAboveSlide, List<List<float>> notJudgedAboveChain, List<List<float>> notJudgedInternal)
+    void MissTapJudge(float currentTime, List<List<float>> notesList, NoteType type)
     {
-        foreach (LaneTapState tapstate in tapStates)
+        List<int> delNum = new List<int>();
+        int del = 0;
+        foreach(List<float> note in notesList)
         {
-            List<List<float>> _tapNotes = new List<List<float>>;
+            if(note[0] - currentTime > -0.075f)
+            {
+                return;
+            }
+            else
+            {
+                if(type == NoteType.Tap)
+                {
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    RhythmGamePresenter._tapNotes[0].NoteDestroy();
+                }
+                else
+                {
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Miss
+                    });
+                    RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
+                }
+                delNum.Add(del);
+            }
+            del++;
         }
-        TapJudge();
+        RemoveNoteInList(delNum, notesList);
+    }
+
+    void MissHoldJudge(float currentTime, List<List<float>> notesList)
+    {
+        List<int> delNum = new List<int>();
+        int del = 0;
+        foreach(List<float> note in notesList)
+        {
+            if(note[0] - currentTime > -0.075f)
+            {
+                return;
+            }
+            else
+            {
+                allJudgeType.Add(new JudgeResult
+                {
+                    ResultType = JudgeResultType.Miss
+                });
+                delNum.Add(del);
+            }
+            del++;
+        }
+        RemoveNoteInList(delNum, notesList);
+    }
+
+    void MissInternalJudge(float currentTime, List<List<float>> notesList)
+    {
+        List<int> delNum = new List<int>();
+        int del = 0;
+        foreach (List<float> note in notesList)
+        {
+            if (note[0] - currentTime > 0)
+            {
+                return;
+            }
+            else
+            {
+                judgedInHold.Add(new JudgeResultInHold
+                {
+                    time = note[0],
+                    perfect = false
+                });
+                delNum.Add(del);
+            }
+            del++;
+        }
+        RemoveNoteInList(delNum, notesList);
+    }
+
+    void MissChainJudge(float currentTime, List<List<float>> notesList)
+    {
+        List<int> delNum = new List<int>();
+        int del = 0;
+        foreach (List<float> note in notesList)
+        {
+            if (note[0] - currentTime > -0.025f)
+            {
+                return;
+            }
+            else
+            {
+                allJudgeType.Add(new JudgeResult
+                {
+                    ResultType = JudgeResultType.Miss
+                });
+                RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
+                delNum.Add(del);
+            }
+            del++;
+        }
+        RemoveNoteInList(delNum, notesList);
+    }
+
+
+    public void Judge(float currentTime, List<LaneTapState> tapStates)
+    {
+        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedTapNotes, NoteType.Tap);
+        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedAboveTapNotes, NoteType.AboveTap);
+        MissHoldJudge(currentTime, RhythmGamePresenter.notJudegedHoldNotes);
+        MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedAboveHoldNotes);
+        MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedAboveSlideNotes);
+        MissInternalJudge(currentTime, RhythmGamePresenter.notJudgedInternalNotes);
+        MissChainJudge(currentTime, RhythmGamePresenter.notJudegedAboveChainNotes);
 
         TapJudge();
         TapJudge();
         TapJudge();
-        
+        TapJudge();
+        TapJudge();        
         InternalJudge();
         InternalJudge();
-        InternalJudge();
-        
+        InternalJudge();        
         ChainJudge();
     }
 
