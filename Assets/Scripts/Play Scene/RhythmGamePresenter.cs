@@ -41,6 +41,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<List<float>> notJudgedAboveSlideNotes = new List<List<float>>();
     public static List<List<float>> notJudegedAboveChainNotes = new List<List<float>>();
     public static List<List<float>> notJudgedInternalNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveInternalNotes = new List<List<float>>();
 
 
     private ReilasChartEntity _chartEntity = null!;
@@ -157,7 +158,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveHold: notJudgedAboveHoldNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveSlide: notJudgedAboveSlideNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveChain: notJudegedAboveChainNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveHoldInternal || notes.Type == NoteType.AboveSlideInternal || notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
+                case ReilasNoteEntity notes when notes.Type == NoteType.AboveHoldInternal || notes.Type == NoteType.AboveSlideInternal: notJudgedAboveInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
+                case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
             }
         }
 
@@ -296,7 +298,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
             InputService.aboveLaneTapStates.Add(new LaneTapState
             {
-                laneNumber = nearestLaneIndex, tapStating = start
+                laneNumber = nearestLaneIndex, tapStarting = start
             });
         }
 
