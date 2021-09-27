@@ -277,9 +277,12 @@ public class JudgeService : MonoBehaviour
         }
     }
 
-    public void Judge(float currentTime, List<LaneTapState> tapStates)
+    public void Judge(float currentTime, List<LaneTapState> tapStates, List<List<float>> notJudgedTap, List<List<float>> notJudgedAboveTap, List<List<float>> notJudgedHold, List<List<float>> notJudgedAboveHold, List<List<float>> notJudgedAboveSlide, List<List<float>> notJudgedAboveChain, List<List<float>> notJudgedInternal)
     {
-        TapJudge();
+        foreach (LaneTapState tapstate in tapStates)
+        {
+            List<List<float>> _tapNotes = new List<List<float>>;
+        }
         TapJudge();
 
         TapJudge();
@@ -293,6 +296,51 @@ public class JudgeService : MonoBehaviour
         ChainJudge();
     }
 
+    private List<List<float>> TimeJudge(bool isBelow, float typeNum, List<List<float>> tapType , LaneTapState tapstate, float currentTime)
+    {
+        bool isJudged;
+        foreach (List<float> tap in tapType)
+        {
+            if (tap[0] - currentTime <= 0.075f)
+            {
+                if (!isJudged)
+                {
+                    if (isBelow)
+                    {
+                        if (tap[1] == tapstate.laneNumber)
+                        {
+                            _tapNotes.Add(new List(tap[0], typeNum);
+                            isJudged = true;
+                        }
+                    }
+                    else
+                    {
+                        if (tap[1] == 0)
+                        {
+                            if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
+                            {
+                                _tapNotes.Add(new List(tap[0], typeNum);
+                                isJudged = true;
+                            }
+                        }
+                        else
+                        {
+                            if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
+                            {
+                                _tapNotes.Add(new List(tap[0], typeNum);
+                                isJudged = true;
+                            }
+                        }
+                    }
+                
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
 
     public void aaaaaaaaaaaaaJudge(List<ReilasNoteEntity> notJudgedNotes, float currentTime, List<LaneTapState> aboveTapState) //Judge(�m�[�c����,�Đ�����,�^�b�v����){}
     {

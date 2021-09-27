@@ -286,25 +286,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
             //Debug.Log(nearestLaneIndex);
-            bool end = false;
             bool start = false;
             // touch.position
             // このフレームで押されたよん
             if (touch.phase == TouchPhase.Began)
             {
                 start = true;
-                //touch.phase = false;
-            }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                end = true;
             }
 
             InputService.aboveLaneTapStates.Add(new LaneTapState
             {
-                laneNumber = nearestLaneIndex,
-                TapStating = start,
-                tapEnding = end
+                laneNumber = nearestLaneIndex, tapStating = start
             });
         }
 
@@ -326,7 +318,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
        
 
         //var judgeService = new JudgeService();
-        JudgeService.Judge(notJudgedNotes, judgeTime,InputService.aboveLaneTapStates);
+        JudgeService.Judge(notJudgedNotes, judgeTime, InputService.aboveLaneTapStates);
 
     }
 
@@ -376,10 +368,7 @@ public class LaneTapState
     public int laneNumber;
 
     // このフレームにタップしたか
-    public bool TapStating;
-
-    //このフレームで指を離したか
-    public bool tapEnding;
+    public bool tapStarting;
 }
 
 public class InputService
