@@ -36,10 +36,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     //Judge用
     public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
     public static List<List<float>> notJudgedAboveTapNotes = new List<List<float>>();
-    public static List<List<float>> notJudegedHoldNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedHoldNotes = new List<List<float>>();
     public static List<List<float>> notJudgedAboveHoldNotes = new List<List<float>>();
     public static List<List<float>> notJudgedAboveSlideNotes = new List<List<float>>();
-    public static List<List<float>> notJudegedAboveChainNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveChainNotes = new List<List<float>>();
     public static List<List<float>> notJudgedInternalNotes = new List<List<float>>();
     public static List<List<float>> notJudgedAboveInternalNotes = new List<List<float>>();
 
@@ -154,10 +154,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             {
                 case ReilasNoteEntity notes when notes.Type == NoteType.Tap: notJudgedTapNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveTap: notJudgedAboveTapNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.Hold: notJudegedHoldNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
+                case ReilasNoteEntity notes when notes.Type == NoteType.Hold: notJudgedHoldNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveHold: notJudgedAboveHoldNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveSlide: notJudgedAboveSlideNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveChain: notJudegedAboveChainNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
+                case ReilasNoteEntity notes when notes.Type == NoteType.AboveChain: notJudgedAboveChainNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.AboveHoldInternal || notes.Type == NoteType.AboveSlideInternal: notJudgedAboveInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
                 case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
             }
@@ -275,7 +275,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
           return;
         }
-        text1.text = JudgeService.aa;
 
         InputService.aboveLaneTapStates.Clear();
 
@@ -320,7 +319,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
        
 
         //var judgeService = new JudgeService();
-        JudgeService.Judge(notJudgedNotes, judgeTime, InputService.aboveLaneTapStates);
+        judgeService.Judge(judgeTime, InputService.aboveLaneTapStates);
 
     }
 
