@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Reilas;
 
 public enum JudgeResultType
 {
@@ -328,13 +327,13 @@ public class JudgeService : MonoBehaviour
     List<float> _judgeInternalNotes = new List<float>();
     public void Judge(float currentTime, List<LaneTapState> tapStates)
     {
-        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedTapNotes, NoteType.Tap);
-        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedAboveTapNotes, NoteType.AboveTap);
+        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedTapNotes, false);
+        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedAboveTapNotes, true);
         MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedHoldNotes);
         MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedAboveHoldNotes);
         MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedAboveSlideNotes);
         MissInternalJudge(currentTime, RhythmGamePresenter.notJudgedInternalNotes);
-        MissChainJudge(currentTime, RhythmGamePresenter.notJudegedAboveChainNotes);
+        MissChainJudge(currentTime, RhythmGamePresenter.notJudgedAboveChainNotes);
 
         List<List<float>> _judgeTapNotes = new List<List<float>>();
        
@@ -350,7 +349,7 @@ public class JudgeService : MonoBehaviour
                 TimeJudge(false, 3, RhythmGamePresenter.notJudgedAboveHoldNotes, tapstate, currentTime, _judgeTapNotes);
                 TimeJudge(false, 4, RhythmGamePresenter.notJudgedAboveSlideNotes, tapstate, currentTime, _judgeTapNotes);
             }
-            if (_tapNotes != null)
+            if (_tapNotes.Count() != 0)
             {
                 _tapNotes.OrderBy(tap => tap[0]);
                 for (int a = 0; a < 6; a++)
@@ -374,12 +373,16 @@ public class JudgeService : MonoBehaviour
         _judgeTapNotes.OrderByDescending(note => note[2]).Distinct();
         _judgeInternalNotes.OrderByDescending(note => note).Distinct();
 
-        if (_judgeTapNotes != null)//タップ系判定
+        if (_judgeTapNotes.Count() != 0)//タップ系判定
         {
             if (Mathf.Abs(_judgeTapNotes[0][0] - currentTime) <= 0.041f) // perfect
             {
                 for (int a = 0; a < _judgeTapNotes.Count(); a++)//同じタイミングのノーツ分繰り返す
                 {
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Perfect
+                    });
                     Debug.Log("perfect");
                 }
             }
@@ -387,6 +390,10 @@ public class JudgeService : MonoBehaviour
             {
                 for (int a = 0; a < _judgeTapNotes.Count(); a++)//同じタイミングのノーツ分繰り返す
                 {
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Good
+                    });
                     Debug.Log("good");
                 }
             }
@@ -394,6 +401,10 @@ public class JudgeService : MonoBehaviour
             {
                 for (int a = 0; a < _judgeTapNotes.Count(); a++)//同じタイミングのノーツ分繰り返す
                 {
+                    allJudgeType.Add(new JudgeResult
+                    {
+                        ResultType = JudgeResultType.Bad
+                    });
                     Debug.Log("bad");
                 }
             }

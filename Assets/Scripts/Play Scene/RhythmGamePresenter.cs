@@ -243,10 +243,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     static Vector3[] lanePositions = new Vector3[]
     {
         //上のレーン
-        new Vector3(-2.5f, 0, 0),
-        new Vector3(-1.25f, 0, 0),
+        new Vector3(3f, 0, 0),
         new Vector3(1.25f, 0, 0),
-        new Vector3(2.5f, 0, 0),
+        new Vector3(-1.25f, 0, 0),
+        new Vector3(-3f, 0, 0),
 
         //下のレーン
         new Vector3(4.5f,0.3f,0),
