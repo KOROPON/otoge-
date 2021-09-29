@@ -22,8 +22,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private AboveChainNote _aboveChainNotePrefab = null!;
     [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
-
-
+    [SerializeField] private BarLine _barLinePrefab = null!;
+        
     [SerializeField] private static AudioSource _audioSource = null!;
 
     public static List<TapNote> _tapNotes = new List<TapNote>();
@@ -32,6 +32,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<HoldNote> _holdNotes = new List<HoldNote>();
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
+    public static List<BarLine> _barLines = new List<BarLine>();
 
     //Judge用
     public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
@@ -53,9 +54,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     float judgeTime;
     float audioTime;
+
     /// <summary>
     /// 判定結果を処理する
     /// </summary>
+
+    private List<float> _barLineTimes = BarLine.BarLines;
 
     private void Awake()
     {
@@ -92,6 +96,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
+        
+        BarLine.GetBarLines(musicname, _audioSource.clip.length);
+
 
         if (PlayerPrefs.HasKey("volume"))
         {
@@ -109,6 +116,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
         SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
+        SpawnBarLines(_barLineTimes);
 
 
 
@@ -233,6 +241,15 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveSlideNotePrefab);
             tapNote.Initialize(note);
             _aboveSlideNotes.Add(tapNote);
+        }
+    }
+
+    private void SpawnBarLines(IEnumerable<float> lines)
+    {
+        foreach (float line in lines)
+        {
+            var barLine = Instantiate(_barLinePrefab);
+            _barLines.Add(barLine);
         }
     }
 
@@ -374,6 +391,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in _aboveSlideNotes)
         {
             note.Render(audioTime);
+        }
+
+        for (int i = 0; i < _barLines.Count; i++)
+        {
+            _barLines[i].Render(_barLineTimes[i], audioTime);
         }
     }
 }
