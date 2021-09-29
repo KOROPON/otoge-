@@ -5,12 +5,12 @@ public class SongButtonSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject songPrefab;
     
-    private Level _level;
+    private SongDataBase _level;
     private Transform _content;
-
+    
     public void SpawnSongs()
     {
-        _level = LevelConverter.level;
+        _level = LevelConverter.songData;
         _content = GameObject.Find("Content").transform;
         for (int i = 0; i < _level.songs.Length; i++)
         {

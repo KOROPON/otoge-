@@ -1,0 +1,94 @@
+{
+    "songs": [{
+            "title": "Collide",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 170
+            },
+            "custom": [],
+            "level": {
+                "Easy": 3,
+                "Hard": 6,
+                "Extreme": 8,
+                "KUJO": 0
+            }
+        },
+        {
+            "title": "Devourer_Of_Sol_Ⅲ",
+            "beat": {
+                "numerator": 3,
+                "denominator": 4,
+                "bpm": 190
+                        
+            },
+            "custom": [],
+            "level": {
+                "Easy": 3,
+                "Hard": 6,
+                "Extreme": 9,
+                "KUJO": 0
+            }
+        },
+        {
+            "title": "Kawaii_OD_!!",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bom": 175
+            },
+            "custom": [],
+            "level": {
+                "Easy": 1,
+                "Hard": 5,
+                "Extreme": 8,
+                "KUJO": 0
+            }
+        },
+        {
+            "title": "DNB",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 170
+            },
+            "custom": [],
+            "level": {
+                "Easy": 2,
+                "Hard": 4,
+                "Extreme": 7,
+                "KUJO": 0
+            }
+        },
+        {
+            "title": "Music is my suicide",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 155
+            },
+            "custom": [],
+            "level": {
+                "Easy": 2,
+                "Hard": 5,
+                "Extreme": 8,
+                "KUJO": 0
+            }
+        },
+        {
+            "title": "REILAS",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 191
+            },
+            "custom": [],
+            "level": {
+                "Easy": 4,
+                "Hard": 7,
+                "Extreme": 9,
+                "KUJO": 10
+            }
+        }
+    ]
+}

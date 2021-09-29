@@ -15,10 +15,14 @@ namespace Reilas
         public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap)
         {
 
-            float highSpeed = 120 * 3.5f;
+            float highSpeed;
             if (PlayerPrefs.HasKey("rate"))
             {
-              highSpeed = 120 * PlayerPrefs.GetFloat("rate");
+                highSpeed = 120 * PlayerPrefs.GetFloat("rate");
+            }
+            else
+            {
+                highSpeed = 120;
             }
 
 
@@ -39,8 +43,8 @@ namespace Reilas
 
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
-            float normalizedTime = (entity.JudgeTime - currentTime) / 何秒後のノーツまで描画するか;
-            float t = -normalizedTime * 何秒後のノーツまで描画するか;
+            float t = currentTime - entity.JudgeTime;
+            float normalizedTime = -t / 何秒後のノーツまで描画するか;
             
             if (checkIfTap)
             {

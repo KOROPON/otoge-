@@ -1,3 +1,4 @@
+using Reilas;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -127,7 +128,8 @@ public class Shutter : MonoBehaviour
         RhythmGamePresenter._aboveTapNotes.Clear();
         RhythmGamePresenter._aboveSlideNotes.Clear();
         RhythmGamePresenter._aboveHoldNotes.Clear();
-        Debug.Log(RhythmGamePresenter._aboveChainNotes);
         RhythmGamePresenter._aboveChainNotes.Clear();
+        RhythmGamePresenter._barLines.Clear();
+        BarLine.BarLines.Clear();
     }
 }
