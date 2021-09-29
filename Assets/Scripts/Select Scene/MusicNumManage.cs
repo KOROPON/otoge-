@@ -141,7 +141,8 @@ public class MusicNumManage : MonoBehaviour
               _selectBool = false;
               Shutter.blChange = "ToPFrS";
               RhythmGamePresenter.musicname = obj.name;
-              Invoke("StopAudio",0.6f);
+              _audioSource.Stop();
+              audioO.Play();
             }
         }
         else
@@ -163,6 +164,7 @@ public class MusicNumManage : MonoBehaviour
 
     public void Difficulty(GameObject diff)
     {
+        
         PlayerPrefs.SetString("difficulty", diff.name);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
@@ -192,9 +194,10 @@ public class MusicNumManage : MonoBehaviour
             }
         }
     }
-    private void StopAudio()
+
+    public void DifficultAnim()
     {
-      _audioSource.Stop();
-      audioO.Play();
+        FrameAnimation.anim2.SetBool("blDifChange", true);
     }
+    
 }
