@@ -157,7 +157,46 @@ public class JudgeService : MonoBehaviour
             }
         }
     }
-
+    void ChainJudge(List<List<float>> tapType, LaneTapState tapstate, float currentTime)
+    {
+        foreach (List<float> tap in tapType)
+        {
+            float orderNum = 0;
+            List<float> _judgedIndex = new List<float>();
+            if (tap[0] - currentTime >= -0.025f)
+            {
+                if (tap[0] - currentTime < 0f)
+                {
+                    if (tap[1] == 0)
+                    {
+                        if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
+                        {
+                            Debug.Log("perfect");
+                            _judgedIndex.Add(orderNum);
+                        }
+                    }
+                    else
+                    {
+                        if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
+                        {
+                            Debug.Log("perfect");
+                            _judgedIndex.Add(orderNum);
+                        }
+                    }
+                }
+                else
+                {
+                    _judgedIndex.OrderByDescending(note => note);
+                    foreach (float x in _judgedIndex)
+                    {
+                        tapType.RemoveAt((int)x);
+                    }
+                    break;
+                }
+            }
+            orderNum++;
+        }
+    }
 
     void InternalJudge(bool isBelow, List<List<float>> tapType, LaneTapState tapstate, float currentTime, List<float> _judgeInternalNotes)
     {
@@ -328,13 +367,13 @@ public class JudgeService : MonoBehaviour
     List<float> _judgeInternalNotes = new List<float>();
     public void Judge(float currentTime, List<LaneTapState> tapStates)
     {
-        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedTapNotes, NoteType.Tap);
-        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedAboveTapNotes, NoteType.AboveTap);
+        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedTapNotes, false);
+        MissTapJudge(currentTime, RhythmGamePresenter.notJudgedAboveTapNotes, true);
         MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedHoldNotes);
         MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedAboveHoldNotes);
         MissHoldJudge(currentTime, RhythmGamePresenter.notJudgedAboveSlideNotes);
         MissInternalJudge(currentTime, RhythmGamePresenter.notJudgedInternalNotes);
-        MissChainJudge(currentTime, RhythmGamePresenter.notJudegedAboveChainNotes);
+        MissChainJudge(currentTime, RhythmGamePresenter.notJudgedAboveChainNotes);
 
         List<List<float>> _judgeTapNotes = new List<List<float>>();
        
@@ -365,6 +404,8 @@ public class JudgeService : MonoBehaviour
                     }
                 }
             }
+
+            ChainJudge(RhythmGamePresenter.notJudgedAboveChainNotes, tapstate, currentTime);
 
             InternalJudge(true, RhythmGamePresenter.notJudgedInternalNotes, tapstate, currentTime, _judgeInternalNotes);
             InternalJudge(false, RhythmGamePresenter.notJudgedAboveInternalNotes, tapstate, currentTime, _judgeInternalNotes);
