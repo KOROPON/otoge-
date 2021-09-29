@@ -21,6 +21,7 @@ public class MusicNumManage : MonoBehaviour
     public Text easyLevel;
     public Text hardLevel;
     public Text extremeLevel;
+    public AudioSource audioO;
     
     //public Text kujoLevel;
 
@@ -194,5 +195,6 @@ public class MusicNumManage : MonoBehaviour
     private void StopAudio()
     {
       _audioSource.Stop();
+      audioO.Play();
     }
 }
