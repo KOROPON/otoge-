@@ -170,7 +170,7 @@ public class JudgeService : MonoBehaviour
                     {
                         if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
                         {
-                            Debug.Log("perfect");
+                            Debug.Log("Chainperfect");
                             _judgedIndex.Add(orderNum);
                         }
                     }
@@ -178,7 +178,7 @@ public class JudgeService : MonoBehaviour
                     {
                         if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
                         {
-                            Debug.Log("perfect");
+                            Debug.Log("Chainperfect");
                             _judgedIndex.Add(orderNum);
                         }
                     }
@@ -189,6 +189,7 @@ public class JudgeService : MonoBehaviour
                     foreach (float x in _judgedIndex)
                     {
                         tapType.RemoveAt((int)x);
+                        RhythmGamePresenter._aboveChainNotes[(int) x].NoteDestroy();
                     }
                     break;
                 }
@@ -467,7 +468,7 @@ public class JudgeService : MonoBehaviour
         {
             if (_judgeInternalNotes[a] == currentTime)
             {
-                Debug.Log("perfect");
+                Debug.Log("Internalperfect");
                 _judgeInternalNotes.RemoveAt(a);
             }
 
