@@ -24,11 +24,11 @@ namespace Reilas
 
         void LateUpdate()
         {
-            _judgeInHold = JudgeService.judgedInHold; // ���������̎󂯓n��
-            _alljudge = JudgeService.allJudgeType;
+            _judgeInHold = JudgeService.JudgedInHold; // ���������̎󂯓n��
+            _alljudge = JudgeService.AllJudgeType;
             foreach (JudgeResult judgeResult in _alljudge)
             {
-                var judgetype = judgeResult.ResultType;
+                var judgetype = judgeResult.resultType;
                 if (judgetype == JudgeResultType.Perfect)
                 {
                     currentCombo++;
@@ -57,7 +57,7 @@ namespace Reilas
                     sumMiss++;
                 }
             }
-            JudgeService.allJudgeType.Clear();
+            JudgeService.AllJudgeType.Clear();
 
             currentScore = (int) Mathf.Floor(1000000 * score / sumScore);
             comboText.text = currentCombo.ToString();

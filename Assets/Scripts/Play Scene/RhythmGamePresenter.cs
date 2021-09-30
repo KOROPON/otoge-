@@ -35,14 +35,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<BarLine> _barLines = new List<BarLine>();
 
     //Judge用
-    public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveTapNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedHoldNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveHoldNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveSlideNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveChainNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedInternalNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveInternalNotes = new List<List<float>>();
+    public static List<bool> tapNoteJudge = new List<bool>();
+    public static List<bool> hapNoteJudge = new List<bool>();
+    public static List<bool> aboveTapNoteJudge = new List<bool>();
+    public static List<bool> aboveHoldNoteJudge = new List<bool>();
+    public static List<bool> aboveSlideNoteJudge = new List<bool>();
+    public static List<bool> chainNoteJudge = new List<bool>();
 
 
     private ReilasChartEntity _chartEntity = null!;
@@ -61,12 +59,34 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private List<float> _barLineTimes = BarLine.BarLines;
 
+    private IEnumerable<ReilasNoteEntity> GetNoteType(ReilasChartEntity chart, string noteType)
+    {
+        return noteType switch
+        {
+            "Tap" => chart.Notes.Where(note => note.Type == NoteType.Tap),
+            "AboveTap" => chart.Notes.Where(note => note.Type == NoteType.AboveTap),
+            "Chain" => chart.Notes.Where(note => note.Type == NoteType.AboveChain),
+            _=> chart.Notes
+        };
+    }
+
+    private IEnumerable<ReilasNoteLineEntity> GetNoteLineType(ReilasChartEntity chart, string noteLineType)
+    {
+        return noteLineType switch
+        {
+            "Hold" => chart.NoteLines.Where(note => note.Head.Type == NoteType.Hold),
+            "AboveHold" => chart.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold),
+            "AboveSlide" => chart.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide),
+            _=> chart.NoteLines
+        };
+    }
+
     private void Awake()
     {
         judgeService = new JudgeService();
         AwakeAsync().Forget();
     }
-
+    
     private async UniTask AwakeAsync()
     {
         FindObjectOfType<Variable>().enabled = false;
@@ -110,12 +130,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         // chartEntity
         _chartEntity = chartEntity;
 
-        SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
-        SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
-        SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
-        SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
-        SpawnAboveHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
-        SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
+        SpawnTapNotes(GetNoteType(_chartEntity, "Tap"));
+        SpawnChainNotes(GetNoteType(_chartEntity, "Chain"));
+        SpawnHoldNotes(GetNoteLineType(_chartEntity, "Hold"));
+        SpawnAboveTapNotes(GetNoteType(_chartEntity, "AboveTap"));
+        SpawnAboveHoldNotes(GetNoteLineType(_chartEntity, "AboveHold"));
+        SpawnAboveSlideNotes(GetNoteLineType(_chartEntity, "AboveSlide"));
         SpawnBarLines(_barLineTimes);
 
 
