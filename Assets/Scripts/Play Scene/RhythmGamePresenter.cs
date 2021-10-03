@@ -100,7 +100,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     
     private async UniTask AwakeAsync()
     {
-        FindObjectOfType<Variable>().enabled = false;
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset;
 
@@ -310,7 +309,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
     static float z = -0.5f;
-    static Vector3[] lanePositions = new Vector3[]
     
     public static Vector3[] lanePositions = new Vector3[]
     {
@@ -379,9 +377,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             text2.text = touches[0].position.ToString();
             //gameObject.transform.position = new Vector3()
-            var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
-            Debug.Log(nearestLaneIndex);
-            bool start = false;
             var lane = screenPoints.Select((screenPoint, index) => (screenPoint, index))
                 .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First();
             var distance = Vector2.Distance(lane.screenPoint, touch.position);

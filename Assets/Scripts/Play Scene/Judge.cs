@@ -78,9 +78,36 @@ public class JudgeService : MonoBehaviour
             note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlide ||
             note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveChain)
         {
-            for (var i = note.LanePosition - 1 + 4; i <= note.LanePosition + note.Size + 4; i++)
+            int noteLanePosition = note.LanePosition + 4;
+            switch (noteLanePosition)
             {
-                if (tapState[i]) return true;
+                case 4:
+                {
+                    for (var i = noteLanePosition; i <= noteLanePosition + note.Size; i++)
+                    {
+                        if (tapState[i]) return true;
+                    }
+
+                    break;
+                }
+                case 35:
+                {
+                    for (var i = noteLanePosition - 1; i <= noteLanePosition + note.Size - 1; i++)
+                    {
+                        if (tapState[i]) return true;
+                    }
+
+                    break;
+                }
+                default:
+                {
+                    for (var i = noteLanePosition - 1; i <= noteLanePosition + note.Size; i++)
+                    {
+                        if (tapState[i]) return true;
+                    }
+
+                    break;
+                }
             }
         }
         else
