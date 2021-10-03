@@ -4,10 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using Reilas;
-using Rhythmium;
-using UnityEngine.SocialPlatforms.Impl;
 
 public enum JudgeResultType
 {
@@ -23,20 +20,8 @@ public class JudgeService : MonoBehaviour
     private int _tapJudgeStartIndex = 0;
     private int _internalJudgeStartIndex = 0;
     private int _chainJudgeStartIndex = 0;
-    
-    public static int sumPerfect;
-    public static int sumGood;
-    public static int sumBad;
-    public static int sumMiss;
-    public static int currentCombo;
-    public static int highCombo;
-    public static　int currentScore;
-    
-    private int _sumScore = 4;
-    private float _score;
-    
-    public Text comboText;
-    public Text scoreText;
+
+    public static List<JudgeResultType> allJudge = new List<JudgeResultType>();
     
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
@@ -131,7 +116,7 @@ public class JudgeService : MonoBehaviour
             {
                 judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
             }
-            ScoreCalculator(judgeResult);
+            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
             RhythmGamePresenter.tapNoteJudge[i] = true;
             _tapJudgeStartIndex++;
         }
@@ -143,7 +128,7 @@ public class JudgeService : MonoBehaviour
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
-            ScoreCalculator(judgeResult);
+            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
             RhythmGamePresenter.internalNoteJudge[i] = true;
             _internalJudgeStartIndex++;
         }
@@ -155,48 +140,13 @@ public class JudgeService : MonoBehaviour
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
-            ScoreCalculator(judgeResult);
+            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
             RhythmGamePresenter.chainNoteJudge[i] = true;
             _chainJudgeStartIndex++;
 
         }
     }
 
-    private void ScoreCalculator(JudgeResultType judgeResult)
-    {
-        if (judgeResult == JudgeResultType.NotJudgedYet) return;
-        switch (judgeResult)
-        {
-            case JudgeResultType.Perfect:
-                currentCombo++;
-                _score += 4;
-                sumPerfect++;
-                break;
-            case JudgeResultType.Good:
-                currentCombo++;
-                _score += 2;
-                sumGood++;
-                break;
-            case JudgeResultType.Bad:
-                currentCombo++;
-                _score += 1;
-                sumBad++;
-                break;
-            case JudgeResultType.Miss:
-                if (highCombo < currentCombo)
-                {
-                    highCombo = currentCombo;
-                }
-
-                currentCombo = 0;
-                sumMiss++;
-                break;
-        }
-        currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
-        comboText.text = currentCombo.ToString();
-        scoreText.text = currentScore.ToString();
-    }
-    
     
     /*
     private void TimeJudge(bool isBelow, float typeNum, List<List<float>> tapType, LaneTapState tapstate, float currentTime, List<List<float>> _tapNotes)

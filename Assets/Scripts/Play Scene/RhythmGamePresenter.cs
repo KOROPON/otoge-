@@ -25,6 +25,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private BarLine _barLinePrefab = null!;
         
     [SerializeField] private static AudioSource _audioSource = null!;
+    public static AudioSource longPerfect = null!;
 
     public static List<TapNote> _tapNotes = new List<TapNote>();
     public static List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
@@ -37,6 +38,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<ReilasNoteEntity> tapNotes = new List<ReilasNoteEntity>();
     public static List<ReilasNoteEntity> internalNotes = new List<ReilasNoteEntity>();
     public static List<ReilasNoteEntity> chainNotes = new List<ReilasNoteEntity>();
+    //Effect用
+    public static List<HoldEffector> _holdEffectors = new List<HoldEffector>();
+    public static List<AboveHoldEffector> _aboveHoldEffectors = new List<AboveHoldEffector>();
+    public static List<AboveSlideEffector> _aboveSlideEffectors = new List<AboveSlideEffector>();
 
     //Judge用
     public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
@@ -58,6 +63,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static string dif = null!;
     
     public static bool[] laneTapStates = new bool[36];
+    
 
     JudgeService judgeService;
 
@@ -109,6 +115,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         Debug.Log("最大コンボ数: " + notJudgedNotes.Count);
+
+        foreach (BpmChangeEntity bpm in chartEntity.BpmChanges)
+        {
+            Debug.Log(bpm.Duration);
+        }
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
@@ -198,8 +209,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
             }
         }
-
-        Shutter.blChange = "Open";//シーンを開く
+        Shutter.bltoPlay = true;
+        Shutter.blShutterChange = "Open";//シーンを開く
     }
 
     public static void PlaySongs()
@@ -248,7 +259,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_holdNotePrefab);
+            var holdEffector = tapNote.transform.Find("HoldEffector").gameObject.GetComponent<HoldEffector>();
             tapNote.Initialize(note);
+            holdEffector.EffectorInitialize(note);
+            _holdEffectors.Add(holdEffector);
             _holdNotes.Add(tapNote);
         }
     }
@@ -258,7 +272,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_aboveHoldNotePrefab);
+            var aboveHoldEffector = tapNote.transform.Find("AboveHoldEffector").gameObject.GetComponent<AboveHoldEffector>();
             tapNote.Initialize(note);
+            aboveHoldEffector.EffectorInitialize(note);
+            _aboveHoldEffectors.Add(aboveHoldEffector);
             _aboveHoldNotes.Add(tapNote);
         }
     }
@@ -267,7 +284,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_aboveSlideNotePrefab);
+            var aboveSlideEffector = tapNote.transform.Find("AboveSlideEffector").gameObject.GetComponent<AboveSlideEffector>();
             tapNote.Initialize(note);
+            aboveSlideEffector.EffectorInitialize(note);
+            _aboveSlideEffectors.Add(aboveSlideEffector);
             _aboveSlideNotes.Add(tapNote);
         }
     }
@@ -284,7 +304,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     // 譜面情報に存在してるまだ判定されていないノーツ
     public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
     
-    static Vector3[] lanePositions = new Vector3[]
+    public static Vector3[] lanePositions = new Vector3[]
     {
         //下のレーン
         new Vector3(3f, 0, 0),
@@ -294,36 +314,36 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         //上のレーン
         new Vector3(4.5f,0.1f,0),
-        new Vector3(4.5f,0.4f,0),
+        new Vector3(4.45f,0.4f,0),
         new Vector3(4.3f,1.1f,0),
         new Vector3(4.2f,1.5f,0),
-        new Vector3(4f,2.1f,0),
-        new Vector3(3.8f,2.4f,0),
-        new Vector3(3.5f,3.1f,0),
-        new Vector3(3.3f,3.3f,0),
-        new Vector3(2.9f,3.8f,0),
-        new Vector3(2.7f,4f,0),
-        new Vector3(2.2f,4.4f,0),
-        new Vector3(1.9f,4.6f,0),
-        new Vector3(1.5f,4.8f,0),
-        new Vector3(1.1f,5f,0),
-        new Vector3(0.6f,5.1f,0),
-        new Vector3(0.25f,5.1f,0),
-        new Vector3(-0.25f,5.1f,0),
-        new Vector3(-0.6f,5.1f,0),
-        new Vector3(-1.1f,5f,0),
-        new Vector3(-1.5f,4.8f,0),
-        new Vector3(-1.9f,4.6f,0),
-        new Vector3(-2.2f,4.4f,0),
-        new Vector3(-2.7f,4f,0),
-        new Vector3(-2.9f,3.8f,0),
-        new Vector3(-3.3f,3.3f,0),
-        new Vector3(-3.5f,3.1f,0),
-        new Vector3(-3.8f,2.4f,0),
-        new Vector3(-4f,2.1f,0),
+        new Vector3(4f,2f,0),
+        new Vector3(3.8f,2.35f,0),
+        new Vector3(3.5f,2.9f,0),
+        new Vector3(3.3f,3.1f,0),
+        new Vector3(2.9f,3.5f,0),
+        new Vector3(2.7f,3.6f,0),
+        new Vector3(2.2f,4f,0),
+        new Vector3(1.9f,4.1f,0),
+        new Vector3(1.5f,4.3f,0),
+        new Vector3(1.1f,4.4f,0),
+        new Vector3(0.6f,4.5f,0),
+        new Vector3(0.25f,4.55f,0),
+        new Vector3(-0.25f,4.55f,0),
+        new Vector3(-0.6f,4.5f,0),
+        new Vector3(-1.1f,4.4f,0),
+        new Vector3(-1.5f,4.3f,0),
+        new Vector3(-1.9f,4.1f,0),
+        new Vector3(-2.2f,4f,0),
+        new Vector3(-2.7f,3.6f,0),
+        new Vector3(-2.9f,3.5f,0),
+        new Vector3(-3.3f,3.1f,0),
+        new Vector3(-3.5f,2.9f,0),
+        new Vector3(-3.8f,2.35f,0),
+        new Vector3(-4f,2f,0),
         new Vector3(-4.2f,1.5f,0),
         new Vector3(-4.3f,1.1f,0),
-        new Vector3(-4.5f,0.4f,0),
+        new Vector3(-4.45f,0.4f,0),
         new Vector3(-4.5f,0.1f,0),
     };
 
@@ -335,7 +355,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
           return;
         }
-
+    
+        InputService.aboveLaneTapStates.Clear();
         for (var i = 0; i < laneTapStates.Length; i++)
         {
             laneTapStates[i] = false;
@@ -361,6 +382,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             {
                 laneTapStates[nearestLaneIndex] = true;
             }
+            
+            InputService.aboveLaneTapStates.Add(new LaneTapState{laneNumber = nearestLaneIndex, tapStarting = start});
         }
 
 
@@ -420,10 +443,34 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             note.Render(audioTime);
         }
+        foreach (var note in _holdEffectors)
+        {
+            note.EffectJudge(audioTime, longPerfect);
+        }
 
+        foreach (var note in _aboveHoldEffectors)
+        {
+            note.Render(audioTime, longPerfect);
+        }
+
+        foreach (var note in _aboveSlideEffectors)
+        {
+            note.Render(audioTime, longPerfect);
+        }
         for (int i = 0; i < _barLines.Count; i++)
         {
             _barLines[i].Render(_barLineTimes[i], audioTime);
         }
     }
+}
+
+public class LaneTapState
+{
+    public int laneNumber;
+    public bool tapStarting;
+}
+
+public class InputService
+{
+    public static List<LaneTapState> aboveLaneTapStates = new List<LaneTapState>();
 }

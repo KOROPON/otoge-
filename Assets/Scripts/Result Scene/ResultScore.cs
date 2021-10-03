@@ -78,6 +78,7 @@ public class ResultScore : MonoBehaviour
         ScoreComboCalculator.sumBad = 0;
         ScoreComboCalculator.sumMiss = 0;
         Shutter.blChange = "Open";
+        Shutter.blShutterChange = "Open";
         resultMusic.Play();
     }
 
@@ -88,6 +89,7 @@ public class ResultScore : MonoBehaviour
           backBool = false;
           resultMusic.Stop();
           Shutter.blChange = "ToSFrR";//シャッター下げる
+          Shutter.blShutterChange = "Close";
           Invoke("ResultStop",0.5f);
         }
     }
@@ -98,6 +100,7 @@ public class ResultScore : MonoBehaviour
         {
           retryBool = false;
           Shutter.blChange = "ToPFrR";//シャッター下げる
+          Shutter.blShutterChange = "Close";
           Invoke("ResultStop",0.5f);
         }
     }

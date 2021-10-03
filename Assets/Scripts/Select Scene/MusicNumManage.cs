@@ -150,7 +150,7 @@ public class MusicNumManage : MonoBehaviour
         
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
-        Shutter.blChange = "Open";
+        Shutter.blShutterChange = "Open"; 
         _audioSource.Play();
     }
 
@@ -161,8 +161,8 @@ public class MusicNumManage : MonoBehaviour
             if (_selectBool)
             {
               _selectBool = false;
-              Shutter.blChange = "ToPFrS";
-              RhythmGamePresenter.musicname = obj.name;
+                Shutter.blShutterChange = "CloseToPlay";
+                RhythmGamePresenter.musicname = obj.name;
               _audioSource.Stop();
               audioO.Play();
             }

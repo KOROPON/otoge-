@@ -29,6 +29,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
                     getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
                     ScoreComboCalculator.currentCombo = 0;
                     Shutter.blChange = "ToR";
+                    Shutter.blShutterChange = "Close";
                 }
             }));
         }

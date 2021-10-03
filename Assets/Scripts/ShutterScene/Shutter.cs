@@ -6,7 +6,8 @@ public class Shutter : MonoBehaviour
 {
     private Animator anim;
     public static string blChange;
-    private bool reserver;
+    public static string blShutterChange;
+    public static bool bltoPlay = false;
     public AudioSource openSE;
     public AudioSource closeSE;
     public static AudioSource music_m;
@@ -19,82 +20,89 @@ public class Shutter : MonoBehaviour
 
     void Update()
     {
-        switch (blChange)
+        switch (blShutterChange)
         {
             case "Open":
-                blChange = ""; reserver = true; anim.SetBool("blOpen", true); anim.SetBool("blTpFs", false); anim.SetBool("blTsFr", false);
-                anim.SetBool("blTpFr", false); anim.SetBool("blTsFp", false); anim.SetBool("blTr", false); anim.SetBool("blTs_F", false);
-                anim.SetBool("blTpFp", false);
+                anim.SetBool("bl", false);
+                anim.SetBool("blToPlay", false);
                 break;
-            case "ToPFrS": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTpFs", true); break;
-            case "ToPFrP": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTpFp", true); break;
-            case "ToSFrR": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTsFr", true); break;
-            case "ToPFrR": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTpFr", true); break;
-            case "ToSFrP": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTsFp", true); break;
-            case "ToR": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTr", true); break;
-            case "ToS_F": blChange = ""; if (reserver) anim.SetBool("blOpen", false); anim.SetBool("blTs_F", true); break;
-
+            case "Close":
+                anim.SetBool("bl", true);
+                break;
+            case "CloseToPlay":
+                anim.SetBool("blToPlay", true);
+                break;
         }
     }
 
+    void CloseFunction()
+    {
+        switch (blChange)
+        {
+            case "ToPFrP": 
+                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                AllNoteDestroy();
+                SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+                break;
+
+            case "ToSFrR":
+                SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+                break;
+            case "ToPFrR":
+                SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+                break;
+            case "ToSFrP":
+                SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
+                AllNoteDestroy();
+                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                break;
+            case "ToR":
+                SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                break;
+            case "ToS_F":
+                SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
+                break;
+        }
+    }
+
+    void CloseToPlayFunction()
+    {
+        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
+    }
+   
+    void PlaySongAudio()
+    {
+        if (bltoPlay)
+        {
+            Invoke("PlayAudio", 1f);
+            bltoPlay = false;
+        }
+    }
+   
     void OpenAudio()
     {
         openSE.Play();
     }
+    
     void CloseAudio()
     {
         closeSE.Play();
     }
+   
+    
+    
     void PlayAudio()
     {
         RhythmGamePresenter.PlaySongs();
         ChangeScene_PlayScene.playNoticed = true;
         SettingField.SetBool = true;
     }
-    void PlaySongAudio()
-    {
-        Invoke("PlayAudio", 1f);
-    }
-
-
-
-    void SelectLoadFirst()
-    {
-        SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
-    }
-    void PlayLoadFromSelect()
-    {
-        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
-    }
-    void ResultLoad()
-    {
-        SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
-    }
-    void SelectLoadFromResult()
-    {
-        SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
-    }
-    void PlayLoadFromResult()
-    {
-        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
-    }
-    void SelectLoadFromPlay()
-    {
-        SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-        AllNoteDestroy();
-        SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
-    }
-    void PlayLoadFromPlay()
-    {
-        SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
-        AllNoteDestroy();
-        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-    }
+    
     private void AllNoteDestroy()
     {
 
