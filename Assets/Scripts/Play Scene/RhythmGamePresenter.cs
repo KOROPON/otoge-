@@ -30,6 +30,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private List<GameObject> allKeyBeam = new List<GameObject>();
         
     [SerializeField] private static AudioSource _audioSource = null!;
+    public static AudioSource longPerfect = null!;
 
     public static List<TapNote> _tapNotes = new List<TapNote>();
     public static List<AboveTapNote> _aboveTapNotes = new List<AboveTapNote>();
@@ -38,6 +39,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
     public static List<BarLine> _barLines = new List<BarLine>();
+
+    //Effect用
+    public static List<HoldEffector> _holdEffectors = new List<HoldEffector>();
+    public static List<AboveHoldEffector> _aboveHoldEffectors = new List<AboveHoldEffector>();
+    public static List<AboveSlideEffector> _aboveSlideEffectors = new List<AboveSlideEffector>();
 
     //Judge用
     public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
@@ -54,6 +60,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     public static string musicname = null!;
     public static string dif = null!;
+    public float bpm;
 
     JudgeService judgeService;
 
@@ -94,6 +101,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
 
         Debug.Log("最大コンボ数: " + notJudgedNotes.Count);
+
+        foreach (BpmChangeEntity bpm in chartEntity.BpmChanges)
+        {
+            Debug.Log(bpm.Duration);
+        }
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
@@ -175,8 +187,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
             }
         }
-
-        Shutter.blChange = "Open";//シーンを開く
+        Shutter.bltoPlay = true;
+        Shutter.blShutterChange = "Open";//シーンを開く
     }
 
     public static void PlaySongs()
@@ -225,7 +237,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_holdNotePrefab);
+            var holdEffector = tapNote.transform.Find("HoldEffector").gameObject.GetComponent<HoldEffector>();
             tapNote.Initialize(note);
+            holdEffector.EffectorInitialize(note);
+            _holdEffectors.Add(holdEffector);
             _holdNotes.Add(tapNote);
         }
     }
@@ -235,7 +250,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_aboveHoldNotePrefab);
+            var aboveHoldEffector = tapNote.transform.Find("AboveHoldEffector").gameObject.GetComponent<AboveHoldEffector>();
             tapNote.Initialize(note);
+            aboveHoldEffector.EffectorInitialize(note);
+            _aboveHoldEffectors.Add(aboveHoldEffector);
             _aboveHoldNotes.Add(tapNote);
         }
     }
@@ -244,7 +262,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_aboveSlideNotePrefab);
+            var aboveSlideEffector = tapNote.transform.Find("AboveSlideEffector").gameObject.GetComponent<AboveSlideEffector>();
             tapNote.Initialize(note);
+            aboveSlideEffector.EffectorInitialize(note);
+            _aboveSlideEffectors.Add(aboveSlideEffector);
             _aboveSlideNotes.Add(tapNote);
         }
     }
@@ -271,38 +292,38 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         new Vector3(3f, 0, z),
 
         //上のレーン
-        new Vector3(-4.5f,0.1f, z),
-        new Vector3(-4.5f,0.4f, z),
-        new Vector3(-4.3f,1.1f,z),
-        new Vector3(-4.2f,1.5f,z),
-        new Vector3(-4f,2.1f,z),
-        new Vector3(-3.8f,2.4f,z),
-        new Vector3(-3.5f,3.1f,z),
-        new Vector3(-3.3f,3.3f,z),
-        new Vector3(-2.9f,3.8f,z),
-        new Vector3(-2.7f,4f,z),
-        new Vector3(-2.2f,4.4f,z),
-        new Vector3(-1.9f,4.6f,z),
-        new Vector3(-1.5f,4.8f,z),
-        new Vector3(-1.1f,5f,z),
-        new Vector3(-0.6f,5.1f,z),
-        new Vector3(-0.25f,5.1f,z),
-        new Vector3(0.25f,5.1f,z),
-        new Vector3(0.6f,5.1f,z),
-        new Vector3(1.1f,5f,z),
-        new Vector3(1.5f,4.8f,z),
-        new Vector3(1.9f,4.6f,z),
-        new Vector3(2.2f,4.4f,z),
-        new Vector3(2.7f,4f,z),
-        new Vector3(2.9f,3.8f,z),
-        new Vector3(3.3f,3.3f,z),
-        new Vector3(3.5f,3.1f,z),
-        new Vector3(3.8f,2.4f,z),
-        new Vector3(4f,2.1f,z),
-        new Vector3(4.2f,1.5f,z),
-        new Vector3(4.3f,1.1f,z),
-        new Vector3(4.5f,0.4f,z),
-        new Vector3(4.5f,0.1f,z),
+        new Vector3(4.5f,0.1f,0),
+        new Vector3(4.45f,0.4f,0),
+        new Vector3(4.3f,1.1f,0),
+        new Vector3(4.2f,1.5f,0),
+        new Vector3(4f,2f,0),
+        new Vector3(3.8f,2.35f,0),
+        new Vector3(3.5f,2.9f,0),
+        new Vector3(3.3f,3.1f,0),
+        new Vector3(2.9f,3.5f,0),
+        new Vector3(2.7f,3.6f,0),
+        new Vector3(2.2f,4f,0),
+        new Vector3(1.9f,4.1f,0),
+        new Vector3(1.5f,4.3f,0),
+        new Vector3(1.1f,4.4f,0),
+        new Vector3(0.6f,4.5f,0),
+        new Vector3(0.25f,4.55f,0),
+        new Vector3(-0.25f,4.55f,0),
+        new Vector3(-0.6f,4.5f,0),
+        new Vector3(-1.1f,4.4f,0),
+        new Vector3(-1.5f,4.3f,0),
+        new Vector3(-1.9f,4.1f,0),
+        new Vector3(-2.2f,4f,0),
+        new Vector3(-2.7f,3.6f,0),
+        new Vector3(-2.9f,3.5f,0),
+        new Vector3(-3.3f,3.1f,0),
+        new Vector3(-3.5f,2.9f,0),
+        new Vector3(-3.8f,2.35f,0),
+        new Vector3(-4f,2f,0),
+        new Vector3(-4.2f,1.5f,0),
+        new Vector3(-4.3f,1.1f,0),
+        new Vector3(-4.45f,0.4f,0),
+        new Vector3(-4.5f,0.1f,0),
     };
 
      IEnumerable<Vector3> screenPoints = lanePositions.Select(lanePosition3D => Camera.main.WorldToScreenPoint(lanePosition3D));// Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //
@@ -417,7 +438,20 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             note.Render(audioTime);
         }
+        foreach (var note in _holdEffectors)
+        {
+            note.EffectJudge(audioTime, longPerfect);
+        }
 
+        foreach (var note in _aboveHoldEffectors)
+        {
+            note.Render(audioTime, longPerfect);
+        }
+
+        foreach (var note in _aboveSlideEffectors)
+        {
+            note.Render(audioTime, longPerfect);
+        }
         for (int i = 0; i < _barLines.Count; i++)
         {
             _barLines[i].Render(_barLineTimes[i], audioTime);

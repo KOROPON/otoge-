@@ -15,6 +15,7 @@ public class ChangeScene : MonoBehaviour
         {
             startBool = false;
             Shutter.blChange = "ToS_F";
+            Shutter.blShutterChange = "Close";
             Invoke("StopTitle", 0.5f);
         }
     }

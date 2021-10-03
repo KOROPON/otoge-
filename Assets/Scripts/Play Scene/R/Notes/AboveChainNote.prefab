@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshFilter: {fileID: -8986892466806343100}
+  aboveChainTime: 0
 --- !u!23 &-4911574739154533605
 MeshRenderer:
   m_ObjectHideFlags: 0

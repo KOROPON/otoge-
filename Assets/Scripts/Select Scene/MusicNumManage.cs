@@ -15,6 +15,8 @@ public class MusicNumManage : MonoBehaviour
     private string _songName;
     private string _jacketPath;
     private bool _selectBool;
+    private bool _blChange;
+    private bool _blDifChange;
 
     public Text highScore;
     public Text title;
@@ -22,6 +24,7 @@ public class MusicNumManage : MonoBehaviour
     public Text hardLevel;
     public Text extremeLevel;
     public AudioSource audioO;
+    
     
     //public Text kujoLevel;
 
@@ -74,15 +77,17 @@ public class MusicNumManage : MonoBehaviour
             Transform childSongTrans = _scrollviewContent.GetChild(i);
             if (childSongTrans.gameObject.name == songName)
             {
+                _blChange = true;
                 Vector3 localPosition = _scrollviewContent.localPosition;
                 Vector3 goal = new Vector3(localPosition.x, -childSongTrans.localPosition.y,
                     localPosition.z);
                 while (Vector3.Distance(_scrollviewContent.localPosition, goal) > 1)
                 {
                     _scrollviewContent.localPosition = Vector3.Lerp(_scrollviewContent.localPosition,
-                       goal, 0.2f);
+                       goal, 0.4f);
                     yield return null;
                 }
+                _blChange = false;
             }
         }
     }
@@ -92,9 +97,26 @@ public class MusicNumManage : MonoBehaviour
         _jacketPath = "Jacket/" + musicName + "_jacket";
         MusicInfo("Songs/Music Select/" + musicName + "_intro", _jacketPath);
         title.text = musicName;
+        if (!_getHighScores.GetLock(musicName))
+        {
+            GameObject extreme = GameObject.Find("Extreme");
+            extreme.GetComponent<Image>().color = new Color32(174, 174, 174, 255);
+            extreme.GetComponent<Button>().enabled = false;
+            extreme.GetComponentsInChildren<Image>()[1].enabled = true;
+        }
+        else
+        {
+            GameObject extreme = GameObject.Find("Extreme");
+            extreme.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            extreme.GetComponent<Button>().enabled = true;
+            extreme.GetComponentsInChildren<Image>()[1].enabled = false;
+        }
         PlayerPrefs.SetString("selected_song", musicName);
         _songName = musicName;
-        StartCoroutine(JumpToSong(_songName));
+        if (!_blChange)
+        {
+            StartCoroutine(JumpToSong(_songName));
+        }
         string diff = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
         DisplayRank(_songName, diff);
@@ -128,7 +150,7 @@ public class MusicNumManage : MonoBehaviour
         
         SelectSong(PlayerPrefs.GetString("selected_song"));
         Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
-        Shutter.blChange = "Open";
+        Shutter.blShutterChange = "Open"; 
         _audioSource.Play();
     }
 
@@ -139,8 +161,8 @@ public class MusicNumManage : MonoBehaviour
             if (_selectBool)
             {
               _selectBool = false;
-              Shutter.blChange = "ToPFrS";
-              RhythmGamePresenter.musicname = obj.name;
+                Shutter.blShutterChange = "CloseToPlay";
+                RhythmGamePresenter.musicname = obj.name;
               _audioSource.Stop();
               audioO.Play();
             }
@@ -162,9 +184,10 @@ public class MusicNumManage : MonoBehaviour
         };
     }
 
+   
     public void Difficulty(GameObject diff)
     {
-        
+       
         PlayerPrefs.SetString("difficulty", diff.name);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
@@ -176,6 +199,21 @@ public class MusicNumManage : MonoBehaviour
             GameObject song = _scrollviewContent.GetChild(i).gameObject;
             song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
             Image rankSprite = song.GetComponentsInChildren<Image>()[1];
+            Image songLock = song.GetComponentsInChildren<Image>()[2];
+            Button determineButton = song.GetComponent<Button>();
+            if (diff.name == "Extreme" && !_getHighScores.GetLock(song.name))
+            {
+                songLock.enabled = true;
+                determineButton.enabled = false;
+                song.GetComponent<Image>().color = new Color32(174, 174, 174, 255);
+            }
+            else
+            {
+                songLock.enabled = false;
+                determineButton.enabled = true;
+                song.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            }
+
             string rank = _getHighScores.GetRank(song.name, diff.name);
             if (rank != "")
             {
@@ -194,10 +232,27 @@ public class MusicNumManage : MonoBehaviour
             }
         }
     }
+    private IEnumerator JumpInDifficulty()
+    {
+        _blDifChange = true;
+        Vector3 goal = _scrollView.localPosition;
+        _scrollView.localPosition = new Vector3(750, goal.y, goal.z);
+        while (Vector3.Distance(_scrollView.localPosition, goal) > 1)
+        {
+            _scrollView.localPosition = Vector3.Lerp(_scrollView.localPosition,
+               goal, 0.4f);
+            yield return null;
+        }
+        _blDifChange = false;
+    }
 
     public void DifficultAnim()
     {
-        FrameAnimation.anim2.SetBool("blDifChange", true);
+        if (!_blDifChange)
+        {
+            StartCoroutine(JumpInDifficulty());
+            Debug.Log("s");
+        }
     }
     
 }

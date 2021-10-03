@@ -61,11 +61,13 @@ public class SettingField : MonoBehaviour
         Time.timeScale = 1;
         ChangeScene_PlayScene.playStopped = false;
         Shutter.blChange = "ToSFrP";
+        Shutter.blShutterChange = "Close";
     }
     public void Retry()
     {
         Time.timeScale = 1;
         ChangeScene_PlayScene.playStopped = false;
         Shutter.blChange = "ToPFrP";
+        Shutter.blShutterChange = "Close";
     }
 }
