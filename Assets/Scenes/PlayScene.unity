@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 123215198}
   - component: {fileID: 123215200}
   - component: {fileID: 123215199}
-  - component: {fileID: 123215201}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -202,20 +201,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123215197}
   m_CullTransparentMesh: 1
---- !u!114 &123215201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123215197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 4
-  m_AspectRatio: 1.6666666
 --- !u!1 &147335559
 GameObject:
   m_ObjectHideFlags: 0
@@ -5504,7 +5489,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1127278212}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &411538559
 BoxCollider:
@@ -16709,7 +16694,6 @@ MonoBehaviour:
   text1: {fileID: 646217737}
   text2: {fileID: 620664342}
   songAudio: {fileID: 947960482}
-  gameObject: {fileID: 0}
   _tapNotePrefab: {fileID: -7510291413552421599, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
   _holdNotePrefab: {fileID: 158867706336414473, guid: be9527020d91e4427bc90b1b562d62c4, type: 3}
   _aboveTapNotePrefab: {fileID: 1318370044206668128, guid: 317099b47c56742d59638d02f46e1ce2, type: 3}
@@ -16718,7 +16702,6 @@ MonoBehaviour:
   _aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   _barLinePrefab: {fileID: -3209758814054081755, guid: 8b44f42a97eaa4321894b0c1df0165b9, type: 3}
   _keyBeamPrefab: {fileID: 524947537259370129, guid: f60a59b1aeccf0e4c910521002752124, type: 3}
-  bpm: 0
 --- !u!114 &1036589698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16795,6 +16778,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1036589696}
+  - {fileID: 1203920927}
   - {fileID: 411538558}
   m_Father: {fileID: 0}
   m_RootOrder: 2
