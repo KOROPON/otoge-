@@ -25,9 +25,9 @@ public class ChangeScene_PlayScene : MonoBehaviour
                 if (playStopped)
                 {
                     getHighScores.Awake();
-                    getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCaliculator.currentScore);
+                    getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCalculator.currentScore);
                     getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
-                    ScoreComboCaliculator.currentCombo = 0;
+                    ScoreComboCalculator.currentCombo = 0;
                     Shutter.blChange = "ToR";
                     Shutter.blShutterChange = "Close";
                 }

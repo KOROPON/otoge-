@@ -31,7 +31,7 @@ public class ResultScore : MonoBehaviour
     {
         backBool = true;
         retryBool = true;
-        score = ScoreComboCaliculator.currentScore;
+        score = ScoreComboCalculator.currentScore;
         switch (score)
         {
           //case int n when n >= 995000: scoreRank = "SSS"; break;
@@ -47,11 +47,11 @@ public class ResultScore : MonoBehaviour
             PlayerPrefs.SetFloat("currentScore", 0f);
         }
         scoreinResult.text = String.Format("{0, 9: 0,000,000}", score);
-        maxCombo.text = ScoreComboCaliculator.highCombo.ToString();
-        perfectCom.text = ScoreComboCaliculator.sumPerfect.ToString();
-        goodCom.text = ScoreComboCaliculator.sumGood.ToString();
-        badCom.text = ScoreComboCaliculator.sumBad.ToString();
-        missCom.text = ScoreComboCaliculator.sumMiss.ToString();
+        maxCombo.text = ScoreComboCalculator.highCombo.ToString();
+        perfectCom.text = ScoreComboCalculator.sumPerfect.ToString();
+        goodCom.text = ScoreComboCalculator.sumGood.ToString();
+        badCom.text = ScoreComboCalculator.sumBad.ToString();
+        missCom.text = ScoreComboCalculator.sumMiss.ToString();
         titleinResult.text = RhythmGamePresenter.musicname;
         difficultyinResult.text = RhythmGamePresenter.dif;
         jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleinResult.text + "_jacket");
@@ -71,12 +71,13 @@ public class ResultScore : MonoBehaviour
         //colorinResult =
         //未実装00
 
-        ScoreComboCaliculator.currentScore = 0;
-        ScoreComboCaliculator.highCombo = 0;
-        ScoreComboCaliculator.sumPerfect = 0;
-        ScoreComboCaliculator.sumGood = 0;
-        ScoreComboCaliculator.sumBad = 0;
-        ScoreComboCaliculator.sumMiss = 0;
+        ScoreComboCalculator.currentScore = 0;
+        ScoreComboCalculator.highCombo = 0;
+        ScoreComboCalculator.sumPerfect = 0;
+        ScoreComboCalculator.sumGood = 0;
+        ScoreComboCalculator.sumBad = 0;
+        ScoreComboCalculator.sumMiss = 0;
+        Shutter.blChange = "Open";
         Shutter.blShutterChange = "Open";
         resultMusic.Play();
     }

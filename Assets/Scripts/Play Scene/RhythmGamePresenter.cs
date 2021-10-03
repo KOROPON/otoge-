@@ -38,6 +38,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
     public static List<BarLine> _barLines = new List<BarLine>();
 
+    public static List<ReilasNoteEntity> tapNotes = new List<ReilasNoteEntity>();
+    public static List<ReilasNoteEntity> internalNotes = new List<ReilasNoteEntity>();
+    public static List<ReilasNoteEntity> chainNotes = new List<ReilasNoteEntity>();
     //Effect用
     public static List<HoldEffector> _holdEffectors = new List<HoldEffector>();
     public static List<AboveHoldEffector> _aboveHoldEffectors = new List<AboveHoldEffector>();
@@ -53,12 +56,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<List<float>> notJudgedInternalNotes = new List<List<float>>();
     public static List<List<float>> notJudgedAboveInternalNotes = new List<List<float>>();
 
-
+    public static bool[] tapNoteJudge = Array.Empty<bool>();
+    public static bool[] internalNoteJudge = Array.Empty<bool>();
+    public static bool[] chainNoteJudge = Array.Empty<bool>();
+    
     private ReilasChartEntity _chartEntity = null!;
 
     public static string musicname = null!;
     public static string dif = null!;
-    public float bpm;
+    
+    public static bool[] laneTapStates = new bool[36];
+    
 
     JudgeService judgeService;
 
@@ -71,12 +79,23 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private List<float> _barLineTimes = BarLine.BarLines;
 
+    private IEnumerable<ReilasNoteEntity> GetNoteTypes(ReilasChartEntity chart, string type)
+    {
+        return type switch
+        {
+            "Tap" => chart.Notes.Where(note => note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide),
+            "Internal" => chart.Notes.Where(note => note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal),
+            "Chain" => chart.Notes.Where(note => note.Type == NoteType.AboveChain),
+            _=> chart.Notes.Where(note => note.Type == NoteType.None)
+        };
+    }
+    
     private void Awake()
     {
         judgeService = new JudgeService();
         AwakeAsync().Forget();
     }
-
+    
     private async UniTask AwakeAsync()
     {
         //FindObjectOfType<Variable>().enabled = false;
@@ -125,12 +144,20 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         // chartEntity
         _chartEntity = chartEntity;
 
-        SpawnTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
-        SpawnChainNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
-        SpawnHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
-        SpawnAboveTapNotes(chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
-        SpawnAboveHoldNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
-        SpawnAboveSlideNotes(chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
+        tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
+        internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
+        chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
+        
+        tapNoteJudge = new bool[tapNotes.Count];
+        internalNoteJudge = new bool[internalNotes.Count];
+        chainNoteJudge = new bool[chainNotes.Count];
+
+        SpawnTapNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
+        SpawnChainNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
+        SpawnHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
+        SpawnAboveTapNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
+        SpawnAboveHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
+        SpawnAboveSlideNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
         SpawnBarLines(_barLineTimes);
 
 
@@ -284,10 +311,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static Vector3[] lanePositions = new Vector3[]
     {
         //下のレーン
-        new Vector3(-3.3f, 0, z),
-        new Vector3(-1.25f, 0, z),
-        new Vector3(1.25f, 0, z),
-        new Vector3(3f, 0, z),
+        new Vector3(3f, 0, 0),
+        new Vector3(1.25f, 0, 0),
+        new Vector3(-1.25f, 0, 0),
+        new Vector3(-3f, 0, 0),
 
         //上のレーン
         new Vector3(4.5f,0.1f,0),
@@ -332,29 +359,37 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
           return;
         }
-
+    
         InputService.aboveLaneTapStates.Clear();
-
+        for (var i = 0; i < laneTapStates.Length; i++)
+        {
+            laneTapStates[i] = false;
+        }
+        
+        var allTouch = Input.touches;
+        Array.Resize(ref allTouch,0);
         var touches = Input.touches;
+        text2.text = touches.Count().ToString();
 
         foreach (var touch in touches)
         {
             text2.text = touches[0].position.ToString();
             //gameObject.transform.position = new Vector3()
-            var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
-            Debug.Log(nearestLaneIndex);
-            bool start = false;
+            var lane = screenPoints.Select((screenPoint, index) => (screenPoint, index))
+                .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First();
+            var distance = Vector2.Distance(lane.screenPoint, touch.position);
+            var nearestLaneIndex = distance < 3 ? lane.index : 40;//押した場所に一番近いレーンの番号
+            //Debug.Log(nearestLaneIndex);
+            bool start = touch.phase == TouchPhase.Began;
             // touch.position
             // このフレームで押されたよん
-            if (touch.phase == TouchPhase.Began)
-            {
-                start = true;
-            }
 
-            InputService.aboveLaneTapStates.Add(new LaneTapState
+            if (nearestLaneIndex < 36)
             {
-                laneNumber = nearestLaneIndex, tapStarting = start
-            });
+                laneTapStates[nearestLaneIndex] = true;
+            }
+            
+            InputService.aboveLaneTapStates.Add(new LaneTapState{laneNumber = nearestLaneIndex, tapStarting = start});
         }
 
 
@@ -397,8 +432,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
        
 
-        //var judgeService = new JudgeService();
-        judgeService.Judge(judgeTime, InputService.aboveLaneTapStates);
+        judgeService.Judge(judgeTime);
 
     }
 

@@ -1,252 +1,181 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.UI;
+using Reilas;
 
 public enum JudgeResultType
 {
     Perfect,
     Good,
     Bad,
-    Miss
+    Miss,
+    NotJudgedYet
 }
 
-/// <summary>
-/// ���茋��
-/// </summary>
-public class JudgeResult
-{
-    public JudgeResultType ResultType;
-}
-public class JudgeResultInHold
-{
-    public float time;
-    public bool perfect;
-}
-
-
-
-/// <summary>
-/// �������s���T�[�r�X
-/// </summary>
 public class JudgeService : MonoBehaviour
 {
-    public static List<JudgeResult> allJudgeType = new List<JudgeResult>();//�������`����
-    public static List<JudgeResultInHold> judgedInHold = new List<JudgeResultInHold>(); //�������m�[�c�̓����������`����
+    private int _tapJudgeStartIndex = 0;
+    private int _internalJudgeStartIndex = 0;
+    private int _chainJudgeStartIndex = 0;
 
-
-    void RemoveNoteInList(List<int> delNums, List<List<float>> noteList)
+    public static List<JudgeResultType> allJudge = new List<JudgeResultType>();
+    
+    private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
-        for (int i = delNums.Count - 1; i >= 0; i--)
+        {"Tap Perfect", 0.041f},
+        {"Tap Good", 0.058f},
+        {"Tap Bad", 0.075f},
+        {"Internal", 0.090f},
+        {"Chain", 0.025f}
+    };
+
+    private static float CalculateDifference(float currentTime, float judgeTime, string noteType)
+    {
+        return noteType switch
         {
-            noteList.RemoveAt(delNums[i]);
-        }
+            "Tap" => Math.Abs(currentTime - judgeTime),
+            "Internal" => judgeTime - currentTime,
+            "Chain" => currentTime - judgeTime,
+            _ => throw new Exception()
+        };
     }
 
-
-
-
-    void MissTapJudge(float currentTime, List<List<float>> notesList, bool above)
+    private bool TimeCheck(float currentTime, float judgeTime, string flag, string noteType)
     {
-        int limit = notesList.Count() - 1;
-
-        for(int i = 0; i <= limit; i++)
+        var difference = CalculateDifference(currentTime, judgeTime, noteType);
+        return difference >= 0 && difference <= _judgeSeconds[flag] || currentTime < judgeTime;
+    }
+    
+    private JudgeResultType InternalOrChain(float currentTime, ReilasNoteEntity note, bool tapState, string internalOrChain)
+    {
+        var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain, internalOrChain);
+        if (tapState)
         {
-            if(notesList[i][0] - currentTime > -0.075f)
+            return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
+        }
+
+        return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
+    }
+
+    private bool GetNoteType(ReilasNoteEntity note, string noteType)
+    {
+        return noteType switch
+        {
+            "Tap" => note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide,
+            "Internal" => note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal,
+            "Chain" => note.Type == NoteType.AboveChain,
+            _=> false
+        };
+    }
+
+    private bool GetTapState(ReilasNoteEntity note)
+    {
+        var tapState = RhythmGamePresenter.laneTapStates;
+        if (note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold ||
+            note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlide ||
+            note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveChain)
+        {
+            int noteLanePosition = note.LanePosition + 4;
+            switch (noteLanePosition)
             {
-                return;
-            }
-            else
-            {
-                //Debug.Log(RhythmGamePresenter._tapNotes.Count());
-                if(!above)
+                case 4:
                 {
-                    allJudgeType.Add(new JudgeResult
+                    for (var i = noteLanePosition; i <= noteLanePosition + note.Size; i++)
                     {
-                        ResultType = JudgeResultType.Miss
-                    });
-                    RhythmGamePresenter._tapNotes[0].NoteDestroy(0);
-                    RhythmGamePresenter.notJudgedTapNotes.RemoveAt(0);
-                    i--;
-                    limit--;
-                }
-                else
-                {
-                    allJudgeType.Add(new JudgeResult
-                    {
-                        ResultType = JudgeResultType.Miss
-                    });
-                    RhythmGamePresenter._aboveTapNotes[0].NoteDestroy(0);
-                    RhythmGamePresenter.notJudgedAboveTapNotes.RemoveAt(0);
-                    i--;
-                    limit--;
-                }
-            }
-        }
-    }
-
-    void MissHoldJudge(float currentTime, List<List<float>> notesList)
-    {
-        List<int> delNum = new List<int>();
-        int del = 0;
-        foreach (List<float> note in notesList)
-        {
-            if (note[0] - currentTime > -0.075f)
-            {
-                return;
-            }
-            else
-            {
-                allJudgeType.Add(new JudgeResult
-                {
-                    ResultType = JudgeResultType.Miss
-                });
-                delNum.Add(del);
-            }
-            del++;
-        }
-        RemoveNoteInList(delNum, notesList);
-    }
-
-    void MissInternalJudge(float currentTime, List<List<float>> notesList)
-    {
-        List<int> delNum = new List<int>();
-        int del = 0;
-        foreach (List<float> note in notesList)
-        {
-            if (note[0] - currentTime > 0)
-            {
-                return;
-            }
-            else
-            {
-                judgedInHold.Add(new JudgeResultInHold
-                {
-                    time = note[0],
-                    perfect = false
-                });
-                delNum.Add(del);
-            }
-            del++;
-        }
-        RemoveNoteInList(delNum, notesList);
-    }
-
-    void MissChainJudge(float currentTime, List<List<float>> notesList)
-    {
-        int limit = notesList.Count() - 1;
-     
-        for (int i = 0; i <= limit; i++)
-        {
-            if (notesList[i][0] - currentTime > -0.025f)
-            {
-                return;
-            }
-            else
-            {
-                allJudgeType.Add(new JudgeResult
-                {
-                    ResultType = JudgeResultType.Miss
-                });
-                RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
-                RhythmGamePresenter.notJudgedAboveChainNotes.RemoveAt(0);
-                i--;
-                limit--;
-            }
-        }
-    }
-    void ChainJudge(List<List<float>> tapType, LaneTapState tapstate, float currentTime)
-    {
-        foreach (List<float> tap in tapType)
-        {
-            float orderNum = 0;
-            List<float> _judgedIndex = new List<float>();
-            if (tap[0] - currentTime >= -0.025f)
-            {
-                if (tap[0] - currentTime < 0f)
-                {
-                    if (tap[1] == 0)
-                    {
-                        if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
-                        {
-                            Debug.Log("Chainperfect");
-                            _judgedIndex.Add(orderNum);
-                        }
+                        if (tapState[i]) return true;
                     }
-                    else
-                    {
-                        if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
-                        {
-                            Debug.Log("Chainperfect");
-                            _judgedIndex.Add(orderNum);
-                        }
-                    }
+
+                    break;
                 }
-                else
+                case 35:
                 {
-                    _judgedIndex.OrderByDescending(note => note);
-                    foreach (float x in _judgedIndex)
+                    for (var i = noteLanePosition - 1; i <= noteLanePosition + note.Size - 1; i++)
                     {
-                        tapType.RemoveAt((int)x);
-                        RhythmGamePresenter._aboveChainNotes[(int) x].NoteDestroy();
+                        if (tapState[i]) return true;
                     }
+
+                    break;
+                }
+                default:
+                {
+                    for (var i = noteLanePosition - 1; i <= noteLanePosition + note.Size; i++)
+                    {
+                        if (tapState[i]) return true;
+                    }
+
                     break;
                 }
             }
-            orderNum++;
         }
+        else
+        {
+            if (tapState[note.LanePosition]) return true;
+        }
+
+        return false;
     }
 
-    void InternalJudge(bool isBelow, List<List<float>> tapType, LaneTapState tapstate, float currentTime, List<float> _judgeInternalNotes)
+    public void Judge(float currentTime)
     {
-        List<float> _judgedIndex = new List<float>();
-        float orderNum = 0;
-        foreach (List<float> tap in tapType)
+        var tapNotes = RhythmGamePresenter.tapNotes;
+        for (var i = _tapJudgeStartIndex; i < tapNotes.Count; i++)
         {
-            if (tap[0] - currentTime <= 0.090f)
+            if (RhythmGamePresenter.tapNoteJudge[i]) continue;
+            JudgeResultType judgeResult;               
+            var timeDifference = tapNotes[i].JudgeTime - currentTime;
+            if (timeDifference > _judgeSeconds["Tap Bad"]) break;
+            var difference = CalculateDifference(currentTime, tapNotes[i].JudgeTime, "Tap");
+            var timeCheck = TimeCheck(currentTime, tapNotes[i].JudgeTime, "Tap Bad", "Tap");
+            if (GetTapState(tapNotes[i]))
             {
-                if (isBelow)
+                judgeResult = difference switch
                 {
-                    if (tap[1] == tapstate.laneNumber)
-                    {
-                        _judgeInternalNotes.Add(tap[0]);
-                        _judgedIndex.Add(orderNum);
-                    }
-                }
-                else
-                {
-                    if (tap[1] == 0)
-                    {
-                        if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
-                        {
-                            _judgeInternalNotes.Add(tap[0]);
-                            _judgedIndex.Add(orderNum);
-                        }
-                    }
-                    else
-                    {
-                        if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
-                        {
-                            _judgeInternalNotes.Add(tap[0]);
-                            _judgedIndex.Add(orderNum);
-                        }
-                    }
-                }
+                    var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
+                    var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
+                    var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
+                    _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
+                };
             }
             else
             {
-                _judgedIndex.OrderByDescending(note => note);
-                foreach (float x in _judgedIndex)
-                {
-                    tapType.RemoveAt((int) x);
-                }
-                break;
+                judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
             }
-            orderNum++;
+            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
+            RhythmGamePresenter.tapNoteJudge[i] = true;
+            _tapJudgeStartIndex++;
+        }
+        
+        var internalNotes = RhythmGamePresenter.internalNotes;
+        for (var i = _internalJudgeStartIndex; i < internalNotes.Count; i++)
+        {
+            if (RhythmGamePresenter.internalNoteJudge[i]) continue;
+            var timeDifference = internalNotes[i].JudgeTime - currentTime;
+            if (timeDifference > _judgeSeconds["Internal"]) break;
+            var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
+            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
+            RhythmGamePresenter.internalNoteJudge[i] = true;
+            _internalJudgeStartIndex++;
+        }
+        
+        var chainNotes = RhythmGamePresenter.chainNotes;
+        for (var i = _chainJudgeStartIndex; i < chainNotes.Count; i++)
+        {
+            if(RhythmGamePresenter.chainNoteJudge[i]) continue;
+            var timeDifference = chainNotes[i].JudgeTime - currentTime;
+            if (timeDifference > 0) break;
+            var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
+            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
+            RhythmGamePresenter.chainNoteJudge[i] = true;
+            _chainJudgeStartIndex++;
+
         }
     }
 
+    
+    /*
     private void TimeJudge(bool isBelow, float typeNum, List<List<float>> tapType, LaneTapState tapstate, float currentTime, List<List<float>> _tapNotes)
     {
         bool isJudged = false;
@@ -363,6 +292,221 @@ public class JudgeService : MonoBehaviour
 
     }
 
+     
+
+
+    private void RemoveNoteInList(List<int> delNums, List<List<float>> noteList)
+    {
+        for (int i = delNums.Count - 1; i >= 0; i--)
+        {
+            noteList.RemoveAt(delNums[i]);
+        }
+    }
+
+
+
+
+    private void MissTapJudge(float currentTime, List<List<float>> notesList, bool above)
+    {
+        int limit = notesList.Count() - 1;
+
+        for(int i = 0; i <= limit; i++)
+        {
+            if(notesList[i][0] - currentTime > -0.075f)
+            {
+                return;
+            }
+            else
+            {
+                //Debug.Log(RhythmGamePresenter._tapNotes.Count());
+                if(!above)
+                {
+                    AllJudgeType.Add(new JudgeResult
+                    {
+                        resultType = JudgeResultType.Miss
+                    });
+                    RhythmGamePresenter._tapNotes[0].NoteDestroy(0);
+                    RhythmGamePresenter.notJudgedTapNotes.RemoveAt(0);
+                    i--;
+                    limit--;
+                }
+                else
+                {
+                    AllJudgeType.Add(new JudgeResult
+                    {
+                        resultType = JudgeResultType.Miss
+                    });
+                    RhythmGamePresenter._aboveTapNotes[0].NoteDestroy(0);
+                    RhythmGamePresenter.notJudgedAboveTapNotes.RemoveAt(0);
+                    i--;
+                    limit--;
+                }
+            }
+        }
+    }
+
+    void MissHoldJudge(float currentTime, List<List<float>> notesList)
+    {
+        List<int> delNum = new List<int>();
+        int del = 0;
+        foreach (List<float> note in notesList)
+        {
+            if (note[0] - currentTime > -0.075f)
+            {
+                return;
+            }
+            else
+            {
+                AllJudgeType.Add(new JudgeResult
+                {
+                    resultType = JudgeResultType.Miss
+                });
+                delNum.Add(del);
+            }
+            del++;
+        }
+        RemoveNoteInList(delNum, notesList);
+    }
+
+    void MissInternalJudge(float currentTime, List<List<float>> notesList)
+    {
+        List<int> delNum = new List<int>();
+        int del = 0;
+        foreach (List<float> note in notesList)
+        {
+            if (note[0] - currentTime > 0)
+            {
+                return;
+            }
+            else
+            {
+                JudgedInHold.Add(new JudgeResultInHold
+                {
+                    time = note[0],
+                    perfect = false
+                });
+                delNum.Add(del);
+            }
+            del++;
+        }
+        RemoveNoteInList(delNum, notesList);
+    }
+
+    void MissChainJudge(float currentTime, List<List<float>> notesList)
+    {
+        int limit = notesList.Count() - 1;
+     
+        for (int i = 0; i <= limit; i++)
+        {
+            if (notesList[i][0] - currentTime > -0.025f)
+            {
+                return;
+            }
+            else
+            {
+                AllJudgeType.Add(new JudgeResult
+                {
+                    resultType = JudgeResultType.Miss
+                });
+                RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
+                RhythmGamePresenter.notJudgedAboveChainNotes.RemoveAt(0);
+                i--;
+                limit--;
+            }
+        }
+    }
+    void ChainJudge(List<List<float>> tapType, LaneTapState tapstate, float currentTime)
+    {
+        foreach (List<float> tap in tapType)
+        {
+            float orderNum = 0;
+            List<float> _judgedIndex = new List<float>();
+            if (tap[0] - currentTime >= -0.025f)
+            {
+                if (tap[0] - currentTime < 0f)
+                {
+                    if (tap[1] == 0)
+                    {
+                        if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
+                        {
+                            Debug.Log("Chainperfect");
+                            _judgedIndex.Add(orderNum);
+                        }
+                    }
+                    else
+                    {
+                        if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
+                        {
+                            Debug.Log("Chainperfect");
+                            _judgedIndex.Add(orderNum);
+                        }
+                    }
+                }
+                else
+                {
+                    _judgedIndex.OrderByDescending(note => note);
+                    foreach (float x in _judgedIndex)
+                    {
+                        tapType.RemoveAt((int)x);
+                        RhythmGamePresenter._aboveChainNotes[(int) x].NoteDestroy();
+                    }
+                    break;
+                }
+            }
+            orderNum++;
+        }
+    }
+
+    void InternalJudge(bool isBelow, List<List<float>> tapType, LaneTapState tapstate, float currentTime, List<float> _judgeInternalNotes)
+    {
+        List<float> _judgedIndex = new List<float>();
+        float orderNum = 0;
+        foreach (List<float> tap in tapType)
+        {
+            if (tap[0] - currentTime <= 0.090f)
+            {
+                if (isBelow)
+                {
+                    if (tap[1] == tapstate.laneNumber)
+                    {
+                        _judgeInternalNotes.Add(tap[0]);
+                        _judgedIndex.Add(orderNum);
+                    }
+                }
+                else
+                {
+                    if (tap[1] == 0)
+                    {
+                        if (4 <= tapstate.laneNumber && tapstate.laneNumber <= tap[2] + 4)
+                        {
+                            _judgeInternalNotes.Add(tap[0]);
+                            _judgedIndex.Add(orderNum);
+                        }
+                    }
+                    else
+                    {
+                        if (3 + tap[1] <= tapstate.laneNumber && tapstate.laneNumber <= 4 + tap[1] + tap[2])
+                        {
+                            _judgeInternalNotes.Add(tap[0]);
+                            _judgedIndex.Add(orderNum);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                _judgedIndex.OrderByDescending(note => note);
+                foreach (float x in _judgedIndex)
+                {
+                    tapType.RemoveAt((int) x);
+                }
+                break;
+            }
+            orderNum++;
+        }
+    }
+
+
 
     List<float> _judgeInternalNotes = new List<float>();
     public void Judge(float currentTime, List<LaneTapState> tapStates)
@@ -421,9 +565,9 @@ public class JudgeService : MonoBehaviour
             {
                 for (int a = 0; a < _judgeTapNotes.Count(); a++)//同じタイミングのノーツ分繰り返す
                 {
-                    allJudgeType.Add(new JudgeResult
+                    AllJudgeType.Add(new JudgeResult
                     {
-                        ResultType = JudgeResultType.Perfect
+                        resultType = JudgeResultType.Perfect
                     });
                     Debug.Log("perfect");
                 }
@@ -432,9 +576,9 @@ public class JudgeService : MonoBehaviour
             {
                 for (int a = 0; a < _judgeTapNotes.Count(); a++)//同じタイミングのノーツ分繰り返す
                 {
-                    allJudgeType.Add(new JudgeResult
+                    AllJudgeType.Add(new JudgeResult
                     {
-                        ResultType = JudgeResultType.Good
+                        resultType = JudgeResultType.Good
                     });
                     Debug.Log("good");
                 }
@@ -443,9 +587,9 @@ public class JudgeService : MonoBehaviour
             {
                 for (int a = 0; a < _judgeTapNotes.Count(); a++)//同じタイミングのノーツ分繰り返す
                 {
-                    allJudgeType.Add(new JudgeResult
+                    AllJudgeType.Add(new JudgeResult
                     {
-                        ResultType = JudgeResultType.Bad
+                        resultType = JudgeResultType.Bad
                     });
                     Debug.Log("bad");
                 }
@@ -474,6 +618,6 @@ public class JudgeService : MonoBehaviour
 
         }
 
-    }
+    }*/
 
 }

@@ -21,12 +21,12 @@ public class ClearJudge : MonoBehaviour
    }
    void Update()
    {
-     if (gagepoint < (int) Mathf.Floor(ScoreComboCaliculator.currentCombo / splitting))
+     if (gagepoint < (int) Mathf.Floor(ScoreComboCalculator.currentCombo / splitting))
      {
        gageCom++;
        gagepoint++;
      }
-     if (gagepoint > (int) Mathf.Floor(ScoreComboCaliculator.currentCombo / splitting))
+     if (gagepoint > (int) Mathf.Floor(ScoreComboCalculator.currentCombo / splitting))
      {
        gageCom += (-3);
        gagepoint = 0;

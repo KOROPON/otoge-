@@ -33,11 +33,9 @@ namespace Reilas
             }
         }
 
-        public void NoteDestroy(int noteNum)
+        public void NoteDestroy()
         {
-            Debug.Log(this.gameObject);
             Destroy(this.gameObject);
-            RhythmGamePresenter._tapNotes.RemoveAt(noteNum);
         }
     }
 }
