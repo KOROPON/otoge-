@@ -3,9 +3,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using Reilas;
 using Rhythmium;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum JudgeResultType
 {
@@ -16,19 +18,25 @@ public enum JudgeResultType
     NotJudgedYet
 }
 
-public class JudgeResult
-{
-    public JudgeResultType resultType;
-}
-
-public class JudgeResultInHold
-{
-    public float time;
-    public bool perfect;
-}
-
 public class JudgeService : MonoBehaviour
 {
+    private int _tapJudgeStartIndex = 0;
+    private int _internalJudgeStartIndex = 0;
+    private int _chainJudgeStartIndex = 0;
+    
+    public static int sumPerfect;
+    public static int sumGood;
+    public static int sumBad;
+    public static int sumMiss;
+    public static int currentCombo;
+    public static int highCombo;
+    public static　int currentScore;
+    
+    private int _sumScore = 4;
+    private float _score;
+    
+    public Text comboText;
+    public Text scoreText;
     
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
@@ -55,29 +63,11 @@ public class JudgeService : MonoBehaviour
         var difference = CalculateDifference(currentTime, judgeTime, noteType);
         return difference >= 0 && difference <= _judgeSeconds[flag] || currentTime < judgeTime;
     }
-
     
-    private JudgeResultType Tap(float currentTime, ReilasNoteEntity note, bool time, bool place)
-    {
-        var difference = CalculateDifference(currentTime, note.JudgeTime, "Tap");
-        var timeCheck = TimeCheck(currentTime, note.JudgeTime, "Tap Bad", "Tap");
-        if (time && place)
-        {
-            return difference switch
-            {
-                var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
-                var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
-                var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
-                _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
-            };
-        }
-        return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
-    }
-
-    private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool time, bool place, string internalOrChain)
+    private JudgeResultType InternalOrChain(float currentTime, ReilasNoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain, internalOrChain);
-        if (time && place)
+        if (tapState)
         {
             return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
         }
@@ -85,26 +75,129 @@ public class JudgeService : MonoBehaviour
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }
 
-
-    private void TapJudge(float currentTime, IEnumerable<ReilasNoteEntity> notes, bool time, bool place)
+    private bool GetNoteType(ReilasNoteEntity note, string noteType)
     {
-        var reilasNoteEntities = notes as ReilasNoteEntity[] ?? notes.ToArray();
-        for (int i = 0; i < reilasNoteEntities.Length; i++)
+        return noteType switch
         {
-            if (!_tapJudged[i])
+            "Tap" => note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide,
+            "Internal" => note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal,
+            "Chain" => note.Type == NoteType.AboveChain,
+            _=> false
+        };
+    }
+
+    private bool GetTapState(ReilasNoteEntity note)
+    {
+        var tapState = RhythmGamePresenter.laneTapStates;
+        if (note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold ||
+            note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlide ||
+            note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveChain)
+        {
+            for (var i = note.LanePosition - 1 + 4; i <= note.LanePosition + note.Size + 4; i++)
             {
-                Tap(currentTime, reilasNoteEntities[i], time, place);
-                _tapJudged[i] = true;
+                if (tapState[i]) return true;
             }
         }
-        
+        else
+        {
+            if (tapState[note.LanePosition]) return true;
+        }
+
+        return false;
     }
 
-    private void HoldJudge(float currentTime, IEnumerable<ReilasNoteEntity> noteLines, bool time, bool place)
+    public void Judge(float currentTime)
     {
-        var reilasNoteEntities = noteLines as ReilasNoteEntity[] ?? noteLines.ToArray();
-        for
+        var tapNotes = RhythmGamePresenter.tapNotes;
+        for (var i = _tapJudgeStartIndex; i < tapNotes.Count; i++)
+        {
+            if (RhythmGamePresenter.tapNoteJudge[i]) continue;
+            JudgeResultType judgeResult;               
+            var timeDifference = tapNotes[i].JudgeTime - currentTime;
+            if (timeDifference > _judgeSeconds["Tap Bad"]) break;
+            var difference = CalculateDifference(currentTime, tapNotes[i].JudgeTime, "Tap");
+            var timeCheck = TimeCheck(currentTime, tapNotes[i].JudgeTime, "Tap Bad", "Tap");
+            if (GetTapState(tapNotes[i]))
+            {
+                judgeResult = difference switch
+                {
+                    var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
+                    var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
+                    var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
+                    _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
+                };
+            }
+            else
+            {
+                judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
+            }
+            ScoreCalculator(judgeResult);
+            RhythmGamePresenter.tapNoteJudge[i] = true;
+            _tapJudgeStartIndex++;
+        }
+        
+        var internalNotes = RhythmGamePresenter.internalNotes;
+        for (var i = _internalJudgeStartIndex; i < internalNotes.Count; i++)
+        {
+            if (RhythmGamePresenter.internalNoteJudge[i]) continue;
+            var timeDifference = internalNotes[i].JudgeTime - currentTime;
+            if (timeDifference > _judgeSeconds["Internal"]) break;
+            var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
+            ScoreCalculator(judgeResult);
+            RhythmGamePresenter.internalNoteJudge[i] = true;
+            _internalJudgeStartIndex++;
+        }
+        
+        var chainNotes = RhythmGamePresenter.chainNotes;
+        for (var i = _chainJudgeStartIndex; i < chainNotes.Count; i++)
+        {
+            if(RhythmGamePresenter.chainNoteJudge[i]) continue;
+            var timeDifference = chainNotes[i].JudgeTime - currentTime;
+            if (timeDifference > 0) break;
+            var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
+            ScoreCalculator(judgeResult);
+            RhythmGamePresenter.chainNoteJudge[i] = true;
+            _chainJudgeStartIndex++;
+
+        }
     }
+
+    private void ScoreCalculator(JudgeResultType judgeResult)
+    {
+        if (judgeResult == JudgeResultType.NotJudgedYet) return;
+        switch (judgeResult)
+        {
+            case JudgeResultType.Perfect:
+                currentCombo++;
+                _score += 4;
+                sumPerfect++;
+                break;
+            case JudgeResultType.Good:
+                currentCombo++;
+                _score += 2;
+                sumGood++;
+                break;
+            case JudgeResultType.Bad:
+                currentCombo++;
+                _score += 1;
+                sumBad++;
+                break;
+            case JudgeResultType.Miss:
+                if (highCombo < currentCombo)
+                {
+                    highCombo = currentCombo;
+                }
+
+                currentCombo = 0;
+                sumMiss++;
+                break;
+        }
+        currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
+        comboText.text = currentCombo.ToString();
+        scoreText.text = currentScore.ToString();
+    }
+    
+    
     /*
     private void TimeJudge(bool isBelow, float typeNum, List<List<float>> tapType, LaneTapState tapstate, float currentTime, List<List<float>> _tapNotes)
     {
@@ -223,8 +316,6 @@ public class JudgeService : MonoBehaviour
     }
 
      
-    public static readonly List<JudgeResult> AllJudgeType = new List<JudgeResult>();//�������`����
-    public static readonly List<JudgeResultInHold> JudgedInHold = new List<JudgeResultInHold>(); //�������m�[�c�̓����������`����
 
 
     private void RemoveNoteInList(List<int> delNums, List<List<float>> noteList)

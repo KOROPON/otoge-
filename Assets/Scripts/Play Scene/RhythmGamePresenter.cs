@@ -34,19 +34,30 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
     public static List<BarLine> _barLines = new List<BarLine>();
 
+    public static List<ReilasNoteEntity> tapNotes = new List<ReilasNoteEntity>();
+    public static List<ReilasNoteEntity> internalNotes = new List<ReilasNoteEntity>();
+    public static List<ReilasNoteEntity> chainNotes = new List<ReilasNoteEntity>();
+
     //Judge用
-    public static List<bool> tapNoteJudge = new List<bool>();
-    public static List<bool> hapNoteJudge = new List<bool>();
-    public static List<bool> aboveTapNoteJudge = new List<bool>();
-    public static List<bool> aboveHoldNoteJudge = new List<bool>();
-    public static List<bool> aboveSlideNoteJudge = new List<bool>();
-    public static List<bool> chainNoteJudge = new List<bool>();
+    public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveTapNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedHoldNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveHoldNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveSlideNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveChainNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedInternalNotes = new List<List<float>>();
+    public static List<List<float>> notJudgedAboveInternalNotes = new List<List<float>>();
 
-
+    public static bool[] tapNoteJudge = Array.Empty<bool>();
+    public static bool[] internalNoteJudge = Array.Empty<bool>();
+    public static bool[] chainNoteJudge = Array.Empty<bool>();
+    
     private ReilasChartEntity _chartEntity = null!;
 
     public static string musicname = null!;
     public static string dif = null!;
+    
+    public static bool[] laneTapStates = new bool[36];
 
     JudgeService judgeService;
 
@@ -59,28 +70,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private List<float> _barLineTimes = BarLine.BarLines;
 
-    private IEnumerable<ReilasNoteEntity> GetNoteType(ReilasChartEntity chart, string noteType)
+    private IEnumerable<ReilasNoteEntity> GetNoteTypes(ReilasChartEntity chart, string type)
     {
-        return noteType switch
+        return type switch
         {
-            "Tap" => chart.Notes.Where(note => note.Type == NoteType.Tap),
-            "AboveTap" => chart.Notes.Where(note => note.Type == NoteType.AboveTap),
+            "Tap" => chart.Notes.Where(note => note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide),
+            "Internal" => chart.Notes.Where(note => note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal),
             "Chain" => chart.Notes.Where(note => note.Type == NoteType.AboveChain),
-            _=> chart.Notes
+            _=> chart.Notes.Where(note => note.Type == NoteType.None)
         };
     }
-
-    private IEnumerable<ReilasNoteLineEntity> GetNoteLineType(ReilasChartEntity chart, string noteLineType)
-    {
-        return noteLineType switch
-        {
-            "Hold" => chart.NoteLines.Where(note => note.Head.Type == NoteType.Hold),
-            "AboveHold" => chart.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold),
-            "AboveSlide" => chart.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide),
-            _=> chart.NoteLines
-        };
-    }
-
+    
     private void Awake()
     {
         judgeService = new JudgeService();
@@ -130,12 +130,20 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         // chartEntity
         _chartEntity = chartEntity;
 
-        SpawnTapNotes(GetNoteType(_chartEntity, "Tap"));
-        SpawnChainNotes(GetNoteType(_chartEntity, "Chain"));
-        SpawnHoldNotes(GetNoteLineType(_chartEntity, "Hold"));
-        SpawnAboveTapNotes(GetNoteType(_chartEntity, "AboveTap"));
-        SpawnAboveHoldNotes(GetNoteLineType(_chartEntity, "AboveHold"));
-        SpawnAboveSlideNotes(GetNoteLineType(_chartEntity, "AboveSlide"));
+        tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
+        internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
+        chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
+        
+        tapNoteJudge = new bool[tapNotes.Count];
+        internalNoteJudge = new bool[internalNotes.Count];
+        chainNoteJudge = new bool[chainNotes.Count];
+
+        SpawnTapNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
+        SpawnChainNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
+        SpawnHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
+        SpawnAboveTapNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
+        SpawnAboveHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
+        SpawnAboveSlideNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
         SpawnBarLines(_barLineTimes);
 
 
@@ -275,8 +283,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     // 譜面情報に存在してるまだ判定されていないノーツ
     public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
-
-
+    
     static Vector3[] lanePositions = new Vector3[]
     {
         //下のレーン
@@ -329,29 +336,31 @@ public sealed class RhythmGamePresenter : MonoBehaviour
           return;
         }
 
-        InputService.aboveLaneTapStates.Clear();
-
-        var alltouch = Input.touches;
-        Array.Resize(ref alltouch,0);
+        for (var i = 0; i < laneTapStates.Length; i++)
+        {
+            laneTapStates[i] = false;
+        }
+        
+        var allTouch = Input.touches;
+        Array.Resize(ref allTouch,0);
         var touches = Input.touches;
         text2.text = touches.Count().ToString();
 
         foreach (var touch in touches)
         {
-            var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
+            var lane = screenPoints.Select((screenPoint, index) => (screenPoint, index))
+                .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First();
+            var distance = Vector2.Distance(lane.screenPoint, touch.position);
+            var nearestLaneIndex = distance < 3 ? lane.index : 40;//押した場所に一番近いレーンの番号
             //Debug.Log(nearestLaneIndex);
-            bool start = false;
+            bool start = touch.phase == TouchPhase.Began;
             // touch.position
             // このフレームで押されたよん
-            if (touch.phase == TouchPhase.Began)
-            {
-                start = true;
-            }
 
-            InputService.aboveLaneTapStates.Add(new LaneTapState
+            if (nearestLaneIndex < 36)
             {
-                laneNumber = nearestLaneIndex, tapStarting = start
-            });
+                laneTapStates[nearestLaneIndex] = true;
+            }
         }
 
 
@@ -371,8 +380,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
        
 
-        //var judgeService = new JudgeService();
-        judgeService.Judge(judgeTime, InputService.aboveLaneTapStates);
+        judgeService.Judge(judgeTime);
 
     }
 
@@ -418,23 +426,4 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             _barLines[i].Render(_barLineTimes[i], audioTime);
         }
     }
-}
-
-// レーンの押されている状態
-public class LaneTapState
-{
-    //レーンの番号
-    public int laneNumber;
-
-    // このフレームにタップしたか
-    public bool tapStarting;
-}
-
-public class InputService
-{
-    // 上レーン 最大 36 個
-    public static List<LaneTapState> aboveLaneTapStates = new List<LaneTapState>();
-
-    // 下レーン 最大 4 つ
-    //public static List<LaneTapState> LaneTapStates = new List<LaneTapState>();
 }
