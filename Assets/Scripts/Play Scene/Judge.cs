@@ -46,7 +46,7 @@ public class JudgeService : MonoBehaviour
     private bool TimeCheck(float currentTime, float judgeTime, string flag, string noteType)
     {
         var difference = CalculateDifference(currentTime, judgeTime, noteType);
-        return difference >= 0 && difference <= _judgeSeconds[flag] || currentTime < judgeTime;
+        return difference <= _judgeSeconds[flag] || currentTime < judgeTime;
     }
     
     private JudgeResultType InternalOrChain(float currentTime, ReilasNoteEntity note, bool tapState, string internalOrChain)
@@ -59,18 +59,7 @@ public class JudgeService : MonoBehaviour
 
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }
-
-    private bool GetNoteType(ReilasNoteEntity note, string noteType)
-    {
-        return noteType switch
-        {
-            "Tap" => note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide,
-            "Internal" => note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal,
-            "Chain" => note.Type == NoteType.AboveChain,
-            _=> false
-        };
-    }
-
+    
     private bool GetTapState(ReilasNoteEntity note)
     {
         var tapState = RhythmGamePresenter.laneTapStates;
@@ -143,7 +132,9 @@ public class JudgeService : MonoBehaviour
             {
                 judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
             }
-            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
+
+            if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+            allJudge.Add(judgeResult);
             RhythmGamePresenter.tapNoteJudge[i] = true;
             _tapJudgeStartIndex++;
         }
@@ -155,7 +146,8 @@ public class JudgeService : MonoBehaviour
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
-            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
+            if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+            allJudge.Add(judgeResult);
             RhythmGamePresenter.internalNoteJudge[i] = true;
             _internalJudgeStartIndex++;
         }
@@ -167,7 +159,8 @@ public class JudgeService : MonoBehaviour
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
-            if (judgeResult != JudgeResultType.NotJudgedYet) allJudge.Add(judgeResult);
+            if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+            allJudge.Add(judgeResult);
             RhythmGamePresenter.chainNoteJudge[i] = true;
             _chainJudgeStartIndex++;
 
