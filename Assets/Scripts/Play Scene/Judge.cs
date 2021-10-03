@@ -132,7 +132,7 @@ public class JudgeService : MonoBehaviour
             {
                 judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
             }
-
+            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             allJudge.Add(judgeResult);
             RhythmGamePresenter.tapNoteJudge[i] = true;
@@ -146,6 +146,7 @@ public class JudgeService : MonoBehaviour
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
+            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             allJudge.Add(judgeResult);
             RhythmGamePresenter.internalNoteJudge[i] = true;
@@ -159,6 +160,7 @@ public class JudgeService : MonoBehaviour
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
+            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             allJudge.Add(judgeResult);
             RhythmGamePresenter.chainNoteJudge[i] = true;
