@@ -213,6 +213,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
             }
         }
+
+        Debug.Log(notJudgedNotes[0].LanePosition);
+        Debug.Log(notJudgedNotes[1].LanePosition);
+        Debug.Log(notJudgedNotes[2].LanePosition);
+        Debug.Log(notJudgedNotes[3].LanePosition);
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";//シーンを開く
     }
@@ -312,44 +317,44 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static Vector3[] lanePositions = new Vector3[]
     {
         //下のレーン
-        new Vector3(3f, 0, 0),
-        new Vector3(1.25f, 0, 0),
-        new Vector3(-1.25f, 0, 0),
         new Vector3(-3f, 0, 0),
+        new Vector3(-1.25f, 0, 0),
+        new Vector3(1.25f, 0, 0),
+        new Vector3(3f, 0, 0),
 
         //上のレーン
-        new Vector3(4.5f,0.1f,0),
-        new Vector3(4.45f,0.4f,0),
-        new Vector3(4.3f,1.1f,0),
-        new Vector3(4.2f,1.5f,0),
-        new Vector3(4f,2f,0),
-        new Vector3(3.8f,2.35f,0),
-        new Vector3(3.5f,2.9f,0),
-        new Vector3(3.3f,3.1f,0),
-        new Vector3(2.9f,3.5f,0),
-        new Vector3(2.7f,3.6f,0),
-        new Vector3(2.2f,4f,0),
-        new Vector3(1.9f,4.1f,0),
-        new Vector3(1.5f,4.3f,0),
-        new Vector3(1.1f,4.4f,0),
-        new Vector3(0.6f,4.5f,0),
-        new Vector3(0.25f,4.55f,0),
-        new Vector3(-0.25f,4.55f,0),
-        new Vector3(-0.6f,4.5f,0),
-        new Vector3(-1.1f,4.4f,0),
-        new Vector3(-1.5f,4.3f,0),
-        new Vector3(-1.9f,4.1f,0),
-        new Vector3(-2.2f,4f,0),
-        new Vector3(-2.7f,3.6f,0),
-        new Vector3(-2.9f,3.5f,0),
-        new Vector3(-3.3f,3.1f,0),
-        new Vector3(-3.5f,2.9f,0),
-        new Vector3(-3.8f,2.35f,0),
-        new Vector3(-4f,2f,0),
-        new Vector3(-4.2f,1.5f,0),
-        new Vector3(-4.3f,1.1f,0),
-        new Vector3(-4.45f,0.4f,0),
         new Vector3(-4.5f,0.1f,0),
+        new Vector3(-4.45f,0.4f,0),
+        new Vector3(-4.3f,1.1f,0),
+        new Vector3(-4.2f,1.5f,0),
+        new Vector3(-4f,2f,0),
+        new Vector3(-3.8f,2.35f,0),
+        new Vector3(-3.5f,2.9f,0),
+        new Vector3(-3.3f,3.1f,0),
+        new Vector3(-2.9f,3.5f,0),
+        new Vector3(-2.7f,3.6f,0),
+        new Vector3(-2.2f,4f,0),
+        new Vector3(-1.9f,4.1f,0),
+        new Vector3(-1.5f,4.3f,0),
+        new Vector3(-1.1f,4.4f,0),
+        new Vector3(-0.6f,4.5f,0),
+        new Vector3(-0.25f,4.55f,0),
+        new Vector3(0.25f,4.55f,0),
+        new Vector3(0.6f,4.5f,0),
+        new Vector3(1.1f,4.4f,0),
+        new Vector3(1.5f,4.3f,0),
+        new Vector3(1.9f,4.1f,0),
+        new Vector3(2.2f,4f,0),
+        new Vector3(2.7f,3.6f,0),
+        new Vector3(2.9f,3.5f,0),
+        new Vector3(3.3f,3.1f,0),
+        new Vector3(3.5f,2.9f,0),
+        new Vector3(3.8f,2.35f,0),
+        new Vector3(4f,2f,0),
+        new Vector3(4.2f,1.5f,0),
+        new Vector3(4.3f,1.1f,0),
+        new Vector3(4.45f,0.4f,0),
+        new Vector3(4.5f,0.1f,0),
     };
 
      IEnumerable<Vector3> screenPoints = lanePositions.Select(lanePosition3D => Camera.main.WorldToScreenPoint(lanePosition3D));// Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //

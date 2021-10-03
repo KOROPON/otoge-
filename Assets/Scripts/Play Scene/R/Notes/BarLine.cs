@@ -19,11 +19,11 @@ namespace Reilas
             float highSpeed;
             if (PlayerPrefs.HasKey("rate"))
             {
-                highSpeed = 120 * PlayerPrefs.GetFloat("rate");
+                highSpeed = 80 * PlayerPrefs.GetFloat("rate");
             }
             else
             {
-                highSpeed = 120 * 3.5f;
+                highSpeed = 80 * 3.5f;
             }
             
             //var toLeft = left - LeftPosition;
