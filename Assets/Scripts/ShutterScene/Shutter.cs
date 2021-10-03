@@ -1,10 +1,16 @@
 using Reilas;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Shutter : MonoBehaviour
 {
     private Animator anim;
+    private Text _title;
+    [SerializeField]private GameObject _jack;
+    [SerializeField] private GameObject _text;
+    private Image _jacket;
+
     public static string blChange;
     public static string blShutterChange;
     public static bool bltoPlay = false;
@@ -15,6 +21,12 @@ public class Shutter : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        _jack.SetActive(true);
+        _text.SetActive(true);
+        _jacket = _jack.GetComponent<Image>();
+        _title = _text.GetComponent<Text>();
+        _jack.SetActive(false);
+        _text.SetActive(false);
         music_m = gameObject.GetComponent<AudioSource>();
     }
 
@@ -30,6 +42,10 @@ public class Shutter : MonoBehaviour
                 anim.SetBool("bl", true);
                 break;
             case "CloseToPlay":
+                _jack.SetActive(true);
+                _text.SetActive(true);
+                _jacket.sprite = Resources.Load<Sprite>("Jacket/" + RhythmGamePresenter.musicname + "_jacket");
+                _title.text = RhythmGamePresenter.musicname;
                 anim.SetBool("blToPlay", true);
                 break;
         }

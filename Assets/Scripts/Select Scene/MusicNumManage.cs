@@ -25,7 +25,6 @@ public class MusicNumManage : MonoBehaviour
     public Text extremeLevel;
     public AudioSource audioO;
     
-    
     //public Text kujoLevel;
 
 
@@ -160,11 +159,11 @@ public class MusicNumManage : MonoBehaviour
         {
             if (_selectBool)
             {
-              _selectBool = false;
-                Shutter.blShutterChange = "CloseToPlay";
                 RhythmGamePresenter.musicname = obj.name;
-              _audioSource.Stop();
-              audioO.Play();
+                _selectBool = false;
+                Shutter.blShutterChange = "CloseToPlay";
+                _audioSource.Stop();
+                audioO.Play();
             }
         }
         else
