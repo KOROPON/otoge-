@@ -182,8 +182,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
             }
         }
-
-        Shutter.blChange = "Open";//シーンを開く
+        Shutter.bltoPlay = true;
+        Shutter.blShutterChange = "Open";//シーンを開く
     }
 
     public static void PlaySongs()
