@@ -53,13 +53,13 @@ namespace Reilas
                         sumMiss++;
                         break;
                 }
-            //JudgeService.AllJudgeType.Clear();
+                //JudgeService.AllJudgeType.Clear();
 
-            currentScore = (int) Mathf.Floor(1000000 * _score / sumScore);
-            comboText.text = currentCombo.ToString();
-            scoreText.text = currentScore.ToString();
-            //Debug.Log(currentScore);
+                currentScore = (int) Mathf.Floor(1000000 * _score / sumScore);
+                comboText.text = currentCombo.ToString();
+                scoreText.text = currentScore.ToString();
+                //Debug.Log(currentScore);
+            }
         }
-
     }
 }
