@@ -22,7 +22,6 @@ namespace Reilas
             InitializeMesh();
 
             transform.localScale = Vector3.one;
-            ;
         }
 
         private void InitializeMesh()
@@ -42,10 +41,10 @@ namespace Reilas
             _triangles = new int[(xDivision - 1) * 6 * (zDivision - 1)];
 
             //前面
-            for (var z = 0; z < zDivision - 1; z++)
+            for (var z = zDivision - 2; z >= 0 ; z--)
             {
                 var n = z * (xDivision - 1) * 6;
-                for (var x = 0; x < xDivision - 1; x++)
+                for (var x = xDivision - 2; x >= 0; x--)
                 {
                     _triangles[n + x * 6 + 0] = z * (xDivision) + x;
                     _triangles[n + x * 6 + 1] = z * (xDivision) + x + 1;
@@ -55,13 +54,18 @@ namespace Reilas
                     _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
                 }
             }
-             
-           
+
+
+            var newTriangles = new int[(xDivision - 1) * 6 * (zDivision - 1)];
+            for (int i = 0; i < newTriangles.Length; i++)
+            {
+                newTriangles[i] = _triangles[newTriangles.Length - 1 -i];
+            }
             // メッシュを生成する.
             _mesh = new Mesh
             {
                 vertices = _vertices,
-                triangles = _triangles
+                triangles = newTriangles
             };
             _mesh.MarkDynamic();
         }

@@ -10,8 +10,8 @@ namespace Reilas
     /// </summary>
     public static class NotePositionCalculatorService
     {
-        private const float BelowNoteWidth = 2.5f;
-        private const float LeftPosition = -5f;
+        private const float BelowNoteWidth = 2.2f;
+        private const float LeftPosition = -4.4f;
         public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap)
         {
 
@@ -54,12 +54,12 @@ namespace Reilas
                 }
                 else
                 {
-                    notePos = new Vector3(-x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
+                    notePos = new Vector3(-x, 0f, highSpeed / 2 * t * t - highSpeed * t);
                 }
             }
             else
             {
-                notePos = normalizedTime < 0 ? new Vector3(-x, 0f, highSpeed * t) : new Vector3(-x, 0f, -highSpeed / 2 * t * t + highSpeed * t);
+                notePos = normalizedTime < 0 ? new Vector3(-x, 0f, -highSpeed * t) : new Vector3(-x, 0f, highSpeed / 2 * t * t - highSpeed * t);
             }
 
             return notePos;

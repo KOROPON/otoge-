@@ -24,7 +24,7 @@ namespace Reilas
             _entity = entity;
             InitializeMesh();
 
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(1,1,5);
         }
 
         private void InitializeMesh()
@@ -63,7 +63,7 @@ namespace Reilas
                 _triangles[p * 6 + 4] = 0 + i * 2;
                 _triangles[p * 6 + 5] = 2 + i * 2;
             }
-            
+
             // 左
             _triangles[size * 6 * 2 + 0] = 0;
             _triangles[size * 6 * 2 + 1] = 1;
@@ -79,7 +79,7 @@ namespace Reilas
             _triangles[size * 6 * 2 + 9] = 1 + size * 2 - 2;
             _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
             _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
-            
+
             // メッシュを生成する
             _mesh = new Mesh
             {
@@ -142,7 +142,7 @@ namespace Reilas
                     }
                     //else
                     //{
-                        zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
                     //}
 
 
@@ -202,11 +202,11 @@ namespace Reilas
             }
         }
 
-        public void NoteDestroy()
+        public void NoteDestroy(int noteNum)
         {
             Debug.Log(this.gameObject);
             Destroy(this.gameObject);
-            RhythmGamePresenter._aboveTapNotes.Remove(this);
+            RhythmGamePresenter._aboveTapNotes.RemoveAt(noteNum);
         }
     }
 }

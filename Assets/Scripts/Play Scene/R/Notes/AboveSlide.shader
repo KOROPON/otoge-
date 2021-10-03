@@ -8,7 +8,7 @@ Shader "Reilas/AboveSlide"
     {
         Tags
         {
-            "RenderType"="Opaque"
+            "RenderType"="Transparent"
         }
         LOD 100
 
