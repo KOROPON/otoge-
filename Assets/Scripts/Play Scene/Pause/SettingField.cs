@@ -12,7 +12,6 @@ public class SettingField : MonoBehaviour
     [SerializeField]
     public GameObject pauseButton;
     public GameObject pausePanel;
-    public GameObject countCanvas;
 
     public void GamePause()
     {
@@ -29,7 +28,6 @@ public class SettingField : MonoBehaviour
     public void Resume()
     {
         pausePanel.SetActive(false);
-        countCanvas.SetActive(true);
         //text.text = "3";
         resume = true;
         //StartCoroutine("SettingRemuse");
@@ -46,7 +44,6 @@ public class SettingField : MonoBehaviour
             text.text = (resumetime / 60).ToString();
             if (resumetime == 0)
             {
-                countCanvas.SetActive(false);
                 pauseButton.SetActive(true);
                 aud.UnPause();
                 Time.timeScale = 1;

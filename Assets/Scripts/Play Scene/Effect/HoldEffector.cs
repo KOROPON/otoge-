@@ -45,7 +45,7 @@ public sealed class HoldEffector : MonoBehaviour
                         _effect1.Play();
                         _effect2.Play();
                         _noteBlight.color = new Color32(255, 255, 255, 255);
-                        effectAudio.Play();
+                        //effectAudio.Play();
                     }
                     _blJudge = true;
                     break;
@@ -58,7 +58,7 @@ public sealed class HoldEffector : MonoBehaviour
                     _effect1.Stop();
                     _effect2.Stop();
                     _noteBlight.color = new Color32(111, 111, 111, 255);
-                    effectAudio.Pause();
+                    //effectAudio.Pause();
                 }
             }
         }

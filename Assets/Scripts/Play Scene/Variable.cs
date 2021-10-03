@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Globalization;
-
+/*
 public class Variable : MonoBehaviour
 {
     public int score = 0;
@@ -36,3 +34,4 @@ public class Variable : MonoBehaviour
         music.Play();
     }
 }
+*/

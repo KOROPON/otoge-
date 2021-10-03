@@ -7,15 +7,13 @@ using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
 using Reilas;
-using System;
 using UnityEngine.UI;
 
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
     public Text text1;
     public Text text2;
-    public AudioSource songAudio;
-    public GameObject gameObject;
+    public AudioSource songAudio = null!;
 
     [SerializeField] private TapNote _tapNotePrefab = null!;
     [SerializeField] private HoldNote _holdNotePrefab = null!;
@@ -81,7 +79,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private async UniTask AwakeAsync()
     {
-        FindObjectOfType<Variable>().enabled = false;
+        //FindObjectOfType<Variable>().enabled = false;
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset;
 
@@ -283,7 +281,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
     static float z = -0.5f;
-    static Vector3[] lanePositions = new Vector3[]
+    public static Vector3[] lanePositions = new Vector3[]
     {
         //下のレーン
         new Vector3(-3.3f, 0, z),
@@ -375,6 +373,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         ///<summary>
         /// キービームの表示
         ///</summary>
+        ///
+        /*
         List<int> dupLane = new List<int>();
         foreach(LaneTapState tap in InputService.aboveLaneTapStates)
         {
@@ -393,7 +393,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             keyBeam.transform.position = new Vector3(lanePositions[tap.laneNumber].x,0,0);
             allKeyBeam.Add(keyBeam);
             dupLane.Add(tap.laneNumber);
-        }
+        }*/
 
        
 
