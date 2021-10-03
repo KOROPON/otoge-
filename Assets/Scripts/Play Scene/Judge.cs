@@ -291,14 +291,14 @@ public class JudgeService : MonoBehaviour
             }
             else
             {
-                Debug.Log(RhythmGamePresenter._tapNotes.Count());
+                //Debug.Log(RhythmGamePresenter._tapNotes.Count());
                 if(!above)
                 {
                     AllJudgeType.Add(new JudgeResult
                     {
                         resultType = JudgeResultType.Miss
                     });
-                    RhythmGamePresenter._tapNotes[0].NoteDestroy();
+                    RhythmGamePresenter._tapNotes[0].NoteDestroy(0);
                     RhythmGamePresenter.notJudgedTapNotes.RemoveAt(0);
                     i--;
                     limit--;
@@ -309,7 +309,7 @@ public class JudgeService : MonoBehaviour
                     {
                         resultType = JudgeResultType.Miss
                     });
-                    RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
+                    RhythmGamePresenter._aboveTapNotes[0].NoteDestroy(0);
                     RhythmGamePresenter.notJudgedAboveTapNotes.RemoveAt(0);
                     i--;
                     limit--;
@@ -572,8 +572,8 @@ public class JudgeService : MonoBehaviour
             {
                 switch (_judgeTapNote[1])
                 {
-                    case 0: RhythmGamePresenter.notJudgedTapNotes.RemoveAt((int)_judgeTapNote[2]); RhythmGamePresenter._tapNotes[(int)_judgeTapNote[2]].NoteDestroy(); break;
-                    case 1: RhythmGamePresenter.notJudgedAboveTapNotes.RemoveAt((int)_judgeTapNote[2]); RhythmGamePresenter._aboveTapNotes[(int)_judgeTapNote[2]].NoteDestroy(); break;
+                    case 0: RhythmGamePresenter.notJudgedTapNotes.RemoveAt((int)_judgeTapNote[2]); RhythmGamePresenter._tapNotes[(int)_judgeTapNote[2]].NoteDestroy((int)_judgeTapNote[2]); break;
+                    case 1: RhythmGamePresenter.notJudgedAboveTapNotes.RemoveAt((int)_judgeTapNote[2]); RhythmGamePresenter._aboveTapNotes[(int)_judgeTapNote[2]].NoteDestroy((int)_judgeTapNote[2]); break;
                     case 2: RhythmGamePresenter.notJudgedHoldNotes.RemoveAt((int)_judgeTapNote[2]); break;
                     case 3: RhythmGamePresenter.notJudgedTapNotes.RemoveAt((int)_judgeTapNote[2]); break;
                     case 4: RhythmGamePresenter.notJudgedTapNotes.RemoveAt((int)_judgeTapNote[2]); break;

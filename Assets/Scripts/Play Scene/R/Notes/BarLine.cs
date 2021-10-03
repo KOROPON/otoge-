@@ -42,7 +42,7 @@ namespace Reilas
             }
             else if (normalizedTime >= 0)
             {
-                return new Vector3(0f, 0f, -highSpeed / 2 * t * t + highSpeed * t);
+                return new Vector3(0f, 0f, highSpeed / 2 * t * t - highSpeed * t);
             }
             
             return new Vector3(0f, 0f, 0f);

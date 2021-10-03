@@ -14,7 +14,7 @@ namespace Reilas
         {
             _tapTime = entity.JudgeTime;
             _entity = entity;
-            transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.3f);
+            transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
         }
 
         public void Render(float currentTime)
