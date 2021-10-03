@@ -14,7 +14,7 @@ namespace Reilas
         {
             _tapTime = entity.JudgeTime;
             _entity = entity;
-            transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.3f);
+            transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
         }
 
         public void Render(float currentTime)
@@ -33,11 +33,11 @@ namespace Reilas
             }
         }
 
-        public void NoteDestroy()
+        public void NoteDestroy(int noteNum)
         {
             Debug.Log(this.gameObject);
             Destroy(this.gameObject);
-            RhythmGamePresenter._tapNotes.Remove(this);
+            RhythmGamePresenter._tapNotes.RemoveAt(noteNum);
         }
     }
 }

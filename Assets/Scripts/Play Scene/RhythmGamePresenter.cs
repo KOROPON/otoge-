@@ -15,6 +15,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public Text text1;
     public Text text2;
     public AudioSource songAudio;
+    public GameObject gameObject;
 
     [SerializeField] private TapNote _tapNotePrefab = null!;
     [SerializeField] private HoldNote _holdNotePrefab = null!;
@@ -23,6 +24,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
     [SerializeField] private BarLine _barLinePrefab = null!;
+
+
+    [SerializeField] private GameObject _keyBeamPrefab = null!;
+    private List<GameObject> allKeyBeam = new List<GameObject>();
         
     [SerializeField] private static AudioSource _audioSource = null!;
     public static AudioSource longPerfect = null!;
@@ -277,14 +282,14 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     // 譜面情報に存在してるまだ判定されていないノーツ
     public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
-
-    public static Vector3[] lanePositions = new Vector3[]
+    static float z = -0.5f;
+    static Vector3[] lanePositions = new Vector3[]
     {
         //下のレーン
-        new Vector3(3f, 0, 0),
-        new Vector3(1.25f, 0, 0),
-        new Vector3(-1.25f, 0, 0),
-        new Vector3(-3f, 0, 0),
+        new Vector3(-3.3f, 0, z),
+        new Vector3(-1.25f, 0, z),
+        new Vector3(1.25f, 0, z),
+        new Vector3(3f, 0, z),
 
         //上のレーン
         new Vector3(4.5f,0.1f,0),
@@ -332,15 +337,14 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         InputService.aboveLaneTapStates.Clear();
 
-        var alltouch = Input.touches;
-        Array.Resize(ref alltouch,0);
         var touches = Input.touches;
-        text2.text = touches.Count().ToString();
 
         foreach (var touch in touches)
         {
+            text2.text = touches[0].position.ToString();
+            //gameObject.transform.position = new Vector3()
             var nearestLaneIndex = screenPoints.Select((screenPoint, index) => (screenPoint, index)).OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First().index;//押した場所に一番近いレーンの番号
-            //Debug.Log(nearestLaneIndex);
+            Debug.Log(nearestLaneIndex);
             bool start = false;
             // touch.position
             // このフレームで押されたよん
@@ -368,7 +372,28 @@ public sealed class RhythmGamePresenter : MonoBehaviour
           audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
+        ///<summary>
+        /// キービームの表示
+        ///</summary>
+        List<int> dupLane = new List<int>();
+        foreach(LaneTapState tap in InputService.aboveLaneTapStates)
+        {
+            for (int i = 1; i <= dupLane.Count(); i++)
+            {
+                if (tap.laneNumber == dupLane[i])
+                {
+                    continue;
+                }
+            }
 
+            // キービームの表示
+            var keyBeam = Instantiate(_keyBeamPrefab);
+            keyBeam.transform.localScale = new Vector3(1, 1, 1);
+            //Debug.Log(tap.laneNumber);
+            keyBeam.transform.position = new Vector3(lanePositions[tap.laneNumber].x,0,0);
+            allKeyBeam.Add(keyBeam);
+            dupLane.Add(tap.laneNumber);
+        }
 
        
 
