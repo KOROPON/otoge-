@@ -65,12 +65,12 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime)
+        public void Render(float currentTime, int noteNum)
         {
-            RenderMesh(currentTime);
+            RenderMesh(currentTime, noteNum);
         }
 
-        private void RenderMesh(float currentTime)
+        private void RenderMesh(float currentTime, int noteNum)
         {
             if (_meshFilter == null) return;
             if (_mesh == null)
@@ -81,6 +81,16 @@ namespace Reilas
             if (_vertices == null)
             {
                 return;
+            }
+
+            if(_entity.Tail.JudgeTime < currentTime)
+            {
+                Destroy(gameObject);
+                RhythmGamePresenter._aboveHoldNotes.RemoveAt(noteNum);
+            }
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
             }
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);

@@ -269,6 +269,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveHoldNotePrefab);
             var aboveHoldEffector = tapNote.transform.Find("AboveHoldEffector").gameObject.GetComponent<AboveHoldEffector>();
             tapNote.Initialize(note);
+            tapNote.gameObject.SetActive(false);
             aboveHoldEffector.EffectorInitialize(note);
             _aboveHoldEffectors.Add(aboveHoldEffector);
             _aboveHoldNotes.Add(tapNote);
@@ -455,22 +456,30 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     void LateUpdate()
     {
-        var _aboveNearestTap = _aboveTapNotes.Where(note => note.aboveTapTime - audioTime < 5f);
-        //Debug.Log(_tapNotes.Count());
-        var _tapNote = _tapNotes.Where(note => note._tapTime - audioTime < 5f);
-        var _chainNote = _aboveChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
+        var _aboveTapMove = _aboveTapNotes.Where(note => note.aboveTapTime - audioTime < 5f);
+        var _tapNoteMove = _tapNotes.Where(note => note._tapTime - audioTime < 5f);
+        var _chainNoteMove = _aboveChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
 
-        foreach (var tapNote in _tapNote)
+        List<AboveHoldNote> _aboveHoldNoteMove = new List<AboveHoldNote>();
+        foreach(var hold in _aboveHoldNotes)
+        {
+            if (hold.Head.JudgeTime - audioTime < 5)
+            {
+                _aboveHoldNoteMove.Add(hold);
+            }
+        }
+
+        foreach (var tapNote in _tapNoteMove)
         {
             tapNote.Render(audioTime);
         }
 
-        foreach (var note in _aboveNearestTap)
+        foreach (var note in _aboveTapMove)
         {
             note.Render(audioTime);
         }
 
-        foreach (var note in _chainNote)
+        foreach (var note in _chainNoteMove)
         {
             note.Render(audioTime);
         }
@@ -480,9 +489,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             note.Render(audioTime);
         }
 
-        foreach (var note in _aboveHoldNotes)
+        for(int num = _aboveHoldNoteMove.Count - 1; num >= 0; num--)
         {
-            note.Render(audioTime);
+            _aboveHoldNoteMove[num].Render(audioTime, num);
         }
 
         foreach (var note in _aboveSlideNotes)

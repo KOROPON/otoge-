@@ -25,11 +25,11 @@ public class JudgeService : MonoBehaviour
     
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
-        {"Tap Perfect", 0.041f},
-        {"Tap Good", 0.058f},
-        {"Tap Bad", 0.075f},
-        {"Internal", 0.090f},
-        {"Chain", 0.025f}
+        {"Tap Perfect", 1f},
+        {"Tap Good", 0.58f},
+        {"Tap Bad", 0.75f},
+        {"Internal", 0.90f},
+        {"Chain", 0.25f}
     };
 
     private static float CalculateDifference(float currentTime, float judgeTime, string noteType)
@@ -132,8 +132,8 @@ public class JudgeService : MonoBehaviour
             {
                 judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
             }
-            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+            Debug.Log(judgeResult);
             allJudge.Add(judgeResult);
             RhythmGamePresenter.tapNoteJudge[i] = true;
             _tapJudgeStartIndex++;
@@ -146,8 +146,8 @@ public class JudgeService : MonoBehaviour
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
-            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+            Debug.Log(judgeResult);
             allJudge.Add(judgeResult);
             RhythmGamePresenter.internalNoteJudge[i] = true;
             _internalJudgeStartIndex++;
@@ -160,8 +160,8 @@ public class JudgeService : MonoBehaviour
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
-            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+            Debug.Log(judgeResult);
             allJudge.Add(judgeResult);
             RhythmGamePresenter.chainNoteJudge[i] = true;
             _chainJudgeStartIndex++;
