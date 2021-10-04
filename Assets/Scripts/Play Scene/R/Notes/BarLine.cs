@@ -61,8 +61,6 @@ namespace Reilas
             }
         }
         
-        
-        
         public void Render(float judgeTime, float currentTime)
         {
             if (!this.gameObject.activeSelf)
