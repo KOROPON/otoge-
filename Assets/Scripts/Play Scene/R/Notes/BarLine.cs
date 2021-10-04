@@ -36,16 +36,12 @@ namespace Reilas
             var t = currentTime - judgeTime;
             var normalizedTime = -t / 何秒後のノーツまで描画するか;
 
-            if (normalizedTime >= 1)
+            return normalizedTime switch
             {
-                return new Vector3(0f, 0f, 999f);
-            }
-            else if (normalizedTime >= 0)
-            {
-                return new Vector3(0f, 0f, highSpeed / 2 * t * t - highSpeed * t);
-            }
-            
-            return new Vector3(0f, 0f, 0f);
+                var time when time >= 1 => new Vector3(0f, 0f, 999f),
+                var time when time >= 0 => new Vector3(0f, 0f, highSpeed / 2 * t * t - highSpeed * t),
+                _ => new Vector3(0f, 0f, 0f)
+            };
         }
         
         public static void GetBarLines(string song, float audioLength)
@@ -55,14 +51,12 @@ namespace Reilas
 
             foreach (SongName songName in _songData.songs)
             {
-                if (songName.title == song)
+                if (songName.title != song) continue;
+                Beat beat = songName.beat;
+                var spacing = 60 / beat.bpm * beat.numerator * 4 / beat.denominator;
+                for (float time = 0; time < audioLength + spacing; time += spacing)
                 {
-                    Beat beat = songName.beat;
-                    float spacing = 60 / beat.bpm * beat.numerator * 4 / beat.denominator;
-                    for (float time = 0; time < audioLength + spacing; time += spacing)
-                    {
-                        BarLines.Add(time);
-                    }
+                    BarLines.Add(time);
                 }
             }
         }
@@ -94,7 +88,7 @@ namespace Reilas
 
         private void NoteDestroy()
         {
-            Debug.Log(this.gameObject);
+            //Debug.Log(this.gameObject);
             Destroy(this.gameObject);
             RhythmGamePresenter._barLines.Remove(this);
             BarLines.Remove(BarLines[0]);
