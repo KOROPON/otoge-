@@ -24,7 +24,7 @@ namespace Reilas
 
         public void LateUpdate()
         {
-            foreach (JudgeResultType judgeResult in JudgeService.allJudge)
+            foreach (JudgeResultType judgeResult in JudgeService.AllJudge)
             {
                 switch (judgeResult)
                 {
@@ -53,7 +53,8 @@ namespace Reilas
                         sumMiss++;
                         break;
                 }
-                //JudgeService.AllJudgeType.Clear();
+                
+                JudgeService.AllJudge.Clear();
 
                 currentScore = (int) Mathf.Floor(1000000 * _score / sumScore);
                 comboText.text = currentCombo.ToString();

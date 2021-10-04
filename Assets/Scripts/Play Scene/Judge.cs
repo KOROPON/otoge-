@@ -21,7 +21,7 @@ public class JudgeService : MonoBehaviour
     private int _internalJudgeStartIndex = 0;
     private int _chainJudgeStartIndex = 0;
 
-    public static List<JudgeResultType> allJudge = new List<JudgeResultType>();
+    public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
     
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
@@ -132,9 +132,8 @@ public class JudgeService : MonoBehaviour
             {
                 judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
             }
-            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
-            allJudge.Add(judgeResult);
+            AllJudge.Add(judgeResult);
             RhythmGamePresenter.tapNoteJudge[i] = true;
             _tapJudgeStartIndex++;
         }
@@ -146,9 +145,8 @@ public class JudgeService : MonoBehaviour
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
-            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
-            allJudge.Add(judgeResult);
+            AllJudge.Add(judgeResult);
             RhythmGamePresenter.internalNoteJudge[i] = true;
             _internalJudgeStartIndex++;
         }
@@ -160,9 +158,8 @@ public class JudgeService : MonoBehaviour
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
-            Debug.Log(judgeResult);
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
-            allJudge.Add(judgeResult);
+            AllJudge.Add(judgeResult);
             RhythmGamePresenter.chainNoteJudge[i] = true;
             _chainJudgeStartIndex++;
 

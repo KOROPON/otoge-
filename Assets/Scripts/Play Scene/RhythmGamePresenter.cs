@@ -82,6 +82,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             "Tap" => chart.Notes.Where(note => note.Type == NoteType.Tap || note.Type == NoteType.Hold || note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide),
             "Internal" => chart.Notes.Where(note => note.Type == NoteType.HoldInternal || note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlideInternal),
             "Chain" => chart.Notes.Where(note => note.Type == NoteType.AboveChain),
+            "GroundTap" => chart.Notes.Where(note => note.Type == NoteType.Tap || note.Type == NoteType.Hold),
+            "AboveTap" => chart.Notes.Where(note => note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide),
             _=> chart.Notes.Where(note => note.Type == NoteType.None)
         };
     }
@@ -116,17 +118,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
-
-        notJudgedNotes = chartEntity.Notes;
-        notJudgedNotes.OrderBy(notes => notes.JudgeTime);
         
-
-
-        Debug.Log("最大コンボ数: " + notJudgedNotes.Count);
-
         foreach (BpmChangeEntity bpm in chartEntity.BpmChanges)
         {
-            Debug.Log(bpm.Duration);
+           // Debug.Log(bpm.Duration);
         }
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
@@ -154,55 +149,79 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
         
         tapNoteJudge = new bool[tapNotes.Count];
-        internalNoteJudge = new bool[internalNotes.Count];
         chainNoteJudge = new bool[chainNotes.Count];
 
-        SpawnTapNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.Tap));
         SpawnChainNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
         SpawnHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
-        SpawnAboveTapNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap));
         SpawnAboveHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
         SpawnAboveSlideNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
         SpawnBarLines(_barLineTimes);
 
-
-
-        for (int i = 0; i < notJudgedNotes.Count; i++)
+        foreach (var note in tapNotes)
         {
-            ReilasNoteEntity reilasNoteEntity = notJudgedNotes[i];
-
-            if (reilasNoteEntity.Type == NoteType.AboveSlide)
+            switch (note.Type)
             {
-                for(int k = 0; k < noteJsonData.Length; k++)
+                case NoteType.AboveSlide:
                 {
-                    if (reilasNoteEntity.JsonData.guid == noteJsonData[k].tail)
+                    foreach (var jsonData in noteJsonData)
                     {
-                        notJudgedNotes[i].Type = NoteType.AboveSlideInternal;
+                        if (note.JsonData.guid != jsonData.tail) continue;
+                        note.Type = NoteType.AboveSlideInternal;
+                        internalNotes.Add(note);
                         break;
                     }
-                    else
-                    {
-
-                    }
+                    
+                    break;
                 }
-            }
-            else if(reilasNoteEntity.Type == NoteType.AboveHold || reilasNoteEntity.Type == NoteType.Hold)
-            {
-                for (int k = 0; k < noteJsonData.Length; k++)
+                case NoteType.AboveHold:
                 {
-
-                    if (reilasNoteEntity.JsonData.guid == noteJsonData[k].tail)
+                    foreach (var jsonData in noteJsonData)
                     {
-                        notJudgedNotes[i].Type = NoteType.AboveSlideInternal;
+                        if (note.JsonData.guid != jsonData.tail) continue;
+                        note.Type = NoteType.AboveHoldInternal;
+                        internalNotes.Add(note);
                         break;
                     }
-                    else
-                    {
 
-                    }
+                    break;
                 }
+                case NoteType.Hold:
+                {
+                    foreach (var jsonData in noteJsonData)
+                    {
+                        if (note.JsonData.guid != jsonData.tail) continue;
+                        note.Type = NoteType.HoldInternal;
+                        internalNotes.Add(note);
+                        break;
+                    }
+
+                    break;
+                }
+                case NoteType.Tap:
+                    break;
+                case NoteType.HoldInternal:
+                    break;
+                case NoteType.AboveTap:
+                    break;
+                case NoteType.AboveHoldInternal:
+                    break;
+                case NoteType.AboveSlideInternal:
+                    break;
+                case NoteType.AboveChain:
+                    break;
+                case NoteType.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
+
+        internalNotes.OrderBy(note => note.JudgeTime);
+        internalNoteJudge = new bool[internalNotes.Count];
+        
+        SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"));
+        SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"));
+        
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";//シーンを開く
     }
@@ -295,9 +314,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             _barLines.Add(barLine);
         }
     }
-
-    // 譜面情報に存在してるまだ判定されていないノーツ
-    public static List<ReilasNoteEntity> notJudgedNotes = new List<ReilasNoteEntity>();
 
     static float z = -0.9f;
     public static Vector3[] lanePositions = new Vector3[]

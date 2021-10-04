@@ -146,7 +146,9 @@ public class Shutter : MonoBehaviour
         {
             Destroy(a.gameObject);
         }
-        RhythmGamePresenter.notJudgedNotes.Clear();
+        RhythmGamePresenter.tapNotes.Clear();
+        RhythmGamePresenter.internalNotes.Clear();
+        RhythmGamePresenter.chainNotes.Clear();
         RhythmGamePresenter._tapNotes.Clear();
         RhythmGamePresenter._holdNotes.Clear();
         RhythmGamePresenter._aboveTapNotes.Clear();
