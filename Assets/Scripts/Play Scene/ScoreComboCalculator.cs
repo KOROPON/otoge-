@@ -32,16 +32,22 @@ namespace Reilas
                         currentCombo++;
                         _score += 4;
                         sumPerfect++;
+                        Gauge.combo++;
+                        Gauge.miss = 0;
                         break;
                     case JudgeResultType.Good:
                         currentCombo++;
                         _score += 2;
                         sumGood++;
+                        Gauge.combo++;
+                        Gauge.miss = 0;
                         break;
                     case JudgeResultType.Bad:
                         currentCombo++;
                         _score += 1;
                         sumBad++;
+                        Gauge.combo++;
+                        Gauge.miss = 0;
                         break;
                     case JudgeResultType.Miss:
                         if (highCombo < currentCombo)
@@ -50,6 +56,8 @@ namespace Reilas
                         }
 
                         currentCombo = 0;
+                        Gauge.combo = 0;
+                        Gauge.miss++;
                         sumMiss++;
                         break;
                 }
