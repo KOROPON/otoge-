@@ -50,15 +50,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveSlideEffector> _aboveSlideEffectors = new List<AboveSlideEffector>();
 
     //Judge用
-    public static List<List<float>> notJudgedTapNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveTapNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedHoldNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveHoldNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveSlideNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveChainNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedInternalNotes = new List<List<float>>();
-    public static List<List<float>> notJudgedAboveInternalNotes = new List<List<float>>();
-
     public static bool[] tapNoteJudge = Array.Empty<bool>();
     public static bool[] internalNoteJudge = Array.Empty<bool>();
     public static bool[] chainNoteJudge = Array.Empty<bool>();
@@ -75,6 +66,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     float judgeTime;
     float audioTime;
+
+    static System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
     /// <summary>
     /// 判定結果を処理する
@@ -210,32 +203,14 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
-        foreach (ReilasNoteEntity reilasNoteEntity in notJudgedNotes)
-        {
-            switch (reilasNoteEntity)
-            {
-                case ReilasNoteEntity notes when notes.Type == NoteType.Tap: notJudgedTapNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveTap: notJudgedAboveTapNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.Hold: notJudgedHoldNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveHold: notJudgedAboveHoldNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveSlide: notJudgedAboveSlideNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveChain: notJudgedAboveChainNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.AboveHoldInternal || notes.Type == NoteType.AboveSlideInternal: notJudgedAboveInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-                case ReilasNoteEntity notes when notes.Type == NoteType.HoldInternal: notJudgedInternalNotes.Add(new List<float>() { reilasNoteEntity.JudgeTime, reilasNoteEntity.LanePosition, reilasNoteEntity.Size }); break;
-            }
-        }
-
-        Debug.Log(notJudgedNotes[0].LanePosition);
-        Debug.Log(notJudgedNotes[1].LanePosition);
-        Debug.Log(notJudgedNotes[2].LanePosition);
-        Debug.Log(notJudgedNotes[3].LanePosition);
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";//シーンを開く
     }
 
     public static void PlaySongs()
     {
-      _audioSource.Play();
+        _audioSource.Play();
+        stopwatch.Start();
     }
 
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
@@ -396,7 +371,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var distance = Vector2.Distance(lane.screenPoint, touch.position);
             var nearestLaneIndex = distance < 150 ? lane.index : 40;//押した場所に一番近いレーンの番号
             text2.text = nearestLaneIndex.ToString();
-            Debug.Log(nearestLaneIndex);
+            //Debug.Log(nearestLaneIndex);
             bool start = touch.phase == TouchPhase.Began;
             // touch.position
             // このフレームで押されたよん
@@ -437,7 +412,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         }
 
         List<int> dupLane = new List<int>();
-        Debug.Log(InputService.aboveLaneTapStates.Count());
+        //Debug.Log(InputService.aboveLaneTapStates.Count());
         foreach(LaneTapState tap in InputService.aboveLaneTapStates)
         {
             int laneNum = tap.laneNumber;
@@ -472,7 +447,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             dupLane.Add(laneNum);
         }
 
-       
+      //  Debug.Log(judgeTime + "   " + stopwatch.Elapsed);
 
         judgeService.Judge(judgeTime);
 
