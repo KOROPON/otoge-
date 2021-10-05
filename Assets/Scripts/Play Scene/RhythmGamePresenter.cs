@@ -44,6 +44,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<ReilasNoteEntity> tapNotes = new List<ReilasNoteEntity>();
     public static List<ReilasNoteEntity> internalNotes = new List<ReilasNoteEntity>();
     public static List<ReilasNoteEntity> chainNotes = new List<ReilasNoteEntity>();
+
+    public static int countNotes;
+    
     //Effect用
     public static List<HoldEffector> _holdEffectors = new List<HoldEffector>();
     public static List<AboveHoldEffector> _aboveHoldEffectors = new List<AboveHoldEffector>();
@@ -130,8 +133,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
-        
-        BarLine.GetBarLines(musicname, _audioSource.clip.length);
+
+        if (_audioSource.clip != null) BarLine.GetBarLines(musicname, _audioSource.clip.length);
 
 
         if (PlayerPrefs.HasKey("volume"))
@@ -218,6 +221,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         internalNotes.OrderBy(note => note.JudgeTime);
         internalNoteJudge = new bool[internalNotes.Count];
+
+        countNotes = tapNoteJudge.Length + internalNoteJudge.Length + chainNoteJudge.Length;
         
         SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"));
         SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"));

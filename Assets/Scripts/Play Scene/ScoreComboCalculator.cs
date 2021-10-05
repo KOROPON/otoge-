@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,20 +13,56 @@ namespace Reilas
         public static int sumBad;
         public static int sumMiss;
         public static int currentCombo;
-        public static int highCombo=0;
-        public float sumScore = 1 * 4;　//総コンボ数　* 4;
-        public static　int currentScore = 0;
-        private float _score = 1;
+        public static　int currentScore;
+        public static int highCombo;
+        private float _sumScore;
+        private float _score;
+        
+        private int _gaugeCombo;
+        private int _gaugeMiss;
 
-        //List<JudgeResult> _alljudge;
-        //List<JudgeResultInHold> _judgeInHold;
+        private string _difficulty;
+        private Slider _slider;
+        
+        private readonly Dictionary<string, int> _comboDataBase = new Dictionary<string, int>()
+        {
+            {"Easy", 2},
+            {"Hard", 4},
+            {"Extreme", 7}
+        };
 
         public Text comboText;
         public Text scoreText;
+        public Text gauge;
+
+        void Start()
+        {
+            _difficulty = PlayerPrefs.GetString("difficulty");
+            _slider = GameObject.Find("ScoreGauge").GetComponent<Slider>();
+            
+            sumPerfect = 0; 
+            sumGood = 0;
+            sumBad = 0;
+            sumMiss = 0;
+            currentCombo = 0;
+            highCombo = 0;
+            _sumScore = 0;
+            currentScore = 0;
+            _score = 0;
+            
+            _slider.value = 0f;
+            _gaugeCombo = 0;
+            _gaugeMiss = 0;
+            _sumScore = RhythmGamePresenter.countNotes * 4;
+            
+            comboText.text = "";
+            scoreText.text = "0,000,000";
+            gauge.text = "0";
+        }
 
         public void LateUpdate()
         {
-            foreach (JudgeResultType judgeResult in JudgeService.AllJudge)
+            foreach (var judgeResult in JudgeService.AllJudge)
             {
                 switch (judgeResult)
                 {
@@ -32,22 +70,22 @@ namespace Reilas
                         currentCombo++;
                         _score += 4;
                         sumPerfect++;
-                        Gauge.combo++;
-                        Gauge.miss = 0;
+                        _gaugeCombo++;
+                        _gaugeMiss = 0;
                         break;
                     case JudgeResultType.Good:
                         currentCombo++;
                         _score += 2;
                         sumGood++;
-                        Gauge.combo++;
-                        Gauge.miss = 0;
+                        _gaugeCombo++;
+                        _gaugeMiss = 0;
                         break;
                     case JudgeResultType.Bad:
                         currentCombo++;
                         _score += 1;
                         sumBad++;
-                        Gauge.combo++;
-                        Gauge.miss = 0;
+                        _gaugeCombo++;
+                        _gaugeMiss = 0;
                         break;
                     case JudgeResultType.Miss:
                         if (highCombo < currentCombo)
@@ -56,18 +94,31 @@ namespace Reilas
                         }
 
                         currentCombo = 0;
-                        Gauge.combo = 0;
-                        Gauge.miss++;
+                        _gaugeCombo++;
+                        _gaugeMiss = 0;
                         sumMiss++;
                         break;
+                    case JudgeResultType.NotJudgedYet:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
                 
                 JudgeService.AllJudge.Clear();
 
-                currentScore = (int) Mathf.Floor(1000000 * _score / sumScore);
-                comboText.text = currentCombo.ToString();
-                scoreText.text = currentScore.ToString();
-                //Debug.Log(currentScore);
+                currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
+                comboText.text = currentCombo > 1 ? "" : currentCombo.ToString();
+                scoreText.text = $"{currentScore,9: 0,000,000}";
+                
+                while (_gaugeCombo >= _comboDataBase[_difficulty])
+                {
+                    _slider.value += 0.01f;
+                    _gaugeCombo -= _comboDataBase[_difficulty];
+                }
+
+                _slider.value -= 0.03f * _gaugeMiss;
+
+                gauge.text = _slider.value.ToString(CultureInfo.InvariantCulture);
             }
         }
     }
