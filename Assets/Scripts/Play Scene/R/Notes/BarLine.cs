@@ -66,7 +66,7 @@ namespace Reilas
             if (!this.gameObject.activeSelf)
             {
 
-                if (judgeTime - currentTime < 10f)
+                if (judgeTime - currentTime < 5f)
                 {
                     this.gameObject.SetActive(true);
                 }

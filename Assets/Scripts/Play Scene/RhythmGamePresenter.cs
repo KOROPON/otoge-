@@ -46,12 +46,12 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
-    List<ReilasNoteEntity> reilasTap = new List<ReilasNoteEntity>();
-    List<ReilasNoteEntity> reilasAboveTap = new List<ReilasNoteEntity>();
-    List<ReilasNoteLineEntity> reilasAboveSlide = new List<ReilasNoteLineEntity>();
-    List<ReilasNoteLineEntity> reilasAboveHold = new List<ReilasNoteLineEntity>();
-    List<ReilasNoteLineEntity> reilasHold = new List<ReilasNoteLineEntity>();
-    List<ReilasNoteEntity> reilasChain = new List<ReilasNoteEntity>();
+    private List<ReilasNoteEntity> reilasTap = new List<ReilasNoteEntity>();
+    private List<ReilasNoteEntity> reilasAboveTap = new List<ReilasNoteEntity>();
+    private List<ReilasNoteLineEntity> reilasAboveSlide = new List<ReilasNoteLineEntity>();
+    private List<ReilasNoteLineEntity> reilasAboveHold = new List<ReilasNoteLineEntity>();
+    private List<ReilasNoteLineEntity> reilasHold = new List<ReilasNoteLineEntity>();
+    private List<ReilasNoteEntity> reilasChain = new List<ReilasNoteEntity>();
 
     public static List<BarLine> _barLines = new List<BarLine>();
 
@@ -179,8 +179,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnHoldNotes(reilasHold);
         SpawnAboveHoldNotes(reilasAboveHold);
         SpawnAboveSlideNotes(reilasAboveSlide);
-        SpawnBarLines(_barLineTimes
-            );
+        SpawnBarLines(_barLineTimes);
 
         foreach (var note in tapNotes)
         {
@@ -363,6 +362,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (float line in lines)
         {
             var barLine = Instantiate(_barLinePrefab);
+            barLine.gameObject.SetActive(false);
             _barLines.Add(barLine);
         }
     }
@@ -587,17 +587,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         for (int num = _holdNoteMove.Count - 1; num >= 0; num--)
         {
-            _holdNoteMove[num].Render(audioTime, num);
+            _holdNoteMove[num].Render(audioTime, num, reilasHold);
         }
 
         for (int num = _aboveHoldNoteMove.Count - 1; num >= 0; num--)
         {
-            _aboveHoldNoteMove[num].Render(audioTime, num);
+            _aboveHoldNoteMove[num].Render(audioTime, num, reilasAboveHold);
         }
 
         for (int num = _aboveSlideNoteMove.Count - 1; num >= 0; num--)
         {
-            _aboveSlideNoteMove[num].Render(audioTime, num);
+            _aboveSlideNoteMove[num].Render(audioTime, num, reilasAboveSlide);
         }
 
         foreach (var note in _holdEffectors)
