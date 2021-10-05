@@ -10,6 +10,12 @@ using Reilas;
 using UnityEngine.UI;
 using System;
 
+public class HeadGuide
+{
+    public int indexNum;
+    public float time;
+}
+
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
     public Text text1;
@@ -39,6 +45,14 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<HoldNote> _holdNotes = new List<HoldNote>();
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
+
+    List<ReilasNoteEntity> reilasTap = new List<ReilasNoteEntity>();
+    List<ReilasNoteEntity> reilasAboveTap = new List<ReilasNoteEntity>();
+    List<ReilasNoteLineEntity> reilasAboveSlide = new List<ReilasNoteLineEntity>();
+    List<ReilasNoteLineEntity> reilasAboveHold = new List<ReilasNoteLineEntity>();
+    List<ReilasNoteLineEntity> reilasHold = new List<ReilasNoteLineEntity>();
+    List<ReilasNoteEntity> reilasChain = new List<ReilasNoteEntity>();
+
     public static List<BarLine> _barLines = new List<BarLine>();
 
     public static List<ReilasNoteEntity> tapNotes = new List<ReilasNoteEntity>();
@@ -60,6 +74,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static string dif = null!;
     
     public static bool[] laneTapStates = new bool[36];
+
+    List<HeadGuide> aboveHoldHead = new List<HeadGuide>();
+    List<HeadGuide> aboveSlideHead = new List<HeadGuide>();
+    List<HeadGuide> holdHead = new List<HeadGuide>();
     
 
     JudgeService judgeService;
@@ -150,53 +168,84 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         
         tapNoteJudge = new bool[tapNotes.Count];
         chainNoteJudge = new bool[chainNotes.Count];
+        reilasTap = _chartEntity.Notes.Where(note => note.Type == NoteType.Tap).ToList();
+        reilasAboveTap = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap).ToList();
+        reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
+        reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
+        reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
+        reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
-        SpawnChainNotes(_chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain));
-        SpawnHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold));
-        SpawnAboveHoldNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold));
-        SpawnAboveSlideNotes(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide));
-        SpawnBarLines(_barLineTimes);
+        SpawnChainNotes(reilasChain);
+        SpawnHoldNotes(reilasHold);
+        SpawnAboveHoldNotes(reilasAboveHold);
+        SpawnAboveSlideNotes(reilasAboveSlide);
+        SpawnBarLines(_barLineTimes
+            );
 
         foreach (var note in tapNotes)
         {
             switch (note.Type)
             {
                 case NoteType.AboveSlide:
-                {
-                    foreach (var jsonData in noteJsonData)
                     {
-                        if (note.JsonData.guid != jsonData.tail) continue;
-                        note.Type = NoteType.AboveSlideInternal;
-                        internalNotes.Add(note);
+                        foreach (var jsonData in noteJsonData)
+                        {
+                            if (note.JsonData.guid != jsonData.tail)
+                            {/*
+                                aboveSlideHead.Add(new HeadGuide
+                                {
+                                    time = note.JudgeTime,
+                                    indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).IndexOf(note)
+                                }) ;*/
+                                continue;
+                            }
+                            note.Type = NoteType.AboveSlideInternal;
+                            internalNotes.Add(note);
+                            break;
+                        }
+
                         break;
                     }
-                    
-                    break;
-                }
                 case NoteType.AboveHold:
-                {
-                    foreach (var jsonData in noteJsonData)
                     {
-                        if (note.JsonData.guid != jsonData.tail) continue;
-                        note.Type = NoteType.AboveHoldInternal;
-                        internalNotes.Add(note);
+                        foreach (var jsonData in noteJsonData)
+                        {
+                            if (note.JsonData.guid != jsonData.tail)
+                            {/*
+                                aboveHoldHead.Add(new HeadGuide
+                                {
+                                    time = note.JudgeTime,
+                                    indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).IndexOf(note)
+                                });*/
+                                continue;
+                            }
+                            note.Type = NoteType.AboveHoldInternal;
+                            internalNotes.Add(note);
+                            break;
+                        }
+
                         break;
                     }
-
-                    break;
-                }
                 case NoteType.Hold:
-                {
-                    foreach (var jsonData in noteJsonData)
                     {
-                        if (note.JsonData.guid != jsonData.tail) continue;
-                        note.Type = NoteType.HoldInternal;
-                        internalNotes.Add(note);
+                        foreach (var jsonData in noteJsonData)
+                        {
+                            if (note.JsonData.guid != jsonData.tail)
+                            {/*
+                                holdHead.Add(new HeadGuide
+                                {
+                                    time = note.JudgeTime,
+                                    indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).IndexOf(note)
+                                });*/
+                                continue;
+                            }
+                            note.Type = NoteType.HoldInternal;
+                            internalNotes.Add(note);
+                            break;
+                        }
+
                         break;
                     }
-
-                    break;
-                }
                 case NoteType.Tap:
                     break;
                 case NoteType.HoldInternal:
@@ -275,6 +324,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_holdNotePrefab);
             var holdEffector = tapNote.transform.Find("HoldEffector").gameObject.GetComponent<HoldEffector>();
             tapNote.Initialize(note);
+            tapNote.gameObject.SetActive(false);
             holdEffector.EffectorInitialize(note);
             _holdEffectors.Add(holdEffector);
             _holdNotes.Add(tapNote);
@@ -301,6 +351,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveSlideNotePrefab);
             var aboveSlideEffector = tapNote.transform.Find("AboveSlideEffector").gameObject.GetComponent<AboveSlideEffector>();
             tapNote.Initialize(note);
+            tapNote.gameObject.SetActive(false);
             aboveSlideEffector.EffectorInitialize(note);
             _aboveSlideEffectors.Add(aboveSlideEffector);
             _aboveSlideNotes.Add(tapNote);
@@ -477,12 +528,46 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         var _chainNoteMove = _aboveChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
 
         List<AboveHoldNote> _aboveHoldNoteMove = new List<AboveHoldNote>();
-        foreach(var hold in _aboveHoldNotes)
+        List<AboveSlideNote> _aboveSlideNoteMove = new List<AboveSlideNote>();
+        List<HoldNote> _holdNoteMove = new List<HoldNote>();
+        int indexNum = 0;
+        foreach(var aboveHold in reilasAboveHold)
         {
-            if (hold.Head.JudgeTime - audioTime < 5)
+            if (aboveHold.Head.JudgeTime - audioTime < 5) // tail の時間 - currentTime < 5s の時 setActive => true & Render()
             {
-                _aboveHoldNoteMove.Add(hold);
+                _aboveHoldNoteMove.Add(_aboveHoldNotes[indexNum]);
             }
+            else
+            {
+                break;
+            }
+            indexNum++;
+        }
+        indexNum = 0;
+        foreach(var aboveSlide in reilasAboveSlide)
+        {
+            if (aboveSlide.Head.JudgeTime - audioTime < 5) // tail の時間 - currentTime < 5s の時 setActive => true & Render()
+            {
+                _aboveSlideNoteMove.Add(_aboveSlideNotes[indexNum]);
+            }
+            else
+            {
+                break;
+            }
+            indexNum++;
+        }
+        indexNum = 0;
+        foreach(var hold in reilasHold)
+        {
+            if (hold.Head.JudgeTime - audioTime < 5) // tail の時間 - currentTime < 5s の時 setActive => true & Render()
+            {
+                _holdNoteMove.Add(_holdNotes[indexNum]);
+            }
+            else
+            {
+                break;
+            }
+            indexNum++;
         }
 
         foreach (var tapNote in _tapNoteMove)
@@ -500,20 +585,21 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             note.Render(audioTime);
         }
 
-        foreach (var note in _holdNotes)
+        for (int num = _holdNoteMove.Count - 1; num >= 0; num--)
         {
-            note.Render(audioTime);
+            _holdNoteMove[num].Render(audioTime, num);
         }
 
-        for(int num = _aboveHoldNoteMove.Count - 1; num >= 0; num--)
+        for (int num = _aboveHoldNoteMove.Count - 1; num >= 0; num--)
         {
             _aboveHoldNoteMove[num].Render(audioTime, num);
         }
 
-        foreach (var note in _aboveSlideNotes)
+        for (int num = _aboveSlideNoteMove.Count - 1; num >= 0; num--)
         {
-            note.Render(audioTime);
+            _aboveSlideNoteMove[num].Render(audioTime, num);
         }
+
         foreach (var note in _holdEffectors)
         {
             note.EffectJudge(audioTime, longPerfect);

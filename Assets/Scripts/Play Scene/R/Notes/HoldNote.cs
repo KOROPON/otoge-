@@ -14,8 +14,18 @@ namespace Reilas
             _entity = entity;
         }
 
-        public void Render(float currentTime)
+        public void Render(float currentTime, int noteNum)
         {
+            if (_entity.Tail.JudgeTime < currentTime)
+            {
+                Destroy(gameObject);
+                RhythmGamePresenter._holdNotes.RemoveAt(noteNum);
+            }
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
+
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
 
 
