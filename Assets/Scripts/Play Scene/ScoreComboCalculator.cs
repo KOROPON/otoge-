@@ -104,9 +104,10 @@ namespace Reilas
                         throw new ArgumentOutOfRangeException();
                 }
                 
-                JudgeService.AllJudge.Clear();
+            }
+            JudgeService.AllJudge.Clear();
 
-                currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
+            currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
                 comboText.text = currentCombo > 1 ? "" : currentCombo.ToString();
                 scoreText.text = $"{currentScore,9: 0,000,000}";
                 
@@ -119,7 +120,6 @@ namespace Reilas
                 _slider.value -= 0.03f * _gaugeMiss;
 
                 gauge.text = _slider.value.ToString(CultureInfo.InvariantCulture);
-            }
         }
     }
 }
