@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Reilas
@@ -65,12 +66,12 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime)
+        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
-            RenderMesh(currentTime);
+            RenderMesh(currentTime, noteNum, noteList);
         }
 
-        private void RenderMesh(float currentTime)
+        private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
             if (_meshFilter == null) return;
             if (_mesh == null)
@@ -81,6 +82,21 @@ namespace Reilas
             if (_vertices == null)
             {
                 return;
+            }
+
+            if(_entity.Tail.JudgeTime < currentTime)
+            {
+                foreach (Transform child in this.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                noteList.RemoveAt(noteNum);
+                Destroy(gameObject);
+                RhythmGamePresenter._aboveHoldNotes.RemoveAt(noteNum);
+            }
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
             }
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);

@@ -1,5 +1,6 @@
 #nullable enable
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Reilas
@@ -14,8 +15,23 @@ namespace Reilas
             _entity = entity;
         }
 
-        public void Render(float currentTime)
+        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
+            if (_entity.Tail.JudgeTime < currentTime)
+            {
+                foreach (Transform child in this.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                noteList.RemoveAt(noteNum);
+                Destroy(gameObject);
+                RhythmGamePresenter._holdNotes.RemoveAt(noteNum);
+            }
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
+
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
 
 
