@@ -27,8 +27,8 @@ public sealed class AboveHoldEffector : MonoBehaviour
         if (currentTime - _entity.Head.JudgeTime >= 0)
         {
             _blJudge = false;
-            transform.position = RhythmGamePresenter.lanePositions[_lanePos];
-            foreach (LaneTapState tapstate in InputService.aboveLaneTapStates)
+            transform.position = RhythmGamePresenter.LanePositions[_lanePos];
+            foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
                 if (tapstate.laneNumber == _lanePos)
                 {

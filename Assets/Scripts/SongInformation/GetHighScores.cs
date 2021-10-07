@@ -9,14 +9,14 @@ public class GetHighScores : MonoBehaviour
 
     private HighScores SongInfo(string songPath)
     {
-        using StreamReader reader = new StreamReader(songPath);
-        string jsonString = reader.ReadToEnd();
+        using var reader = new StreamReader(songPath);
+        var jsonString = reader.ReadToEnd();
         return JsonUtility.FromJson<HighScores>(jsonString);
     }
 
     private void StreamWrite()
     {
-        using StreamWriter writer = new StreamWriter(_jsonFilePath);
+        using var writer = new StreamWriter(_jsonFilePath);
         writer.WriteLine(JsonUtility.ToJson(_highScore, true));
     }
 
@@ -33,14 +33,14 @@ public class GetHighScores : MonoBehaviour
 
     private Song GetSong(string title)
     {
-        foreach (Song t in _highScore.songs)
+        foreach (var t in _highScore.songs)
         {
             if (title == t.title)
             {
                 return t;
             }
         }
-        Song emptySong = new Song();
+        var emptySong = new Song();
         Array.Resize(ref _highScore.songs, _highScore.songs.Length + 1);
         _highScore.songs[_highScore.songs.Length - 1] = emptySong;
         emptySong.title = title;
@@ -49,9 +49,9 @@ public class GetHighScores : MonoBehaviour
 
     private Difficulty GetDiff(string title, string difficulty)
     {
-        Song songName = GetSong(title);
+        var songName = GetSong(title);
 
-        Difficulty diff = difficulty switch
+        var diff = difficulty switch
         {
             "Easy" => songName.Easy,
             "Hard" => songName.Hard,
@@ -64,68 +64,40 @@ public class GetHighScores : MonoBehaviour
 
     private string RankCalculator(int score)
     {
-        switch (score)
+        return score switch
         {
-            case int n when n >= 995000:
-                return "SSS";
-            case int n when n >= 990000:
-                return "SS";
-            case int n when n >= 980000:
-                return "S";
-            case int n when n >= 950000:
-                return "A";
-            case int n when n >= 900000:
-                return "B";
-            case int n when n >= 800000:
-                return "C";
-            case int n when n > 0:
-                return "D";
-            default: return "";
-        }
+            int n when n >= 995000 => "SSS",
+            int n when n >= 990000 => "SS",
+            int n when n >= 980000 => "S",
+            int n when n >= 950000 => "A",
+            int n when n >= 900000 => "B",
+            int n when n >= 800000 => "C",
+            int n when n > 0 => "D",
+            _ => ""
+        };
     }
 
     public bool GetLock(string songName)
     {
-        Song song = GetSong(songName);
-        if (song != null)
-        {
-            return song.extremeLock;
-        }
-        else
-        {
-            return false;
-        }
+        var song = GetSong(songName);
+        return song != null && song.extremeLock;
     }
 
     public int GetHighScore(string songName, string difficulty)
     {
-        Difficulty diff = GetDiff(songName, difficulty);
-        if (diff != null)
-        {
-            return diff.highScore;
-        }
-        else
-        {
-            return 0;
-        }
+        var diff = GetDiff(songName, difficulty);
+        return diff?.highScore ?? 0;
     }
 
     public string GetRank(string songName, string difficulty)
     {
-        Difficulty diff = GetDiff(songName, difficulty);
-        if (diff != null)
-        {
-            return diff.rank;
-        }
-        else
-        {
-            return "";
-        }
+        var diff = GetDiff(songName, difficulty);
+        return diff != null ? diff.rank : "";
     }
 
     public void SetHighScore(string songName, string difficulty, int score)
     {
-        Difficulty diff = GetDiff(songName, difficulty) ?? new Difficulty();
+        var diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
         diff.rank = RankCalculator(score);
         if (difficulty == "Hard" && diff.highScore >= 980000)

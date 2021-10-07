@@ -34,7 +34,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
         {
             _blJudge = false;
             transform.position = PositionCal(currentTime);
-            foreach (LaneTapState tapstate in InputService.aboveLaneTapStates)
+            foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
                 if (tapstate.laneNumber == JudgeLaneCal(currentTime))
                 {
@@ -65,7 +65,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
     private Vector3 PositionCal(float currentTime)
     {
         var x = 4.53 * Mathf.Cos(Mathf.PI * ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos) / 32);
-        var y = 4.53 * Mathf.Sin(Mathf.PI * ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos) / 32);//‚Ç‚Á‚¿‚©‚É - Š|‚¯‚È‚©‚ñ
+        var y = 4.53 * Mathf.Sin(Mathf.PI * ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos) / 32);//ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½|ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½
         return new Vector3((float) x, (float) y, 0);
     }
     private int JudgeLaneCal(float currentTime)

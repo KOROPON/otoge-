@@ -29,13 +29,13 @@ public sealed class HoldEffector : MonoBehaviour
         if (currentTime - _entity.Head.JudgeTime >= 0 && _blDone)
         {
             transform.parent = null;
-            transform.position = RhythmGamePresenter.lanePositions[_lanePos];
+            transform.position = RhythmGamePresenter.LanePositions[_lanePos];
             transform.localScale = new Vector3(0, 0, 0);
             _blDone = false;
         }
         if (!_blDone)
         {
-            foreach (LaneTapState tapstate in InputService.aboveLaneTapStates)
+            foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
                 _blJudge = false;
                 if (tapstate.laneNumber == _lanePos)

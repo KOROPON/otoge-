@@ -35,7 +35,7 @@ namespace Reilas
         public Text scoreText;
         public Text gauge;
 
-        void Start()
+        private void Start()
         {
             _difficulty = PlayerPrefs.GetString("difficulty");
             _slider = GameObject.Find("ScoreGauge").GetComponent<Slider>();
@@ -94,8 +94,8 @@ namespace Reilas
                         }
 
                         currentCombo = 0;
-                        _gaugeCombo++;
-                        _gaugeMiss = 0;
+                        _gaugeCombo = 0;
+                        _gaugeMiss++;
                         sumMiss++;
                         break;
                     case JudgeResultType.NotJudgedYet:
@@ -105,21 +105,22 @@ namespace Reilas
                 }
                 
             }
+            
             JudgeService.AllJudge.Clear();
 
             currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
-                comboText.text = currentCombo > 1 ? "" : currentCombo.ToString();
-                scoreText.text = $"{currentScore,9: 0,000,000}";
-                
-                while (_gaugeCombo >= _comboDataBase[_difficulty])
-                {
-                    _slider.value += 0.01f;
-                    _gaugeCombo -= _comboDataBase[_difficulty];
-                }
+            comboText.text = currentCombo > 1 ? currentCombo.ToString() : "";
+            scoreText.text = $"{currentScore,9: 0,000,000}";
+            
+            while (_gaugeCombo >= _comboDataBase[_difficulty])
+            {
+                _slider.value += 0.01f;
+                _gaugeCombo -= _comboDataBase[_difficulty];
+            }
 
-                _slider.value -= 0.03f * _gaugeMiss;
+            _slider.value -= 0.03f * _gaugeMiss;
 
-                gauge.text = _slider.value.ToString(CultureInfo.InvariantCulture);
+            gauge.text = _slider.value.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

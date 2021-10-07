@@ -18,20 +18,20 @@ public class Judge_Effector : MonoBehaviour
           }*/
         foreach (Transform child in transform)
         {
-            // q—v‘f‚Ì–¼‘O‚ğ—ñ‹“
+            // ï¿½qï¿½vï¿½fï¿½Ì–ï¿½ï¿½Oï¿½ï¿½ï¿½
             Debug.Log(child.name);
         }
 
     }
     /// <summary>
-    /// 1ƒ^ƒbƒv‚²‚Æ‚É‘Î‰‚·‚éƒ^ƒbƒvƒm[ƒci•¡”‚Ì‰Â”\«‚ ‚èj‚Ì”»’èŒ‹‰Ê‚Æ‘Î‰‚µ‚½ƒGƒtƒFƒNƒg‚ğƒm[ƒc‚Ì’†S•”‚É•\¦‚·‚é
-    /// ƒ^ƒbƒv‰¹‚Íƒm[ƒc‚Ü‚¢‚Å‚È‚­ƒ^ƒCƒ~ƒ“ƒO‚Å‚Ü‚Æ‚ß‚Äˆ—‚·‚é‚Ì‚ª—Ç‚¢
+    /// 1ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½Æ‚É‘Î‰ï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½bï¿½vï¿½mï¿½[ï¿½cï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Ì‰Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½Ì”ï¿½ï¿½èŒ‹ï¿½Ê‚Æ‘Î‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½mï¿½[ï¿½cï¿½Ì’ï¿½ï¿½Sï¿½ï¿½ï¿½É•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ï¿½^ï¿½bï¿½vï¿½ï¿½ï¿½Íƒmï¿½[ï¿½cï¿½Ü‚ï¿½ï¿½Å‚È‚ï¿½ï¿½^ï¿½Cï¿½~ï¿½ï¿½ï¿½Oï¿½Å‚Ü‚Æ‚ß‚Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Ç‚ï¿½
     /// </summary>
     /// <param name="judgePositions">
-    /// ”»’è‚ªs‚í‚ê‚½ƒm[ƒc‚ÌƒŒ[ƒ“”Ô†”z—ñ
+    /// ï¿½ï¿½ï¿½è‚ªï¿½sï¿½ï¿½ê‚½ï¿½mï¿½[ï¿½cï¿½Ìƒï¿½ï¿½[ï¿½ï¿½ï¿½Ôï¿½ï¿½zï¿½ï¿½
     /// </param>
     /// <param name="judgeType">
-    /// ”»’è‚Ìí—Ş
+    /// ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½
     /// </param>
 
     public void TapJudgeEffector(int[] judgePositions, string judgeType)
@@ -45,7 +45,7 @@ public class Judge_Effector : MonoBehaviour
                 ParticleSystem effect1 = effecterObj.GetComponentsInChildren<ParticleSystem>()[0];
                 if (effect1.isPlaying) continue;
                 ParticleSystem effect2 = effecterObj.GetComponentsInChildren<ParticleSystem>()[1];
-                effecterObj.transform.position = RhythmGamePresenter.lanePositions[judgePos];
+                effecterObj.transform.position = RhythmGamePresenter.LanePositions[judgePos];
                 switch (judgeType)
                 {
                     case "perfect":
@@ -67,7 +67,7 @@ public class Judge_Effector : MonoBehaviour
                 effect2.Play();
                 break;
             }
-            //‚±‚±‚Åƒ^ƒbƒv‰¹—¬‚·
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Åƒ^ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
     }
 }
