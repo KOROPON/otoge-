@@ -201,8 +201,8 @@ namespace Reilas
 
         public void NoteDestroy()
         {
-            Destroy(this.gameObject);
             RhythmGamePresenter._aboveChainNotes.Remove(this);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -72,7 +72,7 @@ public class JudgeService : MonoBehaviour
             {
                 case 4:
                 {
-                    for (var i = noteLanePosition; i <= noteLanePosition + note.Size; i++)
+                    for (var i = noteLanePosition; i < noteLanePosition + note.Size; i++)
                     {
                         if (tapState[i]) return true;
                     }
@@ -81,7 +81,7 @@ public class JudgeService : MonoBehaviour
                 }
                 case 35:
                 {
-                    for (var i = noteLanePosition - 1; i <= noteLanePosition + note.Size - 1; i++)
+                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size - 1; i++)
                     {
                         if (tapState[i]) return true;
                     }
@@ -90,7 +90,7 @@ public class JudgeService : MonoBehaviour
                 }
                 default:
                 {
-                    for (var i = noteLanePosition - 1; i <= noteLanePosition + note.Size; i++)
+                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size; i++)
                     {
                         if (tapState[i]) return true;
                     }
