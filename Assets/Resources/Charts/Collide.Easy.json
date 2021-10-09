@@ -123,48 +123,6 @@
         "customProps": {}
       },
       {
-        "guid": "f3ffebefc41f8c7e175c35e87a675b84",
-        "editorProps": {
-          "time": 14.823529411764707
-        },
-        "measureIndex": 10,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 4
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "fceb5a38b8acd9cc82ccf87d03924cf5",
-        "editorProps": {
-          "time": 15.529411764705884
-        },
-        "measureIndex": 11,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 4
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "6a6e20c60ea5a8f18e9e2477a02dfce0",
         "editorProps": {
           "time": 16.941176470588236
@@ -182,27 +140,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "b4166e29efc93e1b96d4f00f046583f8",
-        "editorProps": {
-          "time": 17.647058823529413
-        },
-        "measureIndex": 12,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -228,95 +165,11 @@
         "customProps": {}
       },
       {
-        "guid": "4dabc191af6441a402ae906ff9bb0098",
-        "editorProps": {
-          "time": 19.058823529411764
-        },
-        "measureIndex": 13,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "c3c823f0005861f418b2ed5832f6ad75",
-        "editorProps": {
-          "time": 18.176470588235297
-        },
-        "measureIndex": 12,
-        "measurePosition": {
-          "numerator": 7,
-          "denominator": 8
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 2,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "dea75b219afd6d10ecef69913917a619",
         "editorProps": {
           "time": 19.764705882352942
         },
         "measureIndex": 14,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "21afdc31d81c8ac80c08f87c3c635a1c",
-        "editorProps": {
-          "time": 20.47058823529412
-        },
-        "measureIndex": 14,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "c87c397780f8cc3c80d937209cbaa3f3",
-        "editorProps": {
-          "time": 21.176470588235297
-        },
-        "measureIndex": 15,
         "measurePosition": {
           "numerator": 0,
           "denominator": 8
@@ -354,27 +207,6 @@
         "customProps": {}
       },
       {
-        "guid": "30ef95a9ae2939d7409c733ce0f7e771",
-        "editorProps": {
-          "time": 21.88235294117647
-        },
-        "measureIndex": 15,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "ae6545e63165cf0f4e1f0e16c6d0acad",
         "editorProps": {
           "time": 22.58823529411765
@@ -382,48 +214,6 @@
         "measureIndex": 16,
         "measurePosition": {
           "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "ea95fde108221cbe5527b3bc9a68bad6",
-        "editorProps": {
-          "time": 23.294117647058826
-        },
-        "measureIndex": 16,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "32b1f02200be1c36e4f30ceba25aa584",
-        "editorProps": {
-          "time": 23.823529411764707
-        },
-        "measureIndex": 16,
-        "measurePosition": {
-          "numerator": 7,
           "denominator": 8
         },
         "horizontalSize": 1,
@@ -459,27 +249,6 @@
         "customProps": {}
       },
       {
-        "guid": "68e19c916e61efac264b2cf0d5540c05",
-        "editorProps": {
-          "time": 16.23529411764706
-        },
-        "measureIndex": 11,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "abacff47ec18a655b8827772fcc379af",
         "editorProps": {
           "time": 24.529411764705884
@@ -497,27 +266,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "85bc66d38f98e67ab9707a5d5eb60d9b",
-        "editorProps": {
-          "time": 24.705882352941178
-        },
-        "measureIndex": 17,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -858,27 +606,6 @@
         "customProps": {}
       },
       {
-        "guid": "1ffd7d4e9addc0d761fa7c17e712e8d6",
-        "editorProps": {
-          "time": 35.294117647058826
-        },
-        "measureIndex": 25,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "229f0ef1fe9a82e495c06f56355c8f04",
         "editorProps": {
           "time": 36.70588235294118
@@ -1194,321 +921,6 @@
         "customProps": {}
       },
       {
-        "guid": "c599e8a624265360c187d1ece48a7faf",
-        "editorProps": {
-          "time": 42.352941176470594
-        },
-        "measureIndex": 30,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "3c6114f92c2a358e4d5627af2fa8c201",
-        "editorProps": {
-          "time": 42.70588235294118
-        },
-        "measureIndex": 30,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "bfef1858d8dc5f2b3411524587763f46",
-        "editorProps": {
-          "time": 43.05882352941177
-        },
-        "measureIndex": 30,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e7a2128607e66b4cfb117016bbcc08b1",
-        "editorProps": {
-          "time": 43.411764705882355
-        },
-        "measureIndex": 30,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "fee67251f57866b0f0c6f02ad830724b",
-        "editorProps": {
-          "time": 43.76470588235294
-        },
-        "measureIndex": 31,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "2672a97cd981b5521bb382387c3a9437",
-        "editorProps": {
-          "time": 44.11764705882353
-        },
-        "measureIndex": 31,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "55f8886cb777965987e0274fe3280ba5",
-        "editorProps": {
-          "time": 44.47058823529412
-        },
-        "measureIndex": 31,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "631aa348ccd2b300899882f4fcb64d4d",
-        "editorProps": {
-          "time": 44.82352941176471
-        },
-        "measureIndex": 31,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "7b20342b1db04956b457e000140296d7",
-        "editorProps": {
-          "time": 45.1764705882353
-        },
-        "measureIndex": 32,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "600c07b4f41045c29827b00769c02fbc",
-        "editorProps": {
-          "time": 45.529411764705884
-        },
-        "measureIndex": 32,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "20b4b9c4d4e29352cf83f1fb3b0dc8db",
-        "editorProps": {
-          "time": 45.88235294117647
-        },
-        "measureIndex": 32,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "c4c885628b1b96ece90c01aef416b3fc",
-        "editorProps": {
-          "time": 46.235294117647065
-        },
-        "measureIndex": 32,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "fa2c0a4c00ed6b1b846880e70a80adbe",
-        "editorProps": {
-          "time": 46.58823529411765
-        },
-        "measureIndex": 33,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "23ff8782011b391d45abd16d81060edb",
-        "editorProps": {
-          "time": 46.94117647058824
-        },
-        "measureIndex": 33,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e80323ddc10a920f17e963c93b46a23c",
-        "editorProps": {
-          "time": 47.294117647058826
-        },
-        "measureIndex": 33,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "d44c96966793c9a76ef5d728e96eb9b8",
         "editorProps": {
           "time": 48
@@ -1526,342 +938,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "3de49fb8eec53773760cc6ded90962ff",
-        "editorProps": {
-          "time": 54
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "3425e413c0783f4ac5466f5098544423",
-        "editorProps": {
-          "time": 54.70588235294118
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "21d200d8a8f8bc281809ee060584cd33",
-        "editorProps": {
-          "time": 55.411764705882355
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "b8b56a16726e506dfc53725035276140",
-        "editorProps": {
-          "time": 56.117647058823536
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "707e06cad302248e4d803f1358c993c8",
-        "editorProps": {
-          "time": 53.64705882352941
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 5,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "2b5ced245bfa45f8ce6f7d8415e394f6",
-        "editorProps": {
-          "time": 53.82352941176471
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 7,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "9ec77e0ca3d48d7911facebfed1df3b4",
-        "editorProps": {
-          "time": 54
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "814d7070611f2d5965de9631881f7fe9",
-        "editorProps": {
-          "time": 54.70588235294118
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "50f6996db592a13895e49cedab3bf7cd",
-        "editorProps": {
-          "time": 54.529411764705884
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 5,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 20,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "872f95f3b68ce2c5aea25d2ce2dfd269",
-        "editorProps": {
-          "time": 54.352941176470594
-        },
-        "measureIndex": 38,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 22,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "11e574e15046543eb7f6fddab44e3de3",
-        "editorProps": {
-          "time": 55.411764705882355
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "b07a840bf672f9d31f8e259d123773ce",
-        "editorProps": {
-          "time": 55.05882352941177
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 3,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "fafbd491bc90333d070efafb865baab0",
-        "editorProps": {
-          "time": 55.235294117647065
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 6,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "7e23da2b574c4c384a08261df30ec6f0",
-        "editorProps": {
-          "time": 56.117647058823536
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "8079dfb05d9537e1a2964bb486bf5a87",
-        "editorProps": {
-          "time": 55.94117647058824
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 5,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 21,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "7b234aff0d0396094d6592854cdeb6ca",
-        "editorProps": {
-          "time": 55.76470588235294
-        },
-        "measureIndex": 39,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 24,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -1967,27 +1043,6 @@
         "type": "hold",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "d559faf9b894583ccaaed82beb486a92",
-        "editorProps": {
-          "time": 64.94117647058825
-        },
-        "measureIndex": 46,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -2139,48 +1194,6 @@
         "customProps": {}
       },
       {
-        "guid": "7388b623520b2f2918d7bdc758fb23eb",
-        "editorProps": {
-          "time": 48.70588235294118
-        },
-        "measureIndex": 34,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "0cab81b1985f5ad7863b55f149768233",
-        "editorProps": {
-          "time": 49.05882352941177
-        },
-        "measureIndex": 34,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "aa91e007860cc0824101f308894e20e7",
         "editorProps": {
           "time": 50.82352941176471
@@ -2219,90 +1232,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "410e416e0312b08cf7c65935c17dd506",
-        "editorProps": {
-          "time": 51.529411764705884
-        },
-        "measureIndex": 36,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "199dd20a146bc2c3ee360d47f16d8dbc",
-        "editorProps": {
-          "time": 51.88235294117647
-        },
-        "measureIndex": 36,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "1409dd7c0930cc6c45f1d3939e36733f",
-        "editorProps": {
-          "time": 50.117647058823536
-        },
-        "measureIndex": 35,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "c84c041b99bb1378231777751f184622",
-        "editorProps": {
-          "time": 50.47058823529412
-        },
-        "measureIndex": 35,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -2387,48 +1316,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "f8dc2e400ce374af1fe0a08f3d0c2959",
-        "editorProps": {
-          "time": 52.94117647058824
-        },
-        "measureIndex": 37,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "d4a42234bc9e981657554dab1505c13e",
-        "editorProps": {
-          "time": 53.294117647058826
-        },
-        "measureIndex": 37,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -3042,237 +1929,6 @@
         "customProps": {}
       },
       {
-        "guid": "7243290a5f1304a2309cf4aa810d7178",
-        "editorProps": {
-          "time": 66.3529411764706
-        },
-        "measureIndex": 47,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 13,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "abecc348947c733349a643398da8cab5",
-        "editorProps": {
-          "time": 70.58823529411765
-        },
-        "measureIndex": 50,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "68bf5c89cc80d19246cc039cbc77e5b7",
-        "editorProps": {
-          "time": 70.58823529411765
-        },
-        "measureIndex": 50,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "659182a0efaeee3ddb8197ac45fecd3d",
-        "editorProps": {
-          "time": 57.88235294117647
-        },
-        "measureIndex": 41,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 12
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "780f26d0b02721f65617f3bcf42d46e2",
-        "editorProps": {
-          "time": 73.41176470588236
-        },
-        "measureIndex": 52,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 14,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "6f767b269506385fb0272ccecea9403a",
-        "editorProps": {
-          "time": 74.82352941176471
-        },
-        "measureIndex": 53,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 14,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "c97958d24c72b99c90d996663260e6ce",
-        "editorProps": {
-          "time": 77.64705882352942
-        },
-        "measureIndex": 55,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "56d6770f23d34c5d83a52aaaae1aeff5",
-        "editorProps": {
-          "time": 77.64705882352942
-        },
-        "measureIndex": 55,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e5ce58f71e8681b8210473bdaaffb2a9",
-        "editorProps": {
-          "time": 79.05882352941177
-        },
-        "measureIndex": 56,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "ef0240d401e428350f29f36b1a21bd25",
-        "editorProps": {
-          "time": 79.05882352941177
-        },
-        "measureIndex": 56,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 27,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "1c434ac150c39dc452f4c105d2fc0e6a",
-        "editorProps": {
-          "time": 79.76470588235294
-        },
-        "measureIndex": 56,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 14,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "1c4af98f7365caf9ce25b870ce614f6c",
         "editorProps": {
           "time": 81.88235294117648
@@ -3290,69 +1946,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "a7f6818d0f969608dbe77b1cb70dce6a",
-        "editorProps": {
-          "time": 82.23529411764706
-        },
-        "measureIndex": 58,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "3f78be8093943425d0a9f743c6c7316e",
-        "editorProps": {
-          "time": 82.58823529411765
-        },
-        "measureIndex": 58,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "740863737a9bc42598eaac3f8d024fea",
-        "editorProps": {
-          "time": 82.94117647058825
-        },
-        "measureIndex": 58,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -3378,237 +1971,6 @@
         "customProps": {}
       },
       {
-        "guid": "e8bc46f620ef4fad7c8a6c6e14de1413",
-        "editorProps": {
-          "time": 83.64705882352942
-        },
-        "measureIndex": 59,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "5ca1f1dae8d64d96dc497a390a8845a2",
-        "editorProps": {
-          "time": 84
-        },
-        "measureIndex": 59,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "7f4073fbccd099a9c7bb0d68dcaf0a9d",
-        "editorProps": {
-          "time": 84.3529411764706
-        },
-        "measureIndex": 59,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "911fb9223d3581d6375d183761051da1",
-        "editorProps": {
-          "time": 84.70588235294119
-        },
-        "measureIndex": 60,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "6bfd0ce5c5c3746c9e561ffd944248b6",
-        "editorProps": {
-          "time": 85.05882352941177
-        },
-        "measureIndex": 60,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "d8fec1c8da483bdb4e9116e8d0f97ed5",
-        "editorProps": {
-          "time": 85.41176470588236
-        },
-        "measureIndex": 60,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "6c65437f77cb3ca41b2e5aa5c7cb9cd1",
-        "editorProps": {
-          "time": 85.76470588235294
-        },
-        "measureIndex": 60,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "14512f4bba53132d17bea5fe51b7f764",
-        "editorProps": {
-          "time": 86.11764705882354
-        },
-        "measureIndex": 61,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "37e38e71880273092897eeaf19f147e2",
-        "editorProps": {
-          "time": 86.47058823529413
-        },
-        "measureIndex": 61,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "c8daabbf210e7d8ec1dc08e6a878dba8",
-        "editorProps": {
-          "time": 86.82352941176471
-        },
-        "measureIndex": 61,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "07e8aa0a725754627df4ac286223c95b",
-        "editorProps": {
-          "time": 87.1764705882353
-        },
-        "measureIndex": 61,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "5a3fa66291c1bc66262f0852e92d2872",
         "editorProps": {
           "time": 88.94117647058825
@@ -3630,69 +1992,6 @@
         "customProps": {}
       },
       {
-        "guid": "4e6032d6978218b89646699422ab8fda",
-        "editorProps": {
-          "time": 89.29411764705883
-        },
-        "measureIndex": 63,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "522aeecb4564e20b7f230257b2f6e442",
-        "editorProps": {
-          "time": 89.64705882352942
-        },
-        "measureIndex": 63,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "3b5e7f38e60e0de2f0241f8ff0758993",
-        "editorProps": {
-          "time": 90
-        },
-        "measureIndex": 63,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "da0075c0d6e6fa47b02ec7db694c1c0e",
         "editorProps": {
           "time": 87.52941176470588
@@ -3710,237 +2009,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "155234a3bac2dba0b43d4c17816414c0",
-        "editorProps": {
-          "time": 87.88235294117648
-        },
-        "measureIndex": 62,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "3e352084b72583e8f2449a0e56f64983",
-        "editorProps": {
-          "time": 88.23529411764706
-        },
-        "measureIndex": 62,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e025ce83e44c23fef3231e6bde82dde7",
-        "editorProps": {
-          "time": 88.58823529411765
-        },
-        "measureIndex": 62,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "b47928f68976138b0a27517835a1663d",
-        "editorProps": {
-          "time": 90.3529411764706
-        },
-        "measureIndex": 64,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e87b2501696bd70dad6d3a206b5acb6a",
-        "editorProps": {
-          "time": 90.70588235294119
-        },
-        "measureIndex": 64,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "6f7038e1570cb6aba99d6b4a814714c4",
-        "editorProps": {
-          "time": 91.05882352941177
-        },
-        "measureIndex": 64,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "86bb99b8dc3266ad1150edd1e2e67875",
-        "editorProps": {
-          "time": 91.41176470588236
-        },
-        "measureIndex": 64,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "334f4db66942339115c435bacf0a4d25",
-        "editorProps": {
-          "time": 91.76470588235294
-        },
-        "measureIndex": 65,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "409d16c39325cc2f26eaad006c1f3157",
-        "editorProps": {
-          "time": 92.11764705882354
-        },
-        "measureIndex": 65,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "1a61a72518fda1b64b111503bc480044",
-        "editorProps": {
-          "time": 92.47058823529413
-        },
-        "measureIndex": 65,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "7e4a8de2c0eb5cf3f4e8c53509e21e27",
-        "editorProps": {
-          "time": 92.82352941176471
-        },
-        "measureIndex": 65,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 11,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -5562,48 +3630,6 @@
         "customProps": {}
       },
       {
-        "guid": "74cc1d29b0fb3a0e290f8c45f07f0b57",
-        "editorProps": {
-          "time": 116.11764705882354
-        },
-        "measureIndex": 82,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "bdfa540e63c5d445fd947f14a319af39",
-        "editorProps": {
-          "time": 116.82352941176471
-        },
-        "measureIndex": 82,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "ee99331504439899d72863ceadcf153b",
         "editorProps": {
           "time": 116.47058823529413
@@ -5751,48 +3777,6 @@
         "customProps": {}
       },
       {
-        "guid": "3065984a472cfe250824b90e0a3d206a",
-        "editorProps": {
-          "time": 118.94117647058825
-        },
-        "measureIndex": 84,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "daf8efd3f53f095ea294982eec8f7564",
-        "editorProps": {
-          "time": 119.64705882352942
-        },
-        "measureIndex": 84,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "24093410fdeadf2245d7b4df5d70025b",
         "editorProps": {
           "time": 120.00000000000001
@@ -5919,48 +3903,6 @@
         "customProps": {}
       },
       {
-        "guid": "8f6464d8c8363277d0ac016aceed7e0b",
-        "editorProps": {
-          "time": 121.76470588235294
-        },
-        "measureIndex": 86,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "92181c9eac7e7e19c12aa7e3b8e0bcc7",
-        "editorProps": {
-          "time": 122.47058823529413
-        },
-        "measureIndex": 86,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "9d21b47fac6f0f518bd565a555fab0d2",
         "editorProps": {
           "time": 122.82352941176471
@@ -6083,48 +4025,6 @@
         "type": "tap",
         "speed": 1,
         "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "44435e0ba20d4c44d682f4a36a894900",
-        "editorProps": {
-          "time": 124.58823529411765
-        },
-        "measureIndex": 88,
-        "measurePosition": {
-          "numerator": 2,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "0437a858cccb2b5a08af3b03783d9e58",
-        "editorProps": {
-          "time": 125.29411764705883
-        },
-        "measureIndex": 88,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
@@ -6381,90 +4281,6 @@
         "customProps": {}
       },
       {
-        "guid": "fe6f01f301fff5bc5deb5b4648a99545",
-        "editorProps": {
-          "time": 129.1764705882353
-        },
-        "measureIndex": 91,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "b75d7a89de4349305944a9aae75ad925",
-        "editorProps": {
-          "time": 129.1764705882353
-        },
-        "measureIndex": 91,
-        "measurePosition": {
-          "numerator": 4,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "86de9ce64dd9128c2081c5b045a6de81",
-        "editorProps": {
-          "time": 129.52941176470588
-        },
-        "measureIndex": 91,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "aec0d131aca3a3e522b156f5375544ad",
-        "editorProps": {
-          "time": 129.52941176470588
-        },
-        "measureIndex": 91,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 8
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "9ca9e49704db2ddd44a6f20ce55451d8",
         "editorProps": {
           "time": 129.8823529411765
@@ -6633,174 +4449,6 @@
         "customProps": {}
       },
       {
-        "guid": "509b859baf0ce26c5aaf8b6f374445c2",
-        "editorProps": {
-          "time": 134.11764705882354
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "aa14c4e471250f487e88bd0d88a58c81",
-        "editorProps": {
-          "time": 134.11764705882354
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 2,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "cee0c466c15fc6d95ac7bcad1dd3c704",
-        "editorProps": {
-          "time": 134.47058823529412
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "0a856c031ba6a3bb324df9838dcf49ce",
-        "editorProps": {
-          "time": 134.47058823529412
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 1,
-        "horizontalPosition": {
-          "numerator": 2,
-          "denominator": 4
-        },
-        "type": "tap",
-        "speed": 1,
-        "lane": "initialLane0",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "956240966c7b57c25a942321036da2eb",
-        "editorProps": {
-          "time": 134.82352941176472
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "0bf52d9089d7bd60b2a989b9f7aa508d",
-        "editorProps": {
-          "time": 134.82352941176472
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "cbf1e6d48f29a5bda402b8bae8537d35",
-        "editorProps": {
-          "time": 135.1764705882353
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "5c57b25860278bb80650ce9ce4be5208",
-        "editorProps": {
-          "time": 135.1764705882353
-        },
-        "measureIndex": 95,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "39ba7afeb85958450a4e824c1cc20e71",
         "editorProps": {
           "time": 135.52941176470588
@@ -6927,531 +4575,6 @@
         "customProps": {}
       },
       {
-        "guid": "dc5d6c065b2a2cf3260c8d7196127cc4",
-        "editorProps": {
-          "time": 136.94117647058823
-        },
-        "measureIndex": 97,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "483f98ed1c9e44e66adf52bdb245d924",
-        "editorProps": {
-          "time": 137.2058823529412
-        },
-        "measureIndex": 97,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 16
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "354ff892c5d3099c0b8a7e7f26e1e3ed",
-        "editorProps": {
-          "time": 137.47058823529412
-        },
-        "measureIndex": 97,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 16
-        },
-        "horizontalSize": 9,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "f795c93034b2bde269babacea2fb189b",
-        "editorProps": {
-          "time": 56.47058823529412
-        },
-        "measureIndex": 40,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 21,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "913acd7db185ec9d1ed171a434c22ba5",
-        "editorProps": {
-          "time": 56.82352941176471
-        },
-        "measureIndex": 40,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 16,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "dac3145ad1d504c90ff46f098b6afc84",
-        "editorProps": {
-          "time": 57.1764705882353
-        },
-        "measureIndex": 40,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "aee49ce589137bd21e782030e350dc6a",
-        "editorProps": {
-          "time": 57.529411764705884
-        },
-        "measureIndex": 40,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 4
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 8,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "177dc7d04b9454f2ee6d6d2d6e72262d",
-        "editorProps": {
-          "time": 58.94117647058824
-        },
-        "measureIndex": 41,
-        "measurePosition": {
-          "numerator": 12,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 15,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "d5e9c25574a875206a70ab3b775cedf5",
-        "editorProps": {
-          "time": 58.76470588235294
-        },
-        "measureIndex": 41,
-        "measurePosition": {
-          "numerator": 10,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "bec03b9ead9e807800695efeb7fa8967",
-        "editorProps": {
-          "time": 58.58823529411765
-        },
-        "measureIndex": 41,
-        "measurePosition": {
-          "numerator": 1,
-          "denominator": 2
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 22,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "65dd9c9fa601be9a92fc9c6a8e359f2c",
-        "editorProps": {
-          "time": 131.29411764705884
-        },
-        "measureIndex": 93,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "73a1a7db02126d1a4da21d7eb947bfe4",
-        "editorProps": {
-          "time": 131.55882352941177
-        },
-        "measureIndex": 93,
-        "measurePosition": {
-          "numerator": 3,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "7603b931a78b2f7d3ba39d861542efa9",
-        "editorProps": {
-          "time": 131.82352941176472
-        },
-        "measureIndex": 93,
-        "measurePosition": {
-          "numerator": 6,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "796e7fd2796692003329d0bea894d7a2",
-        "editorProps": {
-          "time": 132.08823529411765
-        },
-        "measureIndex": 93,
-        "measurePosition": {
-          "numerator": 9,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-chain",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "61aa58b711e1eaf1a2c865d452a53080",
-        "editorProps": {
-          "time": 132.3529411764706
-        },
-        "measureIndex": 93,
-        "measurePosition": {
-          "numerator": 12,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 12,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "47b894e0ec0955137ea7763f8ab0d477",
-        "editorProps": {
-          "time": 132.3529411764706
-        },
-        "measureIndex": 93,
-        "measurePosition": {
-          "numerator": 12,
-          "denominator": 16
-        },
-        "horizontalSize": 6,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-tap",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "1247111e665aa23a363329240f4a245f",
-        "editorProps": {
-          "time": 72
-        },
-        "measureIndex": 51,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e828d902b8b64a938462d7bc023a39cc",
-        "editorProps": {
-          "time": 72
-        },
-        "measureIndex": 51,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "e0d58b1e50a77b6902e6e554cd335b95",
-        "editorProps": {
-          "time": 67.76470588235294
-        },
-        "measureIndex": 48,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "34a8dca1378fffe67a0faf3f5de7f4e3",
-        "editorProps": {
-          "time": 68.47058823529412
-        },
-        "measureIndex": 48,
-        "measurePosition": {
-          "numerator": 8,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "6b15056b2b48eb7ad9231b9b13a5aee1",
-        "editorProps": {
-          "time": 69.1764705882353
-        },
-        "measureIndex": 49,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 9,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "4cdf0792b2aa793b9f41c39cecc11e62",
-        "editorProps": {
-          "time": 76.23529411764706
-        },
-        "measureIndex": 54,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "9b93055025f1fd2989a633859b4f01be",
-        "editorProps": {
-          "time": 76.23529411764706
-        },
-        "measureIndex": 54,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "78af4f36f0fa81e152fea10f35c43d0d",
-        "editorProps": {
-          "time": 80.47058823529412
-        },
-        "measureIndex": 57,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 18,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
-        "guid": "2f50a8acbfc62e12bfd1f67bbca48c5e",
-        "editorProps": {
-          "time": 80.47058823529412
-        },
-        "measureIndex": 57,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 16
-        },
-        "horizontalSize": 18,
-        "horizontalPosition": {
-          "numerator": 0,
-          "denominator": 36
-        },
-        "type": "above-slide",
-        "speed": 1,
-        "lane": "initialLane1",
-        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
-        "customProps": {}
-      },
-      {
         "guid": "66505ec6eb9e47b95bdbac3ec61bd484",
         "editorProps": {
           "time": 102.70588235294119
@@ -7494,49 +4617,1204 @@
         "customProps": {}
       },
       {
-        "guid": "af966795dde0df97e02d1094dad3b5fc",
+        "guid": "b74b1d9d989861980d93cf10ab774a0f",
         "editorProps": {
-          "time": 74.11764705882354
+          "time": 14.823529411764707
         },
-        "measureIndex": 52,
+        "measureIndex": 10,
         "measurePosition": {
           "numerator": 8,
           "denominator": 16
         },
-        "horizontalSize": 14,
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "30e5e9222da2e07375d140e74bee36b9",
+        "editorProps": {
+          "time": 16.23529411764706
+        },
+        "measureIndex": 11,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5e4707c8cd205e42bb56a54ca2230c16",
+        "editorProps": {
+          "time": 15.529411764705884
+        },
+        "measureIndex": 11,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "2ad7e44ab723394a7b9b2d8034ce55cf",
+        "editorProps": {
+          "time": 18.176470588235297
+        },
+        "measureIndex": 12,
+        "measurePosition": {
+          "numerator": 7,
+          "denominator": 8
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "9eba85307e631dd16936a59918947768",
+        "editorProps": {
+          "time": 17.647058823529413
+        },
+        "measureIndex": 12,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "ffe4c6cd5e0d0902c69a79b9996637db",
+        "editorProps": {
+          "time": 19.058823529411764
+        },
+        "measureIndex": 13,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "3249a2fa318470f1849b5d374c739e3e",
+        "editorProps": {
+          "time": 20.47058823529412
+        },
+        "measureIndex": 14,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "aa2af630f58ac25eaf7cb9056cb3f77c",
+        "editorProps": {
+          "time": 21.88235294117647
+        },
+        "measureIndex": 15,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "b94a309fabc2a483d01b664e33aa3776",
+        "editorProps": {
+          "time": 21.176470588235297
+        },
+        "measureIndex": 15,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "79a91f4cf70c28e11566b4a07e27ad6e",
+        "editorProps": {
+          "time": 23.294117647058826
+        },
+        "measureIndex": 16,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "28c691f7909aad97add6405c2872fb07",
+        "editorProps": {
+          "time": 24.705882352941178
+        },
+        "measureIndex": 17,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "de1ccd24d0af5672e4a07e50e22a1ca0",
+        "editorProps": {
+          "time": 23.823529411764707
+        },
+        "measureIndex": 16,
+        "measurePosition": {
+          "numerator": 7,
+          "denominator": 8
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "aa30e88ac45135e2b459aa3e8dcbd4b7",
+        "editorProps": {
+          "time": 35.294117647058826
+        },
+        "measureIndex": 25,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "d60298d95b6575f4fb350066128a7c3a",
+        "editorProps": {
+          "time": 42.352941176470594
+        },
+        "measureIndex": 30,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
         "horizontalPosition": {
           "numerator": 0,
           "denominator": 36
         },
-        "type": "above-slide",
+        "type": "above-tap",
         "speed": 1,
         "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
       {
-        "guid": "244a977d2c9080737eba5213e695573e",
+        "guid": "4aa78f5faf6b53a1f372b8d0f9f99d26",
         "editorProps": {
-          "time": 74.11764705882354
+          "time": 42.70588235294118
         },
-        "measureIndex": 52,
+        "measureIndex": 30,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5bbb6d6c4cb4b5347f64ae550806f79b",
+        "editorProps": {
+          "time": 43.05882352941177
+        },
+        "measureIndex": 30,
         "measurePosition": {
           "numerator": 8,
           "denominator": 16
         },
-        "horizontalSize": 14,
+        "horizontalSize": 8,
         "horizontalPosition": {
-          "numerator": 22,
+          "numerator": 0,
           "denominator": 36
         },
-        "type": "above-slide",
+        "type": "above-tap",
         "speed": 1,
         "lane": "initialLane1",
         "layer": "3b4607ec8500fdf72ab12352ad8afca6",
         "customProps": {}
       },
       {
-        "guid": "418b1e73b3fff7ea8fdedd2498b68fb0",
+        "guid": "507beb2ba3658ef571a261b599c34ba6",
+        "editorProps": {
+          "time": 43.411764705882355
+        },
+        "measureIndex": 30,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "c2bba9b3560b9fffcbeb4561406f057f",
+        "editorProps": {
+          "time": 43.76470588235294
+        },
+        "measureIndex": 31,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "0d985290bc6c1c42954cd9869c205fbb",
+        "editorProps": {
+          "time": 44.11764705882353
+        },
+        "measureIndex": 31,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "05c2773e6c1f698b475947456943013c",
+        "editorProps": {
+          "time": 44.47058823529412
+        },
+        "measureIndex": 31,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "af109405763cb38db6c31eef186bb578",
+        "editorProps": {
+          "time": 44.82352941176471
+        },
+        "measureIndex": 31,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "8170bef357f2bb651b11556125802489",
+        "editorProps": {
+          "time": 47.294117647058826
+        },
+        "measureIndex": 33,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "eb2aced56df3e06f22c5b5a9682648e7",
+        "editorProps": {
+          "time": 46.94117647058824
+        },
+        "measureIndex": 33,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "87efb9031d76e41452bc94f949146ae5",
+        "editorProps": {
+          "time": 46.58823529411765
+        },
+        "measureIndex": 33,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "223d386243d492e2dce31626d94d38d1",
+        "editorProps": {
+          "time": 46.235294117647065
+        },
+        "measureIndex": 32,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "df61e3797688176a5e982a932d09b451",
+        "editorProps": {
+          "time": 45.88235294117647
+        },
+        "measureIndex": 32,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "bd792acaaf831a4a630dc8ee345faa38",
+        "editorProps": {
+          "time": 45.529411764705884
+        },
+        "measureIndex": 32,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "24991b9ace906a799a785011d9a27c22",
+        "editorProps": {
+          "time": 45.1764705882353
+        },
+        "measureIndex": 32,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "267a78b2585e7bd24f5c1c67201256a3",
+        "editorProps": {
+          "time": 49.05882352941177
+        },
+        "measureIndex": 34,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "45c4c341133e4efda8340c415f765fb4",
+        "editorProps": {
+          "time": 48.70588235294118
+        },
+        "measureIndex": 34,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "0b771180a53b5d5cea15a4ccc2f1f460",
+        "editorProps": {
+          "time": 50.47058823529412
+        },
+        "measureIndex": 35,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "b1ed45221afa300546845193b4c5e6be",
+        "editorProps": {
+          "time": 50.117647058823536
+        },
+        "measureIndex": 35,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "f190db8e1dc3aaa80d945813633c6738",
+        "editorProps": {
+          "time": 51.88235294117647
+        },
+        "measureIndex": 36,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "14fdede7f52575e8c59de4400695cf03",
+        "editorProps": {
+          "time": 51.529411764705884
+        },
+        "measureIndex": 36,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "10f07f35d9069e3ab5f9413bb04638d4",
+        "editorProps": {
+          "time": 53.294117647058826
+        },
+        "measureIndex": 37,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "c8d5e60bbc1daf1097883e4a8246a4da",
+        "editorProps": {
+          "time": 52.94117647058824
+        },
+        "measureIndex": 37,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5915ae29e2f73da8289a0909cc64185e",
+        "editorProps": {
+          "time": 54
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "c656a8212839947e8938d5839533cba6",
+        "editorProps": {
+          "time": 54.70588235294118
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "71c73cc4d0cbe62faf515e81fd621eaa",
+        "editorProps": {
+          "time": 54
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "6690e526191ccccb23b0f46f59746222",
+        "editorProps": {
+          "time": 53.82352941176471
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 2,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 6,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "d7152886285ad5ec4b5dc74ca0c319e1",
+        "editorProps": {
+          "time": 53.64705882352941
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 4,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "967fc4be260ff7c41d0c7308f3dec204",
+        "editorProps": {
+          "time": 54.70588235294118
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "8caccf43c155aa9a0ba14a8cff003b66",
+        "editorProps": {
+          "time": 54.529411764705884
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 10,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "2962689963f1454d2aa09f3d2ada89c2",
+        "editorProps": {
+          "time": 54.352941176470594
+        },
+        "measureIndex": 38,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 20,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "149c99ffd7ec9b2601bec7912ffb1486",
+        "editorProps": {
+          "time": 55.411764705882355
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "7f720a96f66486a4e54371a3f16c6e34",
+        "editorProps": {
+          "time": 56.117647058823536
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "c03df07ad2431481af92e9d7ec8086e0",
+        "editorProps": {
+          "time": 55.411764705882355
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "169711393d511c1baacbe3a4a22e7242",
+        "editorProps": {
+          "time": 55.235294117647065
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 8
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 5,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "8b8418c3c3189841fc81464c9162f8ec",
+        "editorProps": {
+          "time": 55.05882352941177
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 2,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "be7b90d2c376c769c727770eedbdf243",
+        "editorProps": {
+          "time": 56.117647058823536
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "6356bc849e80d0d141365ed36d56928c",
+        "editorProps": {
+          "time": 55.94117647058824
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 5,
+          "denominator": 8
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 19,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5e73e2283a0bdddb8197c96bd2ce1a82",
+        "editorProps": {
+          "time": 55.76470588235294
+        },
+        "measureIndex": 39,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 22,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "bc5314711d4609067b0b5404c0172313",
+        "editorProps": {
+          "time": 57.1764705882353
+        },
+        "measureIndex": 40,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "07ad026ca0cd2fa6460f136c19c6d796",
+        "editorProps": {
+          "time": 56.82352941176471
+        },
+        "measureIndex": 40,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "465557f3cebef88f4dd8b63432bad13f",
+        "editorProps": {
+          "time": 56.47058823529412
+        },
+        "measureIndex": 40,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 20,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "b215631f2443e229e67a2926cf13b597",
+        "editorProps": {
+          "time": 57.529411764705884
+        },
+        "measureIndex": 40,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "fece619a5aac4a4a6185ac988ec88ea3",
+        "editorProps": {
+          "time": 57.88235294117647
+        },
+        "measureIndex": 41,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 9,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "a3a43ea00f3c810c5212eabc803fb68c",
         "editorProps": {
           "time": 58.14705882352941
         },
@@ -7545,7 +5823,7 @@
           "numerator": 3,
           "denominator": 16
         },
-        "horizontalSize": 6,
+        "horizontalSize": 4,
         "horizontalPosition": {
           "numerator": 9,
           "denominator": 36
@@ -7557,7 +5835,7 @@
         "customProps": {}
       },
       {
-        "guid": "c13dea11e1e01c5b3d2e0d3b08fb02e5",
+        "guid": "a90317c85195a27aaaf1c27be554967d",
         "editorProps": {
           "time": 58.411764705882355
         },
@@ -7566,9 +5844,1731 @@
           "numerator": 6,
           "denominator": 16
         },
-        "horizontalSize": 6,
+        "horizontalSize": 4,
         "horizontalPosition": {
           "numerator": 9,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "60204f8ae2dd9d5f7bc1d71be8f7ecc0",
+        "editorProps": {
+          "time": 58.58823529411765
+        },
+        "measureIndex": 41,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 20,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "30fb0a831025427675f63e2fef191a7d",
+        "editorProps": {
+          "time": 58.76470588235294
+        },
+        "measureIndex": 41,
+        "measurePosition": {
+          "numerator": 10,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 17,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "77ef0b146e751bb020ee0288d05e866b",
+        "editorProps": {
+          "time": 58.94117647058824
+        },
+        "measureIndex": 41,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 14,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "949496bb3a0c86765f3a5fe172345f98",
+        "editorProps": {
+          "time": 64.94117647058825
+        },
+        "measureIndex": 46,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "937f10d9c9c9700def4a19f613408cbc",
+        "editorProps": {
+          "time": 66.3529411764706
+        },
+        "measureIndex": 47,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "06ffaf328fa2b267a62250911e4734ad",
+        "editorProps": {
+          "time": 67.76470588235294
+        },
+        "measureIndex": 48,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "718711f3d65faa89547eef4c0d82d205",
+        "editorProps": {
+          "time": 68.47058823529412
+        },
+        "measureIndex": 48,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5b2812c866e080b5d43799cbce969ef2",
+        "editorProps": {
+          "time": 69.1764705882353
+        },
+        "measureIndex": 49,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "0c67e09412fa3ae9f9b77bd95515121c",
+        "editorProps": {
+          "time": 70.58823529411765
+        },
+        "measureIndex": 50,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "bfd6f859d048eea2d299b3a24c976468",
+        "editorProps": {
+          "time": 70.58823529411765
+        },
+        "measureIndex": 50,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "c481a4b5ab647677100cac20793e4e29",
+        "editorProps": {
+          "time": 72
+        },
+        "measureIndex": 51,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "3d4a3c9402f935941af890c4a3f432cd",
+        "editorProps": {
+          "time": 72
+        },
+        "measureIndex": 51,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "81cb070e0f7a5a13444f15cb69a538d5",
+        "editorProps": {
+          "time": 73.41176470588236
+        },
+        "measureIndex": 52,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "31bfe6edf4758bfcd73b53d66e6ac6a6",
+        "editorProps": {
+          "time": 74.11764705882354
+        },
+        "measureIndex": 52,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 12,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "bb02b5f5ccaa324fe23c41fa5ce0479b",
+        "editorProps": {
+          "time": 74.11764705882354
+        },
+        "measureIndex": 52,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 12,
+        "horizontalPosition": {
+          "numerator": 20,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "300366b45657048f4f5191e3bc911e54",
+        "editorProps": {
+          "time": 74.82352941176471
+        },
+        "measureIndex": 53,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 11,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "6f22580e9a57c399b98d3447bf67cd8a",
+        "editorProps": {
+          "time": 76.23529411764706
+        },
+        "measureIndex": 54,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "d874281665a2bf6b35c0c025eb7e9a62",
+        "editorProps": {
+          "time": 76.23529411764706
+        },
+        "measureIndex": 54,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "a78c224a34f6771cf37c9768faef0ceb",
+        "editorProps": {
+          "time": 77.64705882352942
+        },
+        "measureIndex": 55,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "f349453168de585a4b5827c26263f8b6",
+        "editorProps": {
+          "time": 77.64705882352942
+        },
+        "measureIndex": 55,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "0284b5bafc29f141fa4fd4f1f7a31ef9",
+        "editorProps": {
+          "time": 79.05882352941177
+        },
+        "measureIndex": 56,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "d8901099c0799f64d3900dedd61bb340",
+        "editorProps": {
+          "time": 79.05882352941177
+        },
+        "measureIndex": 56,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 24,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "318c21dd585d37b7fbf5bfa3966fc625",
+        "editorProps": {
+          "time": 79.76470588235294
+        },
+        "measureIndex": 56,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "472122e09174e3409eec25114b45d0ea",
+        "editorProps": {
+          "time": 80.47058823529412
+        },
+        "measureIndex": 57,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "9836fc830beb30dd3c7544e221f5fbb9",
+        "editorProps": {
+          "time": 80.47058823529412
+        },
+        "measureIndex": 57,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 16,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-slide",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "e73d819003d7caceef76543016626c6a",
+        "editorProps": {
+          "time": 82.23529411764706
+        },
+        "measureIndex": 58,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 10,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "c167bfe7aabff71cb566f37f3b9057ec",
+        "editorProps": {
+          "time": 82.58823529411765
+        },
+        "measureIndex": 58,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 10,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5c53689156c6c929d26d4a8a1516385e",
+        "editorProps": {
+          "time": 82.94117647058825
+        },
+        "measureIndex": 58,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 10,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "1d70504ff91df38e0122bf3fb73dc3ad",
+        "editorProps": {
+          "time": 83.64705882352942
+        },
+        "measureIndex": 59,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "f498dccca633ce143995aaa49fe5e47f",
+        "editorProps": {
+          "time": 84
+        },
+        "measureIndex": 59,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "9ebd239fa1c059fb33e1e3aaea4e4998",
+        "editorProps": {
+          "time": 84.3529411764706
+        },
+        "measureIndex": 59,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "91a8ad4ba2104c638092b588d3c10445",
+        "editorProps": {
+          "time": 87.1764705882353
+        },
+        "measureIndex": 61,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "fd0a0fd4e087262b21a42a0d87243d06",
+        "editorProps": {
+          "time": 86.82352941176471
+        },
+        "measureIndex": 61,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "bd2984ad4558e31d0908c057dadc8db9",
+        "editorProps": {
+          "time": 86.47058823529413
+        },
+        "measureIndex": 61,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 18,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "fefcb37a2fb4feb835d543b6a66bec5a",
+        "editorProps": {
+          "time": 86.11764705882354
+        },
+        "measureIndex": 61,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "16d767151a3b51d7b339cddc0c4b0f2f",
+        "editorProps": {
+          "time": 85.76470588235294
+        },
+        "measureIndex": 60,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 10,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "ece0c2966b4c8f4cf8b553fd1c651f1a",
+        "editorProps": {
+          "time": 85.41176470588236
+        },
+        "measureIndex": 60,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 10,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "3d6aa01d3c8dd9d8e9d76f367f59d008",
+        "editorProps": {
+          "time": 85.05882352941177
+        },
+        "measureIndex": 60,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 10,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "183191d524cf3f01b2af99cee6c565f4",
+        "editorProps": {
+          "time": 84.70588235294119
+        },
+        "measureIndex": 60,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "e8be5567a02d206ef6a0563aee726f9f",
+        "editorProps": {
+          "time": 87.88235294117648
+        },
+        "measureIndex": 62,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "919b15e387ab3ab69e169dbdfcedf86b",
+        "editorProps": {
+          "time": 88.23529411764706
+        },
+        "measureIndex": 62,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "d01fd13f213e956a206e07811c91e1c9",
+        "editorProps": {
+          "time": 88.58823529411765
+        },
+        "measureIndex": 62,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "ed36c39fd49cec30e5dd697c1b97553e",
+        "editorProps": {
+          "time": 89.29411764705883
+        },
+        "measureIndex": 63,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "9946046038931c13d5c167cc385c80d0",
+        "editorProps": {
+          "time": 89.64705882352942
+        },
+        "measureIndex": 63,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "767ec156d54e25df6f20d859349fe011",
+        "editorProps": {
+          "time": 90
+        },
+        "measureIndex": 63,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5495969d52d530c2012c37455e1a10eb",
+        "editorProps": {
+          "time": 91.76470588235294
+        },
+        "measureIndex": 65,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "eb4b0e3b14a0623b1fd6b72ada595842",
+        "editorProps": {
+          "time": 92.11764705882354
+        },
+        "measureIndex": 65,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "eaad605e3d68d0f544eedfac5ee7a869",
+        "editorProps": {
+          "time": 92.47058823529413
+        },
+        "measureIndex": 65,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "1b6d1e300e2d4aba1605a65de0fa24c8",
+        "editorProps": {
+          "time": 92.82352941176471
+        },
+        "measureIndex": 65,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "70d9768c574fea24de6785e711d8c907",
+        "editorProps": {
+          "time": 90.3529411764706
+        },
+        "measureIndex": 64,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "9aa12587bda8c92583c54d35418fbf1c",
+        "editorProps": {
+          "time": 90.70588235294119
+        },
+        "measureIndex": 64,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "038bc19badb34c084a9450c7890205b4",
+        "editorProps": {
+          "time": 91.05882352941177
+        },
+        "measureIndex": 64,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 12,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "0c0e4691934d7f4120f2b03f1edbe3f7",
+        "editorProps": {
+          "time": 91.41176470588236
+        },
+        "measureIndex": 64,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 4,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "2c17ab48179045ff0ff6b458535bf0e0",
+        "editorProps": {
+          "time": 116.11764705882354
+        },
+        "measureIndex": 82,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "580e65c3f47a089c77c01de0d4d68d0c",
+        "editorProps": {
+          "time": 116.82352941176471
+        },
+        "measureIndex": 82,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "89d6fc0608767524145ad1827dc3e5ff",
+        "editorProps": {
+          "time": 119.64705882352942
+        },
+        "measureIndex": 84,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "4f4d32580b80f89b8cb09818f0be8a32",
+        "editorProps": {
+          "time": 118.94117647058825
+        },
+        "measureIndex": 84,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "8129b80abcf4559d8b783f7a80889bf5",
+        "editorProps": {
+          "time": 122.47058823529413
+        },
+        "measureIndex": 86,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "2121728f9e9ffba2f56d74547471c4e5",
+        "editorProps": {
+          "time": 121.76470588235294
+        },
+        "measureIndex": 86,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "630d3ae3c807bbad2745f0c6c7febe1e",
+        "editorProps": {
+          "time": 125.29411764705883
+        },
+        "measureIndex": 88,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "73d11de5e7e34d146fe00d20b9f9040a",
+        "editorProps": {
+          "time": 124.58823529411765
+        },
+        "measureIndex": 88,
+        "measurePosition": {
+          "numerator": 4,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "a812bb395309bc0684472b6a6fa6fd89",
+        "editorProps": {
+          "time": 129.1764705882353
+        },
+        "measureIndex": 91,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "5318480c1401069e49e99d9fcc4d93f4",
+        "editorProps": {
+          "time": 129.1764705882353
+        },
+        "measureIndex": 91,
+        "measurePosition": {
+          "numerator": 8,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "62cf109bb285abd17a8fc8e7a7caa67b",
+        "editorProps": {
+          "time": 129.52941176470588
+        },
+        "measureIndex": 91,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "7ad8fdc60468dc0ea61de0c76d013c46",
+        "editorProps": {
+          "time": 129.52941176470588
+        },
+        "measureIndex": 91,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "4e1c34464ba7f85edd406f268ebcfb7a",
+        "editorProps": {
+          "time": 132.3529411764706
+        },
+        "measureIndex": 93,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "8433741f2020b583f90e6e2a0b632c89",
+        "editorProps": {
+          "time": 132.3529411764706
+        },
+        "measureIndex": 93,
+        "measurePosition": {
+          "numerator": 12,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "130d9766bf808f32fdf0cd22a9360343",
+        "editorProps": {
+          "time": 132.08823529411765
+        },
+        "measureIndex": 93,
+        "measurePosition": {
+          "numerator": 9,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "dbc93d77e48fe0aead8ec397d5041853",
+        "editorProps": {
+          "time": 131.82352941176472
+        },
+        "measureIndex": 93,
+        "measurePosition": {
+          "numerator": 6,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "851e85f0a26b6bc2ab27a471540861a7",
+        "editorProps": {
+          "time": 131.55882352941177
+        },
+        "measureIndex": 93,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "19c900a1a5df1740470585546fa19ad9",
+        "editorProps": {
+          "time": 131.29411764705884
+        },
+        "measureIndex": 93,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "60a0d04af6bf2b56dd32842360f7bcaa",
+        "editorProps": {
+          "time": 134.11764705882354
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "3c9066b1781b101419e630f6675389eb",
+        "editorProps": {
+          "time": 134.11764705882354
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 2,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "7323078e2ddfacc163d833a0a58b1a1c",
+        "editorProps": {
+          "time": 134.47058823529412
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "86c150be535a772b9c5e79f8191ffa1a",
+        "editorProps": {
+          "time": 134.47058823529412
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "horizontalSize": 1,
+        "horizontalPosition": {
+          "numerator": 2,
+          "denominator": 4
+        },
+        "type": "tap",
+        "speed": 1,
+        "lane": "initialLane0",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "17e0d09ec8c86475f2791bcde7c784dc",
+        "editorProps": {
+          "time": 134.82352941176472
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "17d8356988ae9bad73d947d909623d78",
+        "editorProps": {
+          "time": 134.82352941176472
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "944859b7677a33f1efb800ff65daa624",
+        "editorProps": {
+          "time": 135.1764705882353
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 8,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "07560fb552bce4ce1b7129c49447c323",
+        "editorProps": {
+          "time": 135.1764705882353
+        },
+        "measureIndex": 95,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "7c3545466e659c501438881d9a383baa",
+        "editorProps": {
+          "time": 136.94117647058823
+        },
+        "measureIndex": 97,
+        "measurePosition": {
+          "numerator": 0,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-tap",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "732302e27a472faa9fec728c4c6050ed",
+        "editorProps": {
+          "time": 137.2058823529412
+        },
+        "measureIndex": 97,
+        "measurePosition": {
+          "numerator": 3,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
+          "denominator": 36
+        },
+        "type": "above-chain",
+        "speed": 1,
+        "lane": "initialLane1",
+        "layer": "3b4607ec8500fdf72ab12352ad8afca6",
+        "customProps": {}
+      },
+      {
+        "guid": "ffcfaeef8b6bcb9c86a8f6b480b33f47",
+        "editorProps": {
+          "time": 137.47058823529412
+        },
+        "measureIndex": 97,
+        "measurePosition": {
+          "numerator": 6,
+          "denominator": 16
+        },
+        "horizontalSize": 8,
+        "horizontalPosition": {
+          "numerator": 16,
           "denominator": 36
         },
         "type": "above-chain",
@@ -7705,31 +7705,6 @@
         "tail": "70bb290f88a3cd1d8f02220a590ec0bf"
       },
       {
-        "guid": "e49d8282c08b4676d39e769fd179c92e",
-        "head": "d559faf9b894583ccaaed82beb486a92",
-        "tail": "7243290a5f1304a2309cf4aa810d7178"
-      },
-      {
-        "guid": "31c501264890c8cd6b608d087ccc5bb9",
-        "head": "c97958d24c72b99c90d996663260e6ce",
-        "tail": "e5ce58f71e8681b8210473bdaaffb2a9"
-      },
-      {
-        "guid": "b20a87ba2a39875aaf014cdc4fbdf57d",
-        "head": "56d6770f23d34c5d83a52aaaae1aeff5",
-        "tail": "ef0240d401e428350f29f36b1a21bd25"
-      },
-      {
-        "guid": "c69e78a2fc3090682b4565a6bc5a1b10",
-        "head": "e5ce58f71e8681b8210473bdaaffb2a9",
-        "tail": "1c434ac150c39dc452f4c105d2fc0e6a"
-      },
-      {
-        "guid": "aee0a64901fe9f2a423a59e2d0614c64",
-        "head": "ef0240d401e428350f29f36b1a21bd25",
-        "tail": "1c434ac150c39dc452f4c105d2fc0e6a"
-      },
-      {
         "guid": "235679216fbc51f0c5b81079227dca0b",
         "head": "63270528cc5422abbed86f01314d15f1",
         "tail": "1605c1dd84bebca466db0070b0bfe1d3"
@@ -7815,99 +7790,124 @@
         "tail": "b914e647e9778cfb6e2f12d06a8e9df2"
       },
       {
-        "guid": "9a6028374ac460f585e324882b952c41",
-        "head": "68bf5c89cc80d19246cc039cbc77e5b7",
-        "tail": "e828d902b8b64a938462d7bc023a39cc"
-      },
-      {
-        "guid": "ae9bd020dc53e1ce9cf2af924fc2893f",
-        "head": "abecc348947c733349a643398da8cab5",
-        "tail": "1247111e665aa23a363329240f4a245f"
-      },
-      {
-        "guid": "87819dd20cef29217ffd9f016e68e6ca",
-        "head": "e828d902b8b64a938462d7bc023a39cc",
-        "tail": "780f26d0b02721f65617f3bcf42d46e2"
-      },
-      {
-        "guid": "c1d6e8756e5f3f8ce445fddf3c544c53",
-        "head": "1247111e665aa23a363329240f4a245f",
-        "tail": "780f26d0b02721f65617f3bcf42d46e2"
-      },
-      {
-        "guid": "d39e37cb3859c8dc61efca75831fb096",
-        "head": "7243290a5f1304a2309cf4aa810d7178",
-        "tail": "e0d58b1e50a77b6902e6e554cd335b95"
-      },
-      {
-        "guid": "36c299b903daa34d183473bbd12634c6",
-        "head": "e0d58b1e50a77b6902e6e554cd335b95",
-        "tail": "34a8dca1378fffe67a0faf3f5de7f4e3"
-      },
-      {
-        "guid": "3b5c5fe300f1b2845e186f2a67e01bc9",
-        "head": "34a8dca1378fffe67a0faf3f5de7f4e3",
-        "tail": "6b15056b2b48eb7ad9231b9b13a5aee1"
-      },
-      {
-        "guid": "635d031b2a36337560bafe1cabb4e61c",
-        "head": "6b15056b2b48eb7ad9231b9b13a5aee1",
-        "tail": "abecc348947c733349a643398da8cab5"
-      },
-      {
-        "guid": "a6282ddb71125260e915618b01882f62",
-        "head": "6f767b269506385fb0272ccecea9403a",
-        "tail": "4cdf0792b2aa793b9f41c39cecc11e62"
-      },
-      {
-        "guid": "99c9536b19e3232470de43c4697510fc",
-        "head": "6f767b269506385fb0272ccecea9403a",
-        "tail": "9b93055025f1fd2989a633859b4f01be"
-      },
-      {
-        "guid": "5b30cf68e6b7cd820fd5534bfd0c5c04",
-        "head": "4cdf0792b2aa793b9f41c39cecc11e62",
-        "tail": "c97958d24c72b99c90d996663260e6ce"
-      },
-      {
-        "guid": "b4e0cee6433664bf75103c652452ace3",
-        "head": "9b93055025f1fd2989a633859b4f01be",
-        "tail": "56d6770f23d34c5d83a52aaaae1aeff5"
-      },
-      {
-        "guid": "8736f1ab324180515fb3e9f1c01a45c2",
-        "head": "1c434ac150c39dc452f4c105d2fc0e6a",
-        "tail": "2f50a8acbfc62e12bfd1f67bbca48c5e"
-      },
-      {
-        "guid": "ed019e56b7c8330f8d24ca23aa56636d",
-        "head": "1c434ac150c39dc452f4c105d2fc0e6a",
-        "tail": "78af4f36f0fa81e152fea10f35c43d0d"
-      },
-      {
         "guid": "d64fcd782193c24cf83fcc17a62d8ba0",
         "head": "66505ec6eb9e47b95bdbac3ec61bd484",
         "tail": "559252ea442fc29c6c9d7ed9c601ce7c"
       },
       {
-        "guid": "639173491071077299d351b6494f2ef6",
-        "head": "af966795dde0df97e02d1094dad3b5fc",
-        "tail": "6f767b269506385fb0272ccecea9403a"
+        "guid": "73f4d27308c0e053b8dd7a7ae52b42d0",
+        "head": "949496bb3a0c86765f3a5fe172345f98",
+        "tail": "937f10d9c9c9700def4a19f613408cbc"
       },
       {
-        "guid": "2739a1f7af843d74fadb2964751cf770",
-        "head": "780f26d0b02721f65617f3bcf42d46e2",
-        "tail": "af966795dde0df97e02d1094dad3b5fc"
+        "guid": "e604b2c3e92d9c1718db87089c4cdc00",
+        "head": "06ffaf328fa2b267a62250911e4734ad",
+        "tail": "718711f3d65faa89547eef4c0d82d205"
       },
       {
-        "guid": "e0d4d325da2e705209f86831161b7dd4",
-        "head": "780f26d0b02721f65617f3bcf42d46e2",
-        "tail": "244a977d2c9080737eba5213e695573e"
+        "guid": "928632f119d962adda714a27674597ab",
+        "head": "718711f3d65faa89547eef4c0d82d205",
+        "tail": "5b2812c866e080b5d43799cbce969ef2"
       },
       {
-        "guid": "1e3ac428f7e482fee478d9f142c350fa",
-        "head": "244a977d2c9080737eba5213e695573e",
-        "tail": "6f767b269506385fb0272ccecea9403a"
+        "guid": "345e46f5777da1b4c9d3533ad03fae95",
+        "head": "937f10d9c9c9700def4a19f613408cbc",
+        "tail": "06ffaf328fa2b267a62250911e4734ad"
+      },
+      {
+        "guid": "8d9e1f03b31cc320d5b668d69f7cbe66",
+        "head": "5b2812c866e080b5d43799cbce969ef2",
+        "tail": "0c67e09412fa3ae9f9b77bd95515121c"
+      },
+      {
+        "guid": "38fe8f21302e8c5b07a143a759c3e4e3",
+        "head": "0c67e09412fa3ae9f9b77bd95515121c",
+        "tail": "c481a4b5ab647677100cac20793e4e29"
+      },
+      {
+        "guid": "375d95b184abe37ee6a405797af23831",
+        "head": "bfd6f859d048eea2d299b3a24c976468",
+        "tail": "3d4a3c9402f935941af890c4a3f432cd"
+      },
+      {
+        "guid": "07145766c04911e36a0c34f4288e9bad",
+        "head": "3d4a3c9402f935941af890c4a3f432cd",
+        "tail": "81cb070e0f7a5a13444f15cb69a538d5"
+      },
+      {
+        "guid": "e3c50803df2f2e018174b91e2c730d37",
+        "head": "c481a4b5ab647677100cac20793e4e29",
+        "tail": "81cb070e0f7a5a13444f15cb69a538d5"
+      },
+      {
+        "guid": "e03c59658ceb17a20a56761076703925",
+        "head": "81cb070e0f7a5a13444f15cb69a538d5",
+        "tail": "31bfe6edf4758bfcd73b53d66e6ac6a6"
+      },
+      {
+        "guid": "ea1ae635d8c003221815fdb5181ce7d5",
+        "head": "81cb070e0f7a5a13444f15cb69a538d5",
+        "tail": "bb02b5f5ccaa324fe23c41fa5ce0479b"
+      },
+      {
+        "guid": "9d0bb6cb1e745f6410a3efd9df0bfdf3",
+        "head": "31bfe6edf4758bfcd73b53d66e6ac6a6",
+        "tail": "300366b45657048f4f5191e3bc911e54"
+      },
+      {
+        "guid": "851f8de0e7950a392447681fc9376057",
+        "head": "bb02b5f5ccaa324fe23c41fa5ce0479b",
+        "tail": "300366b45657048f4f5191e3bc911e54"
+      },
+      {
+        "guid": "236a0fb300b30bce11e4f20f9d234629",
+        "head": "300366b45657048f4f5191e3bc911e54",
+        "tail": "6f22580e9a57c399b98d3447bf67cd8a"
+      },
+      {
+        "guid": "234b4a37744aca170bab10a8ea286005",
+        "head": "300366b45657048f4f5191e3bc911e54",
+        "tail": "d874281665a2bf6b35c0c025eb7e9a62"
+      },
+      {
+        "guid": "5b9230261011b2f6098229290a63cb31",
+        "head": "6f22580e9a57c399b98d3447bf67cd8a",
+        "tail": "a78c224a34f6771cf37c9768faef0ceb"
+      },
+      {
+        "guid": "a2f19246343256e783cac518ec156de6",
+        "head": "d874281665a2bf6b35c0c025eb7e9a62",
+        "tail": "f349453168de585a4b5827c26263f8b6"
+      },
+      {
+        "guid": "fc9c743466c850ea3624c40ea061943e",
+        "head": "0284b5bafc29f141fa4fd4f1f7a31ef9",
+        "tail": "318c21dd585d37b7fbf5bfa3966fc625"
+      },
+      {
+        "guid": "3921dc1d03f0ee821d18e0411e4139a3",
+        "head": "d8901099c0799f64d3900dedd61bb340",
+        "tail": "318c21dd585d37b7fbf5bfa3966fc625"
+      },
+      {
+        "guid": "bc5a69a22ac694196a205417979a2b45",
+        "head": "318c21dd585d37b7fbf5bfa3966fc625",
+        "tail": "472122e09174e3409eec25114b45d0ea"
+      },
+      {
+        "guid": "88cbaf9bd21db2436bb508969835e67c",
+        "head": "318c21dd585d37b7fbf5bfa3966fc625",
+        "tail": "9836fc830beb30dd3c7544e221f5fbb9"
+      },
+      {
+        "guid": "c898420563be4d42b5b32ea38f31e35b",
+        "head": "a78c224a34f6771cf37c9768faef0ceb",
+        "tail": "0284b5bafc29f141fa4fd4f1f7a31ef9"
+      },
+      {
+        "guid": "579204599a6a2c45bf4a8df299d07002",
+        "head": "f349453168de585a4b5827c26263f8b6",
+        "tail": "d8901099c0799f64d3900dedd61bb340"
       }
     ],
     "measures": [
@@ -8825,16 +8825,6 @@
       }
     ],
     "otherObjects": [
-      {
-        "type": 0,
-        "guid": "7bfd47abf7f7d0b64787ac5f4b9e7f11",
-        "measureIndex": 0,
-        "measurePosition": {
-          "numerator": 0,
-          "denominator": 1
-        },
-        "value": 120
-      },
       {
         "type": 0,
         "guid": "6388e87e8dfafaf47bb1757b4659dda6",
