@@ -606,17 +606,29 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         foreach (var note in _holdEffectors)
         {
-            note.EffectJudge(audioTime, longPerfect);
+            if (audioTime - note.holdEffectTime >= 0)
+            {
+                note.EffectJudge(audioTime, longPerfect);
+            }
+            else break;
         }
 
         foreach (var note in _aboveHoldEffectors)
         {
-            note.Render(audioTime, longPerfect);
+            if (audioTime - note.aboveHoldEffectTime >= 0)
+            {
+                note.Render(audioTime, longPerfect);
+            }
+            else break;
         }
 
         foreach (var note in _aboveSlideEffectors)
         {
-            note.Render(audioTime, longPerfect);
+            if (audioTime - note.aboveSlideEffectTime >= 0)
+            {
+                note.Render(audioTime, longPerfect);
+            }
+            else break;
         }
         for (int i = 0; i < _barLines.Count; i++)
         {

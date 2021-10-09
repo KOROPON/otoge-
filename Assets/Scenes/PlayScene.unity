@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16724,11 +16724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1c43ed99184c7a88b7bd820988ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text1: {fileID: 646217737}
   text2: {fileID: 620664342}
   songAudio: {fileID: 947960482}
   _tapNotePrefab: {fileID: -7510291413552421599, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
-  _holdNotePrefab: {fileID: 158867706336414473, guid: be9527020d91e4427bc90b1b562d62c4, type: 3}
+  _holdNotePrefab: {fileID: 5939585487750629435, guid: be9527020d91e4427bc90b1b562d62c4, type: 3}
   _aboveTapNotePrefab: {fileID: 1318370044206668128, guid: 317099b47c56742d59638d02f46e1ce2, type: 3}
   _aboveChainNotePrefab: {fileID: 777972371875304921, guid: 24af6f1023309cb4796baba66b9a8ecf, type: 3}
   _aboveHoldNotePrefab: {fileID: 8610339511716983441, guid: 1063adec9cacb6e4dba2eda270908352, type: 3}
