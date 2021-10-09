@@ -9,10 +9,12 @@ namespace Reilas
     {
         private ReilasNoteLineEntity _entity = null!;
         private Transform _note;
+        private Transform _hold;
 
         public void Initialize(ReilasNoteLineEntity entity)
         {
             _entity = entity;
+            _hold = transform.GetChild(0);
         }
 
         public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
@@ -21,11 +23,19 @@ namespace Reilas
             {
                 foreach (Transform child in this.transform)
                 {
+                    foreach (Transform inChild in child)
+                    {
+                        Destroy(inChild.gameObject);
+                    }
+                }
+                foreach (Transform child in this.transform)
+                {
                     Destroy(child.gameObject);
                 }
                 noteList.RemoveAt(noteNum);
                 Destroy(gameObject);
                 RhythmGamePresenter._holdNotes.RemoveAt(noteNum);
+                RhythmGamePresenter._holdEffectors.RemoveAt(noteNum);
             }
             if (!gameObject.activeSelf)
             {
@@ -41,9 +51,9 @@ namespace Reilas
 
             scale.z = tailPos.z - headPos.z;
 
-            transform.localScale = scale; // NotePositionCalculatorService.GetScale(_entity.Head);
+            _hold.localScale = scale; // NotePositionCalculatorService.GetScale(_entity.Head);
 
-            transform.position = (headPos + tailPos) / 2f;
+            _hold.position = (headPos + tailPos) / 2f;
         }
         public void NoteDestroy()
         {

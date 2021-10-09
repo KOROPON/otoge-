@@ -86,13 +86,15 @@ namespace Reilas
 
             if(_entity.Tail.JudgeTime < currentTime)
             {
-                foreach (Transform child in this.transform)
+                foreach (Transform child in this.transform.GetChild(0))
                 {
                     Destroy(child.gameObject);
                 }
-                noteList.RemoveAt(noteNum);
+                Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
+                noteList.RemoveAt(noteNum);
                 RhythmGamePresenter._aboveHoldNotes.RemoveAt(noteNum);
+                RhythmGamePresenter._aboveHoldEffectors.RemoveAt(noteNum);
             }
             if (!gameObject.activeSelf)
             {

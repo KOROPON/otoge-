@@ -3,6 +3,7 @@ using Reilas;
 
 public sealed class HoldEffector : MonoBehaviour
 {
+    [SerializeField] private GameObject _gameObject;
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
@@ -10,6 +11,8 @@ public sealed class HoldEffector : MonoBehaviour
     private int _lanePos;
     private bool _blDone;
     private bool _blJudge;
+
+    public float holdEffectTime;
     
 
     public void EffectorInitialize(ReilasNoteLineEntity entity)
@@ -19,25 +22,21 @@ public sealed class HoldEffector : MonoBehaviour
         _blDone = true;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.root.gameObject.GetComponentInChildren<SpriteRenderer>();
-        transform.localPosition = new Vector3(100, 0, 0);
+        _noteBlight = transform.root.GetChild(0).GetComponentInChildren<SpriteRenderer>();
+        transform.position = RhythmGamePresenter.LanePositions[_lanePos];
+        holdEffectTime = _entity.Head.JudgeTime;
     }
-
     public void EffectJudge(float currentTime, AudioSource effectAudio)
     {
-        
-        if (currentTime - _entity.Head.JudgeTime >= 0 && _blDone)
+        if (!_gameObject.activeSelf)
         {
-            transform.parent = null;
-            transform.position = RhythmGamePresenter.LanePositions[_lanePos];
-            transform.localScale = new Vector3(0, 0, 0);
-            _blDone = false;
+            _gameObject.SetActive(true);
         }
-        if (!_blDone)
+        _blJudge = false;
+        if (InputService.AboveLaneTapStates != null)
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
-                _blJudge = false;
                 if (tapstate.laneNumber == _lanePos)
                 {
                     if (!_effect1.isPlaying)
@@ -51,17 +50,16 @@ public sealed class HoldEffector : MonoBehaviour
                     break;
                 }
             }
-            if (!_blJudge)
+        }
+        if (!_blJudge)
+        {
+            if (_effect1.isPlaying)
             {
-                if (_effect1.isPlaying)
-                {
-                    _effect1.Stop();
-                    _effect2.Stop();
-                    _noteBlight.color = new Color32(111, 111, 111, 255);
-                    //effectAudio.Pause();
-                }
+                _effect1.Stop();
+                _effect2.Stop();
+                _noteBlight.color = new Color32(111, 111, 111, 255);
+                //effectAudio.Pause();
             }
         }
-        
     }
 }
