@@ -305,6 +305,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         foreach (var note in notes)
         {
+            Debug.Log("aboveTap");
             var tapNote = Instantiate(_aboveTapNotePrefab);
             tapNote.Initialize(note);
             //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
@@ -621,7 +622,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             }
             else break;
         }
-
         foreach (var note in _aboveSlideEffectors)
         {
             if (audioTime - note.aboveSlideEffectTime >= 0)

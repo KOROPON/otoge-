@@ -126,7 +126,7 @@ namespace Reilas
                     //float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
 
 
-                    const float div = 36f;
+                    const float div = 32f;
 
                     var angle = Mathf.PI / div * laneIndex;
 

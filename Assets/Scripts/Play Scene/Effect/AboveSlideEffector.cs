@@ -8,8 +8,8 @@ public sealed class AboveSlideEffector : MonoBehaviour
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
     private Material _noteBlight = null!;
-    private int _headPos;
-    private int _headMax;
+    private float _headPos;
+    private float _headMax;
     private int _headMin;
     private int _tailPos;
     private int _tailMax;
@@ -23,24 +23,26 @@ public sealed class AboveSlideEffector : MonoBehaviour
     public void EffectorInitialize(ReilasNoteLineEntity entity)
     {
         _entity = entity;
-        _headPos = Mathf.RoundToInt(4 + _entity.Head.LanePosition + _entity.Head.Size);
-        _tailPos = Mathf.RoundToInt(4 + _entity.Tail.LanePosition + _entity.Head.Size / 2);
-        _headMax = 4 + _entity.Head.LanePosition;
-        _headMin = 4 + _entity.Head.LanePosition + _entity.Head.Size;
-        _tailMax = 4 + _entity.Tail.LanePosition;
-        _tailMin = 4 + _entity.Tail.LanePosition + _entity.Tail.Size;
+        _headPos = 4 + _entity.Head.LanePosition + _entity.Head.Size / 2;
+        _tailPos = 4 + _entity.Tail.LanePosition + _entity.Head.Size / 2;
+        _headMin = _entity.Head.LanePosition;
+        _headMax = _entity.Head.LanePosition + _entity.Head.Size;
+        _tailMin = _entity.Tail.LanePosition;
+        _tailMax = _entity.Tail.LanePosition + _entity.Tail.Size;
         _headTime = _entity.Head.JudgeTime;
         _tailTime = _entity.Tail.JudgeTime;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.GetComponent<Material>();
+        _noteBlight = transform.root.GetComponent<Material>();
         aboveSlideEffectTime = _entity.Head.JudgeTime;
     }
 
     public void Render (float currentTime, AudioSource effectAudio)
     {
-        var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + 4);
-        var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + 4);
+        var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax);
+        var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin);
+        Debug.Log("max"+_laneMax);
+        Debug.Log("min"+_laneMin);
         if (!_gameObject.activeSelf)
         {
             _gameObject.SetActive(true);
@@ -51,14 +53,18 @@ public sealed class AboveSlideEffector : MonoBehaviour
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
-                if (_laneMin <= tapstate.laneNumber && tapstate.laneNumber <= _laneMin)
+                //Debug.Log("SlideEffectWorkaaaaaaaaaaaaaa");
+                if (_laneMin <= tapstate.laneNumber && tapstate.laneNumber <= _laneMax)
                 {
+                    //Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
                     if (!_effect1.isPlaying)
                     {
+                        //Debug.Log("SlideEffectWorkcccccccccccccc");
                         _effect1.Play();
                         _effect2.Play();
                         _noteBlight.color = new Color32(255, 255, 255, 160);
                         effectAudio.Play();
+                        //Debug.Log("SlideEffectWork");
                     }
                     _blJudge = true;
                     break;
@@ -73,6 +79,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
                 _effect2.Stop();
                 _noteBlight.color = new Color32(130, 130, 130, 160);
                 effectAudio.Pause();
+                Debug.Log("SlideEffectStop");
             }
         }
     }

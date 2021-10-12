@@ -18,7 +18,7 @@ public sealed class HoldEffector : MonoBehaviour
     public void EffectorInitialize(ReilasNoteLineEntity entity)
     {
         _entity = entity;
-        _lanePos = _entity.Head.LanePosition;
+        _lanePos = 3 - _entity.Head.LanePosition;
         _blDone = true;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
