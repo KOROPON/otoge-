@@ -137,8 +137,13 @@ public class JudgeService : MonoBehaviour
             AllJudge.Add(judgeResult);
             RhythmGamePresenter.tapNoteJudge[i] = true;
             if (tapNotes[i].Type == NoteType.Tap || tapNotes[i].Type == NoteType.Hold)
+            {
                 RhythmGamePresenter._tapNotes[0].NoteDestroy();
-            else RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
+            }
+            else if(tapNotes[i].Type == NoteType.AboveTap || tapNotes[i].Type == NoteType.AboveHold || tapNotes[i].Type == NoteType.AboveSlide)
+            {
+                RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
+            }
             _tapJudgeStartIndex++;
         }
 

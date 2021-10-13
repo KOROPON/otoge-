@@ -182,6 +182,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
         reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
+        Debug.Log(reilasAboveTap.Count());
+
         SpawnChainNotes(reilasChain);
         SpawnHoldNotes(reilasHold);
         SpawnAboveHoldNotes(reilasAboveHold);
@@ -333,8 +335,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_holdNotePrefab);
             var holdEffector = tapNote.transform.Find("HoldEffector").gameObject.GetComponent<HoldEffector>();
             tapNote.Initialize(note);
-            tapNote.gameObject.SetActive(false);
             holdEffector.EffectorInitialize(note);
+            tapNote.gameObject.SetActive(false);
             _holdEffectors.Add(holdEffector);
             _holdNotes.Add(tapNote);
         }
@@ -347,8 +349,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveHoldNotePrefab);
             var aboveHoldEffector = tapNote.transform.Find("AboveHoldEffector").gameObject.GetComponent<AboveHoldEffector>();
             tapNote.Initialize(note);
-            tapNote.gameObject.SetActive(false);
             aboveHoldEffector.EffectorInitialize(note);
+            tapNote.gameObject.SetActive(false);
             _aboveHoldEffectors.Add(aboveHoldEffector);
             _aboveHoldNotes.Add(tapNote);
         }
@@ -360,8 +362,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var tapNote = Instantiate(_aboveSlideNotePrefab);
             var aboveSlideEffector = tapNote.transform.Find("AboveSlideEffector").gameObject.GetComponent<AboveSlideEffector>();
             tapNote.Initialize(note);
-            tapNote.gameObject.SetActive(false);
             aboveSlideEffector.EffectorInitialize(note);
+            tapNote.gameObject.SetActive(false);
             _aboveSlideEffectors.Add(aboveSlideEffector);
             _aboveSlideNotes.Add(tapNote);
         }

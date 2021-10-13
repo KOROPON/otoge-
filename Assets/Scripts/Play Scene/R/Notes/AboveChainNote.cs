@@ -25,7 +25,6 @@ namespace Reilas
             InitializeMesh();
 
             transform.localScale = Vector3.one;
-            ;
         }
 
         private void InitializeMesh()
@@ -33,27 +32,27 @@ namespace Reilas
             if (_meshFilter == null)
             {
                 throw new Exception();
-                //return;
             }
 
             var size = _entity.Size + 1;
 
-            _vertices = new Vector3[size * 2 * 2];
-            _uv = new Vector3[size * 2 * 2];
-            _triangles = new int[size * 6 * 2 + 12];
+            _vertices = new Vector3[size * 2 * 10];
+            _uv = new Vector3[size * 2 * 10];
+            _triangles = new int[size * 6 * 10 + 12];
 
-            // �O��
+            // 前面
             for (var i = 0; i < size - 1; i++)
             {
                 _triangles[i * 6 + 0] = 0 + i * 2;
-                _triangles[i * 6 + 1] = 2 + i * 2;
-                _triangles[i * 6 + 2] = 1 + i * 2;
+                _triangles[i * 6 + 1] = 1 + i * 2;
+                _triangles[i * 6 + 2] = 3 + i * 2;
                 _triangles[i * 6 + 3] = 2 + i * 2;
-                _triangles[i * 6 + 4] = 3 + i * 2;
-                _triangles[i * 6 + 5] = 1 + i * 2;
+                _triangles[i * 6 + 4] = 0 + i * 2;
+                _triangles[i * 6 + 5] = 3 + i * 2;
             }
 
-            // ���
+            /*
+            // 上面
             for (var i = 0; i < size - 1; i++)
             {
                 var p = size + i;
@@ -66,7 +65,7 @@ namespace Reilas
                 _triangles[p * 6 + 5] = 2 + i * 2;
             }
 
-            // ��
+            // 左
             _triangles[size * 6 * 2 + 0] = 0;
             _triangles[size * 6 * 2 + 1] = 1;
             _triangles[size * 6 * 2 + 2] = size * 2;
@@ -74,15 +73,16 @@ namespace Reilas
             _triangles[size * 6 * 2 + 4] = size * 2;
             _triangles[size * 6 * 2 + 5] = size * 2 + 1;
 
-            // �E
+            // 右
             _triangles[size * 6 * 2 + 6] = 0 + size * 2 - 2;
             _triangles[size * 6 * 2 + 7] = 1 + size * 2 - 2;
             _triangles[size * 6 * 2 + 8] = size * 2 + size * 2 - 2;
             _triangles[size * 6 * 2 + 9] = 1 + size * 2 - 2;
             _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
             _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
+            */
 
-            // ���b�V���𐶐�����
+            // メッシュを生成する
             _mesh = new Mesh
             {
                 vertices = _vertices,
@@ -98,38 +98,130 @@ namespace Reilas
 
         private void RenderMesh(float currentTime)
         {
-            if (_meshFilter == null) return;
+            if (_meshFilter == null)
+            {
+                Debug.Log("return");
+                return;
+            }
+            {
+                /*
+                for (var z = 0; z < 3; z++)
+                {
+                    for (var x = 0; x < _entity.Size + 1; x++)
+                    {
+                        var laneIndex = _entity.LanePosition + x;
 
-            for (var z = 0; z < 2; z++)
+                        const float outerLaneRadius = 4.5f;
+
+                        //const float sizeY = 0.075f;
+                        float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
+
+                        float zz = (z == 0) ? sizeZ : -sizeZ;
+
+                        const float div = 32f;
+
+                        var angle = Mathf.PI / div * laneIndex;
+
+                        angle = Mathf.PI / 2f - angle;
+
+                        const float innerRadius = outerLaneRadius - 1f;
+                        const float outerRadius = outerLaneRadius;
+
+                        var innerX = Mathf.Sin(angle) * innerRadius;
+                        var innerY = Mathf.Cos(angle) * innerRadius;
+
+                        var outerX = Mathf.Sin(angle) * outerRadius;
+                        var outerY = Mathf.Cos(angle) * outerRadius;
+
+                        float zPos = 0;
+
+                        if (!this.gameObject.activeSelf)
+                        {
+
+                            if (_entity.JudgeTime - currentTime < 5f)
+                            {
+                                this.gameObject.SetActive(true);
+                            }
+                        }
+                        //else
+                        //{
+                        zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                        //}
+
+
+                        zPos += zz;
+
+                        var innerPoint = new Vector3(innerX, innerY, zPos);
+                        var outerPoint = new Vector3(outerX, outerY, zPos);
+
+
+                        //(innerPoint, outerPoint) = (outerPoint, innerPoint);
+
+                        var p = (_entity.Size + 1) * 2 * z;
+
+                        if (_vertices != null)
+                        {
+                            _vertices[p + x * 2 + 0] = innerPoint;
+                            _vertices[p + x * 2 + 1] = outerPoint;
+                        }
+
+                        float uvX = 1f / _entity.Size * x;
+
+                        float alpha = 1f;
+                        // 手前
+                        if (z == 0)
+                        {
+                            if (_uv != null)
+                            {
+                                _uv[x * 2 + 0] = new Vector3(uvX, 0.5f, alpha);
+                                _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
+                            }
+                        }
+                        // 奥
+                        else
+                        {
+                            var w = z * (_entity.Size + 1) * 2 + (x * 2);
+
+                            if (_uv != null)
+                            {
+                                _uv[w + 0] = new Vector3(uvX, 1f, alpha);
+                                _uv[w + 1] = new Vector3(0, 0, alpha);
+                            }
+                        }
+                    }
+                }
+                */
+            } // コメントアウト
+            for (var z = 0; z < 1; z++)
             {
                 for (var x = 0; x < _entity.Size + 1; x++)
                 {
-                    var laneIndex = _entity.LanePosition + x;
+                    var laneIndex = _entity.LanePosition + x;  //レーン番号
 
-                    const float outerLaneRadius = 4.5f;
+                    const float outerLaneRadius = 5.5f;
 
                     //const float sizeY = 0.075f;
                     float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
 
-                    float zz = z == 0 ? sizeZ : -sizeZ;
+                    //float zz = (z == 0) ? sizeZ : -sizeZ;
 
-                    const float div = 36f;
+                    const float div = 32f;
 
-                    var angle = Mathf.PI / div * laneIndex;
+                    var angle = Mathf.PI / div * laneIndex;   // レーンの角度
 
-                    angle = Mathf.PI / 2f - angle;
+                    angle = Mathf.PI - angle;
 
-                    const float innerRadius = outerLaneRadius - 0.3f;
-                    const float outerRadius = outerLaneRadius;
+                    const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
+                    const float outerRadius = outerLaneRadius;        // 外縁の半径
 
-                    var innerX = Mathf.Sin(angle) * innerRadius;
-                    var innerY = Mathf.Cos(angle) * innerRadius;
+                    var innerY = Mathf.Sin(angle) * innerRadius;
+                    var innerX = Mathf.Cos(angle) * innerRadius;
 
-                    var outerX = Mathf.Sin(angle) * outerRadius;
-                    var outerY = Mathf.Cos(angle) * outerRadius;
+                    var outerY = Mathf.Sin(angle) * outerRadius;
+                    var outerX = Mathf.Cos(angle) * outerRadius;
 
                     float zPos = 0;
-                    
+
                     if (!this.gameObject.activeSelf)
                     {
 
@@ -140,10 +232,11 @@ namespace Reilas
                     }
                     //else
                     //{
-                        zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
                     //}
 
-                    zPos += zz;
+
+                    //zPos += zz;
 
                     var innerPoint = new Vector3(innerX, innerY, zPos);
                     var outerPoint = new Vector3(outerX, outerY, zPos);
@@ -162,16 +255,19 @@ namespace Reilas
                     float uvX = 1f / _entity.Size * x;
 
                     float alpha = 1f;
-                    // ��O
+
+                    // 手前
                     if (z == 0)
                     {
                         if (_uv != null)
                         {
-                            _uv[x * 2 + 0] = new Vector3(uvX, 0.5f, alpha);
+                            _uv[x * 2 + 0] = new Vector3(uvX, 1f, alpha);
                             _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
                         }
                     }
-                    // ��
+
+                    /*
+                    // 奥
                     else
                     {
                         var w = z * (_entity.Size + 1) * 2 + (x * 2);
@@ -182,6 +278,7 @@ namespace Reilas
                             _uv[w + 1] = new Vector3(0, 0, alpha);
                         }
                     }
+                    */
                 }
             }
 

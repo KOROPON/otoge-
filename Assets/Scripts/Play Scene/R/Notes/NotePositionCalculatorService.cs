@@ -54,12 +54,12 @@ namespace Reilas
                 }
                 else
                 {
-                    notePos = new Vector3(-x, 0f, highSpeed / 2 * t * t - highSpeed * t);
+                    notePos = new Vector3(x, 0f, highSpeed / 2 * t * t - highSpeed * t);
                 }
             }
             else
             {
-                notePos = normalizedTime < 0 ? new Vector3(-x, 0f, -highSpeed * t) : new Vector3(-x, 0f, highSpeed / 2 * t * t - highSpeed * t);
+                notePos = normalizedTime < 0 ? new Vector3(x, 0f, -highSpeed * t) : new Vector3(x, 0f, highSpeed / 2 * t * t - highSpeed * t);
             }
 
             return notePos;

@@ -21,6 +21,7 @@ namespace Reilas
         {
             _entity = entity;
             InitializeMesh();
+            Debug.Log(_entity.Head.Size + "      " + _entity.Tail.Size);
 
             transform.localScale = Vector3.one;
         }
@@ -47,12 +48,12 @@ namespace Reilas
                 var n = z * (xDivision - 1) * 6;
                 for (var x = xDivision - 2; x >= 0; x--)
                 {
-                    _triangles[n + x * 6 + 0] = z * (xDivision) + x;
-                    _triangles[n + x * 6 + 1] = z * (xDivision) + x + 1;
-                    _triangles[n + x * 6 + 2] = (z + 1) * (xDivision) + x;
-                    _triangles[n + x * 6 + 3] = z * (xDivision) + x + 1;
-                    _triangles[n + x * 6 + 4] = (z + 1) * (xDivision) + x + 1;
-                    _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
+                    _triangles[n + x * 6 + 5] = z * (xDivision) + x;
+                    _triangles[n + x * 6 + 4] = z * (xDivision) + x + 1;
+                    _triangles[n + x * 6 + 3] = (z + 1) * (xDivision) + x;
+                    _triangles[n + x * 6 + 2] = z * (xDivision) + x + 1;
+                    _triangles[n + x * 6 + 1] = (z + 1) * (xDivision) + x + 1;
+                    _triangles[n + x * 6 + 0] = (z + 1) * (xDivision) + x;
                 }
             }
 
@@ -137,13 +138,12 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    var outerPoint = new Vector3(outerX, outerY, currentZ);
+                    var outerPoint = new Vector3(-outerX, outerY, currentZ);
 
                     _vertices[(_entity.Head.Size + 1) * z + x] = outerPoint;
                     _uv[z * (_entity.Head.Size + 1) + x] = new Vector2(1f / _entity.Head.Size * x, 1f / (zDiv - 1) * z);
                 }
             }
-
 
             _mesh.vertices = _vertices;
 
