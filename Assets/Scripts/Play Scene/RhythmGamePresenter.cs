@@ -303,7 +303,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(_tapNotePrefab);
             tapNote.Initialize(note);
-            tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
+            var position = transform.position;
+            tapNote.transform.position = new Vector3(position.x, position.y, 999);
             _tapNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
         }

@@ -236,7 +236,7 @@ namespace Reilas
                     }
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _entity.Speed).z;
                     //}
 
 

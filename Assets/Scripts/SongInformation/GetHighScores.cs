@@ -66,13 +66,13 @@ public class GetHighScores : MonoBehaviour
     {
         return score switch
         {
-            int n when n >= 995000 => "SSS",
-            int n when n >= 990000 => "SS",
-            int n when n >= 980000 => "S",
-            int n when n >= 950000 => "A",
-            int n when n >= 900000 => "B",
-            int n when n >= 800000 => "C",
-            int n when n > 0 => "D",
+            var n when n >= 995000 => "SSS",
+            var n when n >= 990000 => "SS",
+            var n when n >= 980000 => "S",
+            var n when n >= 950000 => "A",
+            var n when n >= 900000 => "B",
+            var n when n >= 800000 => "C",
+            var n when n > 0 => "D",
             _ => ""
         };
     }
