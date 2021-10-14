@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Rhythmium;
@@ -16,30 +17,17 @@ namespace Reilas
 
         private static Vector3 CalculateBarLinePosition(float judgeTime, float currentTime)
         {
-            float highSpeed;
-            if (PlayerPrefs.HasKey("rate"))
-            {
-                highSpeed = 80 * PlayerPrefs.GetFloat("rate");
-            }
-            else
-            {
-                highSpeed = 80 * 3.5f;
-            }
+            var highSpeed = NotePositionCalculatorService.gameSpeed;
             
-            //var toLeft = left - LeftPosition;
-            
-            // 何秒後のノーツまで描画するか
-            var 何秒後のノーツまで描画するか = 600f / highSpeed;
-
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
             var t = currentTime - judgeTime;
-            var normalizedTime = -t / 何秒後のノーツまで描画するか;
+            var normalizedTime = -t * highSpeed / 600f;
 
             return normalizedTime switch
             {
                 var time when time >= 1 => new Vector3(0f, 0f, 999f),
-                var time when time >= 0 => new Vector3(0f, 0f, highSpeed / 2 * t * t - highSpeed * t),
+                var time when time >= 0 => new Vector3(0f, 0f, highSpeed * 0.5f * t * t - highSpeed * t),
                 _ => new Vector3(0f, 0f, 0f)
             };
         }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16736,6 +16736,7 @@ MonoBehaviour:
   button: {fileID: 6307734107970162160, guid: 68d1c36c894671d4dbf97dc8407dcf70, type: 3}
   canvas: {fileID: 1606502941}
   _keyBeamPrefab: {fileID: 524947537259370129, guid: f60a59b1aeccf0e4c910521002752124, type: 3}
+  gameSpeed: 0
 --- !u!114 &1036589698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16845,7 +16846,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1096028813}
   m_HandleRect: {fileID: 0}

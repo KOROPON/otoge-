@@ -23,6 +23,5 @@ class Difficulty
     public string rank;
     public bool fullCombo;
     public bool allPerfect;
-    public int level;
     public int highScore;
 }

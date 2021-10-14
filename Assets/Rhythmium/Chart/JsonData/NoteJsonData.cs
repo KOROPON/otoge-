@@ -23,6 +23,7 @@ namespace Rhythmium
         public int measureIndex;
         public FractionJsonData measurePosition;
         public string type;
+        public float speed;
         public Guid lane;
         public NoteCustomPropsJsonData customProps;
 
@@ -50,6 +51,7 @@ namespace Rhythmium
                 measureIndex = measureIndex,
                 measurePosition = measurePosition,
                 type = type,
+                speed = speed,
                 lane = lane,
                 customProps = customProps
             };

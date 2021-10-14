@@ -95,11 +95,17 @@ public class GetHighScores : MonoBehaviour
         return diff != null ? diff.rank : "";
     }
 
-    public void SetHighScore(string songName, string difficulty, int score)
+    public void SetHighScore(string songName, string difficulty, int score, bool allPerfect, bool fullCombo)
     {
         var diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
         diff.rank = RankCalculator(score);
+        if (allPerfect)
+        {
+            diff.allPerfect = true;
+            diff.fullCombo = true;
+        }
+        else if (fullCombo) diff.fullCombo = true;
         if (difficulty == "Hard" && diff.highScore >= 980000)
         {
             GetSong(songName).extremeLock = true;

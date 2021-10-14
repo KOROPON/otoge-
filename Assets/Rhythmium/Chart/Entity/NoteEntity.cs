@@ -32,8 +32,10 @@ namespace Rhythmium
         /// </summary>
         [field: SerializeField]
         public float JudgeTime { get; private set; }
-
+        
         public NoteJsonData JsonData { get; private set; }
+        
+        public float Speed { get; private set; }
 
         protected abstract int GetNoteType(NoteJsonData noteJsonData);
 
@@ -47,6 +49,7 @@ namespace Rhythmium
             JsonData = note;
             IntType = GetNoteType(note);
             Size = note.horizontalSize;
+            Speed = note.speed;
             LanePosition = note.horizontalPosition.numerator;
             JudgeTime = judgeTime;
         }

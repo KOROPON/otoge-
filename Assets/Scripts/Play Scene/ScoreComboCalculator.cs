@@ -15,6 +15,10 @@ namespace Reilas
         public static int currentCombo;
         public static　int currentScore;
         public static int highCombo;
+
+        public static bool allPerfect;
+        public static bool fullCombo;
+        
         private float _sumScore;
         private float _score;
         
@@ -103,7 +107,6 @@ namespace Reilas
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-                
             }
             
             JudgeService.AllJudge.Clear();
@@ -121,6 +124,13 @@ namespace Reilas
             _slider.value -= 0.03f * _gaugeMiss;
 
             gauge.text = _slider.value.ToString(CultureInfo.InvariantCulture);
+
+            if (currentScore == 1000000)
+            {
+                allPerfect = true;
+                fullCombo = true;
+            }
+            else if (currentCombo == RhythmGamePresenter.countNotes) fullCombo = true;
         }
     }
 }
