@@ -182,7 +182,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
         reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
-        Debug.Log(reilasAboveTap.Count());
 
         SpawnChainNotes(reilasChain);
         SpawnHoldNotes(reilasHold);
@@ -307,7 +306,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     {
         foreach (var note in notes)
         {
-            Debug.Log("aboveTap");
             var tapNote = Instantiate(_aboveTapNotePrefab);
             tapNote.Initialize(note);
             //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
@@ -450,9 +448,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First();
             var distance = Vector2.Distance(lane.screenPoint, touch.position);
             var nearestLaneIndex = distance < 150 ? lane.index : 40;//押した場所に一番近いレーンの番号
-            text2.text = nearestLaneIndex.ToString();
+            //text2.text = nearestLaneIndex.ToString();
             //Debug.Log(nearestLaneIndex);
-            bool start = touch.phase == TouchPhase.Began;
+            //bool start = touch.phase == TouchPhase.Began;
             // touch.position
             // このフレームで押されたよん
             
@@ -465,7 +463,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 continue;
             }
             
-            InputService.AboveLaneTapStates.Add(new LaneTapState{laneNumber = nearestLaneIndex, tapStarting = start});
+            //InputService.AboveLaneTapStates.Add(new LaneTapState{laneNumber = nearestLaneIndex, tapStarting = start});
         }
 
 

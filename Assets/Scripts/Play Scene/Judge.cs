@@ -144,6 +144,7 @@ public class JudgeService : MonoBehaviour
             {
                 RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
             }
+            
             _tapJudgeStartIndex++;
         }
 

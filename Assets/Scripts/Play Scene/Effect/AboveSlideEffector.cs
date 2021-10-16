@@ -35,7 +35,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
         _noteBlight = transform.root.GetComponent<MeshRenderer>().material.color;
         aboveSlideEffectTime = _entity.Head.JudgeTime;
-        Debug.Log("colorHere" + _noteBlight.r);
+        //Debug.Log("colorHere" + _noteBlight.r);
     }
 
     public void Render (float currentTime, AudioSource effectAudio)
