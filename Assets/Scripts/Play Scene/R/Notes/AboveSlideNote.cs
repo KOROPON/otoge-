@@ -21,6 +21,8 @@ namespace Reilas
         private int leftRatio;
         private int rightRatio;
 
+        private float _noteSpeed;
+
         public void Initialize(ReilasNoteLineEntity entity)
         {
             _noteSpeed = entity.Head.Speed;
