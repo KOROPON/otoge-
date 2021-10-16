@@ -181,7 +181,9 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
         reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
-        Debug.Log(reilasAboveTap.Count());
+        //Debug.Log(reilasAboveTap.Count());
+
+        List<int> removeInt = new List<int>();
         
         foreach (var note in tapNotes)
         {
@@ -203,7 +205,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                             }
                             note.Type = NoteType.AboveSlideInternal;
                             internalNotes.Add(note);
-                            tapNotes.Remove(note);
+                            removeInt.Add(tapNotes.IndexOf(note));
                             break;
                         }
 
@@ -225,7 +227,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                             }
                             note.Type = NoteType.AboveSlideInternal;
                             internalNotes.Add(note);
-                            tapNotes.Remove(note);
+                            removeInt.Add(tapNotes.IndexOf(note));
                             break;
                         }
 
@@ -246,7 +248,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                             }
                             note.Type = NoteType.AboveSlideInternal;
                             internalNotes.Add(note);
-                            tapNotes.Remove(note);
+                            removeInt.Add(tapNotes.IndexOf(note));
                             break;
                         }
 
@@ -269,6 +271,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        for(int num = removeInt.Count() - 1; num >= 0; num--)
+        {
+            tapNotes.RemoveAt(removeInt[num]);
         }
 
         internalNotes.OrderBy(note => note.JudgeTime);
@@ -458,7 +465,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var nearestLaneIndex = distance < 150 ? lane.index : 40;//押した場所に一番近いレーンの番号
             //text2.text = nearestLaneIndex.ToString();
             //Debug.Log(nearestLaneIndex);
-            //bool start = touch.phase == TouchPhase.Began;
+            bool start = touch.phase == TouchPhase.Began;
             // touch.position
             // このフレームで押されたよん
             
@@ -471,7 +478,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 continue;
             }
             
-            //InputService.AboveLaneTapStates.Add(new LaneTapState{laneNumber = nearestLaneIndex, tapStarting = start});
+            InputService.AboveLaneTapStates.Add(new LaneTapState
+            {
+                laneNumber = nearestLaneIndex,
+                tapStarting = start
+            });
         }
 
 

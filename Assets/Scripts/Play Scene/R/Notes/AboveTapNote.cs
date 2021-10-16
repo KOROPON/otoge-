@@ -200,7 +200,7 @@ namespace Reilas
                 {
                     var laneIndex = _entity.LanePosition + x;  //レーン番号
 
-                    const float outerLaneRadius = 5.5f;
+                    const float outerLaneRadius = 5.6f;
 
                     //const float sizeY = 0.075f;
                     float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
