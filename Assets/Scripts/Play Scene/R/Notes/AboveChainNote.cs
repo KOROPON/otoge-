@@ -16,15 +16,18 @@ namespace Reilas
 
         private ReilasNoteEntity _entity = null!;
 
+        private float _noteSpeed;
         public float aboveChainTime;
 
         public void Initialize(ReilasNoteEntity entity)
         {
             aboveChainTime = entity.JudgeTime;
+            _noteSpeed = entity.Speed;
             _entity = entity;
             InitializeMesh();
 
             transform.localScale = Vector3.one;
+            ;
         }
 
         private void InitializeMesh()
@@ -32,6 +35,7 @@ namespace Reilas
             if (_meshFilter == null)
             {
                 throw new Exception();
+                //return;
             }
 
             var size = _entity.Size + 1;
@@ -232,7 +236,7 @@ namespace Reilas
                     }
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _entity.Speed).z;
                     //}
 
 

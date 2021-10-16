@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Reilas;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,8 @@ public class ResultScore : MonoBehaviour
     public AudioSource resultMusic;
 
     private GetHighScores _getHighScores;
+    private ChangeScene_PlayScene _previousHighScore;
+    private int _previousScore;
     private int _score;
     private string _scoreRank;
     private bool _backBool;
@@ -33,6 +36,9 @@ public class ResultScore : MonoBehaviour
     private void Start()
     {
         _getHighScores = gameObject.AddComponent<GetHighScores>();
+        _previousHighScore = gameObject.AddComponent<ChangeScene_PlayScene>();
+
+        _previousScore = _previousHighScore.previousHighScore;
         _score = _getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
         _backBool = true;
         _retryBool = true;
@@ -47,11 +53,11 @@ public class ResultScore : MonoBehaviour
         difficultyInResult.text = RhythmGamePresenter.dif;
         jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleInResult.text + "_jacket");
         rankinResult.sprite = Resources.Load<Sprite>("Rank/score_" + _scoreRank);
-        previousScore.text = $"{RhythmGamePresenter.currentHighScore}";
+        previousScore.text = $"{_previousScore}";
         scoreGap.text = _score switch
         {
-            int n when n > RhythmGamePresenter.currentHighScore => "+" + $"{n - RhythmGamePresenter.currentHighScore}",
-            int n when n < RhythmGamePresenter.currentHighScore => "-" + $"{RhythmGamePresenter.currentHighScore - n}",
+            int n when n > _previousScore => "+" + $"{n - _previousScore}",
+            int n when n < _previousScore => "-" + $"{_previousScore - n}",
             _=> ""
         };
         

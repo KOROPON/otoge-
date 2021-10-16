@@ -8,12 +8,14 @@ namespace Reilas
     public sealed class TapNote : MonoBehaviour
     {
         private NoteEntity _entity = null!;
-        public float _tapTime;
+        private float _noteSpeed;
+        public float tapTime;
 
         public void Initialize(ReilasNoteEntity entity)
         {
-            _tapTime = entity.JudgeTime;
+            tapTime = entity.JudgeTime;
             _entity = entity;
+            _noteSpeed = entity.Speed;
             transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
         }
 
@@ -29,7 +31,7 @@ namespace Reilas
             }
             else
             {
-                transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, true);
+                transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _noteSpeed);
             }
         }
 

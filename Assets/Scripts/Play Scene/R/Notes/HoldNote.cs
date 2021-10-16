@@ -8,11 +8,13 @@ namespace Reilas
     public sealed class HoldNote : MonoBehaviour
     {
         private ReilasNoteLineEntity _entity = null!;
+        private float _noteSpeed;
         private Transform _note;
         private Transform _hold;
 
         public void Initialize(ReilasNoteLineEntity entity)
         {
+            _noteSpeed = entity.Head.Speed;
             _entity = entity;
             _hold = transform.GetChild(0);
         }
@@ -45,8 +47,8 @@ namespace Reilas
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
 
 
-            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false);
-            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false);
+            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false, _noteSpeed);
+            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false, _noteSpeed);
            
 
             scale.z = tailPos.z - headPos.z;

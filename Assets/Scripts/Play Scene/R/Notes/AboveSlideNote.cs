@@ -23,6 +23,7 @@ namespace Reilas
 
         public void Initialize(ReilasNoteLineEntity entity)
         {
+            _noteSpeed = entity.Head.Speed;
             _entity = entity;
             InitializeMesh();
             //Debug.Log(_entity.Head.Size + "      " + _entity.Tail.Size + "           a");
@@ -207,8 +208,8 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false, _noteSpeed).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false, _noteSpeed).z;
 
 
             int thisNoteZRatio;

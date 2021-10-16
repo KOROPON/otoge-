@@ -12,19 +12,17 @@ namespace Reilas
     {
         private const float BelowNoteWidth = 2.2f;
         private const float LeftPosition = -4.4f;
-        public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap)
+
+        public static float gameSpeed;
+
+        public static void CalculateGameSpeed()
         {
-
-            float highSpeed;
-            if (PlayerPrefs.HasKey("rate"))
-            {
-                highSpeed = 80 * PlayerPrefs.GetFloat("rate");
-            }
-            else
-            {
-                highSpeed = 80;
-            }
-
+            gameSpeed = PlayerPrefs.HasKey("rate") ? 10 * PlayerPrefs.GetFloat("rate") : 10;
+        }
+        
+        public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap, float noteSpeed)
+        {
+            float highSpeed = gameSpeed * noteSpeed;
 
             var size = entity.Size * BelowNoteWidth;
             var left = size / 2f;
@@ -37,14 +35,11 @@ namespace Reilas
             //var toLeft = left - LeftPosition;
 
             var x = pos;
-
-            // 何秒後のノーツまで描画するか
-            float 何秒後のノーツまで描画するか = 600f / highSpeed;
-
+            
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
-            float t = currentTime - entity.JudgeTime;
-            float normalizedTime = -t / 何秒後のノーツまで描画するか;
+            var t = currentTime - entity.JudgeTime;
+            var normalizedTime = -t * highSpeed / 600f;
             
             if (checkIfTap)
             {

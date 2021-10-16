@@ -16,10 +16,12 @@ namespace Reilas
 
         private ReilasNoteEntity _entity = null!;
 
+        private float _noteSpeed;
         public float aboveTapTime;
 
         public void Initialize(ReilasNoteEntity entity)
         {
+            _noteSpeed = entity.Speed;
             aboveTapTime = entity.JudgeTime;
             _entity = entity;
             InitializeMesh();
@@ -232,7 +234,7 @@ namespace Reilas
                     }
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _noteSpeed).z;
                     //}
 
 
