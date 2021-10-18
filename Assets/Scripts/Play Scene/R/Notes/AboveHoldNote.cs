@@ -31,12 +31,12 @@ namespace Reilas
         {
             if (meshFilter == null)
             {
-                throw new Exception();
-                //return;
+                //throw new Exception();
+                return;
             }
 
             var xDivision = _entity.Head.Size + 1;
-            var zDivision = 2 + (Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition));
+            var zDivision = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
             _vertices = new Vector3[xDivision * zDivision];
             _uv = new Vector2[xDivision * zDivision];

@@ -224,7 +224,10 @@ namespace Reilas
             {
                 thisNoteZRatio = rightRatio + 2;
             }
-            int debug = 0;
+
+            const float div = 32f;
+            const float outerLaneRadius = 4.4f;
+
             for (var z = 0; z < thisNoteZRatio; z++)
             {
                 var p2 = 1f / (thisNoteZRatio - 1) * z;
@@ -237,13 +240,6 @@ namespace Reilas
                 {
                     var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + nowLaneSize / thisNoteSize * x; //今作る頂点のレーン番号(小数点以下含む)
 
-                    const float outerLaneRadius = 4.4f;
-
-                    //float sizeZ = 1f; // SROptions.Current.NoteThickness * 0.1f;
-
-
-                    const float div = 32f;
-
                     var angle = Mathf.PI / div * laneIndex;
 
                     angle = Mathf.PI / 2f - angle;
@@ -253,7 +249,6 @@ namespace Reilas
                     var outerX = Mathf.Sin(angle) * outerRadius;
                     var outerY = Mathf.Cos(angle) * outerRadius;
 
-                    debug++;
                     var outerPoint = new Vector3(-outerX, outerY, currentZ);
 
                     _vertices[((int)thisNoteSize + 1) * z + x] = outerPoint;

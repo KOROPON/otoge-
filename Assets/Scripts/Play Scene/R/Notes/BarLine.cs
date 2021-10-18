@@ -1,9 +1,7 @@
 #nullable enable
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Rhythmium;
 
 namespace Reilas
 {
@@ -61,13 +59,14 @@ namespace Reilas
             }
             else
             {
-                if (CalculateBarLinePosition(judgeTime, currentTime) == new Vector3(0f, 0f, 0f))
+                Vector3 berPos = CalculateBarLinePosition(judgeTime, currentTime);
+                if (judgeTime < currentTime)
                 {
                     NoteDestroy();
                 }
                 else
                 {
-                    transform.position = CalculateBarLinePosition(judgeTime, currentTime);
+                    transform.position = berPos;
                 }
             }
         }
