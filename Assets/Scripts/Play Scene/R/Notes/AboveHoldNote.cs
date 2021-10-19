@@ -7,7 +7,7 @@ namespace Reilas
 {
     public sealed class AboveHoldNote : MonoBehaviour
     {
-        [SerializeField] private MeshFilter _meshFilter = null!;
+        [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector2[] _uv = null!;
@@ -17,25 +17,26 @@ namespace Reilas
 
         private ReilasNoteLineEntity _entity = null!;
 
+        private float _noteSpeed;
+
         public void Initialize(ReilasNoteLineEntity entity)
         {
+            _noteSpeed = entity.Head.Speed;
             _entity = entity;
             InitializeMesh();
-
             transform.localScale = Vector3.one;
-            ;
         }
 
         private void InitializeMesh()
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
-                throw new Exception();
-                //return;
+                //throw new Exception();
+                return;
             }
 
             var xDivision = _entity.Head.Size + 1;
-            var zDivision = 2 + (Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition));
+            var zDivision = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
             _vertices = new Vector3[xDivision * zDivision];
             _uv = new Vector2[xDivision * zDivision];
@@ -73,7 +74,7 @@ namespace Reilas
 
         private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
-            if (_meshFilter == null) return;
+            if (meshFilter == null) return;
             if (_mesh == null)
             {
                 return;
@@ -103,8 +104,8 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false, _noteSpeed).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false, _noteSpeed).z;
 
             for (var z = 0; z < zDiv; z++)
             {
@@ -148,7 +149,7 @@ namespace Reilas
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
 #endif
-            _meshFilter.mesh = _mesh;
+            meshFilter.mesh = _mesh;
         }
     }
 }

@@ -37,7 +37,7 @@ public sealed class HoldEffector : MonoBehaviour
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
-                if (tapstate.laneNumber == _lanePos)
+                if (tapstate.laneNumber == 3 - _lanePos)
                 {
                     if (!_effect1.isPlaying)
                     {

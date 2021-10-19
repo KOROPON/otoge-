@@ -19,7 +19,7 @@ public class Judge_Effector : MonoBehaviour
         foreach (Transform child in transform)
         {
             // �q�v�f�̖��O���
-            Debug.Log(child.name);
+            //Debug.Log(child.name);
         }
 
     }

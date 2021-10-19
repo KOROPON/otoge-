@@ -186,7 +186,6 @@ public class MusicNumManage : MonoBehaviour
    
     public void Difficulty(GameObject diff)
     {
-       
         PlayerPrefs.SetString("difficulty", diff.name);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using Reilas;
 
@@ -24,11 +25,11 @@ public class JudgeService : MonoBehaviour
 
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
-        {"Tap Perfect", 1f},
-        {"Tap Good", 0.58f},
-        {"Tap Bad", 0.75f},
-        {"Internal", 0.90f},
-        {"Chain", 0.25f}
+        {"Tap Perfect", 0.041f},
+        {"Tap Good", 0.058f},
+        {"Tap Bad", 0.075f},
+        {"Internal", 0.090f},
+        {"Chain", 0.025f}
     };
 
     private static float CalculateDifference(float currentTime, float judgeTime, string noteType)
@@ -112,7 +113,7 @@ public class JudgeService : MonoBehaviour
         var tapNotes = RhythmGamePresenter.tapNotes;
         for (var i = _tapJudgeStartIndex; i < tapNotes.Count; i++)
         {
-            if (RhythmGamePresenter.tapNoteJudge[i]) continue;
+            if (RhythmGamePresenter.tapNoteJudge != null && RhythmGamePresenter.tapNoteJudge[i]) continue;
             JudgeResultType judgeResult;
             var timeDifference = tapNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Tap Bad"]) break;
@@ -135,7 +136,7 @@ public class JudgeService : MonoBehaviour
 
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
-            RhythmGamePresenter.tapNoteJudge[i] = true;
+            if (RhythmGamePresenter.tapNoteJudge != null) RhythmGamePresenter.tapNoteJudge[i] = true;
             if (tapNotes[i].Type == NoteType.Tap || tapNotes[i].Type == NoteType.Hold)
             {
                 RhythmGamePresenter._tapNotes[0].NoteDestroy();
@@ -144,32 +145,33 @@ public class JudgeService : MonoBehaviour
             {
                 RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
             }
+            
             _tapJudgeStartIndex++;
         }
 
         var internalNotes = RhythmGamePresenter.internalNotes;
         for (var i = _internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
-            if (RhythmGamePresenter.internalNoteJudge[i]) continue;
+            if (RhythmGamePresenter.internalNoteJudge != null && RhythmGamePresenter.internalNoteJudge[i]) continue;
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
-            RhythmGamePresenter.internalNoteJudge[i] = true;
+            if (RhythmGamePresenter.internalNoteJudge != null) RhythmGamePresenter.internalNoteJudge[i] = true;
             _internalJudgeStartIndex++;
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
         for (var i = _chainJudgeStartIndex; i < chainNotes.Count; i++)
         {
-            if (RhythmGamePresenter.chainNoteJudge[i]) continue;
+            if (RhythmGamePresenter.chainNoteJudge != null && RhythmGamePresenter.chainNoteJudge[i]) continue;
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
-            RhythmGamePresenter.chainNoteJudge[i] = true;
+            if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
             RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
             _chainJudgeStartIndex++;
 
