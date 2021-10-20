@@ -35,7 +35,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
         _noteBlight = transform.root.GetComponent<MeshRenderer>().material.color;
         aboveSlideEffectTime = _entity.Head.JudgeTime;
-        //Debug.Log("colorHere" + _noteBlight.r);
+        Debug.Log("colorHere" + _noteBlight.r);
     }
 
     public void Render (float currentTime, AudioSource effectAudio)
@@ -88,7 +88,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
     }
     private Vector3 PositionCal(float currentTime)
     {
-        float pai = Mathf.PI * ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos -3) / 32;
+        float pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos -4)) / 32;
         var x = 4.4 * Mathf.Cos(pai);
         var y = 4.4 * Mathf.Sin(pai);
         return new Vector3((float) x, (float) y,(float) -0.9);
