@@ -54,13 +54,13 @@ public sealed class AboveSlideEffector : MonoBehaviour
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
-                //Debug.Log("SlideEffectWorkaaaaaaaaaaaaaa");
+                Debug.Log("SlideEffectWorkaaaaaaaaaaaaaa");
                 if (_laneMin <= tapstate.laneNumber && tapstate.laneNumber <= _laneMax)
                 {
-                    //Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
+                    Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
                     if (!_effect1.isPlaying)
                     {
-                        //Debug.Log("SlideEffectWorkcccccccccccccc");
+                        Debug.Log("SlideEffectWorkcccccccccccccc");
                         _effect1.Play();
                         _effect2.Play();
                         _noteBlight = new Color32(255, 255, 255, 160);

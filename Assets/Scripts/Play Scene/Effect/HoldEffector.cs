@@ -18,7 +18,7 @@ public sealed class HoldEffector : MonoBehaviour
     public void EffectorInitialize(ReilasNoteLineEntity entity)
     {
         _entity = entity;
-        _lanePos =_entity.Head.LanePosition;
+        _lanePos = _entity.Head.LanePosition;
         _blDone = true;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
@@ -37,7 +37,7 @@ public sealed class HoldEffector : MonoBehaviour
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
-                if (tapstate.laneNumber == 3 - _lanePos)
+                if (tapstate.laneNumber == _lanePos)
                 {
                     if (!_effect1.isPlaying)
                     {
