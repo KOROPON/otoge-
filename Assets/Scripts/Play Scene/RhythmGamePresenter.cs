@@ -118,15 +118,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         judgeService = gameObject.AddComponent<JudgeService>();
         NotePositionCalculatorService.CalculateGameSpeed();
         AwakeAsync().Forget();
-
-        /*
-        foreach(var a in screenPoints)
-        {
-            var b = Instantiate(button);
-            b.transform.SetParent(canvas.transform,false);
-            b.transform.position = new Vector3(a.x,a.y,a.z);
-        }
-        */
     }
     
     private async UniTask AwakeAsync()
