@@ -6,7 +6,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
-    private Material _noteBlight = null!;
+    private Color _noteBlight;
     [SerializeField]private GameObject _gameObject;
     private int _lanePos;
     private int _laneMax;
@@ -17,12 +17,12 @@ public sealed class AboveHoldEffector : MonoBehaviour
     public void EffectorInitialize(ReilasNoteLineEntity entity)
     {
         _entity = entity;
-        _lanePos = Mathf.RoundToInt(4 + _entity.Head.LanePosition + _entity.Head.Size / 2);
+        _lanePos = Mathf.RoundToInt(_entity.Head.LanePosition + _entity.Head.Size / 2);
         _laneMin = _entity.Head.LanePosition;
         _laneMax = _entity.Head.LanePosition + _entity.Head.Size;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.GetComponent<Material>();
+        _noteBlight = transform.GetComponent<MeshRenderer>().material.color;
         transform.position = RhythmGamePresenter.LanePositions[_lanePos];
         aboveHoldEffectTime = _entity.Head.JudgeTime;
     }
@@ -44,7 +44,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
                     {
                         _effect1.Play();
                         _effect2.Play();
-                        _noteBlight.color = new Color32(255, 255, 255, 160);
+                        _noteBlight = new Color32(255, 255, 255, 160);
                         effectAudio.Play();
                     }
                     _blJudge = true;
@@ -58,7 +58,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
             {
                  _effect1.Stop();
                 _effect2.Stop();
-                _noteBlight.color = new Color32(130, 130, 130, 160);
+                _noteBlight = new Color32(130, 130, 130, 160);
                 effectAudio.Pause();
             }
         }

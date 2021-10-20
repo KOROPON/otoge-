@@ -8,8 +8,8 @@ public sealed class AboveSlideEffector : MonoBehaviour
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
     private Color _noteBlight;
-    private float _headPos;
-    private float _headMax;
+    private int _headPos;
+    private int _headMax;
     private int _headMin;
     private int _tailPos;
     private int _tailMax;
@@ -23,8 +23,8 @@ public sealed class AboveSlideEffector : MonoBehaviour
     public void EffectorInitialize(ReilasNoteLineEntity entity)
     {
         _entity = entity;
-        _headPos = 4 + _entity.Head.LanePosition + _entity.Head.Size / 2;
-        _tailPos = 4 + _entity.Tail.LanePosition + _entity.Head.Size / 2;
+        _headPos = _entity.Head.LanePosition + entity.Head.Size / 2;
+        _tailPos = _entity.Tail.LanePosition + entity.Tail.Size / 2;
         _headMin = _entity.Head.LanePosition;
         _headMax = _entity.Head.LanePosition + _entity.Head.Size;
         _tailMin = _entity.Tail.LanePosition;
@@ -64,6 +64,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
                         _effect1.Play();
                         _effect2.Play();
                         _noteBlight = new Color32(255, 255, 255, 160);
+                        Debug.Log("colorTrue" + _noteBlight.r);
                         effectAudio.Play();
                         //Debug.Log("SlideEffectWork");
                     }
@@ -79,6 +80,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
                 _effect1.Stop();
                 _effect2.Stop();
                 _noteBlight = new Color32(130, 130, 130, 160);
+                Debug.Log("colorFalse" + _noteBlight.r);
                 effectAudio.Pause();
                 Debug.Log("SlideEffectStop");
             }
@@ -86,9 +88,9 @@ public sealed class AboveSlideEffector : MonoBehaviour
     }
     private Vector3 PositionCal(float currentTime)
     {
-        float pai = Mathf.PI * ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos) / 32;
-        var x = 4.53 * Mathf.Cos(pai);
-        var y = 4.53 * Mathf.Sin(pai);//�ǂ������� - �|���Ȃ���
+        float pai = Mathf.PI * ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos -3) / 32;
+        var x = 4.4 * Mathf.Cos(pai);
+        var y = 4.4 * Mathf.Sin(pai);
         return new Vector3((float) x, (float) y,(float) -0.9);
     }
    

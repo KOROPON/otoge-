@@ -622,7 +622,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             if (audioTime - note.holdEffectTime >= 0)
             {
-                note.EffectJudge(audioTime, longPerfect);
+                note.Render(audioTime, longPerfect);
             }
             else break;
         }
