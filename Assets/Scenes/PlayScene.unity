@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11221,9 +11221,9 @@ RectTransform:
   m_Father: {fileID: 1606502942}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 200}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -60}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &620664342
@@ -16691,6 +16691,7 @@ GameObject:
   - component: {fileID: 1036589697}
   - component: {fileID: 1036589698}
   - component: {fileID: 1036589699}
+  - component: {fileID: 1036589700}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -16768,6 +16769,20 @@ MonoBehaviour:
   comboText: {fileID: 646217737}
   scoreText: {fileID: 620664342}
   gauge: {fileID: 1685262886}
+--- !u!114 &1036589700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036589695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b97c8be546faf4abca119010f621cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  song: {fileID: 947960482}
+  previousHighScore: 0
 --- !u!1 &1080633185
 GameObject:
   m_ObjectHideFlags: 0
@@ -16805,7 +16820,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 30, y: 0}
-  m_SizeDelta: {x: 20, y: 500}
+  m_SizeDelta: {x: 20, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080633187
 MonoBehaviour:

@@ -1007,7 +1007,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 5
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a343cba571c43447a557c0fe74b93ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreinResult: {fileID: 1923028380}
+  scoreInResult: {fileID: 1923028380}
   previousScore: {fileID: 2133907830}
   scoreGap: {fileID: 1710391584}
   maxCombo: {fileID: 302249404}
@@ -1766,8 +1766,8 @@ MonoBehaviour:
   goodCom: {fileID: 1629271992}
   badCom: {fileID: 46638214}
   missCom: {fileID: 331433042}
-  titleinResult: {fileID: 1162798599}
-  difficultyinResult: {fileID: 788924949}
+  titleInResult: {fileID: 1162798599}
+  difficultyInResult: {fileID: 788924949}
   rankDifficulty: {fileID: 1501473469}
   jackinResult: {fileID: 1805968902}
   rankinResult: {fileID: 1907612562}

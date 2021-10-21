@@ -5,7 +5,7 @@ using Reilas;
 public class SettingField : MonoBehaviour
 {
     private bool resume;
-    public static bool SetBool;
+    public static bool setBool;
     public Text text;
     public AudioSource aud;
     int resumetime = 180;
@@ -16,7 +16,7 @@ public class SettingField : MonoBehaviour
 
     public void GamePause()
     {
-        if (!SetBool)
+        if (!setBool)
         {
             return;
         }
@@ -58,6 +58,7 @@ public class SettingField : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeScene_PlayScene.playStopped = false;
+        setBool = false;
         Shutter.blChange = "ToSFrP";
         Shutter.blShutterChange = "Close";
     }
@@ -65,6 +66,7 @@ public class SettingField : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeScene_PlayScene.playStopped = false;
+        setBool = false;
         Shutter.blChange = "ToPFrP";
         Shutter.blShutterChange = "Close";
     }
