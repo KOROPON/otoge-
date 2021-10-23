@@ -8,6 +8,10 @@ public class ClearJudge : MonoBehaviour
    private int splitting;
    private int gageCom;
    private int gagepoint = 0;
+
+    //ReilasˆÚs”»’è
+   
+
    void Start()
    {
      switch(RhythmGamePresenter.dif)
@@ -32,5 +36,10 @@ public class ClearJudge : MonoBehaviour
        gagepoint = 0;
      }
      Debug.Log(gageCom);
+   }
+
+   public int GetGageCom()
+   {
+        return gageCom;
    }
 }

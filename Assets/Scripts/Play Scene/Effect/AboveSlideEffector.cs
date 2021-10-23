@@ -7,7 +7,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
-    private Color _noteBlight;
+    private Material _noteBlight;
     private int _headPos;
     private int _headMax;
     private int _headMin;
@@ -33,9 +33,9 @@ public sealed class AboveSlideEffector : MonoBehaviour
         _tailTime = _entity.Tail.JudgeTime;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.root.GetComponent<MeshRenderer>().material.color;
+        _noteBlight = transform.root.GetComponent<MeshRenderer>().material;
         aboveSlideEffectTime = _entity.Head.JudgeTime;
-        Debug.Log("colorHere" + _noteBlight.r);
+        //Debug.Log("colorHere" + _noteBlight.r);
     }
 
     public void Render (float currentTime, AudioSource effectAudio)
@@ -63,8 +63,8 @@ public sealed class AboveSlideEffector : MonoBehaviour
                         Debug.Log("SlideEffectWorkcccccccccccccc");
                         _effect1.Play();
                         _effect2.Play();
-                        _noteBlight = new Color32(255, 255, 255, 160);
-                        Debug.Log("colorTrue" + _noteBlight.r);
+                        _noteBlight.SetColor("Main Color", new Color32(255, 255, 255, 160));
+                        //Debug.Log("colorTrue" + _noteBlight.r);
                         effectAudio.Play();
                         //Debug.Log("SlideEffectWork");
                     }
@@ -79,8 +79,8 @@ public sealed class AboveSlideEffector : MonoBehaviour
             {
                 _effect1.Stop();
                 _effect2.Stop();
-                _noteBlight = new Color32(130, 130, 130, 160);
-                Debug.Log("colorFalse" + _noteBlight.r);
+                //_noteBlight = new Color32(130, 130, 130, 160);
+                //Debug.Log("colorFalse" + _noteBlight.r);
                 effectAudio.Pause();
                 Debug.Log("SlideEffectStop");
             }
