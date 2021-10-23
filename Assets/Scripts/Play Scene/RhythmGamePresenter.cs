@@ -297,6 +297,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         stopwatch.Start();
     }
 
+
     private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
     {
         foreach (var note in notes)

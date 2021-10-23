@@ -11,12 +11,15 @@ public class ChangeScene : MonoBehaviour
     }
     public void Change()
     {
-        if (startBool)
+        if (titleMusic.isPlaying)
         {
-            startBool = false;
-            Shutter.blChange = "ToS_F";
-            Shutter.blShutterChange = "Close";
-            Invoke("StopTitle", 0.5f);
+            if (startBool)
+            {
+                startBool = false;
+                Shutter.blChange = "ToS_F";
+                Shutter.blShutterChange = "Close";
+                Invoke("StopTitle", 0.5f);
+            }
         }
     }
     private void StopTitle()

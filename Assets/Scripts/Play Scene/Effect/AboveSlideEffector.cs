@@ -40,8 +40,8 @@ public sealed class AboveSlideEffector : MonoBehaviour
 
     public void Render (float currentTime, AudioSource effectAudio)
     {
-        var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax);
-        var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin);
+        var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax) + 4;
+        var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin) + 4;
         Debug.Log("max"+_laneMax);
         Debug.Log("min"+_laneMin);
         if (!_gameObject.activeSelf)
@@ -88,10 +88,9 @@ public sealed class AboveSlideEffector : MonoBehaviour
     }
     private Vector3 PositionCal(float currentTime)
     {
-        float pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos -4)) / 32;
+        float pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos)) / 32;
         var x = 4.4 * Mathf.Cos(pai);
         var y = 4.4 * Mathf.Sin(pai);
         return new Vector3((float) x, (float) y,(float) -0.9);
     }
-   
 }
