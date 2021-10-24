@@ -77,7 +77,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     public static string musicname = null!;
     public static string dif = null!;
-    
+
+    //Reilas移行判定
+    public bool jumpToKujo;
+    private bool _throughPoint;
+
     public static bool[] laneTapStates = new bool[36];
 
     public float gameSpeed;
@@ -155,8 +159,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             // tap音調整
         }
-
-
 
         // chartEntity
         _chartEntity = chartEntity;
@@ -489,6 +491,19 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
           audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
+        if (musicname == "Reilas" && _throughPoint)
+        {
+            if (currentTime >= 78)
+            {
+                var _clearJudge = gameObject.AddComponent<ClearJudge>();
+                if (_clearJudge.GetGageCom() >= 75) 
+                {
+                    jumpToKujo = true;
+                }
+                _throughPoint = true;
+            }
+        }
+        
 
         for(int keyIndex = allKeyBeam.Count() - 1; keyIndex >= 0; keyIndex--)
         {

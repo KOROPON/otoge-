@@ -22,7 +22,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
         _laneMax = _entity.Head.LanePosition + _entity.Head.Size;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.GetComponent<MeshRenderer>().material.color;
+        _noteBlight = transform.root.GetComponent<MeshRenderer>().material.color;
         transform.position = RhythmGamePresenter.LanePositions[_lanePos];
         aboveHoldEffectTime = _entity.Head.JudgeTime;
     }
