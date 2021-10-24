@@ -381,6 +381,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         foreach (var line in lines)
         {
             var barLine = Instantiate(_barLinePrefab);
+            barLine.Initialize();
             barLine.gameObject.SetActive(false);
             _barLines.Add(barLine);
         }
@@ -491,6 +492,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
           audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
+
         if (musicname == "Reilas" && _throughPoint)
         {
             if (currentTime >= 78)
