@@ -491,7 +491,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
           audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
-        if (musicname == "Reilas" && _throughPoint)
+        if (musicname == "Reilas" && !_throughPoint)
         {
             if (currentTime >= 78)
             {

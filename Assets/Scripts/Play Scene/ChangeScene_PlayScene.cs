@@ -7,6 +7,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
     public AudioSource song;
 
     public int previousHighScore;
+    public ClearRankDirector _clearRankDirector;
     
     public static bool playNoticed;
     public static bool playStopped;
@@ -14,6 +15,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
     private void Start()
     {
         playStopped = true;
+
     }
 
     private void Update()
@@ -31,8 +33,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
             getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCalculator.currentScore, ScoreComboCalculator.allPerfect,ScoreComboCalculator.fullCombo);
             ScoreComboCalculator.currentCombo = 0;
-            Shutter.blChange = "ToR";
-            Shutter.blShutterChange = "Close";
+            _clearRankDirector.SelectRank(getHighScores.GetRank(RhythmGamePresenter.musicname, RhythmGamePresenter.dif));
         }));
 
     }
