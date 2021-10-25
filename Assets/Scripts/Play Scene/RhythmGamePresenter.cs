@@ -7,7 +7,6 @@ using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
 using Reilas;
-using UnityEngine.UI;
 using System;
 
 public class HeadGuide
@@ -18,10 +17,9 @@ public class HeadGuide
 
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
-    private GetHighScores _getHighScores;
-    
-    public Text text2;
     public AudioSource songAudio = null!;
+
+    public ScoreComboCalculator _scoreComboCalculator;
 
 
     [SerializeField] private TapNote _tapNotePrefab = null!;
@@ -31,9 +29,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
     [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
     [SerializeField] private BarLine _barLinePrefab = null!;
-
-    public GameObject button;
-    public Canvas canvas;
 
     [SerializeField] private GameObject _keyBeamPrefab = null!;
     private List<GameObject> allKeyBeam = new List<GameObject>();
@@ -48,8 +43,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static List<AboveHoldNote> _aboveHoldNotes = new List<AboveHoldNote>();
     public static List<AboveSlideNote> _aboveSlideNotes = new List<AboveSlideNote>();
 
-    private List<ReilasNoteEntity> reilasTap = new List<ReilasNoteEntity>();
-    private List<ReilasNoteEntity> reilasAboveTap = new List<ReilasNoteEntity>();
     private List<ReilasNoteLineEntity> reilasAboveSlide = new List<ReilasNoteLineEntity>();
     private List<ReilasNoteLineEntity> reilasAboveHold = new List<ReilasNoteLineEntity>();
     private List<ReilasNoteLineEntity> reilasHold = new List<ReilasNoteLineEntity>();
@@ -80,16 +73,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     //Reilas移行判定
     public bool jumpToKujo;
-    private bool _throughPoint;
 
     public static bool[] laneTapStates = new bool[36];
 
-    public float gameSpeed;
-
-    List<HeadGuide> aboveHoldHead = new List<HeadGuide>();
-    List<HeadGuide> aboveSlideHead = new List<HeadGuide>();
-    List<HeadGuide> holdHead = new List<HeadGuide>();
-    
+    public float gameSpeed;    
 
     JudgeService judgeService;
 
@@ -129,6 +116,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         //FindObjectOfType<Variable>().enabled = false;
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset;
+        TextAsset? kujyoSongs;
 
         if (chartTextAsset == null)
         {
@@ -147,7 +135,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
-        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
+        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource); //AudioSource の取得
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
@@ -167,8 +155,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
         
-        reilasTap = _chartEntity.Notes.Where(note => note.Type == NoteType.Tap).ToList();
-        reilasAboveTap = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveTap).ToList();
         reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
         reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
@@ -279,14 +265,39 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         countNotes = tapNoteJudge.Length + internalNoteJudge.Length + chainNoteJudge.Length;
         
-        SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"));
-        SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"));
-        SpawnChainNotes(reilasChain);
-        SpawnHoldNotes(reilasHold);
-        SpawnAboveHoldNotes(reilasAboveHold);
-        SpawnAboveSlideNotes(reilasAboveSlide);
+        SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), false);
+        SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), false);
+        SpawnChainNotes(reilasChain, false);
+        SpawnHoldNotes(reilasHold,false);
+        SpawnAboveHoldNotes(reilasAboveHold, false);
+        SpawnAboveSlideNotes(reilasAboveSlide, false);
         SpawnBarLines(_barLineTimes);
-        
+
+
+        if (jumpToKujo)
+        {
+            kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
+            if (kujyoSongs == null)
+            {
+                Debug.LogError("Reilas_KUJO 譜面データが見つかりませんでした");
+                return;
+            }
+
+            var chartKujoJsonData = JsonUtility.FromJson<ChartJsonData>(kujyoSongs.text);
+            var chartKujoEntity = new ReilasChartConverter().Convert(chartKujoJsonData);
+
+            NoteLineJsonData[] noteKujoJsonData = chartKujoJsonData.timeline.noteLines;
+
+
+            SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), true);
+            SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), true);
+            SpawnChainNotes(reilasChain, true);
+            SpawnHoldNotes(reilasHold, true);
+            SpawnAboveHoldNotes(reilasAboveHold, true);
+            SpawnAboveSlideNotes(reilasAboveSlide, true);
+        }
+
+
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";//シーンを開く
     }
@@ -298,7 +309,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     }
 
 
-    private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
+    private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -306,36 +317,57 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             tapNote.Initialize(note);
             var position = transform.position;
             tapNote.transform.position = new Vector3(position.x, position.y, 999);
-            _tapNotes.Add(tapNote);
+            if (bosNotes)
+            {
+
+            }
+            else
+            {
+                _tapNotes.Add(tapNote);
+            }
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes)
+    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes, bool BosNotes)
     {
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_aboveTapNotePrefab);
             tapNote.Initialize(note);
             //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
-            _aboveTapNotes.Add(tapNote);
+            if (BosNotes)
+            {
+
+            }
+            else
+            {
+                _aboveTapNotes.Add(tapNote);
+            }
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes)
+    private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
             var tapNote = Instantiate(_aboveChainNotePrefab);
             tapNote.Initialize(note);
             //tapNote.transform.position = new Vector3(transform.position.x, transform.position.y, 999);
-            _aboveChainNotes.Add(tapNote);
+            if (bosNotes)
+            {
+
+            }
+            else
+            {
+                _aboveChainNotes.Add(tapNote);
+            }
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    private void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -345,11 +377,18 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             holdEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             _holdEffectors.Add(holdEffector);
-            _holdNotes.Add(tapNote);
+            if (bosNotes)
+            {
+
+            }
+            else
+            {
+                _holdNotes.Add(tapNote);
+            }
         }
     }
 
-    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -359,10 +398,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             aboveHoldEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             _aboveHoldEffectors.Add(aboveHoldEffector);
-            _aboveHoldNotes.Add(tapNote);
+            if (bosNotes)
+            {
+
+            }
+            else
+            {
+                _aboveHoldNotes.Add(tapNote);
+            }
         }
     }
-    private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -372,7 +418,14 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             aboveSlideEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             _aboveSlideEffectors.Add(aboveSlideEffector);
-            _aboveSlideNotes.Add(tapNote);
+            if (bosNotes)
+            {
+
+            }
+            else
+            {
+                _aboveSlideNotes.Add(tapNote);
+            }
         }
     }
 
@@ -493,16 +546,15 @@ public sealed class RhythmGamePresenter : MonoBehaviour
           audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
-        if (musicname == "Reilas" && _throughPoint)
+        if (musicname == "Reilas" && dif == "Extreme" && !jumpToKujo)
         {
             if (currentTime >= 78)
             {
-                var _clearJudge = gameObject.AddComponent<ClearJudge>();
-                if (_clearJudge.GetGageCom() >= 75) 
+                if (_scoreComboCalculator.GetGageCom() >= 75) 
                 {
                     jumpToKujo = true;
                 }
-                _throughPoint = true;
+                
             }
         }
         

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Reilas;
 
-public sealed class AboveSlideEffector : MonoBehaviour
+public class AboveSlideEffector : MonoBehaviour
 { 
     [SerializeField]private GameObject _gameObject;
     private ReilasNoteLineEntity _entity = null!;
@@ -16,7 +16,7 @@ public sealed class AboveSlideEffector : MonoBehaviour
     private int _tailMin;
     private float _headTime;
     private float _tailTime;
-    private bool _blJudge;
+    public bool _blJudge = false;
 
     public float aboveSlideEffectTime;
 
@@ -38,18 +38,20 @@ public sealed class AboveSlideEffector : MonoBehaviour
         //Debug.Log("colorHere" + _noteBlight.r);
     }
 
-    public void Render (float currentTime, AudioSource effectAudio)
+    public void Render(float currentTime, AudioSource effectAudio)
     {
-        var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax) + 4;
-        var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin) + 4;
-        Debug.Log("max"+_laneMax);
-        Debug.Log("min"+_laneMin);
+        //var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax) + 4;
+        //var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin) + 4;
+        var _laneMax = Mathf.RoundToInt(Mathf.Lerp(_headMax, _tailMax, (currentTime - _headTime))) + 4;
+        var _laneMin = Mathf.RoundToInt(Mathf.Lerp(_headMin, _tailMin, (currentTime - _headTime))) + 4;
+        Debug.Log("max" + _laneMax);
+        Debug.Log("min" + _laneMin);
         if (!_gameObject.activeSelf)
         {
             _gameObject.SetActive(true);
         }
-        _blJudge = false;
         transform.position = PositionCal(currentTime);
+
         if (InputService.AboveLaneTapStates != null)
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
@@ -69,10 +71,16 @@ public sealed class AboveSlideEffector : MonoBehaviour
                         //Debug.Log("SlideEffectWork");
                     }
                     _blJudge = true;
-                    break;
+                    return;
                 }
             }
+            _blJudge = false;
         }
+        else
+        {
+            _blJudge = false;
+        }
+
         if (!_blJudge)
         {
             if (_effect1.isPlaying)
