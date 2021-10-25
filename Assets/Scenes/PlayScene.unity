@@ -11534,7 +11534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &781631093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17237,7 +17237,7 @@ MonoBehaviour:
   _aboveChainNotePrefab: {fileID: 777972371875304921, guid: 24af6f1023309cb4796baba66b9a8ecf, type: 3}
   _aboveHoldNotePrefab: {fileID: 8610339511716983441, guid: 1063adec9cacb6e4dba2eda270908352, type: 3}
   _aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
-  _barLinePrefab: {fileID: -3209758814054081755, guid: 8b44f42a97eaa4321894b0c1df0165b9, type: 3}
+  _barLinePrefab: {fileID: 1225088512927123766, guid: 17df6b821bdba584abfd1257c6affb71, type: 3}
   button: {fileID: 6307734107970162160, guid: 68d1c36c894671d4dbf97dc8407dcf70, type: 3}
   canvas: {fileID: 1606502941}
   _keyBeamPrefab: {fileID: 524947537259370129, guid: f60a59b1aeccf0e4c910521002752124, type: 3}
@@ -17527,8 +17527,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781631092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 4, y: -0.2, z: -0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1127278212}
   m_RootOrder: 1
