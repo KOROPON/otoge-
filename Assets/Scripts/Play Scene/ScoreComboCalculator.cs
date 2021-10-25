@@ -12,21 +12,19 @@ namespace Reilas
         public static int sumGood;
         public static int sumBad;
         public static int sumMiss;
-        public static int currentCombo;
-        public static　int currentScore;
         public static int highCombo;
 
-        public static bool allPerfect;
-        public static bool fullCombo;
+        public bool allPerfect;
+        public bool fullCombo;
+        public int currentCombo;
+        public int currentScore;
+        public Slider slider;
         
         private float _sumScore;
         private float _score;
-        
         private int _gaugeCombo;
         private int _gaugeMiss;
-
         private string _difficulty;
-        private Slider _slider;
         
         private readonly Dictionary<string, int> _comboDataBase = new Dictionary<string, int>()
         {
@@ -42,7 +40,7 @@ namespace Reilas
         private void Start()
         {
             _difficulty = PlayerPrefs.GetString("difficulty");
-            _slider = GameObject.Find("ScoreGauge").GetComponent<Slider>();
+            slider = GameObject.Find("ScoreGauge").GetComponent<Slider>();
             
             sumPerfect = 0; 
             sumGood = 0;
@@ -54,7 +52,7 @@ namespace Reilas
             currentScore = 0;
             _score = 0;
             
-            _slider.value = 0f;
+            slider.value = 0f;
             _gaugeCombo = 0;
             _gaugeMiss = 0;
             _sumScore = RhythmGamePresenter.countNotes * 4;
@@ -117,13 +115,13 @@ namespace Reilas
             
             while (_gaugeCombo >= _comboDataBase[_difficulty])
             {
-                _slider.value += 0.01f;
+                slider.value += 0.01f;
                 _gaugeCombo -= _comboDataBase[_difficulty];
             }
 
-            _slider.value -= 0.03f * _gaugeMiss;
+            slider.value -= 0.03f * _gaugeMiss;
 
-            gauge.text = _slider.value.ToString(CultureInfo.InvariantCulture);
+            gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
 
             if (currentScore == 1000000)
             {

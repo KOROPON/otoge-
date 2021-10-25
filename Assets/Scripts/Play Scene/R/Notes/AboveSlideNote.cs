@@ -164,7 +164,7 @@ namespace Reilas
             */
 
             var newTriangles = new int[_triangles.Length];
-            for (int i = 0; i < newTriangles.Length; i++)
+            for (var i = 0; i < newTriangles.Length; i++)
             {
                 newTriangles[i] = _triangles[newTriangles.Length - 1 - i];
             }
@@ -199,8 +199,8 @@ namespace Reilas
                 Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
-                RhythmGamePresenter._aboveSlideNotes.RemoveAt(noteNum);
-                RhythmGamePresenter._aboveSlideEffectors.RemoveAt(noteNum);
+                RhythmGamePresenter.AboveSlideNotes.RemoveAt(noteNum);
+                RhythmGamePresenter.AboveSlideEffectors.RemoveAt(noteNum);
             }
 
             if (!gameObject.activeSelf) // SetActive

@@ -5,53 +5,59 @@ using UnityEngine.UI;
 
 public class Shutter : MonoBehaviour
 {
-    private Animator anim;
-    private Text _title;
-    [SerializeField]private GameObject _jack;
-    [SerializeField] private GameObject _text;
+    [SerializeField] private GameObject jack;
+    [SerializeField] private GameObject text;
+    
+    private Animator _anim;
+    private static JudgeService _judgeService;
     private Image _jacket;
+    private Text _title;
 
+    public AudioSource openSe;
+    public AudioSource closeSe;
+
+    private static AudioSource _musicM;
+    
+    public static bool bltoPlay = false;
     public static string blChange;
     public static string blShutterChange;
-    public static bool bltoPlay = false;
-    public AudioSource openSE;
-    public AudioSource closeSE;
-    public static AudioSource music_m;
 
-    void Start()
+    private void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
-        _jack.SetActive(true);
-        _text.SetActive(true);
-        _jacket = _jack.GetComponent<Image>();
-        _title = _text.GetComponent<Text>();
-        _jack.SetActive(false);
-        _text.SetActive(false);
-        music_m = gameObject.GetComponent<AudioSource>();
+        _anim = gameObject.GetComponent<Animator>();
+        jack.SetActive(true);
+        text.SetActive(true);
+        _jacket = jack.GetComponent<Image>();
+        _title = text.GetComponent<Text>();
+        jack.SetActive(false);
+        text.SetActive(false);
+        _musicM = gameObject.GetComponent<AudioSource>();
+        _judgeService = gameObject.AddComponent<JudgeService>();
+
     }
 
-    void Update()
+    private void Update()
     {
         switch (blShutterChange)
         {
             case "Open":
-                anim.SetBool("bl", false);
-                anim.SetBool("blToPlay", false);
+                _anim.SetBool("bl", false);
+                _anim.SetBool("blToPlay", false);
                 break;
             case "Close":
-                anim.SetBool("bl", true);
+                _anim.SetBool("bl", true);
                 break;
             case "CloseToPlay":
-                _jack.SetActive(true);
-                _text.SetActive(true);
-                _jacket.sprite = Resources.Load<Sprite>("Jacket/" + RhythmGamePresenter.musicname + "_jacket");
-                _title.text = RhythmGamePresenter.musicname;
-                anim.SetBool("blToPlay", true);
+                jack.SetActive(true);
+                text.SetActive(true);
+                _jacket.sprite = Resources.Load<Sprite>("Jacket/" + RhythmGamePresenter.musicName + "_jacket");
+                _title.text = RhythmGamePresenter.musicName;
+                _anim.SetBool("blToPlay", true);
                 break;
         }
     }
 
-    void CloseFunction()
+    private void CloseFunction()
     {
         switch (blChange)
         {
@@ -85,13 +91,13 @@ public class Shutter : MonoBehaviour
         }
     }
 
-    void CloseToPlayFunction()
+    private void CloseToPlayFunction()
     {
         SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
     }
-   
-    void PlaySongAudio()
+
+    private void PlaySongAudio()
     {
         if (bltoPlay)
         {
@@ -99,63 +105,67 @@ public class Shutter : MonoBehaviour
             bltoPlay = false;
         }
     }
-   
-    void OpenAudio()
+
+    private void OpenAudio()
     {
-        openSE.Play();
+        openSe.Play();
     }
-    
-    void CloseAudio()
+
+    private void CloseAudio()
     {
-        closeSE.Play();
+        closeSe.Play();
     }
-   
-    
-    
-    void PlayAudio()
+
+
+    private void PlayAudio()
     {
         RhythmGamePresenter.PlaySongs();
         ChangeScene_PlayScene.playNoticed = true;
         SettingField.setBool = true;
     }
     
-    private void AllNoteDestroy()
+    private static void AllNoteDestroy()
     {
 
-        foreach (var a in RhythmGamePresenter._tapNotes)
+        foreach (var a in RhythmGamePresenter.TapNotes)
         {
             Destroy(a.gameObject);
         }
-        foreach (var a in RhythmGamePresenter._holdNotes)
+        foreach (var a in RhythmGamePresenter.HoldNotes)
         {
             Destroy(a.gameObject);
         }
-        foreach (var a in RhythmGamePresenter._aboveTapNotes)
+        foreach (var a in RhythmGamePresenter.AboveTapNotes)
         {
             Destroy(a.gameObject);
         }
-        foreach (var a in RhythmGamePresenter._aboveSlideNotes)
+        foreach (var a in RhythmGamePresenter.AboveSlideNotes)
         {
             Destroy(a.gameObject);
         }
-        foreach (var a in RhythmGamePresenter._aboveHoldNotes)
+        foreach (var a in RhythmGamePresenter.AboveHoldNotes)
         {
             Destroy(a.gameObject);
         }
-        foreach (var a in RhythmGamePresenter._aboveChainNotes)
+        foreach (var a in RhythmGamePresenter.AboveChainNotes)
         {
             Destroy(a.gameObject);
         }
-        RhythmGamePresenter.tapNotes.Clear();
-        RhythmGamePresenter.internalNotes.Clear();
+
+        foreach (var lane in RhythmGamePresenter.TapNoteLanes) lane.Clear();
+        for (var i = 0; i < _judgeService.tapJudgeStartIndex.Length; i++)
+        {
+            
+        }
+            RhythmGamePresenter.internalNotes.Clear();
         RhythmGamePresenter.chainNotes.Clear();
-        RhythmGamePresenter._tapNotes.Clear();
-        RhythmGamePresenter._holdNotes.Clear();
-        RhythmGamePresenter._aboveTapNotes.Clear();
-        RhythmGamePresenter._aboveSlideNotes.Clear();
-        RhythmGamePresenter._aboveHoldNotes.Clear();
-        RhythmGamePresenter._aboveChainNotes.Clear();
-        RhythmGamePresenter._barLines.Clear();
+        RhythmGamePresenter.TapNotes.Clear();
+        RhythmGamePresenter.HoldNotes.Clear();
+        RhythmGamePresenter.AboveTapNotes.Clear();
+        RhythmGamePresenter.AboveSlideNotes.Clear();
+        RhythmGamePresenter.AboveHoldNotes.Clear();
+        RhythmGamePresenter.AboveChainNotes.Clear();
+        RhythmGamePresenter.BarLines.Clear();
         BarLine.BarLines.Clear();
     }
 }

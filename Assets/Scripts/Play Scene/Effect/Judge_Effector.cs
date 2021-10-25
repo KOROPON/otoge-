@@ -37,14 +37,14 @@ public class Judge_Effector : MonoBehaviour
     public void TapJudgeEffector(int[] judgePositions, string judgeType)
     {
         bool missBool;
-        foreach (int judgePos in judgePositions)
+        foreach (var judgePos in judgePositions)
         {
             missBool = false;
-            foreach (GameObject effecterObj in _effectors)
+            foreach (var effecterObj in _effectors)
             {
-                ParticleSystem effect1 = effecterObj.GetComponentsInChildren<ParticleSystem>()[0];
+                var effect1 = effecterObj.GetComponentsInChildren<ParticleSystem>()[0];
                 if (effect1.isPlaying) continue;
-                ParticleSystem effect2 = effecterObj.GetComponentsInChildren<ParticleSystem>()[1];
+                var effect2 = effecterObj.GetComponentsInChildren<ParticleSystem>()[1];
                 effecterObj.transform.position = RhythmGamePresenter.LanePositions[judgePos];
                 switch (judgeType)
                 {

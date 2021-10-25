@@ -36,7 +36,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)
         {
-            foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
+            foreach (var tapstate in InputService.AboveLaneTapStates)
             {
                 if (_laneMin <= tapstate.laneNumber && tapstate.laneNumber <= _laneMax)
                 {

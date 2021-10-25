@@ -25,7 +25,6 @@ namespace Reilas
             aboveTapTime = entity.JudgeTime;
             _entity = entity;
             InitializeMesh();
-
             transform.localScale = new Vector3(1,1,1);
         }
 
@@ -159,7 +158,7 @@ namespace Reilas
 
         public void NoteDestroy()
         {
-            RhythmGamePresenter._aboveTapNotes.Remove(this);
+            RhythmGamePresenter.AboveTapNotes.Remove(this);
             Destroy(this.gameObject);
         }
     }

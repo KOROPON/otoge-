@@ -1,13 +1,14 @@
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetHighScores : MonoBehaviour
 {
     private string _jsonFilePath;
     private HighScores _highScore;
 
-    private HighScores SongInfo(string songPath)
+    private static HighScores SongInfo(string songPath)
     {
         using var reader = new StreamReader(songPath);
         var jsonString = reader.ReadToEnd();
@@ -53,10 +54,10 @@ public class GetHighScores : MonoBehaviour
 
         var diff = difficulty switch
         {
-            "Easy" => songName.Easy,
-            "Hard" => songName.Hard,
-            "Extreme" => songName.Extreme,
-            "KUJO" => songName.KUJO,
+            "Easy" => songName.easy,
+            "Hard" => songName.hard,
+            "Extreme" => songName.extreme,
+            "KUJO" => songName.kujo,
             _ => null
         };
         return diff;
@@ -83,6 +84,15 @@ public class GetHighScores : MonoBehaviour
         return song != null && song.extremeLock;
     }
 
+    public string GetClear(string songName, string difficulty)
+    {
+        var diff = GetDiff(songName, difficulty);
+        if (diff.allPerfect) return "All Perfect";
+        if (diff.fullCombo) return "Full Combo";
+        return diff.clear ? "Clear" : "Fail";
+    }
+    
+
     public int GetHighScore(string songName, string difficulty)
     {
         var diff = GetDiff(songName, difficulty);
@@ -95,7 +105,7 @@ public class GetHighScores : MonoBehaviour
         return diff != null ? diff.rank : "";
     }
 
-    public void SetHighScore(string songName, string difficulty, int score, bool allPerfect, bool fullCombo)
+    public void SetHighScore(string songName, string difficulty, int score, bool allPerfect, bool fullCombo, bool clear)
     {
         var diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
@@ -104,12 +114,18 @@ public class GetHighScores : MonoBehaviour
         {
             diff.allPerfect = true;
             diff.fullCombo = true;
+            diff.clear = true;
         }
-        else if (fullCombo) diff.fullCombo = true;
+        else if (fullCombo)
+        {
+            diff.fullCombo = true;
+            diff.clear = true;
+        }
         if (difficulty == "Hard" && diff.highScore >= 980000)
         {
             GetSong(songName).extremeLock = true;
         }
+        if (clear) diff.clear = true;
         StreamWrite();
     }
 }

@@ -4,10 +4,11 @@ using Reilas;
 
 public class ChangeScene_PlayScene : MonoBehaviour
 {
+    private ScoreComboCalculator _scoreComboCalculator;
+    
     public AudioSource song;
-
+    public ClearRankDirector clearRankDirector;
     public int previousHighScore;
-    public ClearRankDirector _clearRankDirector;
     
     public static bool playNoticed;
     public static bool playStopped;
@@ -15,7 +16,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
     private void Start()
     {
         playStopped = true;
-
+        _scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
     }
 
     private void Update()
@@ -30,10 +31,13 @@ public class ChangeScene_PlayScene : MonoBehaviour
             //Clear表示
             if (!playStopped) return;
             getHighScores.Awake();
-            previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif);
-            getHighScores.SetHighScore(RhythmGamePresenter.musicname, RhythmGamePresenter.dif, ScoreComboCalculator.currentScore, ScoreComboCalculator.allPerfect,ScoreComboCalculator.fullCombo);
-            ScoreComboCalculator.currentCombo = 0;
-            _clearRankDirector.SelectRank(getHighScores.GetRank(RhythmGamePresenter.musicname, RhythmGamePresenter.dif));
+            previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
+            getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, _scoreComboCalculator.currentScore, _scoreComboCalculator.allPerfect, _scoreComboCalculator.fullCombo, _scoreComboCalculator.slider.value >= 0.7f);
+            _scoreComboCalculator.currentCombo = 0;
+            Shutter.blChange = "ToR";
+            Shutter.blShutterChange = "Close";
+            _scoreComboCalculator.currentCombo = 0;
+            clearRankDirector.SelectRank(getHighScores.GetRank(RhythmGamePresenter.musicName, RhythmGamePresenter.dif));
         }));
 
     }
