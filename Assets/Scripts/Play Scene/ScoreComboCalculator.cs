@@ -132,5 +132,10 @@ namespace Reilas
             }
             else if (currentCombo == RhythmGamePresenter.countNotes) fullCombo = true;
         }
+
+        public float GetGageCom()
+        {
+            return _slider.value;
+        }
     }
 }
