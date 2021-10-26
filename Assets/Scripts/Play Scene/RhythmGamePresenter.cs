@@ -107,6 +107,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         judgeService = gameObject.AddComponent<JudgeService>();
+        _scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
         NotePositionCalculatorService.CalculateGameSpeed();
         AwakeAsync().Forget();
     }
@@ -550,7 +551,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             if (currentTime >= 78)
             {
-                if (_scoreComboCalculator.GetGageCom() >= 75) 
+                if (_scoreComboCalculator._slider.value >= 75) 
                 {
                     jumpToKujo = true;
                 }

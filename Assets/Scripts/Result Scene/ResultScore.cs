@@ -52,7 +52,7 @@ public class ResultScore : MonoBehaviour
         titleInResult.text = RhythmGamePresenter.musicname;
         difficultyInResult.text = RhythmGamePresenter.dif;
         jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleInResult.text + "_jacket");
-        rankinResult.sprite = Resources.Load<Sprite>("Rank/score_" + _scoreRank);
+        rankinResult.sprite = Resources.Load<Sprite>("Rank/rank_" + _scoreRank);
         previousScore.text = $"{_previousScore}";
         scoreGap.text = _score switch
         {

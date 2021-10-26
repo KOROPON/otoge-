@@ -26,7 +26,7 @@ namespace Reilas
         private int _gaugeMiss;
 
         private string _difficulty;
-        private Slider _slider;
+        public Slider _slider;
         
         private readonly Dictionary<string, int> _comboDataBase = new Dictionary<string, int>()
         {

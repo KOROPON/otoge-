@@ -19,10 +19,12 @@ public class ClearRankDirector : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
         _clearAud = gameObject.GetComponent<AudioSource>();
         fader.color = new Color32(0, 0, 0, 0);
+        fader.enabled = false;
     }
 
     public void SelectRank(string clearRank)
     {
+        fader.enabled = true;
         fader.color = new Color32(0, 0, 0, 180);
         _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank);
         _clearRankBar.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank + "Bar");

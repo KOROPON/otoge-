@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Reilas;
 
 public class SettingField : MonoBehaviour
 {
@@ -69,5 +68,13 @@ public class SettingField : MonoBehaviour
         setBool = false;
         Shutter.blChange = "ToPFrP";
         Shutter.blShutterChange = "Close";
+    }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            GamePause();
+        }
     }
 }
