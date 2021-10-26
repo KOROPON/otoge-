@@ -37,7 +37,7 @@ namespace Reilas
 
         public void NoteDestroy()
         {
-            RhythmGamePresenter._tapNotes.Remove(this);
+            RhythmGamePresenter.TapNotes.Remove(this);
             Destroy(this.gameObject);
         }
     }

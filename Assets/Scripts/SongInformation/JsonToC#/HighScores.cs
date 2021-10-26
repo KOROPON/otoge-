@@ -7,14 +7,14 @@ class HighScores
 
 //曲の難易度ごとに曲の情報を保存する
 [System.Serializable]
-class Song
+internal class Song
 {
     public string title;
     public bool extremeLock;
-    public Difficulty Easy;
-    public Difficulty Hard;
-    public Difficulty Extreme;
-    public Difficulty KUJO;
+    public Difficulty easy;
+    public Difficulty hard;
+    public Difficulty extreme;
+    public Difficulty kujo;
 }
 
 [System.Serializable]
@@ -23,5 +23,6 @@ class Difficulty
     public string rank;
     public bool fullCombo;
     public bool allPerfect;
+    public bool clear;
     public int highScore;
 }

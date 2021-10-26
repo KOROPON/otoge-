@@ -159,7 +159,7 @@ public class MusicNumManage : MonoBehaviour
         {
             if (_selectBool)
             {
-                RhythmGamePresenter.musicname = obj.name;
+                RhythmGamePresenter.musicName = obj.name;
                 _selectBool = false;
                 Shutter.blShutterChange = "CloseToPlay";
                 _audioSource.Stop();

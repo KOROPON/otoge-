@@ -35,7 +35,7 @@ public sealed class HoldEffector : MonoBehaviour
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)
         {
-            foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
+            foreach (var tapstate in InputService.AboveLaneTapStates)
             {
                 if (tapstate.laneNumber == _lanePos)
                 {

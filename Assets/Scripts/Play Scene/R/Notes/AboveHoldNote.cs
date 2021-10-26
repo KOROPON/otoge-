@@ -94,8 +94,8 @@ namespace Reilas
                 Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
-                RhythmGamePresenter._aboveHoldNotes.RemoveAt(noteNum);
-                RhythmGamePresenter._aboveHoldEffectors.RemoveAt(noteNum);
+                RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
+                RhythmGamePresenter.AboveHoldEffectors.RemoveAt(noteNum);
             }
             if (!gameObject.activeSelf)
             {
