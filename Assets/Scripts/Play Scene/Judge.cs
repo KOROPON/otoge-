@@ -225,8 +225,6 @@ public class JudgeService : MonoBehaviour
             RhythmGamePresenter.AboveChainNotes[0].NoteDestroy();
             chainJudgeStartIndex++;
         }
-
-        Debug.Log(tapJudgeStartIndex[2]);
     }
 }
     

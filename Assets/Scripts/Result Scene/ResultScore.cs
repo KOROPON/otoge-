@@ -37,6 +37,7 @@ public class ResultScore : MonoBehaviour
 
         _previousScore = _previousHighScore.previousHighScore;
         _score = _getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
+        _scoreRank = _getHighScores.GetRank(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
         _backBool = true;
         _retryBool = true;
 

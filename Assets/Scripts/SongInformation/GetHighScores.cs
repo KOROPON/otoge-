@@ -63,12 +63,12 @@ public class GetHighScores : MonoBehaviour
         return diff;
     }
 
-    private string RankCalculator(int score)
+    private static string RankCalculator(int score)
     {
         return score switch
         {
-            var n when n >= 995000 => "SSS",
-            var n when n >= 990000 => "SS",
+            var n when n >= 995000 => "R",
+            var n when n >= 990000 => "P",
             var n when n >= 980000 => "S",
             var n when n >= 950000 => "A",
             var n when n >= 900000 => "B",
@@ -87,9 +87,9 @@ public class GetHighScores : MonoBehaviour
     public string GetClear(string songName, string difficulty)
     {
         var diff = GetDiff(songName, difficulty);
-        if (diff.allPerfect) return "All Perfect";
-        if (diff.fullCombo) return "Full Combo";
-        return diff.clear ? "Clear" : "Fail";
+        if (diff.allPerfect) return "AllPerfect";
+        if (diff.fullCombo) return "FullCombo";
+        return diff.clear ? "Clear" : "Failed";
     }
     
 
@@ -105,27 +105,38 @@ public class GetHighScores : MonoBehaviour
         return diff != null ? diff.rank : "";
     }
 
-    public void SetHighScore(string songName, string difficulty, int score, bool allPerfect, bool fullCombo, bool clear)
+    public void SetHighScore(string songName, string difficulty, int score, string clear)
     {
         var diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
         diff.rank = RankCalculator(score);
-        if (allPerfect)
+        switch (clear)
         {
-            diff.allPerfect = true;
-            diff.fullCombo = true;
-            diff.clear = true;
+            case "AllPerfect":
+            {
+                diff.allPerfect = true;
+                diff.fullCombo = true;
+                diff.clear = true;
+                break;
+            }
+            case "FullCombo":
+            {
+                diff.fullCombo = true;
+                diff.clear = true;
+                break;
+            }
+            case "Clear":
+            {
+                diff.clear = true;
+                break;
+            }
         }
-        else if (fullCombo)
-        {
-            diff.fullCombo = true;
-            diff.clear = true;
-        }
+        
         if (difficulty == "Hard" && diff.highScore >= 980000)
         {
             GetSong(songName).extremeLock = true;
         }
-        if (clear) diff.clear = true;
+        
         StreamWrite();
     }
 }

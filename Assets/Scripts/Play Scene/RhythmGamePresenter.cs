@@ -193,8 +193,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         //FindObjectOfType<Variable>().enabled = false;
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
-        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset;
-        TextAsset? kujyoSongs;
 
         if (chartTextAsset == null)
         {
@@ -314,20 +312,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         {
             TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
         }
-        
-        SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"));
-        SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"));
-        SpawnChainNotes(_reilasChain);
-        SpawnHoldNotes(_reilasHold);
-        SpawnAboveHoldNotes(_reilasAboveHold);
-        SpawnAboveSlideNotes(_reilasAboveSlide);
-        SpawnBarLines(_barLineTimes);
-        
 
-
+        SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), false);
+        SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), false);
+        SpawnChainNotes(_reilasChain, false);
+        SpawnHoldNotes(_reilasHold, false);
+        SpawnAboveHoldNotes(_reilasAboveHold, false);
+        SpawnAboveSlideNotes(_reilasAboveSlide, false);
+        
         if (jumpToKujo)
         {
-            kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
+            var kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
             if (kujyoSongs == null)
             {
                 Debug.LogError("Reilas_KUJO 譜面データが見つかりませんでした");
@@ -342,10 +337,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
             SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), true);
             SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), true);
-            SpawnChainNotes(reilasChain, true);
-            SpawnHoldNotes(reilasHold, true);
-            SpawnAboveHoldNotes(reilasAboveHold, true);
-            SpawnAboveSlideNotes(reilasAboveSlide, true);
+            SpawnChainNotes(_reilasChain, true);
+            SpawnHoldNotes(_reilasHold, true);
+            SpawnAboveHoldNotes(_reilasAboveHold, true);
+            SpawnAboveSlideNotes(_reilasAboveSlide, true);
         }
 
 
@@ -380,7 +375,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         }
     }
 
-    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes, bool BosNotes)
+    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -391,7 +386,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 note = note,
                 hasBeenTapped = true
             });
-            if (!BosNotes) AboveTapNotes.Add(tapNote);
+            if (!bosNotes) AboveTapNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
         }
     }

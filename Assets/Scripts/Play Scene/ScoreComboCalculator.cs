@@ -13,12 +13,11 @@ namespace Reilas
         public static int sumBad;
         public static int sumMiss;
         public static int highCombo;
-
-        public bool allPerfect;
-        public bool fullCombo;
+        
         public int currentCombo;
         public int currentScore;
         public Slider slider;
+        public string clear;
         
         private float _sumScore;
         private float _score;
@@ -122,13 +121,11 @@ namespace Reilas
             slider.value -= 0.03f * _gaugeMiss;
 
             gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
-
-            if (currentScore == 1000000)
-            {
-                allPerfect = true;
-                fullCombo = true;
-            }
-            else if (currentCombo == RhythmGamePresenter.countNotes) fullCombo = true;
+            
+            if (currentScore == 1000000) clear = "AllPerfect";
+            else if (currentCombo == RhythmGamePresenter.countNotes) clear = "FullCombo";
+            else if (slider.value >= 0.7f) clear = "Clear";
+            else clear = "Failed";
         }
     }
 }
