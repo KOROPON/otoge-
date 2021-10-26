@@ -7,21 +7,20 @@ using UnityEngine.UI;
 
 public class ResultScore : MonoBehaviour
 {
-    public AudioSource resultMusic;
-    public Image jackInResult;
-    public Image rankinResult;
-    public Text scoreInResult;
-    public Text previousScore;
-    public Text scoreGap;
-    public Text maxCombo;
-    public Text perfectCom;
-    public Text goodCom;
-    public Text badCom;
-    public Text missCom;
-    public Text titleInResult;
-    public Text difficultyInResult;
+    private AudioSource _resultMusic;
+    private Image _jackInResult;
+    private Image _rankInResult;
+    private Text _scoreInResult;
+    private Text previousScore;
+    private Text _scoreGap;
+    private Text _maxCombo;
+    private Text _perfectCom;
+    private Text _goodCom;
+    private Text _badCom;
+    private Text _missCom;
+    private Text _titleInResult;
+    private Text _difficultyInResult;
 
-    private ChangeScene_PlayScene _previousHighScore;
     private GetHighScores _getHighScores;
     private bool _backBool;
     private bool _retryBool;
@@ -33,29 +32,39 @@ public class ResultScore : MonoBehaviour
     private void Start()
     {
         _getHighScores = gameObject.AddComponent<GetHighScores>();
-        _previousHighScore = gameObject.AddComponent<ChangeScene_PlayScene>();
-
-        _previousScore = _previousHighScore.previousHighScore;
         _score = _getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
         _scoreRank = _getHighScores.GetRank(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
         _backBool = true;
         _retryBool = true;
+        _scoreInResult = GameObject.Find("Score").GetComponent<Text>();
+        _maxCombo = GameObject.Find("Combo").GetComponent<Text>();
+        _perfectCom = GameObject.Find("PerfectCom").GetComponent<Text>();
+        _goodCom = GameObject.Find("GoodCom").GetComponent<Text>();
+        _badCom = GameObject.Find("BadCom").GetComponent<Text>();
+        _missCom = GameObject.Find("MissCom").GetComponent<Text>();
+        _titleInResult = GameObject.Find("Name").GetComponent<Text>();
+        _difficultyInResult = GameObject.Find("Difficulty").GetComponent<Text>();
+        _jackInResult = GameObject.Find("Jacket").GetComponent<Image>();
+        _rankInResult = GameObject.Find("Rank").GetComponent<Image>();
+        previousScore = GameObject.Find("Jacket").GetComponent<Text>();
+        _scoreGap = GameObject.Find("ScoreGap").GetComponent<Text>();
+        _resultMusic = GameObject.Find("Theme").GetComponent<AudioSource>();
 
-        scoreInResult.text = $"{_score}";
-        maxCombo.text = ScoreComboCalculator.highCombo.ToString();
-        perfectCom.text = ScoreComboCalculator.sumPerfect.ToString();
-        goodCom.text = ScoreComboCalculator.sumGood.ToString();
-        badCom.text = ScoreComboCalculator.sumBad.ToString();
-        missCom.text = ScoreComboCalculator.sumMiss.ToString();
-        titleInResult.text = RhythmGamePresenter.musicName;
-        difficultyInResult.text = RhythmGamePresenter.dif;
-        jackinResult.sprite = Resources.Load<Sprite>("Jacket/" + titleInResult.text + "_jacket");
-        rankinResult.sprite = Resources.Load<Sprite>("Rank/rank_" + _scoreRank);
-        previousScore.text = $"{_previousScore}";
-        scoreGap.text = _score switch
+        _scoreInResult.text = $"{_score:0,000,000}";
+        _maxCombo.text = ScoreComboCalculator.highCombo.ToString();
+        _perfectCom.text = ScoreComboCalculator.sumPerfect.ToString();
+        _goodCom.text = ScoreComboCalculator.sumGood.ToString();
+        _badCom.text = ScoreComboCalculator.sumBad.ToString();
+        _missCom.text = ScoreComboCalculator.sumMiss.ToString();
+        _titleInResult.text = RhythmGamePresenter.musicName;
+        _difficultyInResult.text = RhythmGamePresenter.dif;
+        _jackInResult.sprite = Resources.Load<Sprite>("Jacket/" + _titleInResult.text + "_jacket");
+        _rankInResult.sprite = Resources.Load<Sprite>("Rank/rank_" + _scoreRank);
+        previousScore.text = $"{_previousScore:0,000,000}";
+        _scoreGap.text = _score switch
         {
-            var n when n > _previousScore => "+" + $"{n - _previousScore}",
-            var n when n < _previousScore => "-" + $"{_previousScore - n}",
+            var n when n > _previousScore => "+" + $"{n - _previousScore:0,000,000}",
+            var n when n < _previousScore => "-" + $"{_previousScore - n:0,000,000}",
             _=> ""
         };
         
@@ -66,14 +75,14 @@ public class ResultScore : MonoBehaviour
 
         Shutter.blChange = "Open";
         Shutter.blShutterChange = "Open";
-        resultMusic.Play();
+        _resultMusic.Play();
     }
 
     public void Back()
     {
         if (!_backBool) return;
         _backBool = false;
-        resultMusic.Stop();
+        _resultMusic.Stop();
         //シャッター下げる
         Shutter.blChange = "ToSFrR";
         Shutter.blShutterChange = "Close";
@@ -91,6 +100,6 @@ public class ResultScore : MonoBehaviour
     }
     private void ResultStop()
     {
-      resultMusic.Stop();
+      _resultMusic.Stop();
     }
 }

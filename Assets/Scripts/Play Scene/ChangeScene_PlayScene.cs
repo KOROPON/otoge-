@@ -5,8 +5,8 @@ using Reilas;
 public class ChangeScene_PlayScene : MonoBehaviour
 {
     public AudioSource song;
-    public ClearRankDirector clearRankDirector;
-    public int previousHighScore;
+    private ClearRankDirector _clearRankDirector;
+    static public int previousHighScore;
     
     public static bool playNoticed;
     public static bool playStopped;
@@ -14,6 +14,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
     private void Start()
     {
         playStopped = true;
+        _clearRankDirector = GameObject.Find("ClearRankDirector").GetComponent<ClearRankDirector>();
     }
 
     private void Update()
@@ -32,9 +33,7 @@ public class ChangeScene_PlayScene : MonoBehaviour
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
             var clear = scoreComboCalculator.clear;
             getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, scoreComboCalculator.currentScore, clear);
-            Shutter.blChange = "ToR";
-            Shutter.blShutterChange = "Close";
-            clearRankDirector.SelectRank(clear);
+            _clearRankDirector.SelectRank(clear);
             scoreComboCalculator.currentCombo = 0;
         }));
 

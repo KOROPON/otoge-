@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 788924950}
   - component: {fileID: 788924949}
   m_Layer: 5
-  m_Name: Difficullty
+  m_Name: Difficulty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1758,19 +1758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a343cba571c43447a557c0fe74b93ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resultMusic: {fileID: 1199543551}
-  jackInResult: {fileID: 1805968902}
-  rankinResult: {fileID: 1907612562}
-  scoreInResult: {fileID: 1923028380}
-  previousScore: {fileID: 2133907830}
-  scoreGap: {fileID: 1710391584}
-  maxCombo: {fileID: 302249404}
-  perfectCom: {fileID: 1769118003}
-  goodCom: {fileID: 1629271992}
-  badCom: {fileID: 46638214}
-  missCom: {fileID: 331433042}
-  titleInResult: {fileID: 1162798599}
-  difficultyInResult: {fileID: 788924949}
 --- !u!1 &1594226238
 GameObject:
   m_ObjectHideFlags: 0
