@@ -54,7 +54,7 @@ public class MusicNumManage : MonoBehaviour
         string rank = _getHighScores.GetRank(songName, diff);
         if (rank != "")
         {
-            _rank.sprite = Resources.Load<Sprite>("Rank/score_" + rank);
+            _rank.sprite = Resources.Load<Sprite>("Rank/rank_" + rank);
         }
         else
         {

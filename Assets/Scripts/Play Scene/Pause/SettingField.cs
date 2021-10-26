@@ -69,4 +69,12 @@ public class SettingField : MonoBehaviour
         Shutter.blChange = "ToPFrP";
         Shutter.blShutterChange = "Close";
     }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            GamePause();
+        }
+    }
 }
