@@ -12,6 +12,9 @@ using System;
 
 public class HeadGuide
 {
+    public AudioSource songAudio = null!;
+
+    public ScoreComboCalculator _scoreComboCalculator;
     public int indexNum;
     public float time;
 }
@@ -22,6 +25,13 @@ public class ReilasNoteEntityToGameObject
     public bool hasBeenTapped;
 }
 
+    [SerializeField] private TapNote _tapNotePrefab = null!;
+    [SerializeField] private HoldNote _holdNotePrefab = null!;
+    [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
+    [SerializeField] private AboveChainNote _aboveChainNotePrefab = null!;
+    [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
+    [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
+    [SerializeField] private BarLine _barLinePrefab = null!;
 public sealed class RhythmGamePresenter : MonoBehaviour
 {
     public AudioSource songAudio = null!;
@@ -325,14 +335,96 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
             if (kujyoSongs == null)
             {
-                Debug.LogError("Reilas_KUJO 譜面データが見つかりませんでした");
-                return;
+                switch (note.Type)
+                {
+                    case NoteType.AboveSlide:
+                        {
+                            foreach (var jsonData in noteJsonData)
+                            {
+                                if (note.JsonData.guid != jsonData.tail)
+                                {
+                                    /*
+                                    aboveSlideHead.Add(new HeadGuide
+                                    {
+                                        time = note.JudgeTime,
+                                        indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).IndexOf(note)
+                                    }) ;*/
+                                    continue;
+                                }
+                                note.Type = NoteType.AboveSlideInternal;
+                                internalNotes.Add(note);
+                                removeKujoInt.Add(tapNotes.IndexOf(note));
+                                break;
+                            }
+
+                            break;
+                        }
+                    case NoteType.AboveHold:
+                        {
+                            foreach (var jsonData in noteJsonData)
+                            {
+                                if (note.JsonData.guid != jsonData.tail)
+                                {
+                                    /*
+                                    aboveHoldHead.Add(new HeadGuide
+                                    {
+                                        time = note.JudgeTime,
+                                        indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).IndexOf(note)
+                                    });*/
+                                    continue;
+                                }
+                                note.Type = NoteType.AboveSlideInternal;
+                                internalNotes.Add(note);
+                                removeKujoInt.Add(tapNotes.IndexOf(note));
+                                break;
+                            }
+
+                            break;
+                        }
+                    case NoteType.Hold:
+                        {
+                            foreach (var jsonData in noteJsonData)
+                            {
+                                if (note.JsonData.guid != jsonData.tail)
+                                {
+                                    /*holdHead.Add(new HeadGuide
+                                    {
+                                        time = note.JudgeTime,
+                                        indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).IndexOf(note)
+                                    });*/
+                                    continue;
+                                }
+                                note.Type = NoteType.AboveSlideInternal;
+                                internalNotes.Add(note);
+                                removeKujoInt.Add(tapNotes.IndexOf(note));
+                                break;
+                            }
+
+                            break;
+                        }
+                    case NoteType.Tap:
+                        break;
+                    case NoteType.HoldInternal:
+                        break;
+                    case NoteType.AboveTap:
+                        break;
+                    case NoteType.AboveHoldInternal:
+                        break;
+                    case NoteType.AboveSlideInternal:
+                        break;
+                    case NoteType.AboveChain:
+                        break;
+                    case NoteType.None:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
 
-            var chartKujoJsonData = JsonUtility.FromJson<ChartJsonData>(kujyoSongs.text);
-            var chartKujoEntity = new ReilasChartConverter().Convert(chartKujoJsonData);
-
-            NoteLineJsonData[] noteKujoJsonData = chartKujoJsonData.timeline.noteLines;
+            for (int num = removeKujoInt.Count() - 1; num >= 0; num--)
+            {
+                tapNotes.RemoveAt(removeKujoInt[num]);
+            }
 
 
             SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), true);

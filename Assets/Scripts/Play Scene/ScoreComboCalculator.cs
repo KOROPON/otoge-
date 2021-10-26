@@ -127,5 +127,10 @@ namespace Reilas
             else if (slider.value >= 0.7f) clear = "Clear";
             else clear = "Failed";
         }
+
+        public float GetGageCom()
+        {
+            return _slider.value;
+        }
     }
 }
