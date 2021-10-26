@@ -17,11 +17,13 @@ namespace Reilas
 
         private ReilasNoteLineEntity _entity = null!;
 
-        private float thisNoteSize;
+        private int thisNoteSize;
         private int leftRatio;
         private int rightRatio;
 
         private float _noteSpeed;
+
+        private AboveSlideEffector effecterCs = null!;
 
         public void Initialize(ReilasNoteLineEntity entity)
         {
@@ -31,6 +33,8 @@ namespace Reilas
             //Debug.Log(_entity.Head.Size + "      " + _entity.Tail.Size + "           a");
 
             transform.localScale = Vector3.one;
+
+            effecterCs = this.gameObject.transform.GetChild(0).gameObject.GetComponent<AboveSlideEffector>();
         }
 
         private void InitializeMesh()
@@ -254,6 +258,37 @@ namespace Reilas
                     _vertices[((int)thisNoteSize + 1) * z + x] = outerPoint;
                     _uv[z * ((int)thisNoteSize + 1) + x] = new Vector2(1f / thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);
                 }
+            }
+
+            if (effecterCs._blJudge) // 押されていたら
+            {
+                Debug.Log("CutNote");
+                float timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
+                float judgeLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, timeRatio);
+                float judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
+                Debug.Log("Maxznum    " + Mathf.Floor(thisNoteZRatio * timeRatio));
+
+                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio); znum++)
+                {
+                    for(int xnum = 0; xnum <= thisNoteSize; xnum++)
+                    {
+                        Debug.Log("CutNoteVector");
+                        float angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / thisNoteSize * xnum);
+                        angle = Mathf.PI / 2f - angle;
+                        float x = Mathf.Sin(angle) * outerLaneRadius;
+                        float y = Mathf.Cos(angle) * outerLaneRadius;
+                        _vertices[znum * (thisNoteSize + 1) + xnum] = new Vector3(-x, y, -0.4f);
+                    }
+                }
+                _mesh.vertices = _vertices;
+
+                //GetComponent<MeshRenderer>().material.cal
+
+                _mesh.uv = _uv;
+#if UNITY_EDITOR
+                _mesh.RecalculateBounds();
+#endif
+                _meshFilter.mesh = _mesh;
             }
 
             _mesh.vertices = _vertices;

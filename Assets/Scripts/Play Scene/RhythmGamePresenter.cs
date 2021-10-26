@@ -7,9 +7,10 @@ using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
 using Reilas;
+using UnityEngine.UI;
 using System;
 
-public abstract class HeadGuide
+public class HeadGuide
 {
     public int indexNum;
     public float time;
@@ -71,6 +72,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static readonly List<AboveSlideEffector> AboveSlideEffectors = new List<AboveSlideEffector>();
 
     //Judge用
+    public static bool[]? tapNoteJudge;
     public static bool[]? internalNoteJudge;
     public static bool[]? chainNoteJudge;
     
@@ -191,6 +193,8 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         //FindObjectOfType<Variable>().enabled = false;
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
+        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicname + "." + dif) as TextAsset;
+        TextAsset? kujyoSongs;
 
         if (chartTextAsset == null)
         {
@@ -209,7 +213,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
-        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource);
+        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource); //AudioSource の取得
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
@@ -319,7 +323,32 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnAboveSlideNotes(_reilasAboveSlide);
         SpawnBarLines(_barLineTimes);
         
-        //シーンを開く
+
+
+        if (jumpToKujo)
+        {
+            kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
+            if (kujyoSongs == null)
+            {
+                Debug.LogError("Reilas_KUJO 譜面データが見つかりませんでした");
+                return;
+            }
+
+            var chartKujoJsonData = JsonUtility.FromJson<ChartJsonData>(kujyoSongs.text);
+            var chartKujoEntity = new ReilasChartConverter().Convert(chartKujoJsonData);
+
+            NoteLineJsonData[] noteKujoJsonData = chartKujoJsonData.timeline.noteLines;
+
+
+            SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), true);
+            SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), true);
+            SpawnChainNotes(reilasChain, true);
+            SpawnHoldNotes(reilasHold, true);
+            SpawnAboveHoldNotes(reilasAboveHold, true);
+            SpawnAboveSlideNotes(reilasAboveSlide, true);
+        }
+
+
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
     }
@@ -331,7 +360,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     }
 
 
-    private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes)
+    private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -345,12 +374,13 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var transform1 = tapNote.transform;
             var position = transform1.position;
             transform1.position = new Vector3(position.x, position.y, -10);
-            TapNotes.Add(tapNote);
+            if (!bosNotes) TapNotes.Add(tapNote);
+            tapNote.transform.position = new Vector3(position.x, position.y, 999);
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes)
+    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes, bool BosNotes)
     {
         foreach (var note in notes)
         {
@@ -361,23 +391,23 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 note = note,
                 hasBeenTapped = true
             });
-            AboveTapNotes.Add(tapNote);
+            if (!BosNotes) AboveTapNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes)
+    private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
             var tapNote = Instantiate(aboveChainNotePrefab);
             tapNote.Initialize(note);
-            AboveChainNotes.Add(tapNote);
+            if (!bosNotes) AboveChainNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    private void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -387,11 +417,11 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             holdEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             HoldEffectors.Add(holdEffector);
-            HoldNotes.Add(tapNote);
+            if (!bosNotes) HoldNotes.Add(tapNote);
         }
     }
 
-    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -401,10 +431,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             aboveHoldEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveHoldEffectors.Add(aboveHoldEffector);
-            AboveHoldNotes.Add(tapNote);
+            if (!bosNotes) AboveHoldNotes.Add(tapNote);
         }
     }
-    private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes)
+    private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -414,7 +444,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             aboveSlideEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveSlideEffectors.Add(aboveSlideEffector);
-            AboveSlideNotes.Add(tapNote);
+            if (!bosNotes) AboveSlideNotes.Add(tapNote);
         }
     }
 
