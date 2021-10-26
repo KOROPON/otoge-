@@ -7,7 +7,6 @@ using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
 using Reilas;
-using UnityEngine.UI;
 using System;
 
 public class HeadGuide
@@ -25,14 +24,7 @@ public class ReilasNoteEntityToGameObject
     public bool hasBeenTapped;
 }
 
-    [SerializeField] private TapNote _tapNotePrefab = null!;
-    [SerializeField] private HoldNote _holdNotePrefab = null!;
-    [SerializeField] private AboveTapNote _aboveTapNotePrefab = null!;
-    [SerializeField] private AboveChainNote _aboveChainNotePrefab = null!;
-    [SerializeField] private AboveHoldNote _aboveHoldNotePrefab = null!;
-    [SerializeField] private AboveSlideNote _aboveSlideNotePrefab = null!;
-    [SerializeField] private BarLine _barLinePrefab = null!;
-public sealed class RhythmGamePresenter : MonoBehaviour
+public class RhythmGamePresenter : MonoBehaviour
 {
     public AudioSource songAudio = null!;
 
@@ -59,6 +51,13 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     public static readonly List<HoldNote> HoldNotes = new List<HoldNote>();
     public static readonly List<AboveHoldNote> AboveHoldNotes = new List<AboveHoldNote>();
     public static readonly List<AboveSlideNote> AboveSlideNotes = new List<AboveSlideNote>();
+
+    public static readonly List<TapNote> TapKujoNotes = new List<TapNote>();
+    public static readonly List<AboveTapNote> AboveKujoTapNotes = new List<AboveTapNote>();
+    public static readonly List<AboveChainNote> AboveKujoChainNotes = new List<AboveChainNote>();
+    public static readonly List<HoldNote> HoldKujoNotes = new List<HoldNote>();
+    public static readonly List<AboveHoldNote> AboveKujoHoldNotes = new List<AboveHoldNote>();
+    public static readonly List<AboveSlideNote> AboveKujoSlideNotes = new List<AboveSlideNote>();
 
     private List<ReilasNoteLineEntity> _reilasAboveSlide = new List<ReilasNoteLineEntity>();
     private List<ReilasNoteLineEntity> _reilasAboveHold = new List<ReilasNoteLineEntity>();
@@ -116,7 +115,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
 
     private readonly List<float> _barLineTimes = BarLine.BarLines;
 
-    private static IEnumerable<ReilasNoteEntity> GetNoteTypes(ReilasChartEntity chart, string type)
+    public static IEnumerable<ReilasNoteEntity> GetNoteTypes(ReilasChartEntity chart, string type)
     {
         return type switch
         {
@@ -125,9 +124,10 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             "Chain" => chart.Notes.Where(note => note.Type == NoteType.AboveChain),
             "GroundTap" => chart.Notes.Where(note => note.Type == NoteType.Tap || note.Type == NoteType.Hold),
             "AboveTap" => chart.Notes.Where(note => note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold || note.Type == NoteType.AboveSlide),
-            _=> chart.Notes.Where(note => note.Type == NoteType.None)
+            _ => chart.Notes.Where(note => note.Type == NoteType.None)
         };
     }
+
     
     public static bool CheckType(ReilasNoteEntity note, string noteType)
     {
@@ -330,110 +330,6 @@ public sealed class RhythmGamePresenter : MonoBehaviour
         SpawnAboveHoldNotes(_reilasAboveHold, false);
         SpawnAboveSlideNotes(_reilasAboveSlide, false);
         
-        if (jumpToKujo)
-        {
-            var kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
-            if (kujyoSongs == null)
-            {
-                switch (note.Type)
-                {
-                    case NoteType.AboveSlide:
-                        {
-                            foreach (var jsonData in noteJsonData)
-                            {
-                                if (note.JsonData.guid != jsonData.tail)
-                                {
-                                    /*
-                                    aboveSlideHead.Add(new HeadGuide
-                                    {
-                                        time = note.JudgeTime,
-                                        indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).IndexOf(note)
-                                    }) ;*/
-                                    continue;
-                                }
-                                note.Type = NoteType.AboveSlideInternal;
-                                internalNotes.Add(note);
-                                removeKujoInt.Add(tapNotes.IndexOf(note));
-                                break;
-                            }
-
-                            break;
-                        }
-                    case NoteType.AboveHold:
-                        {
-                            foreach (var jsonData in noteJsonData)
-                            {
-                                if (note.JsonData.guid != jsonData.tail)
-                                {
-                                    /*
-                                    aboveHoldHead.Add(new HeadGuide
-                                    {
-                                        time = note.JudgeTime,
-                                        indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).IndexOf(note)
-                                    });*/
-                                    continue;
-                                }
-                                note.Type = NoteType.AboveSlideInternal;
-                                internalNotes.Add(note);
-                                removeKujoInt.Add(tapNotes.IndexOf(note));
-                                break;
-                            }
-
-                            break;
-                        }
-                    case NoteType.Hold:
-                        {
-                            foreach (var jsonData in noteJsonData)
-                            {
-                                if (note.JsonData.guid != jsonData.tail)
-                                {
-                                    /*holdHead.Add(new HeadGuide
-                                    {
-                                        time = note.JudgeTime,
-                                        indexNum = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).IndexOf(note)
-                                    });*/
-                                    continue;
-                                }
-                                note.Type = NoteType.AboveSlideInternal;
-                                internalNotes.Add(note);
-                                removeKujoInt.Add(tapNotes.IndexOf(note));
-                                break;
-                            }
-
-                            break;
-                        }
-                    case NoteType.Tap:
-                        break;
-                    case NoteType.HoldInternal:
-                        break;
-                    case NoteType.AboveTap:
-                        break;
-                    case NoteType.AboveHoldInternal:
-                        break;
-                    case NoteType.AboveSlideInternal:
-                        break;
-                    case NoteType.AboveChain:
-                        break;
-                    case NoteType.None:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            for (int num = removeKujoInt.Count() - 1; num >= 0; num--)
-            {
-                tapNotes.RemoveAt(removeKujoInt[num]);
-            }
-
-
-            SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), true);
-            SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), true);
-            SpawnChainNotes(_reilasChain, true);
-            SpawnHoldNotes(_reilasHold, true);
-            SpawnAboveHoldNotes(_reilasAboveHold, true);
-            SpawnAboveSlideNotes(_reilasAboveSlide, true);
-        }
 
 
         Shutter.bltoPlay = true;
@@ -447,7 +343,7 @@ public sealed class RhythmGamePresenter : MonoBehaviour
     }
 
 
-    private void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
+    public void SpawnTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -461,13 +357,20 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             var transform1 = tapNote.transform;
             var position = transform1.position;
             transform1.position = new Vector3(position.x, position.y, -10);
-            if (!bosNotes) TapNotes.Add(tapNote);
+            if (!bosNotes)
+            {
+                TapNotes.Add(tapNote);
+            }
+            else
+            {
+                TapKujoNotes.Add(tapNote);
+            }
             tapNote.transform.position = new Vector3(position.x, position.y, 999);
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
+    public void SpawnAboveTapNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -478,23 +381,37 @@ public sealed class RhythmGamePresenter : MonoBehaviour
                 note = note,
                 hasBeenTapped = true
             });
-            if (!bosNotes) AboveTapNotes.Add(tapNote);
+            if (!bosNotes)
+            {
+                AboveTapNotes.Add(tapNote);
+            }
+            else
+            {
+                AboveKujoTapNotes.Add(tapNote);
+            }
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
+    public void SpawnChainNotes(IEnumerable<ReilasNoteEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
             var tapNote = Instantiate(aboveChainNotePrefab);
             tapNote.Initialize(note);
-            if (!bosNotes) AboveChainNotes.Add(tapNote);
+            if (!bosNotes)
+            {
+                AboveChainNotes.Add(tapNote);
+            }
+            else
+            {
+                AboveKujoChainNotes.Add(tapNote);
+            }
             tapNote.gameObject.SetActive(false);
         }
     }
 
-    private void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
+    public void SpawnHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -504,11 +421,18 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             holdEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             HoldEffectors.Add(holdEffector);
-            if (!bosNotes) HoldNotes.Add(tapNote);
+            if (!bosNotes) 
+            {
+                HoldNotes.Add(tapNote); 
+            }
+            else
+            {
+                HoldKujoNotes.Add(tapNote);
+            }
         }
     }
 
-    private void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
+    public void SpawnAboveHoldNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -518,10 +442,17 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             aboveHoldEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveHoldEffectors.Add(aboveHoldEffector);
-            if (!bosNotes) AboveHoldNotes.Add(tapNote);
+            if (!bosNotes)
+            {
+                AboveHoldNotes.Add(tapNote);
+            }
+            else
+            {
+                AboveKujoHoldNotes.Add(tapNote);
+            }
         }
     }
-    private void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
+    public void SpawnAboveSlideNotes(IEnumerable<ReilasNoteLineEntity> notes, bool bosNotes)
     {
         foreach (var note in notes)
         {
@@ -531,7 +462,14 @@ public sealed class RhythmGamePresenter : MonoBehaviour
             aboveSlideEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveSlideEffectors.Add(aboveSlideEffector);
-            if (!bosNotes) AboveSlideNotes.Add(tapNote);
+            if (!bosNotes)
+            {
+                AboveSlideNotes.Add(tapNote);
+            }
+            else
+            {
+                AboveKujoSlideNotes.Add(tapNote);
+            }
         }
     }
 

@@ -128,9 +128,5 @@ namespace Reilas
             else clear = "Failed";
         }
 
-        public float GetGageCom()
-        {
-            return _slider.value;
-        }
     }
 }
