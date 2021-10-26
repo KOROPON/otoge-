@@ -12,7 +12,7 @@ namespace Reilas
 
         protected override int GetNoteType(NoteJsonData noteJsonData)
         {
-            NoteType noteType = noteJsonData.type switch
+            var noteType = noteJsonData.type switch
             {
                 "tap" => NoteType.Tap,
                 "hold" => NoteType.Hold,

@@ -10,7 +10,9 @@ public class ClearRankDirector : MonoBehaviour
     private Image _clearRankBar;
     public Image fader;
     private AudioSource _clearAud;
-    void Start()
+    
+
+    private void Start()
     {
         _anim = gameObject.GetComponent<Animation>();
         _clearRank = gameObject.GetComponentsInChildren<Image>()[0];
@@ -29,13 +31,14 @@ public class ClearRankDirector : MonoBehaviour
         //_clearAud.clip = Resources.Load<AudioSource>("ClearAudio/" + clearRank);
         _anim.Play();
     }
-    void ShutterOpen()
+
+    private void ShutterOpen()
     {
         Shutter.blChange = "ToR";
         Shutter.blShutterChange = "Close";
     }
 
-    void ClearSE()
+    private void ClearSe()
     {
         _clearAud.Play();
     }

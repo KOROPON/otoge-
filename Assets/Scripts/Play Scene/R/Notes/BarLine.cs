@@ -193,7 +193,7 @@ namespace Reilas
         private void NoteDestroy()
         {
             //Debug.Log(this.gameObject);
-            RhythmGamePresenter._barLines.Remove(this);
+            RhythmGamePresenter.BarLines.Remove(this);
             BarLines.Remove(BarLines[0]);
             Destroy(this.gameObject);
         }

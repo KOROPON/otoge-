@@ -55,6 +55,37 @@ namespace Reilas
                 _triangles[i * 6 + 5] = 3 + i * 2;
             }
 
+            /*
+            // 上面
+            for (var i = 0; i < size - 1; i++)
+            {
+                var p = size + i;
+
+                _triangles[p * 6 + 0] = 0 + p * 2;
+                _triangles[p * 6 + 1] = 0 + i * 2;
+                _triangles[p * 6 + 2] = 2 + p * 2;
+                _triangles[p * 6 + 3] = 2 + p * 2;
+                _triangles[p * 6 + 4] = 0 + i * 2;
+                _triangles[p * 6 + 5] = 2 + i * 2;
+            }
+
+            // 左
+            _triangles[size * 6 * 2 + 0] = 0;
+            _triangles[size * 6 * 2 + 1] = 1;
+            _triangles[size * 6 * 2 + 2] = size * 2;
+            _triangles[size * 6 * 2 + 3] = 1;
+            _triangles[size * 6 * 2 + 4] = size * 2;
+            _triangles[size * 6 * 2 + 5] = size * 2 + 1;
+
+            // 右
+            _triangles[size * 6 * 2 + 6] = 0 + size * 2 - 2;
+            _triangles[size * 6 * 2 + 7] = 1 + size * 2 - 2;
+            _triangles[size * 6 * 2 + 8] = size * 2 + size * 2 - 2;
+            _triangles[size * 6 * 2 + 9] = 1 + size * 2 - 2;
+            _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
+            _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
+            */
+
             // メッシュを生成する
             _mesh = new Mesh
             {
@@ -144,6 +175,20 @@ namespace Reilas
                             _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
                         }
                     }
+
+                    /*
+                    // 奥
+                    else
+                    {
+                        var w = z * (_entity.Size + 1) * 2 + (x * 2);
+
+                        if (_uv != null)
+                        {
+                            _uv[w + 0] = new Vector3(uvX, 1f, alpha);
+                            _uv[w + 1] = new Vector3(0, 0, alpha);
+                        }
+                    }
+                    */
                 }
             }
 
@@ -163,7 +208,7 @@ namespace Reilas
 
         public void NoteDestroy()
         {
-            RhythmGamePresenter._aboveChainNotes.Remove(this);
+            RhythmGamePresenter.AboveChainNotes.Remove(this);
             Destroy(this.gameObject);
         }
     }

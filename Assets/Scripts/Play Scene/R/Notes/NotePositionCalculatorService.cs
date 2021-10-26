@@ -22,7 +22,7 @@ namespace Reilas
         
         public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap, float noteSpeed)
         {
-            float highSpeed = gameSpeed * noteSpeed;
+            var highSpeed = gameSpeed * noteSpeed;
 
             var size = entity.Size * BelowNoteWidth;
             var left = size / 2f;

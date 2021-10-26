@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Reilas;
+using Rhythmium;
 
 public enum JudgeResultType
 {
@@ -16,9 +17,9 @@ public enum JudgeResultType
 
 public class JudgeService : MonoBehaviour
 {
-    private int _tapJudgeStartIndex;
-    private int _internalJudgeStartIndex;
-    private int _chainJudgeStartIndex;
+    public readonly int[] tapJudgeStartIndex = new int[36];
+    public int internalJudgeStartIndex;
+    public int chainJudgeStartIndex;
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
 
@@ -42,16 +43,21 @@ public class JudgeService : MonoBehaviour
         };
     }
 
-    private bool TimeCheck(float currentTime, float judgeTime, string flag, string noteType)
+    private bool TimeCheck(float currentTime, float judgeTime, string noteType)
     {
         var difference = CalculateDifference(currentTime, judgeTime, noteType);
-        return difference <= _judgeSeconds[flag] || currentTime < judgeTime;
+        return noteType switch
+        {
+            "Tap" => difference <= _judgeSeconds[noteType + " Bad"],
+            "Internal" => currentTime <= judgeTime && difference <= _judgeSeconds[noteType],
+            "Chain" => currentTime >= judgeTime && difference <= _judgeSeconds[noteType],
+            _ => false
+        };
     }
-
-    private JudgeResultType InternalOrChain(float currentTime, ReilasNoteEntity note, bool tapState,
-        string internalOrChain)
+    
+    private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
-        var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain, internalOrChain);
+        var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
         if (tapState)
         {
             return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
@@ -60,120 +66,164 @@ public class JudgeService : MonoBehaviour
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }
 
-    private static bool GetTapState(ReilasNoteEntity note)
+    private static bool CheckType(ReilasNoteEntity note, string noteType)
     {
-        var tapState = RhythmGamePresenter.laneTapStates;
-        if (note.Type == NoteType.AboveTap || note.Type == NoteType.AboveHold ||
-            note.Type == NoteType.AboveHoldInternal || note.Type == NoteType.AboveSlide ||
-            note.Type == NoteType.AboveSlideInternal || note.Type == NoteType.AboveChain)
+        return RhythmGamePresenter.CheckType(note, noteType);
+    }
+
+
+    private static int GetLane(ReilasNoteEntity note)
+    {
+        return RhythmGamePresenter.GetLane(note);
+    }
+
+    private static bool CheckIfTapped(ReilasNoteEntity note)
+    {
+        var tapState = RhythmGamePresenter.LaneTapStates;
+        var noteLanePosition = GetLane(note);
+        switch (noteLanePosition)
         {
-            int noteLanePosition = note.LanePosition + 4;
-            switch (noteLanePosition)
+            case var lane when lane < 4:
             {
-                case 4:
-                {
-                    for (var i = noteLanePosition; i < noteLanePosition + note.Size; i++)
-                    {
-                        if (tapState[i]) return true;
-                    }
-
-                    break;
-                }
-                case 35:
-                {
-                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size - 1; i++)
-                    {
-                        if (tapState[i]) return true;
-                    }
-
-                    break;
-                }
-                default:
-                {
-                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size; i++)
-                    {
-                        if (tapState[i]) return true;
-                    }
-
-                    break;
-                }
+                if (tapState[lane]) return true;
+                break;
             }
-        }
-        else
-        {
-            if (tapState[note.LanePosition]) return true;
+            case 4:
+            {
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size; i++)
+                {
+                    if (tapState[i]) return true;
+                }
+
+                break;
+            }
+            case 35:
+            {
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size - 1; i++)
+                {
+                    if (tapState[i]) return true;
+                }
+
+                break;
+            }
+            default:
+            {
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size; i++)
+                {
+                    if (tapState[i]) return true;
+                }
+
+                break;
+            }
         }
 
         return false;
     }
+    
+    private static List<int> GetTapState(ReilasNoteEntity note)
+    {
+        var tapState = RhythmGamePresenter.LaneTapStates;
+        var noteLanePosition = GetLane(note);
+        if (noteLanePosition < 4)
+            return tapState[note.LanePosition] ? new List<int> {note.LanePosition} : new List<int>();
+        var laneList = new List<int>();
+        switch (noteLanePosition)
+        {
+            case 4:
+            {
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size; i++)
+                {
+                    if (tapState[i]) laneList.Add(i);
+                }
+
+                return laneList;
+            }
+            case 35:
+            {
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size - 1; i++)
+                {
+                    if (tapState[i]) laneList.Add(i);
+                }
+
+                return laneList;
+            }
+            default:
+            {
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size; i++)
+                {
+                    if (tapState[i]) laneList.Add(i);
+                }
+
+                return laneList;
+            }
+        }
+    }
 
     public void Judge(float currentTime)
     {
-        var tapNotes = RhythmGamePresenter.tapNotes;
-        for (var i = _tapJudgeStartIndex; i < tapNotes.Count; i++)
+        var tapNotes = RhythmGamePresenter.TapNoteLanes;
+        for (var i = 0; i < tapNotes.Length; i++)
         {
-            if (RhythmGamePresenter.tapNoteJudge != null && RhythmGamePresenter.tapNoteJudge[i]) continue;
-            JudgeResultType judgeResult;
-            var timeDifference = tapNotes[i].JudgeTime - currentTime;
-            if (timeDifference > _judgeSeconds["Tap Bad"]) break;
-            var difference = CalculateDifference(currentTime, tapNotes[i].JudgeTime, "Tap");
-            var timeCheck = TimeCheck(currentTime, tapNotes[i].JudgeTime, "Tap Bad", "Tap");
-            if (GetTapState(tapNotes[i]))
+            for (var j = tapJudgeStartIndex[i]; j < tapNotes[i].Count; j++)
             {
-                judgeResult = difference switch
+                var note = tapNotes[i][j];
+                if (note.hasBeenTapped) continue;
+                JudgeResultType judgeResult;
+                var reilasNoteEntity = note.note;
+                var timeDifference = reilasNoteEntity.JudgeTime - currentTime;
+                if (timeDifference > _judgeSeconds["Tap Bad"]) break;
+                var difference = CalculateDifference(currentTime, reilasNoteEntity.JudgeTime, "Tap");
+                var timeCheck = TimeCheck(currentTime, reilasNoteEntity.JudgeTime, "Tap");
+                if (GetTapState(reilasNoteEntity).Contains(i))
                 {
-                    var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
-                    var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
-                    var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
-                    _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
-                };
+                    var nextNote = tapNotes[i][j + 1];
+                    if (timeDifference < currentTime - nextNote.note.JudgeTime) judgeResult = JudgeResultType.Miss;
+                    else
+                    {
+                        judgeResult = difference switch
+                        {
+                            var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
+                            var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
+                            var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
+                            _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
+                        };
+                    }
+                }
+                else judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
+                if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+                AllJudge.Add(judgeResult);
+                note.hasBeenTapped = true;
+                if (CheckType(reilasNoteEntity, "AboveTap")) RhythmGamePresenter.AboveTapNotes[0].NoteDestroy();
+                else if (CheckType(reilasNoteEntity, "GroundTap")) RhythmGamePresenter.TapNotes[0].NoteDestroy();
+                tapJudgeStartIndex[i]++;
             }
-            else
-            {
-                judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
-            }
-
-            if (judgeResult == JudgeResultType.NotJudgedYet) continue;
-            AllJudge.Add(judgeResult);
-            if (RhythmGamePresenter.tapNoteJudge != null) RhythmGamePresenter.tapNoteJudge[i] = true;
-            if (tapNotes[i].Type == NoteType.Tap || tapNotes[i].Type == NoteType.Hold)
-            {
-                RhythmGamePresenter._tapNotes[0].NoteDestroy();
-            }
-            else if(tapNotes[i].Type == NoteType.AboveTap || tapNotes[i].Type == NoteType.AboveHold || tapNotes[i].Type == NoteType.AboveSlide)
-            {
-                RhythmGamePresenter._aboveTapNotes[0].NoteDestroy();
-            }
-            
-            _tapJudgeStartIndex++;
         }
-
+        
         var internalNotes = RhythmGamePresenter.internalNotes;
-        for (var i = _internalJudgeStartIndex; i < internalNotes.Count; i++)
+        for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
             if (RhythmGamePresenter.internalNoteJudge != null && RhythmGamePresenter.internalNoteJudge[i]) continue;
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
-            var judgeResult = InternalOrChain(currentTime, internalNotes[i], GetTapState(internalNotes[i]), "Internal");
+            var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
             if (RhythmGamePresenter.internalNoteJudge != null) RhythmGamePresenter.internalNoteJudge[i] = true;
-            _internalJudgeStartIndex++;
+            internalJudgeStartIndex++;
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
-        for (var i = _chainJudgeStartIndex; i < chainNotes.Count; i++)
+        for (var i = chainJudgeStartIndex; i < chainNotes.Count; i++)
         {
             if (RhythmGamePresenter.chainNoteJudge != null && RhythmGamePresenter.chainNoteJudge[i]) continue;
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
-            var judgeResult = InternalOrChain(currentTime, chainNotes[i], GetTapState(chainNotes[i]), "Chain");
+            var judgeResult = InternalOrChain(currentTime, chainNotes[i], CheckIfTapped(chainNotes[i]), "Chain");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
-            RhythmGamePresenter._aboveChainNotes[0].NoteDestroy();
-            _chainJudgeStartIndex++;
-
+            RhythmGamePresenter.AboveChainNotes[0].NoteDestroy();
+            chainJudgeStartIndex++;
         }
     }
 }
