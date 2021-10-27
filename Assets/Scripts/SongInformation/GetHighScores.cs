@@ -73,7 +73,7 @@ public class GetHighScores : MonoBehaviour
             var n when n >= 950000 => "A",
             var n when n >= 900000 => "B",
             var n when n >= 800000 => "C",
-            var n when n > 0 => "D",
+            var n when n >= 0 => "D",
             _ => ""
         };
     }

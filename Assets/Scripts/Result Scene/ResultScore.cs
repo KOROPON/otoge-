@@ -17,8 +17,12 @@ public class ResultScore : MonoBehaviour
     private Text _missCom;
     private Text _titleInResult;
     private Text _difficultyInResult;
+    private Text _rankDifficulty;
+    private Color _resultColor;
+    private Image _clearRank;
 
     private GetHighScores _getHighScores;
+    private LevelConverter _levelConverter;
     private bool _backBool;
     private bool _retryBool;
     private int _previousScore;
@@ -29,7 +33,8 @@ public class ResultScore : MonoBehaviour
     private void Start()
     {
         _getHighScores = gameObject.AddComponent<GetHighScores>();
-        _score = _getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
+        _score = ChangeScene_PlayScene.score;
+        _previousScore = ChangeScene_PlayScene.previousHighScore;
         _scoreRank = _getHighScores.GetRank(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
         _backBool = true;
         _retryBool = true;
@@ -41,11 +46,15 @@ public class ResultScore : MonoBehaviour
         _missCom = GameObject.Find("MissCom").GetComponent<Text>();
         _titleInResult = GameObject.Find("Name").GetComponent<Text>();
         _difficultyInResult = GameObject.Find("Difficulty").GetComponent<Text>();
+        _rankDifficulty = GameObject.Find("DifficultyRank").GetComponent<Text>();
         _jackInResult = GameObject.Find("Jacket").GetComponent<Image>();
         _rankInResult = GameObject.Find("Rank").GetComponent<Image>();
-        previousScore = GameObject.Find("Jacket").GetComponent<Text>();
+        previousScore = GameObject.Find("PreviousScore").GetComponent<Text>();
         _scoreGap = GameObject.Find("ScoreGap").GetComponent<Text>();
         _resultMusic = GameObject.Find("Theme").GetComponent<AudioSource>();
+        _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>().color;
+        _clearRank = GameObject.Find("Clear").GetComponent<Image>();
+        _levelConverter = new LevelConverter();
 
         _scoreInResult.text = $"{_score:0,000,000}";
         _maxCombo.text = ScoreComboCalculator.highCombo.ToString();
@@ -64,10 +73,16 @@ public class ResultScore : MonoBehaviour
             var n when n < _previousScore => "-" + $"{_previousScore - n:0,000,000}",
             _=> ""
         };
-        
-        //clear.sprite =Resources.Load<Sprite>()
-        //rankDifficulty =
-        //colorInResult =
+
+        _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + ChangeScene_PlayScene.clear);
+        _rankDifficulty.text = _levelConverter.GetLevel(RhythmGamePresenter.musicName, RhythmGamePresenter.dif).ToString();
+        switch (RhythmGamePresenter.dif)
+        {
+            case "Easy": _resultColor = new Color32(0, 0, 0, 0); break;
+            case "Hard": _resultColor = new Color32(0, 0, 0, 0); break;
+            case "Extreme": _resultColor = new Color32(0, 0, 0, 0); break;
+            case "Kujo": _resultColor = new Color32(0, 0, 0, 0); break;
+        }
         //未実装00
 
         Shutter.blChange = "Open";

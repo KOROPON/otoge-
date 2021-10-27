@@ -7,6 +7,8 @@ public class ChangeScene_PlayScene : MonoBehaviour
     public AudioSource song;
     private ClearRankDirector _clearRankDirector;
     static public int previousHighScore;
+    static public int score;
+    static public string clear;
     
     public static bool playNoticed;
     public static bool playStopped;
@@ -31,8 +33,9 @@ public class ChangeScene_PlayScene : MonoBehaviour
             if (!playStopped) return;
             getHighScores.Awake();
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
-            var clear = scoreComboCalculator.clear;
-            getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, scoreComboCalculator.currentScore, clear);
+            score = scoreComboCalculator.currentScore;
+            clear = scoreComboCalculator.clear;
+            getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
             _clearRankDirector.SelectRank(clear);
             scoreComboCalculator.currentCombo = 0;
         }));
