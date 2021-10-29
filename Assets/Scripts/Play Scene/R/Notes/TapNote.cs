@@ -35,9 +35,10 @@ namespace Reilas
             }
         }
 
-        public void NoteDestroy()
+        public void NoteDestroy(bool kujo)
         {
-            RhythmGamePresenter.TapNotes.Remove(this);
+            if (kujo) RhythmGamePresenter.TapKujoNotes.Remove(this);
+            else RhythmGamePresenter.TapNotes.Remove(this);
             Destroy(this.gameObject);
         }
     }

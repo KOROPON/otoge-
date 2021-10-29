@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17196,6 +17196,7 @@ GameObject:
   - component: {fileID: 1036589698}
   - component: {fileID: 1036589699}
   - component: {fileID: 1036589700}
+  - component: {fileID: 1036589701}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -17268,11 +17269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd13f3ae3e96d0458146a536c0bcf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPerfect: 0
-  fullCombo: 0
   currentCombo: 0
   currentScore: 0
   slider: {fileID: 0}
+  clear: 
   comboText: {fileID: 646217737}
   scoreText: {fileID: 620664342}
   gauge: {fileID: 1685262886}
@@ -17289,8 +17289,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   song: {fileID: 947960482}
-  clearRankDirector: {fileID: 0}
-  previousHighScore: 0
+--- !u!114 &1036589701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036589695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60bc71d3d0864b249e55742555406fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1080633185
 GameObject:
   m_ObjectHideFlags: 0

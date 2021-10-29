@@ -151,5 +151,13 @@ namespace Reilas
 #endif
             meshFilter.mesh = _mesh;
         }
+
+
+        public void NoteDestroy(bool kujo)
+        {
+            if (kujo) RhythmGamePresenter.AboveKujoHoldNotes.Remove(this);
+            else RhythmGamePresenter.AboveHoldNotes.Remove(this);
+            Destroy(this.gameObject);
+        }
     }
 }
