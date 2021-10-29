@@ -9890,3 +9890,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameObject: {fileID: 5575468961130923877}
+  _blJudge: 0
+  aboveSlideEffectTime: 0
