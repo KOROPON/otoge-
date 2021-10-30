@@ -3,7 +3,7 @@ using Reilas;
 
 public class AboveSlideEffector : MonoBehaviour
 { 
-    [SerializeField]private GameObject _gameObject;
+    [SerializeField]private GameObject gameObject;
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
@@ -16,7 +16,7 @@ public class AboveSlideEffector : MonoBehaviour
     private int _tailMin;
     private float _headTime;
     private float _tailTime;
-    public bool _blJudge = false;
+    public bool blJudge = false;
 
     public float aboveSlideEffectTime;
 
@@ -31,8 +31,8 @@ public class AboveSlideEffector : MonoBehaviour
         _tailMax = _entity.Tail.LanePosition + _entity.Tail.Size;
         _headTime = _entity.Head.JudgeTime;
         _tailTime = _entity.Tail.JudgeTime;
-        _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
-        _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
+        _effect1 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[0];
+        _effect2 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[1];
         _noteBlight = transform.root.GetComponent<MeshRenderer>().material;
         aboveSlideEffectTime = _entity.Head.JudgeTime;
         //Debug.Log("colorHere" + _noteBlight.r);
@@ -42,13 +42,13 @@ public class AboveSlideEffector : MonoBehaviour
     {
         //var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax) + 4;
         //var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin) + 4;
-        var _laneMax = Mathf.RoundToInt(Mathf.Lerp(_headMax, _tailMax, (currentTime - _headTime))) + 4;
-        var _laneMin = Mathf.RoundToInt(Mathf.Lerp(_headMin, _tailMin, (currentTime - _headTime))) + 4;
-        Debug.Log("max" + _laneMax);
-        Debug.Log("min" + _laneMin);
-        if (!_gameObject.activeSelf)
+        var laneMax = Mathf.RoundToInt(Mathf.Lerp(_headMax, _tailMax, (currentTime - _headTime))) + 4;
+        var laneMin = Mathf.RoundToInt(Mathf.Lerp(_headMin, _tailMin, (currentTime - _headTime))) + 4;
+        Debug.Log("max" + laneMax);
+        Debug.Log("min" + laneMin);
+        if (!gameObject.activeSelf)
         {
-            _gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
         transform.position = PositionCal(currentTime);
 
@@ -57,7 +57,7 @@ public class AboveSlideEffector : MonoBehaviour
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
                 Debug.Log("SlideEffectWorkaaaaaaaaaaaaaa");
-                if (_laneMin <= tapstate.laneNumber && tapstate.laneNumber <= _laneMax)
+                if (laneMin <= tapstate.laneNumber && tapstate.laneNumber <= laneMax)
                 {
                     Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
                     if (!_effect1.isPlaying)
@@ -70,18 +70,18 @@ public class AboveSlideEffector : MonoBehaviour
                         effectAudio.Play();
                         //Debug.Log("SlideEffectWork");
                     }
-                    _blJudge = true;
+                    blJudge = true;
                     return;
                 }
             }
-            _blJudge = false;
+            blJudge = false;
         }
         else
         {
-            _blJudge = false;
+            blJudge = false;
         }
 
-        if (!_blJudge)
+        if (!blJudge)
         {
             if (_effect1.isPlaying)
             {

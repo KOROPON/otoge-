@@ -16,8 +16,8 @@ namespace Reilas
         
         public int currentCombo;
         public int currentScore;
-        public Slider slider;
         public string clear;
+        public Slider slider;
         
         private float _sumScore;
         private float _score;

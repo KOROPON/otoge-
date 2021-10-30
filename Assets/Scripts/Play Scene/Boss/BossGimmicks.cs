@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,41 +9,41 @@ using UnityEngine;
 
 public class BossGimmicks : MonoBehaviour
 {
-    private RhythmGamePresenter presenter = null!;
+    private RhythmGamePresenter _presenter = null!;
 
-    public static List<ReilasNoteEntity> tapKujoNotes = new List<ReilasNoteEntity>();
-    public static List<ReilasNoteEntity> internalKujoNotes = new List<ReilasNoteEntity>();
-    public static List<ReilasNoteEntity> chainKujoNotes = new List<ReilasNoteEntity>();
+    private static List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
+    private static List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
+    private static List<ReilasNoteEntity> _chainKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteLineEntity> reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasKujoHold = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteEntity> reilasKujoChain = new List<ReilasNoteEntity>();
 
-    public Camera camera;
+    public new Camera? camera;
 
     private void Awake()
     {
         camera = Camera.main;
-        presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+        _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
     }
 
     public async void BossAwake()
     {
-        TextAsset? kujyoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
-        if (kujyoSongs == null)
+        var kujoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
+        if (kujoSongs == null)
         {
-            Debug.LogError("Reilas_KUJO ïàñ ÉfÅ[É^Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩ");
+            Debug.LogError("Reilas_KUJO ÔøΩÔøΩÔøΩ ÉfÔøΩ[ÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩ¬ÇÔøΩÔøΩÔøΩ‹ÇÔøΩÔøΩÔøΩ≈ÇÔøΩÔøΩÔøΩ");
             return;
         }
 
-        var chartKujoJsonData = JsonUtility.FromJson<ChartJsonData>(kujyoSongs.text);
+        var chartKujoJsonData = JsonUtility.FromJson<ChartJsonData>(kujoSongs.text);
         var chartKujoEntity = new ReilasChartConverter().Convert(chartKujoJsonData);
 
         NoteLineJsonData[] noteKujoJsonData = chartKujoJsonData.timeline.noteLines;
 
-        tapKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Tap"));
-        internalKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Internal"));
-        chainKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Chain"));
+        _tapKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Tap"));
+        _internalKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Internal"));
+        _chainKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Chain"));
 
         reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
@@ -51,9 +52,9 @@ public class BossGimmicks : MonoBehaviour
 
         List<int> removeInt = new List<int>();
 
-        foreach (ReilasNoteEntity note in tapKujoNotes)
+        foreach (ReilasNoteEntity note in _tapKujoNotes)
         {
-            if (kujyoSongs == null)
+            if (kujoSongs == null)
             {
                 switch (note.Type)
                 {
@@ -62,8 +63,8 @@ public class BossGimmicks : MonoBehaviour
                             if (noteKujoJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                             {
                                 note.Type = NoteType.AboveSlideInternal;
-                                internalKujoNotes.Add(note);
-                                removeInt.Add(tapKujoNotes.IndexOf(note));
+                                _internalKujoNotes.Add(note);
+                                removeInt.Add(_tapKujoNotes.IndexOf(note));
                             }
 
                             break;
@@ -73,8 +74,8 @@ public class BossGimmicks : MonoBehaviour
                             if (noteKujoJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                             {
                                 note.Type = NoteType.AboveSlideInternal;
-                                internalKujoNotes.Add(note);
-                                removeInt.Add(tapKujoNotes.IndexOf(note));
+                                _internalKujoNotes.Add(note);
+                                removeInt.Add(_tapKujoNotes.IndexOf(note));
                             }
 
                             break;
@@ -84,8 +85,8 @@ public class BossGimmicks : MonoBehaviour
                             if (noteKujoJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                             {
                                 note.Type = NoteType.AboveSlideInternal;
-                                internalKujoNotes.Add(note);
-                                removeInt.Add(tapKujoNotes.IndexOf(note));
+                                _internalKujoNotes.Add(note);
+                                removeInt.Add(_tapKujoNotes.IndexOf(note));
                             }
 
                             break;
@@ -110,25 +111,25 @@ public class BossGimmicks : MonoBehaviour
             }
         }
 
-        for (int num = removeInt.Count() - 1; num >= 0; num--)
+        for (int num = removeInt.Count - 1; num >= 0; num--)
         {
-            tapKujoNotes.RemoveAt(removeInt[num]);
+            _tapKujoNotes.RemoveAt(removeInt[num]);
         }
 
 
-        presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true);
-        presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
-        presenter.SpawnChainNotes(reilasKujoChain, true);
-        presenter.SpawnHoldNotes(reilasKujoHold, true);
-        presenter.SpawnAboveHoldNotes(reilasKujoAboveHold, true);
-        presenter.SpawnAboveSlideNotes(reilasKujoAboveSlide, true);
+        _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true);
+        _presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
+        _presenter.SpawnChainNotes(reilasKujoChain, true);
+        _presenter.SpawnHoldNotes(reilasKujoHold, true);
+        _presenter.SpawnAboveHoldNotes(reilasKujoAboveHold, true);
+        _presenter.SpawnAboveSlideNotes(reilasKujoAboveSlide, true);
     }
 
     void Update()
     {
-        if (!presenter.jumpToKujo) return;
+        if (!_presenter.jumpToKujo) return;
 
-        float time = presenter._audioTime;
+        float time = _presenter.audioTime;
 
         if (time < 82.5f) return;
 
@@ -161,11 +162,11 @@ public class BossGimmicks : MonoBehaviour
 
     public void ChangeToKujo()
     {
-        // 82.5s  à⁄çsïîï™ÇÃòAë≈âπ
-        // 83s Å@ íÜä‘ïîï™
-        // 93s    ìÒâÒñ⁄ÉãÅ[Év
-        // 101.8s ÉKÉâÉXâπ
-        // 103.2s ÉâÉXÉTÉr
+        // 82.5s  ÔøΩ⁄çsÔøΩÔøΩÔøΩÔøΩÔøΩÃòAÔøΩ≈âÔøΩ
+        // 83s ÔøΩ@ ÔøΩÔøΩÔøΩ‘ïÔøΩÔøΩÔøΩ
+        // 93s    ÔøΩÔøΩÔøΩ⁄ÉÔøΩÔøΩ[ÔøΩv
+        // 101.8s ÔøΩKÔøΩÔøΩÔøΩXÔøΩÔøΩ
+        // 103.2s ÔøΩÔøΩÔøΩXÔøΩTÔøΩr
     }
 
     public void NotChangeToKujo()

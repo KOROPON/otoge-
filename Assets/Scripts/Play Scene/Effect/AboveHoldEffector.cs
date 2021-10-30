@@ -7,7 +7,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
     private Color _noteBlight;
-    [SerializeField]private GameObject _gameObject;
+    [SerializeField]private GameObject gameObject;
     private int _lanePos;
     private int _laneMax;
     private int _laneMin;
@@ -20,8 +20,8 @@ public sealed class AboveHoldEffector : MonoBehaviour
         _lanePos = Mathf.RoundToInt(_entity.Head.LanePosition + _entity.Head.Size / 2);
         _laneMin = _entity.Head.LanePosition;
         _laneMax = _entity.Head.LanePosition + _entity.Head.Size;
-        _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
-        _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
+        _effect1 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[0];
+        _effect2 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[1];
         _noteBlight = transform.root.GetComponent<MeshRenderer>().material.color;
         transform.position = RhythmGamePresenter.LanePositions[_lanePos];
         aboveHoldEffectTime = _entity.Head.JudgeTime;
@@ -29,9 +29,9 @@ public sealed class AboveHoldEffector : MonoBehaviour
 
     public void Render(float currentTime, AudioSource effectAudio)
     {
-        if (!_gameObject.activeSelf)
+        if (!gameObject.activeSelf)
         {
-            _gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)

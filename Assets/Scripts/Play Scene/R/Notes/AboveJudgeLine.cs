@@ -8,21 +8,21 @@ namespace Reilas
 
     class AboveJudgeLine : MonoBehaviour
     {
-        [SerializeField] private MeshFilter _meshFilter = null!;
+        [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
         private int[]? _triangles;
         private Mesh? _mesh;
-        const float div = 32f;
-        const float outerLaneRadius = 4.4f;
+        const float Div = 32f;
+        const float OuterLaneRadius = 4.4f;
 
-        const float innerRadius = outerLaneRadius - 0.03f; // “à‰‚Ì”¼Œa
-        const float outerRadius = outerLaneRadius;        // ŠO‰‚Ì”¼Œa
+        const float InnerRadius = OuterLaneRadius - 0.03f; // ï¿½ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½a
+        const float OuterRadius = OuterLaneRadius;        // ï¿½Oï¿½ï¿½ï¿½Ì”ï¿½ï¿½a
 
         void Start()
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 return;
             }
@@ -31,7 +31,7 @@ namespace Reilas
             _uv = new Vector3[66];
             _triangles = new int[192];
 
-            // ‘O–Ê
+            // ï¿½Oï¿½ï¿½
             for (var i = 0; i < 33 - 1; i++)
             {
                 _triangles[i * 6 + 0] = 0 + i * 2;
@@ -47,18 +47,18 @@ namespace Reilas
             {
                 for (var x = 0; x < 33; x++)
                 {
-                    var laneIndex = x;  //ƒŒ[ƒ“”Ô†
+                    var laneIndex = x;  //ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ôï¿½
 
-                    var angle = Mathf.PI / div * laneIndex;   // ƒŒ[ƒ“‚ÌŠp“x
+                    var angle = Mathf.PI / Div * laneIndex;   // ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌŠpï¿½x
 
                     angle = Mathf.PI - angle;
 
 
-                    var innerY = Mathf.Sin(angle) * innerRadius;
-                    var innerX = Mathf.Cos(angle) * innerRadius;
+                    var innerY = Mathf.Sin(angle) * InnerRadius;
+                    var innerX = Mathf.Cos(angle) * InnerRadius;
 
-                    var outerY = Mathf.Sin(angle) * outerRadius;
-                    var outerX = Mathf.Cos(angle) * outerRadius;
+                    var outerY = Mathf.Sin(angle) * OuterRadius;
+                    var outerX = Mathf.Cos(angle) * OuterRadius;
 
 
 
@@ -80,7 +80,7 @@ namespace Reilas
 
                     float uvX = 1f / 32 * 0.8f * x + 0.1f;
 
-                    // è‘O
+                    // ï¿½ï¿½O
                     if (z == 0)
                     {
                         if (_uv != null)
@@ -92,7 +92,7 @@ namespace Reilas
                 }
             }
 
-            // ƒƒbƒVƒ…‚ğ¶¬‚·‚é
+            // ï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½
             _mesh = new Mesh
             {
                 vertices = _vertices,
@@ -111,7 +111,7 @@ namespace Reilas
 #if UNITY_EDITOR
                 _mesh.RecalculateBounds();
 #endif
-                _meshFilter.mesh = _mesh;
+                meshFilter.mesh = _mesh;
             }
         }
     }

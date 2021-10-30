@@ -4,10 +4,11 @@ using UnityEngine.UI;
 public class ClearRankDirector : MonoBehaviour
 {
     private Animation _anim;
+    private AudioSource _clearAud;
     private Image _clearRank;
     private Image _clearRankBar;
     private Image _fader;
-    private AudioSource _clearAud;
+
     
 
     private void Start()

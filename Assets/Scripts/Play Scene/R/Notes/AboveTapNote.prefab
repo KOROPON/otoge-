@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 416871471698319059}
   - component: {fileID: 1318370044206668128}
-  - component: {fileID: 416871471698319056}
   - component: {fileID: 416871471698319057}
+  - component: {fileID: 3012199666515093990}
   m_Layer: 0
   m_Name: AboveTapNote
   m_TagString: Untagged
@@ -45,16 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f204a3a0bc949d6adb7c79aa37b27eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshFilter: {fileID: 416871471698319056}
+  meshFilter: {fileID: 3012199666515093990}
   aboveTapTime: 0
---- !u!33 &416871471698319056
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416871471698319060}
-  m_Mesh: {fileID: 0}
 --- !u!23 &416871471698319057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96,3 +88,11 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &3012199666515093990
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416871471698319060}
+  m_Mesh: {fileID: 0}

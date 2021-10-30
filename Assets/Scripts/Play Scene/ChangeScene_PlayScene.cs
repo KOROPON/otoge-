@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Reilas;
 
-public class ChangeScene_PlayScene : MonoBehaviour
+public class ChangeScenePlayScene : MonoBehaviour
 {
     public AudioSource song;
     private ClearRankDirector _clearRankDirector;

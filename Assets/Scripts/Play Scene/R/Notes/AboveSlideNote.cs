@@ -7,7 +7,7 @@ namespace Reilas
 {
     public sealed class AboveSlideNote : MonoBehaviour
     {
-        [SerializeField] private MeshFilter _meshFilter = null!;
+        [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector2[] _uv = null!;
@@ -17,13 +17,13 @@ namespace Reilas
 
         private ReilasNoteLineEntity _entity = null!;
 
-        private int thisNoteSize;
-        private int leftRatio;
-        private int rightRatio;
+        private int _thisNoteSize;
+        private int _leftRatio;
+        private int _rightRatio;
 
         private float _noteSpeed;
 
-        private AboveSlideEffector effecterCs = null!;
+        private AboveSlideEffector _effectorCs = null!;
 
         private bool _kujo;
 
@@ -37,12 +37,12 @@ namespace Reilas
 
             transform.localScale = Vector3.one;
 
-            effecterCs = this.gameObject.transform.GetChild(0).gameObject.GetComponent<AboveSlideEffector>();
+            _effectorCs = this.gameObject.transform.GetChild(0).gameObject.GetComponent<AboveSlideEffector>();
         }
 
         private void InitializeMesh()
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 throw new Exception();
                 //return;
@@ -56,22 +56,22 @@ namespace Reilas
 
             //_triangles = new int[(_vertices.Length - 2) * 6];
 
-            leftRatio = Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
-            rightRatio = Mathf.Abs((_entity.Head.LanePosition + _entity.Head.Size - 1) - (_entity.Tail.LanePosition + _entity.Tail.Size - 1));
+            _leftRatio = Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
+            _rightRatio = Mathf.Abs((_entity.Head.LanePosition + _entity.Head.Size - 1) - (_entity.Tail.LanePosition + _entity.Tail.Size - 1));
 
 
             //前面
             if (_entity.Head.Size <= _entity.Tail.Size)
             {
-                thisNoteSize = _entity.Tail.Size;
+                _thisNoteSize = _entity.Tail.Size;
 
-                if (leftRatio > rightRatio) // 左辺のほうが変化量が多い
+                if (_leftRatio > _rightRatio) // 左辺のほうが変化量が多い
                 {
-                    _vertices = new Vector3[(_entity.Tail.Size + 1) * (leftRatio + 2)];
-                    _triangles = new int[_entity.Tail.Size * (leftRatio + 1) * 6];
-                    _uv = new Vector2[(_entity.Tail.Size + 1) * (leftRatio + 2)];
+                    _vertices = new Vector3[(_entity.Tail.Size + 1) * (_leftRatio + 2)];
+                    _triangles = new int[_entity.Tail.Size * (_leftRatio + 1) * 6];
+                    _uv = new Vector2[(_entity.Tail.Size + 1) * (_leftRatio + 2)];
 
-                    for (int z = 0; z < leftRatio + 1; z++)
+                    for (int z = 0; z < _leftRatio + 1; z++)
                     {
                         for (int x = 0; x < _entity.Tail.Size; x++)
                         {
@@ -86,11 +86,11 @@ namespace Reilas
                 }
                 else
                 {
-                    _vertices = new Vector3[(_entity.Tail.Size + 1) * (rightRatio + 2)];
-                    _triangles = new int[_entity.Tail.Size * (rightRatio + 1) * 6];
-                    _uv = new Vector2[(_entity.Tail.Size + 1) * (rightRatio + 2)];
+                    _vertices = new Vector3[(_entity.Tail.Size + 1) * (_rightRatio + 2)];
+                    _triangles = new int[_entity.Tail.Size * (_rightRatio + 1) * 6];
+                    _uv = new Vector2[(_entity.Tail.Size + 1) * (_rightRatio + 2)];
 
-                    for (int z = 0; z < rightRatio + 1; z++)
+                    for (int z = 0; z < _rightRatio + 1; z++)
                     {
                         for (int x = 0; x < _entity.Tail.Size; x++)
                         {
@@ -106,15 +106,15 @@ namespace Reilas
             }
             else
             {
-                thisNoteSize = _entity.Head.Size;
+                _thisNoteSize = _entity.Head.Size;
 
-                if (leftRatio > rightRatio)
+                if (_leftRatio > _rightRatio)
                 {
-                    _vertices = new Vector3[(_entity.Head.Size + 1) * (leftRatio + 2)];
-                    _triangles = new int[_entity.Head.Size * (leftRatio + 1) * 6];
-                    _uv = new Vector2[(_entity.Head.Size + 1) * (leftRatio + 2)];
+                    _vertices = new Vector3[(_entity.Head.Size + 1) * (_leftRatio + 2)];
+                    _triangles = new int[_entity.Head.Size * (_leftRatio + 1) * 6];
+                    _uv = new Vector2[(_entity.Head.Size + 1) * (_leftRatio + 2)];
 
-                    for (int z = 0; z < leftRatio + 1; z++)
+                    for (int z = 0; z < _leftRatio + 1; z++)
                     {
                         for (int x = 0; x < _entity.Head.Size; x++)
                         {
@@ -129,11 +129,11 @@ namespace Reilas
                 }
                 else
                 {
-                    _vertices = new Vector3[(_entity.Head.Size + 1) * (rightRatio + 2)];
-                    _triangles = new int[_entity.Head.Size * (rightRatio + 1) * 6];
-                    _uv = new Vector2[(_entity.Head.Size + 1) * (rightRatio + 2)];
+                    _vertices = new Vector3[(_entity.Head.Size + 1) * (_rightRatio + 2)];
+                    _triangles = new int[_entity.Head.Size * (_rightRatio + 1) * 6];
+                    _uv = new Vector2[(_entity.Head.Size + 1) * (_rightRatio + 2)];
 
-                    for (int z = 0; z < rightRatio + 1; z++)
+                    for (int z = 0; z < _rightRatio + 1; z++)
                     {
                         for (int x = 0; x < _entity.Head.Size; x++)
                         {
@@ -192,7 +192,7 @@ namespace Reilas
 
         private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
-            if (_meshFilter == null || _mesh == null || _vertices == null)
+            if (meshFilter == null || _mesh == null || _vertices == null)
             {
                 return;
             }
@@ -218,19 +218,19 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false, _noteSpeed).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false, _noteSpeed).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false).z;
 
 
             int thisNoteZRatio;
 
-            if (leftRatio > rightRatio)
+            if (_leftRatio > _rightRatio)
             {
-                thisNoteZRatio = leftRatio + 2;
+                thisNoteZRatio = _leftRatio + 2;
             }
             else
             {
-                thisNoteZRatio = rightRatio + 2;
+                thisNoteZRatio = _rightRatio + 2;
             }
 
             const float div = 32f;
@@ -244,9 +244,9 @@ namespace Reilas
 
                 float nowLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, p2);
 
-                for (int x = 0; x <= thisNoteSize; x++)
+                for (int x = 0; x <= _thisNoteSize; x++)
                 {
-                    var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + nowLaneSize / thisNoteSize * x; //今作る頂点のレーン番号(小数点以下含む)
+                    var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + nowLaneSize / _thisNoteSize * x; //今作る頂点のレーン番号(小数点以下含む)
 
                     var angle = Mathf.PI / div * laneIndex;
 
@@ -259,12 +259,12 @@ namespace Reilas
 
                     var outerPoint = new Vector3(-outerX, outerY, currentZ);
 
-                    _vertices[((int)thisNoteSize + 1) * z + x] = outerPoint;
-                    _uv[z * ((int)thisNoteSize + 1) + x] = new Vector2(1f / thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);
+                    _vertices[((int)_thisNoteSize + 1) * z + x] = outerPoint;
+                    _uv[z * ((int)_thisNoteSize + 1) + x] = new Vector2(1f / _thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);
                 }
             }
 
-            if (effecterCs._blJudge) // 押されていたら
+            if (_effectorCs.blJudge) // 押されていたら
             {
                 Debug.Log("CutNote");
                 float timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
@@ -274,14 +274,14 @@ namespace Reilas
 
                 for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio); znum++)
                 {
-                    for(int xnum = 0; xnum <= thisNoteSize; xnum++)
+                    for(int xnum = 0; xnum <= _thisNoteSize; xnum++)
                     {
                         Debug.Log("CutNoteVector");
-                        float angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / thisNoteSize * xnum);
+                        float angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / _thisNoteSize * xnum);
                         angle = Mathf.PI / 2f - angle;
                         float x = Mathf.Sin(angle) * outerLaneRadius;
                         float y = Mathf.Cos(angle) * outerLaneRadius;
-                        _vertices[znum * (thisNoteSize + 1) + xnum] = new Vector3(-x, y, -0.4f);
+                        _vertices[znum * (_thisNoteSize + 1) + xnum] = new Vector3(-x, y, -0.4f);
                     }
                 }
                 _mesh.vertices = _vertices;
@@ -292,7 +292,7 @@ namespace Reilas
 #if UNITY_EDITOR
                 _mesh.RecalculateBounds();
 #endif
-                _meshFilter.mesh = _mesh;
+                meshFilter.mesh = _mesh;
             }
 
             _mesh.vertices = _vertices;
@@ -303,7 +303,7 @@ namespace Reilas
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
 #endif
-            _meshFilter.mesh = _mesh;
+            meshFilter.mesh = _mesh;
         }
 
 
