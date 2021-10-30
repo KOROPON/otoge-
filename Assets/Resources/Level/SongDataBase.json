@@ -31,7 +31,7 @@
             }
         },
         {
-            "title": "Kawaii_OD_!!",
+            "title": "kawaii_OD!!",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -39,14 +39,14 @@
             },
             "custom": [],
             "level": {
-                "Easy": 1,
+                "Easy": 2,
                 "Hard": 5,
                 "Extreme": 8,
                 "KUJO": 0
             }
         },
         {
-            "title": "DNB",
+            "title": "DnB2021_3_12_4",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -69,7 +69,7 @@
             },
             "custom": [],
             "level": {
-                "Easy": 2,
+                "Easy": 3,
                 "Hard": 5,
                 "Extreme": 8,
                 "KUJO": 0
@@ -88,6 +88,21 @@
                 "Hard": 7,
                 "Extreme": 9,
                 "KUJO": 10
+            }
+        },
+        {
+            "title": "Lame_beat_final",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 90
+            },
+            "custom": [],
+            "level": {
+                "Easy": 1,
+                "Hard": 3,
+                "Extreme": 6,
+                "KUJO": 0
             }
         }
     ]
