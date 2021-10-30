@@ -3,7 +3,6 @@ using Reilas;
 
 public class AboveSlideEffector : MonoBehaviour
 { 
-    [SerializeField]private GameObject gameObject;
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
@@ -46,10 +45,7 @@ public class AboveSlideEffector : MonoBehaviour
         var laneMin = Mathf.RoundToInt(Mathf.Lerp(_headMin, _tailMin, (currentTime - _headTime))) + 4;
         Debug.Log("max" + laneMax);
         Debug.Log("min" + laneMin);
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
+
         transform.position = PositionCal(currentTime);
 
         if (InputService.AboveLaneTapStates != null)

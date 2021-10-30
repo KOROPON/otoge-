@@ -3,7 +3,6 @@ using Reilas;
 
 public sealed class HoldEffector : MonoBehaviour
 {
-    [SerializeField] private GameObject gameObject;
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
@@ -28,10 +27,6 @@ public sealed class HoldEffector : MonoBehaviour
     }
     public void Render(float currentTime, AudioSource effectAudio)
     {
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)
         {

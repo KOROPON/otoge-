@@ -9,9 +9,9 @@ public class MusicNumManage : MonoBehaviour
     private Image _frame;
     private AudioSource _audioSource;
     private GetHighScores _getHighScores;
-    private Text _easyLevel;
-    private Text _hardLevel;
-    private Text _extremeLevel;
+    public Text _easyLevel;
+    public Text _hardLevel;
+    public Text _extremeLevel;
     private Transform _scrollView;
     private Transform _scrollViewContent;
     private string _songName;

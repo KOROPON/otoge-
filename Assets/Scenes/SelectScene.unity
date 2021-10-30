@@ -1694,11 +1694,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328361a9234b0504599869c5b40be898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _easyLevel: {fileID: 1553910840}
+  _hardLevel: {fileID: 901885262}
+  _extremeLevel: {fileID: 846677256}
   highScore: {fileID: 114619935}
   title: {fileID: 1788348301}
-  easyLevel: {fileID: 1553910840}
-  hardLevel: {fileID: 901885262}
-  extremeLevel: {fileID: 846677256}
   audioO: {fileID: 1557400915}
 --- !u!4 &808788352
 Transform:
@@ -1726,11 +1726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b326ade1fc2723249820407a9ac33c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Color: {fileID: 1286046781}
+  color: {fileID: 0}
   rating: {fileID: 1477817491}
   frame: {fileID: 1171169523}
   infoT: {fileID: 1728453937}
-  RateText: {fileID: 315570056}
+  rateText: {fileID: 0}
   alter: {fileID: 2006518412}
 --- !u!114 &808788354
 MonoBehaviour:
