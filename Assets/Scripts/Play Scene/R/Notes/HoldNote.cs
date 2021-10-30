@@ -57,9 +57,16 @@ namespace Reilas
 
             _hold.position = (headPos + tailPos) / 2f;
         }
-        public void NoteDestroy()
+
+        public void NoteDestroy(bool kujo)
         {
-            //Debug.Log(this.gameObject);
+            if (kujo) RhythmGamePresenter.HoldKujoNotes.Remove(this);
+            else RhythmGamePresenter.HoldNotes.Remove(this);
+
+            for(int i = this.gameObject.transform.childCount - 1; i >= 0; i--)
+            {
+
+            }
             Destroy(this.gameObject);
             
         }

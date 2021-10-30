@@ -90,16 +90,7 @@ public class JudgeService : MonoBehaviour
             }
             case 4:
             {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size; i++)
-                {
-                    if (tapState[i]) return true;
-                }
-
-                break;
-            }
-            case 35:
-            {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size - 1; i++)
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
                 {
                     if (tapState[i]) return true;
                 }
@@ -108,7 +99,7 @@ public class JudgeService : MonoBehaviour
             }
             default:
             {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size; i++)
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
                 {
                     if (tapState[i]) return true;
                 }
@@ -193,8 +184,8 @@ public class JudgeService : MonoBehaviour
                 if (judgeResult == JudgeResultType.NotJudgedYet) continue;
                 AllJudge.Add(judgeResult);
                 note.hasBeenTapped = true;
-                if (CheckType(reilasNoteEntity, "AboveTap")) RhythmGamePresenter.AboveTapNotes[0].NoteDestroy();
-                else if (CheckType(reilasNoteEntity, "GroundTap")) RhythmGamePresenter.TapNotes[0].NoteDestroy();
+                if (CheckType(reilasNoteEntity, "AboveTap")) RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
+                else if (CheckType(reilasNoteEntity, "GroundTap")) RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
                 tapJudgeStartIndex[i]++;
             }
         }
@@ -222,7 +213,7 @@ public class JudgeService : MonoBehaviour
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
-            RhythmGamePresenter.AboveChainNotes[0].NoteDestroy();
+            RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
             chainJudgeStartIndex++;
         }
     }

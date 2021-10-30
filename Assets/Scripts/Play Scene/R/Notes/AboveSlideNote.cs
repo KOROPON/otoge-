@@ -25,8 +25,11 @@ namespace Reilas
 
         private AboveSlideEffector effecterCs = null!;
 
-        public void Initialize(ReilasNoteLineEntity entity)
+        private bool _kujo;
+
+        public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
+            _kujo = kujo;
             _noteSpeed = entity.Head.Speed;
             _entity = entity;
             InitializeMesh();
@@ -203,7 +206,8 @@ namespace Reilas
                 Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
-                RhythmGamePresenter.AboveSlideNotes.RemoveAt(noteNum);
+                if (_kujo) RhythmGamePresenter.AboveKujoSlideNotes.RemoveAt(noteNum);
+                else RhythmGamePresenter.AboveSlideNotes.RemoveAt(noteNum);
                 RhythmGamePresenter.AboveSlideEffectors.RemoveAt(noteNum);
             }
 
@@ -300,6 +304,19 @@ namespace Reilas
             _mesh.RecalculateBounds();
 #endif
             _meshFilter.mesh = _mesh;
+        }
+
+
+        public void NoteDestroy(bool kujo)
+        {
+            foreach (Transform child in this.transform.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
+            Destroy(this.transform.GetChild(0).gameObject);
+            if (kujo) RhythmGamePresenter.AboveKujoSlideNotes.Remove(this);
+            else RhythmGamePresenter.AboveSlideNotes.Remove(this);
+            Destroy(this.gameObject);
         }
     }
 }

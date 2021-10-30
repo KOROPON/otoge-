@@ -91,8 +91,10 @@ public class RhythmGamePresenter : MonoBehaviour
     public static string dif = null!;
 
     //Reilas移行判定
-    public bool jumpToKujo;
+    public bool jumpToKujo = false;
     private bool _throughPoint;
+
+    private BossGimmicks bos;
 
     public static readonly bool[] LaneTapStates = new bool[36];
 
@@ -104,8 +106,8 @@ public class RhythmGamePresenter : MonoBehaviour
     
     private JudgeService? _judgeService;
 
-    private float _judgeTime;
-    private float _audioTime;
+    public float _judgeTime;
+    public float _audioTime;
 
     private static readonly System.Diagnostics.Stopwatch Stopwatch = new System.Diagnostics.Stopwatch();
 
@@ -158,25 +160,16 @@ public class RhythmGamePresenter : MonoBehaviour
             { 
                 case 4: 
                 { 
-                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size; i++)
+                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size && i < 36; i++)
                     {
                         TapNoteLanes[i].Add(note);
                     }
 
                     break;
                 } 
-                case 35: 
-                { 
-                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.note.Size - 1; i++)
-                    {
-                        TapNoteLanes[i].Add(note);
-                    }
-
-                    break;
-                }
                 default: 
                 { 
-                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.note.Size; i++)
+                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.note.Size && i < 36; i++)
                     {
                         TapNoteLanes[i].Add(note);
                     }
@@ -200,9 +193,17 @@ public class RhythmGamePresenter : MonoBehaviour
     
     private async UniTask AwakeAsync()
     {
+        if(musicName == "Reilas" && dif == "Extreme")
+        {
+            jumpToKujo = true;
+        }
+
+        bos = this.gameObject.GetComponent<BossGimmicks>();
+
         //FindObjectOfType<Variable>().enabled = false;
 
-        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
+        var chartTextAsset = await Resources.LoadAsync<TextAsset>("ChartsT/" + musicName + "." + dif) as TextAsset;
+        Debug.Log(musicName + "." + dif);
 
         if (chartTextAsset == null)
         {
@@ -210,6 +211,10 @@ public class RhythmGamePresenter : MonoBehaviour
             return;
         }
 
+        if(jumpToKujo)
+        {
+            bos.BossAwake();
+        }
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
@@ -329,8 +334,11 @@ public class RhythmGamePresenter : MonoBehaviour
         SpawnHoldNotes(_reilasHold, false);
         SpawnAboveHoldNotes(_reilasAboveHold, false);
         SpawnAboveSlideNotes(_reilasAboveSlide, false);
-        
 
+        _reilasAboveSlide.AddRange(bos.reilasKujoAboveSlide);
+        _reilasAboveHold.AddRange(bos.reilasKujoAboveHold);
+        _reilasHold.AddRange(bos.reilasKujoHold);
+        _reilasChain.AddRange(bos.reilasKujoChain);
 
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
@@ -458,7 +466,7 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(aboveSlideNotePrefab);
             var aboveSlideEffector = tapNote.transform.Find("AboveSlideEffector").gameObject.GetComponent<AboveSlideEffector>();
-            tapNote.Initialize(note);
+            tapNote.Initialize(note, false);
             aboveSlideEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveSlideEffectors.Add(aboveSlideEffector);
@@ -595,7 +603,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (musicName == "Reilas" && _throughPoint)
         {
-            if (currentTime >= 78)
+            if (currentTime >= 82)
             {
                 if (_scoreComboCalculator.slider.value >= 0.75f) 
                 {
@@ -651,6 +659,11 @@ public class RhythmGamePresenter : MonoBehaviour
 
         _judgeService.Judge(_judgeTime);
 
+        if(currentTime > 82 && jumpToKujo)
+        {
+            bos.ChangeToKujo();
+            bos.NotChangeToKujo();
+        }
     }
 
     private void LateUpdate()
