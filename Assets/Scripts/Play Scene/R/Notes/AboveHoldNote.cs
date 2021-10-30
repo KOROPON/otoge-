@@ -157,7 +157,13 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.AboveKujoHoldNotes.Remove(this);
             else RhythmGamePresenter.AboveHoldNotes.Remove(this);
-            Destroy(this.gameObject);
+            foreach (Transform child in this.transform.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
+            Destroy(this.transform.GetChild(0).gameObject);
+            Destroy(gameObject);
+            RhythmGamePresenter.AboveHoldEffectors.Remove(this.transform.GetChild(0).GetComponent<AboveHoldEffector>());
         }
     }
 }

@@ -62,13 +62,19 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.HoldKujoNotes.Remove(this);
             else RhythmGamePresenter.HoldNotes.Remove(this);
-
-            for(int i = this.gameObject.transform.childCount - 1; i >= 0; i--)
+            foreach (Transform child in this.transform)
             {
-
+                foreach (Transform inChild in child)
+                {
+                    Destroy(inChild.gameObject);
+                }
             }
-            Destroy(this.gameObject);
-            
+            foreach (Transform child in this.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            Destroy(gameObject);
+            RhythmGamePresenter.HoldEffectors.Remove(this.transform.GetChild(1).GetComponent<HoldEffector>());
         }
     }
 }

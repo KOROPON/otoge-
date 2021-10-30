@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class AlphaButtonClickMask : MonoBehaviour//, ICanvasRaycastFilter 
+public class AlphaButtonClickMask : MonoBehaviour, ICanvasRaycastFilter 
 {
-    /*protected Image _image;
+    protected Image _image;
 
     public void Start()
     {
@@ -52,6 +52,6 @@ public class AlphaButtonClickMask : MonoBehaviour//, ICanvasRaycastFilter
         //uv are inversed, as 0,0 or the rect transform seem to be upper right, then going negativ toward lower left...
         Color c = _image.sprite.texture.GetPixelBilinear(uv.x, uv.y);
 
-        return c.a> 0.1f;
-    }*/
+        return c.a > 0.1f;
+    }
 }

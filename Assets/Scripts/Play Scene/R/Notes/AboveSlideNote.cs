@@ -313,6 +313,7 @@ namespace Reilas
             {
                 Destroy(child.gameObject);
             }
+            RhythmGamePresenter.AboveSlideEffectors.Remove(this.transform.GetChild(0).GetComponent<AboveSlideEffector>());
             Destroy(this.transform.GetChild(0).gameObject);
             if (kujo) RhythmGamePresenter.AboveKujoSlideNotes.Remove(this);
             else RhythmGamePresenter.AboveSlideNotes.Remove(this);
