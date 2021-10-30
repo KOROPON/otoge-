@@ -8,7 +8,7 @@ public class ClearRankDirector : MonoBehaviour
     private Animation _anim;
     private Image _clearRank;
     private Image _clearRankBar;
-    public Image fader;
+    private Image _fader;
     private AudioSource _clearAud;
     
 
@@ -20,14 +20,14 @@ public class ClearRankDirector : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
         _clearAud = gameObject.GetComponent<AudioSource>();
-        fader.color = new Color32(0, 0, 0, 0);
-        fader.enabled = false;
+        _fader = GameObject.Find("Fader").GetComponent<Image>();
+        _fader.color = new Color32(0, 0, 0, 180);
+        _fader.enabled = false;
     }
 
     public void SelectRank(string clearRank)
     {
-        fader.enabled = true;
-        fader.color = new Color32(0, 0, 0, 180);
+        _fader.enabled = true;
         _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank);
         _clearRankBar.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank + "Bar");
         //_clearAud.clip = Resources.Load<AudioSource>("ClearAudio/" + clearRank);

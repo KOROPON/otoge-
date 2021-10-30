@@ -7,8 +7,13 @@ public class SettingField : MonoBehaviour
     public static bool setBool;
     public Text text;
     public AudioSource aud;
+    private Image _fader;
     int resumetime = 180;
 
+    void Start()
+    {
+        _fader = GameObject.Find("Fader").GetComponent<Image>();
+    }
     [SerializeField]
     public GameObject pauseButton;
     public GameObject pausePanel;
@@ -21,6 +26,7 @@ public class SettingField : MonoBehaviour
         }
         aud.Pause();
         Time.timeScale = 0;
+        _fader.enabled = true;
         pausePanel.SetActive(true);
         pauseButton.SetActive(false);
     }
@@ -44,6 +50,7 @@ public class SettingField : MonoBehaviour
             text.text = (resumetime / 60).ToString();
             if (resumetime == 0)
             {
+                _fader.enabled = false;
                 pauseButton.SetActive(true);
                 aud.UnPause();
                 Time.timeScale = 1;
@@ -69,7 +76,6 @@ public class SettingField : MonoBehaviour
         Shutter.blChange = "ToPFrP";
         Shutter.blShutterChange = "Close";
     }
-
     private void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
