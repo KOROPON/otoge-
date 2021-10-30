@@ -13,20 +13,28 @@ namespace Reilas
         private const float BelowNoteWidth = 2.2f;
         private const float LeftPosition = -4.4f;
 
-        public static float gameSpeed;
+        private static float _gameSpeed;
 
+        public static float firstChartSpeed;
+        public static float normalizedSpeed;
+        
         public static void CalculateGameSpeed()
         {
-            gameSpeed = PlayerPrefs.HasKey("rate") ? 10 * PlayerPrefs.GetFloat("rate") : 10;
+            _gameSpeed = PlayerPrefs.HasKey("rate") ? 10 * PlayerPrefs.GetFloat("rate") : 10;
+        }
+
+        public static void CalculateNoteSpeed(float noteSpeed)
+        {
+            normalizedSpeed = _gameSpeed * noteSpeed / firstChartSpeed;
         }
         
-        public static Vector3 GetPosition(NoteEntity entity, float currentTime, bool checkIfTap, float noteSpeed)
+        public static Vector3 GetPosition(NoteEntity entity, float currentTime, float noteSpeed, bool checkIfTap)
         {
-            var highSpeed = gameSpeed * noteSpeed;
+            var highSpeed = normalizedSpeed * noteSpeed;
 
             var size = entity.Size * BelowNoteWidth;
             var left = size / 2f;
-            var pos = LeftPosition + (left);
+            var pos = LeftPosition + left;
 
             Vector3 notePos;
 

@@ -5,22 +5,22 @@ using UnityEngine.Video;
 [RequireComponent(typeof(RawImage), typeof(VideoPlayer))]
 public class MovieLogo : MonoBehaviour
 {
-    RawImage image;
-    VideoPlayer player;
+    RawImage _image;
+    VideoPlayer _player;
     void Awake()
     {
         Application.targetFrameRate = 60;
-        image = GetComponent<RawImage>();
-        player = GetComponent<VideoPlayer>();
+        _image = GetComponent<RawImage>();
+        _player = GetComponent<VideoPlayer>();
 
-        player.EnableAudioTrack(0, true);
+        _player.EnableAudioTrack(0, true);
 
     }
     void Update()
     {
-        if (player.isPrepared)
+        if (_player.isPrepared)
         {
-            image.texture = player.texture;
+            _image.texture = _player.texture;
         }
     }
 }

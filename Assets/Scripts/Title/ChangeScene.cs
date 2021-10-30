@@ -2,20 +2,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
-    private bool startBool;
+    private bool _startBool;
     public AudioSource titleMusic;
     void Start()
     {
-        startBool = true;
+        _startBool = true;
         SceneManager.LoadScene("ShutterScene", LoadSceneMode.Additive);
     }
     public void Change()
     {
         if (titleMusic.isPlaying)
         {
-            if (startBool)
+            if (_startBool)
             {
-                startBool = false;
+                _startBool = false;
                 Shutter.blChange = "ToS_F";
                 Shutter.blShutterChange = "Close";
                 Invoke("StopTitle", 0.5f);

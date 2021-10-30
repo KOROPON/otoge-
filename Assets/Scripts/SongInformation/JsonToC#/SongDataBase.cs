@@ -31,8 +31,8 @@ public struct Custom
 [System.Serializable]
 public sealed class Level
 {
-    public int Easy;
-    public int Hard;
-    public int Extreme;
-    public int KUJO;
+    public int easy;
+    public int hard;
+    public int extreme;
+    public int kujo;
 }

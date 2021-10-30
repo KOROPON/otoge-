@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b5c8b48813fe24d9500f43b2eae208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshFilter: {fileID: -8986892466806343100}
+  meshFilter: {fileID: -8986892466806343100}
   aboveChainTime: 0
 --- !u!33 &-8986892466806343100
 MeshFilter:

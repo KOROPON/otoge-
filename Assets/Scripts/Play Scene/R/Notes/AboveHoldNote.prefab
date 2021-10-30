@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 460896369986113639}
-  - component: {fileID: 3029903829073865455}
-  - component: {fileID: 1519934026934528172}
   - component: {fileID: 8610339511716983441}
+  - component: {fileID: 1519934026934528172}
+  - component: {fileID: 3029903829073865455}
   m_Layer: 0
   m_Name: AboveHoldNote
   m_TagString: Untagged
@@ -34,6 +34,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8610339511716983441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883093436937059607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9149ac767b50945b56f2d5f202be25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 1519934026934528172}
+--- !u!33 &1519934026934528172
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883093436937059607}
+  m_Mesh: {fileID: 0}
 --- !u!23 &3029903829073865455
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75,27 +96,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1519934026934528172
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883093436937059607}
-  m_Mesh: {fileID: 0}
---- !u!114 &8610339511716983441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883093436937059607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9149ac767b50945b56f2d5f202be25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshFilter: {fileID: 1519934026934528172}
 --- !u!1 &2705811456699738436
 GameObject:
   m_ObjectHideFlags: 0
@@ -9889,4 +9889,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cea32b736d3f14b9d206b005f9aff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameObject: {fileID: 2705811458334351961}
+  gameObject: {fileID: 0}
+  aboveHoldEffectTime: 0
