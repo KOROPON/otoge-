@@ -12,10 +12,26 @@ namespace Reilas
     /// </summary>
     public static class CameraPosCalculator
     {
-        public static List<Vector3> CameraPosCalculatorService(float time)
+        public static List<Vector3> CameraPosCalculatorService(float time, float rotation)
         {
             List<Vector3> pos = new List<Vector3>();
+            if (time < 100) //‚Ë‚¶‚ê‚Äi‚Þ
+            {
+                float t = time - 93;
+                float z = (-(1 / (t + 1)) + 1) * 5 - 2.8f;
+                Vector3 position = new Vector3(0, 2.2f, z);
+                Vector3 rota = new Vector3(0, 0, rotation + 5);
+                pos.Add(position);
+                pos.Add(rota);
+            }
+            else if (100 < time && time < 101.8f) // ‚Ë‚¶‚ê‚Äi‚Þ
+            {
 
+            }
+            else if (time < 103.2f) // –ß‚Á‚Ä‚­‚é
+            {
+
+            }
             return pos;
         }
     }
