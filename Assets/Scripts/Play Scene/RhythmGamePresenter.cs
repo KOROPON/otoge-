@@ -198,11 +198,11 @@ public class RhythmGamePresenter : MonoBehaviour
             jumpToKujo = true;
         }
 
-        bos = this.gameObject.GetComponent<BossGimmicks>();
+        bos = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
 
         //FindObjectOfType<Variable>().enabled = false;
 
-        var chartTextAsset = await Resources.LoadAsync<TextAsset>("ChartsT/" + musicName + "." + dif) as TextAsset;
+        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
         Debug.Log(musicName + "." + dif);
 
         if (chartTextAsset == null)
