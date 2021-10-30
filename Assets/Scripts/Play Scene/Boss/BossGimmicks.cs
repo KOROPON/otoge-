@@ -154,7 +154,7 @@ public class BossGimmicks : MonoBehaviour
             return;
         }
 
-        List<Vector3> cameraPos = CameraPosCalculator.CameraPosCalculatorService(time);
+        List<Vector3> cameraPos = CameraPosCalculator.CameraPosCalculatorService(time, Camera.main.transform.rotation.z);
         camera.transform.position = cameraPos[0];
         camera.transform.eulerAngles = cameraPos[1];
     }

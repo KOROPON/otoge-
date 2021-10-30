@@ -6,16 +6,32 @@ using System.Collections.Generic;
 namespace Reilas
 {
     /// <summary>
-    /// ƒ{ƒX‹È‚ÌƒJƒƒ‰‚ÌˆÊ’uA‰ñ“]‚ğ‘€ì‚·‚éScript
+    /// ï¿½{ï¿½Xï¿½È‚ÌƒJï¿½ï¿½ï¿½ï¿½ï¿½ÌˆÊ’uï¿½Aï¿½ï¿½]ï¿½ğ‘€ì‚·ï¿½ï¿½Script
     /// 
-    /// ‰ŠúˆÊ’u‚Í (0, 2.2, -2.8)
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½ï¿½ (0, 2.2, -2.8)
     /// </summary>
     public static class CameraPosCalculator
     {
-        public static List<Vector3> CameraPosCalculatorService(float time)
+        public static List<Vector3> CameraPosCalculatorService(float time, float rotation)
         {
             List<Vector3> pos = new List<Vector3>();
+            if (time < 100) //ï¿½Ë‚ï¿½ï¿½ï¿½Äiï¿½ï¿½
+            {
+                float t = time - 93;
+                float z = (-(1 / (t + 1)) + 1) * 5 - 2.8f;
+                Vector3 position = new Vector3(0, 2.2f, z);
+                Vector3 rota = new Vector3(0, 0, rotation + 5);
+                pos.Add(position);
+                pos.Add(rota);
+            }
+            else if (100 < time && time < 101.8f) // ï¿½Ë‚ï¿½ï¿½ï¿½Äiï¿½ï¿½
+            {
 
+            }
+            else if (time < 103.2f) // ï¿½ß‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+            {
+
+            }
             return pos;
         }
     }

@@ -40,7 +40,7 @@ public class ClearRankDirector : MonoBehaviour
         Shutter.blShutterChange = "Close";
     }
 
-    private void ClearSe()
+    private void ClearSE()
     {
         _clearAud.Play();
     }

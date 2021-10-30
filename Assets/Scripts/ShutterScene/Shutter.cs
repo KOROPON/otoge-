@@ -120,6 +120,7 @@ public class Shutter : MonoBehaviour
     private void PlayAudio()
     {
         RhythmGamePresenter.PlaySongs();
+        Debug.Log("SongPlay");
         ChangeScene_PlayScene.playNoticed = true;
         SettingField.setBool = true;
     }
