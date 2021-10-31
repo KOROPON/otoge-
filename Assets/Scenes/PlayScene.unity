@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11647,6 +11647,8 @@ MonoBehaviour:
   reilasKujoAboveHold: []
   reilasKujoHold: []
   reilasKujoChain: []
+  kujoJudgeSwitch: 0
+  bossClock: {fileID: 0}
   camera: {fileID: 963194227}
 --- !u!114 &684936814
 MonoBehaviour:
@@ -17843,7 +17845,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1036589695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b97c8be546faf4abca119010f621cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ce8b5f1802a8d94fb6b8c910c16cd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   song: {fileID: 947960482}
