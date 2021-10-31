@@ -87,7 +87,6 @@ public class RhythmGamePresenter : MonoBehaviour
 
     //Reilas移行判定
     public bool jumpToKujo = false;
-    private bool _throughPoint;
 
     private BossGimmicks? _boss;
 
@@ -331,6 +330,8 @@ public class RhythmGamePresenter : MonoBehaviour
         _reilasHold.AddRange(_boss.reilasKujoHold);
         _reilasChain.AddRange(_boss.reilasKujoChain);
 
+        Debug.Log(TapNoteLanes[4].Count());
+
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
     }
@@ -509,15 +510,12 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("JumpToKUJO = " + jumpToKujo);
-
         if (_audioSource == null) return;
 
         InputService.AboveLaneTapStates.Clear();
         for (var i = 0; i < 36; i++)
         {
-            LaneTapStates[i, 0] = LaneTapStates[i, 1];
-            LaneTapStates[i, 1] = false;
+            LaneTapStates[i, 0] = false;
         }
 
         var allTouch = Input.touches;
@@ -531,13 +529,19 @@ public class RhythmGamePresenter : MonoBehaviour
             var (vector3, laneIndex) = _screenPoints.Select((screenPoint, index) => (screenPoint, index))
                 .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First();
             var distance = Vector2.Distance(vector3, touch.position);
-            var nearestLaneIndex = distance < 150 ? laneIndex : 40;//押した場所に一番近いレーンの番号
+            var nearestLaneIndex = distance < 500 ? laneIndex : 40;//押した場所に一番近いレーンの番号
             //Debug.Log(nearestLaneIndex);
             var start = touch.phase == TouchPhase.Began;
+
+
             // touch.position
             // このフレームで押されたよん
 
-            if (nearestLaneIndex < 36) LaneTapStates[nearestLaneIndex, 0] = true;
+            if (nearestLaneIndex < 36)
+            {
+                LaneTapStates[nearestLaneIndex, 0] = true;
+                LaneTapStates[nearestLaneIndex, 1] = start;
+            }
             else continue;
 
             InputService.AboveLaneTapStates.Add(new LaneTapState

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Reilas;
 using Rhythmium;
+using System.Linq;
 
 public enum JudgeResultType
 {
@@ -126,7 +127,7 @@ public class JudgeService : MonoBehaviour
             {
                 for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1]) laneList.Add(i);
+                    if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
                 }
 
                 return laneList;
@@ -135,7 +136,7 @@ public class JudgeService : MonoBehaviour
             {
                 for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1]) laneList.Add(i);
+                    if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
                 }
 
                 return laneList;
@@ -158,10 +159,14 @@ public class JudgeService : MonoBehaviour
                 if (timeDifference > _judgeSeconds["Tap Bad"]) break;
                 var difference = CalculateDifference(currentTime, reilasNoteEntity.JudgeTime, "Tap");
                 var timeCheck = TimeCheck(currentTime, reilasNoteEntity.JudgeTime, "Tap");
+
                 if (GetTapState(reilasNoteEntity).Contains(i))
                 {
-                    var nextNote = tapNotes[i][j + 1];
-                    if (timeDifference < currentTime - nextNote.note.JudgeTime) judgeResult = JudgeResultType.Miss;
+                    var nextNoteIndex = j + 1;
+                    if(nextNoteIndex != tapNotes[i].Count() && timeDifference < currentTime - tapNotes[i][nextNoteIndex].note.JudgeTime)
+                    {
+                        judgeResult = JudgeResultType.Miss;
+                    }
                     else
                     {
                         judgeResult = difference switch
@@ -186,7 +191,12 @@ public class JudgeService : MonoBehaviour
         var internalNotes = RhythmGamePresenter.internalNotes;
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
-            if (RhythmGamePresenter.internalNoteJudge != null && RhythmGamePresenter.internalNoteJudge[i]) continue;
+            if (RhythmGamePresenter.internalNoteJudge == null)
+            {
+                Debug.LogError("Can't Judge Internal");
+                break;
+            }
+            if (RhythmGamePresenter.internalNoteJudge[i]) continue;
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             if (timeDifference > _judgeSeconds["Internal"]) break;
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
@@ -199,7 +209,12 @@ public class JudgeService : MonoBehaviour
         var chainNotes = RhythmGamePresenter.chainNotes;
         for (var i = chainJudgeStartIndex; i < chainNotes.Count; i++)
         {
-            if (RhythmGamePresenter.chainNoteJudge != null && RhythmGamePresenter.chainNoteJudge[i]) continue;
+            if (RhythmGamePresenter.chainNoteJudge == null)
+            {
+                Debug.LogError("Can't Judge Chain");
+                break;
+            }
+            if (RhythmGamePresenter.chainNoteJudge[i]) continue;
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], CheckIfTapped(chainNotes[i]), "Chain");
