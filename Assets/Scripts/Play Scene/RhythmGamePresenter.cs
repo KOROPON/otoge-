@@ -9,15 +9,6 @@ using UnityEngine;
 using Reilas;
 using System;
 
-public abstract class HeadGuide
-{
-    public AudioSource songAudio = null!;
-
-    public ScoreComboCalculator? scoreComboCalculator;
-    public int indexNum;
-    public float time;
-}
-
 public class ReilasNoteEntityToGameObject
 {
     public ReilasNoteEntity note = null!;
@@ -29,19 +20,19 @@ public class RhythmGamePresenter : MonoBehaviour
     public AudioSource songAudio = null!;
 
     private ScoreComboCalculator? _scoreComboCalculator;
-    
+
     [SerializeField] private TapNote tapNotePrefab = null!;
     [SerializeField] private HoldNote holdNotePrefab = null!;
     [SerializeField] private AboveTapNote aboveTapNotePrefab = null!;
     [SerializeField] private AboveChainNote aboveChainNotePrefab = null!;
     [SerializeField] private AboveHoldNote aboveHoldNotePrefab = null!;
     [SerializeField] private AboveSlideNote aboveSlideNotePrefab = null!;
-    
+
     [SerializeField] private BarLine barLinePrefab = null!;
     [SerializeField] private GameObject keyBeamPrefab = null!;
-    
+
     private readonly List<GameObject> _allKeyBeam = new List<GameObject>();
-        
+
     private static AudioSource _audioSource = null!;
     private static readonly AudioSource LongPerfect = null!;
 
@@ -70,13 +61,14 @@ public class RhythmGamePresenter : MonoBehaviour
 
     public static List<ReilasNoteEntity> internalNotes = new List<ReilasNoteEntity>();
     public static List<ReilasNoteEntity> chainNotes = new List<ReilasNoteEntity>();
-    
-    public static readonly List<ReilasNoteEntityToGameObject>[] TapNoteLanes = new List<ReilasNoteEntityToGameObject>[36];
-    
+
+    public static readonly List<ReilasNoteEntityToGameObject>[] TapNoteLanes =
+        new List<ReilasNoteEntityToGameObject>[36];
+
     public static int countNotes;
 
-    private List<SpeedChangeEntity> _bpmChanges = new List<SpeedChangeEntity>();
-    private int _bpmChangesIndex;
+    [SerializeField] private List<SpeedChangeEntity> speedChanges = new List<SpeedChangeEntity>();
+    private int _speedChangesIndex;
     private bool _checkSpeedChangeEntity;
 
     //Effect用
@@ -87,7 +79,7 @@ public class RhythmGamePresenter : MonoBehaviour
     //Judge用
     public static bool[]? internalNoteJudge;
     public static bool[]? chainNoteJudge;
-    
+
     private ReilasChartEntity _chartEntity = null!;
 
     public static string musicName = null!;
@@ -99,12 +91,8 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private BossGimmicks? _boss;
 
-    public static readonly bool[] LaneTapStates = new bool[36];
+    public static readonly bool[,] LaneTapStates = new bool[36, 2];
 
-    private List<HeadGuide> _aboveHoldHead = new List<HeadGuide>();
-    private List<HeadGuide> _aboveSlideHead = new List<HeadGuide>();
-    private List<HeadGuide> _holdHead = new List<HeadGuide>();
-    
     private JudgeService? _judgeService;
 
     public float judgeTime;
@@ -158,13 +146,19 @@ public class RhythmGamePresenter : MonoBehaviour
         else
         {
             switch (noteLanePosition)
-            { 
+            {
+                case 35:
+                {
+                    TapNoteLanes[34].Add(note);
+                    TapNoteLanes[35].Add(note);
+                    break;
+                }
                 case 4: 
                 { 
-                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size && i < 36; i++) TapNoteLanes[i].Add(note);
+                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size; i++) TapNoteLanes[i].Add(note);
 
                     break;
-                } 
+                }
                 default: 
                 { 
                     for (var i = noteLanePosition - 1; i < noteLanePosition + note.note.Size && i < 36; i++) TapNoteLanes[i].Add(note);
@@ -181,21 +175,25 @@ public class RhythmGamePresenter : MonoBehaviour
         _scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
         NotePositionCalculatorService.CalculateGameSpeed();
         AwakeAsync().Forget();
-        for (var i = 0; i < _judgeService.tapJudgeStartIndex.Length; i++) _judgeService.tapJudgeStartIndex[i] = 0;
+        for (var i = 0; i < 36; i++)
+        {
+            LaneTapStates[i, 0] = false;
+            LaneTapStates[i, 1] = false;
+            _judgeService.tapJudgeStartIndex[i] = 0;
+        }
         _judgeService.internalJudgeStartIndex = 0;
         _judgeService.chainJudgeStartIndex = 0;
     }
     
     private async UniTask AwakeAsync()
     {
-        if(musicName == "Reilas" && dif == "Extreme") jumpToKujo = true;
+        if (musicName == "Reilas" && dif == "Extreme") jumpToKujo = true;
 
         _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
 
         //FindObjectOfType<Variable>().enabled = false;
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
-        Debug.Log(musicName + "." + dif);
 
         if (chartTextAsset == null)
         {
@@ -223,13 +221,16 @@ public class RhythmGamePresenter : MonoBehaviour
         // chartEntity
         _chartEntity = chartEntity;
 
-        /*if (_chartEntity.SpeedChanges != null)
+        if (_chartEntity.SpeedChanges != null)
         {
-            foreach (var bpm in _chartEntity.SpeedChanges) _bpmChanges.Add(bpm);
+            foreach (var bpm in _chartEntity.SpeedChanges)
+            {
+                speedChanges.Add(bpm);
+            }
             _checkSpeedChangeEntity = true;
         }
         NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
-        NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);*/
+        NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);
         
         _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
@@ -303,10 +304,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
         
-        for (var i = 0; i < TapNoteLanes.Length; i++)
-        {
-            TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
-        }
+        for (var i = 0; i < TapNoteLanes.Length; i++) TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
 
         SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), false);
         SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), false);
@@ -362,7 +360,7 @@ public class RhythmGamePresenter : MonoBehaviour
             GetLanes(new ReilasNoteEntityToGameObject
             {
                 note = note,
-                hasBeenTapped = true
+                hasBeenTapped = false
             });
             if (!bosNotes) AboveTapNotes.Add(tapNote);
             else AboveKujoTapNotes.Add(tapNote);
@@ -485,24 +483,28 @@ public class RhythmGamePresenter : MonoBehaviour
     // Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //
     private readonly IEnumerable<Vector3> _screenPoints = LanePositions.Select(lanePosition3D => Camera.main != null ? Camera.main.WorldToScreenPoint(lanePosition3D) : default);
 
-    /*private float CalculatePassedTime(List<SpeedChangeEntity> bpmChanges, int index)
+    public static float CalculatePassedTime(List<SpeedChangeEntity> bpmChanges, int index)
     {
         var passedTime = 0f;
-        for (var i = 0; i <= index; i++)
+        for (var i = 0; i <= Math.Min(index, bpmChanges.Count - 1); i++)
         {
             if (i == 0) passedTime += 60 * 4 / NotePositionCalculatorService.firstChartSpeed * bpmChanges[0].Position;
             else passedTime += 60 * 4 / bpmChanges[i - 1].Speed * (bpmChanges[i].Position - bpmChanges[i - 1].Position);
         }
 
         return passedTime;
-    }*/
+    }
 
     private void Update()
     {
         if (_audioSource == null) return;
 
         InputService.AboveLaneTapStates.Clear();
-        for (var i = 0; i < LaneTapStates.Length; i++) LaneTapStates[i] = false;
+        for (var i = 0; i < 36; i++)
+        {
+            LaneTapStates[i, 0] = LaneTapStates[i, 1];
+            LaneTapStates[i, 1] = false;
+        }
 
         var allTouch = Input.touches;
         Array.Resize(ref allTouch,0);
@@ -520,8 +522,8 @@ public class RhythmGamePresenter : MonoBehaviour
             var start = touch.phase == TouchPhase.Began;
             // touch.position
             // このフレームで押されたよん
-            
-            if (nearestLaneIndex < 36) LaneTapStates[nearestLaneIndex] = true;
+
+            if (nearestLaneIndex < 36) LaneTapStates[nearestLaneIndex, 0] = true;
             else continue;
 
             InputService.AboveLaneTapStates.Add(new LaneTapState
@@ -536,15 +538,15 @@ public class RhythmGamePresenter : MonoBehaviour
         judgeTime = currentTime;
         audioTime = currentTime;
 
-        /*if (_checkSpeedChangeEntity)
+        if (_checkSpeedChangeEntity)
         {
-            for (var i = _bpmChangesIndex; i < _bpmChanges.Count; i++)
+            for (var i = _speedChangesIndex; i < speedChanges.Count; i++)
             {
-                if (currentTime < CalculatePassedTime(_bpmChanges, i)) break;
-                NotePositionCalculatorService.CalculateNoteSpeed(_bpmChanges[i].Speed);
-                _bpmChangesIndex++;
+                if (currentTime < CalculatePassedTime(speedChanges, i)) break;
+                NotePositionCalculatorService.CalculateNoteSpeed(speedChanges[i].Speed);
+                _speedChangesIndex++;
             }
-        }*/
+        }
         
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
@@ -553,10 +555,7 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             if (currentTime >= 82)
             {
-                if (_scoreComboCalculator != null && _scoreComboCalculator.slider.value >= 0.75f) 
-                {
-                    jumpToKujo = true;
-                }
+                if (_scoreComboCalculator != null && _scoreComboCalculator.slider.value >= 0.75f) jumpToKujo = true;
                 _throughPoint = true;
             }
         }
@@ -604,16 +603,18 @@ public class RhythmGamePresenter : MonoBehaviour
 
         //  Debug.Log(judgeTime + "   " + stopwatch.Elapsed);
 
-        if (!_boss.kujoJudgeSwitch)
+        if (_judgeService != null)
         {
-            _judgeService.Judge(judgeTime);
+            if (_boss != null)
+            {
+                if (!_boss.kujoJudgeSwitch) _judgeService.Judge(judgeTime);
+            }
+            else _judgeService.Judge(judgeTime);
         }
 
-        if(currentTime > 82 && jumpToKujo)
-        {
-            _boss.ChangeToKujo();
-            _boss.NotChangeToKujo();
-        }
+        if (!(currentTime > 82) || !jumpToKujo || _boss == null) return;
+        _boss.ChangeToKujo();
+        _boss.NotChangeToKujo();
     }
 
     private void LateUpdate()
@@ -631,14 +632,9 @@ public class RhythmGamePresenter : MonoBehaviour
         
         foreach(var aboveHold in _reilasAboveHold)
         {
-            if (aboveHold.Head.JudgeTime < noteAddCutOff) // tail の時間 - currentTime < 5s の時 setActive => true & Render()
-            {
-                aboveHoldNoteMove.Add(AboveHoldNotes[indexNum]);
-            }
-            else
-            {
-                break;
-            }
+            // tail の時間 - currentTime < 5s の時 setActive => true & Render()
+            if (aboveHold.Head.JudgeTime < noteAddCutOff) aboveHoldNoteMove.Add(AboveHoldNotes[indexNum]);
+            else break;
             indexNum++;
         }
         indexNum = 0;
@@ -647,90 +643,52 @@ public class RhythmGamePresenter : MonoBehaviour
         
         foreach(var aboveSlide in _reilasAboveSlide)
         {
-            if (aboveSlide.Head.JudgeTime < noteAddCutOff) // tail の時間 - currentTime < 5s の時 setActive => true & Render()
-            {
-                aboveSlideNoteMove.Add(AboveSlideNotes[indexNum]);
-            }
-            else
-            {
-                break;
-            }
+            // tail の時間 - currentTime < 5s の時 setActive => true & Render()
+            if (aboveSlide.Head.JudgeTime < noteAddCutOff) aboveSlideNoteMove.Add(AboveSlideNotes[indexNum]);
+            else break;
             indexNum++;
         }
         indexNum = 0;
+        
         foreach(var hold in _reilasHold)
         {
-            if (hold.Head.JudgeTime < noteAddCutOff) // tail の時間 - currentTime < 5s の時 setActive => true & Render()
-            {
-                holdNoteMove.Add(HoldNotes[indexNum]);
-            }
-            else
-            {
-                break;
-            }
+            // tail の時間 - currentTime < 5s の時 setActive => true & Render()
+            if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldNotes[indexNum]);
+            else break;
             indexNum++;
         }
 
-        foreach (var tapNote in tapNoteMove)
-        {
-            tapNote.Render(audioTime);
-        }
+        foreach (var tapNote in tapNoteMove) tapNote.Render(audioTime, speedChanges);
 
-        foreach (var note in aboveTapMove)
-        {
-            note.Render(audioTime);
-        }
+        foreach (var note in aboveTapMove) note.Render(audioTime, speedChanges);
 
-        foreach (var note in chainNoteMove)
-        {
-            note.Render(audioTime);
-        }
+        foreach (var note in chainNoteMove) note.Render(audioTime, speedChanges);
 
-        for (var num = holdNoteMove.Count - 1; num >= 0; num--)
-        {
-            holdNoteMove[num].Render(audioTime, num, _reilasHold);
-        }
+        for (var num = holdNoteMove.Count - 1; num >= 0; num--) holdNoteMove[num].Render(audioTime, num, _reilasHold, speedChanges);
 
-        for (var num = aboveHoldNoteMove.Count - 1; num >= 0; num--)
-        {
-            aboveHoldNoteMove[num].Render(audioTime, num, _reilasAboveHold);
-        }
+        for (var num = aboveHoldNoteMove.Count - 1; num >= 0; num--) aboveHoldNoteMove[num].Render(audioTime, num, _reilasAboveHold, speedChanges);
 
-        for (var num = aboveSlideNoteMove.Count - 1; num >= 0; num--)
-        {
-            aboveSlideNoteMove[num].Render(audioTime, num, _reilasAboveSlide);
-        }
+        for (var num = aboveSlideNoteMove.Count - 1; num >= 0; num--) aboveSlideNoteMove[num].Render(audioTime, num, _reilasAboveSlide, speedChanges);
 
         foreach (var note in HoldEffectors)
         {
-            if (audioTime - note.holdEffectTime >= 0)
-            {
-                note.Render(audioTime, LongPerfect);
-            }
+            if (audioTime - note.holdEffectTime >= 0) note.Render(audioTime, LongPerfect);
             else break;
         }
 
         foreach (var note in AboveHoldEffectors)
         {
-            if (audioTime - note.aboveHoldEffectTime >= 0)
-            {
-                note.Render(audioTime, LongPerfect);
-            }
+            if (audioTime - note.aboveHoldEffectTime >= 0) note.Render(audioTime, LongPerfect);
             else break;
         }
+        
         foreach (var note in AboveSlideEffectors)
         {
-            if (audioTime - note.aboveSlideEffectTime >= 0)
-            {
-                note.Render(audioTime, LongPerfect);
-            }
+            if (audioTime - note.aboveSlideEffectTime >= 0) note.Render(audioTime, LongPerfect);
             else break;
         }
-        for (var i = 0; i < BarLines.Count; i++)
-        {
-            BarLines[i].Render(_barLineTimes[i], audioTime);
-        }
-
+        
+        for (var i = 0; i < BarLines.Count; i++) BarLines[i].Render(_barLineTimes[i], audioTime, speedChanges);
     }
 }
 

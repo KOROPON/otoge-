@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
+using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -67,45 +68,30 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
+        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
         {
-            RenderMesh(currentTime, noteNum, noteList);
+            RenderMesh(currentTime, noteNum, noteList, speedChangeEntities);
         }
 
-        private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
+        private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
         {
-            if (meshFilter == null) return;
-            if (_mesh == null)
-            {
-                return;
-            }
-
-            if (_vertices == null)
-            {
-                return;
-            }
+            if ( meshFilter == null || _mesh == null || _vertices == null) return;
 
             if(_entity.Tail.JudgeTime < currentTime)
             {
-                foreach (Transform child in transform.GetChild(0))
-                {
-                    Destroy(child.gameObject);
-                }
+                foreach (Transform child in transform.GetChild(0)) Destroy(child.gameObject);
                 Destroy(transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
                 RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
                 RhythmGamePresenter.AboveHoldEffectors.RemoveAt(noteNum);
             }
-            if (!gameObject.activeSelf)
-            {
-                gameObject.SetActive(true);
-            }
+            if (!gameObject.activeSelf) gameObject.SetActive(true);
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false, speedChangeEntities).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false, speedChangeEntities).z;
 
             for (var z = 0; z < zDiv; z++)
             {

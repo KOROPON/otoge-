@@ -1,5 +1,7 @@
 #nullable enable
 using System;
+using System.Collections.Generic;
+using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -95,12 +97,12 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime)
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntity)
         {
-            RenderMesh(currentTime);
+            RenderMesh(currentTime, speedChangeEntity);
         }
 
-        private void RenderMesh(float currentTime)
+        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
             if (meshFilter == null)
             {
@@ -132,17 +134,10 @@ namespace Reilas
 
                     float zPos = 0;
 
-                    if (!this.gameObject.activeSelf)
-                    {
-
-                        if (_entity.JudgeTime - currentTime < 5f)
-                        {
-                            this.gameObject.SetActive(true);
-                        }
-                    }
+                    if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, true).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, true, speedChangeEntities).z;
                     //}
 
 
@@ -171,20 +166,6 @@ namespace Reilas
                     if (_uv == null) continue;
                     _uv[x * 2 + 0] = new Vector3(uvX, 1f, alpha);
                     _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
-
-                    /*
-                    // 奥
-                    else
-                    {
-                        var w = z * (_entity.Size + 1) * 2 + (x * 2);
-
-                        if (_uv != null)
-                        {
-                            _uv[w + 0] = new Vector3(uvX, 1f, alpha);
-                            _uv[w + 1] = new Vector3(0, 0, alpha);
-                        }
-                    }
-                    */
                 }
             }
 

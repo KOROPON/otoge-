@@ -1,6 +1,8 @@
 #nullable enable
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -185,24 +187,18 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
+        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
         {
-            RenderMesh(currentTime, noteNum, noteList);
+            RenderMesh(currentTime, noteNum, noteList, speedChangeEntities);
         }
 
-        private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
+        private void RenderMesh(float currentTime, int noteNum, IList noteList, List<SpeedChangeEntity> speedChangeEntities)
         {
-            if (meshFilter == null || _mesh == null || _vertices == null)
-            {
-                return;
-            }
+            if (meshFilter == null || _mesh == null || _vertices == null) return;
 
             if (_entity.Tail.JudgeTime < currentTime) // NoteDestroy
             {
-                foreach (Transform child in this.transform.GetChild(0))
-                {
-                    Destroy(child.gameObject);
-                }
+                foreach (Transform child in this.transform.GetChild(0)) Destroy(child.gameObject);
                 Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
@@ -211,27 +207,19 @@ namespace Reilas
                 RhythmGamePresenter.AboveSlideEffectors.RemoveAt(noteNum);
             }
 
-            if (!gameObject.activeSelf) // SetActive
-            {
-                gameObject.SetActive(true);
-            }
+            // SetActive
+            if (!gameObject.activeSelf) gameObject.SetActive(true);
 
-            var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
+            //var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false, speedChangeEntities).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false, speedChangeEntities).z;
 
 
             int thisNoteZRatio;
 
-            if (_leftRatio > _rightRatio)
-            {
-                thisNoteZRatio = _leftRatio + 2;
-            }
-            else
-            {
-                thisNoteZRatio = _rightRatio + 2;
-            }
+            if (_leftRatio > _rightRatio) thisNoteZRatio = _leftRatio + 2;
+            else thisNoteZRatio = _rightRatio + 2;
 
             const float div = 32f;
             const float outerLaneRadius = 4.4f;
@@ -242,9 +230,9 @@ namespace Reilas
 
                 var currentZ = Mathf.Lerp(headZ, tailZ, p2);
 
-                float nowLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, p2);
+                var nowLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, p2);
 
-                for (int x = 0; x <= _thisNoteSize; x++)
+                for (var x = 0; x <= _thisNoteSize; x++)
                 {
                     var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + nowLaneSize / _thisNoteSize * x; //今作る頂点のレーン番号(小数点以下含む)
 
@@ -252,36 +240,34 @@ namespace Reilas
 
                     angle = Mathf.PI / 2f - angle;
 
-                    const float outerRadius = outerLaneRadius;
-
-                    var outerX = Mathf.Sin(angle) * outerRadius;
-                    var outerY = Mathf.Cos(angle) * outerRadius;
+                    var outerX = Mathf.Sin(angle) * outerLaneRadius;
+                    var outerY = Mathf.Cos(angle) * outerLaneRadius;
 
                     var outerPoint = new Vector3(-outerX, outerY, currentZ);
 
-                    _vertices[((int)_thisNoteSize + 1) * z + x] = outerPoint;
-                    _uv[z * ((int)_thisNoteSize + 1) + x] = new Vector2(1f / _thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);
+                    _vertices[(_thisNoteSize + 1) * z + x] = outerPoint;
+                    _uv[z * (_thisNoteSize + 1) + x] = new Vector2(1f / _thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);
                 }
             }
 
             if (_effectorCs.blJudge) // 押されていたら
             {
                 Debug.Log("CutNote");
-                float timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
-                float judgeLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, timeRatio);
-                float judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
-                Debug.Log("Maxznum    " + Mathf.Floor(thisNoteZRatio * timeRatio));
+                var timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
+                var judgeLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, timeRatio);
+                var judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
+                Debug.Log("MaxZNum    " + Mathf.Floor(thisNoteZRatio * timeRatio));
 
-                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio); znum++)
+                for (var zNum = 0; zNum < Mathf.Floor(thisNoteZRatio * timeRatio); zNum++)
                 {
-                    for(int xnum = 0; xnum <= _thisNoteSize; xnum++)
+                    for(var xNum = 0; xNum <= _thisNoteSize; xNum++)
                     {
                         Debug.Log("CutNoteVector");
-                        float angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / _thisNoteSize * xnum);
+                        var angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / _thisNoteSize * xNum);
                         angle = Mathf.PI / 2f - angle;
-                        float x = Mathf.Sin(angle) * outerLaneRadius;
-                        float y = Mathf.Cos(angle) * outerLaneRadius;
-                        _vertices[znum * (_thisNoteSize + 1) + xnum] = new Vector3(-x, y, -0.4f);
+                        var x = Mathf.Sin(angle) * outerLaneRadius;
+                        var y = Mathf.Cos(angle) * outerLaneRadius;
+                        _vertices[zNum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
                     }
                 }
                 _mesh.vertices = _vertices;
