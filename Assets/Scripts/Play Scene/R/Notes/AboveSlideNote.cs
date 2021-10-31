@@ -267,7 +267,7 @@ namespace Reilas
                         angle = Mathf.PI / 2f - angle;
                         var x = Mathf.Sin(angle) * outerLaneRadius;
                         var y = Mathf.Cos(angle) * outerLaneRadius;
-                        _vertices[zNum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
+                        _vertices[znum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
                     }
                 }
                 _mesh.vertices = _vertices;
