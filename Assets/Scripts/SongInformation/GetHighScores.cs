@@ -87,6 +87,7 @@ public class GetHighScores : MonoBehaviour
     public string GetClear(string songName, string difficulty)
     {
         var diff = GetDiff(songName, difficulty);
+        if (diff == null) return null;
         if (diff.allPerfect) return "AllPerfect";
         if (diff.fullCombo) return "FullCombo";
         return diff.clear ? "Clear" : "Failed";

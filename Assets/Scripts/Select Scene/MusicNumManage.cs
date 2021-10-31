@@ -189,6 +189,9 @@ public class MusicNumManage : MonoBehaviour
             var rankSprite = song.GetComponentsInChildren<Image>()[1];
             var songLock = song.GetComponentsInChildren<Image>()[2];
             var determineButton = song.GetComponent<Button>();
+            var clearGuage = song.GetComponentsInChildren<Image>()[3];
+            if (_getHighScores.GetClear(song.name, diff.name) != null) clearGuage.sprite = Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff.name));
+            else clearGuage.sprite = Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
             if (diff.name == "Extreme" && !_getHighScores.GetLock(song.name))
             {
                 songLock.enabled = true;

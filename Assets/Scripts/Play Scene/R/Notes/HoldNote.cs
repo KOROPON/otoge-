@@ -18,8 +18,10 @@ namespace Reilas
             _note = note;
         }
 
+        public float time;
         public void Initialize(ReilasNoteLineEntity entity)
         {
+            time = entity.Head.JudgeTime;
             _noteSpeed = entity.Head.Speed;
             _entity = entity;
             _hold = transform.GetChild(0);
@@ -27,6 +29,7 @@ namespace Reilas
 
         public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
         {
+            Debug.Log("HoldRender");
             if (_entity.Tail.JudgeTime < currentTime)
             {
                 foreach (Transform child in transform) foreach (Transform inChild in child) Destroy(inChild.gameObject);

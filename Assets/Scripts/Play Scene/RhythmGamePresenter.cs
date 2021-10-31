@@ -201,7 +201,7 @@ public class RhythmGamePresenter : MonoBehaviour
             return;
         }
 
-        if(jumpToKujo) _boss.BossAwake();
+        //if(jumpToKujo) _boss.BossAwake();
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
@@ -235,12 +235,19 @@ public class RhythmGamePresenter : MonoBehaviour
         _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
+
+        _tapNotes = _tapNotes.OrderBy(note => note.JudgeTime).ToList();
+        internalNotes = internalNotes.OrderBy(note => note.JudgeTime).ToList();
+        chainNotes = chainNotes.OrderBy(note => note.JudgeTime).ToList();
         
         _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
         _reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
         _reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
-        
+
+
+        Debug.Log(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).Count());
+
         List<int> removeInt = new List<int>();
         
         foreach (var note in _tapNotes)
@@ -305,6 +312,11 @@ public class RhythmGamePresenter : MonoBehaviour
         countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
         
         for (var i = 0; i < TapNoteLanes.Length; i++) TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
+
+        _reilasAboveSlide = _reilasAboveSlide.OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasAboveHold = _reilasAboveHold.OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasHold = _reilasHold.OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasChain = _reilasChain.OrderBy(note => note.JudgeTime).ToList();
 
         SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), false);
         SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), false);
@@ -497,6 +509,8 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("JumpToKUJO = " + jumpToKujo);
+
         if (_audioSource == null) return;
 
         InputService.AboveLaneTapStates.Clear();
@@ -551,12 +565,19 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && _throughPoint)
+        if (musicName == "Reilas" && dif == "Extreme")
         {
-            if (currentTime >= 82)
+            if (currentTime <= 82 && _scoreComboCalculator != null)
             {
-                if (_scoreComboCalculator != null && _scoreComboCalculator.slider.value >= 0.75f) jumpToKujo = true;
-                _throughPoint = true;
+
+                if (_scoreComboCalculator.slider.value >= 0.75f)
+                {
+                    jumpToKujo = true;
+                }
+                else
+                {
+                    jumpToKujo = false;
+                }
             }
         }
         
