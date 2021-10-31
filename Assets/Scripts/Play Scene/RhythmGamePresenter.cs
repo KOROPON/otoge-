@@ -515,6 +515,7 @@ public class RhythmGamePresenter : MonoBehaviour
         InputService.AboveLaneTapStates.Clear();
         for (var i = 0; i < 36; i++)
         {
+            LaneTapStates[i, 1] = LaneTapStates[i, 0];
             LaneTapStates[i, 0] = false;
         }
 
@@ -566,8 +567,8 @@ public class RhythmGamePresenter : MonoBehaviour
             }
         }
         
-        if (PlayerPrefs.HasKey("judgegap")) judgeTime += PlayerPrefs.GetFloat("judgegap") / 1000;
-        if (PlayerPrefs.HasKey("audiogap")) audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
+        if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
+        if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
         if (musicName == "Reilas" && dif == "Extreme") 
         {

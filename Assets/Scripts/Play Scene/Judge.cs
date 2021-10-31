@@ -189,6 +189,7 @@ public class JudgeService : MonoBehaviour
         }
         
         var internalNotes = RhythmGamePresenter.internalNotes;
+
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
             if (RhythmGamePresenter.internalNoteJudge == null)
@@ -196,14 +197,22 @@ public class JudgeService : MonoBehaviour
                 Debug.LogError("Can't Judge Internal");
                 break;
             }
+
             if (RhythmGamePresenter.internalNoteJudge[i]) continue;
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
+            ////here
+            //Debug.Log(timeDifference);
             if (timeDifference > _judgeSeconds["Internal"]) break;
+
+            //Debug.Log(CheckIfTapped(internalNotes[i]));
+
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
             if (RhythmGamePresenter.internalNoteJudge != null) RhythmGamePresenter.internalNoteJudge[i] = true;
             internalJudgeStartIndex++;
+
+            if (judgeResult == JudgeResultType.Miss) Debug.Log("Miss...");
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;

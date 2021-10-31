@@ -252,21 +252,20 @@ namespace Reilas
 
             if (_effectorCs.blJudge) // 押されていたら
             {
-                Debug.Log("CutNote");
                 var timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
                 var judgeLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, timeRatio);
                 var judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
-                Debug.Log("MaxZNum    " + Mathf.Floor(thisNoteZRatio * timeRatio));
 
-                for (int znum = 0; znum < Mathf.Floor((thisNoteZRatio + 1) * timeRatio); znum++)
+                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio); znum++)
                 {
                     for(var xNum = 0; xNum <= _thisNoteSize; xNum++)
                     {
-                        Debug.Log("CutNoteVector");
                         var angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / _thisNoteSize * xNum);
                         angle = Mathf.PI / 2f - angle;
                         var x = Mathf.Sin(angle) * outerLaneRadius;
                         var y = Mathf.Cos(angle) * outerLaneRadius;
+                        Debug.Log(thisNoteZRatio + " " + _thisNoteSize);
+                        Debug.Log(_vertices.Length + "  >  " + znum + "X" + (_thisNoteSize + 1) + " = " + znum * (_thisNoteSize + 1));
                         _vertices[znum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
                     }
                 }
