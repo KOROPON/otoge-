@@ -19,6 +19,10 @@ public class BossGimmicks : MonoBehaviour
     public List<ReilasNoteLineEntity> reilasKujoHold = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteEntity> reilasKujoChain = new List<ReilasNoteEntity>();
 
+    public bool kujoJudgeSwitch = false;
+
+    public AudioSource bossClock;
+
     public new Camera? camera;
 
     private void Awake()
@@ -129,24 +133,31 @@ public class BossGimmicks : MonoBehaviour
     {
         if (!_presenter.jumpToKujo) return;
 
+
         float time = _presenter.audioTime;
 
-        if (time < 82.5f) return;
+        if (time < 81.7f) return;
 
-        if (time < 83f)
+        if (time < 82.93f)
         {
 
             return;
         }
-        else if (time < 93f)
+        else if (time < 92.98f)
         {
+            if (!bossClock.isPlaying) bossClock.Play();
+        }
+        else if (time < 101.78f)
+        {
+            kujoJudgeSwitch = true;
 
         }
-        else if (time < 101.8f)
+        else if (time < 103.04f)
         {
+            kujoJudgeSwitch = false;
 
         }
-        else if (time < 103.2f)
+        else if (time < 104)
         {
 
         }
@@ -162,11 +173,40 @@ public class BossGimmicks : MonoBehaviour
 
     public void ChangeToKujo()
     {
-        // 82.5s  �ڍs�����̘A�ŉ�
-        // 83s �@ ���ԕ���
-        // 93s    ���ڃ��[�v
-        // 101.8s �K���X��
-        // 103.2s ���X�T�r
+        // 81.7s  �ڍs�����̘A�ŉ�
+        // 82.93s �@ ���ԕ���
+        // 92.98s    ���ڃ��[�v
+        // 101.78s �K���X��
+        // 103.04s ���X�T�r
+        for (int i = RhythmGamePresenter.TapNotes.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.TapNotes[i].NoteDestroy(false);
+        }
+
+        for (int i = RhythmGamePresenter.HoldNotes.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.HoldNotes[i].NoteDestroy(false);
+        }
+
+        for (int i = RhythmGamePresenter.AboveTapNotes.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.AboveTapNotes[i].NoteDestroy(false);
+        }
+
+        for (int i = RhythmGamePresenter.AboveHoldNotes.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.AboveHoldNotes[i].NoteDestroy(false);
+        }
+
+        for (int i = RhythmGamePresenter.AboveSlideNotes.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.AboveSlideNotes[i].NoteDestroy(false);
+        }
+
+        for (int i = RhythmGamePresenter.AboveChainNotes.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.AboveChainNotes[i].NoteDestroy(false);
+        }
     }
 
     public void NotChangeToKujo()

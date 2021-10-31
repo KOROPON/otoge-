@@ -28,7 +28,7 @@ namespace Reilas
 
         private static Vector3 CalculateBarLinePosition(float judgeTime, float currentTime)
         {
-            var highSpeed = NotePositionCalculatorService.normalizedSpeed;
+            var highSpeed = NotePositionCalculatorService._gameSpeed;
             
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
