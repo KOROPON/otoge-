@@ -2805,7 +2805,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 808788353}
           m_TargetAssemblyTypeName: Reilas.Setting, Assembly-CSharp
-          m_MethodName: ShiftUP
+          m_MethodName: ShiftUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
