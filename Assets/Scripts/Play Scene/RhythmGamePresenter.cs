@@ -565,22 +565,8 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && dif == "Extreme")
-        {
-            if (currentTime <= 82 && _scoreComboCalculator != null)
-            {
+        if (musicName == "Reilas" && dif == "Extreme") if (currentTime <= 82 && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.value >= 0.75f;
 
-                if (_scoreComboCalculator.slider.value >= 0.75f)
-                {
-                    jumpToKujo = true;
-                }
-                else
-                {
-                    jumpToKujo = false;
-                }
-            }
-        }
-        
 
         for(var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {
