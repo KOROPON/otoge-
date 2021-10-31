@@ -9,11 +9,12 @@ namespace Reilas
     {
         private ReilasNoteLineEntity _entity = null!;
         private float _noteSpeed;
-        private Transform _note;
         private Transform _hold;
 
+        public float time;
         public void Initialize(ReilasNoteLineEntity entity)
         {
+            time = entity.Head.JudgeTime;
             _noteSpeed = entity.Head.Speed;
             _entity = entity;
             _hold = transform.GetChild(0);
@@ -21,6 +22,7 @@ namespace Reilas
 
         public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
+            Debug.Log("HoldRender");
             if (_entity.Tail.JudgeTime < currentTime)
             {
                 foreach (Transform child in this.transform)

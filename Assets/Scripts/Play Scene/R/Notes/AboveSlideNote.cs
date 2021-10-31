@@ -216,7 +216,7 @@ namespace Reilas
                 gameObject.SetActive(true);
             }
 
-            var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
+            //var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
             var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false).z;
             var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false).z;
