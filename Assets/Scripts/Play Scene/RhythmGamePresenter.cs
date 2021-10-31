@@ -234,12 +234,19 @@ public class RhythmGamePresenter : MonoBehaviour
         _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
+
+        _tapNotes = _tapNotes.OrderBy(note => note.JudgeTime).ToList();
+        internalNotes = internalNotes.OrderBy(note => note.JudgeTime).ToList();
+        chainNotes = chainNotes.OrderBy(note => note.JudgeTime).ToList();
         
         _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
         _reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
         _reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
-        
+
+
+        Debug.Log(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).Count());
+
         List<int> removeInt = new List<int>();
         
         foreach (var note in _tapNotes)
@@ -307,6 +314,11 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
         }
+
+        _reilasAboveSlide = _reilasAboveSlide.OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasAboveHold = _reilasAboveHold.OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasHold = _reilasHold.OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasChain = _reilasChain.OrderBy(note => note.JudgeTime).ToList();
 
         SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), false);
         SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), false);
