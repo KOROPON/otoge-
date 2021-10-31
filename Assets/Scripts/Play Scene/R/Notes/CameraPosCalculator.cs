@@ -22,10 +22,10 @@ namespace Reilas
                 pos.Add(new Vector3(0, 2.2f, z));
                 pos.Add(new Vector3(0, 0, rotation - 5));
             }
-            else if (time < 101.8f) // �˂���Đi�� //1.575
+            else if (time < 101.78f) // �˂���Đi�� //1.559
             {
                 float t = time - 99.8f;
-                float z = (t * t * t) * 200 + 1.575f;
+                float z = (t * t * t) * 200 + 1.559f;
                 pos.Add(new Vector3(0, 2.2f, z));
                 if (rotation % 360 != 0)
                 {
@@ -36,7 +36,7 @@ namespace Reilas
                     pos.Add(new Vector3(0, 0, 0));
                 }
             }
-            else if (time < 103.2f) // �߂��Ă���
+            else if (time < 103.04f) // �߂��Ă���
             {
                 float z = Mathf.Lerp(400, 2.8f, (time - 101.8f) / 1.4f);
                 pos.Add(new Vector3(0, 2.2f, z));
@@ -48,6 +48,11 @@ namespace Reilas
                 {
                     pos.Add(new Vector3(0, 0, 0));
                 }
+            }
+            else
+            {
+                pos.Add(new Vector3(0, 2.2f, -2.8f));
+                pos.Add(new Vector3(0, 0, 0));
             }
             return pos;
         }

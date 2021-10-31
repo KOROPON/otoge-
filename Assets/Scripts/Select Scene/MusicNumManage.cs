@@ -73,8 +73,7 @@ public class MusicNumManage : MonoBehaviour
                 localPosition.z);
             while (Vector3.Distance(_scrollViewContent.localPosition, goal) > 1)
             {
-                _scrollViewContent.localPosition = Vector3.Lerp(_scrollViewContent.localPosition,
-                    goal, 0.4f);
+                _scrollViewContent.localPosition = Vector3.Lerp(_scrollViewContent.localPosition, goal, 0.4f);
                 yield return null;
             }
             _blChange = false;

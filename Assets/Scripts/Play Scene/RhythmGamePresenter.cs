@@ -223,13 +223,13 @@ public class RhythmGamePresenter : MonoBehaviour
         // chartEntity
         _chartEntity = chartEntity;
 
-        if (_chartEntity.SpeedChanges != null)
+        /*if (_chartEntity.SpeedChanges != null)
         {
             foreach (var bpm in _chartEntity.SpeedChanges) _bpmChanges.Add(bpm);
             _checkSpeedChangeEntity = true;
         }
         NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
-        NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);
+        NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);*/
         
         _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
@@ -485,7 +485,7 @@ public class RhythmGamePresenter : MonoBehaviour
     // Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //
     private readonly IEnumerable<Vector3> _screenPoints = LanePositions.Select(lanePosition3D => Camera.main != null ? Camera.main.WorldToScreenPoint(lanePosition3D) : default);
 
-    private float CalculatePassedTime(List<SpeedChangeEntity> bpmChanges, int index)
+    /*private float CalculatePassedTime(List<SpeedChangeEntity> bpmChanges, int index)
     {
         var passedTime = 0f;
         for (var i = 0; i <= index; i++)
@@ -495,7 +495,7 @@ public class RhythmGamePresenter : MonoBehaviour
         }
 
         return passedTime;
-    }
+    }*/
 
     private void Update()
     {
@@ -536,7 +536,7 @@ public class RhythmGamePresenter : MonoBehaviour
         judgeTime = currentTime;
         audioTime = currentTime;
 
-        if (_checkSpeedChangeEntity)
+        /*if (_checkSpeedChangeEntity)
         {
             for (var i = _bpmChangesIndex; i < _bpmChanges.Count; i++)
             {
@@ -544,7 +544,7 @@ public class RhythmGamePresenter : MonoBehaviour
                 NotePositionCalculatorService.CalculateNoteSpeed(_bpmChanges[i].Speed);
                 _bpmChangesIndex++;
             }
-        }
+        }*/
         
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
@@ -602,9 +602,12 @@ public class RhythmGamePresenter : MonoBehaviour
             dupLane.Add(laneNum);
         }
 
-      //  Debug.Log(judgeTime + "   " + stopwatch.Elapsed);
+        //  Debug.Log(judgeTime + "   " + stopwatch.Elapsed);
 
-        _judgeService.Judge(judgeTime);
+        if (!_boss.kujoJudgeSwitch)
+        {
+            _judgeService.Judge(judgeTime);
+        }
 
         if(currentTime > 82 && jumpToKujo)
         {

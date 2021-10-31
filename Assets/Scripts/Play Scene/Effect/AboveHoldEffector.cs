@@ -7,7 +7,6 @@ public sealed class AboveHoldEffector : MonoBehaviour
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
     private Color _noteBlight;
-    [SerializeField]private GameObject gameObject;
     private int _lanePos;
     private int _laneMax;
     private int _laneMin;
@@ -29,10 +28,6 @@ public sealed class AboveHoldEffector : MonoBehaviour
 
     public void Render(float currentTime, AudioSource effectAudio)
     {
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)
         {
