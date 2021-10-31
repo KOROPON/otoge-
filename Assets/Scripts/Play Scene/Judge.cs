@@ -85,14 +85,14 @@ public class JudgeService : MonoBehaviour
         {
             case var lane when lane < 4:
             {
-                if (tapState[lane]) return true;
+                if (tapState[lane, 0]) return true;
                 break;
             }
             case 4:
             {
                 for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[i]) return true;
+                    if (tapState[i, 0]) return true;
                 }
 
                 break;
@@ -101,7 +101,7 @@ public class JudgeService : MonoBehaviour
             {
                 for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[i]) return true;
+                    if (tapState[i, 0]) return true;
                 }
 
                 break;
@@ -116,33 +116,26 @@ public class JudgeService : MonoBehaviour
         var tapState = RhythmGamePresenter.LaneTapStates;
         var noteLanePosition = GetLane(note);
         if (noteLanePosition < 4)
-            return tapState[note.LanePosition] ? new List<int> {note.LanePosition} : new List<int>();
+        {
+            return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> {note.LanePosition} : new List<int>();
+        }
         var laneList = new List<int>();
         switch (noteLanePosition)
         {
             case 4:
             {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size; i++)
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[i]) laneList.Add(i);
-                }
-
-                return laneList;
-            }
-            case 35:
-            {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size - 1; i++)
-                {
-                    if (tapState[i]) laneList.Add(i);
+                    if (tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1]) laneList.Add(i);
                 }
 
                 return laneList;
             }
             default:
             {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size; i++)
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[i]) laneList.Add(i);
+                    if (tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1]) laneList.Add(i);
                 }
 
                 return laneList;
@@ -185,7 +178,7 @@ public class JudgeService : MonoBehaviour
                 AllJudge.Add(judgeResult);
                 note.hasBeenTapped = true;
                 if (CheckType(reilasNoteEntity, "AboveTap")) RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
-                else if (CheckType(reilasNoteEntity, "GroundTap")) RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
+                else RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
                 tapJudgeStartIndex[i]++;
             }
         }

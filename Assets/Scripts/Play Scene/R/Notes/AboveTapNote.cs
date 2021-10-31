@@ -1,5 +1,7 @@
 #nullable enable
 using System;
+using System.Collections.Generic;
+using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -61,23 +63,19 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime)
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
-            RenderMesh(currentTime);
+            RenderMesh(currentTime, speedChangeEntities);
         }
 
-        private void RenderMesh(float currentTime)
+        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
-            if (meshFilter == null)
-            {
-                return;
-            }
+            if (meshFilter == null) return;
 
             const float div = 32f;
             const float outerLaneRadius = 5.6f;
 
             const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
-            const float outerRadius = outerLaneRadius;        // 外縁の半径
 
             for (var z = 0; z < 1; z++)
             {
@@ -93,25 +91,15 @@ namespace Reilas
                     var innerY = Mathf.Sin(angle) * innerRadius;
                     var innerX = Mathf.Cos(angle) * innerRadius;
 
-                    var outerY = Mathf.Sin(angle) * outerRadius;
-                    var outerX = Mathf.Cos(angle) * outerRadius;
+                    var outerY = Mathf.Sin(angle) * outerLaneRadius;
+                    var outerX = Mathf.Cos(angle) * outerLaneRadius;
 
                     float zPos = 0;
 
-                    if (!this.gameObject.activeSelf)
-                    {
-
-                        if (_entity.JudgeTime - currentTime < 5f)
-                        {
-                            this.gameObject.SetActive(true);
-                        }
-                    }
-                    //else
-                    //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, true).z;
-                    //}
-
-
+                    if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
+                    
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, true, speedChangeEntities).z;
+                    
                     //zPos += zz;
 
                     var innerPoint = new Vector3(innerX, innerY, zPos);
@@ -128,39 +116,32 @@ namespace Reilas
                         _vertices[p + x * 2 + 1] = outerPoint;
                     }
 
-                    float uvX = 1f / _entity.Size * 0.8f * x + 0.1f;
+                    var uvX = 1f / _entity.Size * 0.8f * x + 0.1f;
 
                     // 手前
-                    if (z == 0)
-                    {
-                        if (_uv != null)
-                        {
-                            _uv[x * 2 + 0] = new Vector2(uvX, 1f);
-                            _uv[x * 2 + 1] = new Vector2(uvX, 0f);
-                        }
-                    }
+                    if (z != 0 || _uv == null) continue;
+                    _uv[x * 2 + 0] = new Vector2(uvX, 1f);
+                    _uv[x * 2 + 1] = new Vector2(uvX, 0f);
                 }
             }
 
-            if (_mesh != null)
-            {
-                _mesh.vertices = _vertices;
+            if (_mesh == null) return;
+            _mesh.vertices = _vertices;
 
-                //GetComponent<MeshRenderer>().material.cal
+            //GetComponent<MeshRenderer>().material.cal
 
-                _mesh.SetUVs(0, _uv);
+            _mesh.SetUVs(0, _uv);
 #if UNITY_EDITOR
-                _mesh.RecalculateBounds();
+            _mesh.RecalculateBounds();
 #endif
-                meshFilter.mesh = _mesh;
-            }
+            meshFilter.mesh = _mesh;
         }
 
         public void NoteDestroy(bool kujo)
         {
             if (kujo) RhythmGamePresenter.AboveKujoTapNotes.Remove(this);
             else RhythmGamePresenter.AboveTapNotes.Remove(this);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }
