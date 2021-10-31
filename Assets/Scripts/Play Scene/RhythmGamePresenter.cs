@@ -566,8 +566,8 @@ public class RhythmGamePresenter : MonoBehaviour
             }
         }
         
-        if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
-        if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
+        if (PlayerPrefs.HasKey("judgegap")) judgeTime += PlayerPrefs.GetFloat("judgegap") / 1000;
+        if (PlayerPrefs.HasKey("audiogap")) audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
 
         if (musicName == "Reilas" && dif == "Extreme") 
         {
