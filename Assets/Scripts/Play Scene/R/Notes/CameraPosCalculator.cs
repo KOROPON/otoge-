@@ -38,7 +38,7 @@ namespace Reilas
             }
             else if (time < 103.04f) // �߂��Ă���
             {
-                float z = Mathf.Lerp(400, 2.8f, (time - 101.8f) / 1.4f);
+                float z = Mathf.Lerp(-500, 2.8f, (time - 101.8f) / 1.4f);
                 pos.Add(new Vector3(0, 2.2f, z));
                 if (rotation % 360 != 0)
                 {

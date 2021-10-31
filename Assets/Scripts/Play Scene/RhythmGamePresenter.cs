@@ -568,7 +568,7 @@ public class RhythmGamePresenter : MonoBehaviour
             if (currentTime <= 82 && _scoreComboCalculator != null)
             {
 
-                if (_scoreComboCalculator.slider.value >= 0.75f)
+                if (_scoreComboCalculator.slider.value >= 0f)
                 {
                     jumpToKujo = true;
                 }
@@ -627,10 +627,16 @@ public class RhythmGamePresenter : MonoBehaviour
             _judgeService.Judge(judgeTime);
         }
 
-        if(currentTime > 82 && jumpToKujo)
+        if (currentTime > 82)
         {
-            _boss.ChangeToKujo();
-            _boss.NotChangeToKujo();
+            if (jumpToKujo)
+            {
+                _boss.ChangeToKujo();
+            }
+            else 
+            {
+                _boss.NotChangeToKujo();
+            } 
         }
     }
 

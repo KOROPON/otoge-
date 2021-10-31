@@ -10,6 +10,7 @@ using UnityEngine;
 public class BossGimmicks : MonoBehaviour
 {
     private RhythmGamePresenter _presenter = null!;
+    private BossGimmickContainer _bossContainer;
 
     private static List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     private static List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
@@ -29,6 +30,7 @@ public class BossGimmicks : MonoBehaviour
     {
         camera = Camera.main;
         _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+        _bossContainer = this.gameObject.GetComponent<BossGimmickContainer>();
     }
 
     public async void BossAwake()
@@ -140,12 +142,13 @@ public class BossGimmicks : MonoBehaviour
 
         if (time < 82.93f)
         {
-
+            _bossContainer.BlackOutFirst();
             return;
         }
         else if (time < 92.98f)
         {
             if (!bossClock.isPlaying) bossClock.Play();
+            StartCoroutine(_bossContainer.BlackOutIntermittently());
         }
         else if (time < 101.78f)
         {
@@ -155,7 +158,7 @@ public class BossGimmicks : MonoBehaviour
         else if (time < 103.04f)
         {
             kujoJudgeSwitch = false;
-
+            _bossContainer.ChangeObjectShine();
         }
         else if (time < 104)
         {
