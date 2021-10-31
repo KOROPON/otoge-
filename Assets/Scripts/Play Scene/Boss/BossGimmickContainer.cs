@@ -45,7 +45,7 @@ public class BossGimmickContainer : MonoBehaviour
         var i = 0;
         _stagingFaderAnim.Play("StagingFaderAnim");
         _cameraShine.intensity.value = 20f;
-         while (true)
+        while (true)
         {
             yield return new WaitForFixedUpdate();
             i++;

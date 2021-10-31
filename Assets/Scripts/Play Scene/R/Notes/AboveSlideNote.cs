@@ -258,7 +258,7 @@ namespace Reilas
                 var judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
                 Debug.Log("MaxZNum    " + Mathf.Floor(thisNoteZRatio * timeRatio));
 
-                for (var zNum = 0; zNum < Mathf.Floor(thisNoteZRatio * timeRatio); zNum++)
+                for (int znum = 0; znum < Mathf.Floor((thisNoteZRatio + 1) * timeRatio); znum++)
                 {
                     for(var xNum = 0; xNum <= _thisNoteSize; xNum++)
                     {
@@ -267,7 +267,7 @@ namespace Reilas
                         angle = Mathf.PI / 2f - angle;
                         var x = Mathf.Sin(angle) * outerLaneRadius;
                         var y = Mathf.Cos(angle) * outerLaneRadius;
-                        _vertices[zNum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
+                        _vertices[znum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
                     }
                 }
                 _mesh.vertices = _vertices;
