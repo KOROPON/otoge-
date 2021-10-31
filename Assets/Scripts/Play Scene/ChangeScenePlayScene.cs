@@ -9,7 +9,7 @@ public class ChangeScenePlayScene : MonoBehaviour
     static public int previousHighScore;
     static public int score;
     static public string clear;
-    
+
     public static bool playNoticed;
     public static bool playStopped;
 
@@ -28,9 +28,11 @@ public class ChangeScenePlayScene : MonoBehaviour
 
         StartCoroutine(Checking(() =>
         {
-            //Êõ≤ÁµÇ‰∫ÜÊôÇ
-            //ClearË°®Á§∫
+            //ã»èIóπéû
+            //Clearï\é¶
+            Debug.Log("PlayNoticed");
             if (!playStopped) return;
+            Debug.Log("notPlayNoticed");
             getHighScores.Awake();
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
             score = scoreComboCalculator.currentScore;
@@ -43,7 +45,7 @@ public class ChangeScenePlayScene : MonoBehaviour
     }
 
     private delegate void FunctionType();
-    
+
     private IEnumerator Checking(FunctionType callback)
     {
         while (true)
@@ -54,5 +56,4 @@ public class ChangeScenePlayScene : MonoBehaviour
             break;
         }
     }
-
 }
