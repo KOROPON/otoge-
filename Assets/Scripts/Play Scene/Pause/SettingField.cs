@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class SettingField : MonoBehaviour
 {
-    private bool resume;
+    private bool _resume;
     public static bool setBool;
     public Text text;
     public AudioSource aud;
     private Image _fader;
-    int resumetime = 180;
+    int _resumetime = 180;
 
     void Start()
     {
@@ -35,27 +35,27 @@ public class SettingField : MonoBehaviour
     {
         pausePanel.SetActive(false);
         //text.text = "3";
-        resume = true;
+        _resume = true;
         //StartCoroutine("SettingRemuse");
     }
 
     private void Update()
     {
-        if (resume)
+        if (_resume)
         {
-            resumetime--;
+            _resumetime--;
         }
-        if (resumetime % 60 == 0)
+        if (_resumetime % 60 == 0)
         {
-            text.text = (resumetime / 60).ToString();
-            if (resumetime == 0)
+            text.text = (_resumetime / 60).ToString();
+            if (_resumetime == 0)
             {
                 _fader.enabled = false;
                 pauseButton.SetActive(true);
                 aud.UnPause();
                 Time.timeScale = 1;
-                resume = false;
-                resumetime = 180;
+                _resume = false;
+                _resumetime = 180;
             }
         }
     }
@@ -63,7 +63,7 @@ public class SettingField : MonoBehaviour
     public void Back()
     {
         Time.timeScale = 1;
-        ChangeScene_PlayScene.playStopped = false;
+        ChangeScenePlayScene.playStopped = false;
         setBool = false;
         Shutter.blChange = "ToSFrP";
         Shutter.blShutterChange = "Close";
@@ -71,7 +71,7 @@ public class SettingField : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1;
-        ChangeScene_PlayScene.playStopped = false;
+        ChangeScenePlayScene.playStopped = false;
         setBool = false;
         Shutter.blChange = "ToPFrP";
         Shutter.blShutterChange = "Close";

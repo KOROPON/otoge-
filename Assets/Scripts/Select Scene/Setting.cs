@@ -9,36 +9,36 @@ namespace Reilas
     public class Setting : MonoBehaviour
     {
         //下準備
-        public Image Color;
+        public Image color;
         public GameObject rating;
         public Image frame;
         public Text infoT;
-        [SerializeField] Text RateText;
+        [SerializeField] Text rateText;
         [SerializeField] GameObject alter;
 
-        private float max = 5f;
-        private float min = 1f;
-        private float masterRate = 0.1f;
-        private string pathKey;
-        private Dictionary<string,List<float>> changePath;
+        private float _max = 5f;
+        private float _min = 1f;
+        private float _masterRate = 0.1f;
+        private string _pathKey;
+        private Dictionary<string,List<float>> _changePath;
 
        //内部関数
         private void SetSettingData()
         {
-          changePath = new Dictionary<string,List<float>>();
+          _changePath = new Dictionary<string,List<float>>();
           if (PlayerPrefs.HasKey("rate"))
           {
-            changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 5f, PlayerPrefs.GetFloat("rate")});
-            changePath.Add("音", new List<float>(){1f, -999f, 999f, PlayerPrefs.GetFloat("audiogap")});
-            changePath.Add("判定", new List<float>(){1f, -999f, 999f, PlayerPrefs.GetFloat("judgegap")});
-            changePath.Add("音量", new List<float>(){1f, 0f, 100f, PlayerPrefs.GetFloat("volume")});
+            _changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 5f, PlayerPrefs.GetFloat("rate")});
+            _changePath.Add("音", new List<float>(){1f, -999f, 999f, PlayerPrefs.GetFloat("audiogap")});
+            _changePath.Add("判定", new List<float>(){1f, -999f, 999f, PlayerPrefs.GetFloat("judgegap")});
+            _changePath.Add("音量", new List<float>(){1f, 0f, 100f, PlayerPrefs.GetFloat("volume")});
           }
           else
           {
-            changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 5f, 3.5f});
-            changePath.Add("音", new List<float>(){1f, -999f, 999f, 0f});
-            changePath.Add("判定", new List<float>(){1f, -999f, 999f, 0f});
-            changePath.Add("音量", new List<float>(){1f, 0f, 100f, 50f});
+            _changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 5f, 3.5f});
+            _changePath.Add("音", new List<float>(){1f, -999f, 999f, 0f});
+            _changePath.Add("判定", new List<float>(){1f, -999f, 999f, 0f});
+            _changePath.Add("音量", new List<float>(){1f, 0f, 100f, 50f});
           }
         }
 
@@ -49,27 +49,27 @@ namespace Reilas
           return  output;
         }
 
-        private void RateChange(float change_value, float min, float max)
+        private void RateChange(float changeValue, float min, float max)
         {
-            RateText.text = (Clamp(float.Parse(RateText.text) + change_value, min, max)).ToString();
+            rateText.text = (Clamp(float.Parse(rateText.text) + changeValue, min, max)).ToString();
         }
 
 
 
 　　　　//利用関数
-        public void ChangeSettingData(GameObject Item)
+        public void ChangeSettingData(GameObject item)
         {
-          if (pathKey != null)
+          if (_pathKey != null)
           {
-            changePath[pathKey][3] = float.Parse(RateText.text);
+            _changePath[_pathKey][3] = float.Parse(rateText.text);
           }
-          masterRate = changePath[Item.name][0];
-          min = changePath[Item.name][1];
-          max = changePath[Item.name][2];
-          RateText.text = changePath[Item.name][3].ToString();
-          pathKey = Item.name;
-          frame.sprite = Resources.Load<Sprite>("Frame/Frame_" + Item.name);
-          switch (Item.name)
+          _masterRate = _changePath[item.name][0];
+          _min = _changePath[item.name][1];
+          _max = _changePath[item.name][2];
+          rateText.text = _changePath[item.name][3].ToString();
+          _pathKey = item.name;
+          frame.sprite = Resources.Load<Sprite>("Frame/Frame_" + item.name);
+          switch (item.name)
           {
             case "ノーツ速度": infoT.text = "ノーツの流れる速度を設定します"; break;
             case "音量": infoT.text = "ノーツを叩いたときに発生するタップ音量を調整します"; break;
@@ -85,7 +85,7 @@ namespace Reilas
               alter.SetActive(true);
               SetSettingData();
               ChangeSettingData(rating);
-              Color.color = new Color32(154, 154, 154, 255);
+              color.color = new Color32(154, 154, 154, 255);
             }
             else
             {
@@ -96,39 +96,39 @@ namespace Reilas
 
         public void Check()
         {
-          changePath[pathKey][3] = float.Parse(RateText.text);
-          PlayerPrefs.SetFloat("rate", changePath["ノーツ速度"][3]);
-          PlayerPrefs.SetFloat("judgegap", changePath["判定"][3]);
-          PlayerPrefs.SetFloat("audiogap", changePath["音"][3]);
-          PlayerPrefs.SetFloat("volume", changePath["音量"][3]);
+          _changePath[_pathKey][3] = float.Parse(rateText.text);
+          PlayerPrefs.SetFloat("rate", _changePath["ノーツ速度"][3]);
+          PlayerPrefs.SetFloat("judgegap", _changePath["判定"][3]);
+          PlayerPrefs.SetFloat("audiogap", _changePath["音"][3]);
+          PlayerPrefs.SetFloat("volume", _changePath["音量"][3]);
           Cancel();
         }
 
         public void Cancel()
         {
           alter.SetActive(false);
-          pathKey = null;
-          Color.color = new Color32(255, 255, 255, 255);
+          _pathKey = null;
+          color.color = new Color32(255, 255, 255, 255);
         }
 
         public void Up()
         {
-            RateChange(masterRate, max, min);
+            RateChange(_masterRate, _max, _min);
         }
 
-        public void ShiftUP()
+        public void ShiftUp()
         {
-            RateChange(masterRate * 10, max, min);
+            RateChange(_masterRate * 10, _max, _min);
         }
 
         public void Down()
         {
-            RateChange(-masterRate, max, min);
+            RateChange(-_masterRate, _max, _min);
         }
 
         public void ShiftDown()
         {
-            RateChange(-masterRate * 10,max,min);
+            RateChange(-_masterRate * 10,_max,_min);
         }
     }
 

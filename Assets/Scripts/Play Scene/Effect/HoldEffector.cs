@@ -3,7 +3,6 @@ using Reilas;
 
 public sealed class HoldEffector : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameObject;
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
@@ -20,18 +19,14 @@ public sealed class HoldEffector : MonoBehaviour
         _entity = entity;
         _lanePos = _entity.Head.LanePosition;
         _blDone = true;
-        _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
-        _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
+        _effect1 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[0];
+        _effect2 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[1];
         _noteBlight = transform.root.GetChild(0).GetComponentInChildren<SpriteRenderer>();
         transform.position = RhythmGamePresenter.LanePositions[_lanePos];
         holdEffectTime = _entity.Head.JudgeTime;
     }
     public void Render(float currentTime, AudioSource effectAudio)
     {
-        if (!_gameObject.activeSelf)
-        {
-            _gameObject.SetActive(true);
-        }
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)
         {

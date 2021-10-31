@@ -21,17 +21,17 @@ namespace Reilas
 
         public void Render(float currentTime)
         {
-            if (!this.gameObject.activeSelf)
+            if (!gameObject.activeSelf)
             {
 
                 if (_entity.JudgeTime - currentTime < 10f)
                 {
-                    this.gameObject.SetActive(true);
+                    gameObject.SetActive(true);
                 }
             }
             else
             {
-                transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _noteSpeed);
+                transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, true);
             }
         }
 

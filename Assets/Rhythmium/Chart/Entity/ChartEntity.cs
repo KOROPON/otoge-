@@ -31,7 +31,6 @@ namespace Rhythmium
         /// <summary>BPM 変更</summary>
         public List<BpmChangeEntity> BpmChanges { get; set; }
 
-        /// <summary>速度変更</summary>
         public List<SpeedChangeEntity> SpeedChanges { get; set; }
 
         /// <summary>カスタムオブジェクト</summary>
@@ -40,7 +39,7 @@ namespace Rhythmium
         /// <summary>小節</summary>
         public List<MeasureEntity> Measures { get; set; }
 
-        public T Mirror<T>() where T : ChartEntity<TNoteEntity, TNoteLineEntity>
+        protected T Mirror<T>() where T : ChartEntity<TNoteEntity, TNoteLineEntity>
         {
             var mirroredNotes = Notes.ToDictionary(note => note, note => note.Mirror<TNoteEntity>());
             var mirroredNoteLines =

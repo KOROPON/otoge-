@@ -47,8 +47,8 @@ namespace Reilas
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
 
 
-            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false, _noteSpeed);
-            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false, _noteSpeed);
+            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false);
+            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false);
            
 
             scale.z = tailPos.z - headPos.z;
@@ -62,13 +62,19 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.HoldKujoNotes.Remove(this);
             else RhythmGamePresenter.HoldNotes.Remove(this);
-
-            for(int i = this.gameObject.transform.childCount - 1; i >= 0; i--)
+            foreach (Transform child in this.transform)
             {
-
+                foreach (Transform inChild in child)
+                {
+                    Destroy(inChild.gameObject);
+                }
             }
-            Destroy(this.gameObject);
-            
+            foreach (Transform child in this.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            Destroy(gameObject);
+            RhythmGamePresenter.HoldEffectors.Remove(this.transform.GetChild(1).GetComponent<HoldEffector>());
         }
     }
 }

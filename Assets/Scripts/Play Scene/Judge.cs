@@ -17,7 +17,7 @@ public enum JudgeResultType
 
 public class JudgeService : MonoBehaviour
 {
-    public readonly int[] tapJudgeStartIndex = new int[36];
+    public int[] tapJudgeStartIndex = new int[36];
     public int internalJudgeStartIndex;
     public int chainJudgeStartIndex;
 

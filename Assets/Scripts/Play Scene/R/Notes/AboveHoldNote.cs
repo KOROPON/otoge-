@@ -87,11 +87,11 @@ namespace Reilas
 
             if(_entity.Tail.JudgeTime < currentTime)
             {
-                foreach (Transform child in this.transform.GetChild(0))
+                foreach (Transform child in transform.GetChild(0))
                 {
                     Destroy(child.gameObject);
                 }
-                Destroy(this.transform.GetChild(0).gameObject);
+                Destroy(transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
                 RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
@@ -104,8 +104,8 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, false, _noteSpeed).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, false, _noteSpeed).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false).z;
 
             for (var z = 0; z < zDiv; z++)
             {
@@ -157,7 +157,13 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.AboveKujoHoldNotes.Remove(this);
             else RhythmGamePresenter.AboveHoldNotes.Remove(this);
-            Destroy(this.gameObject);
+            foreach (Transform child in this.transform.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
+            Destroy(this.transform.GetChild(0).gameObject);
+            Destroy(gameObject);
+            RhythmGamePresenter.AboveHoldEffectors.Remove(this.transform.GetChild(0).GetComponent<AboveHoldEffector>());
         }
     }
 }

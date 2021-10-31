@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f59fbef00744a618d5b0ca2ee2455cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshFilter: {fileID: 416871471698319056}
+  meshFilter: {fileID: 416871471698319056}
 --- !u!33 &416871471698319056
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9889,6 +9889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8102914ec04e94245a3b1b5906282f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameObject: {fileID: 5575468961130923877}
-  _blJudge: 0
+  gameObject: {fileID: 0}
+  blJudge: 0
   aboveSlideEffectTime: 0

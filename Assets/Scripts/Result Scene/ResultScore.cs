@@ -1,4 +1,7 @@
+using System;
+using System.Diagnostics;
 using Reilas;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +11,7 @@ public class ResultScore : MonoBehaviour
     private Image _jackInResult;
     private Image _rankInResult;
     private Text _scoreInResult;
-    private Text previousScore;
+    private Text _previousScoreText;
     private Text _scoreGap;
     private Text _maxCombo;
     private Text _perfectCom;
@@ -33,8 +36,8 @@ public class ResultScore : MonoBehaviour
     private void Start()
     {
         _getHighScores = gameObject.AddComponent<GetHighScores>();
-        _score = ChangeScene_PlayScene.score;
-        _previousScore = ChangeScene_PlayScene.previousHighScore;
+        _score = ChangeScenePlayScene.score;
+        _previousScore = ChangeScenePlayScene.previousHighScore;
         _scoreRank = _getHighScores.GetRank(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
         _backBool = true;
         _retryBool = true;
@@ -49,12 +52,12 @@ public class ResultScore : MonoBehaviour
         _rankDifficulty = GameObject.Find("DifficultyRank").GetComponent<Text>();
         _jackInResult = GameObject.Find("Jacket").GetComponent<Image>();
         _rankInResult = GameObject.Find("Rank").GetComponent<Image>();
-        previousScore = GameObject.Find("PreviousScore").GetComponent<Text>();
+        _previousScoreText = GameObject.Find("PreviousScore").GetComponent<Text>();
         _scoreGap = GameObject.Find("ScoreGap").GetComponent<Text>();
         _resultMusic = GameObject.Find("Theme").GetComponent<AudioSource>();
         _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>().color;
         _clearRank = GameObject.Find("Clear").GetComponent<Image>();
-        _levelConverter = new LevelConverter();
+        _levelConverter = gameObject.AddComponent<LevelConverter>();
 
         _scoreInResult.text = $"{_score:0,000,000}";
         _maxCombo.text = ScoreComboCalculator.highCombo.ToString();
@@ -66,7 +69,7 @@ public class ResultScore : MonoBehaviour
         _difficultyInResult.text = RhythmGamePresenter.dif;
         _jackInResult.sprite = Resources.Load<Sprite>("Jacket/" + _titleInResult.text + "_jacket");
         _rankInResult.sprite = Resources.Load<Sprite>("Rank/rank_" + _scoreRank);
-        previousScore.text = $"{_previousScore:0,000,000}";
+        _previousScoreText.text = $"{_previousScore:0,000,000}";
         _scoreGap.text = _score switch
         {
             var n when n > _previousScore => "+" + $"{n - _previousScore:0,000,000}",
@@ -74,15 +77,16 @@ public class ResultScore : MonoBehaviour
             _=> ""
         };
 
-        _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + ChangeScene_PlayScene.clear);
-        _rankDifficulty.text = _levelConverter.GetLevel(RhythmGamePresenter.musicName, RhythmGamePresenter.dif).ToString();
-        switch (RhythmGamePresenter.dif)
+        _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + ChangeScenePlayScene.clear);
+        _rankDifficulty.text = LevelConverter.GetLevel(RhythmGamePresenter.musicName, RhythmGamePresenter.dif).ToString();
+        _resultColor = RhythmGamePresenter.dif switch
         {
-            case "Easy": _resultColor = new Color32(0, 255, 95, 255); break;
-            case "Hard": _resultColor = new Color32(255, 250, 0, 255); break;
-            case "Extreme": _resultColor = new Color32(255, 10, 110, 255); break;
-            case "Kujo": _resultColor = new Color32(255, 255, 255, 255); break;
-        }
+            "Easy" => new Color32(0, 0, 0, 0),
+            "Hard" => new Color32(0, 0, 0, 0),
+            "Extreme" => new Color32(0, 0, 0, 0),
+            "Kujo" => new Color32(0, 0, 0, 0),
+            _ => _resultColor
+        };
         //未実装00
 
         Shutter.blChange = "Open";

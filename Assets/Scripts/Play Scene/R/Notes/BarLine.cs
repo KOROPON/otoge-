@@ -13,22 +13,22 @@ namespace Reilas
 
         public static readonly List<float> BarLines = new List<float>();
 
-        [SerializeField] private MeshFilter _meshFilter = null!;
+        [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
         private int[]? _triangles;
-        const float div = 32f;
-        const float outerLaneRadius = 4.4f;
+        private const float Div = 32f;
+        private const float OuterLaneRadius = 4.4f;
 
         private Mesh? _mesh;
 
-        const float innerRadius = outerLaneRadius - 0.03f; // 内縁の半径
-        const float outerRadius = outerLaneRadius;        // 外縁の半径
+        private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
+        private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
 
         private static Vector3 CalculateBarLinePosition(float judgeTime, float currentTime)
         {
-            var highSpeed = NotePositionCalculatorService.gameSpeed;
+            var highSpeed = NotePositionCalculatorService.normalizedSpeed;
             
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
@@ -45,7 +45,7 @@ namespace Reilas
 
         public void Initialize()
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 return;
             }
@@ -118,7 +118,7 @@ namespace Reilas
 
             float berPos = CalculateBarLinePosition(judgeTime, currentTime).z; // Make Mesh 頂点
 
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 Debug.Log("null");
                 return;
@@ -131,16 +131,16 @@ namespace Reilas
                 {
                     var laneIndex = x;  //レーン番号
 
-                    var angle = Mathf.PI / div * laneIndex;   // レーンの角度
+                    var angle = Mathf.PI / Div * laneIndex;   // レーンの角度
 
                     angle = Mathf.PI - angle;
 
 
-                    var innerY = Mathf.Sin(angle) * innerRadius;
-                    var innerX = Mathf.Cos(angle) * innerRadius;
+                    var innerY = Mathf.Sin(angle) * InnerRadius;
+                    var innerX = Mathf.Cos(angle) * InnerRadius;
 
-                    var outerY = Mathf.Sin(angle) * outerRadius;
-                    var outerX = Mathf.Cos(angle) * outerRadius;
+                    var outerY = Mathf.Sin(angle) * OuterRadius;
+                    var outerX = Mathf.Cos(angle) * OuterRadius;
 
 
 
@@ -186,7 +186,7 @@ namespace Reilas
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
 #endif
-            _meshFilter.mesh = _mesh;
+            meshFilter.mesh = _mesh;
 
         }
 

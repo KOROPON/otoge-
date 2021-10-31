@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Judge_Effector : MonoBehaviour
+public class JudgeEffector : MonoBehaviour
 {
     private GameObject[] _effectors;
-    private AudioSource se_Perfect;
-    private AudioSource se_Good;
-    private AudioSource se_Bad;
-    private AudioSource se_;
+    private AudioSource _sePerfect;
+    private AudioSource _seGood;
+    private AudioSource _seBad;
+    private AudioSource _se;
 
     void Start()
     {

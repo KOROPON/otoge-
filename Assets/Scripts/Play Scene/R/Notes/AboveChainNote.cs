@@ -6,7 +6,7 @@ namespace Reilas
 {
     public sealed class AboveChainNote : MonoBehaviour
     {
-        [SerializeField] private MeshFilter _meshFilter = null!;
+        [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
@@ -32,7 +32,7 @@ namespace Reilas
 
         private void InitializeMesh()
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 throw new Exception();
                 //return;
@@ -102,7 +102,7 @@ namespace Reilas
 
         private void RenderMesh(float currentTime)
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 Debug.Log("return");
                 return;
@@ -142,7 +142,7 @@ namespace Reilas
                     }
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _entity.Speed).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, true).z;
                     //}
 
 
@@ -162,19 +162,15 @@ namespace Reilas
                         _vertices[p + x * 2 + 1] = outerPoint;
                     }
 
-                    float uvX = 1f / _entity.Size * x;
+                    var uvX = 1f / _entity.Size * x;
 
-                    float alpha = 1f;
+                    const float alpha = 1f;
 
                     // 手前
-                    if (z == 0)
-                    {
-                        if (_uv != null)
-                        {
-                            _uv[x * 2 + 0] = new Vector3(uvX, 1f, alpha);
-                            _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
-                        }
-                    }
+                    if (z != 0) continue;
+                    if (_uv == null) continue;
+                    _uv[x * 2 + 0] = new Vector3(uvX, 1f, alpha);
+                    _uv[x * 2 + 1] = new Vector3(uvX, 0f, alpha);
 
                     /*
                     // 奥
@@ -192,18 +188,16 @@ namespace Reilas
                 }
             }
 
-            if (_mesh != null)
-            {
-                _mesh.vertices = _vertices;
+            if (_mesh == null) return;
+            _mesh.vertices = _vertices;
 
-                //GetComponent<MeshRenderer>().material.cal
+            //GetComponent<MeshRenderer>().material.cal
 
-                _mesh.SetUVs(0, _uv);
+            _mesh.SetUVs(0, _uv);
 #if UNITY_EDITOR
-                _mesh.RecalculateBounds();
+            _mesh.RecalculateBounds();
 #endif
-                _meshFilter.mesh = _mesh;
-            }
+            meshFilter.mesh = _mesh;
         }
 
         public void NoteDestroy(bool kujo)

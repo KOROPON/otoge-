@@ -5,30 +5,31 @@ public class LevelConverter : MonoBehaviour
     private TextAsset _jsonFile;
     
     public static SongDataBase songData;
-    
-    void Start()
+
+    private void Start()
     {
-        _jsonFile = Resources.Load<TextAsset>("Level/SongDataBase");
-        songData = JsonUtility.FromJson<SongDataBase>(_jsonFile.text);
+        _jsonFile = Resources.Load<TextAsset>("Level/SongDataBase"); //テキストは取得可能
+        songData = JsonUtility.FromJson<SongDataBase>(_jsonFile.text); // SongDataBase にすると破損
+        Debug.Log(songData.songs[0].title);
+        Debug.Log(songData.songs[0].level.easy);
+        Debug.Log(songData.songs[0].level.hard);
+        Debug.Log(songData.songs[0].level.extreme);
     }
 
-    public int? GetLevel(string songName, string difficulty)
+    public static int? GetLevel(string songName, string difficulty)
     {
-        foreach (SongName song in songData.songs)
+        foreach (var song in songData.songs)
         {
-            if (song.title == songName)
+            if (song.title != songName) continue;
+            var lev = song.level;
+            return difficulty switch
             {
-                Level lev = song.level;
-                return difficulty switch
-                {
-                    "Easy" => lev.Easy,
-                    "Hard" => lev.Hard,
-                    "Extreme" => lev.Extreme,
-                    _ => null
-                };
-            }
+                "Easy" => lev.easy,
+                "Hard" => lev.hard,
+                "Extreme" => lev.extreme,
+                _ => null
+            };
         }
-
         return null;
     }
 }

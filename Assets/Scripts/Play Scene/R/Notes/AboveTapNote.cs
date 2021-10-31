@@ -6,7 +6,7 @@ namespace Reilas
 {
     public sealed class AboveTapNote : MonoBehaviour
     {
-        [SerializeField] private MeshFilter _meshFilter = null!;
+        [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
@@ -30,7 +30,7 @@ namespace Reilas
 
         private void InitializeMesh()
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 throw new Exception();
             }
@@ -68,7 +68,7 @@ namespace Reilas
 
         private void RenderMesh(float currentTime)
         {
-            if (_meshFilter == null)
+            if (meshFilter == null)
             {
                 return;
             }
@@ -108,7 +108,7 @@ namespace Reilas
                     }
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, true, _noteSpeed).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, true).z;
                     //}
 
 
@@ -152,7 +152,7 @@ namespace Reilas
 #if UNITY_EDITOR
                 _mesh.RecalculateBounds();
 #endif
-                _meshFilter.mesh = _mesh;
+                meshFilter.mesh = _mesh;
             }
         }
 
