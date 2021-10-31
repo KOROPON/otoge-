@@ -8,10 +8,10 @@
             },
             "custom": [],
             "level": {
-                "Easy": 3,
-                "Hard": 6,
-                "Extreme": 8,
-                "KUJO": 0
+                "easy": 3,
+                "hard": 6,
+                "extreme": 8,
+                "kujo": 0
             }
         },
         {
@@ -24,10 +24,10 @@
             },
             "custom": [],
             "level": {
-                "Easy": 3,
-                "Hard": 6,
-                "Extreme": 9,
-                "KUJO": 0
+                "easy": 3,
+                "hard": 6,
+                "extreme": 9,
+                "kujo": 0
             }
         },
         {
@@ -39,10 +39,10 @@
             },
             "custom": [],
             "level": {
-                "Easy": 2,
-                "Hard": 5,
-                "Extreme": 8,
-                "KUJO": 0
+                "easy": 2,
+                "hard": 5,
+                "extreme": 8,
+                "kujo": 0
             }
         },
         {
@@ -54,14 +54,14 @@
             },
             "custom": [],
             "level": {
-                "Easy": 2,
-                "Hard": 4,
-                "Extreme": 7,
-                "KUJO": 0
+                "easy": 2,
+                "hard": 4,
+                "extreme": 7,
+                "kujo": 0
             }
         },
         {
-            "title": "Music is my suicide",
+            "title": "Music Is My Suicide",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -69,14 +69,14 @@
             },
             "custom": [],
             "level": {
-                "Easy": 3,
-                "Hard": 5,
-                "Extreme": 8,
-                "KUJO": 0
+                "easy": 3,
+                "hard": 5,
+                "extreme": 8,
+                "kujo": 0
             }
         },
         {
-            "title": "REILAS",
+            "title": "Reilas",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -84,10 +84,10 @@
             },
             "custom": [],
             "level": {
-                "Easy": 4,
-                "Hard": 7,
-                "Extreme": 9,
-                "KUJO": 10
+                "easy": 4,
+                "hard": 7,
+                "extreme": 9,
+                "kujo": 10
             }
         },
         {
@@ -99,10 +99,10 @@
             },
             "custom": [],
             "level": {
-                "Easy": 1,
-                "Hard": 3,
-                "Extreme": 6,
-                "KUJO": 0
+                "easy": 1,
+                "hard": 3,
+                "extreme": 6,
+                "kujo": 0
             }
         }
     ]

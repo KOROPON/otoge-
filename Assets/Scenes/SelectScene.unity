@@ -1726,11 +1726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b326ade1fc2723249820407a9ac33c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 0}
+  color: {fileID: 1286046781}
   rating: {fileID: 1477817491}
   frame: {fileID: 1171169523}
   infoT: {fileID: 1728453937}
-  rateText: {fileID: 0}
+  rateText: {fileID: 315570056}
   alter: {fileID: 2006518412}
 --- !u!114 &808788354
 MonoBehaviour:

@@ -111,17 +111,16 @@ namespace Reilas
             currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
             comboText.text = currentCombo > 1 ? currentCombo.ToString() : "";
             scoreText.text = $"{currentScore,9: 0,000,000}";
-            
+
             while (_gaugeCombo >= _comboDataBase[_difficulty])
             {
-                slider.value += 0.01f;
-                _gaugeCombo -= _comboDataBase[_difficulty];
+                 slider.value += 0.01f;
+                 _gaugeCombo -= _comboDataBase[_difficulty];
             }
 
             slider.value -= 0.03f * _gaugeMiss;
 
             gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
-            
             if (currentScore == 1000000) clear = "AllPerfect";
             else if (currentCombo == RhythmGamePresenter.countNotes) clear = "FullCombo";
             else if (slider.value >= 0.7f) clear = "Clear";
