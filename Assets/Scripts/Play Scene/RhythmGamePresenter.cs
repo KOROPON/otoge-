@@ -511,6 +511,8 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("JumpToKUJO = " + jumpToKujo);
+
         if (_audioSource == null) return;
 
         InputService.AboveLaneTapStates.Clear();
@@ -561,15 +563,19 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && dif == "Extreme" && _throughPoint)
+        if (musicName == "Reilas" && dif == "Extreme")
         {
-            if (currentTime >= 82)
+            if (currentTime <= 82 && _scoreComboCalculator != null)
             {
-                if (_scoreComboCalculator != null && _scoreComboCalculator.slider.value >= 0.75f) 
+
+                if (_scoreComboCalculator.slider.value >= 0.75f)
                 {
                     jumpToKujo = true;
                 }
-                _throughPoint = true;
+                else
+                {
+                    jumpToKujo = false;
+                }
             }
         }
         
@@ -621,7 +627,7 @@ public class RhythmGamePresenter : MonoBehaviour
             _judgeService.Judge(judgeTime);
         }
 
-        if(currentTime > 82 && !jumpToKujo)
+        if(currentTime > 82 && jumpToKujo)
         {
             _boss.ChangeToKujo();
             _boss.NotChangeToKujo();
