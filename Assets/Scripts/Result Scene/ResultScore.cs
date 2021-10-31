@@ -78,10 +78,10 @@ public class ResultScore : MonoBehaviour
         _rankDifficulty.text = _levelConverter.GetLevel(RhythmGamePresenter.musicName, RhythmGamePresenter.dif).ToString();
         switch (RhythmGamePresenter.dif)
         {
-            case "Easy": _resultColor = new Color32(0, 0, 0, 0); break;
-            case "Hard": _resultColor = new Color32(0, 0, 0, 0); break;
-            case "Extreme": _resultColor = new Color32(0, 0, 0, 0); break;
-            case "Kujo": _resultColor = new Color32(0, 0, 0, 0); break;
+            case "Easy": _resultColor = new Color32(0, 255, 95, 255); break;
+            case "Hard": _resultColor = new Color32(255, 250, 0, 255); break;
+            case "Extreme": _resultColor = new Color32(255, 10, 110, 255); break;
+            case "Kujo": _resultColor = new Color32(255, 255, 255, 255); break;
         }
         //未実装00
 
