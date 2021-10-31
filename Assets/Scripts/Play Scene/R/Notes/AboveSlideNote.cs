@@ -272,7 +272,7 @@ namespace Reilas
                 float judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
                 Debug.Log("Maxznum    " + Mathf.Floor(thisNoteZRatio * timeRatio));
 
-                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio); znum++)
+                for (int znum = 0; znum < Mathf.Floor((thisNoteZRatio + 1) * timeRatio); znum++)
                 {
                     for(int xnum = 0; xnum <= _thisNoteSize; xnum++)
                     {
