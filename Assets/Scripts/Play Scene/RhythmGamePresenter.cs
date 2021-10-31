@@ -203,7 +203,7 @@ public class RhythmGamePresenter : MonoBehaviour
             return;
         }
 
-        if(jumpToKujo) _boss.BossAwake();
+        //if(jumpToKujo) _boss.BossAwake();
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
@@ -561,7 +561,7 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && _throughPoint)
+        if (musicName == "Reilas" && dif == "Extreme" && _throughPoint)
         {
             if (currentTime >= 82)
             {
@@ -621,7 +621,7 @@ public class RhythmGamePresenter : MonoBehaviour
             _judgeService.Judge(judgeTime);
         }
 
-        if(currentTime > 82 && jumpToKujo)
+        if(currentTime > 82 && !jumpToKujo)
         {
             _boss.ChangeToKujo();
             _boss.NotChangeToKujo();
