@@ -232,9 +232,9 @@ public class RhythmGamePresenter : MonoBehaviour
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
 
-        _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition < 36).OrderBy(note => note.JudgeTime).ToList();
-        internalNotes = internalNotes.Where(note => note.LanePosition >= 0 && note.LanePosition < 36).OrderBy(note => note.JudgeTime).ToList();
-        chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition < 36).OrderBy(note => note.JudgeTime).ToList();
+        _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
+        internalNotes = internalNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
+        chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
         
         _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
