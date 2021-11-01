@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Reilas;
 using Rhythmium;
-using System.Linq;
 
 public enum JudgeResultType
 {
@@ -59,11 +58,7 @@ public class JudgeService : MonoBehaviour
     private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
-        if (tapState)
-        {
-            return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
-        }
-
+        if (tapState) return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }
 
@@ -91,11 +86,7 @@ public class JudgeService : MonoBehaviour
             }
             case 4:
             {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
-                {
-                    if (tapState[i, 0]) return true;
-                }
-
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0]) return true;
                 break;
             }
             default:
@@ -116,28 +107,20 @@ public class JudgeService : MonoBehaviour
     {
         var tapState = RhythmGamePresenter.LaneTapStates;
         var noteLanePosition = GetLane(note);
-        if (noteLanePosition < 4)
-        {
-            return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> {note.LanePosition} : new List<int>();
-        }
+        if (noteLanePosition < 4) return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> {note.LanePosition} : new List<int>();
+        
         var laneList = new List<int>();
         switch (noteLanePosition)
         {
             case 4:
             {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
-                {
-                    if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
-                }
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
 
                 return laneList;
             }
             default:
             {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
-                {
-                    if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
-                }
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
 
                 return laneList;
             }
@@ -163,10 +146,9 @@ public class JudgeService : MonoBehaviour
                 if (GetTapState(reilasNoteEntity).Contains(i))
                 {
                     var nextNoteIndex = j + 1;
-                    if(nextNoteIndex != tapNotes[i].Count() && timeDifference < currentTime - tapNotes[i][nextNoteIndex].note.JudgeTime)
-                    {
+                    if (nextNoteIndex != tapNotes[i].Count &&
+                        timeDifference < currentTime - tapNotes[i][nextNoteIndex].note.JudgeTime)
                         judgeResult = JudgeResultType.Miss;
-                    }
                     else
                     {
                         judgeResult = difference switch
@@ -209,7 +191,7 @@ public class JudgeService : MonoBehaviour
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
-            if (RhythmGamePresenter.internalNoteJudge != null) RhythmGamePresenter.internalNoteJudge[i] = true;
+            RhythmGamePresenter.internalNoteJudge[i] = true;
             internalJudgeStartIndex++;
 
             if (judgeResult == JudgeResultType.Miss) Debug.Log("Miss...");

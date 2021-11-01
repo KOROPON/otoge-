@@ -86,7 +86,7 @@ public class RhythmGamePresenter : MonoBehaviour
     public static string dif = null!;
 
     //Reilas移行判定
-    public bool jumpToKujo = false;
+    public bool jumpToKujo;
 
     private BossGimmicks? _boss;
 
@@ -154,7 +154,7 @@ public class RhythmGamePresenter : MonoBehaviour
                 }
                 case 4: 
                 { 
-                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size; i++) TapNoteLanes[i].Add(note);
+                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size && i < 36; i++) TapNoteLanes[i].Add(note);
 
                     break;
                 }
@@ -222,10 +222,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (_chartEntity.SpeedChanges != null)
         {
-            foreach (var bpm in _chartEntity.SpeedChanges)
-            {
-                speedChanges.Add(bpm);
-            }
+            foreach (var bpm in _chartEntity.SpeedChanges) speedChanges.Add(bpm);
             _checkSpeedChangeEntity = true;
         }
         NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
@@ -235,9 +232,9 @@ public class RhythmGamePresenter : MonoBehaviour
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
 
-        _tapNotes = _tapNotes.OrderBy(note => note.JudgeTime).ToList();
-        internalNotes = internalNotes.OrderBy(note => note.JudgeTime).ToList();
-        chainNotes = chainNotes.OrderBy(note => note.JudgeTime).ToList();
+        _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition < 36).OrderBy(note => note.JudgeTime).ToList();
+        internalNotes = internalNotes.Where(note => note.LanePosition >= 0 && note.LanePosition < 36).OrderBy(note => note.JudgeTime).ToList();
+        chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition < 36).OrderBy(note => note.JudgeTime).ToList();
         
         _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
@@ -245,7 +242,7 @@ public class RhythmGamePresenter : MonoBehaviour
         _reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
 
-        Debug.Log(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).Count());
+        Debug.Log(_chartEntity.NoteLines.Count(note => note.Head.Type == NoteType.Hold));
 
         List<int> removeInt = new List<int>();
         
@@ -329,8 +326,6 @@ public class RhythmGamePresenter : MonoBehaviour
         _reilasAboveHold.AddRange(_boss.reilasKujoAboveHold);
         _reilasHold.AddRange(_boss.reilasKujoHold);
         _reilasChain.AddRange(_boss.reilasKujoChain);
-
-        Debug.Log(TapNoteLanes[4].Count());
 
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
@@ -570,23 +565,8 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && dif == "Extreme") 
-        {
-            if (currentTime <= 82 && _scoreComboCalculator != null)
-            {
-                jumpToKujo = _scoreComboCalculator.slider.value >= 0.75f;
+        if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.value >= 0.75f;
 
-                if (_scoreComboCalculator.slider.value >= 0f)
-                {
-                    jumpToKujo = true;
-                }
-                else
-                {
-                    jumpToKujo = false;
-                }
-            }
-        }
-        
 
         for(var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {
@@ -624,6 +604,7 @@ public class RhythmGamePresenter : MonoBehaviour
                     keyBeam.transform.localScale = new Vector3(1, 1f, 1);
                     break;
             }
+            
             _allKeyBeam.Add(keyBeam);
             dupLane.Add(laneNum);
         }
