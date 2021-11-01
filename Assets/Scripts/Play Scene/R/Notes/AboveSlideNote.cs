@@ -250,13 +250,14 @@ namespace Reilas
                 }
             }
 
+            /*
             if (_effectorCs.blJudge) // 押されていたら
             {
                 var timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
                 var judgeLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, timeRatio);
                 var judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
 
-                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio); znum++)
+                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio) - 1; znum++)
                 {
                     for(var xNum = 0; xNum <= _thisNoteSize; xNum++)
                     {
@@ -279,6 +280,7 @@ namespace Reilas
 #endif
                 meshFilter.mesh = _mesh;
             }
+            */
 
             _mesh.vertices = _vertices;
 

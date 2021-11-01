@@ -12306,7 +12306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2426ce6ddb0a04f90a45857c137cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilter: {fileID: 0}
+  meshFilter: {fileID: 884902052}
 --- !u!33 &884902052
 MeshFilter:
   m_ObjectHideFlags: 0
