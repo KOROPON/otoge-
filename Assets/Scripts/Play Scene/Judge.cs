@@ -58,11 +58,7 @@ public class JudgeService : MonoBehaviour
     private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
-        if (tapState)
-        {
-            return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
-        }
-
+        if (tapState) return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }
 
@@ -90,11 +86,7 @@ public class JudgeService : MonoBehaviour
             }
             case 4:
             {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
-                {
-                    if (tapState[i, 0]) return true;
-                }
-
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0]) return true;
                 break;
             }
             default:
@@ -115,28 +107,20 @@ public class JudgeService : MonoBehaviour
     {
         var tapState = RhythmGamePresenter.LaneTapStates;
         var noteLanePosition = GetLane(note);
-        if (noteLanePosition < 4)
-        {
-            return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> {note.LanePosition} : new List<int>();
-        }
+        if (noteLanePosition < 4) return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> {note.LanePosition} : new List<int>();
+        
         var laneList = new List<int>();
         switch (noteLanePosition)
         {
             case 4:
             {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++)
-                {
-                    if (tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1]) laneList.Add(i);
-                }
+                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
 
                 return laneList;
             }
             default:
             {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
-                {
-                    if (tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1]) laneList.Add(i);
-                }
+                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
 
                 return laneList;
             }
@@ -158,10 +142,13 @@ public class JudgeService : MonoBehaviour
                 if (timeDifference > _judgeSeconds["Tap Bad"]) break;
                 var difference = CalculateDifference(currentTime, reilasNoteEntity.JudgeTime, "Tap");
                 var timeCheck = TimeCheck(currentTime, reilasNoteEntity.JudgeTime, "Tap");
+
                 if (GetTapState(reilasNoteEntity).Contains(i))
                 {
-                    var nextNote = tapNotes[i][j + 1];
-                    if (timeDifference < currentTime - nextNote.note.JudgeTime) judgeResult = JudgeResultType.Miss;
+                    var nextNoteIndex = j + 1;
+                    if (nextNoteIndex != tapNotes[i].Count &&
+                        timeDifference < currentTime - tapNotes[i][nextNoteIndex].note.JudgeTime)
+                        judgeResult = JudgeResultType.Miss;
                     else
                     {
                         judgeResult = difference switch
@@ -184,22 +171,41 @@ public class JudgeService : MonoBehaviour
         }
         
         var internalNotes = RhythmGamePresenter.internalNotes;
+
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
-            if (RhythmGamePresenter.internalNoteJudge != null && RhythmGamePresenter.internalNoteJudge[i]) continue;
+            if (RhythmGamePresenter.internalNoteJudge == null)
+            {
+                Debug.LogError("Can't Judge Internal");
+                break;
+            }
+
+            if (RhythmGamePresenter.internalNoteJudge[i]) continue;
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
+            ////here
+            //Debug.Log(timeDifference);
             if (timeDifference > _judgeSeconds["Internal"]) break;
+
+            //Debug.Log(CheckIfTapped(internalNotes[i]));
+
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
-            if (RhythmGamePresenter.internalNoteJudge != null) RhythmGamePresenter.internalNoteJudge[i] = true;
+            RhythmGamePresenter.internalNoteJudge[i] = true;
             internalJudgeStartIndex++;
+
+            if (judgeResult == JudgeResultType.Miss) Debug.Log("Miss...");
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
         for (var i = chainJudgeStartIndex; i < chainNotes.Count; i++)
         {
-            if (RhythmGamePresenter.chainNoteJudge != null && RhythmGamePresenter.chainNoteJudge[i]) continue;
+            if (RhythmGamePresenter.chainNoteJudge == null)
+            {
+                Debug.LogError("Can't Judge Chain");
+                break;
+            }
+            if (RhythmGamePresenter.chainNoteJudge[i]) continue;
             var timeDifference = chainNotes[i].JudgeTime - currentTime;
             if (timeDifference > 0) break;
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], CheckIfTapped(chainNotes[i]), "Chain");

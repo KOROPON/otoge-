@@ -2727,27 +2727,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "mXicQVtI17hkWgE2tBzDAzjJ06aJivgQ",
-				"editorProps": {
-					"time": 6.31578947368421
-				},
-				"measureIndex": 5,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 1
-				},
-				"horizontalSize": 14,
-				"horizontalPosition": {
-					"numerator": 128,
-					"denominator": 1
-				},
-				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
 				"guid": "IG3SSkmMAKVnV9uI5ZFBPWlGWnRF3Rwy",
 				"editorProps": {
 					"time": 6.315789473684211
@@ -2760,27 +2739,6 @@
 				"horizontalSize": 1,
 				"horizontalPosition": {
 					"numerator": 0,
-					"denominator": 1
-				},
-				"type": "hold-judge-note",
-				"speed": 1,
-				"lane": "initialLane0",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
-				"guid": "rGoEvgnRDx5tcPv1T6h6ygAvGf8Q1vEG",
-				"editorProps": {
-					"time": 6.315789473684211
-				},
-				"measureIndex": 5,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 1
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 3221225472,
 					"denominator": 1
 				},
 				"type": "hold-judge-note",
@@ -2811,27 +2769,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "hpTIMCp6cUEMr0QHtmPTOSIsDtc60h2G",
-				"editorProps": {
-					"time": 6.473684210526315
-				},
-				"measureIndex": 5,
-				"measurePosition": {
-					"numerator": 1,
-					"denominator": 8
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 6442450944,
-					"denominator": 1
-				},
-				"type": "hold-judge-note",
-				"speed": 1,
-				"lane": "initialLane0",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
 				"guid": "ODIAmUSCVnQg8vPywmeIk47RXzgMdZrd",
 				"editorProps": {
 					"time": 6.473684210526315
@@ -2845,27 +2782,6 @@
 				"horizontalPosition": {
 					"numerator": 256,
 					"denominator": 9
-				},
-				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
-				"guid": "WDttsHbmBOAfznJ5iJAvtkb9xYIdr0QB",
-				"editorProps": {
-					"time": 6.473684210526315
-				},
-				"measureIndex": 5,
-				"measurePosition": {
-					"numerator": 1,
-					"denominator": 8
-				},
-				"horizontalSize": 15,
-				"horizontalPosition": {
-					"numerator": 256,
-					"denominator": 1
 				},
 				"type": "above-slide-judge-note",
 				"speed": 1,
@@ -5415,27 +5331,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "h9lUUqr8ZiqOvkpXcRojkLtQe8ATZzIp",
-				"editorProps": {
-					"time": 13.421052631578945
-				},
-				"measureIndex": 10,
-				"measurePosition": {
-					"numerator": 5,
-					"denominator": 8
-				},
-				"horizontalSize": 10,
-				"horizontalPosition": {
-					"numerator": 2952790016,
-					"denominator": 9
-				},
-				"type": "above-hold-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
 				"guid": "f8eVea1abm1X8VCp90jjWDgvvZbw8JFO",
 				"editorProps": {
 					"time": 13.421052631578947
@@ -5583,27 +5478,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "INdojNcJzeDVSTWONBkVBndT6yMd7ff0",
-				"editorProps": {
-					"time": 13.736842105263158
-				},
-				"measureIndex": 10,
-				"measurePosition": {
-					"numerator": 7,
-					"denominator": 8
-				},
-				"horizontalSize": 10,
-				"horizontalPosition": {
-					"numerator": 11811160064,
-					"denominator": 9
-				},
-				"type": "above-hold-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
 				"guid": "TQItPms3c4AfTi2EgO6LmijwVTjAZk86",
 				"editorProps": {
 					"time": 13.894736842105262
@@ -5638,27 +5512,6 @@
 				"horizontalPosition": {
 					"numerator": 0,
 					"denominator": 1
-				},
-				"type": "above-hold-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "366539ea63f3ad442329fd1181a1ad11",
-				"customProps": {}
-			},
-			{
-				"guid": "HUJQaXcNGaXryDrIC5NlpNfAnVhkckP8",
-				"editorProps": {
-					"time": 13.894736842105262
-				},
-				"measureIndex": 11,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 1
-				},
-				"horizontalSize": 10,
-				"horizontalPosition": {
-					"numerator": 23622320128,
-					"denominator": 9
 				},
 				"type": "above-hold-judge-note",
 				"speed": 1,

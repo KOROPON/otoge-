@@ -13,7 +13,7 @@ public class JudgeRankEffector : MonoBehaviour
     private Vector3 finScale = new Vector3(200, 200, 0);
 
     private int trueNum = -1;
-
+    /*
     private void Start()
     {
         perfect = this.gameObject.transform.GetChild(0).gameObject;
@@ -21,6 +21,7 @@ public class JudgeRankEffector : MonoBehaviour
         bad = this.gameObject.transform.GetChild(2).gameObject;
         miss = this.gameObject.transform.GetChild(3).gameObject;
     }
+    */
 
     private void Update() // MusicNumManage JumpToSong éQè∆
     {

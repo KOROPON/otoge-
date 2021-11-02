@@ -29,7 +29,6 @@ namespace Reilas
 
         public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
         {
-            Debug.Log("HoldRender");
             if (_entity.Tail.JudgeTime < currentTime)
             {
                 foreach (Transform child in transform) foreach (Transform inChild in child) Destroy(inChild.gameObject);

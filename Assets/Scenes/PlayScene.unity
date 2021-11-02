@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12161,7 +12161,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 858022451}
-  - component: {fileID: 858022450}
   m_Layer: 0
   m_Name: Effectors
   m_TagString: Untagged
@@ -12169,18 +12168,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &858022450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858022449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e90e455bbc6b446987d5786aaadb66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &858022451
 Transform:
   m_ObjectHideFlags: 0
@@ -12319,7 +12306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2426ce6ddb0a04f90a45857c137cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilter: {fileID: 0}
+  meshFilter: {fileID: 884902052}
 --- !u!33 &884902052
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17798,6 +17785,7 @@ MonoBehaviour:
   aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   barLinePrefab: {fileID: 1225088512927123766, guid: 17df6b821bdba584abfd1257c6affb71, type: 3}
   keyBeamPrefab: {fileID: 524947537259370129, guid: f60a59b1aeccf0e4c910521002752124, type: 3}
+  speedChanges: []
   jumpToKujo: 0
   judgeTime: 0
   audioTime: 0
@@ -44173,6 +44161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1915486426}
+  - component: {fileID: 1915486427}
   m_Layer: 5
   m_Name: JudgeRank
   m_TagString: Untagged
@@ -44203,6 +44192,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1915486427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915486425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ad8993ea22bc845a21857450d4362a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perfect: {fileID: 660885634}
+  good: {fileID: 556929943}
+  bad: {fileID: 895411293}
+  miss: {fileID: 870940772}
 --- !u!1 &1923486819
 GameObject:
   m_ObjectHideFlags: 0

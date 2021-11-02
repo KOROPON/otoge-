@@ -86,8 +86,7 @@ public class RhythmGamePresenter : MonoBehaviour
     public static string dif = null!;
 
     //Reilas移行判定
-    public bool jumpToKujo = false;
-    private bool _throughPoint;
+    public bool jumpToKujo;
 
     private BossGimmicks? _boss;
 
@@ -155,7 +154,7 @@ public class RhythmGamePresenter : MonoBehaviour
                 }
                 case 4: 
                 { 
-                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size; i++) TapNoteLanes[i].Add(note);
+                    for (var i = noteLanePosition; i < noteLanePosition + note.note.Size && i < 36; i++) TapNoteLanes[i].Add(note);
 
                     break;
                 }
@@ -223,10 +222,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (_chartEntity.SpeedChanges != null)
         {
-            foreach (var bpm in _chartEntity.SpeedChanges)
-            {
-                speedChanges.Add(bpm);
-            }
+            foreach (var bpm in _chartEntity.SpeedChanges) speedChanges.Add(bpm);
             _checkSpeedChangeEntity = true;
         }
         NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
@@ -236,9 +232,9 @@ public class RhythmGamePresenter : MonoBehaviour
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
 
-        _tapNotes = _tapNotes.OrderBy(note => note.JudgeTime).ToList();
-        internalNotes = internalNotes.OrderBy(note => note.JudgeTime).ToList();
-        chainNotes = chainNotes.OrderBy(note => note.JudgeTime).ToList();
+        _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
+        internalNotes = internalNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
+        chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
         
         _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
@@ -246,7 +242,7 @@ public class RhythmGamePresenter : MonoBehaviour
         _reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
 
-        Debug.Log(_chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).Count());
+        Debug.Log(_chartEntity.NoteLines.Count(note => note.Head.Type == NoteType.Hold));
 
         List<int> removeInt = new List<int>();
         
@@ -509,15 +505,13 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("JumpToKUJO = " + jumpToKujo);
-
         if (_audioSource == null) return;
 
         InputService.AboveLaneTapStates.Clear();
         for (var i = 0; i < 36; i++)
         {
-            LaneTapStates[i, 0] = LaneTapStates[i, 1];
-            LaneTapStates[i, 1] = false;
+            LaneTapStates[i, 1] = LaneTapStates[i, 0];
+            LaneTapStates[i, 0] = false;
         }
 
         var allTouch = Input.touches;
@@ -531,13 +525,19 @@ public class RhythmGamePresenter : MonoBehaviour
             var (vector3, laneIndex) = _screenPoints.Select((screenPoint, index) => (screenPoint, index))
                 .OrderBy(screenPoint => Vector2.Distance(screenPoint.screenPoint, touch.position)).First();
             var distance = Vector2.Distance(vector3, touch.position);
-            var nearestLaneIndex = distance < 150 ? laneIndex : 40;//押した場所に一番近いレーンの番号
+            var nearestLaneIndex = distance < 500 ? laneIndex : 40;//押した場所に一番近いレーンの番号
             //Debug.Log(nearestLaneIndex);
             var start = touch.phase == TouchPhase.Began;
+
+
             // touch.position
             // このフレームで押されたよん
 
-            if (nearestLaneIndex < 36) LaneTapStates[nearestLaneIndex, 0] = true;
+            if (nearestLaneIndex < 36)
+            {
+                LaneTapStates[nearestLaneIndex, 0] = true;
+                LaneTapStates[nearestLaneIndex, 1] = start;
+            }
             else continue;
 
             InputService.AboveLaneTapStates.Add(new LaneTapState
@@ -562,26 +562,11 @@ public class RhythmGamePresenter : MonoBehaviour
             }
         }
         
-        if (PlayerPrefs.HasKey("judgegap")) judgeTime += PlayerPrefs.GetFloat("judgegap") / 1000;
-        if (PlayerPrefs.HasKey("audiogap")) audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
+        if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
+        if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && dif == "Extreme") 
-        {
-            if (currentTime <= 82 && _scoreComboCalculator != null)
-            {
-                jumpToKujo = _scoreComboCalculator.slider.value >= 0.75f;
+        if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.value >= 0.75f;
 
-                if (_scoreComboCalculator.slider.value >= 0f)
-                {
-                    jumpToKujo = true;
-                }
-                else
-                {
-                    jumpToKujo = false;
-                }
-            }
-        }
-        
 
         for(var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {
@@ -619,6 +604,7 @@ public class RhythmGamePresenter : MonoBehaviour
                     keyBeam.transform.localScale = new Vector3(1, 1f, 1);
                     break;
             }
+            
             _allKeyBeam.Add(keyBeam);
             dupLane.Add(laneNum);
         }
