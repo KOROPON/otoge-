@@ -185,7 +185,7 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.AboveKujoChainNotes.Remove(this);
             else RhythmGamePresenter.AboveChainNotes.Remove(this);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

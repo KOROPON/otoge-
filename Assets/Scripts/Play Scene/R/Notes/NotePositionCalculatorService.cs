@@ -75,6 +75,8 @@ namespace Reilas
                     ? PositionCalculator(t, highSpeed)
                     : PositionCalculator(notePassedTime - judgeTime, highSpeed);
                 
+                Debug.Log(speedChangeEntities[i].Speed + "    " + judgeTime);
+                
                 zPos += positionCalculator - nextNotePosition;
             }
 

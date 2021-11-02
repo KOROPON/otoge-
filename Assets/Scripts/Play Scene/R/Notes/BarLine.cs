@@ -70,10 +70,7 @@ namespace Reilas
 
         public void Initialize()
         {
-            if (meshFilter == null)
-            {
-                return;
-            }
+            if (meshFilter == null) return;
 
             _vertices = new Vector3[70];
             _uv = new Vector3[70];
@@ -116,23 +113,14 @@ namespace Reilas
                 if (songName.title != song) continue;
                 Beat beat = songName.beat;
                 var spacing = 60 / beat.bpm * beat.numerator * 4 / beat.denominator;
-                for (float time = 0; time < audioLength + spacing; time += spacing)
-                {
-                    BarLines.Add(time);
-                }
+                for (float time = 0; time < audioLength + spacing; time += spacing) BarLines.Add(time);
             }
         }
 
         public void Render(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
-            if (!gameObject.activeSelf)
-            {
-                if (judgeTime - currentTime < 5f) gameObject.SetActive(true);
-            }
-            else
-            {
-                if (judgeTime < currentTime) NoteDestroy();
-            }
+            if (!gameObject.activeSelf && judgeTime - currentTime < 5f) gameObject.SetActive(true);
+            else if (judgeTime < currentTime) NoteDestroy();
 
             var berPos = CalculateBarLinePosition(judgeTime, currentTime, speedChangeEntities).z; // Make Mesh 頂点
 
@@ -210,7 +198,7 @@ namespace Reilas
             //Debug.Log(this.gameObject);
             RhythmGamePresenter.BarLines.Remove(this);
             BarLines.Remove(BarLines[0]);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -132,6 +132,7 @@ public class JudgeService : MonoBehaviour
         var tapNotes = RhythmGamePresenter.TapNoteLanes;
         for (var i = 0; i < tapNotes.Length; i++)
         {
+            var notJudgedYet = true;
             for (var j = tapJudgeStartIndex[i]; j < tapNotes[i].Count; j++)
             {
                 var note = tapNotes[i][j];
@@ -143,7 +144,7 @@ public class JudgeService : MonoBehaviour
                 var difference = CalculateDifference(currentTime, reilasNoteEntity.JudgeTime, "Tap");
                 var timeCheck = TimeCheck(currentTime, reilasNoteEntity.JudgeTime, "Tap");
 
-                if (GetTapState(reilasNoteEntity).Contains(i))
+                if (GetTapState(reilasNoteEntity).Contains(i) && notJudgedYet)
                 {
                     var nextNoteIndex = j + 1;
                     if (nextNoteIndex != tapNotes[i].Count &&
@@ -159,6 +160,8 @@ public class JudgeService : MonoBehaviour
                             _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
                         };
                     }
+
+                    notJudgedYet = false;
                 }
                 else judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
                 if (judgeResult == JudgeResultType.NotJudgedYet) continue;
