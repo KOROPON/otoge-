@@ -1,11 +1,11 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Reilas;
 using Rhythmium;
-using UnityEngine;
 
 public class BossGimmicks : MonoBehaviour
 {
@@ -148,7 +148,11 @@ public class BossGimmicks : MonoBehaviour
         else if (time < 92.98f)
         {
             if (!bossClock.isPlaying) bossClock.Play();
-            StartCoroutine(_bossContainer.BlackOutIntermittently());
+            if ((time - 82.93f) % 1.257 == 0)
+            {
+                _bossContainer.effectStart = true;
+            }
+            return;
         }
         else if (time < 101.78f)
         {
@@ -169,7 +173,7 @@ public class BossGimmicks : MonoBehaviour
             return;
         }
 
-        List<Vector3> cameraPos = CameraPosCalculator.CameraPosCalculatorService(time, Camera.main.transform.rotation.z);
+        List<Vector3> cameraPos = CameraPosCalculator.CameraPosCalculatorService(time, camera.transform.eulerAngles.z);
         camera.transform.position = cameraPos[0];
         camera.transform.eulerAngles = cameraPos[1];
     }

@@ -10,6 +10,8 @@ public class BossGimmickContainer : MonoBehaviour
     private Animation _stagingFaderAnim;
     private Animation _backGroundAnim;
 
+    public bool effectStart = true;
+
     private void Start()
     {
         _cameraEffector = GameObject.Find("Camera Effectors").GetComponent<PostProcessVolume>();
@@ -47,6 +49,12 @@ public class BossGimmickContainer : MonoBehaviour
         _cameraShine.intensity.value = 20f;
         while (true)
         {
+            if (effectStart)
+            {
+                _stagingFaderAnim.Play("StagingFaderAnim");
+                _cameraShine.intensity.value = 20f;
+                effectStart = false;
+            }
             yield return new WaitForFixedUpdate();
             i++;
             _cameraShine.intensity.value = (float) (_cameraShine.intensity.value - 0.16);

@@ -9,12 +9,13 @@ public sealed class HoldEffector : MonoBehaviour
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
-    private SpriteRenderer _noteBlight = null!;
+    private MeshRenderer _noteBlight = null!;
     private int _lanePos;
     private bool _blJudge;
 
     public float holdEffectTime;
-    
+
+    private Material material;
 
     public void EffectorInitialize(ReilasNoteLineEntity entity)
     {
@@ -23,8 +24,10 @@ public sealed class HoldEffector : MonoBehaviour
         blDone = true;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
+        material = this.gameObject.GetComponent<MeshRenderer>().materials[0];
         Transform effectorTransform;
-        _noteBlight = (effectorTransform = transform).root.GetChild(0).GetComponentInChildren<SpriteRenderer>();
+        _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
+        Debug.Log(_noteBlight);
         effectorTransform.position = RhythmGamePresenter.LanePositions[_lanePos];
         holdEffectTime = _entity.Head.JudgeTime;
     }
@@ -33,11 +36,12 @@ public sealed class HoldEffector : MonoBehaviour
         _blJudge = false;
         if (InputService.AboveLaneTapStates.Any(tapState => tapState.laneNumber == _lanePos))
         {
+            Debug.Log("HoldEffect");
             if (!_effect1.isPlaying)
             {
                 _effect1.Play();
                 _effect2.Play();
-                _noteBlight.color = new Color32(255, 255, 255, 255);
+                material.color = new Color32(255, 255, 255, 255);
                 //effectAudio.Play();
             }
             _blJudge = true;
@@ -46,7 +50,7 @@ public sealed class HoldEffector : MonoBehaviour
         if (_blJudge || !_effect1.isPlaying) return;
         _effect1.Stop();
         _effect2.Stop();
-        _noteBlight.color = new Color32(111, 111, 111, 255);
+        material.color = new Color32(111, 111, 111, 255);
         //effectAudio.Pause();
     }
 }

@@ -19,11 +19,13 @@ namespace Reilas
         private ReilasNoteLineEntity _entity = null!;
 
         private float _noteSpeed;
+        private bool _kujo;
 
-        public void Initialize(ReilasNoteLineEntity entity)
+        public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
-            _noteSpeed = entity.Head.Speed;
             _entity = entity;
+            _kujo = kujo;
+            _noteSpeed = _entity.Head.Speed;
             InitializeMesh();
             transform.localScale = Vector3.one;
         }
@@ -83,7 +85,8 @@ namespace Reilas
                 Destroy(transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
-                RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
+                if(_kujo) RhythmGamePresenter.AboveKujoHoldNotes.RemoveAt(noteNum);
+                else RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
                 RhythmGamePresenter.AboveHoldEffectors.RemoveAt(noteNum);
             }
             if (!gameObject.activeSelf) gameObject.SetActive(true);

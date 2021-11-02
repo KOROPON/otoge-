@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using Rhythmium;
 using UnityEngine;
@@ -8,23 +9,56 @@ namespace Reilas
 {
     public sealed class HoldNote : MonoBehaviour
     {
+        [SerializeField] private MeshFilter meshFilter = null!;
+
+        private Vector3[]? _vertices;
+        private Vector2[] _uv = null!;
+        private int[]? _triangles;
+
+        private Mesh? _mesh;
+
+        private Material mate;
+
         private ReilasNoteLineEntity _entity = null!;
         private float _noteSpeed;
-        private Transform? _note;
-        private Transform? _hold;
 
-        public HoldNote(Transform? note)
-        {
-            _note = note;
-        }
+        private bool _kujo;
 
         public float time;
-        public void Initialize(ReilasNoteLineEntity entity)
+        private float _noteLane;
+        private float _noteLeftPos;
+
+        public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
-            time = entity.Head.JudgeTime;
-            _noteSpeed = entity.Head.Speed;
             _entity = entity;
-            _hold = transform.GetChild(0);
+            _kujo = kujo;
+            time = _entity.Head.JudgeTime;
+            _noteSpeed = _entity.Head.Speed;
+            _noteLane = _entity.Head.LanePosition;
+            InitializeMesh();
+        }
+
+        private void InitializeMesh()
+        {
+            if (meshFilter == null)
+            {
+                throw new Exception();
+                //return;
+            }
+
+            _noteLeftPos = -4.4f + 2.2f * _noteLane;
+
+            _vertices = new Vector3[4];
+            _triangles = new int[6] { 1, 0, 3, 0, 2, 3 };
+            _uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 0) };
+
+            // ÉÅÉbÉVÉÖÇê∂ê¨Ç∑ÇÈ.
+            _mesh = new Mesh
+            {
+                vertices = _vertices,
+                triangles = _triangles
+            };
+            _mesh.MarkDynamic();
         }
 
         public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
@@ -35,22 +69,30 @@ namespace Reilas
                 foreach (Transform child in transform) Destroy(child.gameObject);
                 noteList.RemoveAt(noteNum);
                 Destroy(gameObject);
-                RhythmGamePresenter.HoldNotes.RemoveAt(noteNum);
+                if (_kujo) RhythmGamePresenter.HoldKujoNotes.RemoveAt(noteNum);
+                else RhythmGamePresenter.HoldNotes.RemoveAt(noteNum);
                 RhythmGamePresenter.HoldEffectors.RemoveAt(noteNum);
             }
             if (!gameObject.activeSelf) gameObject.SetActive(true);
 
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
             
-            var headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false, speedChangeEntities);
-            var tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false, speedChangeEntities);
-            
-            scale.z = tailPos.z - headPos.z;
+            float headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false, speedChangeEntities).z;
+            float tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false, speedChangeEntities).z;
 
-            if (_hold == null) return;
-            // NotePositionCalculatorService.GetScale(_entity.Head);
-            _hold.localScale = scale;
-            _hold.position = (headPos + tailPos) / 2f;
+            _vertices[0] = new Vector3(_noteLeftPos, 0, headPos);
+            _vertices[1] = new Vector3(_noteLeftPos + 2.2f, 0, headPos);
+            _vertices[2] = new Vector3(_noteLeftPos, 0, tailPos);
+            _vertices[3] = new Vector3(_noteLeftPos + 2.2f, 0, tailPos);
+
+
+            _mesh.vertices = _vertices;
+
+            _mesh.uv = _uv;
+#if UNITY_EDITOR
+            _mesh.RecalculateBounds();
+#endif
+            meshFilter.mesh = _mesh;
         }
 
         public void NoteDestroy(bool kujo)

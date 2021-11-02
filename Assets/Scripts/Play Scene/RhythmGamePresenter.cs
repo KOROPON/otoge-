@@ -87,6 +87,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     //Reilas移行判定
     public bool jumpToKujo;
+    private bool bossChangeSupport = false;
 
     private BossGimmicks? _boss;
 
@@ -394,7 +395,7 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(holdNotePrefab);
             var holdEffector = tapNote.transform.Find("HoldEffector").gameObject.GetComponent<HoldEffector>();
-            tapNote.Initialize(note);
+            tapNote.Initialize(note, bosNotes);
             holdEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             HoldEffectors.Add(holdEffector);
@@ -409,7 +410,7 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(aboveHoldNotePrefab);
             var aboveHoldEffector = tapNote.transform.Find("AboveHoldEffector").gameObject.GetComponent<AboveHoldEffector>();
-            tapNote.Initialize(note);
+            tapNote.Initialize(note, bosNotes);
             aboveHoldEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveHoldEffectors.Add(aboveHoldEffector);
@@ -423,7 +424,7 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             var tapNote = Instantiate(aboveSlideNotePrefab);
             var aboveSlideEffector = tapNote.transform.Find("AboveSlideEffector").gameObject.GetComponent<AboveSlideEffector>();
-            tapNote.Initialize(note, false);
+            tapNote.Initialize(note, bosNotes);
             aboveSlideEffector.EffectorInitialize(note);
             tapNote.gameObject.SetActive(false);
             AboveSlideEffectors.Add(aboveSlideEffector);
@@ -565,7 +566,17 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.value >= 0.75f;
+        if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null)
+        {
+            if (_scoreComboCalculator.slider.value >= 0f)
+            {
+                jumpToKujo = true;
+            }
+            else
+            {
+                jumpToKujo = false;
+            }
+        }
 
 
         for(var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
@@ -620,9 +631,10 @@ public class RhythmGamePresenter : MonoBehaviour
             else _judgeService.Judge(judgeTime);
         }
 
-        if (!(currentTime > 82) || !jumpToKujo || _boss == null) return;
-        if (jumpToKujo) { _boss.ChangeToKujo(); }
-        else { _boss.NotChangeToKujo(); }
+        if (bossChangeSupport) return;
+        if (!(currentTime < 82) || !jumpToKujo || _boss == null) return;
+        if (jumpToKujo) { _boss.ChangeToKujo(); Debug.Log("Change"); bossChangeSupport = true; }
+        else { _boss.NotChangeToKujo(); Debug.Log("NotChange"); bossChangeSupport = true; }
     }
 
     private void LateUpdate()

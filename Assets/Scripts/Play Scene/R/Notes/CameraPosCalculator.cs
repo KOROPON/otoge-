@@ -18,18 +18,18 @@ namespace Reilas
             if (time < 99.8) //�˂���Đi��
             {
                 float t = time - 93;
-                float z = (-(1 / (t + 1)) + 1) * 5 - 2.8f;
+                float z = (-(1 / (t + 1)) + 1) * 2 - 2.8f;
                 pos.Add(new Vector3(0, 2.2f, z));
-                pos.Add(new Vector3(0, 0, rotation - 5));
+                pos.Add(new Vector3(0, 0, rotation - 2));
             }
             else if (time < 101.78f) // �˂���Đi�� //1.559
             {
                 float t = time - 99.8f;
-                float z = (t * t * t) * 200 + 1.559f;
+                float z = (t * t * t) * 180 - 1.928f;
                 pos.Add(new Vector3(0, 2.2f, z));
                 if (rotation % 360 != 0)
                 {
-                    pos.Add(new Vector3(0, 0, rotation - 5));
+                    pos.Add(new Vector3(0, 0, rotation - 2));
                 }
                 else
                 {
@@ -42,7 +42,7 @@ namespace Reilas
                 pos.Add(new Vector3(0, 2.2f, z));
                 if (rotation % 360 != 0)
                 {
-                    pos.Add(new Vector3(0, 0, rotation - 5));
+                    pos.Add(new Vector3(0, 0, rotation - 2));
                 }
                 else
                 {

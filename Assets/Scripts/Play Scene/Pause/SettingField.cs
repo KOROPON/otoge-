@@ -34,17 +34,17 @@ public class SettingField : MonoBehaviour
     public void Resume()
     {
         pausePanel.SetActive(false);
-        //text.text = "3";
+        text.gameObject.SetActive(true);
+        text.text = "3";
         _resume = true;
-        //StartCoroutine("SettingRemuse");
     }
 
     private void Update()
     {
-        if (_resume)
-        {
-            _resumetime--;
-        }
+        if (!_resume) return;
+        
+        _resumetime--;
+        
         if (_resumetime % 60 == 0)
         {
             text.text = (_resumetime / 60).ToString();
@@ -52,6 +52,7 @@ public class SettingField : MonoBehaviour
             {
                 _fader.enabled = false;
                 pauseButton.SetActive(true);
+                text.gameObject.SetActive(false);
                 aud.UnPause();
                 Time.timeScale = 1;
                 _resume = false;
