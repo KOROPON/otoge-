@@ -98,7 +98,7 @@ namespace Reilas
 
                     if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
                     
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, true, speedChangeEntities).z;
+                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities).z;
                     
                     //zPos += zz;
 

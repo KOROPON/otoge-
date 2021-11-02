@@ -212,8 +212,8 @@ namespace Reilas
 
             //var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, false, speedChangeEntities).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, false, speedChangeEntities).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
 
 
             int thisNoteZRatio;
