@@ -68,37 +68,41 @@ namespace Reilas
                 switch (judgeResult)
                 {
                     case JudgeResultType.Perfect:
-                        currentCombo++;
-                        _score += 4;
-                        sumPerfect++;
-                        _gaugeCombo++;
-                        _gaugeMiss = 0;
-                        break;
+                        {
+                            currentCombo++;
+                             _score += 4;
+                            sumPerfect++;
+                            _gaugeCombo++;
+                            _gaugeMiss = 0;
+                            break;
+                        }
                     case JudgeResultType.Good:
+                    {
                         currentCombo++;
                         _score += 2;
                         sumGood++;
                         _gaugeCombo++;
                         _gaugeMiss = 0;
                         break;
+                    }
                     case JudgeResultType.Bad:
+                    {
                         currentCombo++;
                         _score += 1;
                         sumBad++;
                         _gaugeCombo++;
                         _gaugeMiss = 0;
                         break;
+                    }
                     case JudgeResultType.Miss:
-                        if (highCombo < currentCombo)
-                        {
-                            highCombo = currentCombo;
-                        }
-
+                    {
+                        if (highCombo < currentCombo) highCombo = currentCombo;
                         currentCombo = 0;
                         _gaugeCombo = 0;
                         _gaugeMiss++;
                         sumMiss++;
                         break;
+                    }
                     case JudgeResultType.NotJudgedYet:
                         break;
                     default:

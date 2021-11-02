@@ -75,13 +75,15 @@ namespace Reilas
                     ? PositionCalculator(t, highSpeed)
                     : PositionCalculator(notePassedTime - judgeTime, highSpeed);
                 
+                Debug.Log(speedChangeEntities[i].Speed + "    " + judgeTime);
+                
                 zPos += positionCalculator - nextNotePosition;
             }
 
             return zPos;
         }
         
-        public static Vector3 GetPosition(NoteEntity entity, float currentTime, float noteSpeed, bool checkIfTap, List<SpeedChangeEntity> speedChangeEntities)
+        public static Vector3 GetPosition(NoteEntity entity, float currentTime, float noteSpeed, List<SpeedChangeEntity> speedChangeEntities)
         {
             var highSpeed = normalizedSpeed * noteSpeed;
 
