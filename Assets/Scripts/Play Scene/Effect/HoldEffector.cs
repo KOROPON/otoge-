@@ -24,7 +24,7 @@ public sealed class HoldEffector : MonoBehaviour
         blDone = true;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        material = this.gameObject.GetComponent<MeshRenderer>().materials[0];
+        //material = this.gameObject.GetComponent<MeshRenderer>().materials[0];
         Transform effectorTransform;
         _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
         Debug.Log(_noteBlight);

@@ -27,7 +27,7 @@ public class JudgeService : MonoBehaviour
     {
         {"Tap Perfect", 0.041f},
         {"Tap Good", 0.058f},
-        {"Tap Bad", 0.075f},
+        {"Tap Bad", 0.5f},
         {"Internal", 0.090f},
         {"Chain", 0.025f}
     };

@@ -106,7 +106,7 @@ namespace Reilas
             return normalizedTime < 0 ? new Vector3(x, 0f, highSpeed * t) : new Vector3(x, 0f, CalculateZPos(entity, speedChangeEntities, noteSpeed, currentTime));
         }
 
-            public static Vector3 GetScale(NoteEntity entity, float y = 1f)
+        public static Vector3 GetScale(NoteEntity entity, float y = 1f)
         {
             return new Vector3(entity.Size * BelowNoteWidth, y, 1f);
         }
