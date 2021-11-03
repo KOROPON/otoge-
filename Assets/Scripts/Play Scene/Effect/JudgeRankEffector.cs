@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class JudgeRankEffector : MonoBehaviour
 {
-    private Sprite sprite;
     public GameObject perfect;
     public GameObject good;
     public GameObject bad;
@@ -13,15 +12,6 @@ public class JudgeRankEffector : MonoBehaviour
     private Vector3 finScale = new Vector3(200, 200, 0);
 
     private int trueNum = -1;
-    /*
-    private void Start()
-    {
-        perfect = this.gameObject.transform.GetChild(0).gameObject;
-        good = this.gameObject.transform.GetChild(1).gameObject;
-        bad = this.gameObject.transform.GetChild(2).gameObject;
-        miss = this.gameObject.transform.GetChild(3).gameObject;
-    }
-    */
 
     private void Update() // MusicNumManage JumpToSong éQè∆
     {

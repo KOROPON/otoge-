@@ -444,7 +444,7 @@ public class RhythmGamePresenter : MonoBehaviour
         }
     }
 
-    private const float Z = -0.9f;
+    private const float Z = -0.8f;
 
     public static readonly Vector3[] LanePositions = new Vector3[]
     {
@@ -488,9 +488,51 @@ public class RhythmGamePresenter : MonoBehaviour
         new Vector3(4.45f,0.66f,Z),
         new Vector3(4.5f,0.22f,Z),
     };
+    public static readonly Vector3[] UserLanePositions = new Vector3[]
+    {
+        //下のレーン
+        new Vector3(-2.5f, 0, Z),
+        new Vector3(-1f, 0, Z),
+        new Vector3(1f, 0,Z),
+        new Vector3(2.5f, 0, Z),
+
+        //上のレーン
+        new Vector3(-4.4f,0.22f,Z),
+        new Vector3(-4.45f,0.66f,Z),
+        new Vector3(-4.36f,1.09f,Z),
+        new Vector3(-4.23f,1.51f,Z),
+        new Vector3(-4.06f,1.92f,Z),
+        new Vector3(-3.86f,2.31f,Z),
+        new Vector3(-3.61f,2.68f,Z),
+        new Vector3(-3.33f,3.02f,Z),
+        new Vector3(-3.02f,3.33f,Z),
+        new Vector3(-2.68f,3.61f,Z),
+        new Vector3(-2.31f,3.86f,Z),
+        new Vector3(-1.92f,4.06f,Z),
+        new Vector3(-1.51f,4.23f,Z),
+        new Vector3(-1.09f,4.36f,Z),
+        new Vector3(-0.66f,4.45f,Z),
+        new Vector3(-0.22f,4.5f,Z),
+        new Vector3(0.22f,4.5f,Z),
+        new Vector3(0.66f,4.45f,Z),
+        new Vector3(1.09f,4.36f,Z),
+        new Vector3(1.51f,4.23f,Z),
+        new Vector3(1.92f,4.06f,Z),
+        new Vector3(2.31f,3.86f,Z),
+        new Vector3(2.68f,3.61f,Z),
+        new Vector3(3.02f,3.33f,Z),
+        new Vector3(3.33f,3.02f,Z),
+        new Vector3(3.61f,2.68f,Z),
+        new Vector3(3.86f,2.31f,Z),
+        new Vector3(4.06f,1.92f,Z),
+        new Vector3(4.23f,1.51f,Z),
+        new Vector3(4.36f,1.09f,Z),
+        new Vector3(4.45f,0.66f,Z),
+        new Vector3(4.4f,0.22f,Z),
+    };
 
     // Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //
-    private readonly IEnumerable<Vector3> _screenPoints = LanePositions.Select(lanePosition3D => Camera.main != null ? Camera.main.WorldToScreenPoint(lanePosition3D) : default);
+    private readonly IEnumerable<Vector3> _screenPoints = UserLanePositions.Select(lanePosition3D => Camera.main != null ? Camera.main.WorldToScreenPoint(lanePosition3D) : default);
 
     public static float CalculatePassedTime(List<SpeedChangeEntity> bpmChanges, int index)
     {
@@ -593,6 +635,7 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 if (laneNum == dupLane[i])
                 {
+                    continue;
                 }
             }
 
@@ -602,17 +645,17 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 case var n when n > 3 && n < 20:
                     keyBeam.transform.position = new Vector3(LanePositions[laneNum].x + 0.2f, LanePositions[laneNum].y, 9.7f);
-                    keyBeam.transform.localScale = new Vector3(0.2f, 1, 1);
+                    keyBeam.transform.localScale = new Vector3(0.25f, 1, 1);
                     keyBeam.transform.Rotate(new Vector3(0, 90 - (180 / 33 * (laneNum - 2) + 180 / 33 * (laneNum - 1)) / 2, 0));
                     break;
                 case var n when n > 3:
                     keyBeam.transform.position = new Vector3(LanePositions[laneNum].x - 0.2f, LanePositions[laneNum].y, 9.7f);
-                    keyBeam.transform.localScale = new Vector3(0.2f, 1, 1);
+                    keyBeam.transform.localScale = new Vector3(0.25f, 1, 1);
                     keyBeam.transform.Rotate(new Vector3(0, 90 - (180 / 33 * (laneNum - 2) + 180 / 33 * (laneNum - 1)) / 2, 0));
                     break;
                 default:
                     keyBeam.transform.position = new Vector3(LanePositions[laneNum].x, LanePositions[laneNum].y, 9.55f);
-                    keyBeam.transform.localScale = new Vector3(1, 1f, 1);
+                    keyBeam.transform.localScale = new Vector3(1, 1, 1);
                     break;
             }
             
