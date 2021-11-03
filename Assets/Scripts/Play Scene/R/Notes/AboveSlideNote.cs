@@ -296,15 +296,17 @@ namespace Reilas
 
         public void NoteDestroy(bool kujo)
         {
-            foreach (Transform child in this.transform.GetChild(0))
+            for (int a = 2; a >= 0; a--)
             {
-                Destroy(child.gameObject);
+                Destroy(transform.GetChild(0).GetChild(a).GetComponent<ParticleSystem>());
+                Destroy(transform.GetChild(0).GetChild(a).gameObject);
             }
-            RhythmGamePresenter.AboveSlideEffectors.Remove(this.transform.GetChild(0).GetComponent<AboveSlideEffector>());
-            Destroy(this.transform.GetChild(0).gameObject);
+            Destroy(transform.GetChild(0).GetComponent<AboveSlideEffector>());
+            RhythmGamePresenter.AboveSlideEffectors.Remove(transform.GetChild(0).GetComponent<AboveSlideEffector>());
+            Destroy(transform.GetChild(0).gameObject);
             if (kujo) RhythmGamePresenter.AboveKujoSlideNotes.Remove(this);
             else RhythmGamePresenter.AboveSlideNotes.Remove(this);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

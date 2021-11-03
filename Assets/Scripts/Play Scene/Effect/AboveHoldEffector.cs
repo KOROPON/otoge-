@@ -6,7 +6,8 @@ public sealed class AboveHoldEffector : MonoBehaviour
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
-    private Color _noteBlight;
+    private ParticleSystem _effect3 = null!;
+    private MeshRenderer _noteBlight;
     private int _lanePos;
     private int _laneMax;
     private int _laneMin;
@@ -20,9 +21,12 @@ public sealed class AboveHoldEffector : MonoBehaviour
         _laneMin = _entity.Head.LanePosition;
         _laneMax = _entity.Head.LanePosition + _entity.Head.Size;
         _effect1 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[0];
-        _effect2 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.root.GetComponent<MeshRenderer>().material.color;
+        _effect2 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[1];
+        _effect3 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[2];
+        Transform effectorTransform;
+        _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>(); ;
         transform.position = RhythmGamePresenter.LanePositions[_lanePos];
+        transform.eulerAngles = new Vector3(0, 0, 16 - _lanePos / 32 * 180);
         aboveHoldEffectTime = _entity.Head.JudgeTime;
     }
 
@@ -39,7 +43,8 @@ public sealed class AboveHoldEffector : MonoBehaviour
                     {
                         _effect1.Play();
                         _effect2.Play();
-                        _noteBlight = new Color32(255, 255, 255, 160);
+                        _effect3.Play();
+                        _noteBlight.material.color = new Color32(255, 255, 255, 160);
                         effectAudio.Play();
                     }
                     _blJudge = true;
@@ -51,9 +56,10 @@ public sealed class AboveHoldEffector : MonoBehaviour
         {
             if (_effect1.isPlaying)
             {
-                 _effect1.Stop();
+                _effect1.Stop();
                 _effect2.Stop();
-                _noteBlight = new Color32(130, 130, 130, 160);
+                _effect3.Stop();
+                _noteBlight.material.color = new Color32(130, 130, 130, 160);
                 effectAudio.Pause();
             }
         }

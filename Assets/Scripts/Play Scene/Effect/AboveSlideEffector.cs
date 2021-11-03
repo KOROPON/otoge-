@@ -6,7 +6,8 @@ public class AboveSlideEffector : MonoBehaviour
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
-    private Material _noteBlight;
+    private ParticleSystem _effect3 = null!;
+    private MeshRenderer _noteBlight;
     private int _headPos;
     private int _headMax;
     private int _headMin;
@@ -32,7 +33,9 @@ public class AboveSlideEffector : MonoBehaviour
         _tailTime = _entity.Tail.JudgeTime;
         _effect1 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = ((Component) this).gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        _noteBlight = transform.root.GetComponent<MeshRenderer>().material;
+        _effect3 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[2];
+        Transform effectorTransform;
+        _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
         aboveSlideEffectTime = _entity.Head.JudgeTime;
         //Debug.Log("colorHere" + _noteBlight.r);
     }
@@ -47,6 +50,7 @@ public class AboveSlideEffector : MonoBehaviour
         Debug.Log("min" + laneMin);
 
         transform.position = PositionCal(currentTime);
+        transform.eulerAngles = AngleCal(currentTime);
 
         if (InputService.AboveLaneTapStates != null)
         {
@@ -58,13 +62,11 @@ public class AboveSlideEffector : MonoBehaviour
                     Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
                     if (!_effect1.isPlaying)
                     {
-                        Debug.Log("SlideEffectWorkcccccccccccccc");
                         _effect1.Play();
                         _effect2.Play();
-                        _noteBlight.SetColor("Main Color", new Color32(255, 255, 255, 160));
-                        //Debug.Log("colorTrue" + _noteBlight.r);
+                        _effect3.Play();
+                        _noteBlight.material.color = new Color32(255, 255, 255, 160);
                         effectAudio.Play();
-                        //Debug.Log("SlideEffectWork");
                     }
                     blJudge = true;
                     return;
@@ -83,18 +85,23 @@ public class AboveSlideEffector : MonoBehaviour
             {
                 _effect1.Stop();
                 _effect2.Stop();
-                //_noteBlight = new Color32(130, 130, 130, 160);
-                //Debug.Log("colorFalse" + _noteBlight.r);
+                _effect3.Stop();
+                _noteBlight.material.color = new Color32(130, 130, 130, 160);
                 effectAudio.Pause();
-                Debug.Log("SlideEffectStop");
             }
         }
     }
     private Vector3 PositionCal(float currentTime)
     {
         float pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos)) / 32;
-        var x = 4.4 * Mathf.Cos(pai);
-        var y = 4.4 * Mathf.Sin(pai);
-        return new Vector3((float) x, (float) y,(float) -0.9);
+        float x = (float)(4.4 * Mathf.Cos(pai));
+        float y = (float)4.4 * Mathf.Sin(pai);
+        return new Vector3(x, y, -0.9f);
+    }
+
+    private Vector3 AngleCal(float currentTime)
+    {
+        float rot = (16 - Mathf.Lerp(_headPos, _tailPos, (currentTime - _headTime) / (_tailTime - _headTime))) / 32 * 180;
+        return new Vector3(0, 0, rot);
     }
 }
