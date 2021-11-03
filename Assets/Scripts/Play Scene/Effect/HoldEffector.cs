@@ -9,6 +9,7 @@ public sealed class HoldEffector : MonoBehaviour
     private ReilasNoteLineEntity _entity = null!;
     private ParticleSystem _effect1 = null!;
     private ParticleSystem _effect2 = null!;
+    private ParticleSystem _effect3 = null!;
     private MeshRenderer _noteBlight = null!;
     private int _lanePos;
     private bool _blJudge;
@@ -24,7 +25,7 @@ public sealed class HoldEffector : MonoBehaviour
         blDone = true;
         _effect1 = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
         _effect2 = gameObject.GetComponentsInChildren<ParticleSystem>()[1];
-        //material = this.gameObject.GetComponent<MeshRenderer>().materials[0];
+        _effect3 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[2];
         Transform effectorTransform;
         _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
         Debug.Log(_noteBlight);
@@ -41,8 +42,9 @@ public sealed class HoldEffector : MonoBehaviour
             {
                 _effect1.Play();
                 _effect2.Play();
-                material.color = new Color32(255, 255, 255, 255);
-                //effectAudio.Play();
+                _effect3.Play();
+                _noteBlight.material.color = new Color32(255, 255, 255, 160);
+                effectAudio.Play();
             }
             _blJudge = true;
         }
@@ -50,7 +52,8 @@ public sealed class HoldEffector : MonoBehaviour
         if (_blJudge || !_effect1.isPlaying) return;
         _effect1.Stop();
         _effect2.Stop();
-        material.color = new Color32(111, 111, 111, 255);
-        //effectAudio.Pause();
+        _effect3.Stop();
+        _noteBlight.material.color = new Color32(130, 130, 130, 160);
+        effectAudio.Pause();
     }
 }

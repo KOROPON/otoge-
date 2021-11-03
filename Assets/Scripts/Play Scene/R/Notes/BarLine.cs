@@ -193,7 +193,7 @@ namespace Reilas
             meshFilter.mesh = _mesh;
         }
 
-        private void NoteDestroy()
+        public void NoteDestroy()
         {
             //Debug.Log(this.gameObject);
             RhythmGamePresenter.BarLines.Remove(this);

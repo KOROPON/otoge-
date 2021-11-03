@@ -1,4 +1,5 @@
 using Reilas;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -77,12 +78,8 @@ public class Shutter : MonoBehaviour
                 break;
             case "ToSFrP":
                 SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
                 AllNoteDestroy();
-                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
-                break;
-            case "ToR":
-                SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
                 break;
             case "ToS_F":
                 SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
@@ -128,29 +125,57 @@ public class Shutter : MonoBehaviour
     private static void AllNoteDestroy()
     {
 
-        foreach (var a in RhythmGamePresenter.TapNotes)
+        for (int a = RhythmGamePresenter.TapNotes.Count() - 1; a >= 0; a--)
         {
-            Destroy(a.gameObject);
+            RhythmGamePresenter.TapNotes[a].NoteDestroy(false);
         }
-        foreach (var a in RhythmGamePresenter.HoldNotes)
+        for (int a = RhythmGamePresenter.TapKujoNotes.Count() - 1; a >= 0; a--)
         {
-            Destroy(a.gameObject);
+            RhythmGamePresenter.TapKujoNotes[a].NoteDestroy(true);
         }
-        foreach (var a in RhythmGamePresenter.AboveTapNotes)
+        for (int a = RhythmGamePresenter.HoldNotes.Count() - 1; a >= 0; a--)
         {
-            Destroy(a.gameObject);
+            RhythmGamePresenter.HoldNotes[a].NoteDestroy(false);
         }
-        foreach (var a in RhythmGamePresenter.AboveSlideNotes)
+        for (int a = RhythmGamePresenter.HoldKujoNotes.Count() - 1; a >= 0; a--)
         {
-            Destroy(a.gameObject);
+            RhythmGamePresenter.HoldKujoNotes[a].NoteDestroy(true);
         }
-        foreach (var a in RhythmGamePresenter.AboveHoldNotes)
+        for (int a = RhythmGamePresenter.AboveTapNotes.Count() - 1; a >= 0; a--)
         {
-            Destroy(a.gameObject);
+            RhythmGamePresenter.AboveTapNotes[a].NoteDestroy(false);
         }
-        foreach (var a in RhythmGamePresenter.AboveChainNotes)
+        for (int a = RhythmGamePresenter.AboveKujoTapNotes.Count() - 1; a >= 0; a--)
         {
-            Destroy(a.gameObject);
+            RhythmGamePresenter.AboveKujoTapNotes[a].NoteDestroy(true);
+        }
+        for (int a = RhythmGamePresenter.AboveSlideNotes.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.AboveSlideNotes[a].NoteDestroy(false);
+        }
+        for (int a = RhythmGamePresenter.AboveKujoSlideNotes.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.AboveKujoSlideNotes[a].NoteDestroy(true);
+        }
+        for (int a = RhythmGamePresenter.AboveHoldNotes.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.AboveHoldNotes[a].NoteDestroy(false);
+        }
+        for (int a = RhythmGamePresenter.AboveKujoHoldNotes.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.AboveKujoHoldNotes[a].NoteDestroy(true);
+        }
+        for (int a = RhythmGamePresenter.AboveChainNotes.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.AboveChainNotes[a].NoteDestroy(false);
+        }
+        for (int a = RhythmGamePresenter.AboveKujoChainNotes.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.AboveKujoChainNotes[a].NoteDestroy(true);
+        }
+        for(int a = RhythmGamePresenter.BarLines.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.BarLines[a].NoteDestroy();
         }
 
         foreach (var lane in RhythmGamePresenter.TapNoteLanes) lane.Clear();
@@ -158,14 +183,8 @@ public class Shutter : MonoBehaviour
         {
             
         }
-            RhythmGamePresenter.internalNotes.Clear();
+        RhythmGamePresenter.internalNotes.Clear();
         RhythmGamePresenter.chainNotes.Clear();
-        RhythmGamePresenter.TapNotes.Clear();
-        RhythmGamePresenter.HoldNotes.Clear();
-        RhythmGamePresenter.AboveTapNotes.Clear();
-        RhythmGamePresenter.AboveSlideNotes.Clear();
-        RhythmGamePresenter.AboveHoldNotes.Clear();
-        RhythmGamePresenter.AboveChainNotes.Clear();
         RhythmGamePresenter.BarLines.Clear();
         BarLine.BarLines.Clear();
     }
