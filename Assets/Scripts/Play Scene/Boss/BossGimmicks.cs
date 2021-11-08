@@ -10,7 +10,8 @@ using Rhythmium;
 public class BossGimmicks : MonoBehaviour
 {
     private RhythmGamePresenter _presenter = null!;
-    private BossGimmickContainer _bossContainer;
+    private BossGimmickContainer _bossContainer = null!;
+    private AllJudgeService _judgeService = null!;
 
     private static List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     private static List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
@@ -22,9 +23,9 @@ public class BossGimmicks : MonoBehaviour
 
     public bool kujoJudgeSwitch = false;
 
-    public AudioSource bossClock;
+    public AudioSource bossClock = null!;
 
-    public new Camera? camera;
+    public new Camera camera = null!;
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class BossGimmicks : MonoBehaviour
 
     public async void BossAwake()
     {
+        _judgeService = gameObject.GetComponent<AllJudgeService>();
+
         var kujoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
         if (kujoSongs == null)
         {
@@ -123,7 +126,7 @@ public class BossGimmicks : MonoBehaviour
         }
 
 
-        _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true);
+        _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true); // RhythmGamePresenter  Error NullReferenceExeption
         _presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
         _presenter.SpawnChainNotes(reilasKujoChain, true);
         _presenter.SpawnHoldNotes(reilasKujoHold, true);
@@ -131,7 +134,7 @@ public class BossGimmicks : MonoBehaviour
         _presenter.SpawnAboveSlideNotes(reilasKujoAboveSlide, true);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!_presenter.jumpToKujo) return;
 
@@ -185,6 +188,19 @@ public class BossGimmicks : MonoBehaviour
         // 92.98s    ���ڃ��[�v
         // 101.78s �K���X��
         // 103.04s ���X�T�r
+        if (_judgeService == null) return;
+
+        for (var i = 0; i < 36; i++)
+        {
+            if(_judgeService.tapJudgeStartIndex == null)
+            {
+                Debug.LogWarning("TapJudgeStartIndexIsNull!!!");
+                continue;
+            }
+            Debug.Log(_judgeService.tapJudgeStartIndex.Count() + "  " + i);
+            _judgeService.tapJudgeStartIndex[i] = 0;
+        }
+
         for (int i = RhythmGamePresenter.TapNotes.Count() - 1; i >= 0; i--)
         {
             RhythmGamePresenter.TapNotes[i].NoteDestroy(false);

@@ -15,13 +15,23 @@ public enum JudgeResultType
     NotJudgedYet
 }
 
-public class JudgeService : MonoBehaviour
+public class AllJudgeService : MonoBehaviour
 {
     public int[] tapJudgeStartIndex = new int[36];
     public int internalJudgeStartIndex;
     public int chainJudgeStartIndex;
+    private RhythmGamePresenter? _gamePresenter;
+
+    private bool _alreadyChangeKujo = false;
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
+
+
+    public void JudgeStart()
+    {
+        Debug.Log("awake");
+        _gamePresenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+    }
 
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
@@ -129,10 +139,26 @@ public class JudgeService : MonoBehaviour
 
     public void Judge(float currentTime)
     {
+        if (_gamePresenter == null) return;
+        if (_gamePresenter.alreadyChangeKujo)
+        {
+            _alreadyChangeKujo = true;
+        }
+
         var tapNotes = RhythmGamePresenter.TapNoteLanes;
+        if (_alreadyChangeKujo)
+        {
+            tapNotes = RhythmGamePresenter.TapKujoNoteLanes;
+        }
+
         for (var i = 0; i < tapNotes.Length; i++)
         {
+            //Debug.Log("i:" + i + "  tapJudgeStartIndex" + tapJudgeStartIndex.Length + "tapNotes" + tapNotes.Length);
             var notJudgedYet = true;
+            //Debug.Log(tapJudgeStartIndex[0]);
+            //Debug.Log(tapNotes[0]);////// null
+            if (tapJudgeStartIndex == null) continue;
+            if (tapNotes == null) Debug.Log("null");
             for (var j = tapJudgeStartIndex[i]; j < tapNotes[i].Count; j++)
             {
                 var note = tapNotes[i][j];
@@ -174,6 +200,10 @@ public class JudgeService : MonoBehaviour
         }
         
         var internalNotes = RhythmGamePresenter.internalNotes;
+        if (_alreadyChangeKujo)
+        {
+            internalNotes = RhythmGamePresenter.internalKujoNotes;
+        }
 
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
@@ -201,6 +231,11 @@ public class JudgeService : MonoBehaviour
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
+        if (_alreadyChangeKujo)
+        {
+            chainNotes = RhythmGamePresenter.chainKujoNotes;
+        }
+
         for (var i = chainJudgeStartIndex; i < chainNotes.Count; i++)
         {
             if (RhythmGamePresenter.chainNoteJudge == null)
