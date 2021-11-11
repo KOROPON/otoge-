@@ -146,7 +146,7 @@ public class AllJudgeService : MonoBehaviour
         }
 
         var tapNotes = RhythmGamePresenter.TapNoteLanes;
-        if (_alreadyChangeKujo)
+        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
         {
             tapNotes = RhythmGamePresenter.TapKujoNoteLanes;
         }
@@ -158,7 +158,9 @@ public class AllJudgeService : MonoBehaviour
             //Debug.Log(tapJudgeStartIndex[0]);
             //Debug.Log(tapNotes[0]);////// null
             if (tapJudgeStartIndex == null) continue;
-            if (tapNotes == null) Debug.Log("null");
+            if (tapNotes == null) Debug.Log("null"); continue;
+            var a = tapNotes[i];
+            var b = tapJudgeStartIndex[i];
             for (var j = tapJudgeStartIndex[i]; j < tapNotes[i].Count; j++)
             {
                 var note = tapNotes[i][j];
@@ -178,13 +180,29 @@ public class AllJudgeService : MonoBehaviour
                         judgeResult = JudgeResultType.Miss;
                     else
                     {
-                        judgeResult = difference switch
+                        switch (difference)
                         {
-                            var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
-                            var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
-                            var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
-                            _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
-                        };
+                            case var dif when dif <= _judgeSeconds["Tap Perfect"]:
+                                {
+                                    judgeResult = JudgeResultType.Perfect;
+                                    break;
+                                }
+                            case var dif when dif <= _judgeSeconds["Tap Good"]:
+                                {
+                                    judgeResult = JudgeResultType.Good;
+                                    break;
+                                }
+                            case var dif when dif <= _judgeSeconds["Tap Bad"]:
+                                {
+                                    judgeResult = JudgeResultType.Bad;
+                                    break;
+                                }
+                            default:
+                                {
+                                    judgeResult = JudgeResultType.Miss;
+                                    break;
+                                }
+                        }
                     }
 
                     notJudgedYet = false;
@@ -200,7 +218,7 @@ public class AllJudgeService : MonoBehaviour
         }
         
         var internalNotes = RhythmGamePresenter.internalNotes;
-        if (_alreadyChangeKujo)
+        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
         {
             internalNotes = RhythmGamePresenter.internalKujoNotes;
         }
@@ -231,7 +249,7 @@ public class AllJudgeService : MonoBehaviour
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
-        if (_alreadyChangeKujo)
+        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
         {
             chainNotes = RhythmGamePresenter.chainKujoNotes;
         }

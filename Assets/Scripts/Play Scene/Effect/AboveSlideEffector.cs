@@ -46,8 +46,8 @@ public class AboveSlideEffector : MonoBehaviour
         //var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin) + 4;
         var laneMax = Mathf.RoundToInt(Mathf.Lerp(_headMax, _tailMax, (currentTime - _headTime))) + 4;
         var laneMin = Mathf.RoundToInt(Mathf.Lerp(_headMin, _tailMin, (currentTime - _headTime))) + 4;
-        Debug.Log("max" + laneMax);
-        Debug.Log("min" + laneMin);
+        //Debug.Log("max" + laneMax);
+        //Debug.Log("min" + laneMin);
 
         transform.position = PositionCal(currentTime);
         transform.eulerAngles = AngleCal(currentTime);

@@ -13,9 +13,9 @@ public class BossGimmicks : MonoBehaviour
     private BossGimmickContainer _bossContainer = null!;
     private AllJudgeService _judgeService = null!;
 
-    private static List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
-    private static List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
-    private static List<ReilasNoteEntity> _chainKujoNotes = new List<ReilasNoteEntity>();
+    public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
+    public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
+    public List<ReilasNoteEntity> _chainKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteLineEntity> reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasKujoHold = new List<ReilasNoteLineEntity>();

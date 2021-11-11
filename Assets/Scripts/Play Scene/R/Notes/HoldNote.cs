@@ -69,9 +69,9 @@ namespace Reilas
                 foreach (Transform child in transform) Destroy(child.gameObject);
                 noteList.RemoveAt(noteNum);
                 Destroy(gameObject);
+                RhythmGamePresenter.HoldEffectors.Remove(transform.GetChild(0).GetComponent<HoldEffector>());
                 if (_kujo) RhythmGamePresenter.HoldKujoNotes.RemoveAt(noteNum);
                 else RhythmGamePresenter.HoldNotes.RemoveAt(noteNum);
-                RhythmGamePresenter.HoldEffectors.RemoveAt(noteNum);
             }
             if (!gameObject.activeSelf) gameObject.SetActive(true);
 

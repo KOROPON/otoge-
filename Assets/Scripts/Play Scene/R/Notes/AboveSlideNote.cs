@@ -202,9 +202,9 @@ namespace Reilas
                 Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 noteList.RemoveAt(noteNum);
+                RhythmGamePresenter.AboveSlideEffectors.Remove(transform.GetChild(0).GetComponent<AboveSlideEffector>());
                 if (_kujo) RhythmGamePresenter.AboveKujoSlideNotes.RemoveAt(noteNum);
                 else RhythmGamePresenter.AboveSlideNotes.RemoveAt(noteNum);
-                RhythmGamePresenter.AboveSlideEffectors.RemoveAt(noteNum);
             }
 
             // SetActive
