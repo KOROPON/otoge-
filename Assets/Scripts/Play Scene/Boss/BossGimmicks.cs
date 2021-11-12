@@ -16,10 +16,6 @@ public class BossGimmicks : MonoBehaviour
     public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _chainKujoNotes = new List<ReilasNoteEntity>();
-    public List<ReilasNoteLineEntity> reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
-    public List<ReilasNoteLineEntity> reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
-    public List<ReilasNoteLineEntity> reilasKujoHold = new List<ReilasNoteLineEntity>();
-    public List<ReilasNoteEntity> reilasKujoChain = new List<ReilasNoteEntity>();
 
     public bool kujoJudgeSwitch = false;
 
@@ -54,10 +50,10 @@ public class BossGimmicks : MonoBehaviour
         _internalKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Internal"));
         _chainKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Chain"));
 
-        reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
-        reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
-        reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
-        reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
+        _presenter._reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
+        _presenter._reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
+        _presenter._reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
+        _presenter._reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
         List<int> removeInt = new List<int>();
 
@@ -128,10 +124,10 @@ public class BossGimmicks : MonoBehaviour
 
         _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true); // RhythmGamePresenter  Error NullReferenceExeption
         _presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
-        _presenter.SpawnChainNotes(reilasKujoChain, true);
-        _presenter.SpawnHoldNotes(reilasKujoHold, true);
-        _presenter.SpawnAboveHoldNotes(reilasKujoAboveHold, true);
-        _presenter.SpawnAboveSlideNotes(reilasKujoAboveSlide, true);
+        _presenter.SpawnChainNotes(_presenter._reilasKujoChain, true);
+        _presenter.SpawnHoldNotes(_presenter._reilasKujoHold, true);
+        _presenter.SpawnAboveHoldNotes(_presenter._reilasKujoAboveHold, true);
+        _presenter.SpawnAboveSlideNotes(_presenter._reilasKujoAboveSlide, true);
     }
 
     void FixedUpdate()

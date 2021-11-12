@@ -22,7 +22,7 @@ public class AllJudgeService : MonoBehaviour
     public int chainJudgeStartIndex;
     private RhythmGamePresenter? _gamePresenter;
 
-    private bool _alreadyChangeKujo = false;
+    public bool _alreadyChangeKujo = false;
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
 
@@ -140,10 +140,6 @@ public class AllJudgeService : MonoBehaviour
     public void Judge(float currentTime)
     {
         if (_gamePresenter == null) return;
-        if (_gamePresenter.alreadyChangeKujo)
-        {
-            _alreadyChangeKujo = true;
-        }
 
         var tapNotes = RhythmGamePresenter.TapNoteLanes;
         if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
@@ -211,8 +207,16 @@ public class AllJudgeService : MonoBehaviour
                 if (judgeResult == JudgeResultType.NotJudgedYet) continue;
                 AllJudge.Add(judgeResult);
                 note.hasBeenTapped = true;
-                if (CheckType(reilasNoteEntity, "AboveTap")) RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
-                else RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
+                if (CheckType(reilasNoteEntity, "AboveTap"))
+                {
+                    if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoTapNotes[0].NoteDestroy(true);
+                    else RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
+                }
+                else
+                {
+                    if (_alreadyChangeKujo) RhythmGamePresenter.TapKujoNotes[0].NoteDestroy(true);
+                    else RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
+                }
                 tapJudgeStartIndex[i]++;
             }
         }
@@ -268,7 +272,8 @@ public class AllJudgeService : MonoBehaviour
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
-            RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
+            if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
+            else RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
             chainJudgeStartIndex++;
         }
     }

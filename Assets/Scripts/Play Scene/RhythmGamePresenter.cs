@@ -55,6 +55,11 @@ public class RhythmGamePresenter : MonoBehaviour
     private List<ReilasNoteLineEntity> _reilasHold = new List<ReilasNoteLineEntity>();
     private List<ReilasNoteEntity> _reilasChain = new List<ReilasNoteEntity>();
 
+    public List<ReilasNoteLineEntity> _reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteLineEntity> _reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteLineEntity> _reilasKujoHold = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteEntity> _reilasKujoChain = new List<ReilasNoteEntity>();
+
     public static readonly List<BarLine> BarLines = new List<BarLine>();
 
     private List<ReilasNoteEntity> _tapNotes = new List<ReilasNoteEntity>();
@@ -334,7 +339,7 @@ public class RhythmGamePresenter : MonoBehaviour
         //_reilasHold.AddRange(_boss.reilasKujoHold);
         //_reilasChain.AddRange(_boss.reilasKujoChain);
 
-        Debug.Log(_reilasAboveSlide.Count() + " , " + AboveSlideNotes.Count());
+        Debug.Log(AboveKujoHoldNotes.Count());
 
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
@@ -625,7 +630,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null)
         {
-            if (_scoreComboCalculator.slider.value >= 0f)
+            if (_scoreComboCalculator.slider.value >= 0.5f)
             {
                 jumpToKujo = true;
             }
@@ -696,6 +701,7 @@ public class RhythmGamePresenter : MonoBehaviour
             Debug.Log("Change");
             _boss.ChangeToKujo();
             alreadyChangeKujo = true;
+            _judgeService._alreadyChangeKujo = true;
         }
         else
         {
@@ -729,16 +735,12 @@ public class RhythmGamePresenter : MonoBehaviour
             tapNoteMove = TapKujoNotes.Where(note => note.tapTime - audioTime < 5f);
             chainNoteMove = AboveKujoChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
 
-            foreach (var aboveHold in _boss.reilasKujoAboveHold)
+            foreach (var aboveHold in _reilasKujoAboveHold)
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveHold.Head.JudgeTime < noteAddCutOff)
                 {
-                    if (indexNum >= AboveKujoHoldNotes.Count())
-                    {
-                        Debug.Log(AboveKujoHoldNotes.Count() + "   " + indexNum);
-                    }
-
+                    Debug.Log(AboveKujoHoldNotes.Count() + "   " + indexNum + "   " + _reilasKujoAboveHold.Count()); // _reilasKujoAboveHold から Destroy してない
                     aboveHoldNoteMove.Add(AboveKujoHoldNotes[indexNum]);
                 }
                 else break;
@@ -746,7 +748,7 @@ public class RhythmGamePresenter : MonoBehaviour
             }
             indexNum = 0;
 
-            foreach (var aboveSlide in _boss.reilasKujoAboveSlide)
+            foreach (var aboveSlide in _reilasKujoAboveSlide)
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveSlide.Head.JudgeTime < noteAddCutOff)
@@ -759,10 +761,10 @@ public class RhythmGamePresenter : MonoBehaviour
             }
             indexNum = 0;
 
-            foreach (var hold in _boss.reilasKujoHold) // BossGimmickにて_reilasHoldを変更
+            foreach (var hold in _reilasKujoHold) // BossGimmickにて_reilasHoldを変更
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
-                Debug.Log(_boss.reilasKujoHold.Count() + "," + HoldKujoNotes.Count() + "の" + indexNum + "番目");
+                Debug.Log(_reilasKujoHold.Count() + "," + HoldKujoNotes.Count() + "の" + indexNum + "番目");
                 if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldKujoNotes[indexNum]);
                 else break;
                 indexNum++;

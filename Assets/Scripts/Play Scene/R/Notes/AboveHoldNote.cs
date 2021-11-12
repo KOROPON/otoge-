@@ -17,12 +17,14 @@ namespace Reilas
         private Mesh? _mesh;
 
         private ReilasNoteLineEntity _entity = null!;
+        private RhythmGamePresenter _presenter = null!;
 
         private float _noteSpeed;
         private bool _kujo;
 
         public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
+            _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
             _entity = entity;
             _kujo = kujo;
             _noteSpeed = _entity.Head.Speed;
@@ -84,10 +86,17 @@ namespace Reilas
                 foreach (Transform child in transform.GetChild(0)) Destroy(child.gameObject);
                 Destroy(transform.GetChild(0).gameObject);
                 Destroy(gameObject);
-                noteList.RemoveAt(noteNum);
                 RhythmGamePresenter.AboveHoldEffectors.Remove(transform.GetChild(0).GetComponent<AboveHoldEffector>());
-                if (_kujo) RhythmGamePresenter.AboveKujoHoldNotes.RemoveAt(noteNum);
-                else RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
+                if (_kujo)
+                {
+                    _presenter._reilasKujoAboveHold.RemoveAt(noteNum);
+                    RhythmGamePresenter.AboveKujoHoldNotes.RemoveAt(noteNum);
+                }
+                else
+                {
+                    noteList.RemoveAt(noteNum);
+                    RhythmGamePresenter.AboveHoldNotes.RemoveAt(noteNum);
+                }
             }
             if (!gameObject.activeSelf) gameObject.SetActive(true);
 
