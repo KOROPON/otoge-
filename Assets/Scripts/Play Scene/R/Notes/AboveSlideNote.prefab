@@ -234,6 +234,10 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4991180745602923523, guid: 6758c4b0e7235da40847fff65e449de3, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991180745602923523, guid: 6758c4b0e7235da40847fff65e449de3, type: 3}
       propertyPath: ShapeModule.m_Rotation.z
       value: 0
       objectReference: {fileID: 0}
