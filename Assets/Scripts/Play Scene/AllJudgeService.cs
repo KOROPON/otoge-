@@ -147,6 +147,7 @@ public class AllJudgeService : MonoBehaviour
             tapNotes = RhythmGamePresenter.TapKujoNoteLanes;
         }
 
+        Debug.Log(tapNotes.Length);
         for (var i = 0; i < tapNotes.Length; i++)
         {
             //Debug.Log("i:" + i + "  tapJudgeStartIndex" + tapJudgeStartIndex.Length + "tapNotes" + tapNotes.Length);
@@ -154,9 +155,13 @@ public class AllJudgeService : MonoBehaviour
             //Debug.Log(tapJudgeStartIndex[0]);
             //Debug.Log(tapNotes[0]);////// null
             if (tapJudgeStartIndex == null) continue;
-            if (tapNotes == null) Debug.Log("null"); continue;
+            if (tapNotes == null)
+            { 
+                continue;
+            }
             var a = tapNotes[i];
             var b = tapJudgeStartIndex[i];
+            if (tapNotes[i] == null) Debug.Log(tapNotes.Length + "  " + i + "”Ô–Ú");
             for (var j = tapJudgeStartIndex[i]; j < tapNotes[i].Count; j++)
             {
                 var note = tapNotes[i][j];
@@ -164,7 +169,10 @@ public class AllJudgeService : MonoBehaviour
                 JudgeResultType judgeResult;
                 var reilasNoteEntity = note.note;
                 var timeDifference = reilasNoteEntity.JudgeTime - currentTime;
-                if (timeDifference > _judgeSeconds["Tap Bad"]) break;
+                if (timeDifference > _judgeSeconds["Tap Bad"])
+                {
+                    break;
+                }
                 var difference = CalculateDifference(currentTime, reilasNoteEntity.JudgeTime, "Tap");
                 var timeCheck = TimeCheck(currentTime, reilasNoteEntity.JudgeTime, "Tap");
 

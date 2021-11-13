@@ -33,8 +33,8 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private readonly List<GameObject> _allKeyBeam = new List<GameObject>();
 
-    private static AudioSource _audioSource = null!;
-    private static readonly AudioSource LongPerfect = null!;
+    private  static AudioSource _audioSource = null!;
+    private  AudioSource LongPerfect = null!;
 
     public static readonly List<TapNote> TapNotes = new List<TapNote>();
     public static readonly List<AboveTapNote> AboveTapNotes = new List<AboveTapNote>();
@@ -146,12 +146,14 @@ public class RhythmGamePresenter : MonoBehaviour
         return note.LanePosition + 4;
     }
 
-    private static void GetLanes(ReilasNoteEntityToGameObject note)
+    private static void GetLanes(ReilasNoteEntityToGameObject note, bool boss)
     {
         var noteLanePosition = GetLane(note.note);
         if (noteLanePosition < 4)
         {
-            TapNoteLanes[noteLanePosition].Add(note);
+            if (TapKujoNoteLanes.Length <= noteLanePosition) Debug.LogWarning("Null");
+            if(boss) TapKujoNoteLanes[noteLanePosition].Add(note);
+            else TapNoteLanes[noteLanePosition].Add(note);
         }
         else
         {
@@ -159,18 +161,34 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 case 35:
                     {
+                        if (boss)
+                        {
+                            TapKujoNoteLanes[34].Add(note);
+                            TapKujoNoteLanes[35].Add(note);
+                            break;
+                        }
                         TapNoteLanes[34].Add(note);
                         TapNoteLanes[35].Add(note);
                         break;
                     }
                 case 4:
                     {
+                        if (boss)
+                        {
+                            for (var i = noteLanePosition; i < noteLanePosition + note.note.Size && i < 36; i++) TapKujoNoteLanes[i].Add(note);
+                            break;
+                        }
                         for (var i = noteLanePosition; i < noteLanePosition + note.note.Size && i < 36; i++) TapNoteLanes[i].Add(note);
 
                         break;
                     }
                 default:
                     {
+                        if (boss)
+                        {
+                            for (var i = noteLanePosition - 1; i < noteLanePosition + note.note.Size && i < 36; i++) TapKujoNoteLanes[i].Add(note);
+                            break;
+                        }
                         for (var i = noteLanePosition - 1; i < noteLanePosition + note.note.Size && i < 36; i++) TapNoteLanes[i].Add(note);
 
                         break;
@@ -181,7 +199,9 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Awake()
     {
+        LongPerfect = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
         for (var i = 0; i < TapNoteLanes.Length; i++) TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
+        for (var i = 0; i < TapKujoNoteLanes.Length; i++) TapKujoNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
         _judgeService = gameObject.GetComponent<AllJudgeService>();
         _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
         _judgeService.JudgeStart();
@@ -195,7 +215,7 @@ public class RhythmGamePresenter : MonoBehaviour
             _judgeService.tapJudgeStartIndex[i] = 0;
         }
         AwakeAsync().Forget();
-        _boss.BossAwake();
+        if (musicName == "Reilas" && dif == "Extreme") _boss.BossAwake();
         _judgeService.internalJudgeStartIndex = 0;
         _judgeService.chainJudgeStartIndex = 0;
     }
@@ -363,7 +383,7 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 note = note,
                 hasBeenTapped = false
-            });
+            }, bosNotes);
             var transform1 = tapNote.transform;
             var position = transform1.position;
             transform1.position = new Vector3(position.x, position.y, -10);
@@ -384,7 +404,7 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 note = note,
                 hasBeenTapped = false
-            });
+            }, bosNotes);
             if (!bosNotes) AboveTapNotes.Add(tapNote);
             else AboveKujoTapNotes.Add(tapNote);
             tapNote.gameObject.SetActive(false);
