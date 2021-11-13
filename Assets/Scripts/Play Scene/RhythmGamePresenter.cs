@@ -630,7 +630,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null)
         {
-            if (_scoreComboCalculator.slider.value >= 0.5f)
+            if (_scoreComboCalculator.slider.value >= 0f)
             {
                 jumpToKujo = true;
             }
