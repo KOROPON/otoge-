@@ -21,12 +21,16 @@ public class AllJudgeService : MonoBehaviour
     public int internalJudgeStartIndex;
     public int chainJudgeStartIndex;
     private RhythmGamePresenter? _gamePresenter;
+    private JudgeRankEffector _judgeRankEffector;
 
     public bool _alreadyChangeKujo = false;
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
 
-
+    private void Start()
+    {
+        _judgeRankEffector = GameObject.Find("JudgeRank").GetComponent<JudgeRankEffector>();
+    }
     public void JudgeStart()
     {
         Debug.Log("awake");
@@ -189,21 +193,25 @@ public class AllJudgeService : MonoBehaviour
                             case var dif when dif <= _judgeSeconds["Tap Perfect"]:
                                 {
                                     judgeResult = JudgeResultType.Perfect;
+                                    _judgeRankEffector.JudgeRankDisplay("Perfect");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Good"]:
                                 {
                                     judgeResult = JudgeResultType.Good;
+                                    _judgeRankEffector.JudgeRankDisplay("Good");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Bad"]:
                                 {
                                     judgeResult = JudgeResultType.Bad;
+                                    _judgeRankEffector.JudgeRankDisplay("Bad");
                                     break;
                                 }
                             default:
                                 {
                                     judgeResult = JudgeResultType.Miss;
+                                    _judgeRankEffector.JudgeRankDisplay("Miss");
                                     break;
                                 }
                         }
