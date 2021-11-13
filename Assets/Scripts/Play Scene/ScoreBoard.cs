@@ -30,6 +30,13 @@ public class ScoreBoard : MonoBehaviour
         _figureDifficulty.text = LevelConverter.GetLevel(RhythmGamePresenter.musicName, RhythmGamePresenter.dif).ToString();
         _jacket.sprite = Resources.Load<Sprite>("Jacket/" + RhythmGamePresenter.musicName + "_jacket");
         _score.text = "0,000,000";
+        switch (RhythmGamePresenter.dif)
+        {
+            case "Easy": _difficulty.color = new Color32(9, 135, 128, 255); _figureDifficulty.color = new Color32(9, 135, 128, 255);break;
+            case "Hard": _difficulty.color = new Color32(135, 133, 9, 255); _figureDifficulty.color = new Color32(135, 133, 9, 255); break;
+            case "Extreme": _difficulty.color = new Color32(120, 9, 135, 255); _figureDifficulty.color = new Color32(120, 9, 135, 255); break;
+            case "Kujo": _difficulty.color = new Color32(150, 150, 150, 255); _figureDifficulty.color = new Color32(150, 150, 150, 255); break;
+        }
     }
 
     private void Update()

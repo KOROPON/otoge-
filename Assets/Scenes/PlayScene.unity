@@ -5498,8 +5498,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 13}
-  m_SizeDelta: {x: 200, y: 55}
+  m_AnchoredPosition: {x: -70, y: 15}
+  m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321972552
 MonoBehaviour:
@@ -5523,7 +5523,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e9cac5d873ddd1e4aaaadef3a5c9bb16, type: 3}
-    m_FontSize: 41
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -5534,7 +5534,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1,000,000
+  m_Text: 0,000,000
 --- !u!222 &321972553
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18291,6 +18291,7 @@ GameObject:
   - component: {fileID: 1036589699}
   - component: {fileID: 1036589700}
   - component: {fileID: 1036589701}
+  - component: {fileID: 1036589702}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -18405,6 +18406,18 @@ MonoBehaviour:
   internalJudgeStartIndex: 0
   chainJudgeStartIndex: 0
   _alreadyChangeKujo: 0
+--- !u!114 &1036589702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036589695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a347528955a42a8882bc459c02041f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1080633185
 GameObject:
   m_ObjectHideFlags: 0
