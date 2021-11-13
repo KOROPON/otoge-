@@ -18,6 +18,7 @@ namespace Reilas
         private Mesh? _mesh;
 
         private ReilasNoteLineEntity _entity = null!;
+        private RhythmGamePresenter _presenter = null!;
 
         private int _thisNoteSize;
         private int _leftRatio;
@@ -31,6 +32,7 @@ namespace Reilas
 
         public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
+            _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
             _kujo = kujo;
             _noteSpeed = entity.Head.Speed;
             _entity = entity;
@@ -201,10 +203,17 @@ namespace Reilas
                 foreach (Transform child in this.transform.GetChild(0)) Destroy(child.gameObject);
                 Destroy(this.transform.GetChild(0).gameObject);
                 Destroy(gameObject);
-                noteList.RemoveAt(noteNum);
-                if (_kujo) RhythmGamePresenter.AboveKujoSlideNotes.RemoveAt(noteNum);
-                else RhythmGamePresenter.AboveSlideNotes.RemoveAt(noteNum);
-                RhythmGamePresenter.AboveSlideEffectors.RemoveAt(noteNum);
+                RhythmGamePresenter.AboveSlideEffectors.Remove(transform.GetChild(0).GetComponent<AboveSlideEffector>());
+                if (_kujo)
+                {
+                    _presenter._reilasKujoAboveSlide.RemoveAt(noteNum);
+                    RhythmGamePresenter.AboveKujoSlideNotes.RemoveAt(noteNum);
+                }
+                else
+                {
+                    noteList.RemoveAt(noteNum);
+                    RhythmGamePresenter.AboveSlideNotes.RemoveAt(noteNum);
+                }
             }
 
             // SetActive

@@ -30,7 +30,7 @@ public class ClearRankDirector : MonoBehaviour
         _fader.enabled = true;
         _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank);
         _clearRankBar.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank + "Bar");
-        //_clearAud.clip = Resources.Load<AudioSource>("ClearAudio/" + clearRank);
+        _clearAud.clip = Resources.Load<AudioClip>("ClearAudio/" + clearRank);
         _anim.Play();
     }
 

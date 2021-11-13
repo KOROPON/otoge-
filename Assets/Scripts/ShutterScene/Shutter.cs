@@ -10,7 +10,7 @@ public class Shutter : MonoBehaviour
     [SerializeField] private GameObject text;
     
     private Animator _anim;
-    private static JudgeService _judgeService;
+    private static AllJudgeService _judgeService;
     private Image _jacket;
     private Text _title;
 
@@ -33,7 +33,7 @@ public class Shutter : MonoBehaviour
         jack.SetActive(false);
         text.SetActive(false);
         _musicM = gameObject.GetComponent<AudioSource>();
-        _judgeService = gameObject.AddComponent<JudgeService>();
+        _judgeService = gameObject.AddComponent<AllJudgeService>();
 
     }
 
@@ -67,7 +67,11 @@ public class Shutter : MonoBehaviour
                 AllNoteDestroy();
                 SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
                 break;
-
+            case "ToR":
+                SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                AllNoteDestroy();
+                break;
             case "ToSFrR":
                 SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);

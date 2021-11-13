@@ -15,13 +15,23 @@ public enum JudgeResultType
     NotJudgedYet
 }
 
-public class JudgeService : MonoBehaviour
+public class AllJudgeService : MonoBehaviour
 {
     public int[] tapJudgeStartIndex = new int[36];
     public int internalJudgeStartIndex;
     public int chainJudgeStartIndex;
+    private RhythmGamePresenter? _gamePresenter;
+
+    public bool _alreadyChangeKujo = false;
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
+
+
+    public void JudgeStart()
+    {
+        Debug.Log("awake");
+        _gamePresenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+    }
 
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
@@ -129,10 +139,24 @@ public class JudgeService : MonoBehaviour
 
     public void Judge(float currentTime)
     {
+        if (_gamePresenter == null) return;
+
         var tapNotes = RhythmGamePresenter.TapNoteLanes;
+        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
+        {
+            tapNotes = RhythmGamePresenter.TapKujoNoteLanes;
+        }
+
         for (var i = 0; i < tapNotes.Length; i++)
         {
+            //Debug.Log("i:" + i + "  tapJudgeStartIndex" + tapJudgeStartIndex.Length + "tapNotes" + tapNotes.Length);
             var notJudgedYet = true;
+            //Debug.Log(tapJudgeStartIndex[0]);
+            //Debug.Log(tapNotes[0]);////// null
+            if (tapJudgeStartIndex == null) continue;
+            if (tapNotes == null) Debug.Log("null"); continue;
+            var a = tapNotes[i];
+            var b = tapJudgeStartIndex[i];
             for (var j = tapJudgeStartIndex[i]; j < tapNotes[i].Count; j++)
             {
                 var note = tapNotes[i][j];
@@ -152,13 +176,29 @@ public class JudgeService : MonoBehaviour
                         judgeResult = JudgeResultType.Miss;
                     else
                     {
-                        judgeResult = difference switch
+                        switch (difference)
                         {
-                            var dif when dif <= _judgeSeconds["Tap Perfect"] => JudgeResultType.Perfect,
-                            var dif when dif <= _judgeSeconds["Tap Good"] => JudgeResultType.Good,
-                            var dif when dif <= _judgeSeconds["Tap Bad"] => JudgeResultType.Bad,
-                            _ => timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss
-                        };
+                            case var dif when dif <= _judgeSeconds["Tap Perfect"]:
+                                {
+                                    judgeResult = JudgeResultType.Perfect;
+                                    break;
+                                }
+                            case var dif when dif <= _judgeSeconds["Tap Good"]:
+                                {
+                                    judgeResult = JudgeResultType.Good;
+                                    break;
+                                }
+                            case var dif when dif <= _judgeSeconds["Tap Bad"]:
+                                {
+                                    judgeResult = JudgeResultType.Bad;
+                                    break;
+                                }
+                            default:
+                                {
+                                    judgeResult = JudgeResultType.Miss;
+                                    break;
+                                }
+                        }
                     }
 
                     notJudgedYet = false;
@@ -167,13 +207,25 @@ public class JudgeService : MonoBehaviour
                 if (judgeResult == JudgeResultType.NotJudgedYet) continue;
                 AllJudge.Add(judgeResult);
                 note.hasBeenTapped = true;
-                if (CheckType(reilasNoteEntity, "AboveTap")) RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
-                else RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
+                if (CheckType(reilasNoteEntity, "AboveTap"))
+                {
+                    if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoTapNotes[0].NoteDestroy(true);
+                    else RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
+                }
+                else
+                {
+                    if (_alreadyChangeKujo) RhythmGamePresenter.TapKujoNotes[0].NoteDestroy(true);
+                    else RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
+                }
                 tapJudgeStartIndex[i]++;
             }
         }
         
         var internalNotes = RhythmGamePresenter.internalNotes;
+        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
+        {
+            internalNotes = RhythmGamePresenter.internalKujoNotes;
+        }
 
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
@@ -201,6 +253,11 @@ public class JudgeService : MonoBehaviour
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
+        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
+        {
+            chainNotes = RhythmGamePresenter.chainKujoNotes;
+        }
+
         for (var i = chainJudgeStartIndex; i < chainNotes.Count; i++)
         {
             if (RhythmGamePresenter.chainNoteJudge == null)
@@ -215,7 +272,8 @@ public class JudgeService : MonoBehaviour
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
-            RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
+            if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
+            else RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
             chainJudgeStartIndex++;
         }
     }

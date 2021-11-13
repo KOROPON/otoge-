@@ -63,7 +63,7 @@ namespace Reilas
 
         public void LateUpdate()
         {
-            foreach (var judgeResult in JudgeService.AllJudge)
+            foreach (var judgeResult in AllJudgeService.AllJudge)
             {
                 switch (judgeResult)
                 {
@@ -110,7 +110,7 @@ namespace Reilas
                 }
             }
             
-            JudgeService.AllJudge.Clear();
+            AllJudgeService.AllJudge.Clear();
 
             currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
             comboText.text = currentCombo > 1 ? currentCombo.ToString() : "";
@@ -122,7 +122,7 @@ namespace Reilas
                  _gaugeCombo -= _comboDataBase[_difficulty];
             }
 
-            slider.value -= 0.03f * _gaugeMiss;
+            slider.value -= 0.01f * _gaugeMiss;
 
             gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
             if (currentScore == 1000000) clear = "AllPerfect";

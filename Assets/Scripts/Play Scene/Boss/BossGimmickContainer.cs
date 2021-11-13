@@ -36,7 +36,7 @@ public class BossGimmickContainer : MonoBehaviour
     public void BlackOutFirst()
     {
         _stagingFader.enabled = true;
-        _stagingFaderAnim.Play("StagingFaderAnimFirst");
+        //_stagingFaderAnim.Play("StagingFaderAnimFirst");
         _backGroundAnim.Play("BackGroundAnimFirst");
     }
     /// <summary>

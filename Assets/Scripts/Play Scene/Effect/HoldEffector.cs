@@ -28,7 +28,6 @@ public sealed class HoldEffector : MonoBehaviour
         _effect3 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[2];
         Transform effectorTransform;
         _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
-        Debug.Log(_noteBlight);
         effectorTransform.position = RhythmGamePresenter.LanePositions[_lanePos];
         holdEffectTime = _entity.Head.JudgeTime;
     }

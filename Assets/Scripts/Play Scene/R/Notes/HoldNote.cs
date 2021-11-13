@@ -20,6 +20,7 @@ namespace Reilas
         private Material mate;
 
         private ReilasNoteLineEntity _entity = null!;
+        private RhythmGamePresenter _presenter = null!;
         private float _noteSpeed;
 
         private bool _kujo;
@@ -30,6 +31,7 @@ namespace Reilas
 
         public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
+            _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
             _entity = entity;
             _kujo = kujo;
             time = _entity.Head.JudgeTime;
@@ -65,13 +67,23 @@ namespace Reilas
         {
             if (_entity.Tail.JudgeTime < currentTime)
             {
-                foreach (Transform child in transform) foreach (Transform inChild in child) Destroy(inChild.gameObject);
+                foreach (Transform child in transform)
+                {
+                    foreach (Transform inChild in child) Destroy(inChild.gameObject);
+                }
                 foreach (Transform child in transform) Destroy(child.gameObject);
-                noteList.RemoveAt(noteNum);
                 Destroy(gameObject);
-                if (_kujo) RhythmGamePresenter.HoldKujoNotes.RemoveAt(noteNum);
-                else RhythmGamePresenter.HoldNotes.RemoveAt(noteNum);
-                RhythmGamePresenter.HoldEffectors.RemoveAt(noteNum);
+                RhythmGamePresenter.HoldEffectors.Remove(transform.GetChild(0).GetComponent<HoldEffector>());
+                if (_kujo)
+                {
+                    RhythmGamePresenter.HoldKujoNotes.RemoveAt(noteNum);
+                    _presenter._reilasKujoHold.RemoveAt(noteNum);
+                }
+                else
+                {
+                    RhythmGamePresenter.HoldNotes.RemoveAt(noteNum);
+                    noteList.RemoveAt(noteNum);
+                }
             }
             if (!gameObject.activeSelf) gameObject.SetActive(true);
 
