@@ -147,9 +147,11 @@ public class BossGimmicks : MonoBehaviour
         else if (time < 92.98f)
         {
             if (!bossClock.isPlaying) bossClock.Play();
-            if ((time - 82.93f) % 1.257 == 0)
+            float effectTime = (time - 82.93f) % 1.257f;
+            if (effectTime <= 0.257f || effectTime >= 1f)
             {
-                _bossContainer.effectStart = true;
+                Debug.Log("EffectTime");
+                _bossContainer.BlackOutIntermittently();
             }
             return;
         }
@@ -157,6 +159,12 @@ public class BossGimmicks : MonoBehaviour
         {
             kujoJudgeSwitch = true;
 
+            float effectTime = (time - 82.93f) % 1.257f;
+            if (effectTime <= 0.257f || effectTime >= 1f)
+            {
+                Debug.Log("EffectTime");
+                _bossContainer.BlackOutIntermittently();
+            }
         }
         else if (time < 103.04f)
         {
