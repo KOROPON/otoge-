@@ -187,6 +187,7 @@ public class RhythmGamePresenter : MonoBehaviour
         _judgeService.JudgeStart();
         _scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
         NotePositionCalculatorService.CalculateGameSpeed();
+        gameObject.AddComponent<GetHighScores>();
         for (var i = 0; i < 36; i++)
         {
             LaneTapStates[i, 0] = false;

@@ -10,7 +10,7 @@ public class BossGimmickContainer : MonoBehaviour
     private Animation _stagingFaderAnim;
     private Animation _backGroundAnim;
 
-    public bool effectStart = true;
+    public bool effectStart = false;
 
     private void Start()
     {
@@ -36,14 +36,19 @@ public class BossGimmickContainer : MonoBehaviour
     public void BlackOutFirst()
     {
         _stagingFader.enabled = true;
-        //_stagingFaderAnim.Play("StagingFaderAnimFirst");
+        _stagingFaderAnim.Play();
         _backGroundAnim.Play("BackGroundAnimFirst");
     }
     /// <summary>
     /// éûåvÇÃâπÇ…çáÇÌÇπÇΩñæà√
     /// </summary>
+    public void BlackOut()
+    {
+        StartCoroutine("BlackOutIntermittently");
+    }
     public IEnumerator BlackOutIntermittently()
     {
+        Debug.Log("BlackOut");
         var i = 0;
         _stagingFaderAnim.Play("StagingFaderAnim");
         _cameraShine.intensity.value = 20f;
