@@ -27,12 +27,9 @@ public class AllJudgeService : MonoBehaviour
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
 
-    private void Start()
-    {
-        _judgeRankEffector = GameObject.Find("JudgeRank").GetComponent<JudgeRankEffector>();
-    }
     public void JudgeStart()
     {
+        _judgeRankEffector = GameObject.Find("JudgeRank").GetComponent<JudgeRankEffector>();
         Debug.Log("awake");
         _gamePresenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
     }
@@ -68,7 +65,7 @@ public class AllJudgeService : MonoBehaviour
             _ => false
         };
     }
-    
+
     private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
@@ -94,50 +91,50 @@ public class AllJudgeService : MonoBehaviour
         switch (noteLanePosition)
         {
             case var lane when lane < 4:
-            {
-                if (tapState[lane, 0]) return true;
-                break;
-            }
-            case 4:
-            {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0]) return true;
-                break;
-            }
-            default:
-            {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
                 {
-                    if (tapState[i, 0]) return true;
+                    if (tapState[lane, 0]) return true;
+                    break;
                 }
+            case 4:
+                {
+                    for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0]) return true;
+                    break;
+                }
+            default:
+                {
+                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++)
+                    {
+                        if (tapState[i, 0]) return true;
+                    }
 
-                break;
-            }
+                    break;
+                }
         }
 
         return false;
     }
-    
+
     private static List<int> GetTapState(ReilasNoteEntity note)
     {
         var tapState = RhythmGamePresenter.LaneTapStates;
         var noteLanePosition = GetLane(note);
-        if (noteLanePosition < 4) return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> {note.LanePosition} : new List<int>();
-        
+        if (noteLanePosition < 4) return tapState[noteLanePosition, 0] && tapState[noteLanePosition, 1] ? new List<int> { note.LanePosition } : new List<int>();
+
         var laneList = new List<int>();
         switch (noteLanePosition)
         {
             case 4:
-            {
-                for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
+                {
+                    for (var i = noteLanePosition; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
 
-                return laneList;
-            }
+                    return laneList;
+                }
             default:
-            {
-                for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
+                {
+                    for (var i = noteLanePosition - 1; i < noteLanePosition + note.Size && i < 36; i++) if (tapState[i, 0] && tapState[i, 1]) laneList.Add(i);
 
-                return laneList;
-            }
+                    return laneList;
+                }
         }
     }
 
@@ -160,7 +157,7 @@ public class AllJudgeService : MonoBehaviour
             //Debug.Log(tapNotes[0]);////// null
             if (tapJudgeStartIndex == null) continue;
             if (tapNotes == null)
-            { 
+            {
                 continue;
             }
             var a = tapNotes[i];
@@ -193,25 +190,25 @@ public class AllJudgeService : MonoBehaviour
                             case var dif when dif <= _judgeSeconds["Tap Perfect"]:
                                 {
                                     judgeResult = JudgeResultType.Perfect;
-                                    _judgeRankEffector.JudgeRankDisplay("Perfect");
+                                    _judgeRankEffector.JudgeRankDisplay("perfect");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Good"]:
                                 {
                                     judgeResult = JudgeResultType.Good;
-                                    _judgeRankEffector.JudgeRankDisplay("Good");
+                                    _judgeRankEffector.JudgeRankDisplay("good");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Bad"]:
                                 {
                                     judgeResult = JudgeResultType.Bad;
-                                    _judgeRankEffector.JudgeRankDisplay("Bad");
+                                    _judgeRankEffector.JudgeRankDisplay("bad");
                                     break;
                                 }
                             default:
                                 {
                                     judgeResult = JudgeResultType.Miss;
-                                    _judgeRankEffector.JudgeRankDisplay("Miss");
+                                    _judgeRankEffector.JudgeRankDisplay("miss");
                                     break;
                                 }
                         }
@@ -236,7 +233,7 @@ public class AllJudgeService : MonoBehaviour
                 tapJudgeStartIndex[i]++;
             }
         }
-        
+
         var internalNotes = RhythmGamePresenter.internalNotes;
         if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
         {
@@ -265,7 +262,14 @@ public class AllJudgeService : MonoBehaviour
             RhythmGamePresenter.internalNoteJudge[i] = true;
             internalJudgeStartIndex++;
 
-            if (judgeResult == JudgeResultType.Miss) Debug.Log("Miss...");
+            if (judgeResult == JudgeResultType.Miss)
+            {
+                _judgeRankEffector.JudgeRankDisplay("miss");
+                Debug.Log("Miss...");
+                continue;
+            }
+
+            _judgeRankEffector.JudgeRankDisplay("perfect");
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
@@ -287,10 +291,25 @@ public class AllJudgeService : MonoBehaviour
             var judgeResult = InternalOrChain(currentTime, chainNotes[i], CheckIfTapped(chainNotes[i]), "Chain");
             if (judgeResult == JudgeResultType.NotJudgedYet) continue;
             AllJudge.Add(judgeResult);
+            if (judgeResult == JudgeResultType.Perfect)
+            {
+                _judgeRankEffector.JudgeRankDisplay("perfect");
+            }
+            else
+            {
+                _judgeRankEffector.JudgeRankDisplay("miss");
+            }
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
             if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
             else RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
             chainJudgeStartIndex++;
+            if (judgeResult == JudgeResultType.Perfect)
+            {
+                _judgeRankEffector.JudgeRankDisplay("perfect");
+                continue;
+            }
+            _judgeRankEffector.JudgeRankDisplay("miss");
+
         }
     }
 }
