@@ -32,7 +32,7 @@ public class BossGimmicks : MonoBehaviour
 
     public async void BossAwake()
     {
-        _judgeService = gameObject.GetComponent<AllJudgeService>();
+        _judgeService = GameObject.Find("Main").GetComponent<AllJudgeService>();
 
         var kujoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
         if (kujoSongs == null)
@@ -185,6 +185,7 @@ public class BossGimmicks : MonoBehaviour
         // 101.78s �K���X��
         // 103.04s ���X�T�r
         if (_judgeService == null) return;
+        Debug.Log("Change BossGimmick");
 
         for (var i = 0; i < 36; i++)
         {
