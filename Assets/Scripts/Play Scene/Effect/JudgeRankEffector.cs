@@ -71,7 +71,6 @@ public class JudgeRankEffector : MonoBehaviour
         {
             case "perfect" :
                 {
-                    Debug.Log("perfect");
                     trueNum = 0;
                     perfect.gameObject.SetActive(true);
                     perfect.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
@@ -79,7 +78,6 @@ public class JudgeRankEffector : MonoBehaviour
                 }
             case "good" :
                 {
-                    Debug.Log("good");
                     trueNum = 1;
                     good.gameObject.SetActive(true);
                     good.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
@@ -87,7 +85,6 @@ public class JudgeRankEffector : MonoBehaviour
                 }
             case "bad":
                 {
-                    Debug.Log("bad");
                     trueNum = 2;
                     bad.gameObject.SetActive(true);
                     bad.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
@@ -95,7 +92,6 @@ public class JudgeRankEffector : MonoBehaviour
                 }
             case "miss" :
                 {
-                    Debug.Log("miss");
                     trueNum = 3;
                     miss.gameObject.SetActive(true);
                     miss.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);

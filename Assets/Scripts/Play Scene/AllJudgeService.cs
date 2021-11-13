@@ -207,8 +207,15 @@ public class AllJudgeService : MonoBehaviour
                                 }
                             default:
                                 {
-                                    judgeResult = JudgeResultType.Miss;
-                                    _judgeRankEffector.JudgeRankDisplay("miss");
+                                    if (timeCheck)
+                                    {
+                                        judgeResult = JudgeResultType.NotJudgedYet;
+                                    }
+                                    else
+                                    {
+                                        _judgeRankEffector.JudgeRankDisplay("miss");
+                                        judgeResult = JudgeResultType.Miss;
+                                    }
                                     break;
                                 }
                         }
@@ -216,7 +223,18 @@ public class AllJudgeService : MonoBehaviour
 
                     notJudgedYet = false;
                 }
-                else judgeResult = timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
+                else
+                {
+                    if (timeCheck)
+                    {
+                        judgeResult = JudgeResultType.NotJudgedYet;
+                    }
+                    else
+                    {
+                        _judgeRankEffector.JudgeRankDisplay("miss");
+                        judgeResult = JudgeResultType.Miss;
+                    }
+                }
                 if (judgeResult == JudgeResultType.NotJudgedYet) continue;
                 AllJudge.Add(judgeResult);
                 note.hasBeenTapped = true;
