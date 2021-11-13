@@ -16,10 +16,6 @@ public class BossGimmicks : MonoBehaviour
     public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _chainKujoNotes = new List<ReilasNoteEntity>();
-    public List<ReilasNoteLineEntity> reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
-    public List<ReilasNoteLineEntity> reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
-    public List<ReilasNoteLineEntity> reilasKujoHold = new List<ReilasNoteLineEntity>();
-    public List<ReilasNoteEntity> reilasKujoChain = new List<ReilasNoteEntity>();
 
     public bool kujoJudgeSwitch = false;
 
@@ -36,7 +32,7 @@ public class BossGimmicks : MonoBehaviour
 
     public async void BossAwake()
     {
-        _judgeService = gameObject.GetComponent<AllJudgeService>();
+        _judgeService = GameObject.Find("Main").GetComponent<AllJudgeService>();
 
         var kujoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
         if (kujoSongs == null)
@@ -54,10 +50,10 @@ public class BossGimmicks : MonoBehaviour
         _internalKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Internal"));
         _chainKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Chain"));
 
-        reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
-        reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
-        reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
-        reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
+        _presenter._reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
+        _presenter._reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
+        _presenter._reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
+        _presenter._reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
         List<int> removeInt = new List<int>();
 
@@ -128,10 +124,10 @@ public class BossGimmicks : MonoBehaviour
 
         _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true); // RhythmGamePresenter  Error NullReferenceExeption
         _presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
-        _presenter.SpawnChainNotes(reilasKujoChain, true);
-        _presenter.SpawnHoldNotes(reilasKujoHold, true);
-        _presenter.SpawnAboveHoldNotes(reilasKujoAboveHold, true);
-        _presenter.SpawnAboveSlideNotes(reilasKujoAboveSlide, true);
+        _presenter.SpawnChainNotes(_presenter._reilasKujoChain, true);
+        _presenter.SpawnHoldNotes(_presenter._reilasKujoHold, true);
+        _presenter.SpawnAboveHoldNotes(_presenter._reilasKujoAboveHold, true);
+        _presenter.SpawnAboveSlideNotes(_presenter._reilasKujoAboveSlide, true);
     }
 
     void FixedUpdate()
@@ -151,9 +147,11 @@ public class BossGimmicks : MonoBehaviour
         else if (time < 92.98f)
         {
             if (!bossClock.isPlaying) bossClock.Play();
-            if ((time - 82.93f) % 1.257 == 0)
+            float effectTime = (time - 82.93f) % 1.257f;
+            if (effectTime <= 0.257f || effectTime >= 1f)
             {
-                _bossContainer.effectStart = true;
+                Debug.Log("EffectTime");
+                _bossContainer.BlackOutIntermittently();
             }
             return;
         }
@@ -161,6 +159,12 @@ public class BossGimmicks : MonoBehaviour
         {
             kujoJudgeSwitch = true;
 
+            float effectTime = (time - 82.93f) % 1.257f;
+            if (effectTime <= 0.257f || effectTime >= 1f)
+            {
+                Debug.Log("EffectTime");
+                _bossContainer.BlackOutIntermittently();
+            }
         }
         else if (time < 103.04f)
         {
@@ -189,6 +193,7 @@ public class BossGimmicks : MonoBehaviour
         // 101.78s �K���X��
         // 103.04s ���X�T�r
         if (_judgeService == null) return;
+        Debug.Log("Change BossGimmick");
 
         for (var i = 0; i < 36; i++)
         {

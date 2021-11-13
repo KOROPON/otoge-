@@ -33,7 +33,6 @@ namespace Reilas
         };
 
         public Text comboText;
-        public Text scoreText;
         public Text gauge;
 
         private void Start()
@@ -57,7 +56,6 @@ namespace Reilas
             _sumScore = RhythmGamePresenter.countNotes * 4;
             
             comboText.text = "";
-            scoreText.text = "0,000,000";
             gauge.text = "0";
         }
 
@@ -114,7 +112,6 @@ namespace Reilas
 
             currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
             comboText.text = currentCombo > 1 ? currentCombo.ToString() : "";
-            scoreText.text = $"{currentScore,9: 0,000,000}";
 
             while (_gaugeCombo >= _comboDataBase[_difficulty])
             {

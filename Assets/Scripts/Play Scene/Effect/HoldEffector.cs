@@ -37,6 +37,7 @@ public sealed class HoldEffector : MonoBehaviour
         if (InputService.AboveLaneTapStates.Any(tapState => tapState.laneNumber == _lanePos))
         {
             Debug.Log("HoldEffect");
+            RhythmGamePresenter.isHolding = true;
             if (!_effect1.isPlaying)
             {
                 _effect1.Play();
@@ -53,6 +54,5 @@ public sealed class HoldEffector : MonoBehaviour
         _effect2.Stop();
         _effect3.Stop();
         _noteBlight.material.color = new Color32(130, 130, 130, 160);
-        effectAudio.Pause();
     }
 }

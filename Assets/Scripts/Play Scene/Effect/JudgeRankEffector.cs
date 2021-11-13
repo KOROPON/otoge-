@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JudgeRankEffector : MonoBehaviour
@@ -9,7 +7,7 @@ public class JudgeRankEffector : MonoBehaviour
     public GameObject bad;
     public GameObject miss;
 
-    private Vector3 finScale = new Vector3(200, 200, 0);
+    private Vector3 finScale = new Vector3(1.5f, 1.5f, 0);
 
     private int trueNum = -1;
 
@@ -24,17 +22,17 @@ public class JudgeRankEffector : MonoBehaviour
                 }
             case 1:
                 {
-                    good.transform.localScale = Vector3.Lerp(perfect.transform.localScale, finScale, 0.4f);
+                    good.transform.localScale = Vector3.Lerp(good.transform.localScale, finScale, 0.4f);
                     break;
                 }
             case 2:
                 {
-                    bad.transform.localScale = Vector3.Lerp(perfect.transform.localScale, finScale, 0.4f);
+                    bad.transform.localScale = Vector3.Lerp(bad.transform.localScale, finScale, 0.4f);
                     break;
                 }
             case 3:
                 {
-                    miss.transform.localScale = Vector3.Lerp(perfect.transform.localScale, finScale, 0.4f);
+                    miss.transform.localScale = Vector3.Lerp(miss.transform.localScale, finScale, 0.4f);
                     break;
                 }
             default: break;
@@ -43,6 +41,7 @@ public class JudgeRankEffector : MonoBehaviour
 
     public void JudgeRankDisplay(string rank)
     {
+        Debug.Log(rank);
         switch (trueNum)
         {
             case 0:
@@ -74,28 +73,28 @@ public class JudgeRankEffector : MonoBehaviour
                 {
                     trueNum = 0;
                     perfect.gameObject.SetActive(true);
-                    perfect.gameObject.transform.localScale = new Vector3(10, 10, 0);
+                    perfect.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
                     break;
                 }
             case "good" :
                 {
                     trueNum = 1;
                     good.gameObject.SetActive(true);
-                    good.gameObject.transform.localScale = new Vector3(10, 10, 0);
+                    good.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
                     break;
                 }
             case "bad":
                 {
                     trueNum = 2;
                     bad.gameObject.SetActive(true);
-                    bad.gameObject.transform.localScale = new Vector3(10, 10, 0);
+                    bad.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
                     break;
                 }
             case "miss" :
                 {
                     trueNum = 3;
                     miss.gameObject.SetActive(true);
-                    miss.gameObject.transform.localScale = new Vector3(10, 10, 0);
+                    miss.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
                     break;
                 }
             default : break;

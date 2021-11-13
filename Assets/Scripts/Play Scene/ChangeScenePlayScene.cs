@@ -23,7 +23,7 @@ public class ChangeScenePlayScene : MonoBehaviour
     {
         if (!playNoticed || !playStopped) return;
         playNoticed = false;
-        var getHighScores = gameObject.AddComponent<GetHighScores>();
+        var getHighScores = GetComponent<GetHighScores>();
         var scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
 
         StartCoroutine(Checking(() =>

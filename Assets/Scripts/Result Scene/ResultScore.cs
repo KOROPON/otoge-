@@ -21,7 +21,7 @@ public class ResultScore : MonoBehaviour
     private Text _titleInResult;
     private Text _difficultyInResult;
     private Text _rankDifficulty;
-    private Color _resultColor;
+    private Image _resultColor;
     private Image _clearRank;
 
     private GetHighScores _getHighScores;
@@ -55,7 +55,7 @@ public class ResultScore : MonoBehaviour
         _previousScoreText = GameObject.Find("PreviousScore").GetComponent<Text>();
         _scoreGap = GameObject.Find("ScoreGap").GetComponent<Text>();
         _resultMusic = GameObject.Find("Theme").GetComponent<AudioSource>();
-        _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>().color;
+        _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>();
         _clearRank = GameObject.Find("Clear").GetComponent<Image>();
         _levelConverter = gameObject.AddComponent<LevelConverter>();
 
@@ -79,13 +79,12 @@ public class ResultScore : MonoBehaviour
 
         _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + ChangeScenePlayScene.clear);
         _rankDifficulty.text = LevelConverter.GetLevel(RhythmGamePresenter.musicName, RhythmGamePresenter.dif).ToString();
-        _resultColor = RhythmGamePresenter.dif switch
+        _resultColor.color = RhythmGamePresenter.dif switch
         {
-            "Easy" => new Color32(0, 0, 0, 0),
-            "Hard" => new Color32(0, 0, 0, 0),
-            "Extreme" => new Color32(0, 0, 0, 0),
-            "Kujo" => new Color32(0, 0, 0, 0),
-            _ => _resultColor
+            "Easy" => new Color32(9, 135, 128, 255),
+            "Hard" => new Color32(135, 133, 9, 255),
+            "Extreme" => new Color32(120, 9, 135, 255),
+            "Kujo" => new Color32(150, 150, 150, 255),
         };
         //未実装00
 
