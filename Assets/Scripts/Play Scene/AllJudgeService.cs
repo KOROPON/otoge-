@@ -177,7 +177,10 @@ public class AllJudgeService : MonoBehaviour
                     var nextNoteIndex = j + 1;
                     if (nextNoteIndex != tapNotes[i].Count &&
                         timeDifference < currentTime - tapNotes[i][nextNoteIndex].note.JudgeTime)
+                    {
                         judgeResult = JudgeResultType.Miss;
+                        _judgeRankEffector.JudgeRankDisplay("Miss");
+                    }
                     else
                     {
                         switch (difference)

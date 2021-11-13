@@ -39,6 +39,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
             {
                 if (_laneMin <= tapstate.laneNumber && tapstate.laneNumber <= _laneMax)
                 {
+                    RhythmGamePresenter.isHolding = true;
                     if (!_effect1.isPlaying)
                     {
                         _effect1.Play();
@@ -60,7 +61,6 @@ public sealed class AboveHoldEffector : MonoBehaviour
                 _effect2.Stop();
                 _effect3.Stop();
                 _noteBlight.material.color = new Color32(130, 130, 130, 160);
-                effectAudio.Pause();
             }
         }
     }

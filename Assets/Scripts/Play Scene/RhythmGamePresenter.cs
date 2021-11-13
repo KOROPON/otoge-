@@ -34,7 +34,8 @@ public class RhythmGamePresenter : MonoBehaviour
     private readonly List<GameObject> _allKeyBeam = new List<GameObject>();
 
     private static AudioSource _audioSource = null!;
-    private static readonly AudioSource LongPerfect = null!;
+    private AudioSource _longPerfect = null!;
+    public static bool isHolding;
 
     public static readonly List<TapNote> TapNotes = new List<TapNote>();
     public static readonly List<AboveTapNote> AboveTapNotes = new List<AboveTapNote>();
@@ -181,6 +182,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Awake()
     {
+        _longPerfect = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
         for (var i = 0; i < TapNoteLanes.Length; i++) TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
         _judgeService = gameObject.GetComponent<AllJudgeService>();
         _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
@@ -714,6 +716,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void LateUpdate()
     {
+
         IEnumerable<AboveTapNote> aboveTapMove;
         IEnumerable<TapNote> tapNoteMove;
         IEnumerable<AboveChainNote> chainNoteMove;
@@ -824,19 +827,19 @@ public class RhythmGamePresenter : MonoBehaviour
 
         foreach (var note in HoldEffectors)
         {
-            if (audioTime - note.holdEffectTime >= 0) note.Render(audioTime, LongPerfect);
+            if (audioTime - note.holdEffectTime >= 0) note.Render(audioTime, _longPerfect);
             else break;
         }
 
         foreach (var note in AboveHoldEffectors)
         {
-            if (audioTime - note.aboveHoldEffectTime >= 0) note.Render(audioTime, LongPerfect);
+            if (audioTime - note.aboveHoldEffectTime >= 0) note.Render(audioTime, _longPerfect);
             else break;
         }
 
         foreach (var note in AboveSlideEffectors)
         {
-            if (audioTime - note.aboveSlideEffectTime >= 0) note.Render(audioTime, LongPerfect);
+            if (audioTime - note.aboveSlideEffectTime >= 0) note.Render(audioTime, _longPerfect);
             else break;
         }
 
@@ -852,8 +855,10 @@ public class RhythmGamePresenter : MonoBehaviour
 
         for (var num = aboveSlideNoteMove.Count - 1; num >= 0; num--) aboveSlideNoteMove[num].Render(audioTime, num, _reilasAboveSlide, speedChanges);
 
-
         for (var i = 0; i < BarLines.Count; i++) BarLines[i].Render(_barLineTimes[i], audioTime, speedChanges);
+
+        if (isHolding!) _longPerfect.Pause();
+        isHolding = false;
     }
 }
 

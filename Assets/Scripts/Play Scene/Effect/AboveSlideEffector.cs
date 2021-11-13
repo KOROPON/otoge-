@@ -42,8 +42,6 @@ public class AboveSlideEffector : MonoBehaviour
 
     public void Render(float currentTime, AudioSource effectAudio)
     {
-        //var _laneMax = Mathf.RoundToInt((_tailMax - _headMax) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMax) + 4;
-        //var _laneMin = Mathf.RoundToInt((_tailMin - _headMin) * (currentTime - _headTime) / (_tailTime - _headTime) + _headMin) + 4;
         var laneMax = Mathf.RoundToInt(Mathf.Lerp(_headMax, _tailMax, (currentTime - _headTime))) + 4;
         var laneMin = Mathf.RoundToInt(Mathf.Lerp(_headMin, _tailMin, (currentTime - _headTime))) + 4;
         //Debug.Log("max" + laneMax);
@@ -60,6 +58,7 @@ public class AboveSlideEffector : MonoBehaviour
                 if (laneMin <= tapstate.laneNumber && tapstate.laneNumber <= laneMax)
                 {
                     Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
+                    RhythmGamePresenter.isHolding = true;
                     if (!_effect1.isPlaying)
                     {
                         _effect1.Play();
@@ -87,7 +86,6 @@ public class AboveSlideEffector : MonoBehaviour
                 _effect2.Stop();
                 _effect3.Stop();
                 _noteBlight.material.color = new Color32(130, 130, 130, 160);
-                effectAudio.Pause();
             }
         }
     }
