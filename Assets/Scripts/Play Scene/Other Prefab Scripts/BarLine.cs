@@ -57,8 +57,8 @@ namespace Reilas
 
             for (var x = 0; x < 33; x++)
             {
-                var angleBase = Div * x;   // レーンの角度
-                var angle = Mathf.PI * (angleBase - 1) / angleBase;
+                var angleBase = Div - x;   // レーンの角度
+                var angle = Mathf.PI * angleBase / Div;
                 
                 var innerY = Mathf.Sin(angle) * InnerRadius;
                 var innerX = Mathf.Cos(angle) * InnerRadius;
@@ -68,8 +68,8 @@ namespace Reilas
 
                 //zPos += zz;
 
-                var innerPoint = new Vector3(innerX, innerY, 999);
-                var outerPoint = new Vector3(outerX, outerY, 999);
+                var innerPoint = new Vector3(innerX, innerY, 0);
+                var outerPoint = new Vector3(outerX, outerY, 0);
                 
                 //(innerPoint, outerPoint) = (outerPoint, innerPoint);
 
@@ -90,10 +90,10 @@ namespace Reilas
 
             if (_vertices != null)
             {
-                _vertices[66] = new Vector3(-4.6f, -0.25f, 999);
-                _vertices[67] = new Vector3(-4.6f, -0.18f, 999);
-                _vertices[68] = new Vector3(4.6f, -0.25f, 999);
-                _vertices[69] = new Vector3(4.6f, -0.18f, 999);
+                _vertices[66] = new Vector3(-4.6f, -0.25f, 0);
+                _vertices[67] = new Vector3(-4.6f, -0.18f, 0);
+                _vertices[68] = new Vector3(4.6f, -0.25f, 0);
+                _vertices[69] = new Vector3(4.6f, -0.18f, 0);
 
                 if (_mesh != null) _mesh.vertices = _vertices;
             }
@@ -105,10 +105,21 @@ namespace Reilas
                 triangles = _triangles
             };
             _mesh.MarkDynamic();
+
+            //GetComponent<MeshRenderer>().material.cal
+
+            _mesh.SetUVs(0, _uv);
+#if UNITY_EDITOR
+            _mesh.RecalculateBounds();
+#endif
+            meshFilter.mesh = _mesh;
+
+            this.gameObject.transform.position = new Vector3(0, 0, 999);
         }
 
         public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
+            if (currentTime == 0) return;
             if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
             else if (_judgeTime < currentTime) BarLineDestroy();
 

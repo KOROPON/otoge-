@@ -33,6 +33,7 @@ public class ChangeScenePlayScene : MonoBehaviour
             Debug.Log("PlayNoticed");
             if (!playStopped) return;
             Debug.Log("notPlayNoticed");
+            SettingField.setBool = false;
             getHighScores.Awake();
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
             score = scoreComboCalculator.currentScore;

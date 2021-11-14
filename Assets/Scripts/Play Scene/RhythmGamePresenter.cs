@@ -548,7 +548,6 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             var barLine = Instantiate(barLinePrefab);
             barLine.Initialize(line);
-            barLine.gameObject.SetActive(false);
             BarLines.Add(barLine);
         }
     }
@@ -557,10 +556,10 @@ public class RhythmGamePresenter : MonoBehaviour
     {
         foreach (var connector in connectors)
         {
-            var connect = Instantiate(noteConnectorPrefab); 
-            connect.Initialize(connector);
-            connect.gameObject.SetActive(false);
-            NoteConnectors.Add(connect);
+        //    var connect = Instantiate(noteConnectorPrefab); 
+        //    connect.Initialize(connector);
+        //    connect.gameObject.SetActive(false);
+        //    NoteConnectors.Add(connect);
         }
     }
 
