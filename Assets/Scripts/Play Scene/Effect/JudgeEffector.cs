@@ -26,7 +26,7 @@ public class JudgeEffector : MonoBehaviour
             {
                 continue;
             }
-            //laneposã‚©‰º‚©Œ©‚ÄEffector‚ÌŒü‚«‡‚í‚¹‚Ä‹N“®
+            //laneposï¿½ã‚©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Effectorï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½í‚¹ï¿½Ä‹Nï¿½ï¿½
             _effectorLanePos.SetValue(lanePos, i);
             effector.transform.position = RhythmGamePresenter.LanePositions[lanePos];
             if (lanePos <= 3)//below
