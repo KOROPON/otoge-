@@ -13,16 +13,17 @@ public class JudgeEffector : MonoBehaviour
         foreach (Transform child in transform)
         {
             _effectors[i] = child.gameObject;
+            _effectorLanePos[i] = -1;
             i++;
         }
     }
 
     public void TapJudgeEffector(int lanePos)
     {
-        for (var i =0; i<=2; i++)
+        for (var i =0; i <= 9; i++)
         {
             var effector = _effectors[i];
-            if (effector.GetComponentsInChildren<Animation>()[0].isPlaying && _effectorLanePos[i] != lanePos)
+            if (effector.GetComponentsInChildren<ParticleSystem>()[0].isPlaying && _effectorLanePos[i] != lanePos)
             {
                 continue;
             }
@@ -37,16 +38,16 @@ public class JudgeEffector : MonoBehaviour
             effector.transform.position = RhythmGamePresenter.LanePositions[lanePos];
             if (lanePos <= 3)//below
             {
-                effector.GetComponentsInChildren<Animation>()[0].Play();
-                effector.GetComponentsInChildren<Animation>()[1].Play();
-                effector.GetComponentsInChildren<Animation>()[2].Play();
+                effector.GetComponentsInChildren<ParticleSystem>()[0].Play();
+                effector.GetComponentsInChildren<ParticleSystem>()[1].Play();
+                effector.GetComponentsInChildren<ParticleSystem>()[2].Play();
             }
             else//above
             {
                 effector.transform.eulerAngles = new Vector3(0, 0, (16 - lanePos) / 32 * 180);
-                effector.GetComponentsInChildren<Animation>()[0].Play();
-                effector.GetComponentsInChildren<Animation>()[1].Play();
-                effector.GetComponentsInChildren<Animation>()[2].Play();
+                effector.GetComponentsInChildren<ParticleSystem>()[0].Play();
+                effector.GetComponentsInChildren<ParticleSystem>()[1].Play();
+                effector.GetComponentsInChildren<ParticleSystem>()[2].Play();
             }
             break;
         }
