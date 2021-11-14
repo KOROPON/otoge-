@@ -1,0 +1,132 @@
+#nullable enable
+
+using System.Collections.Generic;
+using Rhythmium;
+using UnityEngine;
+
+namespace Reilas
+{
+    public sealed class BarLine : MonoBehaviour
+    {
+        private float _judgeTime;
+        
+        [SerializeField] private MeshFilter meshFilter = null!;
+
+        private Vector3[]? _vertices;
+        private Vector3[]? _uv;
+        private int[]? _triangles;
+        private const float Div = 32f;
+        private const float OuterLaneRadius = 4.4f;
+
+        private Mesh? _mesh;
+
+        private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
+        private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
+
+        public void Initialize(float judgeTime)
+        {
+            _judgeTime = judgeTime;
+            InitializeMesh();
+        }
+
+        private void InitializeMesh()
+        {
+            if (meshFilter == null) return;
+
+            _vertices = new Vector3[70];
+            _uv = new Vector3[70];
+            _triangles = new int[198];
+
+            // 前面
+            for (var i = 0; i < 32; i++)
+            {
+                _triangles[i * 6 + 0] = 0 + i * 2;
+                _triangles[i * 6 + 1] = 1 + i * 2;
+                _triangles[i * 6 + 2] = 3 + i * 2;
+                _triangles[i * 6 + 3] = 2 + i * 2;
+                _triangles[i * 6 + 4] = 0 + i * 2;
+                _triangles[i * 6 + 5] = 3 + i * 2;
+            }
+            
+            _triangles[192] = 66;
+            _triangles[193] = 68;
+            _triangles[194] = 67;
+            _triangles[195] = 68;
+            _triangles[196] = 69;
+            _triangles[197] = 67;
+
+            for (var x = 0; x < 33; x++)
+            {
+                var angleBase = Div * x;   // レーンの角度
+                var angle = Mathf.PI * (angleBase - 1) / angleBase;
+                
+                var innerY = Mathf.Sin(angle) * InnerRadius;
+                var innerX = Mathf.Cos(angle) * InnerRadius;
+
+                var outerY = Mathf.Sin(angle) * OuterRadius;
+                var outerX = Mathf.Cos(angle) * OuterRadius;
+
+                //zPos += zz;
+
+                var innerPoint = new Vector3(innerX, innerY, 999);
+                var outerPoint = new Vector3(outerX, outerY, 999);
+                
+                //(innerPoint, outerPoint) = (outerPoint, innerPoint);
+
+                if (_vertices != null)
+                {
+                    _vertices[x * 2] = innerPoint;
+                    _vertices[x * 2 + 1] = outerPoint;
+                }
+
+                var uvX = 1f / 32 * 0.8f * x + 0.1f;
+
+                // 手前
+                if (_uv == null) continue;
+                _uv[x * 2 + 0] = new Vector2(uvX, 1f);
+                _uv[x * 2 + 1] = new Vector2(uvX, 0f);
+                
+            }
+
+            if (_vertices != null)
+            {
+                _vertices[66] = new Vector3(-4.6f, -0.25f, 999);
+                _vertices[67] = new Vector3(-4.6f, -0.18f, 999);
+                _vertices[68] = new Vector3(4.6f, -0.25f, 999);
+                _vertices[69] = new Vector3(4.6f, -0.18f, 999);
+
+                if (_mesh != null) _mesh.vertices = _vertices;
+            }
+            
+            // メッシュを生成する
+            _mesh = new Mesh
+            {
+                vertices = _vertices,
+                triangles = _triangles
+            };
+            _mesh.MarkDynamic();
+        }
+
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        {
+            if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
+            else if (_judgeTime < currentTime) BarLineDestroy();
+
+
+            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z;
+            var gameObj = gameObject;
+            var transPos = gameObj.transform.position;
+            gameObj.transform.position = new Vector3(transPos.x, transPos.y, berPos);
+
+            if (meshFilter != null) return;
+            Debug.Log("null");
+        }
+
+        public void BarLineDestroy()
+        {
+            //Debug.Log(this.gameObject);
+            RhythmGamePresenter.BarLines.Remove(this);
+            Destroy(gameObject);
+        }
+    }
+}

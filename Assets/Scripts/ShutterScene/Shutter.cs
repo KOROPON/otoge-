@@ -179,17 +179,12 @@ public class Shutter : MonoBehaviour
         }
         for(int a = RhythmGamePresenter.BarLines.Count() - 1; a >= 0; a--)
         {
-            RhythmGamePresenter.BarLines[a].NoteDestroy();
+            RhythmGamePresenter.BarLines[a].BarLineDestroy();
         }
 
         foreach (var lane in RhythmGamePresenter.TapNoteLanes) lane.Clear();
-        for (var i = 0; i < _judgeService.tapJudgeStartIndex.Length; i++)
-        {
-            
-        }
         RhythmGamePresenter.internalNotes.Clear();
         RhythmGamePresenter.chainNotes.Clear();
         RhythmGamePresenter.BarLines.Clear();
-        BarLine.BarLines.Clear();
     }
 }

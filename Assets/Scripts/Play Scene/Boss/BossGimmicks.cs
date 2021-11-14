@@ -50,10 +50,10 @@ public class BossGimmicks : MonoBehaviour
         _internalKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Internal"));
         _chainKujoNotes = new List<ReilasNoteEntity>(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "Chain"));
 
-        _presenter._reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
-        _presenter._reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
-        _presenter._reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
-        _presenter._reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
+        _presenter.reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
+        _presenter.reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
+        _presenter.reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
+        _presenter.reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
 
         List<int> removeInt = new List<int>();
 
@@ -124,10 +124,10 @@ public class BossGimmicks : MonoBehaviour
 
         _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true); // RhythmGamePresenter  Error NullReferenceExeption
         _presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
-        _presenter.SpawnChainNotes(_presenter._reilasKujoChain, true);
-        _presenter.SpawnHoldNotes(_presenter._reilasKujoHold, true);
-        _presenter.SpawnAboveHoldNotes(_presenter._reilasKujoAboveHold, true);
-        _presenter.SpawnAboveSlideNotes(_presenter._reilasKujoAboveSlide, true);
+        _presenter.SpawnChainNotes(_presenter.reilasKujoChain, true);
+        _presenter.SpawnHoldNotes(_presenter.reilasKujoHold, true);
+        _presenter.SpawnAboveHoldNotes(_presenter.reilasKujoAboveHold, true);
+        _presenter.SpawnAboveSlideNotes(_presenter.reilasKujoAboveSlide, true);
     }
 
     void FixedUpdate()

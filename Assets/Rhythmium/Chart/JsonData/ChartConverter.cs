@@ -33,7 +33,7 @@ namespace Rhythmium
         /// </summary>
         /// <param name="chartJsonData">譜面データ</param>
         /// <param name="chart">対象譜面</param>
-        protected virtual TChartEntity Convert(ChartJsonData chartJsonData, TChartEntity chart)
+        protected TChartEntity Convert(ChartJsonData chartJsonData, TChartEntity chart)
         {
             chart.AudioSource = chartJsonData.audioSource.Split('.')[0];
             chart.StartTime = chartJsonData.startTime;

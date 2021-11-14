@@ -89,7 +89,7 @@ namespace Reilas
                 RhythmGamePresenter.AboveHoldEffectors.Remove(transform.GetChild(0).GetComponent<AboveHoldEffector>());
                 if (_kujo)
                 {
-                    _presenter._reilasKujoAboveHold.RemoveAt(noteNum);
+                    _presenter.reilasKujoAboveHold.RemoveAt(noteNum);
                     RhythmGamePresenter.AboveKujoHoldNotes.RemoveAt(noteNum);
                 }
                 else
