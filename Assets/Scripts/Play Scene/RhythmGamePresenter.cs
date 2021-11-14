@@ -486,15 +486,15 @@ public class RhythmGamePresenter : MonoBehaviour
         }
     }
 
-    private const float Z = -0.8f;
-
+    private const float Z = -0.2f;
+    private const float Z2 = -0.4f;
     public static readonly Vector3[] LanePositions = new Vector3[]
     {
         //下のレーン
-        new Vector3(-3f, 0, Z),
-        new Vector3(-1f, 0, Z),
-        new Vector3(1f, 0,Z),
-        new Vector3(3f, 0, Z),
+        new Vector3(-3f, 0, Z2),
+        new Vector3(-1f, 0, Z2),
+        new Vector3(1f, 0,Z2),
+        new Vector3(3f, 0, Z2),
 
         //上のレーン
         new Vector3(-4.5f,0.22f,Z),
@@ -652,7 +652,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null)
         {
-            if (_scoreComboCalculator.slider.value >= 0f)
+            if (_scoreComboCalculator.slider.fillAmount >= 0f)
             {
                 jumpToKujo = true;
             }
