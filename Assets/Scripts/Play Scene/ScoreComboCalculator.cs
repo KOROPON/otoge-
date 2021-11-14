@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,13 +16,17 @@ namespace Reilas
         public int currentCombo;
         public int currentScore;
         public string clear;
-        public Slider slider;
-        
+        public Image slider;
+
+        private Sprite nomalGauge;
+        private Sprite bossGauge;
+
         private float _sumScore;
         private float _score;
         private int _gaugeCombo;
         private int _gaugeMiss;
         private string _difficulty;
+        private float _value;
         
         private readonly Dictionary<string, int> _comboDataBase = new Dictionary<string, int>()
         {
@@ -38,8 +41,12 @@ namespace Reilas
         private void Start()
         {
             _difficulty = PlayerPrefs.GetString("difficulty");
-            slider = GameObject.Find("ScoreGauge").GetComponent<Slider>();
-            
+            slider = GameObject.Find("Fill").GetComponent<Image>();
+
+            nomalGauge = Resources.Load<Sprite>("Gauge/GaugeFill") as Sprite;
+            bossGauge = Resources.Load<Sprite>("Gauge/HardGaugeFill") as Sprite;
+
+
             sumPerfect = 0; 
             sumGood = 0;
             sumBad = 0;
@@ -50,13 +57,13 @@ namespace Reilas
             currentScore = 0;
             _score = 0;
             
-            slider.value = 0f;
+            slider.fillAmount = 0f;
             _gaugeCombo = 0;
             _gaugeMiss = 0;
             _sumScore = RhythmGamePresenter.countNotes * 4;
             
             comboText.text = "";
-            gauge.text = "0";
+            //gauge.text = "0";
         }
 
         public void LateUpdate()
@@ -115,18 +122,22 @@ namespace Reilas
 
             while (_gaugeCombo >= _comboDataBase[_difficulty])
             {
-                 slider.value += 0.01f;
-                 _gaugeCombo -= _comboDataBase[_difficulty];
+                if(slider.fillAmount <= 0.99) slider.fillAmount += 0.01f;
+                _gaugeCombo -= _comboDataBase[_difficulty];
             }
 
-            slider.value -= 0.01f * _gaugeMiss;
+            if(slider.fillAmount >= 0.01) slider.fillAmount -= 0.01f * _gaugeMiss;
 
-            gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
+            //gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
             if (currentScore == 1000000) clear = "AllPerfect";
             else if (currentCombo == RhythmGamePresenter.countNotes) clear = "FullCombo";
-            else if (slider.value >= 0.7f) clear = "Clear";
+            else if (_value >= 0.7f) clear = "Clear";
             else clear = "Failed";
         }
 
+        public void GaugeChange()
+        {
+            slider.sprite = bossGauge;
+        }
     }
 }

@@ -9,7 +9,7 @@ public class JudgeEffector : MonoBehaviour
 
     void Start()
     {
-        _effectors = new GameObject[3];
+        _effectors = new GameObject[transform.childCount];
         var i = 0;
         foreach (Transform child in transform)
         {
