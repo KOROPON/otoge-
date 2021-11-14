@@ -319,6 +319,7 @@ public class AllJudgeService : MonoBehaviour
             AllJudge.Add(judgeResult);
             if (judgeResult == JudgeResultType.Perfect)
             {
+                _judgeEffector.TapJudgeEffector(i);
                 _judgeRankEffector.JudgeRankDisplay("perfect");
             }
             else
@@ -331,6 +332,7 @@ public class AllJudgeService : MonoBehaviour
             chainJudgeStartIndex++;
             if (judgeResult == JudgeResultType.Perfect)
             {
+                _judgeEffector.TapJudgeEffector(i);
                 _judgeRankEffector.JudgeRankDisplay("perfect");
                 continue;
             }

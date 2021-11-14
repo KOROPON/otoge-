@@ -30,9 +30,9 @@ public class JudgeEffector : MonoBehaviour
             //lanepos�ォ��������Effector�̌������킹�ċN��
             if (_effectorLanePos[i] == lanePos)
             {
-                effector.GetComponentsInChildren<Animation>()[0].Stop();
-                effector.GetComponentsInChildren<Animation>()[1].Stop();
-                effector.GetComponentsInChildren<Animation>()[2].Stop();
+                effector.GetComponentsInChildren<ParticleSystem>()[0].Stop();
+                effector.GetComponentsInChildren<ParticleSystem>()[1].Stop();
+                effector.GetComponentsInChildren<ParticleSystem>()[2].Stop();
             }
             _effectorLanePos.SetValue(lanePos, i);
             effector.transform.position = RhythmGamePresenter.LanePositions[lanePos];
