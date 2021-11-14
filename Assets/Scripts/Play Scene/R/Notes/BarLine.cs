@@ -175,10 +175,10 @@ namespace Reilas
 
             if (_vertices != null)
             {
-                _vertices[66] = new Vector3(-4.6f, -0.25f, berPos);
-                _vertices[67] = new Vector3(-4.6f, -0.18f, berPos);
-                _vertices[68] = new Vector3(4.6f, -0.25f, berPos);
-                _vertices[69] = new Vector3(4.6f, -0.18f, berPos);
+                _vertices[66] = new Vector3(-4.4f, -0.25f, berPos);
+                _vertices[67] = new Vector3(-4.4f, -0.18f, berPos);
+                _vertices[68] = new Vector3(4.4f, -0.25f, berPos);
+                _vertices[69] = new Vector3(4.4f, -0.18f, berPos);
 
                 if (_mesh != null) _mesh.vertices = _vertices;
             }

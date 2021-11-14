@@ -195,21 +195,21 @@ public class AllJudgeService : MonoBehaviour
                             case var dif when dif <= _judgeSeconds["Tap Perfect"]:
                                 {
                                     judgeResult = JudgeResultType.Perfect;
-                                    _judgeEffector.TapJudgeEffector(i);
+                                    _judgeEffector.TapJudgeEffector(i, "Perfect");
                                     _judgeRankEffector.JudgeRankDisplay("perfect");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Good"]:
                                 {
                                     judgeResult = JudgeResultType.Good;
-                                    _judgeEffector.TapJudgeEffector(i);
+                                    _judgeEffector.TapJudgeEffector(i, "Good");
                                     _judgeRankEffector.JudgeRankDisplay("good");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Bad"]:
                                 {
                                     judgeResult = JudgeResultType.Bad;
-                                    _judgeEffector.TapJudgeEffector(i);
+                                    _judgeEffector.TapJudgeEffector(i, "Bad");
                                     _judgeRankEffector.JudgeRankDisplay("bad");
                                     break;
                                 }
@@ -319,7 +319,7 @@ public class AllJudgeService : MonoBehaviour
             AllJudge.Add(judgeResult);
             if (judgeResult == JudgeResultType.Perfect)
             {
-                _judgeEffector.TapJudgeEffector(i);
+                _judgeEffector.TapJudgeEffector(i, "Perfect");
                 _judgeRankEffector.JudgeRankDisplay("perfect");
             }
             else
@@ -332,7 +332,7 @@ public class AllJudgeService : MonoBehaviour
             chainJudgeStartIndex++;
             if (judgeResult == JudgeResultType.Perfect)
             {
-                _judgeEffector.TapJudgeEffector(i);
+                _judgeEffector.TapJudgeEffector(i, "Perfect");
                 _judgeRankEffector.JudgeRankDisplay("perfect");
                 continue;
             }
