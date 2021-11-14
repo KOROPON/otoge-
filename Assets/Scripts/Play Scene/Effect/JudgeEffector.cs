@@ -27,6 +27,12 @@ public class JudgeEffector : MonoBehaviour
                 continue;
             }
             //lanepos�ォ��������Effector�̌������킹�ċN��
+            if (_effectorLanePos[i] == lanePos)
+            {
+                effector.GetComponentsInChildren<Animation>()[0].Stop();
+                effector.GetComponentsInChildren<Animation>()[1].Stop();
+                effector.GetComponentsInChildren<Animation>()[2].Stop();
+            }
             _effectorLanePos.SetValue(lanePos, i);
             effector.transform.position = RhythmGamePresenter.LanePositions[lanePos];
             if (lanePos <= 3)//below
