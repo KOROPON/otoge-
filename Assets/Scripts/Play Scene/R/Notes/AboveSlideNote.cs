@@ -206,7 +206,7 @@ namespace Reilas
                 RhythmGamePresenter.AboveSlideEffectors.Remove(transform.GetChild(0).GetComponent<AboveSlideEffector>());
                 if (_kujo)
                 {
-                    _presenter._reilasKujoAboveSlide.RemoveAt(noteNum);
+                    _presenter.reilasKujoAboveSlide.RemoveAt(noteNum);
                     RhythmGamePresenter.AboveKujoSlideNotes.RemoveAt(noteNum);
                 }
                 else

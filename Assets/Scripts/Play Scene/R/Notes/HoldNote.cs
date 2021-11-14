@@ -54,7 +54,7 @@ namespace Reilas
             _triangles = new int[6] { 1, 0, 3, 0, 2, 3 };
             _uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 0) };
 
-            // ƒƒbƒVƒ…‚ğ¶¬‚·‚é.
+            // ï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½.
             _mesh = new Mesh
             {
                 vertices = _vertices,
@@ -77,7 +77,7 @@ namespace Reilas
                 if (_kujo)
                 {
                     RhythmGamePresenter.HoldKujoNotes.RemoveAt(noteNum);
-                    _presenter._reilasKujoHold.RemoveAt(noteNum);
+                    _presenter.reilasKujoHold.RemoveAt(noteNum);
                 }
                 else
                 {

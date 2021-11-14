@@ -7,8 +7,21 @@ using UnityEngine;
 
 namespace Reilas
 {
+    public class Connector
+    {
+        public float currentTime;
+        public List<ConnectingKinds> connectingList = new List<ConnectingKinds>();
+    }
+
+    public class ConnectingKinds
+    {
+        public int[] connector = new int[2];
+        public string? kind;
+    }
     public sealed class NoteConnector : MonoBehaviour
     {
+        private float _judgeTime;
+        
         [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
@@ -21,47 +34,6 @@ namespace Reilas
 
         private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
         private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
-
-        private static float CalculateZPos(float judgeTime, List<SpeedChangeEntity> speedChangeEntities, float currentTime)
-        {
-            var t = currentTime - judgeTime;
-            if (speedChangeEntities.Count == 0)
-                return NotePositionCalculatorService.PositionCalculator(t,
-                    NotePositionCalculatorService.SpeedCalculator(NotePositionCalculatorService.firstChartSpeed));
-            var zPos = 0f;
-            for (var i = speedChangeEntities.Count - 1; i >= 0; i--)
-            {
-                var nextNotePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i + 1);
-                if (currentTime >= nextNotePassedTime) break;
-                var notePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i);
-                if (judgeTime < notePassedTime) continue;
-                var highSpeed = NotePositionCalculatorService.SpeedCalculator(speedChangeEntities[i].Speed);
-                var nextNotePosition =
-                    NotePositionCalculatorService.PositionCalculator(nextNotePassedTime - judgeTime, highSpeed);
-                zPos += currentTime < RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i - 1)
-                    ? NotePositionCalculatorService.PositionCalculator(t, highSpeed) - nextNotePosition
-                    : NotePositionCalculatorService.PositionCalculator(notePassedTime - judgeTime, highSpeed) -
-                      nextNotePosition;
-            }
-
-            return zPos;
-        }
-        private static Vector3 CalculateBarLinePosition(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
-        {
-            var highSpeed = NotePositionCalculatorService.normalizedSpeed;
-            
-            // 0 なら判定ライン
-            // 1 ならレーンの一番奥
-            var t = currentTime - judgeTime;
-            var normalizedTime = -t * highSpeed / 600f;
-
-            return normalizedTime switch
-            {
-                var time when time >= 1 => new Vector3(0f, 0f, 999f),
-                var time when time >= 0 => new Vector3(0f, 0f, CalculateZPos(judgeTime, speedChangeEntities, currentTime)),
-                _ => new Vector3(0f, 0f, 0f)
-            };
-        }
 
         public static int GetConnectorLane(int lane, List<int> groundLanes)
         {
@@ -104,15 +76,24 @@ namespace Reilas
             }
         }
 
-        public void Initialize(ConnectingKinds connectKind)
+        public void Initialize(Connector connector)
+        {
+            _judgeTime = connector.currentTime;
+            foreach (var connectingKind in connector.connectingList) InitializeMesh(connectingKind);
+        }
+
+        private void InitializeMesh(ConnectingKinds connectKind)
         {
             if (meshFilter == null) return;
 
+            var beginning = connectKind.connector[0];
+            var finish = connectKind.connector[1];
+
             var lanePositions = RhythmGamePresenter.LanePositions;
-            var startPosition = lanePositions[connectKind.connector[0]];
+            var startPosition = lanePositions[beginning];
             var spX = startPosition.x;
             var spY = startPosition.y;
-            var endPosition = lanePositions[connectKind.connector[1]];
+            var endPosition = lanePositions[finish];
             var edX = endPosition.x;
             var edY = endPosition.y;
             switch (connectKind.kind)
@@ -122,7 +103,7 @@ namespace Reilas
                     _vertices = new Vector3[4];
                     _uv = new Vector3[4];
                     _triangles = new int[6];
-                    
+
                     _triangles[0] = 0;
                     _triangles[1] = 1;
                     _triangles[2] = 2;
@@ -134,14 +115,13 @@ namespace Reilas
                     _vertices[1] = new Vector3(edX, edY - 0.1f, 999);
                     _vertices[2] = new Vector3(spX, spY + 0.1f, 999);
                     _vertices[3] = new Vector3(edX, edY + 0.1f, 999);
-                    
+
                     _uv[0] = new Vector2(0, 0);
                     _uv[1] = new Vector2(1, 0);
                     _uv[2] = new Vector2(0, 1);
                     _uv[3] = new Vector2(1, 1);
                     break;
                 }
-                    
                 case "Ground-Above":
                 {
                     _vertices = new Vector3[4];
@@ -154,27 +134,31 @@ namespace Reilas
                     _triangles[3] = 1;
                     _triangles[4] = 3;
                     _triangles[5] = 2;
-                    
+
                     _vertices[0] = new Vector3(spX - 0.1f, spY, 999);
                     _vertices[1] = new Vector3(spX + 0.1f, spY, 999);
                     _vertices[2] = new Vector3(edX - 0.1f, edY, 999);
                     _vertices[3] = new Vector3(edX + 0.1f, edY, 999);
-                    
+
                     _uv[0] = new Vector2(0, 0);
                     _uv[1] = new Vector2(1, 0);
                     _uv[2] = new Vector2(0, 1);
                     _uv[3] = new Vector2(1, 1);
-                    
+
                     break;
                 }
                 case "Above-Above":
                 {
-                    _vertices = new Vector3[70];
-                    _uv = new Vector3[70];
-                    _triangles = new int[198];
+                    var size = finish - beginning + 1;
+                    var entityBase = size * 10;
+                    var uAndV = entityBase * 2;
+
+                    _vertices = new Vector3[uAndV];
+                    _uv = new Vector3[uAndV];
+                    _triangles = new int[entityBase * 6 + 12];
 
                     // 前面
-                    for (var i = 0; i < 32; i++)
+                    for (var i = 0; i < size - 1; i++)
                     {
                         _triangles[i * 6 + 0] = 0 + i * 2;
                         _triangles[i * 6 + 1] = 1 + i * 2;
@@ -184,88 +168,64 @@ namespace Reilas
                         _triangles[i * 6 + 5] = 3 + i * 2;
                     }
 
-                    _triangles[192] = 66;
-                    _triangles[193] = 68;
-                    _triangles[194] = 67;
-                    _triangles[195] = 68;
-                    _triangles[196] = 69;
-                    _triangles[197] = 67;
-
-                    for (var z = 0; z < 1; z++)
+                    for (var x = 0; x < size; x++)
                     {
-                        for (var x = 0; x < 33; x++)
+                        var laneIndex = beginning + x;
+                        var angleBase = Div * laneIndex;   // レーンの角度
+                        var angle = Mathf.PI * (angleBase - 1) / angleBase;
+
+                        var innerY = Mathf.Sin(angle) * InnerRadius;
+                        var innerX = Mathf.Cos(angle) * InnerRadius;
+
+                        var outerY = Mathf.Sin(angle) * OuterRadius;
+                        var outerX = Mathf.Cos(angle) * OuterRadius;
+
+                        var innerPoint = new Vector3(innerX, innerY, 999);
+                        var outerPoint = new Vector3(outerX, outerY, 999);
+
+                        //(innerPoint, outerPoint) = (outerPoint, innerPoint);
+                        if (_vertices != null)
                         {
-                            var angle = Mathf.PI / Div * x; // レーンの角度
-
-                            angle = Mathf.PI - angle;
-
-
-                            var innerY = Mathf.Sin(angle) * InnerRadius;
-                            var innerX = Mathf.Cos(angle) * InnerRadius;
-
-                            var outerY = Mathf.Sin(angle) * OuterRadius;
-                            var outerX = Mathf.Cos(angle) * OuterRadius;
-
-
-
-                            //zPos += zz;
-
-                            var innerPoint = new Vector3(innerX, innerY, 0);
-                            var outerPoint = new Vector3(outerX, outerY, 0);
-
-
-                            //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
-                            var p = 66 * z;
-
-                            if (_vertices != null)
-                            {
-                                _vertices[p + x * 2 + 0] = innerPoint;
-                                _vertices[p + x * 2 + 1] = outerPoint;
-                            }
-
-                            var uvX = 1f / 32 * 0.8f * x + 0.1f;
-
-                            // 手前
-                            if (z != 0 || _uv == null) continue;
-                            _uv[x * 2 + 0] = new Vector2(uvX, 1f);
-                            _uv[x * 2 + 1] = new Vector2(uvX, 0f);
+                            _vertices[x * 2] = innerPoint;
+                            _vertices[x * 2 + 1] = outerPoint;
                         }
-                    }
 
-                    if (_vertices != null)
-                    {
-                        _vertices[66] = new Vector3(-4.6f, -0.25f, 0);
-                        _vertices[67] = new Vector3(-4.6f, -0.18f, 0);
-                        _vertices[68] = new Vector3(4.6f, -0.25f, 0);
-                        _vertices[69] = new Vector3(4.6f, -0.18f, 0);
+                        var uvX = 1f / 32 * 0.8f * x + 0.1f;
 
-                        if (_mesh != null) _mesh.vertices = _vertices;
+                        // 手前
+                        if (_uv == null) continue;
+                        _uv[x * 2 + 0] = new Vector2(uvX, 1f);
+                        _uv[x * 2 + 1] = new Vector2(uvX, 0f);
                     }
+                    
+                    if (_mesh != null) _mesh.vertices = _vertices;
                     break;
                 }
-                default:
-                {
-                    Debug.Log("kind is not valid");
-                    break;
-                }
-            }
-            
-            // メッシュを生成する
-            _mesh = new Mesh
+            default:
             {
-                vertices = _vertices,
-                triangles = _triangles
-            };
-            _mesh.MarkDynamic();
+                Debug.Log("kind is not valid");
+                break;
+            }
+        }
+
+        // メッシュを生成する
+
+        Debug.Log("Initialized Mesh");
+        _mesh = new Mesh
+        {
+            vertices = _vertices,
+            triangles = _triangles
+        };
+        _mesh.MarkDynamic();
+        
         }
         
-        public void Render(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
-            if (!gameObject.activeSelf && judgeTime - currentTime < 5f) gameObject.SetActive(true);
-            else if (judgeTime < currentTime) NoteConnectorDestroy();
+            if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
+            else if (_judgeTime < currentTime) NoteConnectorDestroy();
 
-            var berPos = CalculateBarLinePosition(judgeTime, currentTime, speedChangeEntities).z; // Make Mesh 頂点
+            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z; // Make Mesh 頂点
             var transPos = transform.position;
             gameObject.transform.position = new Vector3(transPos.x, transPos.y, berPos);
 
@@ -276,8 +236,7 @@ namespace Reilas
         private void NoteConnectorDestroy()
         {
             //Debug.Log(this.gameObject);
-            RhythmGamePresenter.NoteConnectors.Remove();
-            BarLines.Remove(BarLines[0]);
+            RhythmGamePresenter.NoteConnectors.Remove(this);
             Destroy(gameObject);
         }
     }

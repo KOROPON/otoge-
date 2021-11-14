@@ -32,16 +32,15 @@ namespace Reilas
 
         private void InitializeMesh()
         {
-            if (meshFilter == null)
-            {
-                throw new Exception();
-            }
+            if (meshFilter == null) throw new Exception();
 
             var size = _entity.Size + 1;
+            var entityBase = size * 10;
+            var uAndV = entityBase * 2;
 
-            _vertices = new Vector3[size * 2 * 10];
-            _uv = new Vector3[size * 2 * 10];
-            _triangles = new int[size * 6 * 10 + 12];
+            _vertices = new Vector3[uAndV];
+            _uv = new Vector3[uAndV];
+            _triangles = new int[entityBase * 6 + 12];
 
             // 前面
             for (var i = 0; i < size - 1; i++)
@@ -77,52 +76,43 @@ namespace Reilas
 
             const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
 
-            for (var z = 0; z < 1; z++)
+            for (var x = 0; x < _entity.Size + 1; x++)
             {
-                for (var x = 0; x < _entity.Size + 1; x++)
+                var laneIndex = _entity.LanePosition + x;  //レーン番号
+                var angleBase = div * laneIndex;   // レーンの角度
+                var angle = Mathf.PI * (angleBase - 1) / angleBase;
+
+
+                var innerY = Mathf.Sin(angle) * innerRadius;
+                var innerX = Mathf.Cos(angle) * innerRadius;
+
+                var outerY = Mathf.Sin(angle) * outerLaneRadius;
+                var outerX = Mathf.Cos(angle) * outerLaneRadius;
+
+                if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
+                    
+                var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities).z;
+                    
+                //zPos += zz;
+
+                var innerPoint = new Vector3(innerX, innerY, zPos);
+                var outerPoint = new Vector3(outerX, outerY, zPos);
+
+
+                //(innerPoint, outerPoint) = (outerPoint, innerPoint);
+
+                if (_vertices != null)
                 {
-                    var laneIndex = _entity.LanePosition + x;  //レーン番号
-
-                    var angle = Mathf.PI / div * laneIndex;   // レーンの角度
-
-                    angle = Mathf.PI - angle;
-
-
-                    var innerY = Mathf.Sin(angle) * innerRadius;
-                    var innerX = Mathf.Cos(angle) * innerRadius;
-
-                    var outerY = Mathf.Sin(angle) * outerLaneRadius;
-                    var outerX = Mathf.Cos(angle) * outerLaneRadius;
-
-                    float zPos = 0;
-
-                    if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
-                    
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities).z;
-                    
-                    //zPos += zz;
-
-                    var innerPoint = new Vector3(innerX, innerY, zPos);
-                    var outerPoint = new Vector3(outerX, outerY, zPos);
-
-
-                    //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
-                    var p = (_entity.Size + 1) * 2 * z;
-
-                    if (_vertices != null)
-                    {
-                        _vertices[p + x * 2 + 0] = innerPoint;
-                        _vertices[p + x * 2 + 1] = outerPoint;
-                    }
-
-                    var uvX = 1f / _entity.Size * 0.8f * x + 0.1f;
-
-                    // 手前
-                    if (z != 0 || _uv == null) continue;
-                    _uv[x * 2 + 0] = new Vector2(uvX, 1f);
-                    _uv[x * 2 + 1] = new Vector2(uvX, 0f);
+                    _vertices[x * 2] = innerPoint;
+                    _vertices[x * 2 + 1] = outerPoint;
                 }
+
+                var uvX = 1f / _entity.Size * 0.8f * x + 0.1f;
+
+                // 手前
+                if (_uv == null) continue;
+                _uv[x * 2 + 0] = new Vector2(uvX, 1f);
+                _uv[x * 2 + 1] = new Vector2(uvX, 0f);
             }
 
             if (_mesh == null) return;

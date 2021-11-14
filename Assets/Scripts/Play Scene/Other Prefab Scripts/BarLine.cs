@@ -8,12 +8,8 @@ namespace Reilas
 {
     public sealed class BarLine : MonoBehaviour
     {
-        private static TextAsset? _jsonFile;
-
-        private static SongDataBase? _songData;
-
-        public static readonly List<float> BarLines = new List<float>();
-
+        private float _judgeTime;
+        
         [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
@@ -27,48 +23,13 @@ namespace Reilas
         private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
         private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
 
-        private static float CalculateZPos(float judgeTime, List<SpeedChangeEntity> speedChangeEntities, float currentTime)
+        public void Initialize(float judgeTime)
         {
-            var t = currentTime - judgeTime;
-            if (speedChangeEntities.Count == 0)
-                return NotePositionCalculatorService.PositionCalculator(t,
-                    NotePositionCalculatorService.SpeedCalculator(NotePositionCalculatorService.firstChartSpeed));
-            var zPos = 0f;
-            for (var i = speedChangeEntities.Count - 1; i >= 0; i--)
-            {
-                var nextNotePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i + 1);
-                if (currentTime >= nextNotePassedTime) break;
-                var notePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i);
-                if (judgeTime < notePassedTime) continue;
-                var highSpeed = NotePositionCalculatorService.SpeedCalculator(speedChangeEntities[i].Speed);
-                var nextNotePosition =
-                    NotePositionCalculatorService.PositionCalculator(nextNotePassedTime - judgeTime, highSpeed);
-                zPos += currentTime < RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i - 1)
-                    ? NotePositionCalculatorService.PositionCalculator(t, highSpeed) - nextNotePosition
-                    : NotePositionCalculatorService.PositionCalculator(notePassedTime - judgeTime, highSpeed) -
-                      nextNotePosition;
-            }
-
-            return zPos;
-        }
-        private static Vector3 CalculateBarLinePosition(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
-        {
-            var highSpeed = NotePositionCalculatorService.normalizedSpeed;
-            
-            // 0 なら判定ライン
-            // 1 ならレーンの一番奥
-            var t = currentTime - judgeTime;
-            var normalizedTime = -t * highSpeed / 600f;
-
-            return normalizedTime switch
-            {
-                var time when time >= 1 => new Vector3(0f, 0f, 999f),
-                var time when time >= 0 => new Vector3(0f, 0f, CalculateZPos(judgeTime, speedChangeEntities, currentTime)),
-                _ => new Vector3(0f, 0f, 0f)
-            };
+            _judgeTime = judgeTime;
+            InitializeMesh();
         }
 
-        public void Initialize()
+        private void InitializeMesh()
         {
             if (meshFilter == null) return;
 
@@ -86,6 +47,7 @@ namespace Reilas
                 _triangles[i * 6 + 4] = 0 + i * 2;
                 _triangles[i * 6 + 5] = 3 + i * 2;
             }
+            
             _triangles[192] = 66;
             _triangles[193] = 68;
             _triangles[194] = 67;
@@ -93,46 +55,37 @@ namespace Reilas
             _triangles[196] = 69;
             _triangles[197] = 67;
 
-            for (var z = 0; z < 1; z++)
+            for (var x = 0; x < 33; x++)
             {
-                for (var x = 0; x < 33; x++)
+                var angleBase = Div * x;   // レーンの角度
+                var angle = Mathf.PI * (angleBase - 1) / angleBase;
+                
+                var innerY = Mathf.Sin(angle) * InnerRadius;
+                var innerX = Mathf.Cos(angle) * InnerRadius;
+
+                var outerY = Mathf.Sin(angle) * OuterRadius;
+                var outerX = Mathf.Cos(angle) * OuterRadius;
+
+                //zPos += zz;
+
+                var innerPoint = new Vector3(innerX, innerY, 999);
+                var outerPoint = new Vector3(outerX, outerY, 999);
+                
+                //(innerPoint, outerPoint) = (outerPoint, innerPoint);
+
+                if (_vertices != null)
                 {
-                    var angle = Mathf.PI / Div * x;   // レーンの角度
-
-                    angle = Mathf.PI - angle;
-
-
-                    var innerY = Mathf.Sin(angle) * InnerRadius;
-                    var innerX = Mathf.Cos(angle) * InnerRadius;
-
-                    var outerY = Mathf.Sin(angle) * OuterRadius;
-                    var outerX = Mathf.Cos(angle) * OuterRadius;
-
-
-
-                    //zPos += zz;
-
-                    var innerPoint = new Vector3(innerX, innerY, 999);
-                    var outerPoint = new Vector3(outerX, outerY, 999);
-
-
-                    //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
-                    var p = 66 * z;
-
-                    if (_vertices != null)
-                    {
-                        _vertices[p + x * 2 + 0] = innerPoint;
-                        _vertices[p + x * 2 + 1] = outerPoint;
-                    }
-
-                    var uvX = 1f / 32 * 0.8f * x + 0.1f;
-
-                    // 手前
-                    if (z != 0 || _uv == null) continue;
-                    _uv[x * 2 + 0] = new Vector2(uvX, 1f);
-                    _uv[x * 2 + 1] = new Vector2(uvX, 0f);
+                    _vertices[x * 2] = innerPoint;
+                    _vertices[x * 2 + 1] = outerPoint;
                 }
+
+                var uvX = 1f / 32 * 0.8f * x + 0.1f;
+
+                // 手前
+                if (_uv == null) continue;
+                _uv[x * 2 + 0] = new Vector2(uvX, 1f);
+                _uv[x * 2 + 1] = new Vector2(uvX, 0f);
+                
             }
 
             if (_vertices != null)
@@ -154,28 +107,16 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public static void GetBarLines(string song, float audioLength)
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
-            _jsonFile = Resources.Load<TextAsset>("Level/SongDataBase");
-            _songData = JsonUtility.FromJson<SongDataBase>(_jsonFile.text);
+            if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
+            else if (_judgeTime < currentTime) BarLineDestroy();
 
-            foreach (SongName songName in _songData.songs)
-            {
-                if (songName.title != song) continue;
-                Beat beat = songName.beat;
-                var spacing = 60 / beat.bpm * beat.numerator * 4 / beat.denominator;
-                for (float time = 0; time < audioLength + spacing; time += spacing) BarLines.Add(time);
-            }
-        }
 
-        public void Render(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
-        {
-            if (!gameObject.activeSelf && judgeTime - currentTime < 5f) gameObject.SetActive(true);
-            else if (judgeTime < currentTime) BarLineDestroy();
-
-            var berPos = CalculateBarLinePosition(judgeTime, currentTime, speedChangeEntities).z; // Make Mesh 頂点
-            var transPos = transform.position;
-            gameObject.transform.position = new Vector3(transPos.x, transPos.y, berPos);
+            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z;
+            var gameObj = gameObject;
+            var transPos = gameObj.transform.position;
+            gameObj.transform.position = new Vector3(transPos.x, transPos.y, berPos);
 
             if (meshFilter != null) return;
             Debug.Log("null");
@@ -185,7 +126,6 @@ namespace Reilas
         {
             //Debug.Log(this.gameObject);
             RhythmGamePresenter.BarLines.Remove(this);
-            BarLines.Remove(BarLines[0]);
             Destroy(gameObject);
         }
     }

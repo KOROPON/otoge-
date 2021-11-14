@@ -31,7 +31,7 @@ namespace Reilas
             return zPos;
         }
        
-        private static Vector3 CalculatePosition(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public static Vector3 CalculatePosition(float judgeTime, float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
             var highSpeed = NotePositionCalculatorService.normalizedSpeed;
             

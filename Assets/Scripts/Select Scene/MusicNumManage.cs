@@ -182,7 +182,7 @@ public class MusicNumManage : MonoBehaviour
         DisplayRank(_songName, diff.name);
         _frame.color = GetColor(diff.name);//new Color32(color.color.r, color.color.g, color.color.b, color.color.a);
 
-        for (int i = 0; i < _scrollViewContent.childCount; i++)
+        for (var i = 0; i < _scrollViewContent.childCount; i++)
         {
             var song = _scrollViewContent.GetChild(i).gameObject;
             song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
@@ -190,8 +190,7 @@ public class MusicNumManage : MonoBehaviour
             var songLock = song.GetComponentsInChildren<Image>()[2];
             var determineButton = song.GetComponent<Button>();
             var clearGuage = song.GetComponentsInChildren<Image>()[3];
-            if (_getHighScores.GetClear(song.name, diff.name) != null) clearGuage.sprite = Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff.name));
-            else clearGuage.sprite = Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
+            clearGuage.sprite = _getHighScores.GetClear(song.name, diff.name) != null ? Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff.name)) : Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
             if (diff.name == "Extreme" && !_getHighScores.GetLock(song.name))
             {
                 songLock.enabled = true;
