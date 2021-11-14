@@ -127,6 +127,8 @@ namespace Reilas
             }
 
             if(slider.fillAmount >= 0.01) slider.fillAmount -= 0.01f * _gaugeMiss;
+            _gaugeMiss = 0;
+
 
             //gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
             if (currentScore == 1000000) clear = "AllPerfect";
