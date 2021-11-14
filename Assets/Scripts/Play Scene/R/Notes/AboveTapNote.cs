@@ -79,8 +79,8 @@ namespace Reilas
             for (var x = 0; x < _entity.Size + 1; x++)
             {
                 var laneIndex = _entity.LanePosition + x;  //レーン番号
-                var angleBase = div * laneIndex;   // レーンの角度
-                var angle = Mathf.PI * (angleBase - 1) / angleBase;
+                var angleBase = div - laneIndex;   // レーンの角度
+                var angle = Mathf.PI * angleBase / div;
 
 
                 var innerY = Mathf.Sin(angle) * innerRadius;

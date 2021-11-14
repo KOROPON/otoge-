@@ -40,7 +40,7 @@ public class AllJudgeService : MonoBehaviour
     {
         {"Tap Perfect", 0.041f},
         {"Tap Good", 0.058f},
-        {"Tap Bad", 0.5f},
+        {"Tap Bad", 0.075f},
         {"Internal", 0.090f},
         {"Chain", 0.025f}
     };
@@ -330,14 +330,6 @@ public class AllJudgeService : MonoBehaviour
             if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
             else RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
             chainJudgeStartIndex++;
-            if (judgeResult == JudgeResultType.Perfect)
-            {
-                _judgeEffector.TapJudgeEffector(i, "Perfect");
-                _judgeRankEffector.JudgeRankDisplay("perfect");
-                continue;
-            }
-            _judgeRankEffector.JudgeRankDisplay("miss");
-
         }
     }
 }

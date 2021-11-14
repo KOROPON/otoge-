@@ -26,7 +26,6 @@ namespace Reilas
         private int _gaugeCombo;
         private int _gaugeMiss;
         private string _difficulty;
-        private float _value;
         
         private readonly Dictionary<string, int> _comboDataBase = new Dictionary<string, int>()
         {
@@ -133,11 +132,11 @@ namespace Reilas
             //gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
             if (currentScore == 1000000) clear = "AllPerfect";
             else if (currentCombo == RhythmGamePresenter.countNotes) clear = "FullCombo";
-            else if (_value >= 0.7f) clear = "Clear";
+            else if (slider.fillAmount >= 0.7f) clear = "Clear";
             else clear = "Failed";
         }
 
-        public void GaugeChange()
+        public void GaugeChange() // ƒQ[ƒW‚ğ Kujo ‚ÌF‚É•Ï‚¦‚é
         {
             slider.sprite = bossGauge;
         }
