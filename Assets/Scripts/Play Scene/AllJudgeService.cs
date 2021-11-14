@@ -22,6 +22,7 @@ public class AllJudgeService : MonoBehaviour
     public int chainJudgeStartIndex;
     private RhythmGamePresenter? _gamePresenter;
     private JudgeRankEffector _judgeRankEffector;
+    private JudgeEffector _judgeEffector;
 
     public bool _alreadyChangeKujo = false;
 
@@ -30,6 +31,7 @@ public class AllJudgeService : MonoBehaviour
     public void JudgeStart()
     {
         _judgeRankEffector = GameObject.Find("JudgeRank").GetComponent<JudgeRankEffector>();
+        _judgeEffector = GameObject.Find("Effectors").GetComponent<JudgeEffector>();
         Debug.Log("awake");
         _gamePresenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
     }
@@ -184,7 +186,7 @@ public class AllJudgeService : MonoBehaviour
                         timeDifference < currentTime - tapNotes[i][nextNoteIndex].note.JudgeTime)
                     {
                         judgeResult = JudgeResultType.Miss;
-                        _judgeRankEffector.JudgeRankDisplay("Miss");
+                        _judgeRankEffector.JudgeRankDisplay("miss");
                     }
                     else
                     {
@@ -193,18 +195,21 @@ public class AllJudgeService : MonoBehaviour
                             case var dif when dif <= _judgeSeconds["Tap Perfect"]:
                                 {
                                     judgeResult = JudgeResultType.Perfect;
+                                    _judgeEffector.TapJudgeEffector(i);
                                     _judgeRankEffector.JudgeRankDisplay("perfect");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Good"]:
                                 {
                                     judgeResult = JudgeResultType.Good;
+                                    _judgeEffector.TapJudgeEffector(i);
                                     _judgeRankEffector.JudgeRankDisplay("good");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Bad"]:
                                 {
                                     judgeResult = JudgeResultType.Bad;
+                                    _judgeEffector.TapJudgeEffector(i);
                                     _judgeRankEffector.JudgeRankDisplay("bad");
                                     break;
                                 }
