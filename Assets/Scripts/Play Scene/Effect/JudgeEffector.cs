@@ -46,7 +46,6 @@ public class JudgeEffector : MonoBehaviour
             if (lanePos <= 3)//below
             {
                 EffectAudiou(judgeLevel);
-                effector.GetComponentsInChildren<ParticleSystem>()[2].transform.localEulerAngles = new Vector3(0, 0, 0);
                 effector.transform.eulerAngles = new Vector3(0, 0, 0);
                 effector.GetComponentsInChildren<ParticleSystem>()[0].Play();
                 effector.GetComponentsInChildren<ParticleSystem>()[1].Play();
@@ -55,8 +54,8 @@ public class JudgeEffector : MonoBehaviour
             else//above
             {
                 EffectAudiou(judgeLevel);
-                effector.GetComponentsInChildren<ParticleSystem>()[2].transform.localEulerAngles = new Vector3(90, 0, 0);
-                effector.transform.eulerAngles = new Vector3(0, 0, 90 - (180 / 32) * lanePos);
+                //Debug.Log("lanePos = " + lanePos + "  " + (90 - (180 * (lanePos + 0.5f)) / 32) + "度");
+                effector.transform.eulerAngles = new Vector3(0, 0, 90 - (180 * (lanePos - 4 + 0.5f)) / 32);
                 effector.GetComponentsInChildren<ParticleSystem>()[0].Play();
                 effector.GetComponentsInChildren<ParticleSystem>()[1].Play();
                 effector.GetComponentsInChildren<ParticleSystem>()[2].Play();
