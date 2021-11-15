@@ -7,12 +7,50 @@ public class JudgeRankEffector : MonoBehaviour
     public GameObject bad;
     public GameObject miss;
 
+    private RhythmGamePresenter presenter = null!;
+
     private Vector3 finScale = new Vector3(1.5f, 1.5f, 0);
+    private Vector3 resetScale = new Vector3(0f, 0f, 0);
 
     private int trueNum = -1;
+    private float startTime;
+
+    private void Start()
+    {
+        presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+    }
 
     private void Update() // MusicNumManage JumpToSong éQè∆
     {
+        if(startTime + 0.8f <= presenter.judgeTime)
+        {
+            switch (trueNum)
+            {
+                case 0:
+                    {
+                        perfect.transform.localScale = Vector3.Lerp(perfect.transform.localScale, resetScale, 0.5f);
+                        break;
+                    }
+                case 1:
+                    {
+                        good.transform.localScale = Vector3.Lerp(good.transform.localScale, resetScale, 0.5f);
+                        break;
+                    }
+                case 2:
+                    {
+                        bad.transform.localScale = Vector3.Lerp(bad.transform.localScale, resetScale, 0.5f);
+                        break;
+                    }
+                case 3:
+                    {
+                        miss.transform.localScale = Vector3.Lerp(miss.transform.localScale, resetScale, 0.5f);
+                        break;
+                    }
+                default: break;
+            }
+            return;
+        }
+
         switch (trueNum)
         {
             case 0:
@@ -74,6 +112,7 @@ public class JudgeRankEffector : MonoBehaviour
                     trueNum = 0;
                     perfect.gameObject.SetActive(true);
                     perfect.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
+                    startTime = presenter.judgeTime;
                     break;
                 }
             case "good" :
@@ -81,6 +120,7 @@ public class JudgeRankEffector : MonoBehaviour
                     trueNum = 1;
                     good.gameObject.SetActive(true);
                     good.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
+                    startTime = presenter.judgeTime;
                     break;
                 }
             case "bad":
@@ -88,6 +128,7 @@ public class JudgeRankEffector : MonoBehaviour
                     trueNum = 2;
                     bad.gameObject.SetActive(true);
                     bad.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
+                    startTime = presenter.judgeTime;
                     break;
                 }
             case "miss" :
@@ -95,6 +136,7 @@ public class JudgeRankEffector : MonoBehaviour
                     trueNum = 3;
                     miss.gameObject.SetActive(true);
                     miss.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0);
+                    startTime = presenter.judgeTime;
                     break;
                 }
             default : break;

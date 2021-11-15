@@ -77003,7 +77003,7 @@ MonoBehaviour:
   aboveHoldNotePrefab: {fileID: 2973135828705849431, guid: d6fe0ee23711b7746b8b6fbc3c168cd6, type: 3}
   aboveSlideNotePrefab: {fileID: 1318370044206668128, guid: 286f69ca33a47462bac40f27172f26e2, type: 3}
   barLinePrefab: {fileID: 1225088512927123766, guid: 17df6b821bdba584abfd1257c6affb71, type: 3}
-  noteConnectorPrefab: {fileID: 0}
+  noteConnectorPrefab: {fileID: -890220480049919504, guid: 85f8427bc215f4acaa5a9f3c2ab94620, type: 3}
   keyBeamPrefab: {fileID: 524947537259370129, guid: f60a59b1aeccf0e4c910521002752124, type: 3}
   reilasKujoAboveSlide: []
   reilasKujoAboveHold: []

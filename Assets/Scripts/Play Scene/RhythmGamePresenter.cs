@@ -556,10 +556,10 @@ public class RhythmGamePresenter : MonoBehaviour
     {
         foreach (var connector in connectors)
         {
-        //    var connect = Instantiate(noteConnectorPrefab); 
-        //    connect.Initialize(connector);
-        //    connect.gameObject.SetActive(false);
-        //    NoteConnectors.Add(connect);
+            var connect = Instantiate(noteConnectorPrefab); 
+            connect.Initialize(connector);
+            connect.gameObject.SetActive(false);
+            NoteConnectors.Add(connect);
         }
     }
 
@@ -899,7 +899,7 @@ public class RhythmGamePresenter : MonoBehaviour
             foreach (var hold in _reilasHold) // BossGimmickにて_reilasHoldを変更
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
-                Debug.Log(_reilasHold.Count + "," + HoldNotes.Count + "の" + indexNum + "番目");
+                //Debug.Log(_reilasHold.Count + "," + HoldNotes.Count + "の" + indexNum + "番目");
                 if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldNotes[indexNum]);
                 else break;
                 indexNum++;
