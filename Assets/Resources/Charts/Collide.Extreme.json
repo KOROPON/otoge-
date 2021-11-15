@@ -438,7 +438,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rSTFQUAZmEtVylBVtJz0Jp0bPDLb4Mh9",
+				"guid": "Sg74Tf5qZke3h9WLCbTQzq5LNtIMXdTJ",
 				"editorProps": {
 					"time": 7.23529411764706
 				},
@@ -480,7 +480,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0dhuVxwbAsTLUAdvFGNas7DjHK3XRZwl",
+				"guid": "2mq9Q0xtxWv2RZio8lZgdJV0I55cnque",
 				"editorProps": {
 					"time": 7.411764705882353
 				},
@@ -585,7 +585,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "pVXI5lKiALQmemVI1ALbnFwpvdUcuSDn",
+				"guid": "iqz7HMnDpHhhycQ2ChrMxarTvsxtL5bp",
 				"editorProps": {
 					"time": 7.941176470588236
 				},
@@ -627,7 +627,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "yIaccVtd5P9etysHS0e8Nb61wAcZM19Z",
+				"guid": "KZ5KdzEqcQMeaihUwJT91lq80OELuVVm",
 				"editorProps": {
 					"time": 8.11764705882353
 				},
@@ -1215,7 +1215,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ba9Gnsi6KLV6DcV1iWvBADjG2lahffY6",
+				"guid": "K0vQg39chR5aPaVkiMGurDv8eRfLgX21",
 				"editorProps": {
 					"time": 12.882352941176471
 				},
@@ -1257,7 +1257,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "kP38ePyJrleZeJxa36rYUsRnzabh8y8g",
+				"guid": "2AJk3gloASr0KLpngR0WtraQehtYyDzk",
 				"editorProps": {
 					"time": 13.058823529411766
 				},
@@ -1299,7 +1299,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "LkJvpDVRZBp6GXjdn8k0WDtc2x0qmO4X",
+				"guid": "NDGd3EExHoMDod6SgrTVrgcNMUIv7t7s",
 				"editorProps": {
 					"time": 13.23529411764706
 				},
@@ -1341,7 +1341,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Jbqu06cgMHXRXJajp2u7g8eH2XL9erKP",
+				"guid": "FIZSC4gRzhdVtCwFxE1kzmjPsgujn8eF",
 				"editorProps": {
 					"time": 13.411764705882353
 				},
@@ -1362,7 +1362,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rnUectADSPcKXVVM0ek0TbNJ0UBbFUAT",
+				"guid": "3KRymxeagg9dK2bHVqBicxB8SFb8jT0k",
 				"editorProps": {
 					"time": 13.588235294117647
 				},
@@ -1425,7 +1425,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "tCYJqUIyeEi1iaDSeVsz3GJQn0smAJ4f",
+				"guid": "wtNCv4j96AfawV7mF6ssMC7GM9s9LxoO",
 				"editorProps": {
 					"time": 13.764705882352942
 				},
@@ -2076,28 +2076,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "58e683e2cc57a49ad737e02442b199ac",
-				"editorProps": {
-					"time": 18.35294117647059
-				},
-				"measureIndex": 13,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 16
-				},
-				"horizontalSize": 9,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "eb9d2b089d23595407cd902d37056de8",
+				"guid": "6b9ddc7240f2b061c24ce10d1400421e",
 				"editorProps": {
 					"time": 18.35294117647059
 				},
@@ -2118,7 +2097,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "10b31502757ddfd5a6dab11b57eb71ea",
+				"guid": "3841bbdc5fad9c39a8c9689dc73d5e01",
+				"editorProps": {
+					"time": 18.35294117647059
+				},
+				"measureIndex": 13,
+				"measurePosition": {
+					"numerator": 0,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 0,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "3f8b6b0f28e90d24480906c5c5d7efed",
 				"editorProps": {
 					"time": 18.529411764705884
 				},
@@ -2139,28 +2139,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "52eb283e612ff7803626562a8cb2af01",
-				"editorProps": {
-					"time": 18.705882352941178
-				},
-				"measureIndex": 13,
-				"measurePosition": {
-					"numerator": 4,
-					"denominator": 16
-				},
-				"horizontalSize": 9,
-				"horizontalPosition": {
-					"numerator": 18,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "ebaa157b4dac12d8c95b475dc84da4cc",
+				"guid": "e0cd2d797328ef6ee76a26b6b75912af",
 				"editorProps": {
 					"time": 18.705882352941178
 				},
@@ -2181,7 +2160,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "662c45be92227d3c4301fa3e2d7bbfa3",
+				"guid": "f7381bd6179e4b8979e0f926e3a0c766",
+				"editorProps": {
+					"time": 18.705882352941178
+				},
+				"measureIndex": 13,
+				"measurePosition": {
+					"numerator": 4,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 16,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "2cdb7d74b33a52d19f9b98523e158eae",
 				"editorProps": {
 					"time": 18.88235294117647
 				},
@@ -2202,28 +2202,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0fc3266e0be62a5e5f77215538ad9130",
-				"editorProps": {
-					"time": 19.058823529411764
-				},
-				"measureIndex": 13,
-				"measurePosition": {
-					"numerator": 8,
-					"denominator": 16
-				},
-				"horizontalSize": 9,
-				"horizontalPosition": {
-					"numerator": 27,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "600e0318e9074ae47f8f54467d5932b3",
+				"guid": "d33366081d0c116a2b8da80acd073d70",
 				"editorProps": {
 					"time": 19.058823529411764
 				},
@@ -2244,7 +2223,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "018e6f873424edfb4b09c998d2aef25d",
+				"guid": "4fae8c8d3b9e881bb60f889867d1f846",
+				"editorProps": {
+					"time": 19.058823529411764
+				},
+				"measureIndex": 13,
+				"measurePosition": {
+					"numerator": 8,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 24,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "e7e85ff01c9ce1454dc33cb196c09eca",
 				"editorProps": {
 					"time": 19.23529411764706
 				},
@@ -2265,28 +2265,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7944417964d25ced19fc36796a4f9a17",
-				"editorProps": {
-					"time": 19.411764705882355
-				},
-				"measureIndex": 13,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 9,
-				"horizontalPosition": {
-					"numerator": 9,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "c4f89d4dec8ec638316d41d7830496b5",
+				"guid": "6a8ab5d3ddc26b8fb70e8b75f7995b77",
 				"editorProps": {
 					"time": 19.411764705882355
 				},
@@ -2307,7 +2286,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "c0a649beeba6b0bc5bc093ed8ac53445",
+				"guid": "f5b3e57316a072dbdcecef1a52ab3f42",
+				"editorProps": {
+					"time": 19.411764705882355
+				},
+				"measureIndex": 13,
+				"measurePosition": {
+					"numerator": 12,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 8,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "a4eff22757815f5dbad94e93e3c38d41",
 				"editorProps": {
 					"time": 19.58823529411765
 				},
@@ -2349,7 +2349,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "6RiXe9nnJ9CXoP82AZWtzraRjRes644C",
+				"guid": "4uthKyjx77sb1fPAEJLLpEsx5gRfyJQ3",
 				"editorProps": {
 					"time": 19.941176470588236
 				},
@@ -2391,7 +2391,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fRVFADhNYVRitbzjOfozsgnCSDurAaa6",
+				"guid": "98GHGyBKlOWfthsBSVb8VqhY5pCPvqcO",
 				"editorProps": {
 					"time": 20.11764705882353
 				},
@@ -2412,7 +2412,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "26RYy8WMBChYS5ZfFCnd1obvLjdqTKCx",
+				"guid": "rpW7vLMu5uG2bt6MVRd6ftg1fTh9laHt",
 				"editorProps": {
 					"time": 20.191176470588236
 				},
@@ -2433,7 +2433,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "vrHBBODTQyQe1wjNtojVt1zdl1vESPU2",
+				"guid": "4daiuWgc3o3CbMSwUhrImZCY8DDeJy7C",
 				"editorProps": {
 					"time": 20.294117647058822
 				},
@@ -2475,7 +2475,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rA4oZuJ8cZchY6J6f27BeWPQ0Eamf3Qk",
+				"guid": "SsuR0tsTX6Ox4aoPT1gUoS1pDzEXxK6G",
 				"editorProps": {
 					"time": 20.35294117647059
 				},
@@ -2496,7 +2496,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "WGbNSu9f13ckDUZwaRHbnDVDME4w07iH",
+				"guid": "OeFjlQWu8aRmDED7x2jaAijcVuThCqe5",
 				"editorProps": {
 					"time": 20.47058823529412
 				},
@@ -2517,7 +2517,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YOapeiQdXlb1yhZZBzyM9Pj5BSLJ5SwY",
+				"guid": "ZEL90ois6ckHiOifRQo0VPUNqCduGNT0",
 				"editorProps": {
 					"time": 20.47058823529412
 				},
@@ -2538,7 +2538,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "NQJyMgqEoUVjDb9BXgWt8gEj6AN1cD5S",
+				"guid": "yetZuFy6CZ9j9z0ceXpZ1MIFB0Kth0ce",
 				"editorProps": {
 					"time": 20.47058823529412
 				},
@@ -2559,7 +2559,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "pxwcqrGzwb4eb2w0eiQg7IDhTgpZytCm",
+				"guid": "SlVX8clJnO0ziowsl8uQxCdGawa23UT1",
 				"editorProps": {
 					"time": 20.514705882352942
 				},
@@ -2601,7 +2601,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Cq7KDHWeEaEt517OdvGJGaPXFjLuNWuj",
+				"guid": "Lyf36j5aluafKpgkYEf1kHSKiuzcsFlm",
 				"editorProps": {
 					"time": 20.647058823529413
 				},
@@ -2622,7 +2622,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "lo5fNZGAfbs31WmaM61GHt5mXvBVkJTi",
+				"guid": "660LaRYbv6i9t9bUalIkq4NXnmfSNg42",
 				"editorProps": {
 					"time": 20.647058823529413
 				},
@@ -2643,7 +2643,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "eZ3xMNrQ7yBd3kVihIAjDihSKdzujNha",
+				"guid": "m2Z7rwhbFCj1wW8e34BWwcMHHoTTEUoA",
 				"editorProps": {
 					"time": 20.647058823529413
 				},
@@ -2664,7 +2664,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "XGVS593VbZa0BnTULlImr4QYqZtWfxwt",
+				"guid": "mDKbZmjdPfbfNOcVxlO8r9852nTI0SK1",
 				"editorProps": {
 					"time": 20.676470588235293
 				},
@@ -2685,7 +2685,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "d3CeyplvXVzDSsyBPZVfiwDMBK6HhLH4",
+				"guid": "VTsGVNuKpMHUnGK0ChAbYhWnHZgB4F98",
 				"editorProps": {
 					"time": 20.705882352941178
 				},
@@ -2706,7 +2706,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "J02wyLCvpMMvFz9gQQdv9dW8B4RW4I1D",
+				"guid": "aSPqHNNON9XNqXKRGpkz5g2DgSS30rVH",
 				"editorProps": {
 					"time": 20.705882352941178
 				},
@@ -2748,7 +2748,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HDGpnyDN2rgh6RBT3m7cZiLRk2KlTpwq",
+				"guid": "aUn0sgEQqEmfMP4sUl2VbIq6qQc8Sacw",
 				"editorProps": {
 					"time": 20.823529411764707
 				},
@@ -2769,7 +2769,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "jRk7kcJicWHZSxsxg0DLtnyDmoGDX1gk",
+				"guid": "Dqy3Rfvuf5d9M7vcjE0fueEsHpILQXR0",
 				"editorProps": {
 					"time": 20.823529411764707
 				},
@@ -2790,7 +2790,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3ypBiQqecrdznvWyBByQ3j4kdjYz8Et3",
+				"guid": "zdqN3vIzaqkg0M1caDLIDpV41VifIkIT",
 				"editorProps": {
 					"time": 20.823529411764707
 				},
@@ -2811,7 +2811,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "DXNVvxZ1Szbm4mdmcpLPWdI47KR8dYeN",
+				"guid": "52jd2YZdqUV92LaVXcxxp0vf0VYinNRf",
 				"editorProps": {
 					"time": 20.83823529411765
 				},
@@ -2832,7 +2832,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "F4Xh3lV7t9nHcthSIHXwBoZJpbwDiuHA",
+				"guid": "IhwHUvG2nnCDOcmvIzvXdPrgkwFzZC4B",
 				"editorProps": {
 					"time": 20.852941176470587
 				},
@@ -2853,7 +2853,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "wHMLb3NPIifMONZvg5me1PbWUYGvBw2f",
+				"guid": "K3POJV9uTO67Yp2O2l1Zc4m9fhLARDgX",
 				"editorProps": {
 					"time": 20.852941176470587
 				},
@@ -2916,7 +2916,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "KBapIeT9NGdB2xIdEzDHB5sgWC3gHuP4",
+				"guid": "xz3OQ4De44vQXk6TdV80pMdqbpM96DXn",
 				"editorProps": {
 					"time": 21.35294117647059
 				},
@@ -2958,7 +2958,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "aSCz6qem3r3couz00BN5Ef05TgbCcJSA",
+				"guid": "gDME7XTt4dvDe7fmRIbEog8mvExiEXWL",
 				"editorProps": {
 					"time": 21.529411764705884
 				},
@@ -2979,7 +2979,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7rviSd2g7lxAQ8nWwpFFo5f7LaNlRedj",
+				"guid": "62616e6MiCmLlTvZFRsFt0eLi4w4evHM",
 				"editorProps": {
 					"time": 21.602941176470587
 				},
@@ -3000,7 +3000,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "m1jyj3DWn3Go4la9cjpy1RqfQlx4Rydu",
+				"guid": "7i99noevDRAI5jOBlRobDhIFhb89jgI0",
 				"editorProps": {
 					"time": 21.602941176470587
 				},
@@ -3042,7 +3042,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Wr8IsrtHRPqInAdUbKm9wq6VhP7VwceJ",
+				"guid": "2zJTUWet01kOWIKZbQxdzp6b8wowfc2Y",
 				"editorProps": {
 					"time": 21.705882352941178
 				},
@@ -3063,7 +3063,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "q6g1fqnPjQdk29Pvw2veA7fg2wpoKIJ4",
+				"guid": "4ZeFxECZyRO9afEnfsSveRd5ee1AepNR",
 				"editorProps": {
 					"time": 21.764705882352942
 				},
@@ -3084,7 +3084,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "PwQjj78X6IudmmqTUyrgv1y9cX7aftF1",
+				"guid": "0yb420MZ09xY7PRuy9cjy7KUPbf1ysWw",
 				"editorProps": {
 					"time": 21.764705882352942
 				},
@@ -3105,7 +3105,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HFb1DVnVCfjMWMP6xYitqcJ7KbI2NDkO",
+				"guid": "kL1PVEVvxu2w4xDzUaEf5357McJPc16c",
 				"editorProps": {
 					"time": 21.88235294117647
 				},
@@ -3126,7 +3126,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "NLJzADX71ivwSozQILwpTIscDSanqwMb",
+				"guid": "enjlAyupBbL5rBHXgHaRp7MOBvGHtgHt",
 				"editorProps": {
 					"time": 21.88235294117647
 				},
@@ -3147,7 +3147,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rOkiAfMmLPKSAMwur01TBXeQFDpX14PC",
+				"guid": "ORfG8kAadagcqACQX7h0TqXBIXbCUSbD",
 				"editorProps": {
 					"time": 21.882352941176475
 				},
@@ -3168,7 +3168,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YKcUAgEB8gWqrytSIjd4Lw9dwGtA3Ery",
+				"guid": "impcMc9IExsGpAh77HhILNTLeLhl8Jt1",
 				"editorProps": {
 					"time": 21.926470588235297
 				},
@@ -3189,7 +3189,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "pz6Lk3r9AQCoBhdT5Rj5ARaLuPeIAGyI",
+				"guid": "eH0bcKGGY1sjrig8OBEovOSYhwzHVWRt",
 				"editorProps": {
 					"time": 21.926470588235297
 				},
@@ -3231,7 +3231,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "WIoERwfhMlB62vhhsoq2pHq66GAejORi",
+				"guid": "sT3GPIqX4VJUNuMHF9Sc8FMFuOm85nVB",
 				"editorProps": {
 					"time": 22.058823529411768
 				},
@@ -3252,7 +3252,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "86eJ6vRrmQyjcWuVH16Glb7F8QiQIXGs",
+				"guid": "PyZrLSbwsdotdbjIubBSguNuPhHRy90F",
 				"editorProps": {
 					"time": 22.058823529411768
 				},
@@ -3273,7 +3273,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "K3daJ5eSRGgyqXNHyU2SOdWkBlWzNEL8",
+				"guid": "5NMoIdidZMEBd3c2HUBAnHJILRLz3VOH",
 				"editorProps": {
 					"time": 22.058823529411768
 				},
@@ -3294,7 +3294,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "VjAHhbRhNAjd9NpZpq4FKAmQcU8awLEC",
+				"guid": "Boi9SH7qW3ndSDwT6HgnVDyEqPwCIAev",
 				"editorProps": {
 					"time": 22.08823529411765
 				},
@@ -3315,7 +3315,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "aQTou2luZsLEKEcfN6heKHoKAfQl70Zg",
+				"guid": "Uo3hlYXyeLdZdcTc3pIZgOh4hyue7kz4",
 				"editorProps": {
 					"time": 22.08823529411765
 				},
@@ -3336,7 +3336,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rlNGn1V88ZLKlUJHm6tRa2048dIkW5V7",
+				"guid": "dvVxKYhgWHy4xtyyhHWz7Ugl3O4ACrOt",
 				"editorProps": {
 					"time": 22.117647058823533
 				},
@@ -3378,7 +3378,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "E8739ojqp4hFuPgAfSaShQygatfbWoCH",
+				"guid": "Klqc39Ia35KulKmihAQGnLcv6h7WHGIO",
 				"editorProps": {
 					"time": 22.23529411764706
 				},
@@ -3399,7 +3399,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "lbGdYnPhdkwjfWDp3SNx2hmPPRgunKEv",
+				"guid": "UYWWMgj3GFW7Op3jGMYWnVxE5b6fvZHy",
 				"editorProps": {
 					"time": 22.23529411764706
 				},
@@ -3420,7 +3420,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "JeQBtAAqRhZdftKp6zGtqs1xjbYf3e92",
+				"guid": "leJ03BLntm5hbYPZZheb7AdAVfw9ODx8",
 				"editorProps": {
 					"time": 22.23529411764706
 				},
@@ -3441,7 +3441,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fpcQR02af04iRjumoyj2njIufviAxK9O",
+				"guid": "KewfhD8QUp85jpFrX8ILyglZxEuZPno6",
 				"editorProps": {
 					"time": 22.25
 				},
@@ -3462,7 +3462,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Qvj9l8g2cWDjpQ1xgCCVSh4BMd8Wl2W5",
+				"guid": "HX5rHx2BikmTouhiS0r0sKqHiRxZWSPn",
 				"editorProps": {
 					"time": 22.25
 				},
@@ -3483,7 +3483,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "5nd4LjSUftLTxBSKlSbPk3nIHnuurrm1",
+				"guid": "1PqBM0JoziQmsAf5ACcQzXQxQWEAcqx4",
 				"editorProps": {
 					"time": 22.264705882352942
 				},
@@ -3546,7 +3546,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "jLLggouGOqm0LF08iWMEDqpQ4ZeBJhZF",
+				"guid": "LsbGzUa50PcVaKDa3GXagFmFMruQSl10",
 				"editorProps": {
 					"time": 22.764705882352942
 				},
@@ -3567,7 +3567,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "AnELOPflAoFtr0caMtoroSsPcgl9bzV2",
+				"guid": "4nrkOdtO80eh9BBNeN6w6vAb6AThTSFi",
 				"editorProps": {
 					"time": 22.764705882352942
 				},
@@ -3609,7 +3609,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rMtzxPx9ZNPQu15ygMJ172byXE6oMpox",
+				"guid": "ouAAx5PDfM8X5fbPbAACW8dmHXBL8bdh",
 				"editorProps": {
 					"time": 22.941176470588236
 				},
@@ -3630,7 +3630,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ZW5KqUbPrzNgK95YrRvkp9uzJiB4iKJ7",
+				"guid": "adp7Ehe5dDxfku4sVKDH3FpjKKb2Ik6W",
 				"editorProps": {
 					"time": 22.941176470588236
 				},
@@ -3651,7 +3651,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ZPT13ReplAvKWTiE8COMWdhb1BS0IdoU",
+				"guid": "HtL8EFUWzevVztzAAhRIWjAZkOnfluT4",
 				"editorProps": {
 					"time": 23.014705882352942
 				},
@@ -3672,7 +3672,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Qs1mmEYVi5fBuaI2GiFmp2Q8h9e7XbOv",
+				"guid": "JneCsFFqm9k35vQB5wEZgDbfFAebju1K",
 				"editorProps": {
 					"time": 23.11764705882353
 				},
@@ -3693,7 +3693,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ZYZsyHnInefiXX6kUboLxzK0BdGIjV66",
+				"guid": "bKUU8xrhLLAuMBvYl8AuD9jpWheDGMkf",
 				"editorProps": {
 					"time": 23.11764705882353
 				},
@@ -3735,7 +3735,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "273PeNecwz5a5TCma5CcclqYUoQPpefg",
+				"guid": "WnCVjnwDiUBxDpCC3n0x41eQh4ZnAWln",
 				"editorProps": {
 					"time": 23.176470588235297
 				},
@@ -3756,7 +3756,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "t21hLTyr2y2g4GkWJOgIoAFX6zbJY7dj",
+				"guid": "bHVrem7a9EgnFJ2jTApyBN5cUYQkbQZx",
 				"editorProps": {
 					"time": 23.294117647058826
 				},
@@ -3777,7 +3777,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "FBDz9vHQ7OHu38g8UGgSVRPuvCMbxC1W",
+				"guid": "dEy1Emtj3Ybgx5mwNRhsT068jimGIkui",
 				"editorProps": {
 					"time": 23.294117647058826
 				},
@@ -3798,7 +3798,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "lN1gzpzJSmK1wjG9MPuDAdlzAbUEGZUY",
+				"guid": "6VuEWzUlWkE6A22aaXlwCd6qo92i77QK",
 				"editorProps": {
 					"time": 23.294117647058826
 				},
@@ -3819,7 +3819,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "eFyK6CkIu18v1fH8BvycUhgWN8gBi1eM",
+				"guid": "wZnu4DrxZietyLkF7yRJjC5UeBYyqv0k",
 				"editorProps": {
 					"time": 23.294117647058826
 				},
@@ -3840,7 +3840,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "QP0WJY0z31ev3NFStwHGCYZnT4sybXGa",
+				"guid": "P1qgdAsReKjbcoLlCXLXvjXicq8heL1M",
 				"editorProps": {
 					"time": 23.33823529411765
 				},
@@ -3882,7 +3882,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HkcTFb22zEeH69DfbTX2fhNDrvomJalh",
+				"guid": "4DqX0mNgftEwRJcjbnrEX7G7ObwJwkfb",
 				"editorProps": {
 					"time": 23.47058823529412
 				},
@@ -3903,7 +3903,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "VEoZqbDsSMQgxqAlOGQx0tL0r6UiXk1D",
+				"guid": "GyeXwBWTV3Azw7ESG0tOoy0bUd9q8Ygd",
 				"editorProps": {
 					"time": 23.47058823529412
 				},
@@ -3924,7 +3924,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "RblfIhFlNgsBIZaM4b2EdVFX8r7NQ0Oc",
+				"guid": "NurUHsb2KhtqIZG2gHGduWFMevU4GfcS",
 				"editorProps": {
 					"time": 23.47058823529412
 				},
@@ -3945,7 +3945,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "EdjBlD8HhVrFMq6HVQbV00HtPbCcaN0E",
+				"guid": "qYGybQmxmtCwDkSN3zSPvkWYCkHkcljg",
 				"editorProps": {
 					"time": 23.47058823529412
 				},
@@ -3966,7 +3966,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7V7TJi4Z7iBc79L7R36WbWG9Rbdu4jT8",
+				"guid": "BbJs6mLWPvY7Tr4YaHSFIbTa5jLmoDrY",
 				"editorProps": {
 					"time": 23.5
 				},
@@ -3987,7 +3987,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "5RdWhzAfSInphFt6MrhJ4w91TiiENZVG",
+				"guid": "zczbMg6ROFna7CGDPet8oVlCq6iWbNZs",
 				"editorProps": {
 					"time": 23.529411764705884
 				},
@@ -4029,7 +4029,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "EE3dKvHIJnIvJM2olfSHt2o80w4CW3gy",
+				"guid": "uofE5gcyXBP4WcV4LO22agb5pcOcUG73",
 				"editorProps": {
 					"time": 23.647058823529413
 				},
@@ -4050,7 +4050,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "9EaUf0373DgHpdWdjBYLX0Ty9Tasj4mF",
+				"guid": "a9ckYsWSlek4nTHqHH8kwf9K29efNKgr",
 				"editorProps": {
 					"time": 23.647058823529413
 				},
@@ -4071,7 +4071,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "vv0QbBTqFJ75Xtkm4BHGzivueEjzXYEM",
+				"guid": "k1fBnS5GQqjUfX4Jt7EreVQKz1kCt9wM",
 				"editorProps": {
 					"time": 23.647058823529413
 				},
@@ -4092,7 +4092,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "kfA8bxfuxAe9sTHuNol0gHeYVhSEqIT5",
+				"guid": "KeJr91iepIi6yuG0ykSPr7rXX82cuhUi",
 				"editorProps": {
 					"time": 23.647058823529413
 				},
@@ -4113,7 +4113,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "x8QaaVGCcCnUubdsn5csQpK4eKDRv3Oy",
+				"guid": "tBC8wGmBQhh89b1BHs60iUqPubOGtmE4",
 				"editorProps": {
 					"time": 23.661764705882355
 				},
@@ -4134,7 +4134,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0dqt5NJoBePhCnxoKVPKfABbZ6CgnVOg",
+				"guid": "EwBKgVhH4sBjf0SAV4tnyBVhhKYbejcm",
 				"editorProps": {
 					"time": 23.676470588235293
 				},
@@ -4533,7 +4533,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "lMPlcbt9CFJFgXM4D2kxmnOeFpbsN0EM",
+				"guid": "GcTH9iPBRcwOQ3Nccbaj0m0nDDToaQu9",
 				"editorProps": {
 					"time": 25.58823529411765
 				},
@@ -4596,7 +4596,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bo7rIpqjBDonXz8larZJlCbxN2xwoWvZ",
+				"guid": "2PWaSKOSKBFdg8wSxVVCCNWclFdYWjnY",
 				"editorProps": {
 					"time": 25.94117647058824
 				},
@@ -4659,7 +4659,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "KUUCEhMfV0H336PolOGQhfYzfysftesQ",
+				"guid": "RFfR34VVFwz15Yxsh1sCjobUnOC5mdeH",
 				"editorProps": {
 					"time": 26.294117647058826
 				},
@@ -4722,7 +4722,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "m8Lv34M1lDNuXQS1GP78GE3xcike8oW3",
+				"guid": "Yu0hJHCiybYiBPneqCGfVf3ZRRIdKle3",
 				"editorProps": {
 					"time": 26.647058823529413
 				},
@@ -4785,7 +4785,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "NER1aoClcn0859YV05fZGsPkUmXxH34n",
+				"guid": "TEhdlJJa8ZAXpk4fESJXw2e6qfE2yOWh",
 				"editorProps": {
 					"time": 27
 				},
@@ -4848,7 +4848,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Bc4Ap3htGmxu4DZgMi0fscjonfTmNxOy",
+				"guid": "45K6JRPtcPvoLrYd1dIhzWakDcv1d3Ko",
 				"editorProps": {
 					"time": 27.35294117647059
 				},
@@ -4911,7 +4911,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "DA62gRdWd7StOrJ5BpW5OqqrlwZYxUqR",
+				"guid": "SJ4l6muVHiWUmmOFqHukNxl5wXLB0iwz",
 				"editorProps": {
 					"time": 27.705882352941178
 				},
@@ -4974,7 +4974,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "y12n5q0Uch6Ra67FUU10iH1ukYPbHaOJ",
+				"guid": "hgrux9SRgcAeD6TbDQ1gI68ffPKrDVFV",
 				"editorProps": {
 					"time": 27.88235294117647
 				},
@@ -5016,7 +5016,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "dHrDYNtxhkg8vEWWGX1qAGOOaa1sPBtK",
+				"guid": "XbX7izXpq0SBfkrBzSfZPngIUPxzzCyh",
 				"editorProps": {
 					"time": 28.058823529411768
 				},
@@ -5079,7 +5079,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "GUFzvHORDuSV8t02XLyh71RStcstg2Js",
+				"guid": "Qlzt1oCCl8FaMXR1XNqURSD5BMEEZTpL",
 				"editorProps": {
 					"time": 28.411764705882355
 				},
@@ -5142,7 +5142,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "sgr017IhlWcH2lVhrvPQ8F6hhLL5L7Qy",
+				"guid": "MCPbBh3aiaKQUncIVsRYZhRTq7lb2MTT",
 				"editorProps": {
 					"time": 28.764705882352942
 				},
@@ -5205,7 +5205,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "CvUlmaA5ovIZpdhYMH1yPf8Ck4Dl0ob4",
+				"guid": "HOkui8qcY3TjcEjeK3lnvUa7fVcqS9aI",
 				"editorProps": {
 					"time": 29.11764705882353
 				},
@@ -5268,7 +5268,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "RbeNcCSwLMzxIweIhEFffNu2j0tugm1I",
+				"guid": "5wCa8iPM5JEfENExwv3oC88JHqBUoiv1",
 				"editorProps": {
 					"time": 29.47058823529412
 				},
@@ -6087,6 +6087,27 @@
 				"customProps": {}
 			},
 			{
+				"guid": "606a86e611188d1fbc0035576f6a5716",
+				"editorProps": {
+					"time": 34.14705882352941
+				},
+				"measureIndex": 24,
+				"measurePosition": {
+					"numerator": 3,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 1,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
 				"guid": "6f1fb7906ea8ef8adfdfa83d2ef4f0c5",
 				"editorProps": {
 					"time": 34.23529411764706
@@ -6360,7 +6381,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Reg9e8MsYZMYnhhfhPhiRq60t2OfpHst",
+				"guid": "xJBvS2cf9YMKJqS0Hqrifrw8chfvQ8uG",
 				"editorProps": {
 					"time": 35.4264705882353
 				},
@@ -6423,7 +6444,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "TZUJwgxhnc71cfIlydRf6lAIn7K3DFzp",
+				"guid": "xkHjwZoh0ZMmWfgpSiVZyCyccMHUfNwV",
 				"editorProps": {
 					"time": 35.69117647058824
 				},
@@ -6759,7 +6780,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ffec36a96355e9c00837443acfb57fd1",
+				"guid": "4128df23b92d3722668c92860fcd471c",
 				"editorProps": {
 					"time": 37.58823529411765
 				},
@@ -6768,9 +6789,30 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 10,
 				"horizontalPosition": {
 					"numerator": 0,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "952e8e43ac5af2b7a96eea5408f1649f",
+				"editorProps": {
+					"time": 37.58823529411765
+				},
+				"measureIndex": 26,
+				"measurePosition": {
+					"numerator": 10,
+					"denominator": 16
+				},
+				"horizontalSize": 10,
+				"horizontalPosition": {
+					"numerator": 22,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -6864,7 +6906,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "087d6d7f707a3598b08d2e246f1746d2",
+				"guid": "078c53574b254bb3f82cd209c06ae412",
 				"editorProps": {
 					"time": 38.11764705882353
 				},
@@ -6873,9 +6915,9 @@
 					"numerator": 0,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -6885,7 +6927,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1ec1fd02db0a7ec0771d408b12dab0b9",
+				"guid": "54befbbefbada78cd4af57f32a17aafb",
 				"editorProps": {
 					"time": 38.20588235294118
 				},
@@ -6896,7 +6938,7 @@
 				},
 				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 20,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-chain",
@@ -6906,7 +6948,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "69d5b4d9bdc400a4ee397618bb746093",
+				"guid": "f3e4ce3be23ce237dbe6b2996700aa76",
 				"editorProps": {
 					"time": 38.294117647058826
 				},
@@ -6915,7 +6957,7 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 16,
 				"horizontalPosition": {
 					"numerator": 0,
 					"denominator": 36
@@ -6990,7 +7032,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bfe7e2e641a731a95b8155bfa651929a",
+				"guid": "779db445c9f1c7393e960c72df2ab9db",
 				"editorProps": {
 					"time": 39
 				},
@@ -6999,7 +7041,7 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 8,
 				"horizontalPosition": {
 					"numerator": 10,
 					"denominator": 36
@@ -7032,7 +7074,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ecbc3360fc6bea34ad5639647aaa725f",
+				"guid": "a8d460622c6753a5c1a88d74c56cc015",
 				"editorProps": {
 					"time": 39.1764705882353
 				},
@@ -7041,9 +7083,9 @@
 					"numerator": 12,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 5,
+					"numerator": 19,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7074,7 +7116,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "da40cc47e211abae50e76f04d12746e1",
+				"guid": "53cf3aec7ed0268cbfd45d4cfb1bbc29",
 				"editorProps": {
 					"time": 39.352941176470594
 				},
@@ -7083,9 +7125,9 @@
 					"numerator": 14,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 10,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7242,7 +7284,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7d46975154ca22901eb3cb612dcc0031",
+				"guid": "1e17ebf6a6e8a8fd5cbf19d61cef6afe",
 				"editorProps": {
 					"time": 40.05882352941177
 				},
@@ -7251,9 +7293,9 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 17,
+				"horizontalSize": 12,
 				"horizontalPosition": {
-					"numerator": 12,
+					"numerator": 17,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7263,7 +7305,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "d83c3ccf036059290f39c4ed374ffd11",
+				"guid": "e4d3df5534994a867f8c2262f207f185",
 				"editorProps": {
 					"time": 40.14705882352941
 				},
@@ -7272,9 +7314,9 @@
 					"numerator": 7,
 					"denominator": 16
 				},
-				"horizontalSize": 14,
+				"horizontalSize": 5,
 				"horizontalPosition": {
-					"numerator": 18,
+					"numerator": 6,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7284,7 +7326,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "18f601989800d6084b79b1a187ab91b1",
+				"guid": "6fca11876dc28c56137d0ce6391237cd",
 				"editorProps": {
 					"time": 40.14705882352941
 				},
@@ -7293,9 +7335,9 @@
 					"numerator": 7,
 					"denominator": 16
 				},
-				"horizontalSize": 14,
+				"horizontalSize": 12,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 17,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7305,7 +7347,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fdbe388bda127c41d5068146bf72472c",
+				"guid": "19a15de2e9af620d21bc796c77a8aeee",
 				"editorProps": {
 					"time": 40.411764705882355
 				},
@@ -7314,9 +7356,30 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 10,
 				"horizontalPosition": {
 					"numerator": 0,
+					"denominator": 36
+				},
+				"type": "above-chain",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "90375f4adb661504c6c999895d1324eb",
+				"editorProps": {
+					"time": 40.411764705882355
+				},
+				"measureIndex": 28,
+				"measurePosition": {
+					"numerator": 10,
+					"denominator": 16
+				},
+				"horizontalSize": 10,
+				"horizontalPosition": {
+					"numerator": 22,
 					"denominator": 36
 				},
 				"type": "above-chain",
@@ -7431,7 +7494,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8adf1122834441c67d93eb60acd196eb",
+				"guid": "bec6064bb5c32fa0c177d99f3dee3b84",
 				"editorProps": {
 					"time": 41.029411764705884
 				},
@@ -7440,9 +7503,9 @@
 					"numerator": 1,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 10,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 22,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7452,7 +7515,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "2278ab37267c60ca354e9cd097e8282d",
+				"guid": "d449b46a80bc1e0b63ddca5273cbe563",
 				"editorProps": {
 					"time": 41.11764705882353
 				},
@@ -7463,33 +7526,12 @@
 				},
 				"horizontalSize": 22,
 				"horizontalPosition": {
-					"numerator": 10,
+					"numerator": 0,
 					"denominator": 36
 				},
 				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "8f66e936f5e443c27db6be78cc8f02ae",
-				"editorProps": {
-					"time": 41.38235294117647
-				},
-				"measureIndex": 29,
-				"measurePosition": {
-					"numerator": 5,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 1,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -7515,7 +7557,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "31e44e904da36c432fe44d425a46f91b",
+				"guid": "3a93945ac245399bbf734057d15ca646",
 				"editorProps": {
 					"time": 41.47058823529412
 				},
@@ -7524,7 +7566,7 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 16,
+				"horizontalSize": 8,
 				"horizontalPosition": {
 					"numerator": 8,
 					"denominator": 36
@@ -7851,27 +7893,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "11d5f5345b92f859376c783851f06823",
-				"editorProps": {
-					"time": 43.235294117647065
-				},
-				"measureIndex": 30,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 18,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "309ad4980bc15f6fdae118b2a8633fb0",
 				"editorProps": {
 					"time": 43.235294117647065
@@ -7893,18 +7914,18 @@
 				"customProps": {}
 			},
 			{
-				"guid": "32ca488ffd6918977fc2de34d7bf2352",
+				"guid": "a55c387b197d92043c4653344b257a4c",
 				"editorProps": {
-					"time": 43.32352941176471
+					"time": 43.235294117647065
 				},
 				"measureIndex": 30,
 				"measurePosition": {
-					"numerator": 11,
+					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 9,
+				"horizontalSize": 10,
 				"horizontalPosition": {
-					"numerator": 2,
+					"numerator": 8,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -7929,6 +7950,27 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "2142c174324a63aca71e5c3c00d4d0c0",
+				"editorProps": {
+					"time": 43.32352941176471
+				},
+				"measureIndex": 30,
+				"measurePosition": {
+					"numerator": 11,
+					"denominator": 16
+				},
+				"horizontalSize": 10,
+				"horizontalPosition": {
+					"numerator": 0,
+					"denominator": 36
+				},
+				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -8103,7 +8145,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1cc571cf600bde27919339a96208172c",
+				"guid": "aae0bb59ad73350fba45cd522ce77285",
 				"editorProps": {
 					"time": 44.20588235294118
 				},
@@ -8112,9 +8154,9 @@
 					"numerator": 5,
 					"denominator": 16
 				},
-				"horizontalSize": 11,
+				"horizontalSize": 7,
 				"horizontalPosition": {
-					"numerator": 21,
+					"numerator": 25,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -8124,7 +8166,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "08b454e7aea0465580274cf013122a51",
+				"guid": "7aee144a789280481fd2c681ce48ce58",
 				"editorProps": {
 					"time": 44.294117647058826
 				},
@@ -8133,9 +8175,9 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 23,
+				"horizontalSize": 7,
 				"horizontalPosition": {
-					"numerator": 9,
+					"numerator": 17,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -8166,7 +8208,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "a5223df8cd4e0e1368d2e8eec99b5d15",
+				"guid": "8a64b340d354eb7b4dd6a10f040ab635",
 				"editorProps": {
 					"time": 44.38235294117647
 				},
@@ -8175,7 +8217,7 @@
 					"numerator": 7,
 					"denominator": 16
 				},
-				"horizontalSize": 11,
+				"horizontalSize": 7,
 				"horizontalPosition": {
 					"numerator": 9,
 					"denominator": 36
@@ -8244,27 +8286,6 @@
 					"denominator": 36
 				},
 				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "b96d5ce3503804750fe0525ad57d6f50",
-				"editorProps": {
-					"time": 44.82352941176471
-				},
-				"measureIndex": 31,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 18,
-				"horizontalPosition": {
-					"numerator": 7,
-					"denominator": 36
-				},
-				"type": "above-chain",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -8796,7 +8817,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Ii39ovpERyh6RGE8uUPrxn6BEQmO3qPY",
+				"guid": "TwQUNq7ZzOmBZrocZyyF7ryEyqvT0N0N",
 				"editorProps": {
 					"time": 47.4264705882353
 				},
@@ -8880,7 +8901,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0qrO49jig09uIvjWS4WNwJ4ZO9UB6vcN",
+				"guid": "Nct6RasymZoTTY1g1Wn5vDftw944GEEG",
 				"editorProps": {
 					"time": 47.69117647058824
 				},
@@ -9048,7 +9069,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "53cba036c785844ddcd6a660b0c2f662",
+				"guid": "d91f3b5b67714a3a18032b6199859dad",
 				"editorProps": {
 					"time": 48.44117647058824
 				},
@@ -9057,9 +9078,9 @@
 					"numerator": 5,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9069,7 +9090,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8374e5abd5c2804655521110fd848ba5",
+				"guid": "e92da74052403ae001dfc218cb986b55",
 				"editorProps": {
 					"time": 48.529411764705884
 				},
@@ -9078,7 +9099,7 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 26,
+				"horizontalSize": 13,
 				"horizontalPosition": {
 					"numerator": 3,
 					"denominator": 36
@@ -9090,7 +9111,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "88b2e7693c2a09ac39a60c07d82b64bf",
+				"guid": "c7ce5451e4a13d7e4472101cda7a09cf",
 				"editorProps": {
 					"time": 48.617647058823536
 				},
@@ -9099,9 +9120,9 @@
 					"numerator": 7,
 					"denominator": 16
 				},
-				"horizontalSize": 20,
+				"horizontalSize": 10,
 				"horizontalPosition": {
-					"numerator": 6,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9195,7 +9216,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "e80f73d8b2d281877823ade3057caba6",
+				"guid": "faf7558b45d9456bf2546eb86a958e06",
 				"editorProps": {
 					"time": 49.14705882352941
 				},
@@ -9204,9 +9225,9 @@
 					"numerator": 13,
 					"denominator": 16
 				},
-				"horizontalSize": 18,
+				"horizontalSize": 9,
 				"horizontalPosition": {
-					"numerator": 7,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9216,7 +9237,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1a427b7c280d3684f0613c1b1e51719c",
+				"guid": "d04b2dcf513ba4616712672e1afdbb49",
 				"editorProps": {
 					"time": 49.235294117647065
 				},
@@ -9225,7 +9246,7 @@
 					"numerator": 14,
 					"denominator": 16
 				},
-				"horizontalSize": 12,
+				"horizontalSize": 6,
 				"horizontalPosition": {
 					"numerator": 10,
 					"denominator": 36
@@ -9237,7 +9258,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "9b6901977fe4c835a1821d774030c119",
+				"guid": "b42d0c47042b6183afe270dbcc7d5aed",
 				"editorProps": {
 					"time": 49.32352941176471
 				},
@@ -9246,9 +9267,9 @@
 					"numerator": 15,
 					"denominator": 16
 				},
-				"horizontalSize": 6,
+				"horizontalSize": 3,
 				"horizontalPosition": {
-					"numerator": 13,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9342,7 +9363,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1deb995e27ea89895c4ea85b1a5d2e83",
+				"guid": "1ae95c09e20fdef3fbd734ecb1aa0f8d",
 				"editorProps": {
 					"time": 49.852941176470594
 				},
@@ -9351,7 +9372,7 @@
 					"numerator": 5,
 					"denominator": 16
 				},
-				"horizontalSize": 6,
+				"horizontalSize": 3,
 				"horizontalPosition": {
 					"numerator": 13,
 					"denominator": 36
@@ -9363,7 +9384,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "cbd9285bf00b51de8784da9417871282",
+				"guid": "1aa6a1c060de6c81432d561ca48592cf",
 				"editorProps": {
 					"time": 49.94117647058824
 				},
@@ -9372,9 +9393,9 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 12,
+				"horizontalSize": 6,
 				"horizontalPosition": {
-					"numerator": 10,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9384,7 +9405,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "044d538cda0ba597602222b34dcbbe5d",
+				"guid": "f8ff79e8c01e8a46a5098a7429c1c485",
 				"editorProps": {
 					"time": 50.029411764705884
 				},
@@ -9393,7 +9414,7 @@
 					"numerator": 7,
 					"denominator": 16
 				},
-				"horizontalSize": 18,
+				"horizontalSize": 9,
 				"horizontalPosition": {
 					"numerator": 7,
 					"denominator": 36
@@ -9489,7 +9510,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "2481a12fa456d9996bc19246b5e236d5",
+				"guid": "8fc2714d74826ddeb4e694f25298d1a6",
 				"editorProps": {
 					"time": 50.55882352941177
 				},
@@ -9498,112 +9519,7 @@
 					"numerator": 13,
 					"denominator": 16
 				},
-				"horizontalSize": 20,
-				"horizontalPosition": {
-					"numerator": 6,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "bdacc2087ba1fcfca243da048481faf6",
-				"editorProps": {
-					"time": 50.64705882352941
-				},
-				"measureIndex": 35,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 26,
-				"horizontalPosition": {
-					"numerator": 3,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "14f84078440cf3f897535a37b4fcc257",
-				"editorProps": {
-					"time": 50.735294117647065
-				},
-				"measureIndex": 35,
-				"measurePosition": {
-					"numerator": 15,
-					"denominator": 16
-				},
-				"horizontalSize": 32,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "76c01aee18b2f42b517c124f3c247c00",
-				"editorProps": {
-					"time": 50.82352941176471
-				},
-				"measureIndex": 36,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 16
-				},
-				"horizontalSize": 12,
-				"horizontalPosition": {
-					"numerator": 3,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "9590d82c559c8703e282fa67fc9ae385",
-				"editorProps": {
-					"time": 50.911764705882355
-				},
-				"measureIndex": 36,
-				"measurePosition": {
-					"numerator": 1,
-					"denominator": 16
-				},
-				"horizontalSize": 32,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "a4f856584f0a81b827c89934a3bba77e",
-				"editorProps": {
-					"time": 51
-				},
-				"measureIndex": 36,
-				"measurePosition": {
-					"numerator": 2,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
+				"horizontalSize": 10,
 				"horizontalPosition": {
 					"numerator": 16,
 					"denominator": 36
@@ -9615,7 +9531,112 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3ba6f10a0353972c8ce8f3613d466129",
+				"guid": "5af5e4b97de9b4b611f24ed605200906",
+				"editorProps": {
+					"time": 50.64705882352941
+				},
+				"measureIndex": 35,
+				"measurePosition": {
+					"numerator": 14,
+					"denominator": 16
+				},
+				"horizontalSize": 13,
+				"horizontalPosition": {
+					"numerator": 3,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "fa5c13ada549262b053afe1cec94ea42",
+				"editorProps": {
+					"time": 50.735294117647065
+				},
+				"measureIndex": 35,
+				"measurePosition": {
+					"numerator": 15,
+					"denominator": 16
+				},
+				"horizontalSize": 16,
+				"horizontalPosition": {
+					"numerator": 16,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "aad40837d812ac7499e812638bb47d2d",
+				"editorProps": {
+					"time": 50.82352941176471
+				},
+				"measureIndex": 36,
+				"measurePosition": {
+					"numerator": 0,
+					"denominator": 16
+				},
+				"horizontalSize": 4,
+				"horizontalPosition": {
+					"numerator": 4,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "eeed47b863f2361bc9075502aafcec34",
+				"editorProps": {
+					"time": 50.911764705882355
+				},
+				"measureIndex": 36,
+				"measurePosition": {
+					"numerator": 1,
+					"denominator": 16
+				},
+				"horizontalSize": 16,
+				"horizontalPosition": {
+					"numerator": 16,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "25cc0614d92c6f11f432a9c3cee8e36e",
+				"editorProps": {
+					"time": 51
+				},
+				"measureIndex": 36,
+				"measurePosition": {
+					"numerator": 2,
+					"denominator": 16
+				},
+				"horizontalSize": 4,
+				"horizontalPosition": {
+					"numerator": 12,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "7d136e01cbe8273f05de8091c24f4400",
 				"editorProps": {
 					"time": 51.08823529411765
 				},
@@ -9624,9 +9645,9 @@
 					"numerator": 3,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9636,7 +9657,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "89cf08dc6cb935a0b4fefce8a8d86de8",
+				"guid": "950f2923a4ec20fe3c37dedc8a714f0b",
 				"editorProps": {
 					"time": 51.26470588235294
 				},
@@ -9645,9 +9666,9 @@
 					"numerator": 5,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 2,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9657,7 +9678,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "e04b9d9a030e9ee8084b166f753475e9",
+				"guid": "c4e57058912920ce74bd7691f22aa3fe",
 				"editorProps": {
 					"time": 51.352941176470594
 				},
@@ -9666,7 +9687,7 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 4,
 				"horizontalPosition": {
 					"numerator": 0,
 					"denominator": 36
@@ -9678,7 +9699,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "240dac3365be3b80e9f023365c7c8674",
+				"guid": "ac42ad82e908c5e1aa1483fcb5d970e0",
 				"editorProps": {
 					"time": 51.44117647058824
 				},
@@ -9687,9 +9708,9 @@
 					"numerator": 7,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9699,7 +9720,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "6ebe346fd8fc33cda6e9c2826446c772",
+				"guid": "583eda9db61f140b4e59beb0e25a993d",
 				"editorProps": {
 					"time": 51.529411764705884
 				},
@@ -9708,9 +9729,9 @@
 					"numerator": 8,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 4,
 				"horizontalPosition": {
-					"numerator": 22,
+					"numerator": 8,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9720,7 +9741,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "d8a09ce31dd401c05985ba17657d0a05",
+				"guid": "a010550e8a1a9f1af29509d28c9558fe",
 				"editorProps": {
 					"time": 51.617647058823536
 				},
@@ -9729,9 +9750,9 @@
 					"numerator": 9,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 14,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9741,7 +9762,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7e1d45b050e85e7b1ac58577dd387c90",
+				"guid": "ba06cb9c83159415961f0a0c7528f722",
 				"editorProps": {
 					"time": 51.70588235294118
 				},
@@ -9750,9 +9771,9 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 32,
+				"horizontalSize": 4,
 				"horizontalPosition": {
-					"numerator": 0,
+					"numerator": 12,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -9762,7 +9783,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "dc4f33d16e881948fe7aa100bdfab8f7",
+				"guid": "f6e03084c5ee400126f26f57cbc696d7",
 				"editorProps": {
 					"time": 51.794117647058826
 				},
@@ -9771,9 +9792,9 @@
 					"numerator": 11,
 					"denominator": 16
 				},
-				"horizontalSize": 12,
+				"horizontalSize": 16,
 				"horizontalPosition": {
-					"numerator": 20,
+					"numerator": 16,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -10266,7 +10287,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fedb9fb1c3102c27a5d6f1e720773aef",
+				"guid": "a17e6747bbe008e222c7ae05a8c268fc",
 				"editorProps": {
 					"time": 53.735294117647065
 				},
@@ -10275,9 +10296,9 @@
 					"numerator": 1,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 18,
 				"horizontalPosition": {
-					"numerator": 10,
+					"numerator": 14,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -10287,7 +10308,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "13c0ff24863e797374f74eaec863a5c5",
+				"guid": "27322202dd0bbace61dc1fe0fbd0ddd0",
 				"editorProps": {
 					"time": 53.82352941176471
 				},
@@ -10296,7 +10317,7 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 18,
 				"horizontalPosition": {
 					"numerator": 0,
 					"denominator": 36
@@ -10413,7 +10434,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "b1a341adccda1b7596be6f60de6ebfe0",
+				"guid": "6f051996ba131caaad56c80cddf1573d",
 				"editorProps": {
 					"time": 54.44117647058824
 				},
@@ -10422,7 +10443,7 @@
 					"numerator": 9,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 18,
 				"horizontalPosition": {
 					"numerator": 0,
 					"denominator": 36
@@ -10434,7 +10455,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "00c51eb0a493f402fab2aaf099e96e51",
+				"guid": "e6d4d1412fd36a117a3d51ae6ebd5514",
 				"editorProps": {
 					"time": 54.529411764705884
 				},
@@ -10443,9 +10464,9 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 22,
+				"horizontalSize": 18,
 				"horizontalPosition": {
-					"numerator": 10,
+					"numerator": 14,
 					"denominator": 36
 				},
 				"type": "above-tap",
@@ -11442,7 +11463,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "QfuPcerh6Udc6kwxTTcdUOzYHz5ecwgu",
+				"guid": "XZdgczeQ2IQgXC7dfiFvlEEMn71dg1dN",
 				"editorProps": {
 					"time": 59.4264705882353
 				},
@@ -11505,7 +11526,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8XT4FL4QisDtS8hqCpZaUyE3zOvg73QK",
+				"guid": "3nVAE46HofWK0D9ZsaUwgHkkWQgyzJMD",
 				"editorProps": {
 					"time": 59.69117647058824
 				},
@@ -11568,7 +11589,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "N63a3gFgqG9Y6UsahohAwTxtBGa4qWDa",
+				"guid": "XjCZxGtX7z0IxfHdav8055V6ebKIpsgn",
 				"editorProps": {
 					"time": 59.95588235294118
 				},
@@ -11631,7 +11652,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3szdGK0XiQWd7x3UYvQqCyHamfhUe4Yo",
+				"guid": "rA0f48ohsGHBOFwqENyJ0UFIGamjo2hK",
 				"editorProps": {
 					"time": 60.22058823529412
 				},
@@ -11736,7 +11757,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "lqjMve6xmkSv4C96lKUviylLEjmcsmX5",
+				"guid": "EIKGbKG1e0XWjbw1W5CcvruLykCjBzgO",
 				"editorProps": {
 					"time": 60.83823529411765
 				},
@@ -11799,7 +11820,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "z3fTacqQ6DIShd6QRzgX1lPLyfIoNW6a",
+				"guid": "Fk8LKjAsYMAmLR5bQpvkgebDgM7vfNL9",
 				"editorProps": {
 					"time": 61.102941176470594
 				},
@@ -11862,7 +11883,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7LMuLksYHL7odDHCecIBcHvrvxSacgLR",
+				"guid": "aQIvwiEcdwTuYGpuMEZZhq4I8HS6lnwl",
 				"editorProps": {
 					"time": 61.367647058823536
 				},
@@ -11925,7 +11946,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bHOjRwTC0bLQMzkajxe1Ff15vTH8d9ra",
+				"guid": "thaVQXqoBXN7DzF4UZz6Awg9XuTPDDax",
 				"editorProps": {
 					"time": 61.63235294117648
 				},
@@ -12051,7 +12072,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "aKBlFANma3l9g2XF9H428ffbiY6oQsej",
+				"guid": "fSWSR5BqvmQvBX75QuF8K8WJ0ethuXXe",
 				"editorProps": {
 					"time": 62.25000000000001
 				},
@@ -12114,7 +12135,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "m53k2wVxQLzXvF0szVyOU8Z9YJEQxeR9",
+				"guid": "GW6aUg1nfFCWRTOx9DiMP2g992zVuXP8",
 				"editorProps": {
 					"time": 62.51470588235294
 				},
@@ -12177,7 +12198,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "xHhKVEJiwpES6RQyk4tfOifcM35wVJsk",
+				"guid": "3Ofz1WeR9UdhQBY1LpAQrEDs9YVDlxuL",
 				"editorProps": {
 					"time": 62.779411764705884
 				},
@@ -12240,7 +12261,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "vNrhAcjJB6uSvkHnFabtmrH6A0aeksde",
+				"guid": "oVXyDjrf0Imgppovx230Rz9a2IBJAZeZ",
 				"editorProps": {
 					"time": 63.044117647058826
 				},
@@ -12366,7 +12387,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "h2fF3AeQTy2I8fHcTjL4C9jW4X50g6sK",
+				"guid": "ewdwSgQHJTuYugIu38s4Sx5arkoFLcgB",
 				"editorProps": {
 					"time": 63.70588235294118
 				},
@@ -12387,7 +12408,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3ep7BfE2eutMiPlc432zgp1F3d7sOdev",
+				"guid": "34lYueXa49ihHeVkTBdVmZPaQj0rve3X",
 				"editorProps": {
 					"time": 63.88235294117647
 				},
@@ -12492,7 +12513,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "I1PoJ0lDRIJI6ZCQHfpVInigz1pv9TVt",
+				"guid": "0o7YWooiCVXJQ8DYIE7JIcN9bn8Gy4yN",
 				"editorProps": {
 					"time": 64.41176470588235
 				},
@@ -12555,7 +12576,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YWaBZ60asi5EnRiStMZwR8XcHWmmeIM2",
+				"guid": "lDGAYW2wV6ccpKSMsyRIeGJJrD8jeddA",
 				"editorProps": {
 					"time": 64.58823529411765
 				},
@@ -12639,7 +12660,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "iZneE9xAheSecaecE3khsy0Sjn72vmVZ",
+				"guid": "swmlTnguYedUYz07DZezrRFL6WBfCvUx",
 				"editorProps": {
 					"time": 65.07352941176471
 				},
@@ -12702,7 +12723,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "JkCPRsPsLCBznXG19P1RrCXd3WD3FBsT",
+				"guid": "h9Zc4jCTn9b6pU0ECeMDXHsN6qCMrnwB",
 				"editorProps": {
 					"time": 65.33823529411765
 				},
@@ -12765,7 +12786,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "DIMIB72WakjHentgPndgKDyHqaowp29q",
+				"guid": "KDEvHOK0x7UygQhl1u6E9VfT0HIWwX0h",
 				"editorProps": {
 					"time": 65.60294117647058
 				},
@@ -12828,7 +12849,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "X9lNDBHS5Ua29Kp2HUvi24yDlSH1I283",
+				"guid": "u3elZ8ty6MQM7qub1JZ7qP2oHZhLvgex",
 				"editorProps": {
 					"time": 65.86764705882354
 				},
@@ -12933,7 +12954,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "dfBuOJAM0iu1kQL8AJ9OWXCf5Rp3hvyQ",
+				"guid": "XBiNIaHfljeXvUJ53V6RAgbLaOv4iQ7I",
 				"editorProps": {
 					"time": 66.48529411764707
 				},
@@ -12996,7 +13017,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rTPOl3TmTXuvQ17H7NsdDdEBVSaCi9be",
+				"guid": "U0h5IJNP0WufrOpJFrHPtdwgpTRZKjTb",
 				"editorProps": {
 					"time": 66.75
 				},
@@ -13059,7 +13080,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "aJ6E8bdSVxyukgWU9JxMW1Bv6caZ0ktP",
+				"guid": "3ChiJ8pwFX3YHFsaCVlbfvqJ7TIg7lzy",
 				"editorProps": {
 					"time": 67.01470588235296
 				},
@@ -13122,7 +13143,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "9fMgaYaJXTqQtjdXUg1YkXQRvFNNbrsJ",
+				"guid": "yajmQUjFrFmVnYxuxaYPFCsf9YUK84H0",
 				"editorProps": {
 					"time": 67.27941176470588
 				},
@@ -13626,7 +13647,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Ke2FpliI0aNvAbrZgXWOtla0qaCpdyh8",
+				"guid": "0ehx00cFbk6J098JVUf1uIjKLVpL1QPh",
 				"editorProps": {
 					"time": 69.3529411764706
 				},
@@ -13668,7 +13689,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bJaXr7JcDzTPlSVP1snidXIMuO8LvmxN",
+				"guid": "b5YNTJKVuyrYWjb3F7dyW5UAOq615K6k",
 				"editorProps": {
 					"time": 69.5294117647059
 				},
@@ -13710,7 +13731,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "R8uZrQ3v4GonintYQSh7XifeRr6SDoxt",
+				"guid": "BjbbPcrAU4OThknh7BtWMkzAH87FAHaJ",
 				"editorProps": {
 					"time": 69.70588235294119
 				},
@@ -13752,7 +13773,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fKuEMbYCQdiN7yZZaHKC77A1VsfWAIcx",
+				"guid": "jcUHjXpEJWL8pHtNrkTE6mqOpAP08Uve",
 				"editorProps": {
 					"time": 69.88235294117648
 				},
@@ -13794,7 +13815,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HcjmbnpvdlSa1eaP13TB6sao1b2UI788",
+				"guid": "xazjCG111L9jsKchkjRLSNWmmUtN5cpu",
 				"editorProps": {
 					"time": 70.05882352941177
 				},
@@ -13836,7 +13857,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "mWTDPdh3XSlS2y5PaNQB469TPXyFohH6",
+				"guid": "FlJ0T42Ow6gci9ccN78BlwjVbdozg6E8",
 				"editorProps": {
 					"time": 70.23529411764707
 				},
@@ -14298,7 +14319,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "QsyxoEcEGQRqNJcvY0BL2DPCgj0898Gr",
+				"guid": "dTiCUhFnMefQNfIy6MG9mDxagsXrhmFK",
 				"editorProps": {
 					"time": 72.88235294117648
 				},
@@ -14361,7 +14382,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8tD0DSWnBcONES2R6STE7tmDNORSWr4j",
+				"guid": "f1sNmLFetJRoy1jNTbggrVetJsUFTtQH",
 				"editorProps": {
 					"time": 73.05882352941177
 				},
@@ -14403,7 +14424,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YG9VhTvvBMbBf3QTxFrJ2Oocudj3ZYDi",
+				"guid": "9fbquB0FOXwGkqrNDvOf1UMlRQNnYluC",
 				"editorProps": {
 					"time": 73.23529411764707
 				},
@@ -14844,7 +14865,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "nmmh91v6iIxByO0Vi1f94sqb9VidrcRd",
+				"guid": "0JZu4R6HlhhX4As6XE9oah6QZjxe1H09",
 				"editorProps": {
 					"time": 75.70588235294117
 				},
@@ -14907,7 +14928,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3JuHiCaBqmkWqAGYnQ2QakJeqtXOu5js",
+				"guid": "H1lO1LrzSJIxAC05e7u7fguhB62JdUkj",
 				"editorProps": {
 					"time": 75.88235294117646
 				},
@@ -14970,7 +14991,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "voZDvztvPicLRGqVxcVxR0QjFVXgH4R9",
+				"guid": "8fHpk8fgJvqwdl3xCnBLYYyeWrIBgO7O",
 				"editorProps": {
 					"time": 76.05882352941177
 				},
@@ -16083,7 +16104,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HB3R3yWcc4dqeMRbz6BfxQxnZ57pvcnh",
+				"guid": "kzGpo32icS0reMd24b1D9I4Hv0ESFHe6",
 				"editorProps": {
 					"time": 80.6470588235294
 				},
@@ -16104,7 +16125,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "e1Ve6pTWbHrKbXeBDArvHGKSSEgBGc7w",
+				"guid": "1QOjz1MydkvenTpXzKbyKwqS5fb3Mk30",
 				"editorProps": {
 					"time": 80.6470588235294
 				},
@@ -16188,7 +16209,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "yAELqmO4BhiWnhOAeQrTdar9SPLgdMtr",
+				"guid": "52iezukn5TdIuVW4mTaTKwgCjSmwqaZ0",
 				"editorProps": {
 					"time": 80.82352941176471
 				},
@@ -16209,7 +16230,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "zrY0htTKfoRJaHT7amvDM0pv0webL5jW",
+				"guid": "BRVtBiBtVPAaPfuQTp9dXc4YeVOFUAf1",
 				"editorProps": {
 					"time": 80.82352941176471
 				},
@@ -16272,7 +16293,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "gwEIWdjLatE9uOjrGUPiRGhzhm49zBY2",
+				"guid": "KW93GiKtO7skkANv7aRkzVRz10FaeBdT",
 				"editorProps": {
 					"time": 81
 				},
@@ -16293,7 +16314,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Y8Lrhl02E8eYRrwXeKFzKjoMqu7PJq0c",
+				"guid": "oXK2U1Xgf4E7GC7PC6Q4EKAO3HxqMWIq",
 				"editorProps": {
 					"time": 81
 				},
@@ -16335,7 +16356,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "DIcTnDGHnhY5iBQ5rDZJC1ETAaJY3clg",
+				"guid": "VoENYYuJZUU9fuMQZQBYUmkOxv1DigAP",
 				"editorProps": {
 					"time": 81.17647058823529
 				},
@@ -16356,7 +16377,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Lc5jSdZLzeqNBQQuar0ZwjrgPMJJNLR8",
+				"guid": "X7IZnzgubGyjJYe2qgHq7dnFsyh7il3z",
 				"editorProps": {
 					"time": 81.17647058823529
 				},
@@ -16440,7 +16461,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "WpOfwAlafGsi2en2PMcDdDlyFTvVQqmX",
+				"guid": "XgeGVQIYtbYzTKhwoa0gykmyPGMO61Gb",
 				"editorProps": {
 					"time": 81.3529411764706
 				},
@@ -16461,7 +16482,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "KrGBeNKboSjdpLKitExDaZLMLgFIUeEk",
+				"guid": "nTz6C7350ZysS7d3qvG2ZGIuepsQXyoq",
 				"editorProps": {
 					"time": 81.3529411764706
 				},
@@ -16566,7 +16587,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "w6VoHmYpsQAw1rmwQJ7rXuGeDbNPXWOf",
+				"guid": "nxZdx0UMO24DyGNvJn28pSjR08nlSU28",
 				"editorProps": {
 					"time": 82.05882352941177
 				},
@@ -16671,7 +16692,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0RMwiemX7Kklzb9hj4KNUvrofoxm0aDZ",
+				"guid": "g183wHyxzhLf9oWg0ldXcIc2JU9ufjK6",
 				"editorProps": {
 					"time": 82.58823529411765
 				},
@@ -16734,7 +16755,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "BLMDXDkn3t195TVwsQIfwiYIpu8ubata",
+				"guid": "bA4Lw22lEtJnvqQFbUZJV0jrHEW2TfZq",
 				"editorProps": {
 					"time": 82.94117647058823
 				},
@@ -16839,7 +16860,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Z5d73roan7nL4EH6WcuiaZgBk6bVERlA",
+				"guid": "taCAOIlIJR1bir5hKzHMMDlK5YX6MmCR",
 				"editorProps": {
 					"time": 83.29411764705883
 				},
@@ -16881,7 +16902,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Zf292M8n7UmaLvxEkNUSJlcC4nRSwVzt",
+				"guid": "Glj4qpDjkhx2zutwNed9H099Ta24maRR",
 				"editorProps": {
 					"time": 83.47058823529412
 				},
@@ -16923,7 +16944,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "y1667TKnU8lRNKZvNXpuEOT8aQ22t9Fq",
+				"guid": "MilvbzZCOtoEkxV0JA4wMoIVhXzIOGbl",
 				"editorProps": {
 					"time": 83.64705882352942
 				},
@@ -16965,7 +16986,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "la68qvSw9uAFtSxdyA69Vo3g8nrvfYiZ",
+				"guid": "S0BsVjSU2WeQb9gW7F57JZOkd0lv2ovF",
 				"editorProps": {
 					"time": 83.82352941176471
 				},
@@ -17007,7 +17028,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ERS5REfPU0v9d3qSRlXCUkEAkRaaAWpW",
+				"guid": "CjWOahMmrKtPmpKJu6Hua1GcAQ5DI01L",
 				"editorProps": {
 					"time": 84
 				},
@@ -17049,7 +17070,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "EhdVwxim4kymeMwRw37SyfCaUIuAiJJ3",
+				"guid": "AvbDPrEUWWvDjvub9402p0tEoj3V0QDV",
 				"editorProps": {
 					"time": 84.1764705882353
 				},
@@ -17091,7 +17112,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "OYNfBfxKy5tZrFJxkQqzD9yEuGjP0r1c",
+				"guid": "U1BN22lbKVvGzKIKOOf5S0G8odLh9F1H",
 				"editorProps": {
 					"time": 84.3529411764706
 				},
@@ -17175,7 +17196,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "OHDMDW6iwpYmViFiHMzyfXeY0dm67BR9",
+				"guid": "bySKlhtZjQb2tC6LhnsJSgpoOTvwVtfu",
 				"editorProps": {
 					"time": 84.88235294117648
 				},
@@ -17364,7 +17385,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7ZkilSvf6S3bBckcgvy7D1VdvULqy7Vk",
+				"guid": "p3xjsfxcCIEVri9byGo3KYmNE5i8XfpJ",
 				"editorProps": {
 					"time": 85.76470588235294
 				},
@@ -17406,7 +17427,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "gRZeNmfgFBGzr3eDuNsb18FnPvlDIdtf",
+				"guid": "ngU7N3KT1g3VmR2iIB2WSwHu2zQxfeAX",
 				"editorProps": {
 					"time": 85.94117647058825
 				},
@@ -17427,7 +17448,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Ck0yRpVrFqHO5iEWSXDbaGcwrkhIy4lf",
+				"guid": "Rt1es8T5Aw6m2kFdBPy5XNYfuWAftLEO",
 				"editorProps": {
 					"time": 86.11764705882354
 				},
@@ -17469,7 +17490,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Bx7U5mGcHYO0i6aZMuWHmdUDcPN9nTAM",
+				"guid": "6f8adA05756tQasFDrFbnIzha3NaL3s9",
 				"editorProps": {
 					"time": 86.29411764705883
 				},
@@ -17490,7 +17511,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "kYKdOlrfrJKRZ9RRTTazNwEfimK7Pny6",
+				"guid": "3TbOlN4IRVQ7TkwzdVFsFhQzQvEwuhBv",
 				"editorProps": {
 					"time": 86.47058823529412
 				},
@@ -17553,7 +17574,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "qP9ocbeCdY7s7u6ucXjtyJiunIggQaMm",
+				"guid": "bYWdqF60Q37WmCXTUiiCrki4diIDolX9",
 				"editorProps": {
 					"time": 86.64705882352942
 				},
@@ -17721,7 +17742,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Vri1ohIJigs5tgknV3aAFkxG40wVIGQI",
+				"guid": "tTSqQi1RuaINVcfb0tTM13KG5PBEckKz",
 				"editorProps": {
 					"time": 87.70588235294119
 				},
@@ -17742,7 +17763,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "JxcP2cop3ufcnBZhvLVOREJPn80JaU7k",
+				"guid": "hxF2br1J4Pa2lg3Ts3WfAeRfSL3BdAad",
 				"editorProps": {
 					"time": 87.70588235294119
 				},
@@ -17847,7 +17868,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "75NR8devwg4BeejhDrw6Ca8OvP2rK6Ka",
+				"guid": "spxKc4wZDnghEResAY7xiko5OOBFCRhf",
 				"editorProps": {
 					"time": 88.23529411764707
 				},
@@ -17868,7 +17889,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "XjRTCXbvCcbtkZv48o1TGejmzvWUttcd",
+				"guid": "CRMjdaJMNXBNhWRQoB3HdrCIqtjsP1cD",
 				"editorProps": {
 					"time": 88.23529411764707
 				},
@@ -17931,7 +17952,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YKKLEKbphVMxkiEVBdYa5NqYwG2Ydy3k",
+				"guid": "Ee8ry2n3cAwwxIZqY4xLhJDwbmQdAX3S",
 				"editorProps": {
 					"time": 88.58823529411765
 				},
@@ -17952,7 +17973,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Dvltp6Y6NnP5JAtUSXSwyhyT8j8qXoYN",
+				"guid": "aK8TMJsVsRNTFyzJV2XMtAUfF6X4VqZx",
 				"editorProps": {
 					"time": 88.58823529411765
 				},
@@ -17994,7 +18015,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "d2tQxD0z1VkymVw5S3DoEEHBXancdq7k",
+				"guid": "kURLdNybe9grXfwsNKsVme0ANWyT27lW",
 				"editorProps": {
 					"time": 88.94117647058823
 				},
@@ -18141,7 +18162,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "XLgq7JX0OxpUdscb8G9SCR3p2Vfem0T4",
+				"guid": "pHffSLLDFa7kMNiC1lsEyds46szYyW4E",
 				"editorProps": {
 					"time": 89.64705882352942
 				},
@@ -18309,7 +18330,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "dAz6WTdP38Hztpnvf9kEoqIwlwCZNCmV",
+				"guid": "KX1hT2BN60GWLuEiHlb7gyKl5LcMiFTv",
 				"editorProps": {
 					"time": 90.52941176470588
 				},
@@ -18330,7 +18351,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "uZblSVT88zUeqNEsPnZZWk250Y3JYTQ9",
+				"guid": "zjovaSuEObpHCEEMfLAhdgWzE7p7RByb",
 				"editorProps": {
 					"time": 90.52941176470588
 				},
@@ -18414,7 +18435,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "oaHWhh03F9OuHRMwZybKFKFdQF6Z6n9T",
+				"guid": "RMbdMaxUf9c7ruHcSCINnof1GiLouzPU",
 				"editorProps": {
 					"time": 91.05882352941177
 				},
@@ -18519,7 +18540,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "5XLJQjEycwLZskCprAF94qognjQbs9Rc",
+				"guid": "3Y0APDTJFhQIzIAd4T3EPZIxldZJhzBZ",
 				"editorProps": {
 					"time": 91.76470588235296
 				},
@@ -19170,7 +19191,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "VT4uGvWEZ8WO4QtYky4rs3kFeTAF7YYU",
+				"guid": "uzmfJMI1xK34Ud1NzVGgW6dTSiTJ5m65",
 				"editorProps": {
 					"time": 95.47058823529412
 				},
@@ -19233,7 +19254,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "tTYMtrB1PhvPJ9udinLWJ46HlX1H2c1d",
+				"guid": "SDTbKrkPILdqBXKkSKZgtT6lyrtXspu3",
 				"editorProps": {
 					"time": 95.64705882352942
 				},
@@ -20787,7 +20808,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "XGOutR9UpncBYAtOUrcKpJIcfSgc5azy",
+				"guid": "xTLBdDosSVOLPDsThGFqXr5DiuZcKvly",
 				"editorProps": {
 					"time": 103.23529411764706
 				},
@@ -20892,7 +20913,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "cx2nhnCUxfdvA0aOfYyJjqE1FnqWTMvj",
+				"guid": "aUCxQYb8uCdX2AaVprJxoXe87Cq9WwRj",
 				"editorProps": {
 					"time": 103.41176470588236
 				},
@@ -20976,7 +20997,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "J82dtvJZm0NctovaaZJsPvfZFDYTCLdn",
+				"guid": "DVZatkDVesBqlbIecmbfgX3SVkuW6Cv5",
 				"editorProps": {
 					"time": 103.58823529411765
 				},
@@ -21060,7 +21081,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "frB71Ffsifzf6qNuD1gdDaLhx1t1VQnT",
+				"guid": "3nbgQyfwTmAZYvzRYCxugEPbRzbGyTWz",
 				"editorProps": {
 					"time": 103.76470588235294
 				},
@@ -21165,7 +21186,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "jZmc901gsF44l6m5FKOgOpNcGEhuOaWm",
+				"guid": "aZmeAG8QJfdSy0rU4LGno23stzf37eGi",
 				"editorProps": {
 					"time": 103.94117647058825
 				},
@@ -21291,27 +21312,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "b060f365f978485a6395d7264134d5be",
-				"editorProps": {
-					"time": 104.47058823529413
-				},
-				"measureIndex": 74,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-hold",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "ea54260bfe1c968069f4e7e1b83722e7",
 				"editorProps": {
 					"time": 104.47058823529413
@@ -21333,7 +21333,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "291cb50682183ba78607a7f90603c1a6",
+				"guid": "afe9039e113d35b243d59d8437b2481d",
+				"editorProps": {
+					"time": 104.47058823529413
+				},
+				"measureIndex": 74,
+				"measurePosition": {
+					"numerator": 0,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 1,
+					"denominator": 4
+				},
+				"type": "hold",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "c27107483bba50dae6d8cf57ea4ebcda",
 				"editorProps": {
 					"time": 104.64705882352942
 				},
@@ -21342,19 +21363,19 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-hold",
+				"type": "hold",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "chndDChi1E4FUuxwD111l6Mg7qx9lfQL",
+				"guid": "Lzef9Xvr7Rg3UosWDznlgjeGTzrIvEpE",
 				"editorProps": {
 					"time": 104.64705882352942
 				},
@@ -21375,7 +21396,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fzsVEaZjNEf8FnJiCJFPWI5Uu1zlzE2r",
+				"guid": "IL9W6bYZPHz5NcoisgivBj9feawNGNFD",
 				"editorProps": {
 					"time": 104.64705882352942
 				},
@@ -21396,7 +21417,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "337b81217441548ae43e807f6fe102a2",
+				"guid": "871319f45994f8a2c8ba9df44f18d02b",
 				"editorProps": {
 					"time": 104.82352941176471
 				},
@@ -21405,19 +21426,19 @@
 					"numerator": 4,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "gV6s6h0bfcbIDm40mtk48ZxqaQIYQciG",
+				"guid": "ensqyhA5cWILhDn4nfYE9Uo0nU1sqzYs",
 				"editorProps": {
 					"time": 104.82352941176471
 				},
@@ -21438,7 +21459,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3ky1Aon3BLeTGqMbh8mZnWlNsX8lQEts",
+				"guid": "VP4w4vANiuYGS8h3TuHkQ1PdcXKrCIDp",
 				"editorProps": {
 					"time": 104.82352941176471
 				},
@@ -21453,27 +21474,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "d5e083040050f3396ffd3e18b5a05c78",
-				"editorProps": {
-					"time": 105
-				},
-				"measureIndex": 74,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -21522,7 +21522,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "xGrhhfMXhuuPd5LiOdS3By2dhuDDSZwF",
+				"guid": "44a874cb8a0f636e398f967f6c9579f5",
+				"editorProps": {
+					"time": 105
+				},
+				"measureIndex": 74,
+				"measurePosition": {
+					"numerator": 6,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 1,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "d78dRbTd97PFrcNR7YhwSuquPYIfDmmW",
 				"editorProps": {
 					"time": 105.1764705882353
 				},
@@ -21543,7 +21564,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "M6gUma9mBYbXJS8i44u2bWPLqHAvnZg5",
+				"guid": "CLGH5FILkaYCH6dD4O3KupmmSRE4CYNq",
 				"editorProps": {
 					"time": 105.1764705882353
 				},
@@ -21606,7 +21627,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "59c02c4a8a94e7e4bb1e86a5e42ecb59",
+				"guid": "f8d32771913769bf8f7942a103bf17cb",
 				"editorProps": {
 					"time": 105.3529411764706
 				},
@@ -21615,19 +21636,19 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-hold",
+				"type": "hold",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "40703f2bc73178d80eafff933da5c236",
+				"guid": "945835474a771956ebdcd66bd1d2dace",
 				"editorProps": {
 					"time": 105.52941176470588
 				},
@@ -21636,19 +21657,19 @@
 					"numerator": 12,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-hold",
+				"type": "hold",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "W2ly1ElqAYz8ZWykdbGaXPn6l7hukDfq",
+				"guid": "uXZuzV408k72wYRB5IXpeSvNtgGs7lGR",
 				"editorProps": {
 					"time": 105.52941176470588
 				},
@@ -21669,7 +21690,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "dkbA6KBZymoPii1rjoOEGnzDEKbZHu6B",
+				"guid": "p2X0YcrEnJQFddb16a5R4yNfUqgxoCqJ",
 				"editorProps": {
 					"time": 105.52941176470588
 				},
@@ -21684,27 +21705,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "c53b0c7e4c4051110ccf62c62904759e",
-				"editorProps": {
-					"time": 105.70588235294119
-				},
-				"measureIndex": 74,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -21753,7 +21753,28 @@
 				"customProps": {}
 			},
 			{
-				"guid": "PRUuzSE7nr31lZGgo2t1cYlrICnn3CTB",
+				"guid": "4655997f47bc741d421ec93945efdda4",
+				"editorProps": {
+					"time": 105.70588235294119
+				},
+				"measureIndex": 74,
+				"measurePosition": {
+					"numerator": 14,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 2,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "1LJop31asbsknukEOCw62l8RNmhyChpw",
 				"editorProps": {
 					"time": 105.88235294117648
 				},
@@ -21774,7 +21795,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bevdjyZxIk9KfBFN0c9u4uS1ScC1JAPV",
+				"guid": "aslanpx3jaOIavD1pbAieUkvyglhDYXv",
 				"editorProps": {
 					"time": 105.88235294117648
 				},
@@ -21831,27 +21852,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "f1946d328b1cc0e208c58a90c0947190",
-				"editorProps": {
-					"time": 106.05882352941177
-				},
-				"measureIndex": 75,
-				"measurePosition": {
-					"numerator": 2,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -21921,27 +21921,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "cd51ded6ca69de4a5144762c997ad21f",
-				"editorProps": {
-					"time": 106.23529411764707
-				},
-				"measureIndex": 75,
-				"measurePosition": {
-					"numerator": 4,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "a6fb2c1309159d5574181bda59091857",
 				"editorProps": {
 					"time": 106.23529411764707
@@ -22005,27 +21984,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0cdd6712a2b3ba610ad0fca3b5f0469d",
-				"editorProps": {
-					"time": 106.41176470588236
-				},
-				"measureIndex": 75,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "5463c5f56eb56e2b61c88e304341386a",
 				"editorProps": {
 					"time": 106.41176470588236
@@ -22047,7 +22005,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8BEMEXu73ilZApzTqKyxdejfkC52qo2b",
+				"guid": "UUhbHTWyWpA6hwa3bqQOi7PFoEB7RruS",
 				"editorProps": {
 					"time": 106.58823529411765
 				},
@@ -22068,7 +22026,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "SdIWycuWMf7LwAgZZUq8BS2kvhKAfVbL",
+				"guid": "fMsKu5yhQrzBwEmch92D7DahIH8Lgoeh",
 				"editorProps": {
 					"time": 106.58823529411765
 				},
@@ -22125,27 +22083,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "8bc3cfc183b0a26f0126fc4da54a0b38",
-				"editorProps": {
-					"time": 106.76470588235294
-				},
-				"measureIndex": 75,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -22215,27 +22152,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "b8d2903fe0138630fc90a35086841b9c",
-				"editorProps": {
-					"time": 106.94117647058825
-				},
-				"measureIndex": 75,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "fca575916db0a841a6e0c4cd6de42ed3",
 				"editorProps": {
 					"time": 106.94117647058825
@@ -22293,27 +22209,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "a586fd412eb485cef952a238cab02a5d",
-				"editorProps": {
-					"time": 107.11764705882354
-				},
-				"measureIndex": 75,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -22383,49 +22278,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "52448b7cca4db405aca0663eb639d583",
-				"editorProps": {
-					"time": 107.29411764705883
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "d0e5657752fcf9e3bc0ce0f8a66ed664",
-				"editorProps": {
-					"time": 107.29411764705883
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 0,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "TgNXQHxxrkYRQG5F1kJ8sbEFtVWpMGWQ",
+				"guid": "kQPKsZ1FJrfd6EJop5mbronh5juKMt6y",
 				"editorProps": {
 					"time": 107.47058823529412
 				},
@@ -22446,7 +22299,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7valVe5Oo3fdSE27fggbKCSPip3ewzti",
+				"guid": "0ARKbngNrC6hGXsAtrckM9Pj07BIQFYr",
 				"editorProps": {
 					"time": 107.47058823529412
 				},
@@ -22482,90 +22335,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "4fa1d5695c175265d528edb22d82e281",
-				"editorProps": {
-					"time": 107.64705882352942
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 4,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "d84759818cc5945e64701aa78f5d0d65",
-				"editorProps": {
-					"time": 107.64705882352942
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 4,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "10bb2e340ab7dbe40c7de17d440bfca2",
-				"editorProps": {
-					"time": 107.82352941176471
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "aeb21aa58cd296adb4a66102d2a2b77a",
-				"editorProps": {
-					"time": 107.82352941176471
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -22614,7 +22383,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "LSW2Fn9HsMuKJsDFLUEEZkGiPeyG3m8Y",
+				"guid": "L9FkiojdMxDBMh08kVAA3R3Cr0SqZAgQ",
 				"editorProps": {
 					"time": 108.17647058823529
 				},
@@ -22631,27 +22400,6 @@
 				"type": "above-slide-judge-note",
 				"speed": 1,
 				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "3355abd1475096e0256887aa9ea0437a",
-				"editorProps": {
-					"time": 108.1764705882353
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 3,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -22698,27 +22446,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "f2ffb26d91ae124340da42ba76ce01ae",
-				"editorProps": {
-					"time": 108.3529411764706
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 3,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "5dadc9f27092ebf1bbbf4347dc7bf2c2",
 				"editorProps": {
 					"time": 108.3529411764706
@@ -22761,7 +22488,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "JgDTkLEOqfYU80Xx5e00h2qWru528AZv",
+				"guid": "V53vf3BHaYDWLxADoAKVwcHaoJb2XnWH",
 				"editorProps": {
 					"time": 108.3529411764706
 				},
@@ -22778,27 +22505,6 @@
 				"type": "above-slide-judge-note",
 				"speed": 1,
 				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "b7fe54cc892f766741092bbb9397859d",
-				"editorProps": {
-					"time": 108.52941176470588
-				},
-				"measureIndex": 76,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 3,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -22845,7 +22551,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YX6kRwzjdmTmeSYqUQbxbWrP9I44xLzi",
+				"guid": "ur9A7JXWWTbOVuHQQVVas19VTw62HO1I",
 				"editorProps": {
 					"time": 108.52941176470588
 				},
@@ -22866,7 +22572,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1YBGFBffIbFaYfHw2iSmDecdVIadlH2p",
+				"guid": "TrnKgp54Z4loK6fz4elIaABu3FSrJXoX",
 				"editorProps": {
 					"time": 108.70588235294119
 				},
@@ -22883,27 +22589,6 @@
 				"type": "above-slide-judge-note",
 				"speed": 1,
 				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "4f7bb47ed700a03e88543723afa719ce",
-				"editorProps": {
-					"time": 108.88235294117648
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 2,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -22950,7 +22635,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "CHbV6ED0NWSJ9faMifdERIH3suLhL4Xh",
+				"guid": "36PkMpgixxrHClWRIcqjYySVB58ugvGX",
 				"editorProps": {
 					"time": 108.88235294117648
 				},
@@ -22967,27 +22652,6 @@
 				"type": "above-slide-judge-note",
 				"speed": 1,
 				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "9197ed652af9e90a3a51f88a9cfe1425",
-				"editorProps": {
-					"time": 109.05882352941177
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 4,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -23034,7 +22698,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "D9zjedsR8YUcPIxZwygvrPjdO1jDjAM5",
+				"guid": "utAWyrSBbEuufKjMOIcKQAmTpjahdMfd",
 				"editorProps": {
 					"time": 109.05882352941177
 				},
@@ -23076,27 +22740,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fc0e2662e83bbdab28914fcc5eee0bcd",
-				"editorProps": {
-					"time": 109.23529411764707
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 1,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 4
-				},
-				"type": "tap",
-				"speed": 1,
-				"lane": "initialLane0",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "1ed054af239531a43d5f5a0d049bca29",
 				"editorProps": {
 					"time": 109.23529411764707
@@ -23118,7 +22761,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "icZdsI4bgAm3RQp3WrbstVrSnfWCbfKs",
+				"guid": "DeBVuXBHpXBxnVeckPajuU2Ji4dcZ4pC",
 				"editorProps": {
 					"time": 109.23529411764707
 				},
@@ -23160,48 +22803,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "2311d80e7d4bcd04e6398a0045df00fd",
-				"editorProps": {
-					"time": 109.58823529411765
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 5,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "f4e35b57a8b3094999092ec1ad9b47b0",
-				"editorProps": {
-					"time": 109.58823529411765
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 5,
-				"horizontalPosition": {
-					"numerator": 27,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "74551fd784042d66e3195477341d0559",
 				"editorProps": {
 					"time": 109.58823529411765
@@ -23223,48 +22824,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "58cb2ab1157440f0a6a5467055098650",
-				"editorProps": {
-					"time": 109.76470588235294
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "70f078a10218eaa72ea35cbeca0ffce4",
-				"editorProps": {
-					"time": 109.76470588235294
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "e6b5b189023d705242bf57157382489c",
 				"editorProps": {
 					"time": 109.76470588235294
@@ -23280,48 +22839,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "f94e06753cc0ec5221ea270bc0ba1662",
-				"editorProps": {
-					"time": 109.94117647058825
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 11,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "0f501e7f4690bc7d46ee1023d5ebf1f9",
-				"editorProps": {
-					"time": 109.94117647058825
-				},
-				"measureIndex": 77,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 11,
-				"horizontalPosition": {
-					"numerator": 21,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -23370,7 +22887,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "096ad30f6d01a6e54fea4495ac0aa5c3",
+				"guid": "4c6bd25822c9fe864ab4f347f6a5e8dc",
 				"editorProps": {
 					"time": 110.11764705882354
 				},
@@ -23379,19 +22896,19 @@
 					"numerator": 0,
 					"denominator": 16
 				},
-				"horizontalSize": 13,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "5d8613dfa626e9bc2b88c750b1a5e231",
+				"guid": "51b9e7bd7c7c7ffd57c83cdb350a1cc7",
 				"editorProps": {
 					"time": 110.11764705882354
 				},
@@ -23400,14 +22917,14 @@
 					"numerator": 0,
 					"denominator": 16
 				},
-				"horizontalSize": 13,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 19,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -23454,7 +22971,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "eb753a4f25900d8e379224bb8c6a6aec",
+				"guid": "7535c10e7308c47bdc8303117fefa5d9",
 				"editorProps": {
 					"time": 110.29411764705883
 				},
@@ -23463,19 +22980,19 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
 					"numerator": 0,
-					"denominator": 36
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "b6be9c38fc8518c05d5843ef1e18bb48",
+				"guid": "5e0080427cdb3021ec4b3b9b645842e7",
 				"editorProps": {
 					"time": 110.29411764705883
 				},
@@ -23484,14 +23001,14 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
+					"numerator": 3,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -23538,7 +23055,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "d034d45f7b78e16e75b4b84351ed0d83",
+				"guid": "984f49d02a843f3256a6dec4570766b2",
 				"editorProps": {
 					"time": 110.47058823529413
 				},
@@ -23547,14 +23064,35 @@
 					"numerator": 4,
 					"denominator": 16
 				},
-				"horizontalSize": 10,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 11,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "hold",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "968713394ed3d6618301ff9471f53715",
+				"editorProps": {
+					"time": 110.47058823529413
+				},
+				"measureIndex": 78,
+				"measurePosition": {
+					"numerator": 4,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 1,
+					"denominator": 4
+				},
+				"type": "hold",
+				"speed": 1,
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -23574,27 +23112,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "938dd444aefefc1ea60bae1af2a72e4d",
-				"editorProps": {
-					"time": 110.64705882352942
-				},
-				"measureIndex": 78,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 4,
-				"horizontalPosition": {
-					"numerator": 14,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -23622,6 +23139,48 @@
 				"customProps": {}
 			},
 			{
+				"guid": "1b1fc1a4586090e6dd656541af2e7435",
+				"editorProps": {
+					"time": 110.64705882352942
+				},
+				"measureIndex": 78,
+				"measurePosition": {
+					"numerator": 6,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 1,
+					"denominator": 4
+				},
+				"type": "hold",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "894b0e4016c42b156bcc26f17c148992",
+				"editorProps": {
+					"time": 110.64705882352942
+				},
+				"measureIndex": 78,
+				"measurePosition": {
+					"numerator": 6,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 2,
+					"denominator": 4
+				},
+				"type": "hold",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
 				"guid": "5d8b0094e7e0090a248b98ed080ebb45",
 				"editorProps": {
 					"time": 110.82352941176471
@@ -23643,7 +23202,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "5qsBchVNSUsS2SbMQYNYFdhq16Sg6whp",
+				"guid": "8fuYge6CBStuFwH8lSu51ZkQHKwPDMDh",
 				"editorProps": {
 					"time": 111
 				},
@@ -23679,27 +23238,6 @@
 					"denominator": 36
 				},
 				"type": "above-hold",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "05676d491bad6f02f8523e733c77ad49",
-				"editorProps": {
-					"time": 111.00000000000001
-				},
-				"measureIndex": 78,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -23769,7 +23307,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "kmhRnEHtT8h6Idkwuhx6ZG3LNfON0d78",
+				"guid": "95kJ2KRyFrPZOfI5mhAKjaOmwAorDghK",
 				"editorProps": {
 					"time": 111.1764705882353
 				},
@@ -23790,7 +23328,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3hqSiSPLRXilC0SrRLVrEyXVbZdKi5kC",
+				"guid": "SkGTq8VoDg6jYd34EKYNpewLXA8kMcCV",
 				"editorProps": {
 					"time": 111.1764705882353
 				},
@@ -23832,27 +23370,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "95e4c2030476553a18d87189a4f3c503",
-				"editorProps": {
-					"time": 111.3529411764706
-				},
-				"measureIndex": 78,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "e364c5c30f186cac4ca88797d600d851",
 				"editorProps": {
 					"time": 111.3529411764706
@@ -23874,7 +23391,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "KVHtMAOctyBpXd6niBZc3WaZrotArH8R",
+				"guid": "1fLA193af0Ej5uDPGXkdyNpLwuCsQxbO",
 				"editorProps": {
 					"time": 111.3529411764706
 				},
@@ -23895,7 +23412,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "pezPSTmpGLbxymppcB4gfM1fjvOASyDo",
+				"guid": "BpYZEKY04KQ9I2zr0qJhCGQS1YVLdAeH",
 				"editorProps": {
 					"time": 111.52941176470588
 				},
@@ -23937,27 +23454,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "4bed825a11e79ecbdae76b9afe2071fe",
-				"editorProps": {
-					"time": 111.70588235294119
-				},
-				"measureIndex": 79,
-				"measurePosition": {
-					"numerator": 2,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "f73565762b43501c08600b50c85be29c",
 				"editorProps": {
 					"time": 111.70588235294119
@@ -23979,7 +23475,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "IGrraxlVz2c3Y3b6gFoPxXxowJ5u2yeY",
+				"guid": "iFQ6z0ngDs8ZwTrieXF6hIBCP8vQJiGb",
 				"editorProps": {
 					"time": 111.70588235294119
 				},
@@ -24042,7 +23538,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Qh9dR23VJ1UFzdsfhJIVVSzmYbCGyiYn",
+				"guid": "XCfsQQZeMENDW7mXrmmXgzsPMHZm1SkE",
 				"editorProps": {
 					"time": 111.88235294117648
 				},
@@ -24063,7 +23559,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "uu2cIrDlebM16iYqQXIvNAlkfhgYCnls",
+				"guid": "ujesEeBX23Rdq2CraFpMc5Kz1KWF0KVr",
 				"editorProps": {
 					"time": 111.88235294117648
 				},
@@ -24105,27 +23601,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ca9b3c20514857e236a4399512982407",
-				"editorProps": {
-					"time": 112.05882352941177
-				},
-				"measureIndex": 79,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "3fe885ed11869b63cf99d9be8072b070",
 				"editorProps": {
 					"time": 112.05882352941177
@@ -24147,7 +23622,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "I8zfAdryab1C3MEoQa2KPrlIeGeCr8jB",
+				"guid": "djsL2CBaai4jRM0VeltydNH7Kmbb1BfS",
 				"editorProps": {
 					"time": 112.05882352941177
 				},
@@ -24168,7 +23643,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "lUGUBnyLTtccHRe6d5wIdmgUL3rVs0hd",
+				"guid": "4cAaMEGVooGNbgDVljmcUcPlueb26KcQ",
 				"editorProps": {
 					"time": 112.23529411764706
 				},
@@ -24231,7 +23706,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "pIqwFaGGeD0Jeb2oe9Cp3rhDdRMf4kiA",
+				"guid": "GEBBUFxovAmzdYiypLlNTTKlnKTmRTNe",
 				"editorProps": {
 					"time": 112.41176470588236
 				},
@@ -24294,7 +23769,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "gSwJgoptHSEKhXR7OSgbeGeWe2rW6nKO",
+				"guid": "Ji68CIMkmCE1i6sIrVr8V0eXnTECCqLT",
 				"editorProps": {
 					"time": 112.58823529411765
 				},
@@ -24357,7 +23832,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "s1941F1hU8gQ12wAZa1D9NWFZsdHjAMz",
+				"guid": "KDkhOHxHdp9hfzFaut3NWC3qmgIdlJnl",
 				"editorProps": {
 					"time": 112.76470588235294
 				},
@@ -24420,7 +23895,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "H3kgjCE7Uh5LwNP1p3dSqFS4hXZ8Qoi0",
+				"guid": "441HygPqMcjbx1sEqT75Qn51sycwDeYB",
 				"editorProps": {
 					"time": 112.94117647058825
 				},
@@ -24441,7 +23916,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "LgaB6w8o9T2c3WxYm3aHQS4nv8N18DXZ",
+				"guid": "E7G9bbdNVAcdRg5UhPs720zVogvhk6OZ",
 				"editorProps": {
 					"time": 113.11764705882354
 				},
@@ -24483,28 +23958,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ed2a51230eae6eaa3be2110a12f8aacb",
-				"editorProps": {
-					"time": 113.29411764705883
-				},
-				"measureIndex": 80,
-				"measurePosition": {
-					"numerator": 4,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "0t1l7mpwcXvBHCRIW5FbQmZE3GB0X4Xw",
+				"guid": "KpHYVgATJ8Vzs4MUgmSu4woGG63lWqJd",
 				"editorProps": {
 					"time": 113.29411764705883
 				},
@@ -24546,28 +24000,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "c50f36612b57db8972b7a0ededa44718",
-				"editorProps": {
-					"time": 113.47058823529413
-				},
-				"measureIndex": 80,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 9,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "s7ERPRmgY4EH82Q2tqxQEb5VsOvtSU2d",
+				"guid": "Yf6hxs9FwtgL9uOJ5A9pHFaVUfjkVp0D",
 				"editorProps": {
 					"time": 113.47058823529413
 				},
@@ -24588,7 +24021,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7NeVHJ21EvTgTiROeK4qkdZ6q9WVM5a0",
+				"guid": "hmP3WWT3nhsWPUyxhc0h6g2TJ0DlFYSV",
 				"editorProps": {
 					"time": 113.64705882352942
 				},
@@ -24630,28 +24063,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "a336ff0523512579d1348f4f2309c369",
-				"editorProps": {
-					"time": 113.82352941176471
-				},
-				"measureIndex": 80,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 9,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "CSDOMnReNO3tXZrRjOu9UZHX5tYNBiUF",
+				"guid": "l9D4fQhDH9CDByyk6SCFDBm02Fe4mTp4",
 				"editorProps": {
 					"time": 113.82352941176471
 				},
@@ -24672,7 +24084,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "EIfvpzYbFRR3cYoVc7oSG8bUfZCUVsju",
+				"guid": "PJjIFYNvdOAtU91CehPSBmi9XBPR8gaH",
 				"editorProps": {
 					"time": 114
 				},
@@ -24693,28 +24105,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "07c5746d63ae8da2a4b8a1abe9550a74",
-				"editorProps": {
-					"time": 114.00000000000001
-				},
-				"measureIndex": 80,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 17,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "jEOZOMeDLmLvTP3j3b1mQjmZS7SvDpPA",
+				"guid": "bR52k784S244lUCfrjCFCGZ8k2Nrfdqm",
 				"editorProps": {
 					"time": 114.00000000000001
 				},
@@ -24756,28 +24147,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "948500f0f4d9e5eee836294ae2b2a182",
-				"editorProps": {
-					"time": 114.1764705882353
-				},
-				"measureIndex": 80,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "O2VqiXInVAznCVsfdpaQKb1f2CcHWN7i",
+				"guid": "0Tabhqp1T6m5K2AdxjXiSltPiH5BtlLW",
 				"editorProps": {
 					"time": 114.1764705882353
 				},
@@ -24819,7 +24189,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "JnQDc0KPfQL25FMlGySsbR1FxCfEmotM",
+				"guid": "K4CJWk4VH67Su3zU8fkoybtCd8qfHImL",
 				"editorProps": {
 					"time": 114.3529411764706
 				},
@@ -24882,7 +24252,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "hfNXKafX6J66fuzQlDVhj5eIgVoAs7rZ",
+				"guid": "W777DLsATdPO7Kffa1jgn9A9HL8jgfgZ",
 				"editorProps": {
 					"time": 114.52941176470588
 				},
@@ -24945,7 +24315,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "DPwBGUIMau5JDNYohIpf4NrDJxRacSci",
+				"guid": "PnQn8McN21PtDPqXWMuk7uydP1W2VLJv",
 				"editorProps": {
 					"time": 114.70588235294119
 				},
@@ -25008,7 +24378,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "CII31bPeOIZjaQ0AwxJsJrazJtiAs9Bv",
+				"guid": "bkh2zUs0Fn7tz1dpWtCKimXsTnbIwz1b",
 				"editorProps": {
 					"time": 114.88235294117648
 				},
@@ -25071,7 +24441,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0XZGjmIbOEvUQ9o4yXA9NIbfhBTN7JZc",
+				"guid": "ceKX2NPfSU3PgiX8nIrYELd7IdfcBaex",
 				"editorProps": {
 					"time": 115.05882352941177
 				},
@@ -25134,7 +24504,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "u8LUM5mbToOdfeLkGo1IMK4QiUDQy9rA",
+				"guid": "bjl6LlBQivnWXTR2y1saYU4sdLMfxOpm",
 				"editorProps": {
 					"time": 115.23529411764707
 				},
@@ -25449,7 +24819,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "4476c8a6c1d083fcd789bff7acd91e0e",
+				"guid": "77de2ebd3b4d48628ba6aa782f67b6ca",
 				"editorProps": {
 					"time": 116.29411764705883
 				},
@@ -25458,19 +24828,40 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 16,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
+					"numerator": 0,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "PSWxVKbk6F5BKjEo0WGxQuGFA2EY7GI9",
+				"guid": "87d4872cd7dab336ab5f2a5d5a6022de",
+				"editorProps": {
+					"time": 116.29411764705883
+				},
+				"measureIndex": 82,
+				"measurePosition": {
+					"numerator": 6,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 2,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "8AsJkXYGW60jJTVfZBiEpmR7HXXgOROz",
 				"editorProps": {
 					"time": 116.47058823529412
 				},
@@ -25506,27 +24897,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "1d5e4146aeee07c5d17d0ee4a5542f71",
-				"editorProps": {
-					"time": 116.64705882352942
-				},
-				"measureIndex": 82,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -25575,27 +24945,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "2b6eb4119d88cd21af37bb041f241ec6",
-				"editorProps": {
-					"time": 116.82352941176471
-				},
-				"measureIndex": 82,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 17,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "344508210308aca7a031ee6bc5a85858",
 				"editorProps": {
 					"time": 116.82352941176471
@@ -25613,6 +24962,27 @@
 				"type": "tap",
 				"speed": 1,
 				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "f8868ea48bec832c68d0ffc1c5574786",
+				"editorProps": {
+					"time": 116.82352941176471
+				},
+				"measureIndex": 82,
+				"measurePosition": {
+					"numerator": 12,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 16,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -25659,28 +25029,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "a6c87e6b4c10366fea8552efd7f8a0d5",
-				"editorProps": {
-					"time": 117.00000000000001
-				},
-				"measureIndex": 82,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "UVarFhsyVT8JFhFrwIcuVS3h4zuBjCMr",
+				"guid": "ZuypbtdRdbOo8eXH9k8LLMDCg4weRold",
 				"editorProps": {
 					"time": 117.1764705882353
 				},
@@ -25716,27 +25065,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "0189c667e8836af2848938e0f04cc304",
-				"editorProps": {
-					"time": 117.3529411764706
-				},
-				"measureIndex": 83,
-				"measurePosition": {
-					"numerator": 2,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -25848,28 +25176,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1b4de58c1b54e5fa5e5ed02db9b5ec8d",
-				"editorProps": {
-					"time": 117.70588235294119
-				},
-				"measureIndex": 83,
-				"measurePosition": {
-					"numerator": 6,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "258879d9a6e90da0fd06f13a8233e6ce",
+				"guid": "07df71ba4abe583cf35051130366b5ff",
 				"editorProps": {
 					"time": 117.70588235294119
 				},
@@ -25890,7 +25197,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "PySL1HrZbv16QyWUM3SFRilgIuHAwqip",
+				"guid": "GNf9RKe7edzZPRGoaS2dzNXWdGCxbCC3",
 				"editorProps": {
 					"time": 117.88235294117648
 				},
@@ -25911,7 +25218,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Pxvk5Dhz3ee7VINgtrTMp2hweeyCPvax",
+				"guid": "xATiKRNpQdzelPqUuQqdv5CJVMpzOqEj",
 				"editorProps": {
 					"time": 117.88235294117648
 				},
@@ -25974,27 +25281,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "9002e6aeffd7e56cc027295bc7b60825",
-				"editorProps": {
-					"time": 118.05882352941177
-				},
-				"measureIndex": 83,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 16,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "20dcac998ec3cf364b24b04e16887a62",
 				"editorProps": {
 					"time": 118.23529411764707
@@ -26037,27 +25323,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "19d1668e0c9e60c9cdf33c69ce0e3801",
-				"editorProps": {
-					"time": 118.23529411764707
-				},
-				"measureIndex": 83,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 14,
-				"horizontalPosition": {
-					"numerator": 9,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "fc2e7e572af8c2c0952fa1324fc522d7",
 				"editorProps": {
 					"time": 118.41176470588236
@@ -26094,27 +25359,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "402a181cd5d7317cd372de2bf759e0aa",
-				"editorProps": {
-					"time": 118.41176470588236
-				},
-				"measureIndex": 83,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 12,
-				"horizontalPosition": {
-					"numerator": 10,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -26184,7 +25428,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "mC3JlXGHObDuAdAWkbYlKxhQg8cves6s",
+				"guid": "CPJyFH9az8mbsnLvQx9lgIFCdb2f5PTg",
 				"editorProps": {
 					"time": 118.76470588235294
 				},
@@ -26205,7 +25449,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "QWEUWYvs3czccuIGfRlf3i8QyA6Yo8C3",
+				"guid": "5AC3BYPS9mrxS1fPSv9B9at0w6oBKn4s",
 				"editorProps": {
 					"time": 118.76470588235294
 				},
@@ -26226,7 +25470,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "uBeHaRSRBMLSqHSsY4riejHh4nr2O3bL",
+				"guid": "iTmgq0cwxCwCCbM02l17UI5AaFd2uF6X",
 				"editorProps": {
 					"time": 118.76470588235294
 				},
@@ -26268,7 +25512,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "JVwwyeJbQNGCVqawTSt4g2KorZOoV74y",
+				"guid": "iaCNB8b7kIbg6X90f81RrcJdfnhJsnbe",
 				"editorProps": {
 					"time": 118.94117647058825
 				},
@@ -26289,7 +25533,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "npNtyIcHwW9r7gccyqRl8GzVItnzaCPR",
+				"guid": "zNVjd9yifL0vbUbSdOzm7JH0BOaHhOIB",
 				"editorProps": {
 					"time": 118.94117647058825
 				},
@@ -26310,7 +25554,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HLj3GeCEuNKKoKEEXKdrSYgmdolj4Gno",
+				"guid": "oBaq7IxktLOVyNyKcVMgDSl7ungNbjtE",
 				"editorProps": {
 					"time": 118.94117647058825
 				},
@@ -26373,7 +25617,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YBeTnifSWQ6ofHqseReC67ndaAHfX3Oz",
+				"guid": "vgHHNkO6hHRWAufhvJaSuogq12Ln5vET",
 				"editorProps": {
 					"time": 119.11764705882354
 				},
@@ -26394,7 +25638,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8fGcyNlHWTrfNlI8BtnP28HpP3MizeTk",
+				"guid": "KNNMtahwa6DI6BHq3shIBTif55b88rCB",
 				"editorProps": {
 					"time": 119.11764705882354
 				},
@@ -26415,7 +25659,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "x0gq8silh4yCS1LFPaF6OhyEcj58xFQ3",
+				"guid": "o2YxkmRGohTyds713ei3OEOorDvpQSVg",
 				"editorProps": {
 					"time": 119.11764705882354
 				},
@@ -26436,7 +25680,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "wPTRIBOqTzaWqsWgpa2g0OEW8Nb4RjHO",
+				"guid": "qc7v7xYYoffFOZkaWBMWYUyhkFhGsn7I",
 				"editorProps": {
 					"time": 119.29411764705883
 				},
@@ -26457,7 +25701,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "PE1GBMwZATjgiFLamAA3g93jlcLPd3Oe",
+				"guid": "pFAe4rAs1W6TBae4BQjUb739JZ4Doemt",
 				"editorProps": {
 					"time": 119.29411764705883
 				},
@@ -26478,7 +25722,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "CF7QrZgNMm4NPtPd35DiRduJ5UqNurb8",
+				"guid": "PtmKjVffIuzbTr4tgXX4lTLNl1P6wY6Q",
 				"editorProps": {
 					"time": 119.29411764705883
 				},
@@ -26499,7 +25743,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "51af08a091701bf781e44629639e6c72",
+				"guid": "61153d586cc664d91d26d6867f0defd8",
 				"editorProps": {
 					"time": 119.47058823529413
 				},
@@ -26508,19 +25752,19 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 11,
+				"horizontalSize": 1,
 				"horizontalPosition": {
 					"numerator": 0,
-					"denominator": 36
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "wIgiENTVimbwlPxoXELqa0ZllK2RBqqQ",
+				"guid": "EzsJueFWdJKuYwXaYMVX7bGVuCWfvUH8",
 				"editorProps": {
 					"time": 119.47058823529413
 				},
@@ -26541,7 +25785,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "56aUgRKenf3lN9fqGcahvagev7OPnEVw",
+				"guid": "KnPdPzeVQPITQrx4uAKSly5M109Jqjmp",
 				"editorProps": {
 					"time": 119.47058823529413
 				},
@@ -26562,7 +25806,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "nYx432edmwtIozU5FbkrgeCfurhbiejE",
+				"guid": "kcE6PaRO7CW4ML2NSaXI3OhQZkrAfPuD",
 				"editorProps": {
 					"time": 119.47058823529413
 				},
@@ -26583,7 +25827,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "b1ba7b14fd1f9b6f94aa6d8188362a6c",
+				"guid": "36f35af530a66c6a5f32280809f54813",
 				"editorProps": {
 					"time": 119.64705882352942
 				},
@@ -26592,19 +25836,19 @@
 					"numerator": 12,
 					"denominator": 16
 				},
-				"horizontalSize": 10,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 11,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "Q1YuutV9JU7Hf8glGkCK2nokiZv1llUF",
+				"guid": "yHjgP87fZ4upQiNiR7ZyBbCqDdkunHp2",
 				"editorProps": {
 					"time": 119.64705882352942
 				},
@@ -26625,7 +25869,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "YEX5IEQfp7J9w89IsRB1vWlziCSUfaqP",
+				"guid": "LH9ssnE2cMFvfVEyuYCrE3j2QlD1ZIAd",
 				"editorProps": {
 					"time": 119.64705882352942
 				},
@@ -26646,7 +25890,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ogKSz1hPeLxtZnYsBdbgvKucgiLU1fbV",
+				"guid": "zOfoo087xOmJ3p2ASxRcsLb4hEazOJEY",
 				"editorProps": {
 					"time": 119.64705882352942
 				},
@@ -26667,7 +25911,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "47e75f2216b4747f392745eedc1c1aef",
+				"guid": "ae74fdcbb6d68e766a9c3cd5d9662561",
 				"editorProps": {
 					"time": 119.82352941176471
 				},
@@ -26676,19 +25920,19 @@
 					"numerator": 14,
 					"denominator": 16
 				},
-				"horizontalSize": 11,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 21,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "A4ej7jPr5pbcMvtHOyxbGDM5tAqKYaNp",
+				"guid": "ZJb4baV7KXT9EG8ZYwjYiMA5Leae5f6c",
 				"editorProps": {
 					"time": 119.82352941176471
 				},
@@ -26709,7 +25953,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "IArP7JO8hyCdqglIjmTq11aJJDBrAU08",
+				"guid": "UhP8xHD04mSt423sho8vJhzC6M2chX72",
 				"editorProps": {
 					"time": 119.82352941176471
 				},
@@ -26730,7 +25974,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "rCLcUvIj1IxpRxX1xfOhfONscGvetcVB",
+				"guid": "IEdcUr9dGh65pilPoQ2RMeSYkeJarEMY",
 				"editorProps": {
 					"time": 119.82352941176471
 				},
@@ -26751,7 +25995,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "pDWc4UA7RB231e3qCBf4Jo2KORSPZSax",
+				"guid": "CEF8PPk5ALKSiK6FyfUbXwLzpVp0SFzZ",
 				"editorProps": {
 					"time": 120
 				},
@@ -26772,7 +26016,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "h16Ja0oviuyQRMNB4PHFokPQt7aPGqzN",
+				"guid": "zfnszAxvb8yj8Jvu7f5igAGCqTvdWfC0",
 				"editorProps": {
 					"time": 120
 				},
@@ -26793,7 +26037,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "vOIIPXGtDN1V6fyVckBXWr1l0aXjCzL5",
+				"guid": "lERCqm6wzSzoMBLciK5H0SmSO16nzZPG",
 				"editorProps": {
 					"time": 120
 				},
@@ -26814,7 +26058,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "14ada42780ad972cc4aa0b69b6fb8403",
+				"guid": "3dea6cc821002390d775369a285db578",
 				"editorProps": {
 					"time": 120.1764705882353
 				},
@@ -26823,19 +26067,19 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 11,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 21,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "c4U89cDVdTmzl8dh205RYCg7uZuTCBRs",
+				"guid": "9ZBfQxHZDNVirnmhPbtkn4g5UcCgqfRp",
 				"editorProps": {
 					"time": 120.1764705882353
 				},
@@ -26856,7 +26100,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "TwUOiYxHOHmmbXWqu3vMAlYoxTjqCG9X",
+				"guid": "glaRm8SLcWdqfrHUAxaYIYyiJurU3sVs",
 				"editorProps": {
 					"time": 120.1764705882353
 				},
@@ -26877,7 +26121,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "8GcnqBfJJ5riO5QK6iCgouF0qWszlfD2",
+				"guid": "obvX6FewtF8xGFIsn6ZNHEvb0hdbweb4",
 				"editorProps": {
 					"time": 120.1764705882353
 				},
@@ -26898,7 +26142,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "c6bc36b78af8332fc18d7a3dc7cd4467",
+				"guid": "1db44bd59e2c578d1646babd7b122f10",
 				"editorProps": {
 					"time": 120.3529411764706
 				},
@@ -26907,19 +26151,19 @@
 					"numerator": 4,
 					"denominator": 16
 				},
-				"horizontalSize": 10,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 11,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "cTH5U2H6CkISefokSDdF8XuFGKEI5nX8",
+				"guid": "0dFuMNrSh4hJGpJtPH7eZigr5aZLRRe4",
 				"editorProps": {
 					"time": 120.3529411764706
 				},
@@ -26940,7 +26184,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "UvYONcO1gK3N3wIRw1De9nhP5dkUsr9z",
+				"guid": "9tAlah1WA3waUBVK5pdOA7HlsB21j0Px",
 				"editorProps": {
 					"time": 120.3529411764706
 				},
@@ -26961,7 +26205,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "iaJmgs2YNSTsgQbkuIxYTScbqm1obWS8",
+				"guid": "KBVGIR6vfcxtU0p8eZZVpLOGQpJnEFIG",
 				"editorProps": {
 					"time": 120.3529411764706
 				},
@@ -26982,7 +26226,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "050b6cf86651bfa982252dda86ec9b03",
+				"guid": "34617ca59c2df34ac75d3bb6d3a88e56",
 				"editorProps": {
 					"time": 120.52941176470588
 				},
@@ -26991,19 +26235,19 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 11,
+				"horizontalSize": 1,
 				"horizontalPosition": {
 					"numerator": 0,
-					"denominator": 36
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "wC5jG7nMbPvqT2pIFLY20HGRVSePRvBD",
+				"guid": "rekdFNJ8fjdpTsy28MN5HrR9i7g95FCf",
 				"editorProps": {
 					"time": 120.52941176470588
 				},
@@ -27024,7 +26268,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "tqlGB0ug4i4RiR1ecsWe7Eqcell5mkXd",
+				"guid": "DizuXFQwsTeZfOaRhX7q4bbvUfaUwxDa",
 				"editorProps": {
 					"time": 120.52941176470588
 				},
@@ -27045,7 +26289,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bffaP8XfkEGjYjiYGzoun3c7UKwauckt",
+				"guid": "3Bx7jZHatssyEX0FLx4ktg9YOzBG8HgD",
 				"editorProps": {
 					"time": 120.52941176470588
 				},
@@ -27066,7 +26310,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "br8FhFoEuEAXHdnxxK8QbIfy6egpZpS7",
+				"guid": "feDKUMMVbq39hHfyHCCs0xGqWZeKeB9r",
 				"editorProps": {
 					"time": 120.70588235294119
 				},
@@ -27087,7 +26331,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "dwlxG574cevyNHDjjKcUD3Lq5IR2v3JZ",
+				"guid": "iJuKzSkk5mTjNsNCDRezqVIriJRYIsdQ",
 				"editorProps": {
 					"time": 120.70588235294119
 				},
@@ -27108,7 +26352,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Be6jaoFJYLvBgN8WIVsnzVs9sdKtl8Cb",
+				"guid": "YFz6gANRswtvUbU0viTDFIJsdHJajA7I",
 				"editorProps": {
 					"time": 120.70588235294119
 				},
@@ -27234,27 +26478,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "37fefd6bebf8f76b82d1b12db2059698",
-				"editorProps": {
-					"time": 121.05882352941177
-				},
-				"measureIndex": 85,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 12,
-				"horizontalPosition": {
-					"numerator": 10,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "8a12cc9e6cf5dfaa365067969befa038",
 				"editorProps": {
 					"time": 121.23529411764707
@@ -27291,27 +26514,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "0cd30f4fc51a5a18b087201c1267d5f5",
-				"editorProps": {
-					"time": 121.23529411764707
-				},
-				"measureIndex": 85,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 14,
-				"horizontalPosition": {
-					"numerator": 9,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -27402,7 +26604,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "ECo75acenj1Xni5FtbSbwaryYQYrrIae",
+				"guid": "uhYUZC9brr9XM93EqTroBtnRPv6cI02M",
 				"editorProps": {
 					"time": 121.58823529411765
 				},
@@ -27423,7 +26625,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "oobBUrd3dedbhradxerdnISZZ7dOdzLE",
+				"guid": "6Y21wL9iAbkRlW8XdfDeUQMtJ6TxbH6B",
 				"editorProps": {
 					"time": 121.58823529411765
 				},
@@ -27444,7 +26646,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fmrlNlgHgBSzWIvmPiKbxgPHNE9yn5xe",
+				"guid": "bC1A4rdy1PuKLeYGNxIb4h2VqGcbQUqU",
 				"editorProps": {
 					"time": 121.58823529411765
 				},
@@ -27465,7 +26667,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bxnyUFCDeTf38dlWaUfaTnO8kHcHgFj3",
+				"guid": "2G9hz7oiFIwag86wTBtLLvI9ETXj1N2E",
 				"editorProps": {
 					"time": 121.58823529411765
 				},
@@ -27675,7 +26877,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "wUqJgXHJXrKzxUnlB45ctYTBeWVCLAb4",
+				"guid": "ccC8ahOXJwyBTfTQxZqA6xhzLAeXnFJw",
 				"editorProps": {
 					"time": 122.11764705882354
 				},
@@ -27717,7 +26919,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1a59cdb4ab6c13bfc7ad0e862bb8a111",
+				"guid": "5076ca3be9fec99f8756994fb2d78f70",
 				"editorProps": {
 					"time": 122.29411764705883
 				},
@@ -27726,19 +26928,19 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "db29b78bdb281c5818993e5b42afac4b",
+				"guid": "96f65aa4ca7d33c095ebafd8358b8895",
 				"editorProps": {
 					"time": 122.29411764705883
 				},
@@ -27747,19 +26949,19 @@
 					"numerator": 10,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "dpg26dAu8l5qfOfg8VBj9jePNzUQS2Sf",
+				"guid": "LNoKZdhsnZAGCS1oVV8pkoO9kWXn8Zlw",
 				"editorProps": {
 					"time": 122.29411764705883
 				},
@@ -27780,7 +26982,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3CPHdTP6yaghGPYcDmdRb4QIpuPkvFxn",
+				"guid": "93WbEzgR7jLwpHX3lNsRzbqFTdOw4cEd",
 				"editorProps": {
 					"time": 122.47058823529412
 				},
@@ -27822,7 +27024,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "2bdbb6ae45a39f8add2a74190d4e2001",
+				"guid": "c33995371bca92630885c1e1a19bb698",
 				"editorProps": {
 					"time": 122.47058823529413
 				},
@@ -27831,19 +27033,19 @@
 					"numerator": 12,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
+					"numerator": 2,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "FhZszXHxkZxYPIw5chx30zxSoFAqXknL",
+				"guid": "fpaLr74dwoJr2Cdii7BTbomFP2YJM9jq",
 				"editorProps": {
 					"time": 122.47058823529413
 				},
@@ -27885,7 +27087,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fSJVgMWbosbeh3btFySSDUImQmb8dgIn",
+				"guid": "BD82jjoVcjgMR0wd6DNKo1Mg3moGNmrN",
 				"editorProps": {
 					"time": 122.64705882352942
 				},
@@ -27906,7 +27108,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "jZyXKFQp1SXRV0lYyrauFtAyw7FaX7D6",
+				"guid": "hgPM0259EIQtJidsR6KbKeHfnKyQiozB",
 				"editorProps": {
 					"time": 122.64705882352942
 				},
@@ -27927,7 +27129,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "sJnL703wvve8Vs9ZWb8uXr8bOn5OoeaB",
+				"guid": "ajY1zEASdOePb9VnrOkYlRopmAhB4w4S",
 				"editorProps": {
 					"time": 122.64705882352942
 				},
@@ -28011,7 +27213,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "kNVcSsXFz9bMYC1k8pJZDeG0Qe4WchM2",
+				"guid": "R6N4laBiND93O8sgTO8W6a5tBlhA6T8H",
 				"editorProps": {
 					"time": 122.82352941176471
 				},
@@ -28032,7 +27234,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "jn3vBrqiBglDpCRwz8a0xakcDjNyowbP",
+				"guid": "vycgvizbyVMVIW7QajwHIvPWTuXc5DeL",
 				"editorProps": {
 					"time": 123
 				},
@@ -28047,27 +27249,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "c8d5ad80e56c240701efb3e2a82d8482",
-				"editorProps": {
-					"time": 123.00000000000001
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 2,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -28095,7 +27276,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "9ce2f0308f1b4d73756dfb71893f8f5d",
+				"guid": "2ad53fc0366cba4bf189d19105c6c1b4",
 				"editorProps": {
 					"time": 123.00000000000001
 				},
@@ -28104,19 +27285,40 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "TMGQgtowrY0AMZ2oZa8tJyHdzjZrLMfv",
+				"guid": "89078751e8e09147228ae044bd37b7ce",
+				"editorProps": {
+					"time": 123.00000000000001
+				},
+				"measureIndex": 87,
+				"measurePosition": {
+					"numerator": 2,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 2,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "GCZLbS89VAyHhg8x6KwRhzOfRa3Kn0ey",
 				"editorProps": {
 					"time": 123.17647058823529
 				},
@@ -28158,7 +27360,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "31bf6dbf7d349b615082055ffd724247",
+				"guid": "c1981130db7e0c7ed5b10eedffe034b6",
 				"editorProps": {
 					"time": 123.1764705882353
 				},
@@ -28167,19 +27369,19 @@
 					"numerator": 4,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "icb7t87hO0alSj7NYg8KO4Jd8dPac1kF",
+				"guid": "hz5R43fMsAv9EOTVEx322GCa3Sj6D1eA",
 				"editorProps": {
 					"time": 123.1764705882353
 				},
@@ -28221,7 +27423,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "q5Wqb1TLg1rbpF339QatAdTDMsiQFCBD",
+				"guid": "0VnpcgQC81nFB7fvonmHnyVnBnCFeOTR",
 				"editorProps": {
 					"time": 123.3529411764706
 				},
@@ -28242,7 +27444,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "5ohV5krMQEth0K52snupgjQE1CF197be",
+				"guid": "mgGOXjJVGN1I3nnxCZc1ORInVK42EC5Q",
 				"editorProps": {
 					"time": 123.3529411764706
 				},
@@ -28263,7 +27465,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "QCR0Ho4BZf4dZU4x9MbNj19uqEhcvTaT",
+				"guid": "bXH3EKYkRKqbECwlXe7N1cS2QkNVAeXg",
 				"editorProps": {
 					"time": 123.3529411764706
 				},
@@ -28410,48 +27612,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "b58e68fec08ca6f8063e40404eb0517b",
-				"editorProps": {
-					"time": 123.70588235294119
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "389d6d1cf6a1cefc3bc6ebc471e6c3a8",
-				"editorProps": {
-					"time": 123.70588235294119
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "836fbf04b6d60f2c1fb16d9dcf1d7ecf",
 				"editorProps": {
 					"time": 123.88235294117648
@@ -28488,48 +27648,6 @@
 					"denominator": 36
 				},
 				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "85e1003d70d321ad7bfba96ee95a0e8f",
-				"editorProps": {
-					"time": 123.88235294117648
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "0cee099f4c333eb77b841b615ed614eb",
-				"editorProps": {
-					"time": 123.88235294117648
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 12,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-tap",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
@@ -28578,48 +27696,6 @@
 				"customProps": {}
 			},
 			{
-				"guid": "572480694d004757993585b421090f31",
-				"editorProps": {
-					"time": 124.05882352941177
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "e8f74407384ca722676202e620369ce9",
-				"editorProps": {
-					"time": 124.05882352941177
-				},
-				"measureIndex": 87,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
 				"guid": "f73e9b5c76df0f26d8811ed71c33bef6",
 				"editorProps": {
 					"time": 124.23529411764707
@@ -28662,7 +27738,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "a6d2cfe90e428d75a937ce6726e93cde",
+				"guid": "4ae7ac956d3c6e64e5b7bfcf681012c5",
 				"editorProps": {
 					"time": 124.41176470588236
 				},
@@ -28671,19 +27747,19 @@
 					"numerator": 2,
 					"denominator": 16
 				},
-				"horizontalSize": 1,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 1,
-					"denominator": 4
+					"numerator": 8,
+					"denominator": 36
 				},
-				"type": "tap",
+				"type": "above-tap",
 				"speed": 1,
-				"lane": "initialLane0",
+				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "lPcbOw7VPBKImqyEvZIOdtoXBxt0hGEt",
+				"guid": "FBndfzpSuMnjgHoFWGCg7Haex1gsgR80",
 				"editorProps": {
 					"time": 124.41176470588236
 				},
@@ -28704,7 +27780,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "LYxn6F7g8cdzHgaJfh5ljoXkNOAie4KL",
+				"guid": "jQchJk1NFbelNLtbbdQydVwE5mZypTtb",
 				"editorProps": {
 					"time": 124.5
 				},
@@ -28725,7 +27801,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "cd81ef5bcae94f3f9211d31b8464b3b5",
+				"guid": "4262b04b56a2d89d0893dfd86c75d550",
 				"editorProps": {
 					"time": 124.50000000000001
 				},
@@ -28734,19 +27810,19 @@
 					"numerator": 3,
 					"denominator": 16
 				},
-				"horizontalSize": 1,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 2,
-					"denominator": 4
+					"numerator": 16,
+					"denominator": 36
 				},
-				"type": "tap",
+				"type": "above-tap",
 				"speed": 1,
-				"lane": "initialLane0",
+				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "7fc7e3582940f5f30f3c1fce18020e01",
+				"guid": "6d1e5e966327eab04f661ff5fe105374",
 				"editorProps": {
 					"time": 124.58823529411765
 				},
@@ -28755,19 +27831,19 @@
 					"numerator": 4,
 					"denominator": 16
 				},
-				"horizontalSize": 1,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 1,
-					"denominator": 4
+					"numerator": 8,
+					"denominator": 36
 				},
-				"type": "tap",
+				"type": "above-tap",
 				"speed": 1,
-				"lane": "initialLane0",
+				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "E69IUSgZONHucVt3q6TgulLi0OAFYlsE",
+				"guid": "dKl4YP9AXfvadWbrNoZwmcOS9bUAxfZh",
 				"editorProps": {
 					"time": 124.58823529411767
 				},
@@ -28788,7 +27864,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "53e36acc398414251119ac4ae10a1719",
+				"guid": "98e96c43dac6d289f4d7a4e2f8a4c496",
 				"editorProps": {
 					"time": 124.6764705882353
 				},
@@ -28797,19 +27873,19 @@
 					"numerator": 5,
 					"denominator": 16
 				},
-				"horizontalSize": 1,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 2,
-					"denominator": 4
+					"numerator": 16,
+					"denominator": 36
 				},
-				"type": "tap",
+				"type": "above-tap",
 				"speed": 1,
-				"lane": "initialLane0",
+				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "XvK8qe7pkx7ah11RPlaKUzeYZtKPKbIK",
+				"guid": "WLMgAxfk8bP9Q9XFDXZ7gQtW8hI1jYEC",
 				"editorProps": {
 					"time": 124.6764705882353
 				},
@@ -28851,7 +27927,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "9cc6c9ec1d3b965ffdfc0a579da2bb9f",
+				"guid": "29831b75f5a2186e49411a4ffdd62cdd",
 				"editorProps": {
 					"time": 124.76470588235296
 				},
@@ -28860,14 +27936,14 @@
 					"numerator": 6,
 					"denominator": 16
 				},
-				"horizontalSize": 1,
+				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 1,
-					"denominator": 4
+					"numerator": 8,
+					"denominator": 36
 				},
-				"type": "tap",
+				"type": "above-tap",
 				"speed": 1,
-				"lane": "initialLane0",
+				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -28893,13 +27969,139 @@
 				"customProps": {}
 			},
 			{
-				"guid": "c3d1ba07e32ba36def9fd848a82f1b37",
+				"guid": "8c896a8b6d059f25481ab50343be87e4",
 				"editorProps": {
 					"time": 124.8529411764706
 				},
 				"measureIndex": 88,
 				"measurePosition": {
 					"numerator": 7,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 16,
+					"denominator": 36
+				},
+				"type": "above-tap",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "af14e2123f3cce6c400dc09171f5c0d9",
+				"editorProps": {
+					"time": 124.94117647058825
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 8,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 0,
+					"denominator": 36
+				},
+				"type": "above-hold",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "f0da515e91e74c661927a394a8950b15",
+				"editorProps": {
+					"time": 125.02941176470588
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 9,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 24,
+					"denominator": 36
+				},
+				"type": "above-hold",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "2ade0bf0b21f53b7ba5a781cd69aad86",
+				"editorProps": {
+					"time": 125.11764705882354
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 10,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 1,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "Lo1F47Y4GWKdia3UsXyLp2ib5ZI1RqVj",
+				"editorProps": {
+					"time": 125.11764705882354
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 5,
+					"denominator": 8
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 0,
+					"denominator": 36
+				},
+				"type": "above-hold-judge-note",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "pwccs09VmUDeNiIjAJkE1s86M3Y4w9KN",
+				"editorProps": {
+					"time": 125.20588235294117
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 11,
+					"denominator": 16
+				},
+				"horizontalSize": 8,
+				"horizontalPosition": {
+					"numerator": 24,
+					"denominator": 36
+				},
+				"type": "above-hold-judge-note",
+				"speed": 1,
+				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "a84eb97fdd9f419c76cdde21682fb3e0",
+				"editorProps": {
+					"time": 125.20588235294119
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 11,
 					"denominator": 16
 				},
 				"horizontalSize": 1,
@@ -28914,133 +28116,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "f14e589706f29946f68f46b7e57d7fa3",
-				"editorProps": {
-					"time": 124.94117647058825
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 8,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "688aa6f3d6f9a3f5cd0c97528ecb906d",
-				"editorProps": {
-					"time": 125.02941176470588
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 9,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "f9a6ede2055404a23a571cbe666ffbd1",
-				"editorProps": {
-					"time": 125.11764705882354
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 10,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "WhlJHgtVQXtKD0F4n8PiMqUfrn4dXihd",
-				"editorProps": {
-					"time": 125.11764705882354
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 5,
-					"denominator": 8
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "CqMFBZGqcoCEF3tnUSDCc1WTX3g8XsJX",
-				"editorProps": {
-					"time": 125.20588235294117
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 11,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "9e9f35ce055a14f8b56cd1b887394bfa",
-				"editorProps": {
-					"time": 125.20588235294119
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 11,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 24,
-					"denominator": 36
-				},
-				"type": "above-tap",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "0659a8a13b15b7602cb6e91177021eb6",
+				"guid": "4e0711f7d1a96d36ffda19ee9cdfff83",
 				"editorProps": {
 					"time": 125.29411764705883
 				},
@@ -29049,19 +28125,19 @@
 					"numerator": 12,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 0,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-tap",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "CHVuVoSNT3bAOJTlFtOiyJxkSzlhTD44",
+				"guid": "sX3Qw5Yoq9jblug8oNo8MYSm7gwEfGdd",
 				"editorProps": {
 					"time": 125.29411764705884
 				},
@@ -29072,17 +28148,38 @@
 				},
 				"horizontalSize": 8,
 				"horizontalPosition": {
-					"numerator": 8,
+					"numerator": 0,
 					"denominator": 36
 				},
-				"type": "above-slide-judge-note",
+				"type": "above-hold-judge-note",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "d175e18e0c9d083f09b58f1cc39c5789",
+				"guid": "a33fcb11b8911a882046562e040263a1",
+				"editorProps": {
+					"time": 125.38235294117648
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 13,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 2,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "WQfAMfh8NVrigEgkBtIqzlqjNbtpw3cQ",
 				"editorProps": {
 					"time": 125.38235294117648
 				},
@@ -29096,56 +28193,14 @@
 					"numerator": 24,
 					"denominator": 36
 				},
-				"type": "above-tap",
+				"type": "above-hold-judge-note",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "KmQM0cUsbGBnsvK7JQwlyODf0dzYxPh3",
-				"editorProps": {
-					"time": 125.38235294117648
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 13,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
-				},
-				"type": "above-slide-judge-note",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "b5f80c9e07aac015abbc4b2dec1d245f",
-				"editorProps": {
-					"time": 125.47058823529413
-				},
-				"measureIndex": 88,
-				"measurePosition": {
-					"numerator": 14,
-					"denominator": 16
-				},
-				"horizontalSize": 8,
-				"horizontalPosition": {
-					"numerator": 8,
-					"denominator": 36
-				},
-				"type": "above-slide",
-				"speed": 1,
-				"lane": "initialLane1",
-				"layer": "b025b281d9b2bb9d59e04235dc111c79",
-				"customProps": {}
-			},
-			{
-				"guid": "a840ab873a2114e5ffc1051693e2612d",
+				"guid": "416a9268b25aa25c45fe8c18816b3b66",
 				"editorProps": {
 					"time": 125.47058823529413
 				},
@@ -29159,35 +28214,35 @@
 					"numerator": 0,
 					"denominator": 36
 				},
-				"type": "above-tap",
+				"type": "above-hold",
 				"speed": 1,
 				"lane": "initialLane1",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "dc2b26e6dd71b5b67e52ae2eba779091",
+				"guid": "8ea21ba31eaa963d78717d4dce830825",
 				"editorProps": {
-					"time": 125.55882352941177
+					"time": 125.47058823529413
 				},
 				"measureIndex": 88,
 				"measurePosition": {
-					"numerator": 15,
+					"numerator": 14,
 					"denominator": 16
 				},
-				"horizontalSize": 8,
+				"horizontalSize": 1,
 				"horizontalPosition": {
-					"numerator": 16,
-					"denominator": 36
+					"numerator": 1,
+					"denominator": 4
 				},
-				"type": "above-slide",
+				"type": "tap",
 				"speed": 1,
-				"lane": "initialLane1",
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
 			{
-				"guid": "95b5ed4d5747d1b83e2a48a22f92f2a2",
+				"guid": "f9d6f51699e7921d1a0abb1f5a9a151d",
 				"editorProps": {
 					"time": 125.55882352941177
 				},
@@ -29201,9 +28256,30 @@
 					"numerator": 24,
 					"denominator": 36
 				},
-				"type": "above-tap",
+				"type": "above-hold",
 				"speed": 1,
 				"lane": "initialLane1",
+				"layer": "b025b281d9b2bb9d59e04235dc111c79",
+				"customProps": {}
+			},
+			{
+				"guid": "2f82a2aa2387a8afa4418e1fa209b4ba",
+				"editorProps": {
+					"time": 125.55882352941177
+				},
+				"measureIndex": 88,
+				"measurePosition": {
+					"numerator": 15,
+					"denominator": 16
+				},
+				"horizontalSize": 1,
+				"horizontalPosition": {
+					"numerator": 2,
+					"denominator": 4
+				},
+				"type": "tap",
+				"speed": 1,
+				"lane": "initialLane0",
 				"layer": "b025b281d9b2bb9d59e04235dc111c79",
 				"customProps": {}
 			},
@@ -29250,7 +28326,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "3W23Hsop7v23HTLPeOSl3XRHOiRjy5JA",
+				"guid": "1hSeqjshuR55WhOaqSWdz5XtFkR94Bqf",
 				"editorProps": {
 					"time": 125.82352941176471
 				},
@@ -29271,7 +28347,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Ik9eQTA7ySYyDcRcOeQdkTI7VEEXOmZO",
+				"guid": "y3nC1bvMxZ7PgJbRcUsjIbdocecIXMpn",
 				"editorProps": {
 					"time": 126
 				},
@@ -29313,7 +28389,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "xW4POVFD2KIpNqcY7FzMx1REXSg6adfn",
+				"guid": "Y6qhyzhbMqYCSEsd4Qm9yZQlLFgaKKSv",
 				"editorProps": {
 					"time": 126.00000000000001
 				},
@@ -29355,7 +28431,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "Xcb2oO5vverfbbYNqyuUeKyinalmy9Ql",
+				"guid": "9M9w8YMZln5QQo41HQLnJrQW4BfhKjsG",
 				"editorProps": {
 					"time": 126.1764705882353
 				},
@@ -29376,7 +28452,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "LrQm2B621utat9byEzOykKLaBwvAJ8FV",
+				"guid": "vFB4HYFZQUh48fngDWaFwb9VS77v8wQk",
 				"editorProps": {
 					"time": 126.1764705882353
 				},
@@ -29397,7 +28473,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "6n5LT9uBzYnOFactQNxiqXvw8Dse7WhD",
+				"guid": "Gnxtpw5ogbEkFaF5lYfqvbXkqG0PIohv",
 				"editorProps": {
 					"time": 126.1764705882353
 				},
@@ -29418,7 +28494,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "P2Py6wDiQaJOmy5LyiYKs0TFEhisRpnh",
+				"guid": "DjY48Ll6MWYdjKXbUBY2P1vnvEEDWfMh",
 				"editorProps": {
 					"time": 126.3529411764706
 				},
@@ -29439,7 +28515,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "HFf2GTgrF7K7ELpwd5RoZQY7cNEece7x",
+				"guid": "nkF3UcQ9o0RpNRqJkzN3CPV88ddi6rZX",
 				"editorProps": {
 					"time": 126.3529411764706
 				},
@@ -29460,7 +28536,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "fQTWpIlILbWaJxssaifcEEhISMYubeu6",
+				"guid": "QBF6LQFE6F43sxJfHlQ9ZUHt7yRCMbae",
 				"editorProps": {
 					"time": 126.35294117647061
 				},
@@ -29502,7 +28578,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "mDsOPo3w4yMpDKxrNaHWNGahTTBs6NUn",
+				"guid": "CfOR0em5F7GKGpKbx61nbxlqFzpAB7MG",
 				"editorProps": {
 					"time": 126.5294117647059
 				},
@@ -29523,7 +28599,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "T41mKaIHg5sxq56qqoTlEmnkNrxdMoNg",
+				"guid": "E8GPm3pkJL58V7BTijjugOikQ0kiL2wM",
 				"editorProps": {
 					"time": 126.5294117647059
 				},
@@ -29544,7 +28620,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "NkwW9kxYLP9AnqWePQayii6NGq6LFNRf",
+				"guid": "qjJVd26L0tz3nhcR3u1Sh0kcYRyOqPJs",
 				"editorProps": {
 					"time": 126.5294117647059
 				},
@@ -29607,7 +28683,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "po6Vrp0N8q8DZWOuSRDuur11KlxE64Fe",
+				"guid": "5ENWfCZcMicmyBv1vSDFAZhsDDdWN5Ny",
 				"editorProps": {
 					"time": 127.23529411764706
 				},
@@ -29649,7 +28725,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "hd45J9JMigIgNbCsOey0xQTL22R9yNfd",
+				"guid": "lVlcjSh6bfP5fOfEC8SXpVfmTLLRAAaN",
 				"editorProps": {
 					"time": 127.41176470588236
 				},
@@ -29691,7 +28767,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "m4k1JdCBm4qdpZ4MDaX6HCJscA4JtnVY",
+				"guid": "8Oh0h7utnkgfRjd8ysHjlWVxa2oU1FMa",
 				"editorProps": {
 					"time": 127.58823529411765
 				},
@@ -29712,7 +28788,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "IvWaUlqt8jkbsuVPHyjmxtPgO828HLls",
+				"guid": "QdyHZcvUdqXeDXiFK4cWKxOkGa0jp1x8",
 				"editorProps": {
 					"time": 127.58823529411765
 				},
@@ -29733,7 +28809,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "1f7WghM6avrCac8KGqlMSMXDK1aipmCw",
+				"guid": "4iOyfPHttLlPBYrNLXa65VFjgjLtVaM5",
 				"editorProps": {
 					"time": 127.76470588235296
 				},
@@ -29754,7 +28830,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "6jvDNNpx1TUVgqyfgpvojhzyELQZtYmN",
+				"guid": "oKrFNqyuF2DXnDWSr8UGZtEBkfQykXCi",
 				"editorProps": {
 					"time": 127.76470588235296
 				},
@@ -29775,7 +28851,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "xwxwJ65zgLOg9GZQjbJjEWDrnkmuaQMJ",
+				"guid": "3m8pDjcTJC7nRNeRcdPL32PmmbElgGmW",
 				"editorProps": {
 					"time": 127.76470588235296
 				},
@@ -30216,7 +29292,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "vx37WchP0OsWL0KZsYia9BvuHgrQwROq",
+				"guid": "kJeBxSPJFrNLLeQqrsVr6iPjK1WsgP37",
 				"editorProps": {
 					"time": 130.0588235294118
 				},
@@ -30258,7 +29334,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "TeB7CkYJbRYQqfnthi9hlmGXeb5Bd3aP",
+				"guid": "qhiDSrDFO2sHUwEPR74anajgKBCxWrkc",
 				"editorProps": {
 					"time": 130.23529411764707
 				},
@@ -30300,7 +29376,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "oxn88zrmgAfkdnT1ZkCGerdIE1ApCWyu",
+				"guid": "8oNpjKXelB1PWpApp2GfYPPCDwxNU9BF",
 				"editorProps": {
 					"time": 130.41176470588238
 				},
@@ -30321,7 +29397,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "FaC26kwchooI2FsPK3WUvuOlsJqv3jfW",
+				"guid": "PzIBRYznLL4TUJsjNrDjnHQ05yFzf8Mo",
 				"editorProps": {
 					"time": 130.41176470588238
 				},
@@ -30342,7 +29418,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "bAdMeNW4a1P07ZZ7KqAa4YCDCCA2TrXw",
+				"guid": "BGDumHO3kYNvcfpXc4CZNCp4ZUtkKfYI",
 				"editorProps": {
 					"time": 130.58823529411765
 				},
@@ -30363,7 +29439,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "LqWYhovpecrwFODRkNGIztL0yitZrDdY",
+				"guid": "9setGMgXAQrN1gu4rkBOB0EtWeITOW59",
 				"editorProps": {
 					"time": 130.58823529411765
 				},
@@ -30384,7 +29460,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "AiyRNKpB9oLYzSVuRUfVugRces1WR3El",
+				"guid": "ukD0hekT0JZYXeoQHDSO3KPwa9QzADg8",
 				"editorProps": {
 					"time": 130.58823529411765
 				},
@@ -30804,7 +29880,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "kSWF6KLaSadNqle1idoI6sO2g82Yg4pN",
+				"guid": "nTJ2F3Rkyuc5ctiBybYgPRH2E3wbxdgS",
 				"editorProps": {
 					"time": 132.8823529411765
 				},
@@ -30846,7 +29922,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "s4wS6efdSLbZBiinjHFRE2avVpMw9S4C",
+				"guid": "arfr33pa8glEQchBSpM43AJ2SdtabeSE",
 				"editorProps": {
 					"time": 133.05882352941177
 				},
@@ -30888,7 +29964,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "XzMefucFhgjtSvKxslSUKvJnZoT3NyWS",
+				"guid": "ccKkXBnOSw3ai5Nz2njI6fQFedTUCRT6",
 				"editorProps": {
 					"time": 133.23529411764707
 				},
@@ -30909,7 +29985,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "FOMhEZzEu2GzZeoPymwVhKp1HjLqnN9Q",
+				"guid": "LGeEnaSdjLcRy1rcSnww1VYByMnvvix2",
 				"editorProps": {
 					"time": 133.23529411764707
 				},
@@ -30930,7 +30006,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "0pA6JZnZptxzIqM3gnwuO7zSVyC0CSn1",
+				"guid": "VdVWMjRz3StAPfMP2Yotb9SaMBYVGJNk",
 				"editorProps": {
 					"time": 133.41176470588235
 				},
@@ -30951,7 +30027,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "4D1DthG9yn4iLx9IEizohzIrjHlYRHrJ",
+				"guid": "ETVPDbs4xZ0N2B12ppajcSc3ZANeHnnu",
 				"editorProps": {
 					"time": 133.41176470588235
 				},
@@ -30972,7 +30048,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "7Rq8KVoJj19eaIaCG9jjtbU9qbNgcZkG",
+				"guid": "eMIlt6nYGThK3kGity7iZzWfLKspoki1",
 				"editorProps": {
 					"time": 133.41176470588238
 				},
@@ -31455,7 +30531,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "t1w1sAfj2MzOR6fmVAjxiMtSecTWym7W",
+				"guid": "pNZvGLcAUvAUeLju9BTdj6qGxQPg1e9N",
 				"editorProps": {
 					"time": 135.7058823529412
 				},
@@ -31476,7 +30552,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "UAjgmaUCQqYNyB3dgxlJXZgy5J9MEsf7",
+				"guid": "ktdnM90dOedMZ38S0crPv1KC9oYMfQiU",
 				"editorProps": {
 					"time": 135.88235294117646
 				},
@@ -31539,7 +30615,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "6aM9dybgQPsRNPTzy8Yg5DWLCcb2gZeP",
+				"guid": "Xi5vaev0NXfBianq9fJvUr5rsdHQpDDg",
 				"editorProps": {
 					"time": 136.05882352941177
 				},
@@ -31560,7 +30636,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "GGw3Ka8zbrafAb7yQqTIzvEBEICj6MVa",
+				"guid": "3papJoXXPOoQZme6l6GgRdZo3XsuLaaC",
 				"editorProps": {
 					"time": 136.05882352941177
 				},
@@ -31581,7 +30657,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "80LSwtTmlA4J8DzDM7YmMf8q0Sehqbio",
+				"guid": "i06zPZFQBSUn3YXgaXJ0HD1YPJrOKub1",
 				"editorProps": {
 					"time": 136.23529411764704
 				},
@@ -31602,7 +30678,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "mci6RBRTgy1CMwa0yGmlp8bIGCaLLDUZ",
+				"guid": "Tj9slBxYH9I37WitE5cYlbdjCbTtf6bH",
 				"editorProps": {
 					"time": 136.23529411764707
 				},
@@ -31623,7 +30699,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "cDh9dfVT8AFxVMcCDZgrjbJLsBTbhiKh",
+				"guid": "ZoZNphRFrt7fN0hNLv0Ka32gDKH3YmbS",
 				"editorProps": {
 					"time": 136.23529411764707
 				},
@@ -31959,7 +31035,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "DYhoRiFtU1ZJFxiTssq6ekllbn2iW4ZJ",
+				"guid": "Lp0NxZDD2lh2t1bdGVTbLJDjb7EdY59d",
 				"editorProps": {
 					"time": 138.1764705882353
 				},
@@ -31980,7 +31056,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "83WPBqXAxqHKhSd4sQ5A8dI8H4YW6Sz1",
+				"guid": "9FlKhRCd1gveeNoAGqpZW3GoarTN6Aag",
 				"editorProps": {
 					"time": 138.1764705882353
 				},
@@ -32001,7 +31077,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "jsSu7tQvcedDyMRLg2EHcM4g6Gbr85I5",
+				"guid": "tf0JwhgKKnf8rCj6sM0GbMDXXc4TLmZZ",
 				"editorProps": {
 					"time": 138.1764705882353
 				},
@@ -32022,7 +31098,7 @@
 				"customProps": {}
 			},
 			{
-				"guid": "T8qTqZ8zTzL9e3quYBvwofl4rucIz31Q",
+				"guid": "beGoBzCYcekrfpUIwkJXSSfX3yPLuxsd",
 				"editorProps": {
 					"time": 138.1764705882353
 				},
@@ -32869,11 +31945,6 @@
 				"tail": "a8e48a747640736039df6f522d302c1b"
 			},
 			{
-				"guid": "a65a4d080661aedf9984d2cca752e40b",
-				"head": "b060f365f978485a6395d7264134d5be",
-				"tail": "291cb50682183ba78607a7f90603c1a6"
-			},
-			{
 				"guid": "f5c7f99cba580b498b18d4253ce675e7",
 				"head": "ea54260bfe1c968069f4e7e1b83722e7",
 				"tail": "56cc7a234db5595cef86d282e883b78b"
@@ -32892,11 +31963,6 @@
 				"guid": "e9bda3bc4e27e9d534c460b3298e772b",
 				"head": "56cc7a234db5595cef86d282e883b78b",
 				"tail": "d109da02e1375dfcf669e0477ea8a531"
-			},
-			{
-				"guid": "13ebe82f1439dc370bfd5a104b559ee2",
-				"head": "59c02c4a8a94e7e4bb1e86a5e42ecb59",
-				"tail": "40703f2bc73178d80eafff933da5c236"
 			},
 			{
 				"guid": "3a2ff4396c98409a10ff447abb119df7",
@@ -33454,16 +32520,6 @@
 				"tail": "cc4c19634d6910b9c33513b3ce081c74"
 			},
 			{
-				"guid": "98fcc23a62450adca5fd0023ca12b8f5",
-				"head": "f14e589706f29946f68f46b7e57d7fa3",
-				"tail": "b5f80c9e07aac015abbc4b2dec1d245f"
-			},
-			{
-				"guid": "d5958699c4827757a60235d98b3887ed",
-				"head": "688aa6f3d6f9a3f5cd0c97528ecb906d",
-				"tail": "dc2b26e6dd71b5b67e52ae2eba779091"
-			},
-			{
 				"guid": "36345c641bb8d544538eaa653413843a",
 				"head": "52428871386215bdac5a35a637da5fb0",
 				"tail": "511f4b992f9f89971f2d4d5967cd7f82"
@@ -33577,6 +32633,36 @@
 				"guid": "2f60409769ffc745eb018d55e2161285",
 				"head": "b5e0e2699eea72d3a315f574e7105cfe",
 				"tail": "04744a847ede2c7b1b20f2c03b25a69d"
+			},
+			{
+				"guid": "f60af67bd5da81b9b816987581974828",
+				"head": "afe9039e113d35b243d59d8437b2481d",
+				"tail": "c27107483bba50dae6d8cf57ea4ebcda"
+			},
+			{
+				"guid": "e1f53d14743be0371a4c858f9dfece04",
+				"head": "f8d32771913769bf8f7942a103bf17cb",
+				"tail": "945835474a771956ebdcd66bd1d2dace"
+			},
+			{
+				"guid": "3be45a80e6eabd0f5377dcbd3f895fc2",
+				"head": "968713394ed3d6618301ff9471f53715",
+				"tail": "1b1fc1a4586090e6dd656541af2e7435"
+			},
+			{
+				"guid": "a29eb4c4775c19e9028e53691feb1ef5",
+				"head": "984f49d02a843f3256a6dec4570766b2",
+				"tail": "894b0e4016c42b156bcc26f17c148992"
+			},
+			{
+				"guid": "f7e08614dd8d9bede5336484294a8eb0",
+				"head": "af14e2123f3cce6c400dc09171f5c0d9",
+				"tail": "416a9268b25aa25c45fe8c18816b3b66"
+			},
+			{
+				"guid": "6a2b1a70ebdff05f9056c317053ad2fa",
+				"head": "f0da515e91e74c661927a394a8950b15",
+				"tail": "f9d6f51699e7921d1a0abb1f5a9a151d"
 			}
 		],
 		"measures": [
