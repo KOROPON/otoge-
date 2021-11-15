@@ -190,26 +190,27 @@ public class AllJudgeService : MonoBehaviour
                     }
                     else
                     {
+                        int lanePos = tapNotes[i][j].note.LanePosition + (int)Mathf.Floor(tapNotes[i][j].note.Size / 2);
                         switch (difference)
                         {
                             case var dif when dif <= _judgeSeconds["Tap Perfect"]:
                                 {
                                     judgeResult = JudgeResultType.Perfect;
-                                    _judgeEffector.TapJudgeEffector(i, "Perfect");
+                                    _judgeEffector.TapJudgeEffector(lanePos, "Perfect");
                                     _judgeRankEffector.JudgeRankDisplay("perfect");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Good"]:
                                 {
                                     judgeResult = JudgeResultType.Good;
-                                    _judgeEffector.TapJudgeEffector(i, "Good");
+                                    _judgeEffector.TapJudgeEffector(lanePos, "Good");
                                     _judgeRankEffector.JudgeRankDisplay("good");
                                     break;
                                 }
                             case var dif when dif <= _judgeSeconds["Tap Bad"]:
                                 {
                                     judgeResult = JudgeResultType.Bad;
-                                    _judgeEffector.TapJudgeEffector(i, "Bad");
+                                    _judgeEffector.TapJudgeEffector(lanePos, "Bad");
                                     _judgeRankEffector.JudgeRankDisplay("bad");
                                     break;
                                 }
