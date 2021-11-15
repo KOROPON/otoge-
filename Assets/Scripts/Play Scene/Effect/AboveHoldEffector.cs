@@ -32,6 +32,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
 
     public void Render(float currentTime, AudioSource effectAudio)
     {
+        gameObject.transform.eulerAngles = new Vector3(0, 0, 90 - (180 * (_lanePos - 4 + 0.5f)) / 32);
         _blJudge = false;
         if (InputService.AboveLaneTapStates != null)
         {

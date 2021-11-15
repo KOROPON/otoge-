@@ -42,9 +42,9 @@ public class JudgeEffector : MonoBehaviour
                 effector.GetComponentsInChildren<ParticleSystem>()[2].Stop();
             }
             _effectorLanePos.SetValue(lanePos, i);
-            effector.transform.position = RhythmGamePresenter.LanePositions[lanePos];
             if (lanePos <= 3)//below
             {
+                effector.transform.position = RhythmGamePresenter.LanePositions[lanePos];
                 EffectAudiou(judgeLevel);
                 effector.transform.eulerAngles = new Vector3(0, 0, 0);
                 effector.GetComponentsInChildren<ParticleSystem>()[0].Play();
@@ -53,9 +53,10 @@ public class JudgeEffector : MonoBehaviour
             }
             else//above
             {
+                effector.transform.position = RhythmGamePresenter.LanePositions[lanePos + 4];
                 EffectAudiou(judgeLevel);
                 //Debug.Log("lanePos = " + lanePos + "  " + (90 - (180 * (lanePos + 0.5f)) / 32) + "度");
-                effector.transform.eulerAngles = new Vector3(0, 0, 90 - (180 * (lanePos - 4 + 0.5f)) / 32);
+                effector.transform.eulerAngles = new Vector3(0, 0, 90 - (180 * (lanePos + 0.5f)) / 32);
                 effector.GetComponentsInChildren<ParticleSystem>()[0].Play();
                 effector.GetComponentsInChildren<ParticleSystem>()[1].Play();
                 effector.GetComponentsInChildren<ParticleSystem>()[2].Play();

@@ -580,7 +580,7 @@ public class RhythmGamePresenter : MonoBehaviour
         }
     }
 
-    private const float Z = -0.8f;
+    private const float Z = -0.3f;
     private const float Z2 = -0.4f;
     public static readonly Vector3[] LanePositions = new Vector3[]
     {

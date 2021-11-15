@@ -94,7 +94,7 @@ public class AboveSlideEffector : MonoBehaviour
         float pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos)) / 32;
         float x = (float)(4.4 * Mathf.Cos(pai));
         float y = (float)4.4 * Mathf.Sin(pai);
-        return new Vector3(x, y, -0.9f);
+        return new Vector3(x, y, -0.3f);
     }
 
     private Vector3 AngleCal(float currentTime)

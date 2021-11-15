@@ -321,7 +321,7 @@ public class AllJudgeService : MonoBehaviour
             if (judgeResult == JudgeResultType.Perfect)
             {
                 Debug.Log("ChainPerfect");
-                _judgeEffector.TapJudgeEffector(chainNotes[i].LanePosition, "Perfect");
+                _judgeEffector.TapJudgeEffector(chainNotes[i].LanePosition + (int) Mathf.Floor(chainNotes[i].Size / 2), "Perfect");
                 _judgeRankEffector.JudgeRankDisplay("perfect");
             }
             else
@@ -332,7 +332,7 @@ public class AllJudgeService : MonoBehaviour
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
             if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
             else RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
-            chainJudgeStartIndex++;
+            chainJudgeStartIndex++; 
         }
     }
 }
