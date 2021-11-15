@@ -27,6 +27,7 @@ namespace Reilas
         {
             _judgeTime = judgeTime;
             InitializeMesh();
+            gameObject.transform.position = new Vector3(0f, 0f, 999f);
         }
 
         private void InitializeMesh()
@@ -68,8 +69,8 @@ namespace Reilas
 
                 //zPos += zz;
 
-                var innerPoint = new Vector3(innerX, innerY, 0);
-                var outerPoint = new Vector3(outerX, outerY, 0);
+                var innerPoint = new Vector3(innerX, innerY, 0f);
+                var outerPoint = new Vector3(outerX, outerY, 0f);
                 
                 //(innerPoint, outerPoint) = (outerPoint, innerPoint);
 
@@ -90,10 +91,10 @@ namespace Reilas
 
             if (_vertices != null)
             {
-                _vertices[66] = new Vector3(-4.6f, -0.25f, 0);
-                _vertices[67] = new Vector3(-4.6f, -0.18f, 0);
-                _vertices[68] = new Vector3(4.6f, -0.25f, 0);
-                _vertices[69] = new Vector3(4.6f, -0.18f, 0);
+                _vertices[66] = new Vector3(-4.6f, -0.25f, 0f);
+                _vertices[67] = new Vector3(-4.6f, -0.18f, 0f);
+                _vertices[68] = new Vector3(4.6f, -0.25f, 0f);
+                _vertices[69] = new Vector3(4.6f, -0.18f, 0f);
 
                 if (_mesh != null) _mesh.vertices = _vertices;
             }
@@ -113,8 +114,6 @@ namespace Reilas
             _mesh.RecalculateBounds();
 #endif
             meshFilter.mesh = _mesh;
-
-            this.gameObject.transform.position = new Vector3(0, 0, 999);
         }
 
         public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)

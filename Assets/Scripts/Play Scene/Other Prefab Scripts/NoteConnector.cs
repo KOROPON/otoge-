@@ -18,6 +18,7 @@ namespace Reilas
         public int[] connector = new int[2];
         public string? kind;
     }
+    
     public sealed class NoteConnector : MonoBehaviour
     {
         private float _judgeTime;
@@ -32,12 +33,13 @@ namespace Reilas
 
         private Mesh? _mesh;
 
-        private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
+        private const float InnerRadius = OuterLaneRadius - 0.15f; // 内縁の半径
         private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
 
         public static int GetConnectorLane(int lane, List<int> groundLanes)
         {
             var closestGroundLane = (int)Mathf.Floor((lane - 4f) * 0.125f);
+            Debug.Log("groundLane: " + closestGroundLane);
             switch (closestGroundLane)
             {
                 case 0:
@@ -79,7 +81,11 @@ namespace Reilas
         public void Initialize(Connector connector)
         {
             _judgeTime = connector.currentTime;
-            foreach (var connectingKind in connector.connectingList) InitializeMesh(connectingKind);
+            foreach (var connectingKind in connector.connectingList)
+            {
+                InitializeMesh(connectingKind);
+                gameObject.transform.position = new Vector3(0f, 0f, 999f);
+            }
         }
 
         private void InitializeMesh(ConnectingKinds connectKind)
@@ -90,12 +96,14 @@ namespace Reilas
             var finish = connectKind.connector[1];
 
             var lanePositions = RhythmGamePresenter.LanePositions;
+            Debug.Log("beginning: " + beginning);
             var startPosition = lanePositions[beginning];
             var spX = startPosition.x;
             var spY = startPosition.y;
             var endPosition = lanePositions[finish];
             var edX = endPosition.x;
             var edY = endPosition.y;
+            
             switch (connectKind.kind)
             {
                 case "Ground-Ground":
@@ -105,21 +113,21 @@ namespace Reilas
                     _triangles = new int[6];
 
                     _triangles[0] = 0;
-                    _triangles[1] = 1;
-                    _triangles[2] = 2;
-                    _triangles[3] = 1;
+                    _triangles[1] = 2;
+                    _triangles[2] = 1;
+                    _triangles[3] = 2;
                     _triangles[4] = 3;
-                    _triangles[5] = 2;
+                    _triangles[5] = 1;
 
-                    _vertices[0] = new Vector3(spX, spY - 0.1f, 999);
-                    _vertices[1] = new Vector3(edX, edY - 0.1f, 999);
-                    _vertices[2] = new Vector3(spX, spY + 0.1f, 999);
-                    _vertices[3] = new Vector3(edX, edY + 0.1f, 999);
+                    _vertices[0] = new Vector3(spX, spY - 0.05f, 0f);
+                    _vertices[1] = new Vector3(edX, edY - 0.05f, 0f);
+                    _vertices[2] = new Vector3(spX, spY + 0.05f, 0f);
+                    _vertices[3] = new Vector3(edX, edY + 0.05f, 0f);
 
                     _uv[0] = new Vector2(0, 0);
-                    _uv[1] = new Vector2(1, 0);
-                    _uv[2] = new Vector2(0, 1);
-                    _uv[3] = new Vector2(1, 1);
+                    _uv[1] = new Vector2(0, 1);
+                    _uv[2] = new Vector2(1, 1);
+                    _uv[3] = new Vector2(1, 0);
                     break;
                 }
                 case "Ground-Above":
@@ -129,26 +137,28 @@ namespace Reilas
                     _triangles = new int[6];
 
                     _triangles[0] = 0;
-                    _triangles[1] = 1;
-                    _triangles[2] = 2;
-                    _triangles[3] = 1;
+                    _triangles[1] = 2;
+                    _triangles[2] = 1;
+                    _triangles[3] = 2;
                     _triangles[4] = 3;
-                    _triangles[5] = 2;
+                    _triangles[5] = 1;
 
-                    _vertices[0] = new Vector3(spX - 0.1f, spY, 999);
-                    _vertices[1] = new Vector3(spX + 0.1f, spY, 999);
-                    _vertices[2] = new Vector3(edX - 0.1f, edY, 999);
-                    _vertices[3] = new Vector3(edX + 0.1f, edY, 999);
+                    _vertices[0] = new Vector3(spX - 0.1f, spY, 0f);
+                    _vertices[1] = new Vector3(spX + 0.1f, spY, 0f);
+                    _vertices[2] = new Vector3(edX - 0.1f, edY - 0.2f, 0f);
+                    _vertices[3] = new Vector3(edX + 0.1f, edY - 0.2f, 0f);
 
                     _uv[0] = new Vector2(0, 0);
-                    _uv[1] = new Vector2(1, 0);
-                    _uv[2] = new Vector2(0, 1);
-                    _uv[3] = new Vector2(1, 1);
+                    _uv[1] = new Vector2(0, 1);
+                    _uv[2] = new Vector2(1, 1);
+                    _uv[3] = new Vector2(1, 0);
 
                     break;
                 }
                 case "Above-Above":
                 {
+                    beginning -= 4;
+                    finish -= 4;
                     var size = finish - beginning + 1;
                     var entityBase = size * 10;
                     var uAndV = entityBase * 2;
@@ -171,8 +181,8 @@ namespace Reilas
                     for (var x = 0; x < size; x++)
                     {
                         var laneIndex = beginning + x;
-                        var angleBase = Div * laneIndex;   // レーンの角度
-                        var angle = Mathf.PI * (angleBase - 1) / angleBase;
+                        var angleBase = Div - laneIndex;   // レーンの角度
+                        var angle = Mathf.PI * (angleBase / Div);
 
                         var innerY = Mathf.Sin(angle) * InnerRadius;
                         var innerX = Mathf.Cos(angle) * InnerRadius;
@@ -180,8 +190,8 @@ namespace Reilas
                         var outerY = Mathf.Sin(angle) * OuterRadius;
                         var outerX = Mathf.Cos(angle) * OuterRadius;
 
-                        var innerPoint = new Vector3(innerX, innerY, 999);
-                        var outerPoint = new Vector3(outerX, outerY, 999);
+                        var innerPoint = new Vector3(innerX, innerY, 0f);
+                        var outerPoint = new Vector3(outerX, outerY, 0f);
 
                         //(innerPoint, outerPoint) = (outerPoint, innerPoint);
                         if (_vertices != null)
@@ -210,14 +220,19 @@ namespace Reilas
 
         // メッシュを生成する
 
-        Debug.Log("Initialized Mesh");
         _mesh = new Mesh
         {
             vertices = _vertices,
             triangles = _triangles
         };
         _mesh.MarkDynamic();
-        
+
+        _mesh.vertices = _vertices;
+        _mesh.SetUVs(0, _uv);
+#if UNITY_EDITOR
+        _mesh.RecalculateBounds();
+#endif
+        meshFilter.mesh = _mesh;
         }
         
         public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
