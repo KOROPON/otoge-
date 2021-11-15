@@ -154,7 +154,7 @@ public class RhythmGamePresenter : MonoBehaviour
     {
         if (CheckType(note, "GroundTap") || CheckType(note, "GroundInternal")) return note.LanePosition;
         // ReSharper disable once PossibleLossOfFraction
-        return note.LanePosition + (int) Mathf.Floor((note.LanePosition + note.Size) / 2) + 4;
+        return GetLane(note) + (int) Mathf.Floor(note.Size / 2);
     }
 
     private static void GetLanes(ReilasNoteEntityToGameObject note, bool boss)
@@ -266,11 +266,12 @@ public class RhythmGamePresenter : MonoBehaviour
 
         NoteLineJsonData[] noteJsonData = chartJsonData.timeline.noteLines;
 
-        var audioClipPath = "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource); //AudioSource の取得
+        var audioClipPath =
+            "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource); //AudioSource の取得
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
-        
+
         if (PlayerPrefs.HasKey("volume")) // tap音調整
 
             // chartEntity
@@ -281,6 +282,7 @@ public class RhythmGamePresenter : MonoBehaviour
             foreach (var bpm in _chartEntity.SpeedChanges) speedChanges.Add(bpm);
             _checkSpeedChangeEntity = true;
         }
+
         NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
         NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);
 
@@ -288,9 +290,12 @@ public class RhythmGamePresenter : MonoBehaviour
         internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
         chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
 
-        _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
-        internalNotes = internalNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
-        chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36).OrderBy(note => note.JudgeTime).ToList();
+        _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36)
+            .OrderBy(note => note.JudgeTime).ToList();
+        internalNotes = internalNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36)
+            .OrderBy(note => note.JudgeTime).ToList();
+        chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36)
+            .OrderBy(note => note.JudgeTime).ToList();
 
         _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
@@ -305,38 +310,38 @@ public class RhythmGamePresenter : MonoBehaviour
             switch (note.Type)
             {
                 case NoteType.AboveSlide:
+                {
+                    if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                     {
-                        if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
-                        {
-                            note.Type = NoteType.AboveSlideInternal;
-                            internalNotes.Add(note);
-                            removeInt.Add(_tapNotes.IndexOf(note));
-                        }
-
-                        break;
+                        note.Type = NoteType.AboveSlideInternal;
+                        internalNotes.Add(note);
+                        removeInt.Add(_tapNotes.IndexOf(note));
                     }
+
+                    break;
+                }
                 case NoteType.AboveHold:
+                {
+                    if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                     {
-                        if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
-                        {
-                            note.Type = NoteType.AboveSlideInternal;
-                            internalNotes.Add(note);
-                            removeInt.Add(_tapNotes.IndexOf(note));
-                        }
-
-                        break;
+                        note.Type = NoteType.AboveSlideInternal;
+                        internalNotes.Add(note);
+                        removeInt.Add(_tapNotes.IndexOf(note));
                     }
+
+                    break;
+                }
                 case NoteType.Hold:
+                {
+                    if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                     {
-                        if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
-                        {
-                            note.Type = NoteType.AboveSlideInternal;
-                            internalNotes.Add(note);
-                            removeInt.Add(_tapNotes.IndexOf(note));
-                        }
-
-                        break;
+                        note.Type = NoteType.AboveSlideInternal;
+                        internalNotes.Add(note);
+                        removeInt.Add(_tapNotes.IndexOf(note));
                     }
+
+                    break;
+                }
                 case NoteType.Tap:
                 case NoteType.HoldInternal:
                 case NoteType.AboveTap:
@@ -355,37 +360,38 @@ public class RhythmGamePresenter : MonoBehaviour
         _tapNotes.OrderBy(note => note.JudgeTime);
         internalNotes.OrderBy(note => note.JudgeTime);
         chainNotes.OrderBy(note => note.JudgeTime);
-        
+
+        var notInternals = new List<ReilasNoteEntity>(_chartEntity.Notes.Where(note =>
+            CheckType(note, "GroundTap") || CheckType(note, "AboveTap") || CheckType(note, "Chain")));
+
         foreach (var measure in _chartEntity.Measures) _barLines.Add(measure.JudgeTime);
 
         var tapNoteIndex = 0;
-        var tapNotesLength = _tapNotes.Count;
+        var tapNotesLength = notInternals.Count;
         for (var i = tapNoteIndex; i < tapNotesLength; i++)
         {
             var lanes = new List<int>();
-            var currentTime = _tapNotes[i].JudgeTime;
+            var currentTime = notInternals[i].JudgeTime;
             var nextNoteIndex = i + 1;
             if (nextNoteIndex == tapNotesLength) break;
-            if (Math.Abs(currentTime - _tapNotes[nextNoteIndex].JudgeTime) > 0) continue;
-            Debug.Log(tapNotesLength); ///// OK
-
+            if (Math.Abs(currentTime - notInternals[nextNoteIndex].JudgeTime) > 0) continue;
             for (var j = i; j < tapNotesLength; j++)
             {
-                var tapNote = _tapNotes[j];
+                var tapNote = notInternals[j];
                 var nextIndex = j + 1;
-                if (nextIndex == tapNotesLength) break;
-                if (Math.Abs(tapNote.JudgeTime - _tapNotes[nextIndex].JudgeTime) > 0f)
-                {
-                    tapNoteIndex = nextIndex;
-                    break;
-                }
                 lanes.Add(GetMiddleLane(tapNote));
+                if (nextIndex == tapNotesLength) break;
+                if (Math.Abs(tapNote.JudgeTime - notInternals[nextIndex].JudgeTime) == 0f) continue;
+                tapNoteIndex = nextIndex;
+                break;
             }
 
             Debug.Log(lanes.Count());
             var connectorKindList = new List<ConnectingKinds>();
-            var groundTaps = new List<int>(lanes.Where(note => note < 4));
-            var aboveTaps = new List<int>(lanes.Where(note => note >= 4));
+            var orderedLanes = lanes.OrderBy(lane => lane);
+            System.Diagnostics.Debug.Assert(orderedLanes != null, nameof(orderedLanes) + " != null");
+            var groundTaps = new List<int>((orderedLanes ?? throw new InvalidOperationException()).Where(note => note < 4));
+            var aboveTaps = new List<int>(orderedLanes.Where(note => note >= 4));
             var groundTapsLength = groundTaps.Count;
 
             if (groundTapsLength > 0)
@@ -395,38 +401,42 @@ public class RhythmGamePresenter : MonoBehaviour
                     ConnectorAdder(connectorKindList, groundTaps, "Ground-Ground");
                 }
 
-                connectorKindList.AddRange(aboveTaps.Select(lane => new ConnectingKinds {connector = new[] {NoteConnector.GetConnectorLane(lane, groundTaps), lane}, kind = "Ground-Above"}));
+                foreach (var lane in aboveTaps)
+                {
+                    Debug.Log("LANE: " + lane);
+                    connectorKindList.Add(new ConnectingKinds
+                    {
+                        connector = new[] {NoteConnector.GetConnectorLane(lane, groundTaps), lane},
+                        kind = "Ground-Above"
+                    });
+                }
             }
-                
+            
             ConnectorAdder(connectorKindList, aboveTaps, "Above-Above");
-                
+
             _noteConnectors.Add(new Connector
             {
                 currentTime = currentTime,
                 connectingList = connectorKindList
             });
         }
-        
-        Debug.Log(_barLines.Count + "   " + _noteConnectors.Count);
-        
+
         chainNoteJudge = new bool[chainNotes.Count];
         internalNoteJudge = new bool[internalNotes.Count];
 
         countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
 
-
         _reilasAboveSlide = _reilasAboveSlide.OrderBy(note => note.Head.JudgeTime).ToList();
         _reilasAboveHold = _reilasAboveHold.OrderBy(note => note.Head.JudgeTime).ToList();
         _reilasHold = _reilasHold.OrderBy(note => note.Head.JudgeTime).ToList();
         _reilasChain = _reilasChain.OrderBy(note => note.JudgeTime).ToList();
-
+        
         SpawnTapNotes(GetNoteTypes(_chartEntity, "GroundTap"), false);
         SpawnAboveTapNotes(GetNoteTypes(_chartEntity, "AboveTap"), false);
         SpawnChainNotes(_reilasChain, false);
         SpawnHoldNotes(_reilasHold, false);
         SpawnAboveHoldNotes(_reilasAboveHold, false);
         SpawnAboveSlideNotes(_reilasAboveSlide, false);
-        
         SpawnBarLines(_barLines);
         SpawnNoteConnectors(_noteConnectors);
 
@@ -434,8 +444,8 @@ public class RhythmGamePresenter : MonoBehaviour
         //_reilasAboveHold.AddRange(_boss.reilasKujoAboveHold);
         //_reilasHold.AddRange(_boss.reilasKujoHold);
         //_reilasChain.AddRange(_boss.reilasKujoChain);
-
-        Debug.Log(AboveKujoHoldNotes.Count());
+        
+        Debug.Log(AboveKujoHoldNotes.Count);
 
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
