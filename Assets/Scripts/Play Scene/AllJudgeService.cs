@@ -319,11 +319,13 @@ public class AllJudgeService : MonoBehaviour
             AllJudge.Add(judgeResult);
             if (judgeResult == JudgeResultType.Perfect)
             {
-                _judgeEffector.TapJudgeEffector(i, "Perfect");
+                Debug.Log("ChainPerfect");
+                _judgeEffector.TapJudgeEffector(chainNotes[i].LanePosition, "Perfect");
                 _judgeRankEffector.JudgeRankDisplay("perfect");
             }
             else
             {
+                Debug.Log("ChainMiss");
                 _judgeRankEffector.JudgeRankDisplay("miss");
             }
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;

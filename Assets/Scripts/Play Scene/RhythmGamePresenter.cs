@@ -365,8 +365,10 @@ public class RhythmGamePresenter : MonoBehaviour
             var lanes = new List<int>();
             var currentTime = _tapNotes[i].JudgeTime;
             var nextNoteIndex = i + 1;
-            if (nextNoteIndex == tapNoteIndex) break;
+            if (nextNoteIndex == tapNotesLength) break;
             if (Math.Abs(currentTime - _tapNotes[nextNoteIndex].JudgeTime) > 0) continue;
+            Debug.Log(tapNotesLength); ///// OK
+
             for (var j = i; j < tapNotesLength; j++)
             {
                 var tapNote = _tapNotes[j];
@@ -380,13 +382,18 @@ public class RhythmGamePresenter : MonoBehaviour
                 lanes.Add(GetMiddleLane(tapNote));
             }
 
+            Debug.Log(lanes.Count());
             var connectorKindList = new List<ConnectingKinds>();
             var groundTaps = new List<int>(lanes.Where(note => note < 4));
             var aboveTaps = new List<int>(lanes.Where(note => note >= 4));
             var groundTapsLength = groundTaps.Count;
+
             if (groundTapsLength > 0)
             {
-                if (groundTapsLength > 1) ConnectorAdder(connectorKindList, groundTaps, "Ground-Ground");
+                if (groundTapsLength > 1)
+                {
+                    ConnectorAdder(connectorKindList, groundTaps, "Ground-Ground");
+                }
 
                 connectorKindList.AddRange(aboveTaps.Select(lane => new ConnectingKinds {connector = new[] {NoteConnector.GetConnectorLane(lane, groundTaps), lane}, kind = "Ground-Above"}));
             }
@@ -676,6 +683,8 @@ public class RhythmGamePresenter : MonoBehaviour
             LaneTapStates[i, 0] = false;
         }
 
+
+
         var allTouch = Input.touches;
         Array.Resize(ref allTouch, 0);
         var touches = Input.touches;
@@ -727,7 +736,7 @@ public class RhythmGamePresenter : MonoBehaviour
         if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
         if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
 
-        if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0f;
+        if (musicName == "Reilas" && dif == "Extreme" && currentTime <= 82 && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
         
         for (var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {
