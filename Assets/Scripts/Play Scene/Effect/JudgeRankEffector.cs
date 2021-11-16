@@ -79,7 +79,6 @@ public class JudgeRankEffector : MonoBehaviour
 
     public void JudgeRankDisplay(string rank)
     {
-        Debug.Log(rank);
         switch (trueNum)
         {
             case 0:

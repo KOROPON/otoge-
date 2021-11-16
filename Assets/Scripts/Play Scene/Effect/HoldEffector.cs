@@ -53,6 +53,6 @@ public sealed class HoldEffector : MonoBehaviour
         _effect1.Stop();
         _effect2.Stop();
         _effect3.Stop();
-        _noteBlight.material.color = new Color32(240, 240, 240, 160);
+        _noteBlight.material.color = new Color32(250, 250, 250, 160);
     }
 }

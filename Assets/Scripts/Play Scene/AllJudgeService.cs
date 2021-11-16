@@ -38,11 +38,11 @@ public class AllJudgeService : MonoBehaviour
 
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
-        {"Tap Perfect", 0.041f},
-        {"Tap Good", 0.058f},
-        {"Tap Bad", 0.075f},
+        {"Tap Perfect", 0.045f},
+        {"Tap Good", 0.070f},
+        {"Tap Bad", 0.090f},
         {"Internal", 0.090f},
-        {"Chain", 0.025f}
+        {"Chain", 0.035f}
     };
 
     private static float CalculateDifference(float currentTime, float judgeTime, string noteType)
@@ -150,7 +150,7 @@ public class AllJudgeService : MonoBehaviour
             tapNotes = RhythmGamePresenter.TapKujoNoteLanes;
         }
 
-        Debug.Log(tapNotes.Length);
+        //Debug.Log(tapNotes.Length);
         for (var i = 0; i < tapNotes.Length; i++)
         {
             //Debug.Log("i:" + i + "  tapJudgeStartIndex" + tapJudgeStartIndex.Length + "tapNotes" + tapNotes.Length);
@@ -266,25 +266,31 @@ public class AllJudgeService : MonoBehaviour
         {
             internalNotes = RhythmGamePresenter.InternalKujoNotes;
         }
-
+        
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
             if (RhythmGamePresenter.internalNoteJudge == null)
             {
-                Debug.LogError("Can't Judge Internal");
                 break;
             }
 
-            if (RhythmGamePresenter.internalNoteJudge[i]) continue;
+            if (RhythmGamePresenter.internalNoteJudge[i])
+            {
+                continue;
+            }
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             ////here
-            //Debug.Log(timeDifference);
-            if (timeDifference > _judgeSeconds["Internal"]) break;
-
-            //Debug.Log(CheckIfTapped(internalNotes[i]));
+            if (timeDifference > _judgeSeconds["Internal"] || timeDifference < 0) // できないよーーーーは？死ねよ
+            {
+                break;
+            }
 
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
-            if (judgeResult == JudgeResultType.NotJudgedYet) continue;
+
+            if (judgeResult == JudgeResultType.NotJudgedYet)
+            {
+                continue;
+            }
             AllJudge.Add(judgeResult);
             RhythmGamePresenter.internalNoteJudge[i] = true;
             internalJudgeStartIndex++;
@@ -292,10 +298,8 @@ public class AllJudgeService : MonoBehaviour
             if (judgeResult == JudgeResultType.Miss)
             {
                 _judgeRankEffector.JudgeRankDisplay("miss");
-                Debug.Log("Miss...");
                 continue;
             }
-
             _judgeRankEffector.JudgeRankDisplay("perfect");
         }
 
@@ -320,13 +324,11 @@ public class AllJudgeService : MonoBehaviour
             AllJudge.Add(judgeResult);
             if (judgeResult == JudgeResultType.Perfect)
             {
-                Debug.Log("ChainPerfect");
                 _judgeEffector.TapJudgeEffector(chainNotes[i].LanePosition + (int) Mathf.Floor(chainNotes[i].Size / 2), "Perfect");
                 _judgeRankEffector.JudgeRankDisplay("perfect");
             }
             else
             {
-                Debug.Log("ChainMiss");
                 _judgeRankEffector.JudgeRankDisplay("miss");
             }
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;

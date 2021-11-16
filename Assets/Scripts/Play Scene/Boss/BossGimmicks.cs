@@ -132,8 +132,7 @@ public class BossGimmicks : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!_presenter.jumpToKujo) return;
-
+        if (!(_presenter.jumpToKujo && _presenter.alreadyChangeKujo)) return;
 
         float time = _presenter.audioTime;
 
