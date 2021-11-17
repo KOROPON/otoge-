@@ -272,10 +272,18 @@ public class RhythmGamePresenter : MonoBehaviour
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
 
-        if (PlayerPrefs.HasKey("volume")) // tap音調整
+        if (PlayerPrefs.HasKey("volume")) { } // tap音調整
 
+        if(chartEntity == null)
+        {
+            Debug.LogError("chartEntityIsNull!");
+        }
             // chartEntity
             _chartEntity = chartEntity;
+        if(_chartEntity == null)
+        {
+            Debug.LogError("_chartEntityIsNull");
+        }
 
         if (_chartEntity.SpeedChanges != null)
         {
@@ -743,8 +751,16 @@ public class RhythmGamePresenter : MonoBehaviour
             }
         }
 
-        if (PlayerPrefs.HasKey("judgeGap")) judgeTime += PlayerPrefs.GetFloat("judgeGap") / 1000;
-        if (PlayerPrefs.HasKey("audioGap")) audioTime += PlayerPrefs.GetFloat("audioGap") / 1000;
+        if (PlayerPrefs.HasKey("judgegap"))
+        {
+            Debug.Log(PlayerPrefs.GetFloat("judgegap"));
+            judgeTime += PlayerPrefs.GetFloat("judgegap") / 1000;
+        }
+        if (PlayerPrefs.HasKey("audiogap"))
+        {
+            Debug.Log(PlayerPrefs.GetFloat("audiogap"));
+            audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
+        }
 
         if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
         
