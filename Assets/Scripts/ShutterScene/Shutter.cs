@@ -63,39 +63,39 @@ public class Shutter : MonoBehaviour
         switch (blChange)
         {
             case "ToPFrP": 
-                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
                 AllNoteDestroy();
-                SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+                SceneManager.LoadScene("PlayScene_2D", LoadSceneMode.Additive);
                 break;
             case "ToR":
-                SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                SceneManager.LoadScene("ResultScene_2D", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
                 AllNoteDestroy();
                 break;
             case "ToSFrR":
-                SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("ResultScene_2D", UnloadSceneOptions.None);
                 break;
             case "ToPFrR":
-                SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
+                SceneManager.LoadScene("PlayScene_2D", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("ResultScene_2D", UnloadSceneOptions.None);
                 break;
             case "ToSFrP":
-                SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
                 AllNoteDestroy();
                 break;
             case "ToS_F":
-                SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("Title Scene", UnloadSceneOptions.None);
+                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("Title Scene_2D", UnloadSceneOptions.None);
                 break;
         }
     }
 
     private void CloseToPlayFunction()
     {
-        SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("SelectScene", UnloadSceneOptions.None);
+        SceneManager.LoadScene("PlayScene_2D", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("SelectScene_2D", UnloadSceneOptions.None);
     }
 
     private void PlaySongAudio()

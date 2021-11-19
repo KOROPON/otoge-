@@ -7,7 +7,7 @@ public class ChangeScene : MonoBehaviour
     void Start()
     {
         _startBool = true;
-        SceneManager.LoadScene("ShutterScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("ShutterScene_2D", LoadSceneMode.Additive);
     }
     public void Change()
     {
