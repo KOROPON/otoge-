@@ -753,13 +753,12 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (PlayerPrefs.HasKey("judgegap"))
         {
-            Debug.Log(PlayerPrefs.GetFloat("judgegap"));
             judgeTime += PlayerPrefs.GetFloat("judgegap") / 1000;
         }
         if (PlayerPrefs.HasKey("audiogap"))
         {
-            Debug.Log(PlayerPrefs.GetFloat("audiogap"));
             audioTime += PlayerPrefs.GetFloat("audiogap") / 1000;
+            judgeTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
         if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;

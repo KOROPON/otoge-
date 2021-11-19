@@ -122,7 +122,7 @@ public class BossGimmicks : MonoBehaviour
         }
 
 
-        _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true); // RhythmGamePresenter  Error NullReferenceExeption
+        _presenter.SpawnTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "GroundTap"), true);
         _presenter.SpawnAboveTapNotes(RhythmGamePresenter.GetNoteTypes(chartKujoEntity, "AboveTap"), true);
         _presenter.SpawnChainNotes(_presenter.reilasKujoChain, true);
         _presenter.SpawnHoldNotes(_presenter.reilasKujoHold, true);
@@ -130,7 +130,7 @@ public class BossGimmicks : MonoBehaviour
         _presenter.SpawnAboveSlideNotes(_presenter.reilasKujoAboveSlide, true);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!(_presenter.jumpToKujo && _presenter.alreadyChangeKujo)) return;
 

@@ -280,9 +280,13 @@ public class AllJudgeService : MonoBehaviour
             }
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             ////here
-            if (timeDifference > _judgeSeconds["Internal"] || timeDifference < 0) // できないよーーーーは？死ねよ
+            if (timeDifference > _judgeSeconds["Internal"]) // できないよーーーーは？死ねよ
             {
                 break;
+            }
+            if(timeDifference < 0)
+            {
+                continue;
             }
 
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
