@@ -28,6 +28,7 @@ public class AllJudgeService : MonoBehaviour
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
 
+
     public void JudgeStart()
     {
         _judgeRankEffector = GameObject.Find("JudgeRank").GetComponent<JudgeRankEffector>();
