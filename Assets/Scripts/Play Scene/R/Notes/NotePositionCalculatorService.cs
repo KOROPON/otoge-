@@ -110,5 +110,12 @@ namespace Reilas
         {
             return new Vector3(entity.Size * BelowNoteWidth, y, 1f);
         }
+
+        public static float NoteRatio(NoteEntity entity, float currentTime, float noteSpeed)
+        {
+            var highSpeed = 1 / (normalizedSpeed * noteSpeed) * 100;
+            float root = (entity.JudgeTime - currentTime) / highSpeed;
+            return 1 + 2 / (root + 1) - 2;
+        }
     }
 }

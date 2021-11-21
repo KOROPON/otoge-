@@ -471,7 +471,7 @@ public class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(tapNotePrefab);
-            tapNote.Initialize(note);
+            tapNote.Initialize(note, bosNotes);
             GetLanes(new ReilasNoteEntityToGameObject
             {
                 note = note,
@@ -922,7 +922,7 @@ public class RhythmGamePresenter : MonoBehaviour
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveSlide.Head.JudgeTime < noteAddCutOff)
                 {
-                    Debug.Log(orgAboveSlideNote.Count + "," + AboveSlideNotes.Count + "の" + indexNum + "番目");
+                    //Debug.Log(orgAboveSlideNote.Count + "," + AboveSlideNotes.Count + "の" + indexNum + "番目");
                     aboveSlideNoteMove.Add(AboveSlideNotes[indexNum]);
                 }
                 else break;

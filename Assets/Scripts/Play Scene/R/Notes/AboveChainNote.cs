@@ -104,15 +104,13 @@ namespace Reilas
 
         private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
-            if (meshFilter == null)
-            {
-                Debug.Log("return");
-                return;
-            }
+            if (meshFilter == null) return;
 
-            const float outerLaneRadius = 5.6f;
-            const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
-            const float outerRadius = outerLaneRadius;        // 外縁の半径
+            var noteRatio = NotePositionCalculatorService.NoteRatio(_entity, currentTime, _noteSpeed);
+            if (noteRatio < 0 || noteRatio > 1.2) return;
+
+            float outerRadius = 3.6f * noteRatio + 2;
+            float innerRadius = outerRadius - 2.6f * noteRatio - 0.4f; // 内縁の半径
             const float div = 32f;
 
             for (var z = 0; z < 1; z++)
@@ -137,14 +135,14 @@ namespace Reilas
                     if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
                     //else
                     //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, speedChangeEntities).z;
+                    //zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, speedChangeEntities).z;
                     //}
 
 
                     //zPos += zz;
 
-                    var innerPoint = new Vector3(innerX, innerY, zPos);
-                    var outerPoint = new Vector3(outerX, outerY, zPos);
+                    var innerPoint = new Vector3(innerX, innerY, 0);
+                    var outerPoint = new Vector3(outerX, outerY, 0);
 
 
                     //(innerPoint, outerPoint) = (outerPoint, innerPoint);

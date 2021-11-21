@@ -71,10 +71,12 @@ namespace Reilas
         {
             if (meshFilter == null) return;
 
-            const float div = 32f;
-            const float outerLaneRadius = 5.6f;
+            var noteRatio = NotePositionCalculatorService.NoteRatio(_entity, currentTime, _noteSpeed);
+            if (noteRatio < 0 || noteRatio > 1.2) return;
 
-            const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
+            const float div = 32f;
+            float outerLaneRadius = 3.6f * noteRatio + 2;
+            float innerRadius = outerLaneRadius - 2.6f * noteRatio - 0.4f; // 内縁の半径
 
             for (var x = 0; x < _entity.Size + 1; x++)
             {
@@ -91,12 +93,12 @@ namespace Reilas
 
                 if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
                     
-                var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities).z;
+                //var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities).z;
                     
                 //zPos += zz;
 
-                var innerPoint = new Vector3(innerX, innerY, zPos);
-                var outerPoint = new Vector3(outerX, outerY, zPos);
+                var innerPoint = new Vector3(innerX, innerY, 0);
+                var outerPoint = new Vector3(outerX, outerY, 0);
 
 
                 //(innerPoint, outerPoint) = (outerPoint, innerPoint);

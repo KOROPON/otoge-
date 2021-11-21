@@ -221,8 +221,8 @@ namespace Reilas
 
             //var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
+            //var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
+            //var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
 
 
             int thisNoteZRatio;
@@ -230,14 +230,20 @@ namespace Reilas
             if (_leftRatio > _rightRatio) thisNoteZRatio = _leftRatio + 2;
             else thisNoteZRatio = _rightRatio + 2;
 
+            var headNoteRatio = NotePositionCalculatorService.NoteRatio(_entity.Head, currentTime, _noteSpeed);
+            var tailNoteRatio = NotePositionCalculatorService.NoteRatio(_entity.Tail, currentTime, _noteSpeed);
+            if (headNoteRatio < 0) return;
+            if (tailNoteRatio < 0) tailNoteRatio = 0;
+
             const float div = 32f;
-            const float outerLaneRadius = 4.4f;
+            float headLaneRadius = 3.6f * headNoteRatio + 2;
+            float tailLaneRadius = 3.6f * tailNoteRatio + 2;
 
             for (var z = 0; z < thisNoteZRatio; z++)
             {
                 var p2 = 1f / (thisNoteZRatio - 1) * z;
 
-                var currentZ = Mathf.Lerp(headZ, tailZ, p2);
+                var currentZ = Mathf.Lerp(headNoteRatio, tailNoteRatio, p2); // 0～1, 今の描写対象の位置 center => 0, judgeLine => 1
 
                 var nowLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, p2);
 
@@ -245,14 +251,14 @@ namespace Reilas
                 {
                     var laneIndex = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, p2) + nowLaneSize / _thisNoteSize * x; //今作る頂点のレーン番号(小数点以下含む)
 
-                    var angle = Mathf.PI / div * laneIndex;
+                    var angle = Mathf.PI * (div - laneIndex) / div;
 
                     angle = Mathf.PI / 2f - angle;
 
-                    var outerX = Mathf.Sin(angle) * outerLaneRadius;
-                    var outerY = Mathf.Cos(angle) * outerLaneRadius;
+                    var outerX = Mathf.Cos(angle) * currentZ * 5.6f;
+                    var outerY = Mathf.Sin(angle) * currentZ * 5.6f;
 
-                    var outerPoint = new Vector3(-outerX, outerY, currentZ);
+                    var outerPoint = new Vector3(outerX, outerY, currentZ);
 
                     _vertices[(_thisNoteSize + 1) * z + x] = outerPoint;
                     _uv[z * (_thisNoteSize + 1) + x] = new Vector2(1f / _thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);

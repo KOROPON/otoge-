@@ -63,31 +63,31 @@ public class Shutter : MonoBehaviour
         switch (blChange)
         {
             case "ToPFrP": 
-                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
                 AllNoteDestroy();
+                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
                 SceneManager.LoadScene("PlayScene_2D", LoadSceneMode.Additive);
                 break;
             case "ToR":
-                SceneManager.LoadScene("ResultScene_2D", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
                 AllNoteDestroy();
+                SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
+                SceneManager.LoadScene("ResultScene_2D", LoadSceneMode.Additive);
                 break;
             case "ToSFrR":
-                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("ResultScene_2D", UnloadSceneOptions.None);
+                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
                 break;
             case "ToPFrR":
-                SceneManager.LoadScene("PlayScene_2D", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("ResultScene_2D", UnloadSceneOptions.None);
+                SceneManager.LoadScene("PlayScene_2D", LoadSceneMode.Additive);
                 break;
             case "ToSFrP":
-                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("PlayScene_2D", UnloadSceneOptions.None);
+                SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
                 AllNoteDestroy();
                 break;
             case "ToS_F":
+                if(SceneManager.GetSceneByName("Title Scene_2D").IsValid()) SceneManager.UnloadSceneAsync("Title Scene_2D", UnloadSceneOptions.None);
                 SceneManager.LoadScene("SelectScene_2D", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("Title Scene_2D", UnloadSceneOptions.None);
                 break;
         }
     }

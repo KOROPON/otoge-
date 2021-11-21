@@ -35,6 +35,7 @@ namespace Rhythmium
         public SpeedChangeEntity(OtherObjectJsonData speedChangeJsonData)
         {
             position = speedChangeJsonData.measureIndex + speedChangeJsonData.measurePosition.To01();
+            Debug.Log(speedChangeJsonData.value);
             speed = float.Parse(speedChangeJsonData.value);
         }
     }

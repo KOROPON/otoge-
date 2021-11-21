@@ -47,9 +47,9 @@ namespace Rhythmium
 
             // speed changes
             chart.SpeedChanges = new List<SpeedChangeEntity>();
-            foreach (var speedChange in chartJsonData.timeline.otherObjects.Where(o =>
-                o.type == (int)OtherObjectType.Speed))
+            foreach (var speedChange in chartJsonData.timeline.otherObjects.Where(o =>o.type == (int)OtherObjectType.Speed))
             {
+                Debug.Log(speedChange.value);
                 chart.SpeedChanges.Add(new SpeedChangeEntity(speedChange));
             }
 
