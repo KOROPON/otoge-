@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Reilas;
 using Rhythmium;
+using System.Linq;
 
 public enum JudgeResultType
 {
@@ -71,6 +72,7 @@ public class AllJudgeService : MonoBehaviour
     private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
+        Debug.Log(tapState + "," + timeCheck + "    " + note.JudgeTime + "   " + currentTime);
         if (tapState) return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }
@@ -151,7 +153,7 @@ public class AllJudgeService : MonoBehaviour
         }
 
         //Debug.Log(tapNotes.Length);
-        for (var i = 0; i < tapNotes.Length; i++)
+        for (var i = 0; i < 36; i++)
         {
             //Debug.Log("i:" + i + "  tapJudgeStartIndex" + tapJudgeStartIndex.Length + "tapNotes" + tapNotes.Length);
             var notJudgedYet = true;
@@ -262,6 +264,9 @@ public class AllJudgeService : MonoBehaviour
         }
 
         var internalNotes = RhythmGamePresenter.internalNotes;
+        internalNotes.OrderBy(note => note.JudgeTime);
+        //Debug.Log("          " + internalNotes[180].JudgeTime);
+        //Debug.Log(internalNotes[0].JudgeTime);
         if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
         {
             internalNotes = RhythmGamePresenter.InternalKujoNotes;
@@ -269,26 +274,18 @@ public class AllJudgeService : MonoBehaviour
         
         for (var i = internalJudgeStartIndex; i < internalNotes.Count; i++)
         {
-            if (RhythmGamePresenter.internalNoteJudge == null)
-            {
-                break;
-            }
-
-            if (RhythmGamePresenter.internalNoteJudge[i])
-            {
-                continue;
-            }
             var timeDifference = internalNotes[i].JudgeTime - currentTime;
             ////here
             if (timeDifference > _judgeSeconds["Internal"]) // できないよーーーーは？死ねよ
             {
                 break;
             }
-            if(timeDifference < 0)
-            {
-                continue;
-            }
-
+            //if(timeDifference < 0)
+            //{
+            //    var judge
+            //    continue;
+            //}
+            //Debug.Log(i);
             var judgeResult = InternalOrChain(currentTime, internalNotes[i], CheckIfTapped(internalNotes[i]), "Internal");
 
             if (judgeResult == JudgeResultType.NotJudgedYet)
@@ -296,7 +293,6 @@ public class AllJudgeService : MonoBehaviour
                 continue;
             }
             AllJudge.Add(judgeResult);
-            RhythmGamePresenter.internalNoteJudge[i] = true;
             internalJudgeStartIndex++;
 
             if (judgeResult == JudgeResultType.Miss)

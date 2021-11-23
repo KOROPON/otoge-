@@ -54,10 +54,8 @@ public class AboveSlideEffector : MonoBehaviour
         {
             foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
             {
-                Debug.Log("SlideEffectWorkaaaaaaaaaaaaaa");
                 if (laneMin <= tapstate.laneNumber && tapstate.laneNumber <= laneMax)
                 {
-                    Debug.Log("SlideEffectWorkbbbbbbbbbbbbbbb");
                     RhythmGamePresenter.isHolding = true;
                     if (!_effect1.isPlaying)
                     {

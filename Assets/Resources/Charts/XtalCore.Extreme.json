@@ -8,9 +8,9 @@
 			"lock": false
 		}
 	],
-	"name": "新規譜面",
+	"name": "XtalCore",
 	"difficulty": 0,
-	"audioSource": "Dnb2021_3_12_4_counts.mp3",
+	"audioSource": "XtalCore_4counts.mp3",
 	"startTime": 0,
 	"customProps": {},
 	"musicGameSystemName": "reilas",

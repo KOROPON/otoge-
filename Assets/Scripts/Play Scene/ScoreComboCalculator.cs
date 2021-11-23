@@ -37,7 +37,7 @@ namespace Reilas
         public Text comboText;
         public Text gauge;
 
-        private void Start()
+        public void ScoreComboStart()
         {
             _difficulty = PlayerPrefs.GetString("difficulty");
             slider = GameObject.Find("Fill").GetComponent<Image>();
@@ -60,6 +60,7 @@ namespace Reilas
             _gaugeCombo = 0;
             _gaugeMiss = 0;
             _sumScore = RhythmGamePresenter.countNotes * 4;
+            Debug.Log(RhythmGamePresenter.countNotes * 4);
             
             comboText.text = "";
             //gauge.text = "0";
@@ -115,6 +116,8 @@ namespace Reilas
             }
             
             AllJudgeService.AllJudge.Clear();
+
+            //Debug.Log(_score + "/" + _sumScore);
 
             currentScore = (int) Mathf.Floor(1000000 * _score / _sumScore);
             comboText.text = currentCombo > 1 ? currentCombo.ToString() : "";

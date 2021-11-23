@@ -269,6 +269,7 @@ public class RhythmGamePresenter : MonoBehaviour
         var audioClipPath =
             "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource); //AudioSource の取得
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
+        Debug.Log(audioClipPath);
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
 
@@ -294,9 +295,9 @@ public class RhythmGamePresenter : MonoBehaviour
         NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
         NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);
 
-        _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap"));
-        internalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
-        chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain"));
+        _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap")).OrderBy(note => note.JudgeTime).ToList();
+        var subInternalNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Internal"));
+        chainNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Chain")).OrderBy(note => note.JudgeTime).ToList();
 
         _tapNotes = _tapNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36)
             .OrderBy(note => note.JudgeTime).ToList();
@@ -305,10 +306,10 @@ public class RhythmGamePresenter : MonoBehaviour
         chainNotes = chainNotes.Where(note => note.LanePosition >= 0 && note.LanePosition + note.Size < 36)
             .OrderBy(note => note.JudgeTime).ToList();
 
-        _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
-        _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
-        _reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
-        _reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
+        _reilasAboveSlide = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasAboveHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasHold = _chartEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).OrderBy(note => note.Head.JudgeTime).ToList();
+        _reilasChain = _chartEntity.Notes.Where(note => note.Type == NoteType.AboveChain).OrderBy(note => note.JudgeTime).ToList();
 
 
         List<int> removeInt = new List<int>();
@@ -322,7 +323,7 @@ public class RhythmGamePresenter : MonoBehaviour
                     if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                     {
                         note.Type = NoteType.AboveSlideInternal;
-                        internalNotes.Add(note);
+                        subInternalNotes.Add(note);
                         removeInt.Add(_tapNotes.IndexOf(note));
                     }
 
@@ -332,8 +333,8 @@ public class RhythmGamePresenter : MonoBehaviour
                 {
                     if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                     {
-                        note.Type = NoteType.AboveSlideInternal;
-                        internalNotes.Add(note);
+                        note.Type = NoteType.AboveHoldInternal;
+                        subInternalNotes.Add(note);
                         removeInt.Add(_tapNotes.IndexOf(note));
                     }
 
@@ -343,8 +344,8 @@ public class RhythmGamePresenter : MonoBehaviour
                 {
                     if (noteJsonData.Any(jsonData => note.JsonData.guid == jsonData.tail))
                     {
-                        note.Type = NoteType.AboveSlideInternal;
-                        internalNotes.Add(note);
+                        note.Type = NoteType.HoldInternal;
+                        subInternalNotes.Add(note);
                         removeInt.Add(_tapNotes.IndexOf(note));
                     }
 
@@ -366,7 +367,6 @@ public class RhythmGamePresenter : MonoBehaviour
         for (var num = removeInt.Count - 1; num >= 0; num--) _tapNotes.RemoveAt(removeInt[num]);
 
         _tapNotes.OrderBy(note => note.JudgeTime);
-        internalNotes.OrderBy(note => note.JudgeTime);
         chainNotes.OrderBy(note => note.JudgeTime);
 
         var notInternals = new List<ReilasNoteEntity>(_chartEntity.Notes.Where(note =>
@@ -429,10 +429,6 @@ public class RhythmGamePresenter : MonoBehaviour
             });
         }
 
-        chainNoteJudge = new bool[chainNotes.Count];
-        internalNoteJudge = new bool[internalNotes.Count];
-
-        countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
 
         _reilasAboveSlide = _reilasAboveSlide.OrderBy(note => note.Head.JudgeTime).ToList();
         _reilasAboveHold = _reilasAboveHold.OrderBy(note => note.Head.JudgeTime).ToList();
@@ -452,8 +448,34 @@ public class RhythmGamePresenter : MonoBehaviour
         //_reilasAboveHold.AddRange(_boss.reilasKujoAboveHold);
         //_reilasHold.AddRange(_boss.reilasKujoHold);
         //_reilasChain.AddRange(_boss.reilasKujoChain);
-        
-        Debug.Log(AboveKujoHoldNotes.Count);
+
+        internalNotes.Add(subInternalNotes[0]);
+        for (int num = 1; num < subInternalNotes.Count(); num++)
+        {
+            for (int index = 0; index <= internalNotes.Count(); index++)
+            {
+                if (index == internalNotes.Count())
+                {
+                    internalNotes.Add(subInternalNotes[num]);
+                }
+                if (subInternalNotes[num].JudgeTime <= internalNotes[index].JudgeTime)
+                {
+                    internalNotes.Insert(index, subInternalNotes[num]);
+                    break;
+                }
+            }
+        }
+        chainNoteJudge = new bool[chainNotes.Count];
+        internalNoteJudge = new bool[internalNotes.Count];
+
+        countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
+
+        _scoreComboCalculator.ScoreComboStart();
+
+        foreach (var note in internalNotes)
+        {
+            Debug.Log(note.JudgeTime);
+        }
 
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
@@ -819,14 +841,12 @@ public class RhythmGamePresenter : MonoBehaviour
         if (currentTime < 82 || _boss == null) return;
         if (jumpToKujo)
         {
-            Debug.Log("Change");
             _boss.ChangeToKujo();
             alreadyChangeKujo = true;
             if (_judgeService != null) _judgeService._alreadyChangeKujo = true;
         }
         else
         {
-            Debug.Log("notChange");
             _boss.NotChangeToKujo();
             alreadyChangeKujo = true;
         }
@@ -863,8 +883,7 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveHold.Head.JudgeTime < noteAddCutOff)
-                {
-                    Debug.Log(AboveKujoHoldNotes.Count + "   " + indexNum + "   " + reilasKujoAboveHold.Count); // _reilasKujoAboveHold から Destroy してない
+                { // _reilasKujoAboveHold から Destroy してない
                     aboveHoldNoteMove.Add(AboveKujoHoldNotes[indexNum]);
                 }
                 else break;
@@ -877,7 +896,6 @@ public class RhythmGamePresenter : MonoBehaviour
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveSlide.Head.JudgeTime < noteAddCutOff)
                 {
-                    Debug.Log(orgAboveSlideNote.Count + "," + AboveKujoSlideNotes.Count + "の" + indexNum + "番目");
                     aboveSlideNoteMove.Add(AboveKujoSlideNotes[indexNum]);
                 }
                 else break;
@@ -888,7 +906,6 @@ public class RhythmGamePresenter : MonoBehaviour
             foreach (var hold in reilasKujoHold) // BossGimmickにて_reilasHoldを変更
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
-                Debug.Log(reilasKujoHold.Count + "," + HoldKujoNotes.Count + "の" + indexNum + "番目");
                 if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldKujoNotes[indexNum]);
                 else break;
                 indexNum++;
@@ -905,11 +922,6 @@ public class RhythmGamePresenter : MonoBehaviour
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveHold.Head.JudgeTime < noteAddCutOff)
                 {
-                    if (indexNum >= AboveHoldNotes.Count)
-                    {
-                        Debug.Log(AboveHoldNotes.Count + "   " + indexNum);
-                    }
-
                     aboveHoldNoteMove.Add(AboveHoldNotes[indexNum]);
                 }
                 else break;
@@ -922,8 +934,14 @@ public class RhythmGamePresenter : MonoBehaviour
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 if (aboveSlide.Head.JudgeTime < noteAddCutOff)
                 {
-                    Debug.Log(orgAboveSlideNote.Count + "," + AboveSlideNotes.Count + "の" + indexNum + "番目");
-                    aboveSlideNoteMove.Add(AboveSlideNotes[indexNum]);
+                    try
+                    {
+                        aboveSlideNoteMove.Add(AboveSlideNotes[indexNum]);
+                    }
+                    catch
+                    {
+                        break;
+                    }
                 }
                 else break;
                 indexNum++;

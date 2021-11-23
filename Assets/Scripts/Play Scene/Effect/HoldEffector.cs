@@ -36,7 +36,6 @@ public sealed class HoldEffector : MonoBehaviour
         _blJudge = false;
         if (InputService.AboveLaneTapStates.Any(tapState => tapState.laneNumber == _lanePos))
         {
-            Debug.Log("HoldEffect");
             RhythmGamePresenter.isHolding = true;
             if (!_effect1.isPlaying)
             {

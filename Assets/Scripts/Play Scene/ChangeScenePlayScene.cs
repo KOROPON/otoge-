@@ -30,13 +30,15 @@ public class ChangeScenePlayScene : MonoBehaviour
         {
             //ã»èIóπéû
             //Clearï\é¶
-            Debug.Log("PlayNoticed");
             if (!playStopped) return;
-            Debug.Log("notPlayNoticed");
             SettingField.setBool = false;
             getHighScores.Awake();
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
             score = scoreComboCalculator.currentScore;
+            if(ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
+            {
+                ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
+            }
             clear = scoreComboCalculator.clear;
             getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
             _clearRankDirector.SelectRank(clear);

@@ -26,7 +26,6 @@ public class ClearRankDirector : MonoBehaviour
 
     public void SelectRank(string clearRank)
     {
-        Debug.Log("ClearRankAppear");
         _fader.enabled = true;
         _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank);
         _clearRankBar.sprite = Resources.Load<Sprite>("ClearRank/" + clearRank + "Bar");
