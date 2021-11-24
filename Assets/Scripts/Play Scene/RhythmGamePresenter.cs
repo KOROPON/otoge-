@@ -952,9 +952,16 @@ public class RhythmGamePresenter : MonoBehaviour
             {
                 // tail の時間 - currentTime < 5s の時 setActive => true & Render()
                 //Debug.Log(_reilasHold.Count + "," + HoldNotes.Count + "の" + indexNum + "番目");
+                try
+                {
                 if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldNotes[indexNum]);
                 else break;
                 indexNum++;
+                }
+                catch
+                {
+                    break;
+                }
             }
         }
 

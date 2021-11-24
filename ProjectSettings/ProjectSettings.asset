@@ -160,8 +160,8 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 10000003
-  AndroidMinSdkVersion: 28
+  AndroidBundleVersionCode: 10001010
+  AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 31
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -345,7 +345,7 @@ PlayerSettings:
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 771bea4ebb88db947ad9e3dcfa7351ac, type: 3}
+      - {fileID: 2800000, guid: bfd21f6d72081f24f923afe11c6e4104, type: 3}
       - {fileID: 2800000, guid: 9e5476680d8a3284bbd20c370d82b8b0, type: 3}
       m_Width: 432
       m_Height: 432
@@ -814,7 +814,7 @@ PlayerSettings:
   scriptingBackend:
     Android: 1
   il2cppCompilerConfiguration:
-    Android: 0
+    Android: 1
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
