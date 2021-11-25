@@ -107,9 +107,9 @@ namespace Reilas
             if (meshFilter == null) return;
 
             var noteRatio = NotePositionCalculatorService.NoteRatio(_entity, currentTime, _noteSpeed);
-            if (noteRatio < 0 || noteRatio > 1.2) return;
+            if (noteRatio < 0) return;
 
-            float outerRadius = 3.6f * noteRatio + 2;
+            float outerRadius = 4.6f * noteRatio + 1;
             float innerRadius = outerRadius - 2.6f * noteRatio - 0.4f; // 内縁の半径
             const float div = 32f;
 

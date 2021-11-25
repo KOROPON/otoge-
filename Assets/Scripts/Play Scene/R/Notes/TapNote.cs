@@ -32,14 +32,9 @@ namespace Reilas
                 gameObject.SetActive(true);
                 return;
             }
-            Debug.Log(_entity.JudgeTime + " " + currentTime + " " + _noteSpeed);
             //transform.position = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities);
             ratio = NotePositionCalculatorService.NoteRatio(_entity, currentTime, _noteSpeed);
-            if (ratio > 1.2f || ratio < 0)
-            {
-                return;
-            }
-            Debug.Log(ratio);
+            if (ratio < 0) return;
             var sizeRatio = Mathf.Lerp(0.3f, 1f, ratio);
             transform.localScale = new Vector2(judgeSize.x * sizeRatio, judgeSize.y * sizeRatio);
             transform.position = new Vector2((_entity.LanePosition - 1.5f) * 0.75f + (_entity.LanePosition - 1.5f) * 1.5f * ratio, -3 * ratio);

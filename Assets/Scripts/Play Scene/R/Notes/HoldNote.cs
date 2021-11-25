@@ -24,6 +24,8 @@ namespace Reilas
         private float _noteSpeed;
 
         private bool _kujo;
+        private float headRatio;
+        private float tailRatio;
 
         public float time;
         private float _noteLane;
@@ -51,8 +53,8 @@ namespace Reilas
             _noteLeftPos = -4.4f + 2.2f * _noteLane;
 
             _vertices = new Vector3[4];
-            _triangles = new int[6] { 1, 0, 3, 0, 2, 3 };
-            _uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 0) };
+            _triangles = new int[6] { 1, 0, 2, 1, 2, 3 };
+            _uv = new Vector2[4] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
 
             // ���b�V���𐶐�����.
             _mesh = new Mesh
@@ -88,14 +90,24 @@ namespace Reilas
             if (!gameObject.activeSelf) gameObject.SetActive(true);
 
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
-            
-            float headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
-            float tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
 
-            _vertices[0] = new Vector3(_noteLeftPos, 0, headPos);
-            _vertices[1] = new Vector3(_noteLeftPos + 2.2f, 0, headPos);
-            _vertices[2] = new Vector3(_noteLeftPos, 0, tailPos);
-            _vertices[3] = new Vector3(_noteLeftPos + 2.2f, 0, tailPos);
+            //float headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
+            //float tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
+            headRatio = NotePositionCalculatorService.NoteRatio(_entity.Head, currentTime, _noteSpeed);
+            tailRatio = NotePositionCalculatorService.NoteRatio(_entity.Tail, currentTime, _noteSpeed);
+            if (headRatio < 0) return;
+            if (tailRatio < 0) 
+            {
+                tailRatio = 0; 
+            }
+
+            var headSizeRatio = Mathf.Lerp(0.3f, 1f, headRatio);
+            var tailSizeRatio = Mathf.Lerp(0.3f, 1f, tailRatio);
+
+            _vertices[0] = new Vector3((_noteLane - 2f) * 0.75f + (_noteLane - 2f) * 1.5f * headRatio, -3 * headRatio);
+            _vertices[1] = new Vector3((_noteLane - 1f) * 0.75f + (_noteLane - 1f) * 1.5f * headRatio, -3 * headRatio);
+            _vertices[2] = new Vector3((_noteLane - 2f) * 0.75f + (_noteLane - 2f) * 1.5f * tailRatio, -3 * tailRatio);
+            _vertices[3] = new Vector3((_noteLane - 1f) * 0.75f + (_noteLane - 1f) * 1.5f * tailRatio, -3 * tailRatio);
 
 
             _mesh.vertices = _vertices;
