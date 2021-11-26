@@ -89,8 +89,8 @@ namespace Reilas
 
             var scale = NotePositionCalculatorService.GetScale(_entity.Head);
             
-            float headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
-            float tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
+            float headPos = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities);
+            float tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities);
 
             _vertices[0] = new Vector3(_noteLeftPos, 0, headPos);
             _vertices[1] = new Vector3(_noteLeftPos + 2f, 0, headPos);

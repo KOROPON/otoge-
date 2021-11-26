@@ -143,10 +143,10 @@ namespace Reilas
                     _triangles[4] = 3;
                     _triangles[5] = 1;
 
-                    _vertices[0] = new Vector3(spX - 0.1f, spY, 0f);
-                    _vertices[1] = new Vector3(spX + 0.1f, spY, 0f);
-                    _vertices[2] = new Vector3(edX - 0.1f, edY - 0.2f, 0f);
-                    _vertices[3] = new Vector3(edX + 0.1f, edY - 0.2f, 0f);
+                    _vertices[0] = new Vector3(spX - 0.05f, spY, 0f);
+                    _vertices[1] = new Vector3(spX + 0.05f, spY, 0f);
+                    _vertices[2] = new Vector3(edX - 0.05f, edY - 0.2f, 0f);
+                    _vertices[3] = new Vector3(edX + 0.05f, edY - 0.2f, 0f);
 
                     _uv[0] = new Vector2(0, 0);
                     _uv[1] = new Vector2(0, 1);
