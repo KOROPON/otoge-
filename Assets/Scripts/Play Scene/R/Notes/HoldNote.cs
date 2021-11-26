@@ -48,11 +48,11 @@ namespace Reilas
                 //return;
             }
 
-            _noteLeftPos = -4.4f + 2.2f * _noteLane;
+            _noteLeftPos = -4f + 2f * _noteLane;
 
             _vertices = new Vector3[4];
             _triangles = new int[6] { 1, 0, 3, 0, 2, 3 };
-            _uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 0) };
+            _uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) };
 
             // ���b�V���𐶐�����.
             _mesh = new Mesh
@@ -93,9 +93,9 @@ namespace Reilas
             float tailPos = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
 
             _vertices[0] = new Vector3(_noteLeftPos, 0, headPos);
-            _vertices[1] = new Vector3(_noteLeftPos + 2.2f, 0, headPos);
+            _vertices[1] = new Vector3(_noteLeftPos + 2f, 0, headPos);
             _vertices[2] = new Vector3(_noteLeftPos, 0, tailPos);
-            _vertices[3] = new Vector3(_noteLeftPos + 2.2f, 0, tailPos);
+            _vertices[3] = new Vector3(_noteLeftPos + 2f, 0, tailPos);
 
 
             _mesh.vertices = _vertices;
