@@ -43,7 +43,7 @@ namespace Reilas
             return normalizedTime switch
             {
                 var time when time >= 1 => new Vector3(0f, 0f, 999f),
-                var time when time >= 0 => new Vector3(0f, 0f, CalculateZPos(judgeTime, speedChangeEntities, currentTime)),
+                var time when time >= 0 => new Vector3(0f, 0f, NotePositionCalculatorService.PositionCalculator(t, highSpeed)/*CalculateZPos(judgeTime, speedChangeEntities, currentTime)*/),
                 _ => new Vector3(0f, 0f, 0f)
             };
         }
