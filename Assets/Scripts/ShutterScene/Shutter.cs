@@ -7,12 +7,18 @@ using UnityEngine.UI;
 public class Shutter : MonoBehaviour
 {
     [SerializeField] private GameObject jack;
-    [SerializeField] private GameObject text;
-    
+    [SerializeField] private GameObject name;
+    [SerializeField] private GameObject com;
+    [SerializeField] private GameObject des;
+    [SerializeField] private GameObject dif;
+
     private Animator _anim;
     private static AllJudgeService _judgeService;
     private Image _jacket;
     private Text _title;
+    private Text _composer;
+    private Text _noteDesigner;
+    private Text _difficulty;
 
     public AudioSource openSe;
     public AudioSource closeSe;
@@ -27,11 +33,20 @@ public class Shutter : MonoBehaviour
     {
         _anim = gameObject.GetComponent<Animator>();
         jack.SetActive(true);
-        text.SetActive(true);
+        name.SetActive(true);
+       com.SetActive(true);
+        des.SetActive(true);
+        dif.SetActive(true);
         _jacket = jack.GetComponent<Image>();
-        _title = text.GetComponent<Text>();
+        _title = name.GetComponent<Text>();
+        _composer = com.GetComponent<Text>();
+        _noteDesigner = des.GetComponent<Text>();
+        _difficulty = dif.GetComponent<Text>();
         jack.SetActive(false);
-        text.SetActive(false);
+        name.SetActive(false);
+        des.SetActive(false);
+        com.SetActive(false);
+        dif.SetActive(false);
         _musicM = gameObject.GetComponent<AudioSource>();
         _judgeService = gameObject.AddComponent<AllJudgeService>();
 
@@ -50,9 +65,25 @@ public class Shutter : MonoBehaviour
                 break;
             case "CloseToPlay":
                 jack.SetActive(true);
-                text.SetActive(true);
-                _jacket.sprite = Resources.Load<Sprite>("Jacket/" + RhythmGamePresenter.musicName + "_jacket");
-                _title.text = RhythmGamePresenter.musicName;
+                name.SetActive(true);
+                com.SetActive(true);
+                des.SetActive(true);
+                dif.SetActive(true);
+                var songName = RhythmGamePresenter.musicName;
+                var difficulty = RhythmGamePresenter.dif;
+                _jacket.sprite = Resources.Load<Sprite>("Jacket/" + songName + "_jacket");
+                _title.text = songName;
+                _composer.text = "Composer:" + LevelConverter.GetComposer(songName);
+                _noteDesigner.text = "NoteDesigner:" + LevelConverter.GetNoteEditor(songName, difficulty);
+                _difficulty.text = LevelConverter.GetLevel(songName, difficulty).ToString();
+                switch (difficulty)
+                {
+                    case "Easy": _difficulty.color = new Color32(0, 255, 50, 255);break;
+                    case "Hard": _difficulty.color = new Color32(255, 210, 0, 255);break;
+                    case "Extreme": _difficulty.color = new Color32(100, 0, 255, 255);break;
+                    case "Kujo": _difficulty.color = new Color32(140, 180, 175, 255); break;
+
+                }
                 _anim.SetBool("blToPlay", true);
                 break;
         }

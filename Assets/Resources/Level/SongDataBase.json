@@ -1,6 +1,7 @@
 {
-    "songs": [{
+     "songs": [{
             "title": "Under the Sky",
+            "composer": "CO,benkyo",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -12,10 +13,61 @@
                 "hard": 3,
                 "extreme": 6,
                 "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"佐藤",
+                "hardDesiner":"杉山",
+                "extremeDesiner":"山本",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "Straight of your soul",
+            "composer": "CO,benkyo",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 170
+            },
+            "custom": [],
+            "level": {
+                "easy": 2,
+                "hard": 5,
+                "extreme": 7,
+                "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"若杉",
+                "hardDesiner":"佐藤",
+                "extremeDesiner":"杉山",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "Glow Point",
+            "composer": "CO,benkyo",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 170
+            },
+            "custom": [],
+            "level": {
+                "easy": 3,
+                "hard": 5,
+                "extreme": 7,
+                "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"山本",
+                "hardDesiner":"杉山",
+                "extremeDesiner":"杉山,山本",
+                "kujoDesiner": ""
             }
         },
         {
             "title": "XtalCore",
+            "composer": "CO,benkyo",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -25,12 +77,63 @@
             "level": {
                 "easy": 2,
                 "hard": 4,
-                "extreme": 7,
+                "extreme": 8,
                 "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"佐藤",
+                "hardDesiner":"杉山",
+                "extremeDesiner":"山本",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "kawaii_OD!!",
+            "composer": "Argentum",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bom": 175
+            },
+            "custom": [],
+            "level": {
+                "easy": 2,
+                "hard": 5,
+                "extreme": 8,
+                "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"山本",
+                "hardDesiner":"杉山",
+                "extremeDesiner":"杉山",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "Music Is My Suicide",
+            "composer": "Naughy Boy",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 155
+            },
+            "custom": [],
+            "level": {
+                "easy": 3,
+                "hard": 5,
+                "extreme": 8,
+                "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"山本",
+                "hardDesiner":"杉山",
+                "extremeDesiner":"佐藤,若杉",
+                "kujoDesiner": ""
             }
         },
         {
             "title": "Collide",
+            "composer": "Naughy Boy",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -42,6 +145,56 @@
                 "hard": 6,
                 "extreme": 8,
                 "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"杉山",
+                "hardDesiner":"山本",
+                "extremeDesiner":"若杉",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "Devourer_Of_Sol_Ⅲ",
+            "composer": "Argentum",
+            "beat": {
+                "numerator": 3,
+                "denominator": 4,
+                "bpm": 190          
+            },
+            "custom": [],
+            "level": {
+                "easy": 3,
+                "hard": 6,
+                "extreme": 9,
+                "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"若杉",
+                "hardDesiner":"山本",
+                "extremeDesiner":"山本",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "Reilas",
+            "composer": "Naughy Boy",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 191
+            },
+            "custom": [],
+            "level": {
+                "easy": 4,
+                "hard": 7,
+                "extreme": 9,
+                "kujo": 10
+            },
+            "noteDesiner": {
+                "easyDesiner":"杉山",
+                "hardDesiner":"山本",
+                "extremeDesiner":"東海譜面Boys",
+                "kujoDesiner": "東海譜面Boys + 1"
             }
         }
     ]

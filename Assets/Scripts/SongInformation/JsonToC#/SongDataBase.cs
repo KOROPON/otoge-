@@ -8,9 +8,11 @@ public sealed class SongDataBase
 public sealed class SongName
 {
     public string title;
+    public string composer;
     public Beat beat;
     public Custom[] custom;
     public Level level;
+    public NoteDesiner noteDesiner;
 }
 
 [System.Serializable]
@@ -35,4 +37,12 @@ public sealed class Level
     public int hard;
     public int extreme;
     public int kujo;
+}
+[System.Serializable]
+public sealed class NoteDesiner
+{
+    public string easyDesiner;
+    public string hardDesiner;
+    public string extremeDesiner;
+    public string kujoDesiner;
 }
