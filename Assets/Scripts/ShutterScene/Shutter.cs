@@ -82,7 +82,6 @@ public class Shutter : MonoBehaviour
                     case "Hard": _difficulty.color = new Color32(255, 210, 0, 255);break;
                     case "Extreme": _difficulty.color = new Color32(100, 0, 255, 255);break;
                     case "Kujo": _difficulty.color = new Color32(140, 180, 175, 255); break;
-
                 }
                 _anim.SetBool("blToPlay", true);
                 break;
