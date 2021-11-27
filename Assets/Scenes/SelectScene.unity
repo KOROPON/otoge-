@@ -548,13 +548,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 814e27f90f8e1b9419dafe2c9cbcea87, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1915,13 +1915,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: adb4cb2739961744fb86777e62d02733, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.36
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4660,6 +4660,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1102973415857954247, guid: aad40140010fc44a1a03cbf670b08f14, type: 3}
   m_PrefabInstance: {fileID: 7651635050329585462}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2046019653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046019651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971f44ba24a74294294daed00507d80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2082580708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,6 +5211,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Song
       objectReference: {fileID: 0}
+    - target: {fileID: 5126999851014646197, guid: aad40140010fc44a1a03cbf670b08f14, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5126999851014646197, guid: aad40140010fc44a1a03cbf670b08f14, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1da1e2f46388a44183010aa21632c86, type: 3}
     - target: {fileID: 5126999851014646197, guid: aad40140010fc44a1a03cbf670b08f14, type: 3}
       propertyPath: m_Color.b
       value: 1
