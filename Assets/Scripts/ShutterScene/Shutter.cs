@@ -19,6 +19,7 @@ public class Shutter : MonoBehaviour
     private Text _composer;
     private Text _noteDesigner;
     private Text _difficulty;
+    private RhythmGamePresenter _presenter;
 
     public AudioSource openSe;
     public AudioSource closeSe;
@@ -92,15 +93,23 @@ public class Shutter : MonoBehaviour
     {
         switch (blChange)
         {
-            case "ToPFrP": 
-                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
+            case "ToPFrP":
+                _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
                 AllNoteDestroy();
+                _presenter._reilasAboveHold.Clear();
+                _presenter._reilasAboveSlide.Clear();
+                _presenter._reilasHold.Clear();
+                SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
                 SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
                 break;
             case "ToR":
+                _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+                AllNoteDestroy();
+                _presenter._reilasAboveHold.Clear();
+                _presenter._reilasAboveSlide.Clear();
+                _presenter._reilasHold.Clear();
                 SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
-                AllNoteDestroy();
                 break;
             case "ToSFrR":
                 SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
@@ -111,9 +120,13 @@ public class Shutter : MonoBehaviour
                 SceneManager.UnloadSceneAsync("ResultScene", UnloadSceneOptions.None);
                 break;
             case "ToSFrP":
+                _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
+                AllNoteDestroy();
+                _presenter._reilasAboveHold.Clear();
+                _presenter._reilasAboveSlide.Clear();
+                _presenter._reilasHold.Clear();
                 SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("PlayScene", UnloadSceneOptions.None);
-                AllNoteDestroy();
                 break;
             case "ToS_F":
                 SceneManager.LoadScene("SelectScene", LoadSceneMode.Additive);
@@ -158,7 +171,6 @@ public class Shutter : MonoBehaviour
     
     private static void AllNoteDestroy()
     {
-
         for (int a = RhythmGamePresenter.TapNotes.Count() - 1; a >= 0; a--)
         {
             RhythmGamePresenter.TapNotes[a].NoteDestroy(false);
@@ -213,6 +225,8 @@ public class Shutter : MonoBehaviour
         }
 
         foreach (var lane in RhythmGamePresenter.TapNoteLanes) lane.Clear();
+
+
         RhythmGamePresenter.internalNotes.Clear();
         RhythmGamePresenter.chainNotes.Clear();
         RhythmGamePresenter.BarLines.Clear();

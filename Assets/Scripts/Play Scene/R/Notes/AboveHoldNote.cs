@@ -161,8 +161,16 @@ namespace Reilas
             Destroy(transform.GetChild(0).GetComponent<AboveHoldEffector>());
             RhythmGamePresenter.AboveHoldEffectors.Remove(transform.GetChild(0).GetComponent<AboveHoldEffector>());
             Destroy(transform.GetChild(0).gameObject);
-            if (kujo) RhythmGamePresenter.AboveKujoHoldNotes.Remove(this);
-            else RhythmGamePresenter.AboveHoldNotes.Remove(this);
+            if (kujo)
+            {
+                _presenter.reilasKujoAboveHold.RemoveAt(RhythmGamePresenter.AboveKujoHoldNotes.IndexOf(this));
+                RhythmGamePresenter.AboveKujoHoldNotes.Remove(this);
+            }
+            else
+            {
+                _presenter._reilasAboveHold.RemoveAt(RhythmGamePresenter.AboveHoldNotes.IndexOf(this));
+                RhythmGamePresenter.AboveHoldNotes.Remove(this);
+            }
             Destroy(gameObject);
         }
     }
