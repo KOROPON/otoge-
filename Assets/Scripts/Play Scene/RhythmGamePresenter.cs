@@ -52,10 +52,10 @@ public class RhythmGamePresenter : MonoBehaviour
     public static readonly List<AboveHoldNote> AboveKujoHoldNotes = new List<AboveHoldNote>();
     public static readonly List<AboveSlideNote> AboveKujoSlideNotes = new List<AboveSlideNote>();
 
-    private List<ReilasNoteLineEntity> _reilasAboveSlide = new List<ReilasNoteLineEntity>();
-    private List<ReilasNoteLineEntity> _reilasAboveHold = new List<ReilasNoteLineEntity>();
-    private List<ReilasNoteLineEntity> _reilasHold = new List<ReilasNoteLineEntity>();
-    private List<ReilasNoteEntity> _reilasChain = new List<ReilasNoteEntity>();
+    public List<ReilasNoteLineEntity> _reilasAboveSlide = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteLineEntity> _reilasAboveHold = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteLineEntity> _reilasHold = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteEntity> _reilasChain = new List<ReilasNoteEntity>();
 
     public List<ReilasNoteLineEntity> reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
