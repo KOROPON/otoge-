@@ -246,10 +246,8 @@ public class RhythmGamePresenter : MonoBehaviour
     private async UniTask AwakeAsync()
     {
         if (_boss == null) return;
-        //if (musicName == "Reilas" && dif == "Extreme") jumpToKujo = true;
 
-
-        //FindObjectOfType<Variable>().enabled = false;
+        if (ChangeScene.aspect > 2) Camera.main.transform.position = new Vector3(0, 2.2f, -3.3f);
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
 
@@ -657,13 +655,13 @@ public class RhythmGamePresenter : MonoBehaviour
     public static readonly Vector3[] UserLanePositions = new Vector3[]
     {
         //下のレーン
-        new Vector3(-2.5f, 0, Z),
-        new Vector3(-1f, 0, Z),
-        new Vector3(1f, 0,Z),
-        new Vector3(2.5f, 0, Z),
+        new Vector3(-3.2f, 0, Z2),
+        new Vector3(-1f, 0, Z2),
+        new Vector3(1f, 0, Z2),
+        new Vector3(3.2f, 0, Z2),
 
         //上のレーン
-        new Vector3(-4.4f,0.22f,Z),
+        new Vector3(-4.6f,0.2f,Z),
         new Vector3(-4.45f,0.66f,Z),
         new Vector3(-4.36f,1.09f,Z),
         new Vector3(-4.23f,1.51f,Z),
@@ -694,7 +692,7 @@ public class RhythmGamePresenter : MonoBehaviour
         new Vector3(4.23f,1.51f,Z),
         new Vector3(4.36f,1.09f,Z),
         new Vector3(4.45f,0.66f,Z),
-        new Vector3(4.4f,0.22f,Z),
+        new Vector3(4.6f,0.2f,Z),
     };
 
     // Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //
