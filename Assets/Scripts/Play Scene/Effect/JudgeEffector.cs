@@ -7,6 +7,9 @@ public class JudgeEffector : MonoBehaviour
     private AudioSource _perfectOn;
     private AudioSource _goodOn;
     private AudioSource _badOn;
+    private AudioClip _perfectClip;
+    private AudioClip _goodClip;
+    private AudioClip _badClip;
 
     void Start()
     {
@@ -22,6 +25,9 @@ public class JudgeEffector : MonoBehaviour
         _perfectOn = GameObject.Find("Perfect").GetComponent<AudioSource>();
         _goodOn = GameObject.Find("Good").GetComponent<AudioSource>();
         _badOn = GameObject.Find("Bad").GetComponent<AudioSource>();
+        _perfectClip = _perfectOn.clip;
+        _goodClip = _goodOn.clip;
+        _badClip = _badOn.clip;
     }
 
     public void TapJudgeEffector(int lanePos, string judgeLevel)
@@ -68,9 +74,9 @@ public class JudgeEffector : MonoBehaviour
     {
         switch (judgeLevel)
         {
-            case "Perfect": _perfectOn.Play(); break;
-            case "Good": _goodOn.Play(); break;
-            case "Bad": _badOn.Play(); break;
+            case "Perfect": _perfectOn.PlayOneShot(_perfectClip); break;
+            case "Good": _goodOn.PlayOneShot(_goodClip); break;
+            case "Bad": _badOn.PlayOneShot(_badClip); break;
         }
     }
 }

@@ -20,6 +20,10 @@ namespace Reilas
         private string _pathKey;
         private Dictionary<string,List<float>> _changePath;
 
+        private void Start()
+        {
+            if (!PlayerPrefs.HasKey("rate")) PlayerPrefs.SetFloat("rate", 5f);
+        }
        //内部関数
         private void SetSettingData()
         {
@@ -33,10 +37,10 @@ namespace Reilas
           }
           else
           {
-            _changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 10f, 3.5f});
+            _changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 10f, 5f});
             _changePath.Add("音", new List<float>(){1f, -999f, 999f, 0f});
             _changePath.Add("判定", new List<float>(){1f, -999f, 999f, 0f});
-            _changePath.Add("音量", new List<float>(){1f, 0f, 100f, 50f});
+            _changePath.Add("音量", new List<float>(){1f, 0f, 100f, 80f});
           }
         }
 
@@ -71,8 +75,8 @@ namespace Reilas
           {
             case "ノーツ速度": infoT.text = "ノーツの流れる速度を設定します"; break;
             case "音量": infoT.text = "ノーツを叩いたときに発生するタップ音量を調整します"; break;
-            case "判定": infoT.text = "流れてくるノーツに対する判定を行うタイミングを調整します\n例：(判定タイミングが遅いとき…　)"; break;
-            case "音": infoT.text = "曲とノーツが流れてくるタイミングのズレを修正します\n例：（曲よりも早くノーツが流れてくるとき…　　）"; break;
+            case "判定": infoT.text = "流れてくるノーツに対する判定を行うタイミングを調整します\nノーツより早く叩かなければならないときは負の方向へ。\n(こちらより先にAudioの調整を推奨します)"; break;
+            case "音": infoT.text = "曲とノーツが流れてくるタイミングのズレを修正します\n曲よりも早くノーツが流れてくるときは負の方向へ。\n(judgeより先にこちらの調整を推奨します)"; break;
           }
         }
 

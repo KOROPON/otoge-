@@ -221,8 +221,8 @@ namespace Reilas
 
             //var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities).z;
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities).z;
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities);
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities);
 
 
             int thisNoteZRatio;
@@ -313,8 +313,16 @@ namespace Reilas
             Destroy(transform.GetChild(0).GetComponent<AboveSlideEffector>());
             RhythmGamePresenter.AboveSlideEffectors.Remove(transform.GetChild(0).GetComponent<AboveSlideEffector>());
             Destroy(transform.GetChild(0).gameObject);
-            if (kujo) RhythmGamePresenter.AboveKujoSlideNotes.Remove(this);
-            else RhythmGamePresenter.AboveSlideNotes.Remove(this);
+            if (kujo)
+            {
+                _presenter.reilasKujoAboveSlide.RemoveAt(RhythmGamePresenter.AboveKujoSlideNotes.IndexOf(this));
+                RhythmGamePresenter.AboveKujoSlideNotes.Remove(this);
+            }
+            else
+            {
+                _presenter._reilasAboveSlide.RemoveAt(RhythmGamePresenter.AboveSlideNotes.IndexOf(this));
+                RhythmGamePresenter.AboveSlideNotes.Remove(this);
+            }
             Destroy(gameObject);
         }
     }

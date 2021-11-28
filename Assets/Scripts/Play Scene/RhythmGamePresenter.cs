@@ -52,10 +52,10 @@ public class RhythmGamePresenter : MonoBehaviour
     public static readonly List<AboveHoldNote> AboveKujoHoldNotes = new List<AboveHoldNote>();
     public static readonly List<AboveSlideNote> AboveKujoSlideNotes = new List<AboveSlideNote>();
 
-    private List<ReilasNoteLineEntity> _reilasAboveSlide = new List<ReilasNoteLineEntity>();
-    private List<ReilasNoteLineEntity> _reilasAboveHold = new List<ReilasNoteLineEntity>();
-    private List<ReilasNoteLineEntity> _reilasHold = new List<ReilasNoteLineEntity>();
-    private List<ReilasNoteEntity> _reilasChain = new List<ReilasNoteEntity>();
+    public List<ReilasNoteLineEntity> _reilasAboveSlide = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteLineEntity> _reilasAboveHold = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteLineEntity> _reilasHold = new List<ReilasNoteLineEntity>();
+    public List<ReilasNoteEntity> _reilasChain = new List<ReilasNoteEntity>();
 
     public List<ReilasNoteLineEntity> reilasKujoAboveSlide = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasKujoAboveHold = new List<ReilasNoteLineEntity>();
@@ -246,10 +246,8 @@ public class RhythmGamePresenter : MonoBehaviour
     private async UniTask AwakeAsync()
     {
         if (_boss == null) return;
-        //if (musicName == "Reilas" && dif == "Extreme") jumpToKujo = true;
 
-
-        //FindObjectOfType<Variable>().enabled = false;
+        if (ChangeScene.aspect > 2) Camera.main.transform.position = new Vector3(0, 2.2f, -3.3f);
 
         var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
 
@@ -273,7 +271,14 @@ public class RhythmGamePresenter : MonoBehaviour
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
 
-        if (PlayerPrefs.HasKey("volume")) { } // tap音調整
+        if (PlayerPrefs.HasKey("volume"))
+        {
+            var volume = PlayerPrefs.GetFloat("volume") / 100;
+            GameObject.Find("Perfect").GetComponent<AudioSource>().volume = volume;
+            GameObject.Find("Good").GetComponent<AudioSource>().volume = volume;
+            GameObject.Find("Bad").GetComponent<AudioSource>().volume = volume;
+            GameObject.Find("LongPerfect").GetComponent<AudioSource>().volume = volume;
+        }
 
         if(chartEntity == null) Debug.LogError("chartEntity is null!");
         else _chartEntity = chartEntity;
@@ -648,47 +653,49 @@ public class RhythmGamePresenter : MonoBehaviour
         new Vector3(4.45f,0.66f,Z),
         new Vector3(4.5f,0.22f,Z),
     };
+    private const float Za = -0.35f;
+    private const float Za2 = -0.33f;
     public static readonly Vector3[] UserLanePositions = new Vector3[]
     {
         //下のレーン
-        new Vector3(-2.5f, 0, Z),
-        new Vector3(-1f, 0, Z),
-        new Vector3(1f, 0,Z),
-        new Vector3(2.5f, 0, Z),
+        new Vector3(-3.3f, -0.2f, Za),
+        new Vector3(-1.1f, -0.2f,Za),
+        new Vector3(1.1f, -0.2f, Za),
+        new Vector3(3.3f, -0.2f, Za),
 
         //上のレーン
-        new Vector3(-4.4f,0.22f,Z),
-        new Vector3(-4.45f,0.66f,Z),
-        new Vector3(-4.36f,1.09f,Z),
-        new Vector3(-4.23f,1.51f,Z),
-        new Vector3(-4.06f,1.92f,Z),
-        new Vector3(-3.86f,2.31f,Z),
-        new Vector3(-3.61f,2.68f,Z),
-        new Vector3(-3.33f,3.02f,Z),
-        new Vector3(-3.02f,3.33f,Z),
-        new Vector3(-2.68f,3.61f,Z),
-        new Vector3(-2.31f,3.86f,Z),
-        new Vector3(-1.92f,4.06f,Z),
-        new Vector3(-1.51f,4.23f,Z),
-        new Vector3(-1.09f,4.36f,Z),
-        new Vector3(-0.66f,4.45f,Z),
-        new Vector3(-0.22f,4.5f,Z),
-        new Vector3(0.22f,4.5f,Z),
-        new Vector3(0.66f,4.45f,Z),
-        new Vector3(1.09f,4.36f,Z),
-        new Vector3(1.51f,4.23f,Z),
-        new Vector3(1.92f,4.06f,Z),
-        new Vector3(2.31f,3.86f,Z),
-        new Vector3(2.68f,3.61f,Z),
-        new Vector3(3.02f,3.33f,Z),
-        new Vector3(3.33f,3.02f,Z),
-        new Vector3(3.61f,2.68f,Z),
-        new Vector3(3.86f,2.31f,Z),
-        new Vector3(4.06f,1.92f,Z),
-        new Vector3(4.23f,1.51f,Z),
-        new Vector3(4.36f,1.09f,Z),
-        new Vector3(4.45f,0.66f,Z),
-        new Vector3(4.4f,0.22f,Z),
+        new Vector3(-5.4f,0.262f,Za2),
+        new Vector3(-5.34f,0.792f,Za2),
+        new Vector3(-5.232f,1.308f,Za2),
+        new Vector3(-5.076f,1.812f,Za2),
+        new Vector3(-4.872f,2.304f,Za2),
+        new Vector3(-4.632f,2.772f,Za2),
+        new Vector3(-4.322f,3.216f,Za2),
+        new Vector3(-3.966f,3.624f,Za2),
+        new Vector3(-3.624f,3.996f,Za2),
+        new Vector3(-3.214f,4.332f,Za2),
+        new Vector3(-2.772f,4.632f,Za2),
+        new Vector3(-2.304f,4.872f,Za2),
+        new Vector3(-1.812f,5.076f,Za2),
+        new Vector3(-1.308f,5.232f,Za2),
+        new Vector3(-0.792f,5.34f,Za2),
+        new Vector3(-0.264f,5.4f,Za2),
+        new Vector3(0.264f,5.4f,Za2),
+        new Vector3(0.792f,5.34f,Za2),
+        new Vector3(1.308f,5.232f,Za2),
+        new Vector3(1.812f,5.076f,Za2),
+        new Vector3(2.304f,4.872f,Za2),
+        new Vector3(2.772f,4.632f,Za2),
+        new Vector3(3.214f,4.332f,Za2),
+        new Vector3(3.624f,3.996f,Za2),
+        new Vector3(3.966f,3.624f,Za2),
+        new Vector3(4.322f,3.216f,Za2),
+        new Vector3(4.632f,2.772f,Za2),
+        new Vector3(4.872f,2.304f,Za2),
+        new Vector3(5.076f,1.812f,Za2),
+        new Vector3(5.232f,1.308f,Za2),
+        new Vector3(5.34f,0.792f,Za2),
+        new Vector3(5.4f,0.264f,Za2),
     };
 
     // Camera.main.WorldToScreenPoint(lanePosition3D))  "レーンの位置を"2D変換  //

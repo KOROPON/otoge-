@@ -22,6 +22,7 @@ public class MusicNumManage : MonoBehaviour
 
     public Text highScore;
     public Text title;
+    private Text _composer;
     public AudioSource audioO;
     
     //public Text kujoLevel;
@@ -85,6 +86,7 @@ public class MusicNumManage : MonoBehaviour
         _jacketPath = "Jacket/" + musicName + "_jacket";
         MusicInfo("Songs/Music Select/" + musicName + "_intro", _jacketPath);
         title.text = musicName;
+        _composer.text = LevelConverter.GetComposer(musicName);
         if (!_getHighScores.GetLock(musicName))
         {
             var extreme = GameObject.Find("Extreme");
@@ -122,7 +124,7 @@ public class MusicNumManage : MonoBehaviour
         _scrollView = GameObject.Find("Scroll View").transform;
         _scrollViewContent = _scrollView.GetChild(0);
         _getHighScores = FindObjectOfType<GetHighScores>();
-
+        _composer = GameObject.Find("Composer").GetComponent<Text>();
         _easyLevel = GameObject.Find("Easy").GetComponentInChildren<Text>();
         _hardLevel = GameObject.Find("Hard").GetComponentInChildren<Text>();
         _extremeLevel = GameObject.Find("Extreme").GetComponentInChildren<Text>();

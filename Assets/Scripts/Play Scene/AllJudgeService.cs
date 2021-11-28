@@ -39,11 +39,11 @@ public class AllJudgeService : MonoBehaviour
 
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
-        {"Tap Perfect", 0.045f},
-        {"Tap Good", 0.070f},
-        {"Tap Bad", 0.090f},
+        {"Tap Perfect", 0.060f},
+        {"Tap Good", 0.095f},
+        {"Tap Bad", 0.150f},
         {"Internal", 0.090f},
-        {"Chain", 0.035f}
+        {"Chain", 0.043f}
     };
 
     private static float CalculateDifference(float currentTime, float judgeTime, string noteType)
@@ -72,7 +72,6 @@ public class AllJudgeService : MonoBehaviour
     private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
-        Debug.Log(tapState + "," + timeCheck + "    " + note.JudgeTime + "   " + currentTime);
         if (tapState) return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }

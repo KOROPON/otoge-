@@ -17,6 +17,9 @@ public class BossGimmicks : MonoBehaviour
     public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _chainKujoNotes = new List<ReilasNoteEntity>();
 
+    public Material bossLane;
+    public Material bossCube;
+
     public bool kujoJudgeSwitch = false;
 
     public AudioSource bossClock = null!;
@@ -33,6 +36,9 @@ public class BossGimmicks : MonoBehaviour
     public async void BossAwake()
     {
         _judgeService = GameObject.Find("Main").GetComponent<AllJudgeService>();
+
+        GameObject.Find("立方体").GetComponent<MeshRenderer>().material = bossCube;
+        GameObject.Find("トンネル").GetComponent<MeshRenderer>().material = bossLane;
 
         var kujoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
         if (kujoSongs == null)
@@ -53,7 +59,7 @@ public class BossGimmicks : MonoBehaviour
         _presenter.reilasKujoAboveSlide = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveSlide).ToList();
         _presenter.reilasKujoAboveHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.AboveHold).ToList();
         _presenter.reilasKujoHold = chartKujoEntity.NoteLines.Where(note => note.Head.Type == NoteType.Hold).ToList();
-        _presenter.reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).ToList();
+        _presenter.reilasKujoChain = chartKujoEntity.Notes.Where(note => note.Type == NoteType.AboveChain).OrderBy(note => note.JudgeTime).ToList();
 
         List<int> removeInt = new List<int>();
 
@@ -193,6 +199,10 @@ public class BossGimmicks : MonoBehaviour
         // 103.04s ���X�T�r
         if (_judgeService == null) return;
         Debug.Log("Change BossGimmick");
+
+        GameObject.Find("Main").transform.GetComponent<ScoreComboCalculator>().GaugeChange();
+        GameObject.Find("立方体").GetComponent<MeshRenderer>().material = bossCube;
+        GameObject.Find("トンネル").GetComponent<MeshRenderer>().material = bossLane;
 
         for (var i = 0; i < 36; i++)
         {

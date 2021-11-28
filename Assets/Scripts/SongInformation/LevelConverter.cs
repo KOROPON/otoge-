@@ -28,4 +28,32 @@ public class LevelConverter : MonoBehaviour
         }
         return null;
     }
+
+    public static string? GetNoteEditor(string songName, string difficulty)
+    {
+        foreach (var song in songData.songs)
+        {
+            if (song.title != songName) continue;
+            var noteDesiner = song.noteDesiner;
+            return difficulty switch
+            {
+                "Easy" => noteDesiner.easyDesiner,
+                "Hard" => noteDesiner.hardDesiner,
+                "Extreme" => noteDesiner.extremeDesiner,
+                "Kujo" => noteDesiner.kujoDesiner,
+                _ => null
+            };
+        }
+        return null;
+    }
+
+    public static string? GetComposer(string songName)
+    {
+        foreach (var song in songData.songs)
+        {
+            if (song.title != songName) continue;
+            return song.composer;
+        }
+        return null;
+    }
 }

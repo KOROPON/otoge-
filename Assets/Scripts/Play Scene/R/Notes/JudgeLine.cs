@@ -53,7 +53,7 @@ class JudgeLine : MonoBehaviour
             _triangles[198 + num * 6 + 4] = 70 + num * 4 + 3;
             _triangles[198 + num * 6 + 5] = 70 + num * 4 + 1;
 
-            float x = -2.2f + 2.2f * num;
+            float x = -2f + 2f * num;
             _vertices[70 + num * 4 + 0] = new Vector3(x - 0.02f, -0f, -0.2f);
             _vertices[70 + num * 4 + 1] = new Vector3(x + 0.02f, -0, -0.2f);
             _vertices[70 + num * 4 + 2] = new Vector3(x - 0.06f, -0f, 200);

@@ -4,10 +4,17 @@ public class ChangeScene : MonoBehaviour
 {
     private bool _startBool;
     public AudioSource titleMusic;
+
+    public static float aspect;
     void Start()
     {
         _startBool = true;
         SceneManager.LoadScene("ShutterScene", LoadSceneMode.Additive);
+
+        float width = Screen.width;
+        float hight = Screen.height;
+        aspect = width / hight;
+        Debug.Log(aspect);
     }
     public void Change()
     {
