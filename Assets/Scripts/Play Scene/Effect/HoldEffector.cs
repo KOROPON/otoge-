@@ -11,7 +11,6 @@ public sealed class HoldEffector : MonoBehaviour
     private ParticleSystem _effect2 = null!;
     private ParticleSystem _effect3 = null!;
     private MeshRenderer _noteBlight = null!;
-    private AudioSource holdAud;
     private int _lanePos;
     private bool _blJudge;
     
@@ -29,7 +28,6 @@ public sealed class HoldEffector : MonoBehaviour
         _effect3 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[2];
         Transform effectorTransform;
         _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
-        holdAud = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
         effectorTransform.position = RhythmGamePresenter.LanePositions[_lanePos];
         holdEffectTime = _entity.Head.JudgeTime;
     }
@@ -46,7 +44,6 @@ public sealed class HoldEffector : MonoBehaviour
                 _effect3.Play();
                 _noteBlight.material.color = new Color32(255, 255, 255, 160);
                 effectAudio.Play();
-                holdAud.Play();
             }
             _blJudge = true;
         }
@@ -56,6 +53,5 @@ public sealed class HoldEffector : MonoBehaviour
         _effect2.Stop();
         _effect3.Stop();
         _noteBlight.material.color = new Color32(230, 230, 230, 160);
-        holdAud.Stop();
     }
 }

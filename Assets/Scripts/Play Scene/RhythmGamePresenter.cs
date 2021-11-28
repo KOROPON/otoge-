@@ -862,6 +862,7 @@ public class RhythmGamePresenter : MonoBehaviour
     System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
     private void LateUpdate()
     {
+        isHolding = false;
         sw.Start();////////////////////////////////////////
         IEnumerable<AboveTapNote> aboveTapMove;
         IEnumerable<TapNote> tapNoteMove;
@@ -1008,7 +1009,7 @@ public class RhythmGamePresenter : MonoBehaviour
         
         foreach (var connector in NoteConnectors.ToList()) connector.Render(audioTime, speedChanges);
 
-        if (isHolding) _longPerfect.Pause();
+        if (!isHolding) _longPerfect.Pause();
         isHolding = false;
     }
 }

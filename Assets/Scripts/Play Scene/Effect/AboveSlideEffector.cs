@@ -8,7 +8,6 @@ public class AboveSlideEffector : MonoBehaviour
     private ParticleSystem _effect2 = null!;
     private ParticleSystem _effect3 = null!;
     private MeshRenderer _noteBlight;
-    private AudioSource holdAud;
     private int _headPos;
     private int _headMax;
     private int _headMin;
@@ -37,7 +36,6 @@ public class AboveSlideEffector : MonoBehaviour
         _effect3 = ((Component)this).gameObject.GetComponentsInChildren<ParticleSystem>()[2];
         Transform effectorTransform;
         _noteBlight = (effectorTransform = transform).root.GetComponent<MeshRenderer>();
-        holdAud = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
         aboveSlideEffectTime = _entity.Head.JudgeTime;
         
         //Debug.Log("colorHere" + _noteBlight.r);
@@ -67,7 +65,6 @@ public class AboveSlideEffector : MonoBehaviour
                         _effect3.Play();
                         _noteBlight.material.color = new Color32(255, 255, 255, 160);
                         effectAudio.Play();
-                        holdAud.Play();
                     }
                     blJudge = true;
                     return;
@@ -88,7 +85,6 @@ public class AboveSlideEffector : MonoBehaviour
                 _effect2.Stop();
                 _effect3.Stop();
                 _noteBlight.material.color = new Color32(200, 200, 200, 160);
-                holdAud.Stop();
             }
         }
     }
