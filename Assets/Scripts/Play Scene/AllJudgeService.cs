@@ -72,7 +72,6 @@ public class AllJudgeService : MonoBehaviour
     private JudgeResultType InternalOrChain(float currentTime, NoteEntity note, bool tapState, string internalOrChain)
     {
         var timeCheck = TimeCheck(currentTime, note.JudgeTime, internalOrChain);
-        Debug.Log(tapState + "," + timeCheck + "    " + note.JudgeTime + "   " + currentTime);
         if (tapState) return timeCheck ? JudgeResultType.Perfect : JudgeResultType.Miss;
         return timeCheck ? JudgeResultType.NotJudgedYet : JudgeResultType.Miss;
     }

@@ -6,6 +6,8 @@ public class ChangeScenePlayScene : MonoBehaviour
 {
     public AudioSource song;
     private ClearRankDirector _clearRankDirector;
+    private ScoreComboCalculator scoreComboCalculator;
+    private GetHighScores getHighScores;
     static public int previousHighScore;
     static public int score;
     static public string clear;
@@ -13,20 +15,29 @@ public class ChangeScenePlayScene : MonoBehaviour
     public static bool playNoticed;
     public static bool playStopped;
 
+    public bool forcedFinish;
+
     private void Start()
     {
         playStopped = true;
+        forcedFinish = false;
         _clearRankDirector = GameObject.Find("ClearRankDirector").GetComponent<ClearRankDirector>();
+        scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
+        getHighScores = GetComponent<GetHighScores>();
     }
 
-    private void Update()
+    public void Update()
     {
+        if (forcedFinish)
+        {
+            CallBack();
+            forcedFinish = false;
+        }
         if (!playNoticed || !playStopped) return;
         playNoticed = false;
-        var getHighScores = GetComponent<GetHighScores>();
-        var scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
 
-        StartCoroutine(Checking(() =>
+        StartCoroutine(Checking(() =>CallBack()));
+        void CallBack()
         {
             //ã»èIóπéû
             //Clearï\é¶
@@ -35,7 +46,7 @@ public class ChangeScenePlayScene : MonoBehaviour
             getHighScores.Awake();
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
             score = scoreComboCalculator.currentScore;
-            if(ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
+            if (ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
             {
                 ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
             }
@@ -43,8 +54,7 @@ public class ChangeScenePlayScene : MonoBehaviour
             getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
             _clearRankDirector.SelectRank(clear);
             scoreComboCalculator.currentCombo = 0;
-        }));
-
+        }
     }
 
     private delegate void FunctionType();
