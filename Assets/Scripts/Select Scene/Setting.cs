@@ -40,7 +40,7 @@ namespace Reilas
             _changePath.Add("ノーツ速度", new List<float>(){0.1f, 1f, 10f, 5f});
             _changePath.Add("音", new List<float>(){1f, -999f, 999f, 0f});
             _changePath.Add("判定", new List<float>(){1f, -999f, 999f, 0f});
-            _changePath.Add("音量", new List<float>(){1f, 0f, 100f, 50f});
+            _changePath.Add("音量", new List<float>(){1f, 0f, 100f, 80f});
           }
         }
 
