@@ -55790,6 +55790,8 @@ MonoBehaviour:
   _tapKujoNotes: []
   _internalKujoNotes: []
   _chainKujoNotes: []
+  bossLane: {fileID: 2100000, guid: 4cebbd7012ce9534fb9552e88b30cd98, type: 2}
+  bossCube: {fileID: 2100000, guid: 141f51d061b1d2644ba2d390ecb068e7, type: 2}
   kujoJudgeSwitch: 0
   bossClock: {fileID: 370975199}
   camera: {fileID: 963194227}
@@ -61197,7 +61199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1254df6838a365245aec22aac648f795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilter: {fileID: 0}
 --- !u!1 &810148883
 GameObject:
   m_ObjectHideFlags: 0
@@ -77066,6 +77067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   song: {fileID: 947960482}
+  forcedFinish: 0
 --- !u!114 &1036589701
 MonoBehaviour:
   m_ObjectHideFlags: 0
