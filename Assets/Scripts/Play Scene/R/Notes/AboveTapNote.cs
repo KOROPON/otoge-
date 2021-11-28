@@ -60,20 +60,9 @@ namespace Reilas
                 triangles = _triangles
             };
             _mesh.MarkDynamic();
-        }
-
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
-        {
-            RenderMesh(currentTime, speedChangeEntities);
-        }
-
-        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
-        {
-            if (meshFilter == null) return;
 
             const float div = 32f;
             const float outerLaneRadius = 5.6f;
-
             const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
 
             for (var x = 0; x < _entity.Size + 1; x++)
@@ -89,14 +78,11 @@ namespace Reilas
                 var outerY = Mathf.Sin(angle) * outerLaneRadius;
                 var outerX = Mathf.Cos(angle) * outerLaneRadius;
 
-                if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
-                    
-                var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities);
-                    
+
                 //zPos += zz;
 
-                var innerPoint = new Vector3(innerX, innerY, zPos);
-                var outerPoint = new Vector3(outerX, outerY, zPos);
+                var innerPoint = new Vector3(innerX, innerY, 0);
+                var outerPoint = new Vector3(outerX, outerY, 0);
 
 
                 //(innerPoint, outerPoint) = (outerPoint, innerPoint);
@@ -125,6 +111,21 @@ namespace Reilas
             _mesh.RecalculateBounds();
 #endif
             meshFilter.mesh = _mesh;
+        }
+
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        {
+            RenderMesh(currentTime, speedChangeEntities);
+        }
+
+        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        {
+
+            if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
+
+            var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities);
+            gameObject.transform.position = new Vector3(0, 0, zPos);
+
         }
 
         public void NoteDestroy(bool kujo)
