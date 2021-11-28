@@ -53,9 +53,12 @@ public class ChangeScenePlayScene : MonoBehaviour
             ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
         }
         clear = scoreComboCalculator.clear;
-        getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
         _clearRankDirector.SelectRank(clear);
         scoreComboCalculator.currentCombo = 0;
+        if (score > previousHighScore)
+        {
+            getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
+        }
     }
 
     public void AwakeCallBack()
