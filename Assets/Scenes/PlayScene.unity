@@ -25035,7 +25035,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 80
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -35119,7 +35119,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 80
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -55793,6 +55793,7 @@ MonoBehaviour:
   bossLane: {fileID: 2100000, guid: 4cebbd7012ce9534fb9552e88b30cd98, type: 2}
   bossCube: {fileID: 2100000, guid: 141f51d061b1d2644ba2d390ecb068e7, type: 2}
   kujoJudgeSwitch: 0
+  gimmickPause: 0
   bossClock: {fileID: 370975199}
   camera: {fileID: 963194227}
 --- !u!114 &684936814
@@ -137051,7 +137052,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 80
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -137248,7 +137249,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 80
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
