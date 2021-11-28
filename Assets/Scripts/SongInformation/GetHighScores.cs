@@ -84,6 +84,12 @@ public class GetHighScores : MonoBehaviour
         return song != null && song.extremeLock;
     }
 
+    public bool GetKujoLock(string songName)
+    {
+        var song = GetSong(songName);
+        return song != null && song.kujoLock;
+    }
+
     public string GetClear(string songName, string difficulty)
     {
         var diff = GetDiff(songName, difficulty);
@@ -138,6 +144,12 @@ public class GetHighScores : MonoBehaviour
             GetSong(songName).extremeLock = true;
         }
         
+        StreamWrite();
+    }
+
+    public void SetKujoLock()
+    {
+        GetSong("Reilas").kujoLock = true;
         StreamWrite();
     }
 }

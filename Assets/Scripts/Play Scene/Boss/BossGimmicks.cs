@@ -141,7 +141,7 @@ public class BossGimmicks : MonoBehaviour
 
     private void Update()
     {
-        if (!(_presenter.jumpToKujo && _presenter.alreadyChangeKujo)) return;
+        if (!(RhythmGamePresenter.jumpToKujo && _presenter.alreadyChangeKujo)) return;
         if (gimmickPause) return;
         Debug.Log("BossUpdate");
 

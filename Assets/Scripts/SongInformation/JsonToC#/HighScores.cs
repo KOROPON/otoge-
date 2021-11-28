@@ -11,6 +11,7 @@ internal class Song
 {
     public string title;
     public bool extremeLock;
+    public bool kujoLock;
     public Difficulty easy;
     public Difficulty hard;
     public Difficulty extreme;

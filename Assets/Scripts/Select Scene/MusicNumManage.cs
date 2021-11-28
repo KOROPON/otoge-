@@ -136,7 +136,7 @@ public class MusicNumManage : MonoBehaviour
         _easyLevel = GameObject.Find("Easy").GetComponentInChildren<Text>();
         _hardLevel = GameObject.Find("Hard").GetComponentInChildren<Text>();
         _extremeLevel = GameObject.Find("Extreme").GetComponentInChildren<Text>();
-        
+        Debug.Log(_getHighScores.GetKujoLock("Collide"));
         FindObjectOfType<SongButtonSpawner>().SpawnSongs();
 
         if (!PlayerPrefs.HasKey("selected_song"))
@@ -200,6 +200,7 @@ public class MusicNumManage : MonoBehaviour
             var songLock = song.GetComponentsInChildren<Image>()[2];
             var determineButton = song.GetComponent<Button>();
             var clearGuage = song.GetComponentsInChildren<Image>()[3];
+            var allowedLevel = song.GetComponentsInChildren<Text>()[1];
             clearGuage.sprite = _getHighScores.GetClear(song.name, diff.name) != null ? Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff.name)) : Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
             if (diff.name == "Extreme" && !_getHighScores.GetLock(song.name))
             {
@@ -229,6 +230,10 @@ public class MusicNumManage : MonoBehaviour
                 {
                     t.text = LevelConverter.GetLevel(song.name, diff.name).ToString();
                 }
+            }
+            if (diff.name == "Extreme" && song.name == "Reilas" && PlayerPrefs.HasKey("解禁状況") && !_getHighScores.GetKujoLock("Reilas"))
+            {
+                allowedLevel.text = PlayerPrefs.GetFloat("解禁状況").ToString() + " %";
             }
         }
     }

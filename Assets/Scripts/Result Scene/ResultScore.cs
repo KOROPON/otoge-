@@ -23,6 +23,8 @@ public class ResultScore : MonoBehaviour
     private Text _rankDifficulty;
     private Image _resultColor;
     private Image _clearRank;
+    private GameObject _barS;
+    private GameObject _barM;
 
     private GetHighScores _getHighScores;
     private LevelConverter _levelConverter;
@@ -58,7 +60,10 @@ public class ResultScore : MonoBehaviour
         _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>();
         _clearRank = GameObject.Find("Clear").GetComponent<Image>();
         _levelConverter = gameObject.AddComponent<LevelConverter>();
-
+        _barS = GameObject.Find("barS");
+        _barM = GameObject.Find("barM");
+        _barS.SetActive(false);
+        _barM.SetActive(false);
         _scoreInResult.text = $"{_score:0,000,000}";
         _maxCombo.text = ScoreComboCalculator.highCombo.ToString();
         _perfectCom.text = ScoreComboCalculator.sumPerfect.ToString();
@@ -86,6 +91,32 @@ public class ResultScore : MonoBehaviour
             "Extreme" => new Color32(120, 9, 135, 255),
             "Kujo" => new Color32(150, 150, 150, 255),
         };
+
+        if (RhythmGamePresenter.jumpToKujo)
+        {
+            _barS.SetActive(true);
+            _barM.SetActive(true);
+
+            if (ChangeScenePlayScene.clear == "Failed")
+            {
+                if (PlayerPrefs.HasKey("解禁状況"))
+                {
+                    PlayerPrefs.SetFloat("解禁状況", PlayerPrefs.GetFloat("解禁状況") + 10f);
+                }
+                else
+                {
+                    PlayerPrefs.SetFloat("解禁状況", 10f);
+                }
+                if (PlayerPrefs.GetFloat("解禁状況") == 100f)
+                {
+                    _getHighScores.SetKujoLock();
+                }
+            }
+            else
+            {
+                _getHighScores.SetKujoLock();
+            }
+        }
         //未実装00
 
         Shutter.blChange = "Open";

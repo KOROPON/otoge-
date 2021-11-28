@@ -146,7 +146,7 @@ public class AllJudgeService : MonoBehaviour
         if (_gamePresenter == null) return;
 
         var tapNotes = RhythmGamePresenter.TapNoteLanes;
-        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
+        if (_gamePresenter.alreadyChangeKujo && RhythmGamePresenter.jumpToKujo)
         {
             tapNotes = RhythmGamePresenter.TapKujoNoteLanes;
         }
@@ -266,7 +266,7 @@ public class AllJudgeService : MonoBehaviour
         internalNotes.OrderBy(note => note.JudgeTime);
         //Debug.Log("          " + internalNotes[180].JudgeTime);
         //Debug.Log(internalNotes[0].JudgeTime);
-        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
+        if (_gamePresenter.alreadyChangeKujo && RhythmGamePresenter.jumpToKujo)
         {
             internalNotes = RhythmGamePresenter.InternalKujoNotes;
         }
@@ -303,7 +303,7 @@ public class AllJudgeService : MonoBehaviour
         }
 
         var chainNotes = RhythmGamePresenter.chainNotes;
-        if (_gamePresenter.alreadyChangeKujo && _gamePresenter.jumpToKujo)
+        if (_gamePresenter.alreadyChangeKujo && RhythmGamePresenter.jumpToKujo)
         {
             chainNotes = RhythmGamePresenter.ChainKujoNotes;
         }

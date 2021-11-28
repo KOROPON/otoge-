@@ -55,7 +55,7 @@ public class ChangeScenePlayScene : MonoBehaviour
         clear = scoreComboCalculator.clear;
         _clearRankDirector.SelectRank(clear);
         scoreComboCalculator.currentCombo = 0;
-        if (score > previousHighScore)
+        if (score > previousHighScore && !RhythmGamePresenter.jumpToKujo)
         {
             getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
         }
