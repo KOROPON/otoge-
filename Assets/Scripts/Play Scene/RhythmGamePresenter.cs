@@ -450,6 +450,8 @@ public class RhythmGamePresenter : MonoBehaviour
         SpawnBarLines(_barLines);
         SpawnNoteConnectors(_noteConnectors);
 
+        BarLines.OrderBy(note => note.judgeTime);
+
         //_reilasAboveSlide.AddRange(_boss.reilasKujoAboveSlide);
         //_reilasAboveHold.AddRange(_boss.reilasKujoAboveHold);
         //_reilasHold.AddRange(_boss.reilasKujoHold);
@@ -477,11 +479,6 @@ public class RhythmGamePresenter : MonoBehaviour
         countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
 
         _scoreComboCalculator.ScoreComboStart();
-
-        foreach (var note in internalNotes)
-        {
-            Debug.Log(note.JudgeTime);
-        }
 
         Shutter.bltoPlay = true;
         Shutter.blShutterChange = "Open";
@@ -867,6 +864,7 @@ public class RhythmGamePresenter : MonoBehaviour
         IEnumerable<AboveTapNote> aboveTapMove;
         IEnumerable<TapNote> tapNoteMove;
         IEnumerable<AboveChainNote> chainNoteMove;
+        IEnumerable<BarLine> barLineMove;
 
         List<AboveHoldNote> aboveHoldNoteMove = new List<AboveHoldNote>();
         List<AboveSlideNote> aboveSlideNoteMove = new List<AboveSlideNote>();
@@ -879,7 +877,7 @@ public class RhythmGamePresenter : MonoBehaviour
         if (orgAboveSlideNote == null) throw new ArgumentNullException(nameof(orgAboveSlideNote));
 
         if (_boss == null) _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
-
+        barLineMove = BarLines.Where(note => note.judgeTime - audioTime < 5f);
 
         var indexNum = 0;
         var noteAddCutOff = audioTime + 5;
@@ -1005,7 +1003,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
         for (var num = aboveSlideNoteMove.Count - 1; num >= 0; num--) aboveSlideNoteMove[num].Render(audioTime, num, _reilasAboveSlide, speedChanges);
 
-        foreach (var barLine in BarLines.ToList()) barLine.Render(audioTime, speedChanges);
+        foreach (var barLine in barLineMove.ToList()) barLine.Render(audioTime, speedChanges);
         
         foreach (var connector in NoteConnectors.ToList()) connector.Render(audioTime, speedChanges);
 

@@ -123,7 +123,7 @@ namespace Reilas
 
             if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
 
-            var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities);
+            var zPos = NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _noteSpeed, speedChangeEntities);
             gameObject.transform.position = new Vector3(0, 0, zPos);
 
         }

@@ -31,7 +31,7 @@ namespace Reilas
             {
                 if (_entity.JudgeTime - currentTime < 10f) gameObject.SetActive(true);
             }
-            else transform.position = new Vector3(thisNoteX, 0f, NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities));
+            else transform.position = new Vector3(thisNoteX, 0f, NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _noteSpeed, speedChangeEntities));
         }
 
         public void NoteDestroy(bool kujo)

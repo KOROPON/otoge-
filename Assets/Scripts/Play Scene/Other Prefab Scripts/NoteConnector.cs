@@ -241,7 +241,7 @@ namespace Reilas
             if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
             else if (_judgeTime < currentTime) NoteConnectorDestroy();
 
-            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z; // Make Mesh 頂点
+            var berPos = NotePositionCalculatorService.GetPosition(_judgeTime, currentTime, 1, speedChangeEntities); // Make Mesh 頂点
             var transPos = transform.position;
             gameObject.transform.position = new Vector3(transPos.x, transPos.y, berPos);
 

@@ -44,9 +44,8 @@ namespace Reilas
             return SpeedCalculator(bpm) * noteSpeed;
         }
 
-        private static float CalculateZPos(NoteEntity entity, List<SpeedChangeEntity> speedChangeEntities, float noteSpeed, float currentTime)
+        private static float CalculateZPos(float judgeTime, List<SpeedChangeEntity> speedChangeEntities, float noteSpeed, float currentTime)
         {
-            var judgeTime = entity.JudgeTime;
             var t = currentTime - judgeTime;
             
             if (speedChangeEntities.Count == 0) return PositionCalculator(t, NoteSpeedCalculator(firstChartSpeed, noteSpeed));
@@ -75,15 +74,13 @@ namespace Reilas
                     ? PositionCalculator(t, highSpeed)
                     : PositionCalculator(notePassedTime - judgeTime, highSpeed);
                 
-                Debug.Log(speedChangeEntities[i].Speed + "    " + judgeTime);
-                
                 zPos += positionCalculator - nextNotePosition;
             }
 
             return zPos;
         }
         
-        public static float GetPosition(NoteEntity entity, float currentTime, float noteSpeed, List<SpeedChangeEntity> speedChangeEntities)
+        public static float GetPosition(float judgeTime, float currentTime, float noteSpeed, List<SpeedChangeEntity> speedChangeEntities)
         {
             var highSpeed = normalizedSpeed * noteSpeed;
 
@@ -99,11 +96,10 @@ namespace Reilas
             
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
-            var judgeTime = entity.JudgeTime;
             var t = judgeTime - currentTime;
             var normalizedTime = t * _gameSpeed / 600f;
 
-            return normalizedTime < 0 ? highSpeed * t : CalculateZPos(entity, speedChangeEntities, noteSpeed, currentTime);
+            return normalizedTime < 0 ? highSpeed * t : CalculateZPos(judgeTime, speedChangeEntities, noteSpeed, currentTime);
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)
