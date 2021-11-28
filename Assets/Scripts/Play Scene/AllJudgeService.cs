@@ -39,11 +39,11 @@ public class AllJudgeService : MonoBehaviour
 
     private readonly Dictionary<string, float> _judgeSeconds = new Dictionary<string, float>()
     {
-        {"Tap Perfect", 0.055f},
-        {"Tap Good", 0.090f},
-        {"Tap Bad", 0.130f},
+        {"Tap Perfect", 0.060f},
+        {"Tap Good", 0.095f},
+        {"Tap Bad", 0.150f},
         {"Internal", 0.090f},
-        {"Chain", 0.040f}
+        {"Chain", 0.043f}
     };
 
     private static float CalculateDifference(float currentTime, float judgeTime, string noteType)
