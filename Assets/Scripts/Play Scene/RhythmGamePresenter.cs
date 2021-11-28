@@ -272,7 +272,14 @@ public class RhythmGamePresenter : MonoBehaviour
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
 
-        if (PlayerPrefs.HasKey("volume")) { } // tap音調整
+        if (PlayerPrefs.HasKey("volume"))
+        {
+            var volume = PlayerPrefs.GetFloat("volume") / 100;
+            GameObject.Find("Perfect").GetComponent<AudioSource>().volume = volume;
+            GameObject.Find("Good").GetComponent<AudioSource>().volume = volume;
+            GameObject.Find("Bad").GetComponent<AudioSource>().volume = volume;
+            GameObject.Find("LongPerfect").GetComponent<AudioSource>().volume = volume;
+        }
 
         if(chartEntity == null)
         {
