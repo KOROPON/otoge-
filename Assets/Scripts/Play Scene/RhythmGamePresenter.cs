@@ -275,16 +275,10 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (PlayerPrefs.HasKey("volume")) { } // tap音調整
 
-        if(chartEntity == null)
-        {
-            Debug.LogError("chartEntityIsNull!");
-        }
-            // chartEntity
-            _chartEntity = chartEntity;
-        if(_chartEntity == null)
-        {
-            Debug.LogError("_chartEntityIsNull");
-        }
+        if(chartEntity == null) Debug.LogError("chartEntity is null!");
+        else _chartEntity = chartEntity;
+
+        // chartEntity
 
         if (_chartEntity.SpeedChanges != null)
         {
@@ -954,9 +948,9 @@ public class RhythmGamePresenter : MonoBehaviour
                 //Debug.Log(_reilasHold.Count + "," + HoldNotes.Count + "の" + indexNum + "番目");
                 try
                 {
-                if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldNotes[indexNum]);
-                else break;
-                indexNum++;
+                    if (hold.Head.JudgeTime < noteAddCutOff) holdNoteMove.Add(HoldNotes[indexNum]);
+                    else break;
+                    indexNum++;
                 }
                 catch
                 {

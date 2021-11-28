@@ -4,6 +4,7 @@ using Reilas;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class ResultScore : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class ResultScore : MonoBehaviour
         _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>();
         _clearRank = GameObject.Find("Clear").GetComponent<Image>();
         _levelConverter = gameObject.AddComponent<LevelConverter>();
-
+        
         _scoreInResult.text = $"{_score:0,000,000}";
         _maxCombo.text = ScoreComboCalculator.highCombo.ToString();
         _perfectCom.text = ScoreComboCalculator.sumPerfect.ToString();
@@ -74,7 +75,7 @@ public class ResultScore : MonoBehaviour
         {
             var n when n > _previousScore => "+" + $"{n - _previousScore:0,000,000}",
             var n when n < _previousScore => "-" + $"{_previousScore - n:0,000,000}",
-            _=> ""
+            _ => ""
         };
 
         _clearRank.sprite = Resources.Load<Sprite>("ClearRank/" + ChangeScenePlayScene.clear);
@@ -85,6 +86,7 @@ public class ResultScore : MonoBehaviour
             "Hard" => new Color32(135, 133, 9, 255),
             "Extreme" => new Color32(120, 9, 135, 255),
             "Kujo" => new Color32(150, 150, 150, 255),
+            _ => new Color32(0, 0, 0, 0)
         };
         //未実装00
 

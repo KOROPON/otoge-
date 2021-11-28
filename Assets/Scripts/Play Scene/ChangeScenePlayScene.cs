@@ -6,9 +6,9 @@ public class ChangeScenePlayScene : MonoBehaviour
 {
     public AudioSource song;
     private ClearRankDirector _clearRankDirector;
-    static public int previousHighScore;
-    static public int score;
-    static public string clear;
+    public static int previousHighScore;
+    public static int score;
+    public static string clear;
 
     public static bool playNoticed;
     public static bool playStopped;
@@ -28,17 +28,16 @@ public class ChangeScenePlayScene : MonoBehaviour
 
         StartCoroutine(Checking(() =>
         {
-            //‹ÈI—¹
-            //Clear•\¦
+            //ï¿½ÈIï¿½ï¿½ï¿½ï¿½
+            //Clearï¿½\ï¿½ï¿½
             if (!playStopped) return;
             SettingField.setBool = false;
             getHighScores.Awake();
             previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
             score = scoreComboCalculator.currentScore;
-            if(ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
-            {
-                ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
-            }
+            
+            if(ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo) ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
+            
             clear = scoreComboCalculator.clear;
             getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
             _clearRankDirector.SelectRank(clear);

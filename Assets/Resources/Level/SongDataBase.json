@@ -43,6 +43,21 @@
                 "extreme": 8,
                 "kujo": 0
             }
+        },
+        {
+            "title": "kawaii_OD!!",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bom": 175
+            },
+            "custom": [],
+            "level": {
+                "easy": 2,
+                "hard": 5,
+                "extreme": 8,
+                "kujo": 0
+            }
         }
     ]
 }

@@ -26,7 +26,8 @@ namespace Reilas
 
         public static float SpeedCalculator(float bpm)
         {
-            return _gameSpeed * bpm * 0.01f;
+            Debug.Log("SPEED: " + _gameSpeed * bpm / firstChartSpeed);
+            return _gameSpeed * bpm / firstChartSpeed;
         }
         
         public static void CalculateNoteSpeed(float noteSpeed)
@@ -36,7 +37,7 @@ namespace Reilas
         
         public static float PositionCalculator(float span, float speed)
         {
-            return speed * 0.5f * span * span - speed * span;
+            return span * (speed * 0.5f * span - speed);
         }
 
         private static float NoteSpeedCalculator(float bpm, float noteSpeed)
@@ -103,7 +104,7 @@ namespace Reilas
             var t = judgeTime - currentTime;
             var normalizedTime = t * _gameSpeed / 600f;
 
-            return normalizedTime < 0 ? new Vector3(x, 0f, highSpeed * t) : new Vector3(x, 0f, CalculateZPos(entity, speedChangeEntities, noteSpeed, currentTime));
+            return normalizedTime < 0 ? new Vector3(x, 0f, highSpeed * t) : new Vector3(x, 0f, /*PositionCalculator(-t, highSpeed)*/CalculateZPos(entity, speedChangeEntities, noteSpeed, currentTime));
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)

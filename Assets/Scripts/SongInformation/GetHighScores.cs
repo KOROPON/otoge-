@@ -92,7 +92,6 @@ public class GetHighScores : MonoBehaviour
         if (diff.fullCombo) return "FullCombo";
         return diff.clear ? "Clear" : "Failed";
     }
-    
 
     public int GetHighScore(string songName, string difficulty)
     {
@@ -111,6 +110,7 @@ public class GetHighScores : MonoBehaviour
         var diff = GetDiff(songName, difficulty) ?? new Difficulty();
         diff.highScore = score;
         diff.rank = RankCalculator(score);
+        Debug.Log("HighScore: " + diff.highScore + ", Rank: " + diff.rank);
         switch (clear)
         {
             case "AllPerfect":
@@ -133,11 +133,8 @@ public class GetHighScores : MonoBehaviour
             }
         }
         
-        if (difficulty == "Hard" && diff.highScore >= 980000)
-        {
-            GetSong(songName).extremeLock = true;
-        }
-        
+        if (difficulty == "Hard" && diff.highScore >= 980000) GetSong(songName).extremeLock = true;
+
         StreamWrite();
     }
 }
