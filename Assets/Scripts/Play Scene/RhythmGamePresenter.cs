@@ -239,7 +239,7 @@ public class RhythmGamePresenter : MonoBehaviour
             _judgeService.tapJudgeStartIndex[i] = 0;
         }
         AwakeAsync().Forget();
-        //if (musicName == "Reilas" && dif == "Extreme") _boss.BossAwake();
+        if (musicName == "Reilas" && dif == "Extreme") _boss.BossAwake();
         _judgeService.internalJudgeStartIndex = 0;
         _judgeService.chainJudgeStartIndex = 0;
     }
@@ -788,7 +788,7 @@ public class RhythmGamePresenter : MonoBehaviour
             judgeTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
-        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
+        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0f;
         
         for (var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {
@@ -843,7 +843,7 @@ public class RhythmGamePresenter : MonoBehaviour
         }
 
         if (alreadyChangeKujo) return;
-        if (currentTime < 82.5 || _boss == null) return;
+        if (currentTime < 82.9 || _boss == null) return;
         if (jumpToKujo)
         {
             _boss.ChangeToKujo();

@@ -132,7 +132,7 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.AboveKujoTapNotes.Remove(this);
             else RhythmGamePresenter.AboveTapNotes.Remove(this);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
