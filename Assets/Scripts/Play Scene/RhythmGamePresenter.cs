@@ -212,6 +212,7 @@ public class RhythmGamePresenter : MonoBehaviour
     {
         for (var i = 1; i < lanes.Count; i++)
         {
+            Debug.Log("LANE; " + lanes[i] + flag);
             addingList.Add(new ConnectingKinds
             {
                 connector = new []{lanes[0], lanes[i]},
@@ -238,7 +239,7 @@ public class RhythmGamePresenter : MonoBehaviour
             _judgeService.tapJudgeStartIndex[i] = 0;
         }
         AwakeAsync().Forget();
-        if (musicName == "Reilas" && dif == "Extreme") _boss.BossAwake();
+        //if (musicName == "Reilas" && dif == "Extreme") _boss.BossAwake();
         _judgeService.internalJudgeStartIndex = 0;
         _judgeService.chainJudgeStartIndex = 0;
     }
@@ -417,7 +418,7 @@ public class RhythmGamePresenter : MonoBehaviour
                     });
                 }
             }
-            
+
             ConnectorAdder(connectorKindList, aboveTaps, "Above-Above");
 
             _noteConnectors.Add(new Connector
@@ -838,7 +839,7 @@ public class RhythmGamePresenter : MonoBehaviour
         }
 
         if (alreadyChangeKujo) return;
-        if (currentTime < 82 || _boss == null) return;
+        if (currentTime < 82.5 || _boss == null) return;
         if (jumpToKujo)
         {
             _boss.ChangeToKujo();
@@ -851,10 +852,10 @@ public class RhythmGamePresenter : MonoBehaviour
             alreadyChangeKujo = true;
         }
     }
-
+    System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
     private void LateUpdate()
     {
-
+        sw.Start();////////////////////////////////////////
         IEnumerable<AboveTapNote> aboveTapMove;
         IEnumerable<TapNote> tapNoteMove;
         IEnumerable<AboveChainNote> chainNoteMove;
@@ -870,6 +871,7 @@ public class RhythmGamePresenter : MonoBehaviour
         if (orgAboveSlideNote == null) throw new ArgumentNullException(nameof(orgAboveSlideNote));
 
         if (_boss == null) _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
+
 
         var indexNum = 0;
         var noteAddCutOff = audioTime + 5;

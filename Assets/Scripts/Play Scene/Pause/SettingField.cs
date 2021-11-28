@@ -9,10 +9,12 @@ public class SettingField : MonoBehaviour
     public AudioSource aud;
     private Image _fader;
     int _resumetime = 180;
+    private BossGimmicks _boss;
 
     void Start()
     {
         _fader = GameObject.Find("Fader").GetComponent<Image>();
+        _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
     }
     [SerializeField]
     public GameObject pauseButton;
@@ -26,6 +28,7 @@ public class SettingField : MonoBehaviour
         }
         aud.Pause();
         Time.timeScale = 0;
+        _boss.gimmickPause = true;
         _fader.enabled = true;
         pausePanel.SetActive(true);
         pauseButton.SetActive(false);
@@ -55,6 +58,7 @@ public class SettingField : MonoBehaviour
                 text.gameObject.SetActive(false);
                 aud.UnPause();
                 Time.timeScale = 1;
+                _boss.gimmickPause = false;
                 _resume = false;
                 _resumetime = 180;
             }

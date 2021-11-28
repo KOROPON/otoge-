@@ -12,6 +12,7 @@ public class BossGimmicks : MonoBehaviour
     private RhythmGamePresenter _presenter = null!;
     private BossGimmickContainer _bossContainer = null!;
     private AllJudgeService _judgeService = null!;
+    private bool gaugeCheck;
 
     public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
@@ -21,6 +22,7 @@ public class BossGimmicks : MonoBehaviour
     public Material bossCube;
 
     public bool kujoJudgeSwitch = false;
+    public bool gimmickPause;
 
     public AudioSource bossClock = null!;
 
@@ -29,6 +31,8 @@ public class BossGimmicks : MonoBehaviour
     private void Awake()
     {
         camera = Camera.main;
+        gaugeCheck = true;
+        gimmickPause = false;
         _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
         _bossContainer = this.gameObject.GetComponent<BossGimmickContainer>();
     }
@@ -36,9 +40,6 @@ public class BossGimmicks : MonoBehaviour
     public async void BossAwake()
     {
         _judgeService = GameObject.Find("Main").GetComponent<AllJudgeService>();
-
-        GameObject.Find("立方体").GetComponent<MeshRenderer>().material = bossCube;
-        GameObject.Find("トンネル").GetComponent<MeshRenderer>().material = bossLane;
 
         var kujoSongs = await Resources.LoadAsync<TextAsset>("Charts/Reilas_half.KUJO") as TextAsset;
         if (kujoSongs == null)
@@ -136,13 +137,15 @@ public class BossGimmicks : MonoBehaviour
         _presenter.SpawnAboveSlideNotes(_presenter.reilasKujoAboveSlide, true);
     }
 
-    private void FixedUpdate()
+    private bool blackOut1st;
+
+    private void Update()
     {
         if (!(_presenter.jumpToKujo && _presenter.alreadyChangeKujo)) return;
+        if (gimmickPause) return;
+        Debug.Log("BossUpdate");
 
         float time = _presenter.audioTime;
-
-        if (time < 81.7f) return;
 
         if (time < 82.93f)
         {
@@ -164,8 +167,8 @@ public class BossGimmicks : MonoBehaviour
         {
             kujoJudgeSwitch = true;
 
-            float effectTime = (time - 82.93f) % 1.257f;
-            if (effectTime <= 0.257f || effectTime >= 1f)
+            float effectTime = (time - 82.93f) % 0.628f;
+            if (effectTime <= 0.128f || effectTime >= 0.5f)
             {
                 Debug.Log("EffectTime");
                 _bossContainer.BlackOutIntermittently();
@@ -173,12 +176,16 @@ public class BossGimmicks : MonoBehaviour
         }
         else if (time < 103.04f)
         {
-            kujoJudgeSwitch = false;
             _bossContainer.ChangeObjectShine();
         }
         else if (time < 104)
         {
-
+            if (gaugeCheck)
+            {
+                kujoJudgeSwitch = false;
+                GameObject.Find("Main").transform.GetComponent<ScoreComboCalculator>().GaugeChange();
+                gaugeCheck = false;
+            }
         }
         else
         {
@@ -200,7 +207,6 @@ public class BossGimmicks : MonoBehaviour
         if (_judgeService == null) return;
         Debug.Log("Change BossGimmick");
 
-        GameObject.Find("Main").transform.GetComponent<ScoreComboCalculator>().GaugeChange();
         GameObject.Find("立方体").GetComponent<MeshRenderer>().material = bossCube;
         GameObject.Find("トンネル").GetComponent<MeshRenderer>().material = bossLane;
 

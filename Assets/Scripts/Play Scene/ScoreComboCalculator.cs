@@ -135,7 +135,7 @@ namespace Reilas
             _gaugeMiss = 0;
             if (slider.fillAmount < 0) slider.fillAmount = 0;
 
-            if (bossGimmick && slider.fillAmount <= 0) this.transform.GetComponent<ChangeScenePlayScene>().forcedFinish = true;
+            if (bossGimmick && slider.fillAmount <= 0) this.transform.GetComponent<ChangeScenePlayScene>().AwakeCallBack();
 
             //gauge.text = slider.value.ToString(CultureInfo.InvariantCulture);
             if (currentScore == 1000000) clear = "AllPerfect";

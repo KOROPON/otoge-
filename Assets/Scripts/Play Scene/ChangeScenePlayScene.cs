@@ -28,33 +28,39 @@ public class ChangeScenePlayScene : MonoBehaviour
 
     public void Update()
     {
-        if (forcedFinish)
+        if (forcedFinish!)
         {
+            Debug.Log("bossGauge");
             CallBack();
             forcedFinish = false;
         }
         if (!playNoticed || !playStopped) return;
         playNoticed = false;
 
-        StartCoroutine(Checking(() =>CallBack()));
-        void CallBack()
+        StartCoroutine(Checking(() => CallBack()));
+    }
+    private void CallBack()
+    {
+        //曲終了時
+        //Clear表示
+        if (!playStopped) return;
+        SettingField.setBool = false;
+        getHighScores.Awake();
+        previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
+        score = scoreComboCalculator.currentScore;
+        if (ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
         {
-            //曲終了時
-            //Clear表示
-            if (!playStopped) return;
-            SettingField.setBool = false;
-            getHighScores.Awake();
-            previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
-            score = scoreComboCalculator.currentScore;
-            if (ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
-            {
-                ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
-            }
-            clear = scoreComboCalculator.clear;
-            getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
-            _clearRankDirector.SelectRank(clear);
-            scoreComboCalculator.currentCombo = 0;
+            ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
         }
+        clear = scoreComboCalculator.clear;
+        getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
+        _clearRankDirector.SelectRank(clear);
+        scoreComboCalculator.currentCombo = 0;
+    }
+
+    public void AwakeCallBack()
+    {
+        CallBack();
     }
 
     private delegate void FunctionType();

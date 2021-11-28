@@ -94,9 +94,10 @@ namespace Reilas
 
             var beginning = connectKind.connector[0];
             var finish = connectKind.connector[1];
+            if (finish > 35) finish = 35;
 
             var lanePositions = RhythmGamePresenter.LanePositions;
-            Debug.Log("beginning: " + beginning);
+            Debug.Log("beginning: " + beginning + "finish: " + finish);
             var startPosition = lanePositions[beginning];
             var spX = startPosition.x;
             var spY = startPosition.y;
