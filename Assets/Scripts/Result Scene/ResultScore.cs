@@ -60,8 +60,8 @@ public class ResultScore : MonoBehaviour
         _resultColor = GameObject.Find("JacketFrame").GetComponent<Image>();
         _clearRank = GameObject.Find("Clear").GetComponent<Image>();
         _levelConverter = gameObject.AddComponent<LevelConverter>();
-        _barS = GameObject.Find("barS");
-        _barM = GameObject.Find("barM");
+        _barS = GameObject.Find("BarS");
+        _barM = GameObject.Find("BarM");
         _barS.SetActive(false);
         _barM.SetActive(false);
         _scoreInResult.text = $"{_score:0,000,000}";

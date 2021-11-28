@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Reilas;
@@ -16,6 +17,7 @@ public class BossGimmicks : MonoBehaviour
     private MeshRenderer underTunnel;
     private MeshRenderer _judgeLine;
     private bool gaugeCheck;
+    private bool firstAnimCheck;
 
     public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
@@ -26,6 +28,10 @@ public class BossGimmicks : MonoBehaviour
 
     public bool kujoJudgeSwitch = false;
     public bool gimmickPause;
+    private bool blackOut1st;
+    private RectTransform _backGround;
+    private byte color = 0;
+    private Image whiteOut;
 
     public AudioSource bossClock = null!;
 
@@ -40,7 +46,9 @@ public class BossGimmicks : MonoBehaviour
         _bossContainer = this.gameObject.GetComponent<BossGimmickContainer>();
         tunnel = GameObject.Find("立方体").GetComponent<MeshRenderer>();
         underTunnel = GameObject.Find("トンネル").GetComponent<MeshRenderer>();
+        _backGround = GameObject.Find("BackGround").GetComponent<RectTransform>();
         _judgeLine = GameObject.Find("AboveJudgeLine").GetComponent<MeshRenderer>();
+        whiteOut = GameObject.Find("WhiteOut").GetComponent<Image>();
     }
 
     public async void BossAwake()
@@ -143,7 +151,6 @@ public class BossGimmicks : MonoBehaviour
         _presenter.SpawnAboveSlideNotes(_presenter.reilasKujoAboveSlide, true);
     }
 
-    private bool blackOut1st;
 
     private void Update()
     {
@@ -152,42 +159,50 @@ public class BossGimmicks : MonoBehaviour
         Debug.Log("BossUpdate");
 
         float time = _presenter.audioTime;
+        if (time > 120) return;
 
-        if (time < 82.93f)
+        if (time < 92.98f)
         {
-            _bossContainer.BlackOutFirst();
-            return;
-        }
-        else if (time < 92.98f)
-        {
-            if (!bossClock.isPlaying) bossClock.Play();
-            float effectTime = (time - 82.93f) % 1.257f;
-            if (effectTime <= 0.257f || effectTime >= 1f)
+            float effectTime = Mathf.Abs((time - 82.93f) % 1.257f);
+            if (effectTime <= 0.057f)
             {
                 Debug.Log("EffectTime");
-                _bossContainer.BlackOutIntermittently();
+                StartCoroutine(_bossContainer.BlackOutIntermittently());
+            }
+            if (!firstAnimCheck)
+            {
+                bossClock.Play();
+                _bossContainer.BlackOutFirst();
+                firstAnimCheck = true;
             }
             return;
         }
         else if (time < 101.78f)
         {
             kujoJudgeSwitch = true;
-
-            float effectTime = (time - 82.93f) % 0.628f;
-            if (effectTime <= 0.128f || effectTime >= 0.5f)
+            color += 3;
+            float effectTime = Mathf.Abs((time - 82.93f) % 0.628f);
+            if (effectTime <= 0.028f)
             {
                 Debug.Log("EffectTime");
-                _bossContainer.BlackOutIntermittently();
+                StartCoroutine(_bossContainer.BlackOutIntermittently());
             }
+            _bossContainer._cameraShine.intensity.value += 0.5f;
+            whiteOut.color = new Color32(255, 255, 255, color);
         }
         else if (time < 103.04f)
         {
+            byte colorReset = (byte)Mathf.Lerp(255, 0, (time - 101.78f) / 0.96f);
+            whiteOut.color = new Color32(255, 255, 255, colorReset);
             _bossContainer.ChangeObjectShine();
         }
         else if (time < 104)
         {
             if (gaugeCheck)
             {
+                whiteOut.color = new Color32(255, 255, 255, 0);
+                _bossContainer.LastChorus();
+                _judgeLine.gameObject.SetActive(true);
                 kujoJudgeSwitch = false;
                 GameObject.Find("Main").transform.GetComponent<ScoreComboCalculator>().GaugeChange();
                 gaugeCheck = false;
@@ -195,6 +210,9 @@ public class BossGimmicks : MonoBehaviour
         }
         else
         {
+            float timeRatio = time - 104;
+            float size = Mathf.Lerp(40, 1, timeRatio / 16);
+            _backGround.localScale = new Vector3(size, size, 1);
             return;
         }
 
@@ -215,7 +233,7 @@ public class BossGimmicks : MonoBehaviour
 
         tunnel.material = bossCube;
         underTunnel.material = bossLane;
-        _judgeLine.material.color = new Color32(225, 225, 225, 0);
+        _judgeLine.gameObject.SetActive(false);
 
         for (var i = 0; i < 36; i++)
         {

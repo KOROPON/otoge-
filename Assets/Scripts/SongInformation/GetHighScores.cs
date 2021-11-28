@@ -30,10 +30,23 @@ public class GetHighScores : MonoBehaviour
             StreamWrite();
         }
         _highScore = SongInfo(_jsonFilePath);
+        if(_highScore == null)
+        {
+            _highScore = new HighScores();
+            StreamWrite();
+        }
     }
 
     private Song GetSong(string title)
     {
+        var emptySong = new Song();
+        if (_highScore.songs == null)
+        {
+            _highScore.songs = new Song[1];
+            _highScore.songs[0] = emptySong;
+            emptySong.title = title;
+            return emptySong;
+        }
         foreach (var t in _highScore.songs)
         {
             if (title == t.title)
@@ -41,7 +54,6 @@ public class GetHighScores : MonoBehaviour
                 return t;
             }
         }
-        var emptySong = new Song();
         Array.Resize(ref _highScore.songs, _highScore.songs.Length + 1);
         _highScore.songs[_highScore.songs.Length - 1] = emptySong;
         emptySong.title = title;

@@ -5,10 +5,12 @@ using System.Collections;
 public class BossGimmickContainer : MonoBehaviour
 {
     private PostProcessVolume _cameraEffector;
-    private Bloom _cameraShine;
     private Image _stagingFader;
     private Animation _stagingFaderAnim;
     private Animation _backGroundAnim;
+    private Sprite _backClock;
+    public Image _backGround;
+    public Bloom _cameraShine;
 
     public bool effectStart = false;
 
@@ -20,6 +22,8 @@ public class BossGimmickContainer : MonoBehaviour
         _stagingFader.enabled = false;
         _stagingFaderAnim = GameObject.Find("StagingFader").GetComponent<Animation>();
         _backGroundAnim = GameObject.Find("BackGround").GetComponent<Animation>();
+        _backGround = GameObject.Find("BackGround").GetComponent<Image>();
+        _backClock = Resources.Load<Sprite>("BackGround/Fader");
     }
 
 
@@ -40,6 +44,12 @@ public class BossGimmickContainer : MonoBehaviour
         _stagingFaderAnim.Play();
         _backGroundAnim.Play("BackGroundAnimFirst");
     }
+    public void LastChorus()
+    {
+        _backGround.sprite = _backClock;
+        _backGround.color = new Color32(255, 255, 255, 255);
+        _stagingFader.enabled = false;
+    }
     /// <summary>
     /// éûåvÇÃâπÇ…çáÇÌÇπÇΩñæà√
     /// </summary>
@@ -55,12 +65,6 @@ public class BossGimmickContainer : MonoBehaviour
         _cameraShine.intensity.value = 20f;
         while (true)
         {
-            if (effectStart)
-            {
-                _stagingFaderAnim.Play("StagingFaderAnim");
-                _cameraShine.intensity.value = 20f;
-                effectStart = false;
-            }
             yield return new WaitForFixedUpdate();
             i++;
             _cameraShine.intensity.value = (float) (_cameraShine.intensity.value - 0.16);

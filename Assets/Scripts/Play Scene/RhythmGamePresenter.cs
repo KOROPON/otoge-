@@ -224,7 +224,7 @@ public class RhythmGamePresenter : MonoBehaviour
     private void Awake()
     {
         jumpToKujo = false;
-        _isAllowed = gameObject.GetComponent<GetHighScores>().GetKujoLock("Reilas");
+        _isAllowed = gameObject.AddComponent<GetHighScores>().GetKujoLock("Reilas");
         _longPerfect = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
         for (var i = 0; i < TapNoteLanes.Length; i++) TapNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
         for (var i = 0; i < TapKujoNoteLanes.Length; i++) TapKujoNoteLanes[i] = new List<ReilasNoteEntityToGameObject>();
@@ -790,7 +790,7 @@ public class RhythmGamePresenter : MonoBehaviour
             judgeTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
-        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null && !_isAllowed) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
+        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null/* && !_isAllowed*/) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0f;
         
         for (var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {

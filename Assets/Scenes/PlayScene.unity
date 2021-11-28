@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -55808,6 +55808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe4f9f5b16c1eb4e96d76857bc56270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _backGround: {fileID: 0}
+  _cameraShine: {fileID: 0}
   effectStart: 1
 --- !u!4 &684936815
 Transform:
@@ -55856,6 +55858,81 @@ Transform:
   m_Father: {fileID: 858022451}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &701472982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701472983}
+  - component: {fileID: 701472985}
+  - component: {fileID: 701472984}
+  m_Layer: 5
+  m_Name: WhiteOut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &701472983
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701472982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1997871199}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &701472984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701472982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &701472985
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701472982}
+  m_CullTransparentMesh: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -76964,7 +77041,6 @@ GameObject:
   - component: {fileID: 1036589699}
   - component: {fileID: 1036589700}
   - component: {fileID: 1036589701}
-  - component: {fileID: 1036589702}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -77017,7 +77093,6 @@ MonoBehaviour:
   reilasKujoHold: []
   reilasKujoChain: []
   speedChanges: []
-  jumpToKujo: 0
   alreadyChangeKujo: 0
   judgeTime: 0
   audioTime: 0
@@ -77085,18 +77160,6 @@ MonoBehaviour:
   internalJudgeStartIndex: 0
   chainJudgeStartIndex: 0
   _alreadyChangeKujo: 0
---- !u!114 &1036589702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036589695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a347528955a42a8882bc459c02041f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1127278211
 GameObject:
   m_ObjectHideFlags: 0
@@ -77178,10 +77241,11 @@ Animation:
   m_GameObject: {fileID: 1134603790}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0e00b8d47cb3a104397ecd70dd7ee0a1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 217312c8d11ac3743b3f87816677936b, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 0e00b8d47cb3a104397ecd70dd7ee0a1, type: 2}
-  m_WrapMode: 0
+  - {fileID: 7400000, guid: 217312c8d11ac3743b3f87816677936b, type: 2}
+  m_WrapMode: 1
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
@@ -77231,7 +77295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e5476680d8a3284bbd20c370d82b8b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7d3b05803280b948904f9ff0bd0886f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -152459,6 +152523,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 793049242}
+  - {fileID: 701472983}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
