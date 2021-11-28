@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713d6b046ad94fcfbcf1f15493eaa846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tapTime: 0
+  tapTime: 0
 --- !u!1 &8764174521828495448
 GameObject:
   m_ObjectHideFlags: 0

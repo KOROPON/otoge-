@@ -12,6 +12,9 @@ public class BossGimmicks : MonoBehaviour
     private RhythmGamePresenter _presenter = null!;
     private BossGimmickContainer _bossContainer = null!;
     private AllJudgeService _judgeService = null!;
+    private MeshRenderer tunnel;
+    private MeshRenderer underTunnel;
+    private MeshRenderer _judgeLine;
     private bool gaugeCheck;
 
     public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
@@ -35,6 +38,9 @@ public class BossGimmicks : MonoBehaviour
         gimmickPause = false;
         _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
         _bossContainer = this.gameObject.GetComponent<BossGimmickContainer>();
+        tunnel = GameObject.Find("立方体").GetComponent<MeshRenderer>();
+        underTunnel = GameObject.Find("トンネル").GetComponent<MeshRenderer>();
+        _judgeLine = GameObject.Find("AboveJudgeLine").GetComponent<MeshRenderer>();
     }
 
     public async void BossAwake()
@@ -207,8 +213,9 @@ public class BossGimmicks : MonoBehaviour
         if (_judgeService == null) return;
         Debug.Log("Change BossGimmick");
 
-        GameObject.Find("立方体").GetComponent<MeshRenderer>().material = bossCube;
-        GameObject.Find("トンネル").GetComponent<MeshRenderer>().material = bossLane;
+        tunnel.material = bossCube;
+        underTunnel.material = bossLane;
+        _judgeLine.material.color = new Color32(225, 225, 225, 0);
 
         for (var i = 0; i < 36; i++)
         {

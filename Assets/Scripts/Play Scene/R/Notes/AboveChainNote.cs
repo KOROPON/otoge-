@@ -95,24 +95,9 @@ namespace Reilas
                 triangles = _triangles
             };
             _mesh.MarkDynamic();
-        }
-
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntity)
-        {
-            RenderMesh(currentTime, speedChangeEntity);
-        }
-
-        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
-        {
-            if (meshFilter == null)
-            {
-                Debug.Log("return");
-                return;
-            }
 
             const float outerLaneRadius = 5.6f;
-            const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
-            const float outerRadius = outerLaneRadius;        // 外縁の半径
+            const float innerLaneRadius = outerLaneRadius - 3f; // 内縁の半径
             const float div = 32f;
 
             for (var z = 0; z < 1; z++)
@@ -126,25 +111,14 @@ namespace Reilas
                     angle = Mathf.PI - angle;
 
 
-                    var innerY = Mathf.Sin(angle) * innerRadius;
-                    var innerX = Mathf.Cos(angle) * innerRadius;
+                    var innerY = Mathf.Sin(angle) * innerLaneRadius;
+                    var innerX = Mathf.Cos(angle) * innerLaneRadius;
 
-                    var outerY = Mathf.Sin(angle) * outerRadius;
-                    var outerX = Mathf.Cos(angle) * outerRadius;
-
-                    float zPos = 0;
-
-                    if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
-                    //else
-                    //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, speedChangeEntities);
-                    //}
-
-
-                    //zPos += zz;
-
-                    var innerPoint = new Vector3(innerX, innerY, zPos);
-                    var outerPoint = new Vector3(outerX, outerY, zPos);
+                    var outerY = Mathf.Sin(angle) * outerLaneRadius;
+                    var outerX = Mathf.Cos(angle) * outerLaneRadius;
+                                        
+                    var innerPoint = new Vector3(innerX, innerY, 0);
+                    var outerPoint = new Vector3(outerX, outerY, 0);
 
 
                     //(innerPoint, outerPoint) = (outerPoint, innerPoint);
@@ -179,6 +153,25 @@ namespace Reilas
             _mesh.RecalculateBounds();
 #endif
             meshFilter.mesh = _mesh;
+        }
+
+        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntity)
+        {
+            RenderMesh(currentTime, speedChangeEntity);
+        }
+
+        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        {
+            if (meshFilter == null)
+            {
+                Debug.Log("return");
+                return;
+            }
+
+            if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
+
+            var zPos = NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _entity.Speed, speedChangeEntities);
+            gameObject.transform.position = new Vector3(0, 0, zPos);
         }
 
         public void NoteDestroy(bool kujo)

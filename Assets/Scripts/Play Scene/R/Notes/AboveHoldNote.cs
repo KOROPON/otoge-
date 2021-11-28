@@ -102,8 +102,8 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities);
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities);
+            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head.JudgeTime, currentTime, _noteSpeed, speedChangeEntities);
+            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail.JudgeTime, currentTime, _noteSpeed, speedChangeEntities);
 
             for (var z = 0; z < zDiv; z++)
             {

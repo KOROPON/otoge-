@@ -8,7 +8,7 @@ namespace Reilas
 {
     public sealed class BarLine : MonoBehaviour
     {
-        private float _judgeTime;
+        public float judgeTime;
         
         [SerializeField] private MeshFilter meshFilter = null!;
 
@@ -25,7 +25,7 @@ namespace Reilas
 
         public void Initialize(float judgeTime)
         {
-            _judgeTime = judgeTime;
+            this.judgeTime = judgeTime;
             InitializeMesh();
             gameObject.transform.position = new Vector3(0f, 0f, 999f);
         }
@@ -119,11 +119,11 @@ namespace Reilas
         public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
         {
             if (currentTime == 0) return;
-            if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
-            else if (_judgeTime < currentTime) BarLineDestroy();
+            if (!gameObject.activeSelf && judgeTime - currentTime < 5f) gameObject.SetActive(true);
+            else if (judgeTime < currentTime) BarLineDestroy();
 
 
-            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z;
+            var berPos = NotePositionCalculatorService.GetPosition(judgeTime, currentTime, 1, speedChangeEntities);
             var gameObj = gameObject;
             var transPos = gameObj.transform.position;
             gameObj.transform.position = new Vector3(transPos.x, transPos.y, berPos);

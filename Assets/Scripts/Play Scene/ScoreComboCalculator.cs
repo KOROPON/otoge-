@@ -34,7 +34,7 @@ namespace Reilas
             {"Easy", 2},
             {"Hard", 4},
             {"Extreme", 7},
-            {"kujo", 10}
+            {"Kujo", 10}
         };
 
         public Text comboText;
@@ -147,9 +147,10 @@ namespace Reilas
         public void GaugeChange() // ÉQÅ[ÉWÇ Kujo Ç…ëŒâûÇ≥ÇπÇÈ
         {
             slider.sprite = bossGauge;
-            missamount = 0.1f;
+            missamount = 0f;
             _difficulty = "Kujo";
             bossGimmick = true;
+            slider.fillAmount = 1;
         }
     }
 }
