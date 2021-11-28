@@ -52,7 +52,15 @@ public class MusicNumManage : MonoBehaviour
     private void DisplayRank(string songName, string diff)
     {
         var rank = _getHighScores.GetRank(songName, diff);
-        _rank.sprite = rank != "" ? Resources.Load<Sprite>("Rank/rank_" + rank) : null;
+        if (rank != "")
+        {
+            _rank.sprite = Resources.Load<Sprite>("Rank/rank_" + rank);
+        }
+        else
+        {
+            _rank.color = new Color32(255, 255, 255, 0);
+            _rank.sprite = null;
+        }
     }
 
     private void ChangeLevel(string songName)
