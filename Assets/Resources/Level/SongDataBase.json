@@ -15,14 +15,36 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"����",
-                "hardDesiner":"���R",
-                "extremeDesiner":"�R�{",
+                "easyDesiner":"???",
+                "hardDesiner":"Mizumoto",
+                "extremeDesiner":"Apollo",
                 "kujoDesiner": ""
             }
         },
         {
-            "title": "Straight of your soul",
+            "title": "Urban chasers",
+            "composer": "CO,benkyo",
+            "beat": {
+                "numerator": 4,
+                "denominator": 4,
+                "bpm": 170
+            },
+            "custom": [],
+            "level": {
+                "easy": 2,
+                "hard": 4,
+                "extreme": 7,
+                "kujo": 0
+            },
+            "noteDesiner": {
+                "easyDesiner":"Mizumoto",
+                "hardDesiner":"Harari",
+                "extremeDesiner":"Apollo chasing Mizumoto",
+                "kujoDesiner": ""
+            }
+        },
+        {
+            "title": "Straight out of your soul",
             "composer": "CO,benkyo",
             "beat": {
                 "numerator": 4,
@@ -37,9 +59,9 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"�ᐙ",
-                "hardDesiner":"����",
-                "extremeDesiner":"���R",
+                "easyDesiner":"Harari",
+                "hardDesiner":"Apollo",
+                "extremeDesiner":"Mizumoto",
                 "kujoDesiner": ""
             }
         },
@@ -59,9 +81,9 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"�R�{",
-                "hardDesiner":"���R",
-                "extremeDesiner":"���R,�R�{",
+                "easyDesiner":"Apollo",
+                "hardDesiner":"Mizumoto",
+                "extremeDesiner":"Mizumoto vs Apollo",
                 "kujoDesiner": ""
             }
         },
@@ -81,14 +103,14 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"����",
-                "hardDesiner":"���R",
-                "extremeDesiner":"�R�{",
+                "easyDesiner":"???",
+                "hardDesiner":"Mizumoto",
+                "extremeDesiner":"Apollo",
                 "kujoDesiner": ""
             }
         },
         {
-            "title": "kawaii_OD!!",
+            "title": "kawaii OD!!",
             "composer": "Argentum",
             "beat": {
                 "numerator": 4,
@@ -103,15 +125,15 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"�R�{",
-                "hardDesiner":"���R",
-                "extremeDesiner":"���R",
+                "easyDesiner":"Apollo",
+                "hardDesiner":"Mizumoto",
+                "extremeDesiner":"Mizumoto feat Mizumoto",
                 "kujoDesiner": ""
             }
         },
         {
             "title": "Music Is My Suicide",
-            "composer": "Naughy Boy",
+            "composer": "Naughty Boy",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -125,15 +147,15 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"�R�{",
-                "hardDesiner":"���R",
-                "extremeDesiner":"����,�ᐙ",
+                "easyDesiner":"Apollo",
+                "hardDesiner":"Mizumoto",
+                "extremeDesiner":"??? vs ???",
                 "kujoDesiner": ""
             }
         },
         {
             "title": "Collide",
-            "composer": "Naughy Boy",
+            "composer": "Naughty Boy",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -143,18 +165,18 @@
             "level": {
                 "easy": 3,
                 "hard": 6,
-                "extreme": 8,
+                "extreme": 9,
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"���R",
-                "hardDesiner":"�R�{",
-                "extremeDesiner":"�ᐙ",
+                "easyDesiner":"Mizumoto",
+                "hardDesiner":"Apollo",
+                "extremeDesiner":"Harari",
                 "kujoDesiner": ""
             }
         },
         {
-            "title": "Devourer_Of_Sol_Ⅲ",
+            "title": "Devourer Of Sol Ⅲ",
             "composer": "Argentum",
             "beat": {
                 "numerator": 3,
@@ -169,15 +191,15 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"�ᐙ",
-                "hardDesiner":"�R�{",
-                "extremeDesiner":"�R�{",
+                "easyDesiner":"Harari",
+                "hardDesiner":"Apollo",
+                "extremeDesiner":"Ark of destruction",
                 "kujoDesiner": ""
             }
         },
         {
             "title": "Reilas",
-            "composer": "Naughy Boy",
+            "composer": "Naughty Boy",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -191,10 +213,10 @@
                 "kujo": 10
             },
             "noteDesiner": {
-                "easyDesiner":"���R",
-                "hardDesiner":"�R�{",
-                "extremeDesiner":"���C����Boys",
-                "kujoDesiner": "���C����Boys + 1"
+                "easyDesiner":"Mizumoto",
+                "hardDesiner":"Apollo",
+                "extremeDesiner":"Reilas Charting Team",
+                "kujoDesiner": "”The desk theory in the Sky ”"
             }
         }
     ]
