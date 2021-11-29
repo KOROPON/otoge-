@@ -87,7 +87,8 @@ public class GetHighScores : MonoBehaviour
     public bool GetKujoLock(string songName)
     {
         var song = GetSong(songName);
-        return song != null && song.kujoLock;
+        //return song != null && song.kujoLock;
+        return true;
     }
 
     public string GetClear(string songName, string difficulty)

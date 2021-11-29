@@ -12,6 +12,8 @@ public class MusicNumManage : MonoBehaviour
     public Text _easyLevel;
     public Text _hardLevel;
     public Text _extremeLevel;
+    private GameObject _kujo;
+    private GameObject _extreme;
     private Transform _scrollView;
     private Transform _scrollViewContent;
     private string _songName;
@@ -24,7 +26,8 @@ public class MusicNumManage : MonoBehaviour
     public Text title;
     private Text _composer;
     public AudioSource audioO;
-    
+    private bool isExtreme;
+
     //public Text kujoLevel;
 
 
@@ -91,6 +94,8 @@ public class MusicNumManage : MonoBehaviour
     
     private void SelectSong(string musicName)
     {
+        if (_getHighScores.GetKujoLock(musicName)) _kujo.SetActive(true);
+        else _kujo.SetActive(false);
         _jacketPath = "Jacket/" + musicName + "_jacket";
         MusicInfo("Songs/Music Select/" + musicName + "_intro", _jacketPath);
         title.text = musicName;
@@ -125,6 +130,9 @@ public class MusicNumManage : MonoBehaviour
     private void Start()
     {
         _selectBool = true;
+        _kujo = GameObject.Find("Kujo");
+        _extreme = GameObject.Find("Extreme");
+        _kujo.SetActive(false);
         _jack = GameObject.Find("ジャケット1").GetComponent<Image>();
         _rank = GameObject.Find("ランク").GetComponent<Image>();
         _frame = GameObject.Find("Frame").GetComponent<Image>();
@@ -148,9 +156,16 @@ public class MusicNumManage : MonoBehaviour
         {
             PlayerPrefs.SetString("difficulty", "Easy");
         }
-        
         SelectSong(PlayerPrefs.GetString("selected_song"));
-        Difficulty(GetDifficulty(PlayerPrefs.GetString("difficulty")));
+        if (PlayerPrefs.GetString("difficulty") == "Kujo")
+        {
+            isExtreme = true;
+            Difficulty("Extreme");
+        }
+        else
+        {
+            Difficulty(PlayerPrefs.GetString("difficulty"));
+        }
         Shutter.blShutterChange = "Open"; 
         _audioSource.Play();
     }
@@ -184,25 +199,44 @@ public class MusicNumManage : MonoBehaviour
     }
 
    
-    public void Difficulty(GameObject diff)
+    public void Difficulty(string diff)
     {
-        PlayerPrefs.SetString("difficulty", diff.name);
+        
+        if (diff == "Extreme" && !isExtreme && _kujo.activeSelf)
+        {
+            isExtreme = true ;
+        }
+        if (!_kujo.activeSelf || !(diff == "Extreme" || diff == "Kujo"))
+        {
+            isExtreme = false ;
+        }
+        if (diff == "Extreme" && isExtreme)
+        {
+            ExchangeDifficulty(_kujo, _extreme);
+            diff = "Kujo";
+        }
+        if (diff == "Kujo")
+        {
+            ExchangeDifficulty(_extreme, _kujo);
+            diff = "Extreme";
+        }
+        PlayerPrefs.SetString("difficulty", diff);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
-        highScore.text = $"{_getHighScores.GetHighScore(_songName, diff.name),9: 0,000,000}";
-        DisplayRank(_songName, diff.name);
-        _frame.color = GetColor(diff.name);//new Color32(color.color.r, color.color.g, color.color.b, color.color.a);
+        highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
+        DisplayRank(_songName, diff);
+        _frame.color = GetColor(diff);//new Color32(color.color.r, color.color.g, color.color.b, color.color.a);
 
         for (var i = 0; i < _scrollViewContent.childCount; i++)
         {
             var song = _scrollViewContent.GetChild(i).gameObject;
-            song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff.name);
+            song.GetComponent<Image>().sprite = Resources.Load<Sprite>("Frame/" + diff);
             var rankSprite = song.GetComponentsInChildren<Image>()[1];
             var songLock = song.GetComponentsInChildren<Image>()[2];
             var determineButton = song.GetComponent<Button>();
             var clearGuage = song.GetComponentsInChildren<Image>()[3];
             var allowedLevel = song.GetComponentsInChildren<Text>()[1];
-            clearGuage.sprite = _getHighScores.GetClear(song.name, diff.name) != null ? Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff.name)) : Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
-            if (diff.name == "Extreme" && !_getHighScores.GetLock(song.name))
+            clearGuage.sprite = _getHighScores.GetClear(song.name, diff) != null ? Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff)) : Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
+            if (diff == "Extreme" && !_getHighScores.GetLock(song.name))
             {
                 songLock.enabled = true;
                 determineButton.enabled = false;
@@ -215,7 +249,7 @@ public class MusicNumManage : MonoBehaviour
                 song.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             }
 
-            var rank = _getHighScores.GetRank(song.name, diff.name);
+            var rank = _getHighScores.GetRank(song.name, diff);
             if (rank != "")
             {
                 rankSprite.sprite = Resources.Load<Sprite>("Rank/rank_" + rank);
@@ -228,10 +262,10 @@ public class MusicNumManage : MonoBehaviour
             {
                 if (t.name == "Level")
                 {
-                    t.text = LevelConverter.GetLevel(song.name, diff.name).ToString();
+                    t.text = LevelConverter.GetLevel(song.name, diff).ToString();
                 }
             }
-            if (diff.name == "Extreme" && song.name == "Reilas" && PlayerPrefs.HasKey("解禁状況") && !_getHighScores.GetKujoLock("Reilas"))
+            if (diff == "Extreme" && song.name == "Reilas" && PlayerPrefs.HasKey("解禁状況") && !_getHighScores.GetKujoLock("Reilas"))
             {
                 allowedLevel.text = PlayerPrefs.GetFloat("解禁状況").ToString() + " %";
             }
@@ -257,5 +291,36 @@ public class MusicNumManage : MonoBehaviour
         StartCoroutine(JumpInDifficulty());
         Debug.Log("s");
     }
-    
+
+    public IEnumerator ExchangeDifficulty(GameObject trueDif, GameObject falseDif)
+    {
+        Debug.Log("aaaa");
+        int i = 0;
+        var trueDifT = trueDif.transform;
+        var falseDifT = falseDif.transform.transform;
+        trueDifT.localPosition = new Vector3(3484, (float)197.83, 0);
+        falseDifT.localPosition = new Vector3(3442, (float)155.83, 0);
+        trueDifT.SetAsFirstSibling();
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            if (trueDifT.localPosition.x == 3461)
+            {
+                trueDifT.SetAsLastSibling();
+            }
+            if (trueDifT.localPosition.x > 3442)
+            {
+                trueDifT.localPosition = new Vector3(trueDifT.localPosition.x - 1, (float)(trueDifT.localPosition.y - 1), 0);
+                falseDifT.localPosition = new Vector3(falseDifT.localPosition.x + 1, (float)(falseDifT.localPosition.y + 1), 0);
+                continue;
+            }
+            trueDifT.localPosition = new Vector3(3442, (float)155.83, 0);
+            falseDifT.localPosition = new Vector3(3484, (float)197.83, 0);
+            trueDif.transform.GetComponent<Button>().enabled = true;
+            falseDif.transform.GetComponent<Button>().enabled = false;
+            break;
+
+        }
+    }
+
 }
