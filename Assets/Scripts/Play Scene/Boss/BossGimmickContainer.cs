@@ -73,4 +73,20 @@ public class BossGimmickContainer : MonoBehaviour
             break;
         }
     }
+    public IEnumerator BlackOutIntermittentlyFirst()
+    {
+        Debug.Log("BlackOut");
+        var i = 0;
+        _stagingFaderAnim.Play("StagingFaderAnimFirst");
+        _cameraShine.intensity.value = 20f;
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            i++;
+            _cameraShine.intensity.value = (float) (_cameraShine.intensity.value - 0.16);
+            if (i <= 60) continue;
+            _cameraShine.intensity.value = 10f;
+            break;
+        }
+    }
 }

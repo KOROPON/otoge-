@@ -18,6 +18,7 @@ public class BossGimmicks : MonoBehaviour
     private MeshRenderer _judgeLine;
     private bool gaugeCheck;
     private bool firstAnimCheck;
+    private byte tunnelAlpha;
 
     public List<ReilasNoteEntity> _tapKujoNotes = new List<ReilasNoteEntity>();
     public List<ReilasNoteEntity> _internalKujoNotes = new List<ReilasNoteEntity>();
@@ -49,6 +50,11 @@ public class BossGimmicks : MonoBehaviour
         _backGround = GameObject.Find("BackGround").GetComponent<RectTransform>();
         _judgeLine = GameObject.Find("AboveJudgeLine").GetComponent<MeshRenderer>();
         whiteOut = GameObject.Find("WhiteOut").GetComponent<Image>();
+        Transform tunnelTransform;
+        underTunnel = (tunnelTransform = GameObject.Find("立方体").transform).GetComponent<MeshRenderer>();
+        Transform cubeTransform;
+        tunnel = (cubeTransform = GameObject.Find("トンネル").transform).GetComponent<MeshRenderer>();
+        tunnelAlpha = 255;
     }
 
     public async void BossAwake()
@@ -163,14 +169,18 @@ public class BossGimmicks : MonoBehaviour
 
         if (time < 92.98f)
         {
+            if (tunnelAlpha > 9) tunnelAlpha -= 10;
+            else tunnelAlpha = 0;
+            tunnel.material.color = new Color32(0, 0, 40, tunnelAlpha);
+            underTunnel.material.color = new Color32(0, 0, 0, tunnelAlpha);
             float effectTime = Mathf.Abs((time - 82.93f) % 1.257f);
-            if (effectTime <= 0.057f)
+            if (effectTime <= 0.057f && firstAnimCheck)
             {
-                Debug.Log("EffectTime");
                 StartCoroutine(_bossContainer.BlackOutIntermittently());
             }
             if (!firstAnimCheck)
             {
+                StartCoroutine(_bossContainer.BlackOutIntermittentlyFirst());
                 bossClock.Play();
                 _bossContainer.BlackOutFirst();
                 firstAnimCheck = true;
@@ -207,15 +217,19 @@ public class BossGimmicks : MonoBehaviour
                 GameObject.Find("Main").transform.GetComponent<ScoreComboCalculator>().GaugeChange();
                 gaugeCheck = false;
             }
+            float timeRatio = time - 103.04f;
+            float size = Mathf.Lerp(40, 1, timeRatio / 16);
+            _backGround.localScale = new Vector3(size, size, 1);
         }
         else
         {
-            float timeRatio = time - 104;
+            float timeRatio = time - 103.04f;
             float size = Mathf.Lerp(40, 1, timeRatio / 16);
             _backGround.localScale = new Vector3(size, size, 1);
             return;
         }
 
+        if (camera == null) camera = Camera.main;
         List<Vector3> cameraPos = CameraPosCalculator.CameraPosCalculatorService(time, camera.transform.eulerAngles.z);
         camera.transform.position = cameraPos[0];
         camera.transform.eulerAngles = cameraPos[1];
@@ -274,6 +288,11 @@ public class BossGimmicks : MonoBehaviour
         for (int i = RhythmGamePresenter.AboveChainNotes.Count() - 1; i >= 0; i--)
         {
             RhythmGamePresenter.AboveChainNotes[i].NoteDestroy(false);
+        }
+
+        for(int i = RhythmGamePresenter.NoteConnectors.Count() - 1; i >= 0; i--)
+        {
+            RhythmGamePresenter.NoteConnectors[i].NoteConnectorDestroy();
         }
     }
 
