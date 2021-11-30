@@ -190,7 +190,6 @@ public class BossGimmicks : MonoBehaviour
         else if (time < 101.78f)
         {
             kujoJudgeSwitch = true;
-            color += 3;
             float effectTime = Mathf.Abs((time - 82.93f) % 0.628f);
             if (effectTime <= 0.028f)
             {
@@ -198,11 +197,12 @@ public class BossGimmicks : MonoBehaviour
                 StartCoroutine(_bossContainer.BlackOutIntermittently());
             }
             _bossContainer._cameraShine.intensity.value += 0.5f;
-            whiteOut.color = new Color32(255, 255, 255, color);
+            byte colorReset = (byte)Mathf.Lerp(0, 225, (time - 92.98f) / 8.8f);
+            whiteOut.color = new Color32(255, 255, 255, colorReset);
         }
         else if (time < 103.04f)
         {
-            byte colorReset = (byte)Mathf.Lerp(255, 0, (time - 101.78f) / 0.96f);
+            byte colorReset = (byte)Mathf.Lerp(255, 0, (time - 101.78f) / 1.26f);
             whiteOut.color = new Color32(255, 255, 255, colorReset);
             _bossContainer.ChangeObjectShine();
         }

@@ -147,7 +147,7 @@ namespace Reilas
         public void GaugeChange() // ƒQ[ƒW‚ğ Kujo ‚É‘Î‰‚³‚¹‚é
         {
             slider.sprite = bossGauge;
-            missamount = 0f;
+            missamount = 0.1f;
             _difficulty = "Kujo";
             bossGimmick = true;
             slider.fillAmount = 1;
