@@ -1,7 +1,5 @@
 #nullable enable
 using System;
-using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -18,18 +16,27 @@ namespace Reilas
 
         private ReilasNoteEntity _entity = null!;
 
+        private bool _kujo;
+
         private float _noteSpeed;
+        private float _position;
+        
+        private int _speedChangeIndex;
+        
         public float aboveChainTime;
 
-        public void Initialize(ReilasNoteEntity entity)
+        public void Initialize(ReilasNoteEntity entity, bool kujo)
         {
             aboveChainTime = entity.JudgeTime;
             _noteSpeed = entity.Speed;
             _entity = entity;
+            _kujo = kujo;
+            _position = NotePositionCalculatorService.LeftOverPositionCalculator(aboveChainTime, _noteSpeed);
+            _speedChangeIndex = 0;
+            
             InitializeMesh();
 
             transform.localScale = Vector3.one;
-            ;
         }
 
         private void InitializeMesh()
@@ -56,38 +63,7 @@ namespace Reilas
                 _triangles[i * 6 + 4] = 0 + i * 2;
                 _triangles[i * 6 + 5] = 3 + i * 2;
             }
-
-            /*
-            // 上面
-            for (var i = 0; i < size - 1; i++)
-            {
-                var p = size + i;
-
-                _triangles[p * 6 + 0] = 0 + p * 2;
-                _triangles[p * 6 + 1] = 0 + i * 2;
-                _triangles[p * 6 + 2] = 2 + p * 2;
-                _triangles[p * 6 + 3] = 2 + p * 2;
-                _triangles[p * 6 + 4] = 0 + i * 2;
-                _triangles[p * 6 + 5] = 2 + i * 2;
-            }
-
-            // 左
-            _triangles[size * 6 * 2 + 0] = 0;
-            _triangles[size * 6 * 2 + 1] = 1;
-            _triangles[size * 6 * 2 + 2] = size * 2;
-            _triangles[size * 6 * 2 + 3] = 1;
-            _triangles[size * 6 * 2 + 4] = size * 2;
-            _triangles[size * 6 * 2 + 5] = size * 2 + 1;
-
-            // 右
-            _triangles[size * 6 * 2 + 6] = 0 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 7] = 1 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 8] = size * 2 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 9] = 1 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
-            */
-
+            
             // メッシュを生成する
             _mesh = new Mesh
             {
@@ -97,12 +73,17 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntity)
+        public void Render(float currentTime)
         {
-            RenderMesh(currentTime, speedChangeEntity);
+            RenderMesh(currentTime);
+            
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_speedChangeIndex)) return;
+            _position -= NotePositionCalculatorService.SpanCalculator(_speedChangeIndex, aboveChainTime, _noteSpeed);
+            _speedChangeIndex++;
         }
 
-        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        private void RenderMesh(float currentTime)
         {
             if (meshFilter == null)
             {
@@ -112,7 +93,6 @@ namespace Reilas
 
             const float outerLaneRadius = 5.6f;
             const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
-            const float outerRadius = outerLaneRadius;        // 外縁の半径
             const float div = 32f;
 
             for (var z = 0; z < 1; z++)
@@ -129,16 +109,16 @@ namespace Reilas
                     var innerY = Mathf.Sin(angle) * innerRadius;
                     var innerX = Mathf.Cos(angle) * innerRadius;
 
-                    var outerY = Mathf.Sin(angle) * outerRadius;
-                    var outerX = Mathf.Cos(angle) * outerRadius;
+                    var outerY = Mathf.Sin(angle) * outerLaneRadius;
+                    var outerX = Mathf.Cos(angle) * outerLaneRadius;
 
-                    float zPos = 0;
+                    var judgeTime = _entity.JudgeTime;
 
-                    if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
-                    //else
-                    //{
-                    zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _entity.Speed, speedChangeEntities);
-                    //}
+                    var difference = judgeTime - currentTime;
+
+                    if (!gameObject.activeSelf && difference < 5f) gameObject.SetActive(true);
+                    
+                    var zPos = NotePositionCalculatorService.GetPosition(judgeTime, currentTime, _noteSpeed, _position, _speedChangeIndex);
 
 
                     //zPos += zz;

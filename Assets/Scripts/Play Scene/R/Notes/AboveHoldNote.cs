@@ -1,7 +1,6 @@
 #nullable enable
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -16,29 +15,42 @@ namespace Reilas
 
         private Mesh? _mesh;
 
+
         private ReilasNoteLineEntity _entity = null!;
         private RhythmGamePresenter _presenter = null!;
 
         private float _noteSpeed;
+        private float _headJudgeTime;
+        private float _tailJudgeTime;
+        private float _headPosition;
+        private float _tailPosition;
+
+        private int _headIndex;
+        private int _tailIndex;
+
         private bool _kujo;
 
         public void Initialize(ReilasNoteLineEntity entity, bool kujo)
         {
             _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
             _entity = entity;
+            _headJudgeTime = _entity.Head.JudgeTime;
+            _tailJudgeTime = _entity.Tail.JudgeTime;
             _kujo = kujo;
             _noteSpeed = _entity.Head.Speed;
+            _headPosition = NotePositionCalculatorService.LeftOverPositionCalculator(_headJudgeTime, _noteSpeed);
+            _tailPosition = NotePositionCalculatorService.LeftOverPositionCalculator(_tailJudgeTime, _noteSpeed);
+            _headIndex = 0;
+            _tailIndex = 0;
+            
             InitializeMesh();
+            
             transform.localScale = Vector3.one;
         }
 
         private void InitializeMesh()
         {
-            if (meshFilter == null)
-            {
-                //throw new Exception();
-                return;
-            }
+            if (meshFilter == null) return;
 
             var xDivision = _entity.Head.Size + 1;
             var zDivision = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
@@ -54,12 +66,12 @@ namespace Reilas
                 var n = z * (xDivision - 1) * 6;
                 for (var x = 0; x < xDivision - 1; x++)
                 {
-                    _triangles[n + x * 6 + 0] = z * (xDivision) + x;
-                    _triangles[n + x * 6 + 1] = z * (xDivision) + x + 1;
-                    _triangles[n + x * 6 + 2] = (z + 1) * (xDivision) + x;
-                    _triangles[n + x * 6 + 3] = z * (xDivision) + x + 1;
-                    _triangles[n + x * 6 + 4] = (z + 1) * (xDivision) + x + 1;
-                    _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
+                    _triangles[n + x * 6 + 0] = z * xDivision + x;
+                    _triangles[n + x * 6 + 1] = z * xDivision + x + 1;
+                    _triangles[n + x * 6 + 2] = (z + 1) * xDivision + x;
+                    _triangles[n + x * 6 + 3] = z * xDivision + x + 1;
+                    _triangles[n + x * 6 + 4] = (z + 1) * xDivision + x + 1;
+                    _triangles[n + x * 6 + 5] = (z + 1) * xDivision + x;
                 }
             }
 
@@ -72,16 +84,25 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
-            RenderMesh(currentTime, noteNum, noteList, speedChangeEntities);
+            RenderMesh(currentTime, noteNum, noteList);
+
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_headIndex)) return;
+            _headPosition -= NotePositionCalculatorService.SpanCalculator(_headIndex, _headJudgeTime, _noteSpeed);
+            _headIndex++;
+            
+            if (currentTime < RhythmGamePresenter.CalculatePassedTime(_tailIndex)) return;
+            _tailPosition -= NotePositionCalculatorService.SpanCalculator(_tailIndex, _tailJudgeTime, _noteSpeed);
+            _tailIndex++;
         }
 
-        private void RenderMesh(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
+        private void RenderMesh(float currentTime, int noteNum, IList noteList)
         {
             if ( meshFilter == null || _mesh == null || _vertices == null) return;
 
-            if(_entity.Tail.JudgeTime < currentTime)
+            if(_tailJudgeTime < currentTime)
             {
                 foreach (Transform child in transform.GetChild(0)) Destroy(child.gameObject);
                 Destroy(transform.GetChild(0).gameObject);
@@ -102,8 +123,8 @@ namespace Reilas
 
             var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities);
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities);
+            var headZ = NotePositionCalculatorService.GetPosition(_headJudgeTime, currentTime, _noteSpeed, _headPosition, _headIndex);
+            var tailZ = NotePositionCalculatorService.GetPosition(_tailJudgeTime, currentTime, _noteSpeed, _tailPosition, _tailIndex);
 
             for (var z = 0; z < zDiv; z++)
             {
@@ -153,7 +174,7 @@ namespace Reilas
 
         public void NoteDestroy(bool kujo)
         {
-            for (int a = 2; a >= 0; a--)
+            for (var a = 2; a >= 0; a--)
             {
                 Destroy(transform.GetChild(0).GetChild(a).GetComponent<ParticleSystem>());
                 Destroy(transform.GetChild(0).GetChild(a).gameObject);
@@ -168,7 +189,7 @@ namespace Reilas
             }
             else
             {
-                _presenter._reilasAboveHold.RemoveAt(RhythmGamePresenter.AboveHoldNotes.IndexOf(this));
+                _presenter.reilasAboveHold.RemoveAt(RhythmGamePresenter.AboveHoldNotes.IndexOf(this));
                 RhythmGamePresenter.AboveHoldNotes.Remove(this);
             }
             Destroy(gameObject);

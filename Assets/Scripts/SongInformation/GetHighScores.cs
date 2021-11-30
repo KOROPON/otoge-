@@ -34,14 +34,19 @@ public class GetHighScores : MonoBehaviour
 
     private Song GetSong(string title)
     {
-        foreach (var t in _highScore.songs)
-        {
-            if (title == t.title)
-            {
-                return t;
-            }
-        }
         var emptySong = new Song();
+        if (_highScore.songs == null)
+        {
+            _highScore.songs = new Song[1];
+            _highScore.songs[0] = emptySong;
+            emptySong.title = title;
+            return emptySong;
+        }
+        
+        foreach (var song in _highScore.songs)
+            if (title == song.title)
+                return song;
+        
         Array.Resize(ref _highScore.songs, _highScore.songs.Length + 1);
         _highScore.songs[_highScore.songs.Length - 1] = emptySong;
         emptySong.title = title;
@@ -81,7 +86,14 @@ public class GetHighScores : MonoBehaviour
     public bool GetLock(string songName)
     {
         var song = GetSong(songName);
-        return song != null && song.extremeLock;
+        return true;
+        //return song != null && song.extremeLock;
+    }
+
+    public bool GetKujoLock(string songName)
+    {
+        var song = GetSong(songName);
+        return song != null && song.kujoLock;
     }
 
     public string GetClear(string songName, string difficulty)
@@ -134,7 +146,7 @@ public class GetHighScores : MonoBehaviour
         }
         
         if (difficulty == "Hard" && diff.highScore >= 980000) GetSong(songName).extremeLock = true;
-
+        
         StreamWrite();
     }
 }

@@ -242,7 +242,6 @@ public class MusicNumManage : MonoBehaviour
     {
         if (_blDifChange) return;
         StartCoroutine(JumpInDifficulty());
-        Debug.Log("s");
     }
     
 }

@@ -1,6 +1,4 @@
 #nullable enable
-
-using System.Collections.Generic;
 using Rhythmium;
 using UnityEngine;
 
@@ -9,29 +7,42 @@ namespace Reilas
     public sealed class TapNote : MonoBehaviour
     {
         private NoteEntity _entity = null!;
+
+        private bool _kujo;
+        
         private float _noteSpeed;
+        private float _thisNoteX;
+        private float _position;
 
-        private float thisNoteX;
-
+        private int _speedChangeIndex;
+        
         public float tapTime;
 
-        public void Initialize(ReilasNoteEntity entity)
+        public void Initialize(ReilasNoteEntity entity, bool kujo)
         {
             tapTime = entity.JudgeTime;
             _entity = entity;
             _noteSpeed = entity.Speed;
-            thisNoteX = -3.3f + _entity.LanePosition * 2.2f;
-            transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
-            transform.position = new Vector3(thisNoteX, 0f, -50);
+            _kujo = kujo;
+            _thisNoteX = -3.3f + _entity.LanePosition * 2.2f;
+            _position = NotePositionCalculatorService.LeftOverPositionCalculator(tapTime, _noteSpeed);
+            _speedChangeIndex = 0;
+            Transform transform1;
+            (transform1 = transform).localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
+            transform1.position = new Vector3(_thisNoteX, 0f, -50);
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
-            if (!gameObject.activeSelf)
-            {
-                if (_entity.JudgeTime - currentTime < 10f) gameObject.SetActive(true);
-            }
-            else transform.position = new Vector3(thisNoteX, 0f, NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities));
+            var difference = tapTime - currentTime;
+            
+            if (!gameObject.activeSelf && difference < 10f) gameObject.SetActive(true);
+            else transform.position = new Vector3(_thisNoteX, 0f, NotePositionCalculatorService.GetPosition(tapTime, currentTime, _noteSpeed, _position, _speedChangeIndex));
+            
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_speedChangeIndex)) return;
+            _position -= NotePositionCalculatorService.SpanCalculator(_speedChangeIndex, tapTime, _noteSpeed);
+            _speedChangeIndex++;
         }
 
         public void NoteDestroy(bool kujo)

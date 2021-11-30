@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using Rhythmium;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,32 +13,30 @@ namespace Reilas
     public static class NotePositionCalculatorService
     {
         private const float BelowNoteWidth = 2.2f;
-        private const float LeftPosition = -4.4f;
 
         private static float _gameSpeed;
+        private static float _normalizedSpeed;
 
         public static float firstChartSpeed;
-        public static float normalizedSpeed;
         
         public static void CalculateGameSpeed()
         {
             _gameSpeed = PlayerPrefs.HasKey("rate") ? 10 * PlayerPrefs.GetFloat("rate") : 10;
         }
 
-        public static float SpeedCalculator(float bpm)
+        private static float SpeedCalculator(float bpm)
         {
-            Debug.Log("SPEED: " + _gameSpeed * bpm / firstChartSpeed);
             return _gameSpeed * bpm / firstChartSpeed;
         }
         
         public static void CalculateNoteSpeed(float noteSpeed)
         {
-            normalizedSpeed = SpeedCalculator(noteSpeed);
+            _normalizedSpeed = SpeedCalculator(noteSpeed);
         }
         
-        public static float PositionCalculator(float span, float speed)
+        private static float PositionCalculator(float span, float speed)
         {
-            return span * (speed * 0.5f * span - speed);
+            return span * speed * (0.5f * span - 1f);
         }
 
         private static float NoteSpeedCalculator(float bpm, float noteSpeed)
@@ -45,66 +44,75 @@ namespace Reilas
             return SpeedCalculator(bpm) * noteSpeed;
         }
 
-        private static float CalculateZPos(NoteEntity entity, List<SpeedChangeEntity> speedChangeEntities, float noteSpeed, float currentTime)
+        public static float SpanCalculator(int index, float judgeTime, float noteSpeed)
         {
-            var judgeTime = entity.JudgeTime;
-            var t = currentTime - judgeTime;
-            
-            if (speedChangeEntities.Count == 0) return PositionCalculator(t, NoteSpeedCalculator(firstChartSpeed, noteSpeed));
-            
-            var zPos = 0f;
-            
-            for (var i = speedChangeEntities.Count - 1; i >= 0; i--)
-            {
-                var nextNotePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i + 1);
-                var notePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i);
-                
-                var timeCheck = currentTime >= nextNotePassedTime;
-                var beforeTimeCheck = judgeTime < notePassedTime;
-                
-                if (i == speedChangeEntities.Count - 1 && timeCheck || i == 0 && beforeTimeCheck)
-                    return PositionCalculator(t, NoteSpeedCalculator(speedChangeEntities[i].Speed, noteSpeed));
-                
-                if (timeCheck) break;
-                if (beforeTimeCheck) continue;
-                
-                var highSpeed = NoteSpeedCalculator(speedChangeEntities[i].Speed, noteSpeed);
+            var difference = RhythmGamePresenter.CalculatePassedTime(index) - judgeTime;
+            var speedChanges = RhythmGamePresenter.SpeedChanges;
+            var changingSpeed = NoteSpeedCalculator(speedChanges[index].Speed, noteSpeed);
 
-                var judgeTimePosition = nextNotePassedTime - judgeTime;
-                var nextNotePosition = judgeTimePosition > 0f ? 0f : PositionCalculator(judgeTimePosition, highSpeed);
-                var positionCalculator = currentTime > notePassedTime
-                    ? PositionCalculator(t, highSpeed)
-                    : PositionCalculator(notePassedTime - judgeTime, highSpeed);
+            if (index == speedChanges.Count - 1) return 0;
+
+            if (index != 0)
+                return PositionCalculator(difference, changingSpeed) -
+                       PositionCalculator(RhythmGamePresenter.CalculatePassedTime(index + 1) - judgeTime,
+                           changingSpeed);
+            
+            var firstSpeed = NoteSpeedCalculator(firstChartSpeed, noteSpeed);
+            
+            return PositionCalculator(-judgeTime, firstSpeed) - PositionCalculator(difference, firstSpeed);
+        }
+
+        public static float LeftOverPositionCalculator(float judgeTime, float speed)
+        {
+            var position = 0f;
+            var speedChanges = RhythmGamePresenter.SpeedChanges;
+            var zeroPos = PositionCalculator(-judgeTime, NoteSpeedCalculator(firstChartSpeed, speed));
+
+            if (!RhythmGamePresenter.checkSpeedChangeEntity)
+            {
+                position += zeroPos;
+                return position;
+            }
+            
+            for (var i = 0; i < speedChanges.Count; i++)
+            {
+                var passedTime = RhythmGamePresenter.CalculatePassedTime(i);
+                var checkI = i == 0;
+
+                if (judgeTime < passedTime) 
+                {
+                    var beforeIndex = i - 1;
+                    position += checkI
+                        ? zeroPos
+                        : PositionCalculator(RhythmGamePresenter.CalculatePassedTime(beforeIndex) - judgeTime,
+                            NoteSpeedCalculator(speedChanges[beforeIndex].Speed, speed));
+                    break;
+                }
+
+                if (i == 0)
+                    position += zeroPos - PositionCalculator(passedTime - judgeTime,
+                        NoteSpeedCalculator(firstChartSpeed, speed));
                 
-                Debug.Log(speedChangeEntities[i].Speed + "    " + judgeTime);
-                
-                zPos += positionCalculator - nextNotePosition;
+                position += SpanCalculator(i, judgeTime, speed);
             }
 
-            return zPos;
+            return position;
         }
         
-        public static float GetPosition(NoteEntity entity, float currentTime, float noteSpeed, List<SpeedChangeEntity> speedChangeEntities)
+        public static float GetPosition(float judgeTime, float currentTime, float noteSpeed, float position, int index)
         {
-            var highSpeed = normalizedSpeed * noteSpeed;
+            var highSpeed = _normalizedSpeed * noteSpeed;//NoteSpeedCalculatorと同じ
 
-            //var size = entity.Size * BelowNoteWidth;
-            //var left = size / 2f;
-            //var pos = LeftPosition + left;
-
-            //pos += entity.LanePosition * BelowNoteWidth;
-
-            //var toLeft = left - LeftPosition;
-
-            //var x = pos;
-            
             // 0 なら判定ライン
             // 1 ならレーンの一番奥
-            var judgeTime = entity.JudgeTime;
-            var t = judgeTime - currentTime;
-            var normalizedTime = t * _gameSpeed / 600f;
-
-            return normalizedTime < 0 ? highSpeed * t : CalculateZPos(entity, speedChangeEntities, noteSpeed, currentTime);
+            var t = currentTime - judgeTime;
+            var currentPos = PositionCalculator(t, highSpeed);
+            var change = RhythmGamePresenter.checkSpeedChangeEntity && index != 0
+                ? currentPos - PositionCalculator(RhythmGamePresenter.CalculatePassedTime(index) - judgeTime,
+                    highSpeed)
+                : currentPos - PositionCalculator(-judgeTime, highSpeed);
+            
+            return position + change;
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)

@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -10,6 +9,9 @@ namespace Reilas
     public sealed class AboveSlideNote : MonoBehaviour
     {
         [SerializeField] private MeshFilter meshFilter = null!;
+        
+        [SerializeField] private float headJudgeTime;
+        [SerializeField] private float tailJudgeTime;
 
         private Vector3[]? _vertices;
         private Vector2[] _uv = null!;
@@ -23,8 +25,13 @@ namespace Reilas
         private int _thisNoteSize;
         private int _leftRatio;
         private int _rightRatio;
-
+        
         private float _noteSpeed;
+        private float _headPosition;
+        private float _tailPosition;
+
+        private int _headIndex;
+        private int _tailIndex;
 
         private AboveSlideEffector _effectorCs = null!;
 
@@ -36,32 +43,25 @@ namespace Reilas
             _kujo = kujo;
             _noteSpeed = entity.Head.Speed;
             _entity = entity;
+            _noteSpeed = _entity.Head.Speed;
+            _headPosition = NotePositionCalculatorService.LeftOverPositionCalculator(headJudgeTime, _noteSpeed);
+            _tailPosition = NotePositionCalculatorService.LeftOverPositionCalculator(tailJudgeTime, _noteSpeed);
+            _headIndex = 0;
+            _tailIndex = 0;
+            
             InitializeMesh();
-            //Debug.Log(_entity.Head.Size + "      " + _entity.Tail.Size + "           a");
 
             transform.localScale = Vector3.one;
 
-            _effectorCs = this.gameObject.transform.GetChild(0).gameObject.GetComponent<AboveSlideEffector>();
+            _effectorCs = gameObject.transform.GetChild(0).gameObject.GetComponent<AboveSlideEffector>();
         }
 
         private void InitializeMesh()
         {
-            if (meshFilter == null)
-            {
-                throw new Exception();
-                //return;
-            }
-
-            var xDivision = _entity.Head.Size + 1;
-            var zDivision = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
-
-            //_vertices = new Vector3[(xDivision + xTailDivision) / 2 * zDivision];
-
-
-            //_triangles = new int[(_vertices.Length - 2) * 6];
+            if (meshFilter == null) throw new Exception();
 
             _leftRatio = Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
-            _rightRatio = Mathf.Abs((_entity.Head.LanePosition + _entity.Head.Size - 1) - (_entity.Tail.LanePosition + _entity.Tail.Size - 1));
+            _rightRatio = Mathf.Abs(_entity.Head.LanePosition + _entity.Head.Size - 1 - (_entity.Tail.LanePosition + _entity.Tail.Size - 1));
 
 
             //前面
@@ -75,9 +75,9 @@ namespace Reilas
                     _triangles = new int[_entity.Tail.Size * (_leftRatio + 1) * 6];
                     _uv = new Vector2[(_entity.Tail.Size + 1) * (_leftRatio + 2)];
 
-                    for (int z = 0; z < _leftRatio + 1; z++)
+                    for (var z = 0; z < _leftRatio + 1; z++)
                     {
-                        for (int x = 0; x < _entity.Tail.Size; x++)
+                        for (var x = 0; x < _entity.Tail.Size; x++)
                         {
                             _triangles[z * _entity.Tail.Size * 6 + x * 6 + 5] = z * (_entity.Tail.Size + 1) + x;
                             _triangles[z * _entity.Tail.Size * 6 + x * 6 + 4] = z * (_entity.Tail.Size + 1) + x + 1;
@@ -94,9 +94,9 @@ namespace Reilas
                     _triangles = new int[_entity.Tail.Size * (_rightRatio + 1) * 6];
                     _uv = new Vector2[(_entity.Tail.Size + 1) * (_rightRatio + 2)];
 
-                    for (int z = 0; z < _rightRatio + 1; z++)
+                    for (var z = 0; z < _rightRatio + 1; z++)
                     {
-                        for (int x = 0; x < _entity.Tail.Size; x++)
+                        for (var x = 0; x < _entity.Tail.Size; x++)
                         {
                             _triangles[z * _entity.Tail.Size * 6 + x * 6 + 5] = z * (_entity.Tail.Size + 1) + x;
                             _triangles[z * _entity.Tail.Size * 6 + x * 6 + 4] = z * (_entity.Tail.Size + 1) + x + 1;
@@ -118,9 +118,9 @@ namespace Reilas
                     _triangles = new int[_entity.Head.Size * (_leftRatio + 1) * 6];
                     _uv = new Vector2[(_entity.Head.Size + 1) * (_leftRatio + 2)];
 
-                    for (int z = 0; z < _leftRatio + 1; z++)
+                    for (var z = 0; z < _leftRatio + 1; z++)
                     {
-                        for (int x = 0; x < _entity.Head.Size; x++)
+                        for (var x = 0; x < _entity.Head.Size; x++)
                         {
                             _triangles[z * _entity.Head.Size * 6 + x * 6 + 5] = z * (_entity.Head.Size + 1) + x;
                             _triangles[z * _entity.Head.Size * 6 + x * 6 + 4] = z * (_entity.Head.Size + 1) + x + 1;
@@ -137,9 +137,9 @@ namespace Reilas
                     _triangles = new int[_entity.Head.Size * (_rightRatio + 1) * 6];
                     _uv = new Vector2[(_entity.Head.Size + 1) * (_rightRatio + 2)];
 
-                    for (int z = 0; z < _rightRatio + 1; z++)
+                    for (var z = 0; z < _rightRatio + 1; z++)
                     {
-                        for (int x = 0; x < _entity.Head.Size; x++)
+                        for (var x = 0; x < _entity.Head.Size; x++)
                         {
                             _triangles[z * _entity.Head.Size * 6 + x * 6 + 5] = z * (_entity.Head.Size + 1) + x;
                             _triangles[z * _entity.Head.Size * 6 + x * 6 + 4] = z * (_entity.Head.Size + 1) + x + 1;
@@ -151,34 +151,9 @@ namespace Reilas
                     }
                 }
             }
-            /*
-            else
-            {
-                _vertices = new Vector3[xDivision * zDivision];
-                _triangles = new int[(_vertices.Length - 2) * 6];
-                _uv = new Vector2[xDivision * zDivision];
-
-                for (var z = zDivision - 2; z >= 0; z--)
-                {
-                    var n = z * (xDivision - 1) * 6;
-                    for (var x = xDivision - 2; x >= 0; x--)
-                    {
-                        _triangles[n + x * 6 + 0] = z * (xDivision) + x;
-                        _triangles[n + x * 6 + 1] = z * (xDivision) + x + 1;
-                        _triangles[n + x * 6 + 2] = (z + 1) * (xDivision) + x;
-                        _triangles[n + x * 6 + 3] = z * (xDivision) + x + 1;
-                        _triangles[n + x * 6 + 4] = (z + 1) * (xDivision) + x + 1;
-                        _triangles[n + x * 6 + 5] = (z + 1) * (xDivision) + x;
-                    }
-                }
-            }
-            */
 
             var newTriangles = new int[_triangles.Length];
-            for (var i = 0; i < newTriangles.Length; i++)
-            {
-                newTriangles[i] = _triangles[newTriangles.Length - 1 - i];
-            }
+            for (var i = 0; i < newTriangles.Length; i++) newTriangles[i] = _triangles[newTriangles.Length - 1 - i];
 
             // メッシュを生成する.
             _mesh = new Mesh
@@ -189,19 +164,29 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime, int noteNum, List<ReilasNoteLineEntity> noteList)
         {
-            RenderMesh(currentTime, noteNum, noteList, speedChangeEntities);
+            RenderMesh(currentTime, noteNum, noteList);
+            
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_headIndex)) return;
+            _headPosition -= NotePositionCalculatorService.SpanCalculator(_headIndex, headJudgeTime, _noteSpeed);
+            _headIndex++;
+            
+            if (currentTime < RhythmGamePresenter.CalculatePassedTime(_tailIndex)) return;
+            _tailPosition -= NotePositionCalculatorService.SpanCalculator(_tailIndex, tailJudgeTime, _noteSpeed);
+            _tailIndex++;
         }
 
-        private void RenderMesh(float currentTime, int noteNum, IList noteList, List<SpeedChangeEntity> speedChangeEntities)
+        private void RenderMesh(float currentTime, int noteNum, IList noteList)
         {
             if (meshFilter == null || _mesh == null || _vertices == null) return;
 
-            if (_entity.Tail.JudgeTime < currentTime) // NoteDestroy
+
+            if (tailJudgeTime < currentTime) // NoteDestroy
             {
-                foreach (Transform child in this.transform.GetChild(0)) Destroy(child.gameObject);
-                Destroy(this.transform.GetChild(0).gameObject);
+                foreach (Transform child in transform.GetChild(0)) Destroy(child.gameObject);
+                Destroy(transform.GetChild(0).gameObject);
                 Destroy(gameObject);
                 RhythmGamePresenter.AboveSlideEffectors.Remove(transform.GetChild(0).GetComponent<AboveSlideEffector>());
                 if (_kujo)
@@ -221,8 +206,8 @@ namespace Reilas
 
             //var zDiv = 2 + Mathf.Abs(_entity.Head.LanePosition - _entity.Tail.LanePosition);
 
-            var headZ = NotePositionCalculatorService.GetPosition(_entity.Head, currentTime, _noteSpeed, speedChangeEntities);
-            var tailZ = NotePositionCalculatorService.GetPosition(_entity.Tail, currentTime, _noteSpeed, speedChangeEntities);
+            var headZ = NotePositionCalculatorService.GetPosition(headJudgeTime, currentTime, _noteSpeed, _headPosition, _headIndex);
+            var tailZ = NotePositionCalculatorService.GetPosition(tailJudgeTime, currentTime, _noteSpeed, _tailPosition, _tailIndex);
 
 
             int thisNoteZRatio;
@@ -258,42 +243,8 @@ namespace Reilas
                     _uv[z * (_thisNoteSize + 1) + x] = new Vector2(1f / _thisNoteSize * x, 1f / (thisNoteZRatio - 1) * z);
                 }
             }
-
-            /*
-            if (_effectorCs.blJudge) // 押されていたら
-            {
-                var timeRatio = (currentTime - _entity.Head.JudgeTime) / (_entity.Tail.JudgeTime - _entity.Head.JudgeTime);
-                var judgeLaneSize = Mathf.Lerp(_entity.Head.Size, _entity.Tail.Size, timeRatio);
-                var judgeLaneMin = Mathf.Lerp(_entity.Head.LanePosition, _entity.Tail.LanePosition, timeRatio);
-
-                for (int znum = 0; znum < Mathf.Floor(thisNoteZRatio * timeRatio) - 1; znum++)
-                {
-                    for(var xNum = 0; xNum <= _thisNoteSize; xNum++)
-                    {
-                        var angle = Mathf.PI / div * (judgeLaneMin + judgeLaneSize / _thisNoteSize * xNum);
-                        angle = Mathf.PI / 2f - angle;
-                        var x = Mathf.Sin(angle) * outerLaneRadius;
-                        var y = Mathf.Cos(angle) * outerLaneRadius;
-                        Debug.Log(thisNoteZRatio + " " + _thisNoteSize);
-                        Debug.Log(_vertices.Length + "  >  " + znum + "X" + (_thisNoteSize + 1) + " = " + znum * (_thisNoteSize + 1));
-                        _vertices[znum * (_thisNoteSize + 1) + xNum] = new Vector3(-x, y, -0.4f);
-                    }
-                }
-                _mesh.vertices = _vertices;
-
-                //GetComponent<MeshRenderer>().material.cal
-
-                _mesh.uv = _uv;
-#if UNITY_EDITOR
-                _mesh.RecalculateBounds();
-#endif
-                meshFilter.mesh = _mesh;
-            }
-            */
-
+            
             _mesh.vertices = _vertices;
-
-            //GetComponent<MeshRenderer>().material.cal
 
             _mesh.uv = _uv;
 #if UNITY_EDITOR
@@ -305,7 +256,7 @@ namespace Reilas
 
         public void NoteDestroy(bool kujo)
         {
-            for (int a = 2; a >= 0; a--)
+            for (var a = 2; a >= 0; a--)
             {
                 Destroy(transform.GetChild(0).GetChild(a).GetComponent<ParticleSystem>());
                 Destroy(transform.GetChild(0).GetChild(a).gameObject);
@@ -320,7 +271,7 @@ namespace Reilas
             }
             else
             {
-                _presenter._reilasAboveSlide.RemoveAt(RhythmGamePresenter.AboveSlideNotes.IndexOf(this));
+                _presenter.reilasAboveSlide.RemoveAt(RhythmGamePresenter.AboveSlideNotes.IndexOf(this));
                 RhythmGamePresenter.AboveSlideNotes.Remove(this);
             }
             Destroy(gameObject);

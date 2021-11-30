@@ -1,7 +1,5 @@
 #nullable enable
 using System;
-using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -18,14 +16,24 @@ namespace Reilas
 
         private ReilasNoteEntity _entity = null!;
 
+        private bool _kujo;
+
         private float _noteSpeed;
+        private float _position;
+
+        private int _speedChangeIndex;
+        
         public float aboveTapTime;
 
-        public void Initialize(ReilasNoteEntity entity)
+        public void Initialize(ReilasNoteEntity entity, bool kujo)
         {
             _noteSpeed = entity.Speed;
             aboveTapTime = entity.JudgeTime;
             _entity = entity;
+            _kujo = kujo;
+            _position = NotePositionCalculatorService.LeftOverPositionCalculator(aboveTapTime, _noteSpeed);
+            _speedChangeIndex = 0;
+            
             InitializeMesh();
             transform.localScale = new Vector3(1,1,1);
         }
@@ -62,12 +70,17 @@ namespace Reilas
             _mesh.MarkDynamic();
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
-            RenderMesh(currentTime, speedChangeEntities);
+            RenderMesh(currentTime);
+            
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_speedChangeIndex)) return;
+            _position -= NotePositionCalculatorService.SpanCalculator(_speedChangeIndex, aboveTapTime, _noteSpeed);
+            _speedChangeIndex++;
         }
 
-        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        private void RenderMesh(float currentTime)
         {
             if (meshFilter == null) return;
 
@@ -89,9 +102,12 @@ namespace Reilas
                 var outerY = Mathf.Sin(angle) * outerLaneRadius;
                 var outerX = Mathf.Cos(angle) * outerLaneRadius;
 
-                if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
+                var judgeTime = _entity.JudgeTime;
+                var difference = judgeTime - currentTime;
+                
+                if (!gameObject.activeSelf && difference < 5f) gameObject.SetActive(true);
                     
-                var zPos = NotePositionCalculatorService.GetPosition(_entity, currentTime, _noteSpeed, speedChangeEntities);
+                var zPos = NotePositionCalculatorService.GetPosition(judgeTime, currentTime, _noteSpeed, _position, _speedChangeIndex);
                     
                 //zPos += zz;
 

@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -22,6 +21,9 @@ namespace Reilas
     public sealed class NoteConnector : MonoBehaviour
     {
         private float _judgeTime;
+        private float _position;
+
+        private int _speedChangeIndex;
         
         [SerializeField] private MeshFilter meshFilter = null!;
 
@@ -39,7 +41,6 @@ namespace Reilas
         public static int GetConnectorLane(int lane, List<int> groundLanes)
         {
             var closestGroundLane = (int)Mathf.Floor((lane - 4f) * 0.125f);
-            Debug.Log("groundLane: " + closestGroundLane);
             switch (closestGroundLane)
             {
                 case 0:
@@ -81,6 +82,9 @@ namespace Reilas
         public void Initialize(Connector connector)
         {
             _judgeTime = connector.currentTime;
+            _position = NotePositionCalculatorService.LeftOverPositionCalculator(_judgeTime, 1);
+            _speedChangeIndex = 0;
+            
             foreach (var connectingKind in connector.connectingList)
             {
                 InitializeMesh(connectingKind);
@@ -96,7 +100,6 @@ namespace Reilas
             var finish = connectKind.connector[1];
 
             var lanePositions = RhythmGamePresenter.LanePositions;
-            Debug.Log("beginning: " + beginning);
             var startPosition = lanePositions[beginning];
             var spX = startPosition.x;
             var spY = startPosition.y;
@@ -235,17 +238,19 @@ namespace Reilas
         meshFilter.mesh = _mesh;
         }
         
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
             if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
             else if (_judgeTime < currentTime) NoteConnectorDestroy();
 
-            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z; // Make Mesh 頂点
+            var berPos = NotePositionCalculatorService.GetPosition(_judgeTime, currentTime, 1, _position, _speedChangeIndex); // Make Mesh 頂点
             var transPos = transform.position;
             gameObject.transform.position = new Vector3(transPos.x, transPos.y, berPos);
-
-            if (meshFilter != null) return;
-            Debug.Log("null");
+            
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_speedChangeIndex)) return;
+            _position -= NotePositionCalculatorService.SpanCalculator(_speedChangeIndex, _judgeTime, 1);
+            _speedChangeIndex++;
         }
 
         private void NoteConnectorDestroy()

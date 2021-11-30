@@ -17,15 +17,15 @@ namespace Reilas
             List<Vector3> pos = new List<Vector3>();
             if (time < 99.8) //�˂���Đi��
             {
-                float t = time - 93;
-                float z = (-(1 / (t + 1)) + 1) * 2 - 2.8f;
+                var t = time - 93;
+                var z = (-(1 / (t + 1)) + 1) * 2 - 2.8f;
                 pos.Add(new Vector3(0, 2.2f, z));
                 pos.Add(new Vector3(0, 0, rotation - 2));
             }
             else if (time < 101.78f) // �˂���Đi�� //1.559
             {
-                float t = time - 99.8f;
-                float z = (t * t * t) * 180 - 1.928f;
+                var t = time - 99.8f;
+                var z = (t * t * t) * 180 - 1.928f;
                 pos.Add(new Vector3(0, 2.2f, z));
                 if (rotation % 360 != 0)
                 {
@@ -38,7 +38,7 @@ namespace Reilas
             }
             else if (time < 103.04f) // �߂��Ă���
             {
-                float z = Mathf.Lerp(-500, 2.8f, (time - 101.8f) / 1.4f);
+                var z = Mathf.Lerp(-500, 2.8f, (time - 101.8f) / 1.4f);
                 pos.Add(new Vector3(0, 2.2f, z));
                 if (rotation % 360 != 0)
                 {

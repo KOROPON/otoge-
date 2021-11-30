@@ -15,9 +15,9 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"²“¡",
-                "hardDesiner":"™R",
-                "extremeDesiner":"R–{",
+                "easyDesiner":"ï¿½ï¿½ï¿½ï¿½",
+                "hardDesiner":"ï¿½ï¿½ï¿½R",
+                "extremeDesiner":"ï¿½Rï¿½{",
                 "kujoDesiner": ""
             }
         },
@@ -37,9 +37,9 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"á™",
-                "hardDesiner":"²“¡",
-                "extremeDesiner":"™R",
+                "easyDesiner":"ï¿½á™",
+                "hardDesiner":"ï¿½ï¿½ï¿½ï¿½",
+                "extremeDesiner":"ï¿½ï¿½ï¿½R",
                 "kujoDesiner": ""
             }
         },
@@ -59,9 +59,9 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"R–{",
-                "hardDesiner":"™R",
-                "extremeDesiner":"™R,R–{",
+                "easyDesiner":"ï¿½Rï¿½{",
+                "hardDesiner":"ï¿½ï¿½ï¿½R",
+                "extremeDesiner":"ï¿½ï¿½ï¿½R,ï¿½Rï¿½{",
                 "kujoDesiner": ""
             }
         },
@@ -81,37 +81,15 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"²“¡",
-                "hardDesiner":"™R",
-                "extremeDesiner":"R–{",
-                "kujoDesiner": ""
-            }
-        },
-        {
-            "title": "kawaii_OD!!",
-            "composer": "Argentum",
-            "beat": {
-                "numerator": 4,
-                "denominator": 4,
-                "bom": 175
-            },
-            "custom": [],
-            "level": {
-                "easy": 2,
-                "hard": 5,
-                "extreme": 8,
-                "kujo": 0
-            },
-            "noteDesiner": {
-                "easyDesiner":"R–{",
-                "hardDesiner":"™R",
-                "extremeDesiner":"™R",
+                "easyDesiner":"ï¿½ï¿½ï¿½ï¿½",
+                "hardDesiner":"ï¿½ï¿½ï¿½R",
+                "extremeDesiner":"ï¿½Rï¿½{",
                 "kujoDesiner": ""
             }
         },
         {
             "title": "Music Is My Suicide",
-            "composer": "Naughy Boy",
+            "composer": "Naughty Boy",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -125,15 +103,15 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"R–{",
-                "hardDesiner":"™R",
-                "extremeDesiner":"²“¡,á™",
+                "easyDesiner":"ï¿½Rï¿½{",
+                "hardDesiner":"ï¿½ï¿½ï¿½R",
+                "extremeDesiner":"ï¿½ï¿½ï¿½ï¿½,ï¿½á™",
                 "kujoDesiner": ""
             }
         },
         {
             "title": "Collide",
-            "composer": "Naughy Boy",
+            "composer": "Naughty Boy",
             "beat": {
                 "numerator": 4,
                 "denominator": 4,
@@ -147,14 +125,14 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"™R",
-                "hardDesiner":"R–{",
-                "extremeDesiner":"á™",
+                "easyDesiner":"ï¿½ï¿½ï¿½R",
+                "hardDesiner":"ï¿½Rï¿½{",
+                "extremeDesiner":"ï¿½á™",
                 "kujoDesiner": ""
             }
         },
         {
-            "title": "Devourer_Of_Sol_‡V",
+            "title": "Devourer_Of_Sol_ï¿½V",
             "composer": "Argentum",
             "beat": {
                 "numerator": 3,
@@ -169,9 +147,9 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"á™",
-                "hardDesiner":"R–{",
-                "extremeDesiner":"R–{",
+                "easyDesiner":"ï¿½á™",
+                "hardDesiner":"ï¿½Rï¿½{",
+                "extremeDesiner":"ï¿½Rï¿½{",
                 "kujoDesiner": ""
             }
         },
@@ -191,10 +169,10 @@
                 "kujo": 10
             },
             "noteDesiner": {
-                "easyDesiner":"™R",
-                "hardDesiner":"R–{",
-                "extremeDesiner":"“ŒŠC•ˆ–ÊBoys",
-                "kujoDesiner": "“ŒŠC•ˆ–ÊBoys + 1"
+                "easyDesiner":"ï¿½ï¿½ï¿½R",
+                "hardDesiner":"ï¿½Rï¿½{",
+                "extremeDesiner":"ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½Boys",
+                "kujoDesiner": "ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½Boys + 1"
             }
         },
         {

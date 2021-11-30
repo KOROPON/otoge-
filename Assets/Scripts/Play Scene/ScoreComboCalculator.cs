@@ -63,10 +63,8 @@ namespace Reilas
             _gaugeCombo = 0;
             _gaugeMiss = 0;
             _sumScore = RhythmGamePresenter.countNotes * 4;
-            Debug.Log(RhythmGamePresenter.countNotes * 4);
             
             comboText.text = "";
-            //gauge.text = "0";
         }
 
         public void LateUpdate()
@@ -144,7 +142,7 @@ namespace Reilas
             else clear = "Failed";
         }
 
-        public void GaugeChange() // ƒQ[ƒW‚ğ Kujo ‚É‘Î‰‚³‚¹‚é
+        public void GaugeChange() // ï¿½Qï¿½[ï¿½Wï¿½ï¿½ Kujo ï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             slider.sprite = bossGauge;
             missamount = 0.1f;

@@ -1,7 +1,5 @@
 #nullable enable
 
-using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -21,11 +19,17 @@ namespace Reilas
         private Mesh? _mesh;
 
         private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
-        private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
+        private const float OuterRadius = OuterLaneRadius; // 外縁の半径
+
+        private float _position;
+        private int _speedChangeIndex;
 
         public void Initialize(float judgeTime)
         {
             _judgeTime = judgeTime;
+            _position = NotePositionCalculatorService.LeftOverPositionCalculator(_judgeTime, 1);
+            _speedChangeIndex = 0;
+            
             InitializeMesh();
             gameObject.transform.position = new Vector3(0f, 0f, 999f);
         }
@@ -107,8 +111,6 @@ namespace Reilas
             };
             _mesh.MarkDynamic();
 
-            //GetComponent<MeshRenderer>().material.cal
-
             _mesh.SetUVs(0, _uv);
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
@@ -116,25 +118,26 @@ namespace Reilas
             meshFilter.mesh = _mesh;
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
             if (currentTime == 0) return;
             if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
             else if (_judgeTime < currentTime) BarLineDestroy();
 
 
-            var berPos = PositionCalculator.CalculatePosition(_judgeTime, currentTime, speedChangeEntities).z;
+            var berPos = NotePositionCalculatorService.GetPosition(_judgeTime, currentTime, 1, _position, _speedChangeIndex);
             var gameObj = gameObject;
             var transPos = gameObj.transform.position;
             gameObj.transform.position = new Vector3(transPos.x, transPos.y, berPos);
 
-            if (meshFilter != null) return;
-            Debug.Log("null");
+            if (!RhythmGamePresenter.checkSpeedChangeEntity ||
+                currentTime < RhythmGamePresenter.CalculatePassedTime(_speedChangeIndex)) return;
+            _position -= NotePositionCalculatorService.SpanCalculator(_speedChangeIndex, _judgeTime, 1);
+            _speedChangeIndex++;
         }
 
         public void BarLineDestroy()
         {
-            //Debug.Log(this.gameObject);
             RhythmGamePresenter.BarLines.Remove(this);
             Destroy(gameObject);
         }

@@ -55,7 +55,7 @@ public class AboveSlideEffector : MonoBehaviour
 
         if (InputService.AboveLaneTapStates != null)
         {
-            foreach (LaneTapState tapstate in InputService.AboveLaneTapStates)
+            foreach (var tapstate in InputService.AboveLaneTapStates)
             {
                 if (laneMin <= tapstate.laneNumber && tapstate.laneNumber <= laneMax)
                 {
@@ -94,15 +94,15 @@ public class AboveSlideEffector : MonoBehaviour
     }
     private Vector3 PositionCal(float currentTime)
     {
-        float pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos)) / 32;
-        float x = (float)(4.4 * Mathf.Cos(pai));
-        float y = (float)4.4 * Mathf.Sin(pai);
+        var pai = Mathf.PI * (32 - ((_tailPos - _headPos) * (currentTime - _headTime) / (_tailTime - _headTime) + _headPos)) / 32;
+        var x = (float)(4.4 * Mathf.Cos(pai));
+        var y = (float)4.4 * Mathf.Sin(pai);
         return new Vector3(x, y, -0.3f);
     }
 
     private Vector3 AngleCal(float currentTime)
     {
-        float rot = (16 - Mathf.Lerp(_headPos, _tailPos, (currentTime - _headTime) / (_tailTime - _headTime))) / 32 * 180;
+        var rot = (16 - Mathf.Lerp(_headPos, _tailPos, (currentTime - _headTime) / (_tailTime - _headTime))) / 32 * 180;
         return new Vector3(0, 0, rot);
     }
 }

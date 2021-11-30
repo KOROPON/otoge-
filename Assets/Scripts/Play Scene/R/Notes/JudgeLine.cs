@@ -44,7 +44,7 @@ class JudgeLine : MonoBehaviour
         _triangles[195] = 68;
         _triangles[196] = 69;
         _triangles[197] = 67;
-        for(int num = 0; num < 3; num++)
+        for(var num = 0; num < 3; num++)
         {
             _triangles[198 + num * 6 + 0] = 70 + num * 4 + 0;
             _triangles[198 + num * 6 + 1] = 70 + num * 4 + 2;
@@ -53,7 +53,7 @@ class JudgeLine : MonoBehaviour
             _triangles[198 + num * 6 + 4] = 70 + num * 4 + 3;
             _triangles[198 + num * 6 + 5] = 70 + num * 4 + 1;
 
-            float x = -2f + 2f * num;
+            var x = -2f + 2f * num;
             _vertices[70 + num * 4 + 0] = new Vector3(x - 0.02f, -0f, -0.2f);
             _vertices[70 + num * 4 + 1] = new Vector3(x + 0.02f, -0, -0.2f);
             _vertices[70 + num * 4 + 2] = new Vector3(x - 0.06f, -0f, 200);
@@ -94,7 +94,7 @@ class JudgeLine : MonoBehaviour
                     _vertices[p + x * 2 + 1] = outerPoint;
                 }
 
-                float uvX = 1f / 32 * 0.8f * x + 0.1f;
+                var uvX = 1f / 32 * 0.8f * x + 0.1f;
 
                 // ��O
                 if (z == 0)

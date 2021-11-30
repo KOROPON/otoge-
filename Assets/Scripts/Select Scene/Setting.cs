@@ -46,7 +46,7 @@ namespace Reilas
 
         private float Clamp(float input, float min, float max)
         {
-          float output = Mathf.Max(input, max);
+          var output = Mathf.Max(input, max);
           output = Mathf.Min(output,min);
           return  output;
         }

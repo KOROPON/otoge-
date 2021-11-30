@@ -22,10 +22,10 @@ public class AllJudgeService : MonoBehaviour
     public int internalJudgeStartIndex;
     public int chainJudgeStartIndex;
     private RhythmGamePresenter? _gamePresenter;
-    private JudgeRankEffector _judgeRankEffector;
-    private JudgeEffector _judgeEffector;
+    private JudgeRankEffector? _judgeRankEffector;
+    private JudgeEffector? _judgeEffector;
 
-    public bool _alreadyChangeKujo = false;
+    public bool alreadyChangeKujo;
 
     public static readonly List<JudgeResultType> AllJudge = new List<JudgeResultType>();
 
@@ -33,7 +33,6 @@ public class AllJudgeService : MonoBehaviour
     {
         _judgeRankEffector = GameObject.Find("JudgeRank").GetComponent<JudgeRankEffector>();
         _judgeEffector = GameObject.Find("Effectors").GetComponent<JudgeEffector>();
-        Debug.Log("awake");
         _gamePresenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
     }
 
@@ -191,7 +190,7 @@ public class AllJudgeService : MonoBehaviour
                     }
                     else
                     {
-                        int lanePos = tapNotes[i][j].note.LanePosition + (int)Mathf.Floor(tapNotes[i][j].note.Size / 2);
+                        var lanePos = tapNotes[i][j].note.LanePosition + (int)Mathf.Floor(tapNotes[i][j].note.Size / 2);
                         switch (difference)
                         {
                             case var dif when dif <= _judgeSeconds["Tap Perfect"]:
@@ -250,12 +249,12 @@ public class AllJudgeService : MonoBehaviour
                 note.hasBeenTapped = true;
                 if (CheckType(reilasNoteEntity, "AboveTap"))
                 {
-                    if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoTapNotes[0].NoteDestroy(true);
+                    if (alreadyChangeKujo) RhythmGamePresenter.AboveKujoTapNotes[0].NoteDestroy(true);
                     else RhythmGamePresenter.AboveTapNotes[0].NoteDestroy(false);
                 }
                 else
                 {
-                    if (_alreadyChangeKujo) RhythmGamePresenter.TapKujoNotes[0].NoteDestroy(true);
+                    if (alreadyChangeKujo) RhythmGamePresenter.TapKujoNotes[0].NoteDestroy(true);
                     else RhythmGamePresenter.TapNotes[0].NoteDestroy(false);
                 }
                 tapJudgeStartIndex[i]++;
@@ -331,7 +330,7 @@ public class AllJudgeService : MonoBehaviour
                 _judgeRankEffector.JudgeRankDisplay("miss");
             }
             if (RhythmGamePresenter.chainNoteJudge != null) RhythmGamePresenter.chainNoteJudge[i] = true;
-            if (_alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
+            if (alreadyChangeKujo) RhythmGamePresenter.AboveKujoChainNotes[0].NoteDestroy(true);
             else RhythmGamePresenter.AboveChainNotes[0].NoteDestroy(false);
             chainJudgeStartIndex++; 
         }

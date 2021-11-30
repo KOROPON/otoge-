@@ -11,6 +11,7 @@ internal class Song
 {
     public string title;
     public bool extremeLock;
+    public bool kujoLock;
     public Difficulty easy;
     public Difficulty hard;
     public Difficulty extreme;
@@ -18,7 +19,7 @@ internal class Song
 }
 
 [System.Serializable]
-class Difficulty
+internal class Difficulty
 {
     public string rank;
     public bool fullCombo;
