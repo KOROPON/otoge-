@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class MusicNumManage : MonoBehaviour
@@ -94,6 +95,7 @@ public class MusicNumManage : MonoBehaviour
     
     private void SelectSong(string musicName)
     {
+
         if (_getHighScores.GetKujoLock(musicName)) _kujo.SetActive(true);
         else _kujo.SetActive(false);
         _jacketPath = "Jacket/" + musicName + "_jacket";
@@ -145,7 +147,6 @@ public class MusicNumManage : MonoBehaviour
         _hardLevel = GameObject.Find("Hard").GetComponentInChildren<Text>();
         _extremeLevel = GameObject.Find("Extreme").GetComponentInChildren<Text>();
         Debug.Log(_getHighScores.GetKujoLock("Collide"));
-        FindObjectOfType<SongButtonSpawner>().SpawnSongs();
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
@@ -197,29 +198,34 @@ public class MusicNumManage : MonoBehaviour
             _ => new Color32()
         };
     }
-
-   
     public void Difficulty(string diff)
     {
-        
-        if (diff == "Extreme" && !isExtreme && _kujo.activeSelf)
-        {
-            isExtreme = true ;
-        }
-        if (!_kujo.activeSelf || !(diff == "Extreme" || diff == "Kujo"))
-        {
-            isExtreme = false ;
-        }
+        bool blKujo = false;
         if (diff == "Extreme" && isExtreme)
         {
-            ExchangeDifficulty(_kujo, _extreme);
+            Debug.Log("sang");
+            blKujo = true;
+            StartCoroutine("ExchangeDifficultyToKujo");
             diff = "Kujo";
         }
-        if (diff == "Kujo")
+        else if (diff == "Kujo")
         {
-            ExchangeDifficulty(_extreme, _kujo);
+            Debug.Log("baaba");
+            StartCoroutine("ExchangeDifficultyToExtreme");
             diff = "Extreme";
         }
+        else if (diff == "Extreme" && _kujo.activeSelf)
+        {
+            Debug.Log("daaadda");
+            isExtreme = true ;
+        }
+        else
+        {
+            Debug.Log("klklklk");
+            isExtreme = false;
+        }
+
+        GetComponent<SongButtonSpawner>().SpawnSongs(blKujo);
         PlayerPrefs.SetString("difficulty", diff);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
@@ -292,35 +298,70 @@ public class MusicNumManage : MonoBehaviour
         Debug.Log("s");
     }
 
-    public IEnumerator ExchangeDifficulty(GameObject trueDif, GameObject falseDif)
+    public IEnumerator ExchangeDifficultyToExtreme()
     {
         Debug.Log("aaaa");
         int i = 0;
-        var trueDifT = trueDif.transform;
-        var falseDifT = falseDif.transform.transform;
-        trueDifT.localPosition = new Vector3(3484, (float)197.83, 0);
-        falseDifT.localPosition = new Vector3(3442, (float)155.83, 0);
-        trueDifT.SetAsFirstSibling();
+        Transform transT;
+        Transform transF;
+        var trueDif = _extreme;
+        var falseDif = _kujo;
+        var trueDifT = (transT = trueDif.transform).GetComponent<RectTransform>().anchoredPosition;
+        var falseDifT = (transF = falseDif.transform).GetComponent<RectTransform>().anchoredPosition;
+        trueDifT = new Vector2(1670, 105);
+        falseDifT = new Vector2(1640, 75);
+        trueDif.transform.SetAsFirstSibling();
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            if (trueDifT.localPosition.x == 3461)
+            if (trueDifT.x == 1655)
             {
-                trueDifT.SetAsLastSibling();
+                trueDif.transform.SetAsLastSibling();
             }
-            if (trueDifT.localPosition.x > 3442)
+            if (trueDifT.x > 1640)
             {
-                trueDifT.localPosition = new Vector3(trueDifT.localPosition.x - 1, (float)(trueDifT.localPosition.y - 1), 0);
-                falseDifT.localPosition = new Vector3(falseDifT.localPosition.x + 1, (float)(falseDifT.localPosition.y + 1), 0);
+                trueDifT = new Vector2(trueDifT.x - 1, (float)(trueDifT.y - 1));
+                falseDifT = new Vector2(falseDifT.x + 1, (float)(falseDifT.y + 1));
                 continue;
             }
-            trueDifT.localPosition = new Vector3(3442, (float)155.83, 0);
-            falseDifT.localPosition = new Vector3(3484, (float)197.83, 0);
+            trueDifT = new Vector3(1640, 75);
+            falseDifT = new Vector3(1670, 105);
             trueDif.transform.GetComponent<Button>().enabled = true;
             falseDif.transform.GetComponent<Button>().enabled = false;
             break;
-
         }
     }
-
+    public IEnumerator ExchangeDifficultyToKujo()
+    {
+        Debug.Log("aaaa");
+        int i = 0;
+        Transform transT;
+        Transform transF;
+        var trueDif = _kujo;
+        var falseDif = _extreme;
+        var trueDifT = (transT = trueDif.transform).GetComponent<RectTransform>().anchoredPosition;
+        var falseDifT = (transF = falseDif.transform).GetComponent<RectTransform>().anchoredPosition;
+        trueDifT = new Vector2(1670, 105);
+        falseDifT = new Vector2(1640, 75);
+        trueDif.transform.SetAsFirstSibling();
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            if (trueDifT.x == 1655)
+            {
+                trueDif.transform.SetAsLastSibling();
+            }
+            if (trueDifT.x > 1640)
+            {
+                trueDifT = new Vector2(trueDifT.x - 1, (float)(trueDifT.y - 1));
+                falseDifT = new Vector2(falseDifT.x + 1, (float)(falseDifT.y + 1));
+                continue;
+            }
+            trueDifT = new Vector3(1640, 75);
+            falseDifT = new Vector3(1670, 105);
+            trueDif.transform.GetComponent<Button>().enabled = true;
+            falseDif.transform.GetComponent<Button>().enabled = false;
+            break;
+        }
+    }
 }

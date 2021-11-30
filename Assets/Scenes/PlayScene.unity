@@ -77017,7 +77017,6 @@ MonoBehaviour:
   reilasKujoHold: []
   reilasKujoChain: []
   speedChanges: []
-  jumpToKujo: 0
   alreadyChangeKujo: 0
   judgeTime: 0
   audioTime: 0
@@ -77052,9 +77051,9 @@ MonoBehaviour:
   currentCombo: 0
   currentScore: 0
   clear: 
-  slider: {fileID: 0}
+  slider: {fileID: 806525357}
   comboText: {fileID: 646217737}
-  gauge: {fileID: 0}
+  gauge: {fileID: 670218397}
 --- !u!114 &1036589700
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class AllJudgeService : MonoBehaviour
         {"Tap Good", 0.095f},
         {"Tap Bad", 0.150f},
         {"Internal", 0.090f},
-        {"Chain", 0.043f}
+        {"Chain", 0.045f}
     };
 
     private static float CalculateDifference(float currentTime, float judgeTime, string noteType)

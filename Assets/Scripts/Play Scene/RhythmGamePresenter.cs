@@ -223,6 +223,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Awake()
     {
+        
         jumpToKujo = false;
         _isAllowed = gameObject.GetComponent<GetHighScores>().GetKujoLock("Reilas");
         _longPerfect = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
@@ -244,10 +245,12 @@ public class RhythmGamePresenter : MonoBehaviour
         if (musicName == "Reilas" && dif == "Extreme") _boss.BossAwake();
         _judgeService.internalJudgeStartIndex = 0;
         _judgeService.chainJudgeStartIndex = 0;
+        
     }
 
     private async UniTask AwakeAsync()
     {
+        Debug.Log("AssyncStat");
         if (_boss == null) return;
 
         if (ChangeScene.aspect > 2) Camera.main.transform.position = new Vector3(0, 2.2f, -3.3f);

@@ -15,7 +15,7 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"???",
+                "easyDesiner":"Lopy",
                 "hardDesiner":"Mizumoto",
                 "extremeDesiner":"Apollo",
                 "kujoDesiner": ""
@@ -32,7 +32,7 @@
             "custom": [],
             "level": {
                 "easy": 2,
-                "hard": 4,
+                "hard": 5,
                 "extreme": 7,
                 "kujo": 0
             },
@@ -66,7 +66,7 @@
             }
         },
         {
-            "title": "GlowPoint(Cube)",
+            "title": "GlowPoint(Cubic)",
             "composer": "CO,benkyo",
             "beat": {
                 "numerator": 4,
@@ -103,7 +103,7 @@
                 "kujo": 0
             },
             "noteDesiner": {
-                "easyDesiner":"???",
+                "easyDesiner":"Lopy",
                 "hardDesiner":"Mizumoto",
                 "extremeDesiner":"Apollo",
                 "kujoDesiner": ""
@@ -149,7 +149,7 @@
             "noteDesiner": {
                 "easyDesiner":"Apollo",
                 "hardDesiner":"Mizumoto",
-                "extremeDesiner":"??? vs ???",
+                "extremeDesiner":"FKMBAR",
                 "kujoDesiner": ""
             }
         },

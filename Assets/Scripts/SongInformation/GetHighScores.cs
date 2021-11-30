@@ -34,6 +34,7 @@ public class GetHighScores : MonoBehaviour
 
     private Song GetSong(string title)
     {
+
         foreach (var t in _highScore.songs)
         {
             if (title == t.title)
@@ -81,14 +82,18 @@ public class GetHighScores : MonoBehaviour
     public bool GetLock(string songName)
     {
         var song = GetSong(songName);
-        return song != null && song.extremeLock;
+        //return song != null && song.extremeLock;
+        if (songName == "Reilas") return true;
+        return false;
     }
 
     public bool GetKujoLock(string songName)
     {
         var song = GetSong(songName);
         //return song != null && song.kujoLock;
-        return true;
+        if (songName == "Reilas") return true;
+        return false;
+
     }
 
     public string GetClear(string songName, string difficulty)
