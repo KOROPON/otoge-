@@ -249,7 +249,7 @@ namespace Reilas
             Debug.Log("null");
         }
 
-        private void NoteConnectorDestroy()
+        public void NoteConnectorDestroy()
         {
             //Debug.Log(this.gameObject);
             RhythmGamePresenter.NoteConnectors.Remove(this);
