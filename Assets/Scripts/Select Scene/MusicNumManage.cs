@@ -17,7 +17,7 @@ public class MusicNumManage : MonoBehaviour
     private Text _tutorialText;
     private GameObject _kujo;
     private GameObject _extreme;
-    private GameObject _tutorial;
+    public GameObject _tutorial;
     private Transform _scrollView;
     private Transform _scrollViewContent;
     private string _songName;
@@ -145,14 +145,11 @@ public class MusicNumManage : MonoBehaviour
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         _scrollView = GameObject.Find("Scroll View").transform;
         _scrollViewContent = _scrollView.GetChild(0);
-        _tutorial = GameObject.Find("Tutorial");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _composer = GameObject.Find("Composer").GetComponent<Text>();
         _easyLevel = GameObject.Find("Easy").GetComponentInChildren<Text>();
         _hardLevel = GameObject.Find("Hard").GetComponentInChildren<Text>();
         _extremeLevel = GameObject.Find("Extreme").GetComponentInChildren<Text>();
-        _tutorialImage = GameObject.Find("TutorialImage").GetComponent<Image>();
-        _tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
         Debug.Log(_getHighScores.GetKujoLock("Collide"));
 
         if (!PlayerPrefs.HasKey("selected_song"))
@@ -176,11 +173,14 @@ public class MusicNumManage : MonoBehaviour
         }
         Shutter.blShutterChange = "Open"; 
         _audioSource.Play(); 
-        if (!PlayerPrefs.HasKey("TutorialPP"))
+        if (!PlayerPrefs.HasKey("PPtutorial"))
         {   
             // "Init"のキーが存在しない場合はチュートリアルパネルを表示
-            PlayerPrefs.SetInt("TutorialPP", 1); // ”Init”のキーをint型の値(1)で保存
+            PlayerPrefs.SetInt("PPtutorial", 1); // ”Init”のキーをint型の値(1)で保存
+            PlayerPrefs.Save();
             _tutorial.gameObject.SetActive(true);
+            _tutorialImage = GameObject.Find("TutorialImage").GetComponent<Image>();
+            _tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
         }
     }
 
