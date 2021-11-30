@@ -8,13 +8,16 @@ public class MusicNumManage : MonoBehaviour
     private Image _jack;
     private Image _rank;
     private Image _frame;
+    private Image _tutorialImage;
     private AudioSource _audioSource;
     private GetHighScores _getHighScores;
     public Text _easyLevel;
     public Text _hardLevel;
     public Text _extremeLevel;
+    private Text _tutorialText;
     private GameObject _kujo;
     private GameObject _extreme;
+    private GameObject _tutorial;
     private Transform _scrollView;
     private Transform _scrollViewContent;
     private string _songName;
@@ -22,6 +25,7 @@ public class MusicNumManage : MonoBehaviour
     private bool _selectBool;
     private bool _blChange;
     private bool _blDifChange;
+    private int _tutorialNum = 0;
 
     public Text highScore;
     public Text title;
@@ -141,11 +145,14 @@ public class MusicNumManage : MonoBehaviour
         _audioSource = GameObject.Find("Audio Source Intro").GetComponent<AudioSource>();
         _scrollView = GameObject.Find("Scroll View").transform;
         _scrollViewContent = _scrollView.GetChild(0);
+        _tutorial = GameObject.Find("Tutorial");
         _getHighScores = FindObjectOfType<GetHighScores>();
         _composer = GameObject.Find("Composer").GetComponent<Text>();
         _easyLevel = GameObject.Find("Easy").GetComponentInChildren<Text>();
         _hardLevel = GameObject.Find("Hard").GetComponentInChildren<Text>();
         _extremeLevel = GameObject.Find("Extreme").GetComponentInChildren<Text>();
+        _tutorialImage = GameObject.Find("TutorialImage").GetComponent<Image>();
+        _tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
         Debug.Log(_getHighScores.GetKujoLock("Collide"));
 
         if (!PlayerPrefs.HasKey("selected_song"))
@@ -168,7 +175,13 @@ public class MusicNumManage : MonoBehaviour
             Difficulty(PlayerPrefs.GetString("difficulty"));
         }
         Shutter.blShutterChange = "Open"; 
-        _audioSource.Play();
+        _audioSource.Play(); 
+        if (!PlayerPrefs.HasKey("TutorialPP"))
+        {   
+            // "Init"のキーが存在しない場合はチュートリアルパネルを表示
+            PlayerPrefs.SetInt("TutorialPP", 1); // ”Init”のキーをint型の値(1)で保存
+            _tutorial.gameObject.SetActive(true);
+        }
     }
 
     public void Tap(GameObject obj)
@@ -362,6 +375,57 @@ public class MusicNumManage : MonoBehaviour
             trueDif.transform.GetComponent<Button>().enabled = true;
             falseDif.transform.GetComponent<Button>().enabled = false;
             break;
+        }
+    }
+
+    public void TapTutorial()
+    {
+        if(_tutorialNum == 0)
+        {
+            _tutorialText.text = "ここではあなたが挑戦することになる\n5種類の Note を紹介します。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 1)
+        {
+            _tutorialText.text = "まずはこの Tap-Note 。\nこのノーツはその名の通り押してとる Note です。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 2)
+        {
+            Sprite image = Resources.Load<Sprite>("Tutorial/Hold");
+            _tutorialImage.sprite = image;
+            _tutorialText.text = "次に Hold-Note です。\nノーツの始まりから終わりまで押し続ける必要があります。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 3)
+        {
+            Sprite image = Resources.Load<Sprite>("Tutorial/AboveTap");
+            _tutorialImage.sprite = image;
+            _tutorialText.text = "これは AboveTap-Note です。\nTap-Note が上に移動したものです。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 4)
+        {
+            Sprite image = Resources.Load<Sprite>("Tutorial/AboveSlide");
+            _tutorialImage.sprite = image;
+            _tutorialText.text = "これは AboveSlide-Note です。\n押し方は Hold-Note と同じですが、上のレーンを上下左右に動きます。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 5)
+        {
+            Sprite image = Resources.Load<Sprite>("Tutorial/Chain");
+            _tutorialImage.sprite = image;
+            _tutorialText.text = "これは Chain-Note です。\nこのノーツは Tap-Note と同じように見えますが、\nTap-Note と違って押し続けるだけで全ての判定をとることができます。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 6)
+        {
+            _tutorialText.text = "これで紹介は終わりです。\n健闘を祈っています......";
+            _tutorialNum++;
+        }
+        else
+        {
+            _tutorial.gameObject.SetActive(false);
         }
     }
 }
