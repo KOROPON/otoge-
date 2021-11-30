@@ -64,6 +64,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     public static readonly List<BarLine> BarLines = new List<BarLine>();
     public static readonly List<NoteConnector> NoteConnectors = new List<NoteConnector>();
+    public static readonly List<NoteConnector> NoteKujoConnectors = new List<NoteConnector>();
     
     private readonly List<Connector> _noteConnectors = new List<Connector>();
     private readonly List<float> _barLines = new List<float>();
@@ -110,6 +111,18 @@ public class RhythmGamePresenter : MonoBehaviour
 
     public float judgeTime;
     public float audioTime;
+
+    public long debug1;
+    public long debug2;
+    public long debug3;
+    public long debug4;
+    public long debug5;
+    public long debug6;
+    public long debug7;
+    public long debug8;
+    public long debug9;
+    public long debug10;
+    public long debug11;
 
     private static readonly System.Diagnostics.Stopwatch Stopwatch = new System.Diagnostics.Stopwatch();
 
@@ -864,12 +877,14 @@ public class RhythmGamePresenter : MonoBehaviour
     System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
     private void LateUpdate()
     {
+        sw.Restart();
         isHolding = false;
         sw.Start();////////////////////////////////////////
         IEnumerable<AboveTapNote> aboveTapMove;
         IEnumerable<TapNote> tapNoteMove;
         IEnumerable<AboveChainNote> chainNoteMove;
         IEnumerable<BarLine> barLineMove;
+        IEnumerable<NoteConnector> connectorMove;
 
         List<AboveHoldNote> aboveHoldNoteMove = new List<AboveHoldNote>();
         List<AboveSlideNote> aboveSlideNoteMove = new List<AboveSlideNote>();
@@ -891,6 +906,7 @@ public class RhythmGamePresenter : MonoBehaviour
             aboveTapMove = AboveKujoTapNotes.Where(note => note.aboveTapTime - audioTime < 5f);
             tapNoteMove = TapKujoNotes.Where(note => note.tapTime - audioTime < 5f);
             chainNoteMove = AboveKujoChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
+            connectorMove = NoteKujoConnectors.Where(note => note._judgeTime - audioTime < 5f);
 
             foreach (var aboveHold in reilasKujoAboveHold)
             {
@@ -929,6 +945,7 @@ public class RhythmGamePresenter : MonoBehaviour
             aboveTapMove = AboveTapNotes.Where(note => note.aboveTapTime - audioTime < 5f);
             tapNoteMove = TapNotes.Where(note => note.tapTime - audioTime < 5f);
             chainNoteMove = AboveChainNotes.Where(note => note.aboveChainTime - audioTime < 5f);
+            connectorMove = NoteConnectors.Where(note => note._judgeTime - audioTime < 5f);
 
             foreach (var aboveHold in _reilasAboveHold)
             {
@@ -977,6 +994,8 @@ public class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
+        debug1 += sw.ElapsedTicks;
+        sw.Restart();
 
         foreach (var note in HoldEffectors)
         {
@@ -995,22 +1014,39 @@ public class RhythmGamePresenter : MonoBehaviour
             if (audioTime - note.aboveSlideEffectTime >= 0) note.Render(audioTime, _longPerfect);
             else break;
         }
+        debug2 += sw.ElapsedTicks;
+        sw.Restart();
 
         foreach (var tapNote in tapNoteMove) tapNote.Render(audioTime, speedChanges);
+        debug3 += sw.ElapsedTicks;
+        sw.Restart();
 
         foreach (var note in aboveTapMove) note.Render(audioTime, speedChanges);
+        debug4 += sw.ElapsedTicks;
+        sw.Restart();
 
         foreach (var note in chainNoteMove) note.Render(audioTime, speedChanges);
+        debug5 += sw.ElapsedTicks;
+        sw.Restart();
 
         for (var num = holdNoteMove.Count - 1; num >= 0; num--) holdNoteMove[num].Render(audioTime, num, _reilasHold, speedChanges);
+        debug6 += sw.ElapsedTicks;
+        sw.Restart();
 
         for (var num = aboveHoldNoteMove.Count - 1; num >= 0; num--) aboveHoldNoteMove[num].Render(audioTime, num, _reilasAboveHold, speedChanges);
+        debug7 += sw.ElapsedTicks;
+        sw.Restart();
 
         for (var num = aboveSlideNoteMove.Count - 1; num >= 0; num--) aboveSlideNoteMove[num].Render(audioTime, num, _reilasAboveSlide, speedChanges);
+        debug8 += sw.ElapsedTicks;
+        sw.Restart();
 
         foreach (var barLine in barLineMove.ToList()) barLine.Render(audioTime, speedChanges);
-        
-        foreach (var connector in NoteConnectors.ToList()) connector.Render(audioTime, speedChanges);
+        debug9 += sw.ElapsedTicks;
+        sw.Restart();
+
+        foreach (var connector in connectorMove.ToList()) connector.Render(audioTime, speedChanges); // Heaby
+        debug10 += sw.ElapsedTicks;
 
         if (!isHolding) _longPerfect.Pause();
         isHolding = false;

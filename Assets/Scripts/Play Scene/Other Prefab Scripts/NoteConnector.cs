@@ -21,7 +21,7 @@ namespace Reilas
     
     public sealed class NoteConnector : MonoBehaviour
     {
-        private float _judgeTime;
+        public float _judgeTime;
         
         [SerializeField] private MeshFilter meshFilter = null!;
 
@@ -242,8 +242,7 @@ namespace Reilas
             else if (_judgeTime < currentTime) NoteConnectorDestroy();
 
             var berPos = NotePositionCalculatorService.GetPosition(_judgeTime, currentTime, 1, speedChangeEntities); // Make Mesh 頂点
-            var transPos = transform.position;
-            gameObject.transform.position = new Vector3(transPos.x, transPos.y, berPos);
+            gameObject.transform.position = new Vector3(0, 0, berPos);
 
             if (meshFilter != null) return;
             Debug.Log("null");
