@@ -48,36 +48,7 @@ namespace Reilas
         {
             var t = currentTime - judgeTime;
             
-            if (speedChangeEntities.Count == 0) return PositionCalculator(t, NoteSpeedCalculator(firstChartSpeed, noteSpeed));
-            
-            var zPos = 0f;
-            
-            for (var i = speedChangeEntities.Count - 1; i >= 0; i--)
-            {
-                var nextNotePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i + 1);
-                var notePassedTime = RhythmGamePresenter.CalculatePassedTime(speedChangeEntities, i);
-                
-                var timeCheck = currentTime >= nextNotePassedTime;
-                var beforeTimeCheck = judgeTime < notePassedTime;
-                
-                if (i == speedChangeEntities.Count - 1 && timeCheck || i == 0 && beforeTimeCheck)
-                    return PositionCalculator(t, NoteSpeedCalculator(speedChangeEntities[i].Speed, noteSpeed));
-                
-                if (timeCheck) break;
-                if (beforeTimeCheck) continue;
-                
-                var highSpeed = NoteSpeedCalculator(speedChangeEntities[i].Speed, noteSpeed);
-
-                var judgeTimePosition = nextNotePassedTime - judgeTime;
-                var nextNotePosition = judgeTimePosition > 0f ? 0f : PositionCalculator(judgeTimePosition, highSpeed);
-                var positionCalculator = currentTime > notePassedTime
-                    ? PositionCalculator(t, highSpeed)
-                    : PositionCalculator(notePassedTime - judgeTime, highSpeed);
-                
-                zPos += positionCalculator - nextNotePosition;
-            }
-
-            return zPos;
+            return PositionCalculator(t, NoteSpeedCalculator(firstChartSpeed, noteSpeed));
         }
         
         public static float GetPosition(float judgeTime, float currentTime, float noteSpeed, List<SpeedChangeEntity> speedChangeEntities)

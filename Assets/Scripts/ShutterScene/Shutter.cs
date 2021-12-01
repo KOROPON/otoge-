@@ -224,8 +224,16 @@ public class Shutter : MonoBehaviour
             RhythmGamePresenter.BarLines[a].BarLineDestroy();
         }
 
-        foreach (var lane in RhythmGamePresenter.TapNoteLanes) lane.Clear();
+        for(int a = RhythmGamePresenter.NoteConnectors.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.NoteConnectors[a].NoteConnectorDestroy();
+        }
+        for(int a = RhythmGamePresenter.NoteKujoConnectors.Count() - 1; a >= 0; a--)
+        {
+            RhythmGamePresenter.NoteKujoConnectors[a].NoteConnectorDestroy();
+        }
 
+        foreach (var lane in RhythmGamePresenter.TapNoteLanes) lane.Clear();
 
         RhythmGamePresenter.internalNotes.Clear();
         RhythmGamePresenter.chainNotes.Clear();
