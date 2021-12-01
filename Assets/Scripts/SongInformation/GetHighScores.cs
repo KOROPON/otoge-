@@ -93,17 +93,13 @@ public class GetHighScores : MonoBehaviour
     public bool GetLock(string songName)
     {
         var song = GetSong(songName);
-        //return song != null && song.extremeLock;
-        if (songName == "Reilas") return true;
-        return false;
+        return song != null && song.extremeLock;
     }
 
     public bool GetKujoLock(string songName)
     {
         var song = GetSong(songName);
-        //return song != null && song.kujoLock;
-        if (songName == "Reilas") return true;
-        return false;
+        return song != null && song.kujoLock;
 
     }
 

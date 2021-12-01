@@ -288,6 +288,7 @@ public class MusicNumManage : MonoBehaviour
             {
                 allowedLevel.text = PlayerPrefs.GetFloat("解禁状況").ToString() + " %";
             }
+            if(diff == "Kujo") GameObject.Find("Reilas").GetComponentsInChildren<Text>()[2].text = "10";
         }
     }
     private IEnumerator JumpInDifficulty()
@@ -352,26 +353,24 @@ public class MusicNumManage : MonoBehaviour
         Transform transF;
         var trueDif = _kujo;
         var falseDif = _extreme;
-        var trueDifT = (transT = trueDif.transform).GetComponent<RectTransform>().anchoredPosition;
-        var falseDifT = (transF = falseDif.transform).GetComponent<RectTransform>().anchoredPosition;
-        trueDifT = new Vector2(1670, 105);
-        falseDifT = new Vector2(1640, 75);
+        trueDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(1670, 105);
+        falseDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(1640, 75);
         trueDif.transform.SetAsFirstSibling();
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            if (trueDifT.x == 1655)
+            if (trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x == 1655)
             {
                 trueDif.transform.SetAsLastSibling();
             }
-            if (trueDifT.x > 1640)
+            if (trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x > 1640)
             {
-                trueDifT = new Vector2(trueDifT.x - 1, (float)(trueDifT.y - 1));
-                falseDifT = new Vector2(falseDifT.x + 1, (float)(falseDifT.y + 1));
+                trueDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x - 1, (float)(trueDif.transform.GetComponent<RectTransform>().anchoredPosition.y - 1));
+                falseDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(falseDif.transform.GetComponent<RectTransform>().anchoredPosition.x + 1, (float)(falseDif.transform.GetComponent<RectTransform>().anchoredPosition.y + 1));
                 continue;
             }
-            trueDifT = new Vector3(1640, 75);
-            falseDifT = new Vector3(1670, 105);
+            trueDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(1640, 75);
+            falseDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(1670, 105);
             trueDif.transform.GetComponent<Button>().enabled = true;
             falseDif.transform.GetComponent<Button>().enabled = false;
             break;
