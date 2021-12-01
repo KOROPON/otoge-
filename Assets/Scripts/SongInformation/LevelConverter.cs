@@ -23,6 +23,7 @@ public class LevelConverter : MonoBehaviour
                 "Easy" => lev.easy,
                 "Hard" => lev.hard,
                 "Extreme" => lev.extreme,
+                "Kujo" => lev.kujo,
                 _ => null
             };
         }
