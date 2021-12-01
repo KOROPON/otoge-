@@ -316,7 +316,7 @@ public class RhythmGamePresenter : MonoBehaviour
             _checkSpeedChangeEntity = true;
         }
 
-        NotePositionCalculatorService.firstChartSpeed = float.Parse(chartJsonData.timeline.otherObjects[0].value);
+        NotePositionCalculatorService.firstChartSpeed = 90;
         NotePositionCalculatorService.CalculateNoteSpeed(NotePositionCalculatorService.firstChartSpeed);
 
         _tapNotes = new List<ReilasNoteEntity>(GetNoteTypes(_chartEntity, "Tap")).OrderBy(note => note.JudgeTime).ToList();
