@@ -61,7 +61,7 @@ public sealed class AboveHoldEffector : MonoBehaviour
                 _effect1.Stop();
                 _effect2.Stop();
                 _effect3.Stop();
-                _noteBlight.material.color = new Color32(200, 200, 200, 160);
+                _noteBlight.material.color = new Color32(220, 220, 220, 160);
             }
         }
     }
