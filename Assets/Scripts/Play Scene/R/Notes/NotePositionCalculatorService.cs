@@ -12,7 +12,6 @@ namespace Reilas
     public static class NotePositionCalculatorService
     {
         private const float BelowNoteWidth = 2.2f;
-        private const float LeftPosition = -4.4f;
 
         private static float _gameSpeed;
 
@@ -44,14 +43,14 @@ namespace Reilas
             return SpeedCalculator(bpm) * noteSpeed;
         }
 
-        private static float CalculateZPos(float judgeTime, List<SpeedChangeEntity> speedChangeEntities, float noteSpeed, float currentTime)
+        private static float CalculateZPos(float judgeTime, float noteSpeed, float currentTime)
         {
             var t = currentTime - judgeTime;
             
             return PositionCalculator(t, NoteSpeedCalculator(firstChartSpeed, noteSpeed));
         }
         
-        public static float GetPosition(float judgeTime, float currentTime, float noteSpeed, List<SpeedChangeEntity> speedChangeEntities)
+        public static float GetPosition(float judgeTime, float currentTime, float noteSpeed)
         {
             var highSpeed = normalizedSpeed * noteSpeed;
 
@@ -70,7 +69,7 @@ namespace Reilas
             var t = judgeTime - currentTime;
             var normalizedTime = t * _gameSpeed / 600f;
 
-            return normalizedTime < 0 ? highSpeed * t : CalculateZPos(judgeTime, speedChangeEntities, noteSpeed, currentTime);
+            return normalizedTime < 0 ? highSpeed * t : CalculateZPos(judgeTime, noteSpeed, currentTime);
         }
 
         public static Vector3 GetScale(NoteEntity entity, float y = 1f)

@@ -1,7 +1,4 @@
 #nullable enable
-
-using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -14,19 +11,26 @@ namespace Reilas
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
+        
         private int[]? _triangles;
+        
         private const float Div = 32f;
         private const float OuterLaneRadius = 4.4f;
 
         private Mesh? _mesh;
 
-        private const float InnerRadius = OuterLaneRadius - 0.03f; // 内縁の半径
-        private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
+        // 内縁の半径
+        private const float InnerRadius = OuterLaneRadius - 0.03f;
+        
+        // 外縁の半径
+        private const float OuterRadius = OuterLaneRadius;
 
-        public void Initialize(float judgeTime)
+        public void Initialize(float judge)
         {
-            this.judgeTime = judgeTime;
+            judgeTime = judge;
+            
             InitializeMesh();
+            
             gameObject.transform.position = new Vector3(0f, 0f, 999f);
         }
 
@@ -58,7 +62,8 @@ namespace Reilas
 
             for (var x = 0; x < 33; x++)
             {
-                var angleBase = Div - x;   // レーンの角度
+                // レーンの角度
+                var angleBase = Div - x;
                 var angle = Mathf.PI * angleBase / Div;
                 
                 var innerY = Mathf.Sin(angle) * InnerRadius;
@@ -67,13 +72,10 @@ namespace Reilas
                 var outerY = Mathf.Sin(angle) * OuterRadius;
                 var outerX = Mathf.Cos(angle) * OuterRadius;
 
-                //zPos += zz;
-
                 var innerPoint = new Vector3(innerX, innerY, 0f);
                 var outerPoint = new Vector3(outerX, outerY, 0f);
                 
                 //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
                 if (_vertices != null)
                 {
                     _vertices[x * 2] = innerPoint;
@@ -105,25 +107,24 @@ namespace Reilas
                 vertices = _vertices,
                 triangles = _triangles
             };
+            
             _mesh.MarkDynamic();
-
-            //GetComponent<MeshRenderer>().material.cal
-
             _mesh.SetUVs(0, _uv);
+            
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
 #endif
             meshFilter.mesh = _mesh;
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
             if (currentTime == 0) return;
             if (!gameObject.activeSelf && judgeTime - currentTime < 5f) gameObject.SetActive(true);
             else if (judgeTime < currentTime) BarLineDestroy();
 
 
-            var berPos = NotePositionCalculatorService.GetPosition(judgeTime, currentTime, 1, speedChangeEntities);
+            var berPos = NotePositionCalculatorService.GetPosition(judgeTime, currentTime, 1);
             var gameObj = gameObject;
             var transPos = gameObj.transform.position;
             gameObj.transform.position = new Vector3(transPos.x, transPos.y, berPos);
@@ -134,7 +135,6 @@ namespace Reilas
 
         public void BarLineDestroy()
         {
-            //Debug.Log(this.gameObject);
             RhythmGamePresenter.BarLines.Remove(this);
             Destroy(gameObject);
         }

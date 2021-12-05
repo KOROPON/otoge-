@@ -15,7 +15,6 @@ namespace Reilas
         private int[]? _triangles;
 
         private Mesh? _mesh;
-
         private ReilasNoteEntity _entity = null!;
 
         private float _noteSpeed;
@@ -26,7 +25,9 @@ namespace Reilas
             _noteSpeed = entity.Speed;
             aboveTapTime = entity.JudgeTime;
             _entity = entity;
+            
             InitializeMesh();
+            
             transform.localScale = new Vector3(1,1,1);
         }
 
@@ -63,30 +64,26 @@ namespace Reilas
 
             const float div = 32f;
             const float outerLaneRadius = 5.6f;
-            const float innerRadius = outerLaneRadius - 3f; // 内縁の半径
+            
+            // 内縁の半径
+            const float innerRadius = outerLaneRadius - 3f;
 
             for (var x = 0; x < _entity.Size + 1; x++)
             {
-                var laneIndex = _entity.LanePosition + x;  //レーン番号
-                var angleBase = div - laneIndex;   // レーンの角度
+                //レーン番号
+                var laneIndex = _entity.LanePosition + x;
+                
+                // レーンの角度
+                var angleBase = div - laneIndex;
                 var angle = Mathf.PI * angleBase / div;
-
-
                 var innerY = Mathf.Sin(angle) * innerRadius;
                 var innerX = Mathf.Cos(angle) * innerRadius;
-
                 var outerY = Mathf.Sin(angle) * outerLaneRadius;
                 var outerX = Mathf.Cos(angle) * outerLaneRadius;
-
-
-                //zPos += zz;
-
                 var innerPoint = new Vector3(innerX, innerY, 0);
                 var outerPoint = new Vector3(outerX, outerY, 0);
-
-
+                
                 //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
                 if (_vertices != null)
                 {
                     _vertices[x * 2] = innerPoint;
@@ -104,26 +101,25 @@ namespace Reilas
             if (_mesh == null) return;
             _mesh.vertices = _vertices;
 
-            //GetComponent<MeshRenderer>().material.cal
-
             _mesh.SetUVs(0, _uv);
+            
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
 #endif
             meshFilter.mesh = _mesh;
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
-            RenderMesh(currentTime, speedChangeEntities);
+            RenderMesh(currentTime);
         }
 
-        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        private void RenderMesh(float currentTime)
         {
 
             if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
 
-            var zPos = NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _noteSpeed, speedChangeEntities);
+            var zPos = NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _noteSpeed);
             gameObject.transform.position = new Vector3(0, 0, zPos);
 
         }
@@ -132,7 +128,8 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.AboveKujoTapNotes.Remove(this);
             else RhythmGamePresenter.AboveTapNotes.Remove(this);
-            Destroy(this.gameObject);
+            
+            Destroy(gameObject);
         }
     }
 }
