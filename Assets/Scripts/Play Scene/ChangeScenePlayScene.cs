@@ -1,17 +1,21 @@
 using System.Collections;
 using UnityEngine;
+using ShutterScene;
 using Reilas;
 
 public class ChangeScenePlayScene : MonoBehaviour
 {
     public AudioSource song;
+    
     private ClearRankDirector _clearRankDirector;
-    private ScoreComboCalculator scoreComboCalculator;
-    private GetHighScores getHighScores;
-    private bool tutorial;
-    static public int previousHighScore;
-    static public int score;
-    static public string clear;
+    private ScoreComboCalculator _scoreComboCalculator;
+    private GetHighScores _getHighScores;
+    
+    private bool _tutorial;
+    
+    public static int previousHighScore;
+    public static int score;
+    public static string clear;
 
     public static bool playNoticed;
     public static bool playStopped;
@@ -23,8 +27,8 @@ public class ChangeScenePlayScene : MonoBehaviour
         playStopped = true;
         forcedFinish = false;
         _clearRankDirector = GameObject.Find("ClearRankDirector").GetComponent<ClearRankDirector>();
-        scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
-        getHighScores = GetComponent<GetHighScores>();
+        _scoreComboCalculator = GameObject.Find("Main").GetComponent<ScoreComboCalculator>();
+        _getHighScores = GetComponent<GetHighScores>();
     }
 
     public void Update()
@@ -38,38 +42,36 @@ public class ChangeScenePlayScene : MonoBehaviour
         if (!playNoticed || !playStopped) return;
         playNoticed = false;
 
-        StartCoroutine(Checking(() => CallBack()));
+        StartCoroutine(Checking(CallBack));
     }
     private void CallBack()
     {
-        //ã»èIóπéû
-        //Clearï\é¶
         if (!playStopped) return;
-        if (RhythmGamePresenter.tutorial)
+        if (_tutorial)
         {
             Shutter.blChange = "ToSFrP";
             Shutter.blShutterChange = "Close";
-            RhythmGamePresenter.tutorial = false;
-            PlayerPrefs.SetInt("tutorialDebug16", 1); //intå^ÇÃíl(1)Ç≈ï€ë∂
+            _tutorial = false;
+            PlayerPrefs.SetInt("tutorialDebug16", 1);
             PlayerPrefs.Save();
             return;
         }
 
         SettingField.setBool = false;
-        getHighScores.Awake();
-        previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
-        score = scoreComboCalculator.currentScore;
-        if (ScoreComboCalculator.highCombo < scoreComboCalculator.currentCombo)
-        {
-            ScoreComboCalculator.highCombo = scoreComboCalculator.currentCombo;
-        }
-        clear = scoreComboCalculator.clear;
+        
+        _getHighScores.Awake();
+        
+        previousHighScore = _getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
+        score = _scoreComboCalculator.currentScore;
+        
+        if (ScoreComboCalculator.highCombo < _scoreComboCalculator.currentCombo)
+            ScoreComboCalculator.highCombo = _scoreComboCalculator.currentCombo;
+        
+        clear = _scoreComboCalculator.clear;
         _clearRankDirector.SelectRank(clear);
-        scoreComboCalculator.currentCombo = 0;
+        _scoreComboCalculator.currentCombo = 0;
         if (score > previousHighScore && !RhythmGamePresenter.jumpToKujo)
-        {
-            getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
-        }
+            _getHighScores.SetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif, score, clear);
     }
 
     public void AwakeCallBack()
