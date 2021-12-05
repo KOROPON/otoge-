@@ -174,10 +174,9 @@ public class MusicNumManage : MonoBehaviour
         }
         Shutter.blShutterChange = "Open"; 
         _audioSource.Play(); 
-        if (!PlayerPrefs.HasKey("tutorialDebug15"))
+        if (!PlayerPrefs.HasKey("tutorialDebug16"))
         {   
             //キーが存在しない場合はチュートリアルパネルを表示
-            PlayerPrefs.SetInt("tutorialDebug15", 1); //int型の値(1)で保存
             PlayerPrefs.SetFloat("rate", 3);
             PlayerPrefs.Save();
             _tutorial.gameObject.SetActive(true);

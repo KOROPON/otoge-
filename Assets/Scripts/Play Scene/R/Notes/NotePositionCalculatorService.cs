@@ -21,7 +21,7 @@ namespace Reilas
         
         public static void CalculateGameSpeed()
         {
-            _gameSpeed = PlayerPrefs.HasKey("rate") ? 10 * PlayerPrefs.GetFloat("rate") : 10;
+            _gameSpeed = PlayerPrefs.HasKey("rate") ? 4 * PlayerPrefs.GetFloat("rate") * PlayerPrefs.GetFloat("rate") : 100;
         }
 
         public static float SpeedCalculator(float bpm)
