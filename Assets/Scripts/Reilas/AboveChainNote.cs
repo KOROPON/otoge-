@@ -12,10 +12,10 @@ namespace Reilas
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
+        
         private int[]? _triangles;
 
         private Mesh? _mesh;
-
         private ReilasNoteEntity _entity = null!;
 
         private float _noteSpeed;
@@ -26,19 +26,15 @@ namespace Reilas
             aboveChainTime = entity.JudgeTime;
             _noteSpeed = entity.Speed;
             _entity = entity;
+            
             InitializeMesh();
-
+            
             transform.localScale = Vector3.one;
-            ;
         }
 
         private void InitializeMesh()
         {
-            if (meshFilter == null)
-            {
-                throw new Exception();
-                //return;
-            }
+            if (meshFilter == null) throw new Exception();
 
             var size = _entity.Size + 1;
 
@@ -57,56 +53,30 @@ namespace Reilas
                 _triangles[i * 6 + 5] = 3 + i * 2;
             }
 
-            /*
-            // 上面
-            for (var i = 0; i < size - 1; i++)
-            {
-                var p = size + i;
-
-                _triangles[p * 6 + 0] = 0 + p * 2;
-                _triangles[p * 6 + 1] = 0 + i * 2;
-                _triangles[p * 6 + 2] = 2 + p * 2;
-                _triangles[p * 6 + 3] = 2 + p * 2;
-                _triangles[p * 6 + 4] = 0 + i * 2;
-                _triangles[p * 6 + 5] = 2 + i * 2;
-            }
-
-            // 左
-            _triangles[size * 6 * 2 + 0] = 0;
-            _triangles[size * 6 * 2 + 1] = 1;
-            _triangles[size * 6 * 2 + 2] = size * 2;
-            _triangles[size * 6 * 2 + 3] = 1;
-            _triangles[size * 6 * 2 + 4] = size * 2;
-            _triangles[size * 6 * 2 + 5] = size * 2 + 1;
-
-            // 右
-            _triangles[size * 6 * 2 + 6] = 0 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 7] = 1 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 8] = size * 2 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 9] = 1 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 10] = size * 2 + size * 2 - 2;
-            _triangles[size * 6 * 2 + 11] = size * 2 + 1 + size * 2 - 2;
-            */
-
             // メッシュを生成する
             _mesh = new Mesh
             {
                 vertices = _vertices,
                 triangles = _triangles
             };
+            
             _mesh.MarkDynamic();
 
             const float outerLaneRadius = 5.6f;
-            const float innerLaneRadius = outerLaneRadius - 3f; // 内縁の半径
+            
+            // 内縁の半径
+            const float innerLaneRadius = outerLaneRadius - 3f;
             const float div = 32f;
 
             for (var z = 0; z < 1; z++)
             {
                 for (var x = 0; x < _entity.Size + 1; x++)
                 {
-                    var laneIndex = _entity.LanePosition + x;  //レーン番号
+                    //レーン番号
+                    var laneIndex = _entity.LanePosition + x;
 
-                    var angle = Mathf.PI / div * laneIndex;   // レーンの角度
+                    // レーンの角度
+                    var angle = Mathf.PI / div * laneIndex;
 
                     angle = Mathf.PI - angle;
 
@@ -120,9 +90,7 @@ namespace Reilas
                     var innerPoint = new Vector3(innerX, innerY, 0);
                     var outerPoint = new Vector3(outerX, outerY, 0);
 
-
                     //(innerPoint, outerPoint) = (outerPoint, innerPoint);
-
                     var p = (_entity.Size + 1) * 2 * z;
 
                     if (_vertices != null)
@@ -146,31 +114,26 @@ namespace Reilas
             if (_mesh == null) return;
             _mesh.vertices = _vertices;
 
-            //GetComponent<MeshRenderer>().material.cal
-
             _mesh.SetUVs(0, _uv);
+            
 #if UNITY_EDITOR
             _mesh.RecalculateBounds();
 #endif
             meshFilter.mesh = _mesh;
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntity)
+        public void Render(float currentTime)
         {
-            RenderMesh(currentTime, speedChangeEntity);
+            RenderMesh(currentTime);
         }
 
-        private void RenderMesh(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        private void RenderMesh(float currentTime)
         {
-            if (meshFilter == null)
-            {
-                Debug.Log("return");
-                return;
-            }
+            if (meshFilter == null) return;
 
-            if (!gameObject.activeSelf) if (_entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
+            if (!gameObject.activeSelf && _entity.JudgeTime - currentTime < 5f) gameObject.SetActive(true);
 
-            var zPos = NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _entity.Speed, speedChangeEntities);
+            var zPos = NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _entity.Speed);
             gameObject.transform.position = new Vector3(0, 0, zPos);
         }
 
@@ -178,6 +141,7 @@ namespace Reilas
         {
             if (kujo) RhythmGamePresenter.AboveKujoChainNotes.Remove(this);
             else RhythmGamePresenter.AboveChainNotes.Remove(this);
+            
             Destroy(gameObject);
         }
     }

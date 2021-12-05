@@ -1,36 +1,42 @@
+using ShutterScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class ChangeScene : MonoBehaviour
+
+namespace Title
 {
-    private bool _startBool;
-    public AudioSource titleMusic;
-
-    public static float aspect;
-    void Start()
+    public class ChangeScene : MonoBehaviour
     {
-        _startBool = true;
-        SceneManager.LoadScene("ShutterScene", LoadSceneMode.Additive);
+        private bool _startBool;
+        
+        public AudioSource titleMusic;
 
-        float width = Screen.width;
-        float hight = Screen.height;
-        aspect = width / hight;
-        Debug.Log(aspect);
-    }
-    public void Change()
-    {
-        if (titleMusic.isPlaying)
+        public static float aspect;
+
+        private void Start()
         {
-            if (_startBool)
-            {
-                _startBool = false;
-                Shutter.blChange = "ToS_F";
-                Shutter.blShutterChange = "Close";
-                Invoke("StopTitle", 0.5f);
-            }
+            _startBool = true;
+            
+            SceneManager.LoadScene("ShutterScene", LoadSceneMode.Additive);
+
+            float width = Screen.width;
+            float height = Screen.height;
+            
+            aspect = width / height;
         }
-    }
-    private void StopTitle()
-    {
-        titleMusic.Stop();
+        public void Change()
+        {
+            if (!(titleMusic.isPlaying && _startBool)) return;
+            
+            _startBool = false;
+            
+            Shutter.blChange = "ToS_F";
+            Shutter.blShutterChange = "Close";
+            
+            Invoke("StopTitle", 0.5f);
+        }
+        private void StopTitle()
+        {
+            titleMusic.Stop();
+        }
     }
 }

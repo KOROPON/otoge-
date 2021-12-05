@@ -1,8 +1,6 @@
 #nullable enable
-
 using System;
 using System.Collections.Generic;
-using Rhythmium;
 using UnityEngine;
 
 namespace Reilas
@@ -21,25 +19,32 @@ namespace Reilas
     
     public sealed class NoteConnector : MonoBehaviour
     {
-        public float _judgeTime;
+        public float judgeTime;
         
         [SerializeField] private MeshFilter meshFilter = null!;
 
         private Vector3[]? _vertices;
         private Vector3[]? _uv;
+        
         private int[]? _triangles;
+
+        private bool _kujo;
+        
         private const float Div = 32f;
         private const float OuterLaneRadius = 4.4f;
 
         private Mesh? _mesh;
 
-        private const float InnerRadius = OuterLaneRadius - 0.15f; // 内縁の半径
-        private const float OuterRadius = OuterLaneRadius;        // 外縁の半径
+        // 内縁の半径
+        private const float InnerRadius = OuterLaneRadius - 0.15f;
+        
+        // 外縁の半径
+        private const float OuterRadius = OuterLaneRadius;
 
         public static int GetConnectorLane(int lane, List<int> groundLanes)
         {
             var closestGroundLane = (int)Mathf.Floor((lane - 4f) * 0.125f);
-            Debug.Log("groundLane: " + closestGroundLane);
+            
             switch (closestGroundLane)
             {
                 case 0:
@@ -78,9 +83,11 @@ namespace Reilas
             }
         }
 
-        public void Initialize(Connector connector)
+        public void Initialize(Connector connector, bool kujo)
         {
-            _judgeTime = connector.currentTime;
+            judgeTime = connector.currentTime;
+            _kujo = kujo;
+            
             foreach (var connectingKind in connector.connectingList)
             {
                 InitializeMesh(connectingKind);
@@ -97,7 +104,6 @@ namespace Reilas
             if (finish > 35) finish = 35;
 
             var lanePositions = RhythmGamePresenter.LanePositions;
-            Debug.Log("beginning: " + beginning + "finish: " + finish);
             var startPosition = lanePositions[beginning];
             var spX = startPosition.x;
             var spY = startPosition.y;
@@ -182,7 +188,9 @@ namespace Reilas
                     for (var x = 0; x < size; x++)
                     {
                         var laneIndex = beginning + x;
-                        var angleBase = Div - laneIndex;   // レーンの角度
+                        
+                        // レーンの角度
+                        var angleBase = Div - laneIndex;
                         var angle = Mathf.PI * (angleBase / Div);
 
                         var innerY = Mathf.Sin(angle) * InnerRadius;
@@ -220,38 +228,42 @@ namespace Reilas
         }
 
         // メッシュを生成する
-
         _mesh = new Mesh
         {
             vertices = _vertices,
             triangles = _triangles
         };
+        
         _mesh.MarkDynamic();
 
         _mesh.vertices = _vertices;
+        
         _mesh.SetUVs(0, _uv);
+        
 #if UNITY_EDITOR
         _mesh.RecalculateBounds();
 #endif
         meshFilter.mesh = _mesh;
         }
         
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
-            if (!gameObject.activeSelf && _judgeTime - currentTime < 5f) gameObject.SetActive(true);
-            else if (_judgeTime < currentTime) NoteConnectorDestroy();
+            if (!gameObject.activeSelf && judgeTime - currentTime < 5f) gameObject.SetActive(true);
+            else if (judgeTime < currentTime) NoteConnectorDestroy(_kujo);
 
-            var berPos = NotePositionCalculatorService.GetPosition(_judgeTime, currentTime, 1, speedChangeEntities); // Make Mesh 頂点
+            // Make Mesh 頂点
+            var berPos = NotePositionCalculatorService.GetPosition(judgeTime, currentTime, 1);
             gameObject.transform.position = new Vector3(0, 0, berPos);
 
             if (meshFilter != null) return;
             Debug.Log("null");
         }
 
-        public void NoteConnectorDestroy()
+        public void NoteConnectorDestroy(bool kujo)
         {
-            //Debug.Log(this.gameObject);
-            RhythmGamePresenter.NoteConnectors.Remove(this);
+            if (kujo) RhythmGamePresenter.NoteKujoConnectors.Remove(this);
+            else RhythmGamePresenter.NoteConnectors.Remove(this);
+            
             Destroy(gameObject);
         }
     }
