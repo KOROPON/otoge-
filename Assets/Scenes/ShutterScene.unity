@@ -364,6 +364,7 @@ MonoBehaviour:
   com: {fileID: 1163900582}
   des: {fileID: 372678615}
   dif: {fileID: 431860815}
+  pan: {fileID: 1564101365}
   openSe: {fileID: 1276772154}
   closeSe: {fileID: 1531169709}
 --- !u!114 &493343935
