@@ -47,6 +47,8 @@ public class RhythmGamePresenter : MonoBehaviour
     private readonly List<float> _barLines = new List<float>();
 
     public AudioSource songAudio = null!;
+
+    public bool judgeForgive;
     
     public List<ReilasNoteLineEntity> reilasAboveSlide = new List<ReilasNoteLineEntity>();
     public List<ReilasNoteLineEntity> reilasAboveHold = new List<ReilasNoteLineEntity>();
