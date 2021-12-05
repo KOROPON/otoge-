@@ -27,7 +27,6 @@ public class BossGimmicks : MonoBehaviour
     public Material bossLane;
     public Material bossCube;
 
-    public bool kujoJudgeSwitch = false;
     public bool gimmickPause;
     private bool blackOut1st;
     private RectTransform _backGround;
@@ -189,7 +188,7 @@ public class BossGimmicks : MonoBehaviour
         }
         else if (time < 101.78f)
         {
-            kujoJudgeSwitch = true;
+            _presenter.judgeForgive = false;
             float effectTime = Mathf.Abs((time - 82.93f) % 0.628f);
             if (effectTime <= 0.028f)
             {
@@ -213,7 +212,7 @@ public class BossGimmicks : MonoBehaviour
                 whiteOut.color = new Color32(255, 255, 255, 0);
                 _bossContainer.LastChorus();
                 _judgeLine.gameObject.SetActive(true);
-                kujoJudgeSwitch = false;
+                _presenter.judgeForgive = true;
                 GameObject.Find("Main").transform.GetComponent<ScoreComboCalculator>().GaugeChange();
                 gaugeCheck = false;
             }

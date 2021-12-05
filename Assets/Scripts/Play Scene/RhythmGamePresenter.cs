@@ -95,6 +95,7 @@ public class RhythmGamePresenter : MonoBehaviour
     public static bool[]? chainNoteJudge;
 
     private ReilasChartEntity _chartEntity = null!;
+    public bool judgeForgive;
 
     public static string musicName = null!;
     public static string dif = null!;
@@ -236,7 +237,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Awake()
     {
-        
+        judgeForgive = true;
         jumpToKujo = false;
         _isAllowed = gameObject.AddComponent<GetHighScores>().GetKujoLock("Reilas");
         _longPerfect = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
@@ -855,7 +856,7 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             if (_boss != null)
             {
-                if (!_boss.kujoJudgeSwitch) _judgeService.Judge(judgeTime);
+                if (judgeForgive) _judgeService.Judge(judgeTime);
             }
             else _judgeService.Judge(judgeTime);
         }

@@ -10,11 +10,13 @@ public class SettingField : MonoBehaviour
     private Image _fader;
     int _resumetime = 180;
     private BossGimmicks _boss;
+    private RhythmGamePresenter _presenter;
 
     void Start()
     {
         _fader = GameObject.Find("Fader").GetComponent<Image>();
         _boss = GameObject.Find("BossGimmick").GetComponent<BossGimmicks>();
+        _presenter = GameObject.Find("Main").GetComponent<RhythmGamePresenter>();
     }
     [SerializeField]
     public GameObject pauseButton;
@@ -27,6 +29,7 @@ public class SettingField : MonoBehaviour
             return;
         }
         aud.Pause();
+        _presenter.judgeForgive = false;
         Time.timeScale = 0;
         _boss.gimmickPause = true;
         _fader.enabled = true;
@@ -56,6 +59,7 @@ public class SettingField : MonoBehaviour
                 _fader.enabled = false;
                 pauseButton.SetActive(true);
                 text.gameObject.SetActive(false);
+                _presenter.judgeForgive = true;
                 aud.UnPause();
                 Time.timeScale = 1;
                 _boss.gimmickPause = false;
