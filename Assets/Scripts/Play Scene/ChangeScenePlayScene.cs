@@ -8,6 +8,7 @@ public class ChangeScenePlayScene : MonoBehaviour
     private ClearRankDirector _clearRankDirector;
     private ScoreComboCalculator scoreComboCalculator;
     private GetHighScores getHighScores;
+    private bool tutorial;
     static public int previousHighScore;
     static public int score;
     static public string clear;
@@ -44,6 +45,16 @@ public class ChangeScenePlayScene : MonoBehaviour
         //ã»èIóπéû
         //Clearï\é¶
         if (!playStopped) return;
+        if (RhythmGamePresenter.tutorial)
+        {
+            Shutter.blChange = "ToSFrP";
+            Shutter.blShutterChange = "Close";
+            RhythmGamePresenter.tutorial = false;
+            PlayerPrefs.SetInt("tutorialDebug15", 1); //intå^ÇÃíl(1)Ç≈ï€ë∂
+            PlayerPrefs.Save();
+            return;
+        }
+
         SettingField.setBool = false;
         getHighScores.Awake();
         previousHighScore = getHighScores.GetHighScore(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);

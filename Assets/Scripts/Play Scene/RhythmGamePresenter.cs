@@ -6,8 +6,10 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
+using UnityEngine.UI;
 using Reilas;
 using System;
+using System.Collections;
 
 public class ReilasNoteEntityToGameObject
 {
@@ -109,23 +111,12 @@ public class RhythmGamePresenter : MonoBehaviour
     public static readonly bool[,] LaneTapStates = new bool[36, 2];
 
     private AllJudgeService? _judgeService;
-
     public float judgeTime;
     public float audioTime;
 
-    public long debug1;
-    public long debug2;
-    public long debug3;
-    public long debug4;
-    public long debug5;
-    public long debug6;
-    public long debug7;
-    public long debug8;
-    public long debug9;
-    public long debug10;
-    public long debug11;
-
-    private static readonly System.Diagnostics.Stopwatch Stopwatch = new System.Diagnostics.Stopwatch();
+    public static bool tutorial; // チュートリアル判定
+    public GameObject _tutorial;
+    private Text tutorialText;
 
     /// <summary>
     /// 判定結果を処理する
@@ -269,7 +260,19 @@ public class RhythmGamePresenter : MonoBehaviour
 
         if (ChangeScene.aspect > 2) Camera.main.transform.position = new Vector3(0, 2.2f, -3.3f);
 
-        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
+        TextAsset? chartTextAsset;
+        if (tutorial)
+        {
+            chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/tutorial") as TextAsset;
+            tutorialText = _tutorial.GetComponent<Text>();
+            GameObject.Find("Button").SetActive(false);
+            StartCoroutine(Tutorial());
+        }
+        else
+        {
+            chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
+            _tutorial.SetActive(false);
+        }
 
         if (chartTextAsset == null)
         {
@@ -506,7 +509,6 @@ public class RhythmGamePresenter : MonoBehaviour
     public static void PlaySongs()
     {
         _audioSource.Play();
-        Stopwatch.Start();
     }
 
 
@@ -875,12 +877,9 @@ public class RhythmGamePresenter : MonoBehaviour
             alreadyChangeKujo = true;
         }
     }
-    System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
     private void LateUpdate()
     {
-        sw.Restart();
         isHolding = false;
-        sw.Start();////////////////////////////////////////
         IEnumerable<AboveTapNote> aboveTapMove;
         IEnumerable<TapNote> tapNoteMove;
         IEnumerable<AboveChainNote> chainNoteMove;
@@ -995,8 +994,6 @@ public class RhythmGamePresenter : MonoBehaviour
                 }
             }
         }
-        debug1 += sw.ElapsedTicks;
-        sw.Restart();
 
         foreach (var note in HoldEffectors)
         {
@@ -1015,43 +1012,60 @@ public class RhythmGamePresenter : MonoBehaviour
             if (audioTime - note.aboveSlideEffectTime >= 0) note.Render(audioTime, _longPerfect);
             else break;
         }
-        debug2 += sw.ElapsedTicks;
-        sw.Restart();
 
         foreach (var tapNote in tapNoteMove) tapNote.Render(audioTime, speedChanges);
-        debug3 += sw.ElapsedTicks;
-        sw.Restart();
 
         foreach (var note in aboveTapMove) note.Render(audioTime, speedChanges);
-        debug4 += sw.ElapsedTicks;
-        sw.Restart();
 
         foreach (var note in chainNoteMove) note.Render(audioTime, speedChanges);
-        debug5 += sw.ElapsedTicks;
-        sw.Restart();
 
         for (var num = holdNoteMove.Count - 1; num >= 0; num--) holdNoteMove[num].Render(audioTime, num, _reilasHold, speedChanges);
-        debug6 += sw.ElapsedTicks;
-        sw.Restart();
 
         for (var num = aboveHoldNoteMove.Count - 1; num >= 0; num--) aboveHoldNoteMove[num].Render(audioTime, num, _reilasAboveHold, speedChanges);
-        debug7 += sw.ElapsedTicks;
-        sw.Restart();
 
         for (var num = aboveSlideNoteMove.Count - 1; num >= 0; num--) aboveSlideNoteMove[num].Render(audioTime, num, _reilasAboveSlide, speedChanges);
-        debug8 += sw.ElapsedTicks;
-        sw.Restart();
 
         foreach (var barLine in barLineMove.ToList()) barLine.Render(audioTime, speedChanges);
-        debug9 += sw.ElapsedTicks;
-        sw.Restart();
 
-        foreach (var connector in connectorMove.ToList()) connector.Render(audioTime, speedChanges); // Heaby
-        debug10 += sw.ElapsedTicks;
+        foreach (var connector in connectorMove.ToList()) connector.Render(audioTime, speedChanges);
 
         if (!isHolding) _longPerfect.Pause();
         isHolding = false;
     }
+
+
+    private IEnumerator Tutorial()
+    {
+        tutorialText.text = "さあ、やってきました！\nここで一度プレイしてみましょう。";
+        while (true)
+        {
+            TutorialText();
+            yield return new WaitForEndOfFrame(); //Render終了と描写の間まで待つ
+        }
+    }
+    private void TutorialText()
+    {
+        if (audioTime < 7.5f) return;
+        if (audioTime < 16.875f) tutorialText.text = "最初は Tap-Note \n同時に二つ押すこともあるから注意して...";
+        else if (audioTime < 30f) tutorialText.text = "";
+        else if (audioTime < 33.75f) tutorialText.text = "次は Hold-Note\n離してはダメですよ！";
+        else if (audioTime < 45f) tutorialText.text  = "";
+        else if (audioTime < 48.75f) tutorialText.text = "さあ、次に Above-Tap \nここからのノーツは上に流れてきます";
+        else if (audioTime < 60f) tutorialText.text = "";
+        else if (audioTime < 63.75f) tutorialText.text = "次は Above-Slide\nまずは簡単なものから";
+        else if (audioTime < 75f) tutorialText.text = "";
+        else if (audioTime < 78.75f) tutorialText.text = "Above-Slide は動くノーツです\n指は離さずにずらして...";
+        else if (audioTime < 90f) tutorialText.text = "";
+        else if (audioTime < 93.75f) tutorialText.text = "最後に Chain-Note\nSlide-Note と同じ押し方で大丈夫。";
+        else if (audioTime < 108.75f) tutorialText.text = "";
+        else if (audioTime < 116.25f) tutorialText.text = "お疲れ様。\nこれでチュートリアルは終了です。";
+        else if (audioTime < 121.875f) tutorialText.text = "難しい曲もあるけど頑張って。";
+        else if (audioTime < 129f) tutorialText.text = "健闘を祈っています...";
+    }
+    public void ExitTutorial()
+    {
+
+    } 
 }
 
 // レーンの押されている状態

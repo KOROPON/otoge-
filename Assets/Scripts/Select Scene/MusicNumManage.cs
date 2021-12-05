@@ -17,7 +17,7 @@ public class MusicNumManage : MonoBehaviour
     private Text _tutorialText;
     private GameObject _kujo;
     private GameObject _extreme;
-    public GameObject _tutorial;
+    private GameObject _tutorial;
     private Transform _scrollView;
     private Transform _scrollViewContent;
     private string _songName;
@@ -135,6 +135,7 @@ public class MusicNumManage : MonoBehaviour
 
     private void Start()
     {
+        _tutorial = GameObject.Find("Tutorial");
         _selectBool = true;
         _kujo = GameObject.Find("Kujo");
         _extreme = GameObject.Find("Extreme");
@@ -173,14 +174,19 @@ public class MusicNumManage : MonoBehaviour
         }
         Shutter.blShutterChange = "Open"; 
         _audioSource.Play(); 
-        if (!PlayerPrefs.HasKey("PPtutorial"))
+        if (!PlayerPrefs.HasKey("tutorialDebug15"))
         {   
-            // "Init"のキーが存在しない場合はチュートリアルパネルを表示
-            PlayerPrefs.SetInt("PPtutorial", 1); // ”Init”のキーをint型の値(1)で保存
+            //キーが存在しない場合はチュートリアルパネルを表示
+            PlayerPrefs.SetInt("tutorialDebug15", 1); //int型の値(1)で保存
+            PlayerPrefs.SetFloat("rate", 3);
             PlayerPrefs.Save();
             _tutorial.gameObject.SetActive(true);
             _tutorialImage = GameObject.Find("TutorialImage").GetComponent<Image>();
             _tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
+        }
+        else
+        {
+            _tutorial.gameObject.SetActive(false);
         }
     }
 
@@ -407,7 +413,7 @@ public class MusicNumManage : MonoBehaviour
         {
             Sprite image = Resources.Load<Sprite>("Tutorial/AboveSlide");
             _tutorialImage.sprite = image;
-            _tutorialText.text = "これは AboveSlide-Note です。\n押し方は Hold-Note と同じですが、上のレーンを上下左右に動きます。";
+            _tutorialText.text = "これは AboveSlide-Note です。\n押し方は Hold-Note と同じですが、上のレーンを左右に動きます。";
             _tutorialNum++;
         }
         else if(_tutorialNum == 5)
@@ -419,12 +425,19 @@ public class MusicNumManage : MonoBehaviour
         }
         else if(_tutorialNum == 6)
         {
-            _tutorialText.text = "これで紹介は終わりです。\n健闘を祈っています......";
+            _tutorialText.text = "左上にあるゲージは、クリアの判定に使われます。\n終了時に 70% 以上でないと Failed となるので気をつけてください。";
+            _tutorialNum++;
+        }
+        else if(_tutorialNum == 7)
+        {
+            _tutorialText.text = "では実際にプレイしてみましょう！";
             _tutorialNum++;
         }
         else
         {
-            _tutorial.gameObject.SetActive(false);
+            // tutorial をプレイ
+            RhythmGamePresenter.tutorial = true;
+            Shutter.blShutterChange = "CloseToPlay";
         }
     }
 }
