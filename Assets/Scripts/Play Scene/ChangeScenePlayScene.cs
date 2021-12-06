@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using ShutterScene;
 using Reilas;
@@ -47,12 +47,12 @@ public class ChangeScenePlayScene : MonoBehaviour
     private void CallBack()
     {
         if (!playStopped) return;
-        if (_tutorial)
+        if (RhythmGamePresenter.tutorial)
         {
             Shutter.blChange = "ToSFrP";
             Shutter.blShutterChange = "Close";
-            _tutorial = false;
-            PlayerPrefs.SetInt("tutorialDebug16", 1);
+            RhythmGamePresenter.tutorial = false;
+            PlayerPrefs.SetInt("tutorialDebug15", 1); //int�^�̒l(1)�ŕۑ�
             PlayerPrefs.Save();
             return;
         }

@@ -136,7 +136,6 @@ public class MusicNumManage : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(Application.persistentDataPath + "/SongInformation.json");
         _tutorial = GameObject.Find("Tutorial");
         _selectBool = true;
         _kujo = GameObject.Find("Kujo");
@@ -176,7 +175,7 @@ public class MusicNumManage : MonoBehaviour
         }
         Shutter.blShutterChange = "Open"; 
         _audioSource.Play(); 
-        if (!PlayerPrefs.HasKey("tutorialDebug16"))
+        if (!PlayerPrefs.HasKey("tutorialDebug17"))
         {   
             //キーが存在しない場合はチュートリアルパネルを表示
             PlayerPrefs.SetFloat("rate", 3);

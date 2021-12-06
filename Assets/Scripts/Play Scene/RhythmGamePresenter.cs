@@ -1,10 +1,12 @@
 #nullable enable
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Rhythmium;
 using UnityEngine;
+using UnityEngine.UI;
 using Reilas;
 using System;
 using Boss;
@@ -60,7 +62,6 @@ public class RhythmGamePresenter : MonoBehaviour
     public List<ReilasNoteEntity> reilasKujoChain = new List<ReilasNoteEntity>();
 
     public static bool isHolding;
-    public static bool tutorial;
     
     public static int countNotes;
 
@@ -115,7 +116,10 @@ public class RhythmGamePresenter : MonoBehaviour
 
     public float judgeTime;
     public float audioTime;
-    
+
+    public static bool tutorial; // チュートリアル判定
+    public GameObject _tutorial;
+    private Text tutorialText;
     /// <summary>
     /// 判定結果を処理する
     /// </summary>
@@ -264,7 +268,19 @@ public class RhythmGamePresenter : MonoBehaviour
         if (ChangeScene.aspect > 2 && Camera.main != null)
                 Camera.main.transform.position = new Vector3(0, 2.2f, -3.3f);
 
-        var chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
+        TextAsset? chartTextAsset;
+        if (tutorial)
+        {
+            chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/tutorial") as TextAsset;
+            tutorialText = _tutorial.GetComponent<Text>();
+            GameObject.Find("Button").SetActive(false);
+            StartCoroutine(Tutorial());
+        }
+        else
+        {
+            chartTextAsset = await Resources.LoadAsync<TextAsset>("Charts/" + musicName + "." + dif) as TextAsset;
+            _tutorial.SetActive(false);
+        }
 
         if (chartTextAsset == null)
         {
@@ -1034,6 +1050,35 @@ public class RhythmGamePresenter : MonoBehaviour
         if (!isHolding) _longPerfect.Pause();
         
         isHolding = false;
+    }
+
+    private IEnumerator Tutorial()
+    {
+        tutorialText.text = "さあ、やってきました！\nここで一度プレイしてみましょう。";
+        while (true)
+        {
+            TutorialText();
+            yield return new WaitForEndOfFrame(); //Render終了と描写の間まで待つ
+        }
+    }
+    private void TutorialText()
+    {
+        if (audioTime < 7.5f) return;
+        if (audioTime < 16.875f) tutorialText.text = "最初は Tap-Note \n同時に二つ押すこともあるから注意して...";
+        else if (audioTime < 30f) tutorialText.text = "";
+        else if (audioTime < 33.75f) tutorialText.text = "次は Hold-Note\n離してはダメですよ！";
+        else if (audioTime < 45f) tutorialText.text = "";
+        else if (audioTime < 48.75f) tutorialText.text = "さあ、次に Above-Tap \nここからのノーツは上に流れてきます";
+        else if (audioTime < 60f) tutorialText.text = "";
+        else if (audioTime < 63.75f) tutorialText.text = "次は Above-Slide\nまずは簡単なものから";
+        else if (audioTime < 75f) tutorialText.text = "";
+        else if (audioTime < 78.75f) tutorialText.text = "Above-Slide は動くノーツです\n指は離さずにずらして...";
+        else if (audioTime < 90f) tutorialText.text = "";
+        else if (audioTime < 93.75f) tutorialText.text = "最後に Chain-Note\nSlide-Note と同じ押し方で大丈夫。";
+        else if (audioTime < 108.75f) tutorialText.text = "";
+        else if (audioTime < 116.25f) tutorialText.text = "お疲れ様。\nこれでチュートリアルは終了です。";
+        else if (audioTime < 121.875f) tutorialText.text = "難しい曲もあるけど頑張って。";
+        else if (audioTime < 129f) tutorialText.text = "健闘を祈っています...";
     }
 }
 
