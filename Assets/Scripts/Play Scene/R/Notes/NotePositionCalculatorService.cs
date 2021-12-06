@@ -1,7 +1,6 @@
 #nullable enable
 
 using Rhythmium;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Reilas
