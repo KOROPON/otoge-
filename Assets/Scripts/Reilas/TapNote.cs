@@ -9,9 +9,9 @@ namespace Reilas
     public sealed class TapNote : MonoBehaviour
     {
         private NoteEntity _entity = null!;
+        
         private float _noteSpeed;
-
-        private float thisNoteX;
+        private float _thisNoteX;
 
         public float tapTime;
 
@@ -20,18 +20,19 @@ namespace Reilas
             tapTime = entity.JudgeTime;
             _entity = entity;
             _noteSpeed = entity.Speed;
-            thisNoteX = -3.3f + _entity.LanePosition * 2.2f;
-            transform.localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
-            transform.position = new Vector3(thisNoteX, 0f, -50);
+            _thisNoteX = -3.3f + _entity.LanePosition * 2.2f;
+            Transform transform1;
+            (transform1 = transform).localScale = NotePositionCalculatorService.GetScale(_entity, 0.4f);
+            transform1.position = new Vector3(_thisNoteX, 0f, -50);
         }
 
-        public void Render(float currentTime, List<SpeedChangeEntity> speedChangeEntities)
+        public void Render(float currentTime)
         {
             if (!gameObject.activeSelf)
             {
                 if (_entity.JudgeTime - currentTime < 10f) gameObject.SetActive(true);
             }
-            else transform.position = new Vector3(thisNoteX, 0f, NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _noteSpeed, speedChangeEntities));
+            else transform.position = new Vector3(_thisNoteX, 0f, NotePositionCalculatorService.GetPosition(_entity.JudgeTime, currentTime, _noteSpeed));
         }
 
         public void NoteDestroy(bool kujo)
@@ -39,8 +40,8 @@ namespace Reilas
             if (kujo) RhythmGamePresenter.TapKujoNotes.Remove(this);
             else RhythmGamePresenter.TapNotes.Remove(this);
 
-            Destroy(this.gameObject.transform.GetChild(0).gameObject);
-            Destroy(this.gameObject);
+            Destroy(gameObject.transform.GetChild(0).gameObject);
+            Destroy(gameObject);
         }
     }
 }

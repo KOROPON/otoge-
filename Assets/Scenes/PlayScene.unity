@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25183,7 +25183,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &356244705
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -55866,14 +55866,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60bc71d3d0864b249e55742555406fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tapKujoNotes: []
-  _internalKujoNotes: []
-  _chainKujoNotes: []
+  bossClock: {fileID: 370975199}
   bossLane: {fileID: 2100000, guid: 4cebbd7012ce9534fb9552e88b30cd98, type: 2}
   bossCube: {fileID: 2100000, guid: 141f51d061b1d2644ba2d390ecb068e7, type: 2}
-  gimmickPause: 0
-  bossClock: {fileID: 370975199}
   camera: {fileID: 963194227}
+  tapKujoNotes: []
+  internalKujoNotes: []
+  chainKujoNotes: []
+  kujoJudgeSwitch: 0
+  gimmickPause: 0
+  color: 0
 --- !u!114 &684936814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77152,7 +77154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1c43ed99184c7a88b7bd820988ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songAudio: {fileID: 947960482}
   tapNotePrefab: {fileID: -7510291413552421599, guid: 1c6c48538bf2643f68a0441564684655, type: 3}
   holdNotePrefab: {fileID: 1824610873701519993, guid: 20ab68b8f53d8184cb615d0cbe730988, type: 3}
   aboveTapNotePrefab: {fileID: 1318370044206668128, guid: 317099b47c56742d59638d02f46e1ce2, type: 3}
@@ -77162,20 +77163,19 @@ MonoBehaviour:
   barLinePrefab: {fileID: 1225088512927123766, guid: 17df6b821bdba584abfd1257c6affb71, type: 3}
   noteConnectorPrefab: {fileID: -890220480049919504, guid: 85f8427bc215f4acaa5a9f3c2ab94620, type: 3}
   keyBeamPrefab: {fileID: 524947537259370129, guid: f60a59b1aeccf0e4c910521002752124, type: 3}
-  _reilasAboveSlide: []
-  _reilasAboveHold: []
-  _reilasHold: []
-  _reilasChain: []
+  songAudio: {fileID: 947960482}
+  judgeForgive: 0
+  reilasAboveSlide: []
+  reilasAboveHold: []
+  reilasHold: []
+  reilasChain: []
   reilasKujoAboveSlide: []
   reilasKujoAboveHold: []
   reilasKujoHold: []
   reilasKujoChain: []
-  speedChanges: []
-  judgeForgive: 0
   alreadyChangeKujo: 0
   judgeTime: 0
   audioTime: 0
-  _tutorial: {fileID: 356244702}
 --- !u!114 &1036589698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77239,7 +77239,7 @@ MonoBehaviour:
   tapJudgeStartIndex: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   internalJudgeStartIndex: 0
   chainJudgeStartIndex: 0
-  _alreadyChangeKujo: 0
+  alreadyChangeKujo: 0
 --- !u!1 &1127278211
 GameObject:
   m_ObjectHideFlags: 0
