@@ -63,7 +63,6 @@ namespace Reilas
             _gaugeCombo = 0;
             _gaugeMiss = 0;
             _sumScore = RhythmGamePresenter.countNotes * 4;
-            Debug.Log(RhythmGamePresenter.countNotes * 4);
             
             comboText.text = "";
             //gauge.text = "0";

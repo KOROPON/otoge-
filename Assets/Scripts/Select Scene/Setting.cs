@@ -54,7 +54,6 @@ namespace Reilas
 
         private void RateChange(float changeValue, float min, float max)
         {
-            Debug.Log(changeValue);
             rateText.text = (Math.Round(Clamp(float.Parse(rateText.text) + changeValue, min, max), 1, MidpointRounding.AwayFromZero)).ToString();
         }
 

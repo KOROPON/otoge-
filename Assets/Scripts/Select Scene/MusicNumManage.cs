@@ -63,6 +63,7 @@ public class MusicNumManage : MonoBehaviour
         var rank = _getHighScores.GetRank(songName, diff);
         if (rank != "")
         {
+            _rank.color = new Color32(255, 255, 255, 255);
             _rank.sprite = Resources.Load<Sprite>("Rank/rank_" + rank);
         }
         else
@@ -81,10 +82,8 @@ public class MusicNumManage : MonoBehaviour
 
     private IEnumerator JumpToSong(string songName)
     {
-        Debug.Log("jump" + _scrollViewContent.childCount);
         for (var i = 0; i < _scrollViewContent.childCount; i++)
         {
-            Debug.Log("jump1");
             var childSongTrans = _scrollViewContent.GetChild(i);
             if (childSongTrans.gameObject.name != songName) continue;
             _blChange = true;
@@ -93,7 +92,6 @@ public class MusicNumManage : MonoBehaviour
                 localPosition.z);
             while (Vector3.Distance(_scrollViewContent.localPosition, goal) > 1)
             {
-                Debug.Log("jump2");
                 _scrollViewContent.localPosition = Vector3.Lerp(_scrollViewContent.localPosition, goal, 0.4f);
                 yield return null;
             }
@@ -156,7 +154,6 @@ public class MusicNumManage : MonoBehaviour
         _easyLevel = GameObject.Find("Easy").GetComponentInChildren<Text>();
         _hardLevel = GameObject.Find("Hard").GetComponentInChildren<Text>();
         _extremeLevel = GameObject.Find("Extreme").GetComponentInChildren<Text>();
-        Debug.Log(_getHighScores.GetKujoLock("Collide"));
 
         if (!PlayerPrefs.HasKey("selected_song"))
         {
@@ -229,22 +226,18 @@ public class MusicNumManage : MonoBehaviour
         switch (diff)
         {
             case "Extreme" when isExtreme:
-                Debug.Log("sang");
                 blKujo = true;
                 StartCoroutine("ExchangeDifficultyToKujo");
                 diff = "Kujo";
                 break;
             case "Kujo":
-                Debug.Log("baaba");
                 StartCoroutine("ExchangeDifficultyToExtreme");
                 diff = "Extreme";
                 break;
             case "Extreme" when _kujo.activeSelf:
-                Debug.Log("daaadda");
                 isExtreme = true ;
                 break;
             default:
-                Debug.Log("klklklk");
                 isExtreme = false;
                 break;
         }
@@ -322,12 +315,10 @@ public class MusicNumManage : MonoBehaviour
     {
         if (_blDifChange) return;
         StartCoroutine(JumpInDifficulty());
-        Debug.Log("s");
     }
 
     public IEnumerator ExchangeDifficultyToExtreme()
     {
-        Debug.Log("aaaa");
         int i = 0;
         Transform transT;
         Transform transF;

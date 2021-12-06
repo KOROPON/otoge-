@@ -248,7 +248,6 @@ public class AllJudgeService : MonoBehaviour
             {
                 if (RhythmGamePresenter.internalNoteJudge == null)
                 {
-                    Debug.LogError("Can't Judge Internal");
                     break;
                 }
 
@@ -270,7 +269,6 @@ public class AllJudgeService : MonoBehaviour
                 if (judgeResult == JudgeResultType.Miss)
                 {
                     if (_judgeRankEffector != null) _judgeRankEffector.JudgeRankDisplay("miss");
-                    Debug.Log("Miss...");
                     continue;
                 }
 
@@ -284,7 +282,6 @@ public class AllJudgeService : MonoBehaviour
             {
                 if (RhythmGamePresenter.chainNoteJudge == null)
                 {
-                    Debug.LogError("Can't Judge Chain");
                     break;
                 }
                 if (RhythmGamePresenter.chainNoteJudge[i]) continue;
@@ -295,7 +292,6 @@ public class AllJudgeService : MonoBehaviour
                 AllJudge.Add(judgeResult);
                 if (judgeResult == JudgeResultType.Perfect)
                 {
-                    Debug.Log("ChainPerfect");
                     if (_judgeEffector != null)
                         _judgeEffector.TapJudgeEffector(
                             // ReSharper disable once PossibleLossOfFraction
@@ -304,7 +300,6 @@ public class AllJudgeService : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ChainMiss");
                     if (_judgeRankEffector != null) _judgeRankEffector.JudgeRankDisplay("miss");
                 } 
                 RhythmGamePresenter.chainNoteJudge[i] = true;

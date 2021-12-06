@@ -37,7 +37,6 @@ public class RaycastMask : MonoBehaviour, ICanvasRaycastFilter
             case Image.Type.Sliced:
             {
                 var border = _sprite.border;
-                Debug.Log(maskRect.width - border.z);
                 // x slicing
                 if (localPosition.x < border.x)
                 {

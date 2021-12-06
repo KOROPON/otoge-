@@ -35,7 +35,6 @@ public class ChangeScenePlayScene : MonoBehaviour
     {
         if (forcedFinish!)
         {
-            Debug.Log("bossGauge");
             CallBack();
             forcedFinish = false;
         }

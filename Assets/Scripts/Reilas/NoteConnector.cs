@@ -59,8 +59,6 @@ namespace Reilas
                         laneDifference = groundLaneDifference;
                         closeGroundLane = groundLane;
                     }
-
-                    if (closeGroundLane == -1) Debug.Log("");
                     return closeGroundLane;
                 }
                 case 1:
@@ -77,7 +75,6 @@ namespace Reilas
                 }
                 default:
                 {
-                    Debug.Log("レーンの数を調整してください。");
                     return -1;
                 }
             }
@@ -222,7 +219,6 @@ namespace Reilas
                 }
             default:
             {
-                Debug.Log("kind is not valid");
                 break;
             }
         }
@@ -256,7 +252,6 @@ namespace Reilas
             gameObject.transform.position = new Vector3(0, 0, berPos);
 
             if (meshFilter != null) return;
-            Debug.Log("null");
         }
 
         public void NoteConnectorDestroy(bool kujo)

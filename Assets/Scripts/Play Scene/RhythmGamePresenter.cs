@@ -169,7 +169,6 @@ public class RhythmGamePresenter : MonoBehaviour
         var noteLanePosition = GetLane(note.note);
         if (noteLanePosition < 4)
         {
-            if (TapKujoNoteLanes.Length <= noteLanePosition) Debug.LogWarning("Null");
             if(boss) TapKujoNoteLanes[noteLanePosition].Add(note);
             else TapNoteLanes[noteLanePosition].Add(note);
         }
@@ -282,11 +281,6 @@ public class RhythmGamePresenter : MonoBehaviour
             _tutorial.SetActive(false);
         }
 
-        if (chartTextAsset == null)
-        {
-            Debug.LogError("譜面データが見つかりませんでした");
-            return;
-        }
 
         var chartJsonData = JsonUtility.FromJson<ChartJsonData>(chartTextAsset.text);
         var chartEntity = new ReilasChartConverter().Convert(chartJsonData);
@@ -296,7 +290,6 @@ public class RhythmGamePresenter : MonoBehaviour
         var audioClipPath =
             "Songs/Songs/" + Path.GetFileNameWithoutExtension(chartJsonData.audioSource); //AudioSource の取得
         var audioClip = await Resources.LoadAsync<AudioClip>(audioClipPath) as AudioClip;
-        Debug.Log(audioClipPath);
         _audioSource = songAudio;
         _audioSource.clip = audioClip;
 
@@ -309,16 +302,8 @@ public class RhythmGamePresenter : MonoBehaviour
             GameObject.Find("LongPerfect").GetComponent<AudioSource>().volume = volume;
         }
 
-        if(chartEntity == null)
-        {
-            Debug.LogError("chartEntityIsNull!");
-        }
             // chartEntity
             _chartEntity = chartEntity;
-        if(_chartEntity == null)
-        {
-            Debug.LogError("_chartEntityIsNull");
-        }
 
         if (_chartEntity != null && _chartEntity.SpeedChanges != null)
         {

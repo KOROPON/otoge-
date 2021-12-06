@@ -28,11 +28,6 @@ public class AlphaButtonClickMask : MonoBehaviour, ICanvasRaycastFilter
         {
             isInvalid = true;
         }
-
-        if (isInvalid)
-        {
-            Debug.LogError("This script need an Image with a readbale Texture2D to work.");
-        }
     }
 
     public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)

@@ -130,7 +130,6 @@ namespace Reilas
             gameObj.transform.position = new Vector3(transPos.x, transPos.y, berPos);
 
             if (meshFilter != null) return;
-            Debug.Log("null");
         }
 
         public void BarLineDestroy()

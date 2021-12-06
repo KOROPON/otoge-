@@ -150,7 +150,6 @@ namespace Boss
         {
             if (!(RhythmGamePresenter.jumpToKujo && _presenter.alreadyChangeKujo)) return;
             if (gimmickPause) return;
-            Debug.Log("BossUpdate");
 
             var time = _presenter.audioTime;
             switch (time)
@@ -260,7 +259,6 @@ namespace Boss
             {
                 if(_judgeService.tapJudgeStartIndex == null)
                 {
-                    Debug.LogWarning("TapJudgeStartIndex is null");
                     continue;
                 }
                 
