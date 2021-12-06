@@ -1,11 +1,8 @@
-namespace Play_Scene.Judge
+public enum JudgeResultType
 {
-    public enum JudgeResultType
-    {
-        Perfect,
-        Good,
-        Bad,
-        Miss,
-        NotJudgedYet
-    }
+    Perfect,
+    Good,
+    Bad,
+    Miss,
+    NotJudgedYet
 }

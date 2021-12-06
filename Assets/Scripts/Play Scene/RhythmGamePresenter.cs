@@ -60,6 +60,7 @@ public class RhythmGamePresenter : MonoBehaviour
     public List<ReilasNoteEntity> reilasKujoChain = new List<ReilasNoteEntity>();
 
     public static bool isHolding;
+    public static bool tutorial;
     
     public static int countNotes;
 
@@ -94,7 +95,7 @@ public class RhythmGamePresenter : MonoBehaviour
     public static readonly List<AboveSlideEffector> AboveSlideEffectors = new List<AboveSlideEffector>();
 
     //Judge用
-    private static bool[]? _internalNoteJudge;
+    public static bool[]? internalNoteJudge;
     public static bool[]? chainNoteJudge;
 
     private ReilasChartEntity? _chartEntity;
@@ -485,7 +486,7 @@ public class RhythmGamePresenter : MonoBehaviour
             }
         }
         chainNoteJudge = new bool[chainNotes.Count];
-        _internalNoteJudge = new bool[internalNotes.Count];
+        internalNoteJudge = new bool[internalNotes.Count];
 
         countNotes = _tapNotes.Count + internalNotes.Count + chainNotes.Count;
 

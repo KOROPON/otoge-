@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
+using ShutterScene;
 
 public class MusicNumManage : MonoBehaviour
 {
