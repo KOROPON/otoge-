@@ -827,8 +827,7 @@ public class RhythmGamePresenter : MonoBehaviour
             judgeTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
-        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null &&
-            !_isAllowed) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
+        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null && !_isAllowed) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
         
         for (var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {

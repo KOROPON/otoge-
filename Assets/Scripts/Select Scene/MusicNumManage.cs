@@ -81,8 +81,10 @@ public class MusicNumManage : MonoBehaviour
 
     private IEnumerator JumpToSong(string songName)
     {
+        Debug.Log("jump" + _scrollViewContent.childCount);
         for (var i = 0; i < _scrollViewContent.childCount; i++)
         {
+            Debug.Log("jump1");
             var childSongTrans = _scrollViewContent.GetChild(i);
             if (childSongTrans.gameObject.name != songName) continue;
             _blChange = true;
@@ -91,6 +93,7 @@ public class MusicNumManage : MonoBehaviour
                 localPosition.z);
             while (Vector3.Distance(_scrollViewContent.localPosition, goal) > 1)
             {
+                Debug.Log("jump2");
                 _scrollViewContent.localPosition = Vector3.Lerp(_scrollViewContent.localPosition, goal, 0.4f);
                 yield return null;
             }
@@ -137,6 +140,7 @@ public class MusicNumManage : MonoBehaviour
     private void Start()
     {
         _tutorial = GameObject.Find("Tutorial");
+        _blChange = false;
         _selectBool = true;
         _kujo = GameObject.Find("Kujo");
         _extreme = GameObject.Find("Extreme");
@@ -163,7 +167,6 @@ public class MusicNumManage : MonoBehaviour
         {
             PlayerPrefs.SetString("difficulty", "Easy");
         }
-        SelectSong(PlayerPrefs.GetString("selected_song"));
         if (PlayerPrefs.GetString("difficulty") == "Kujo")
         {
             isExtreme = true;
@@ -173,9 +176,10 @@ public class MusicNumManage : MonoBehaviour
         {
             Difficulty(PlayerPrefs.GetString("difficulty"));
         }
+        SelectSong(PlayerPrefs.GetString("selected_song"));
         Shutter.blShutterChange = "Open"; 
         _audioSource.Play(); 
-        if (!PlayerPrefs.HasKey("tutorialDebug17"))
+        if (!PlayerPrefs.HasKey("tutorialDebug18"))
         {   
             //キーが存在しない場合はチュートリアルパネルを表示
             PlayerPrefs.SetFloat("rate", 3);
@@ -195,6 +199,7 @@ public class MusicNumManage : MonoBehaviour
         if (PlayerPrefs.GetString("selected_song") == obj.name)
         {
             if (!_selectBool) return;
+            PlayerPrefs.Save();
             RhythmGamePresenter.musicName = obj.name;
             _selectBool = false;
             Shutter.blShutterChange = "CloseToPlay";

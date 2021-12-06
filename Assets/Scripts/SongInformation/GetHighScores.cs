@@ -153,7 +153,7 @@ public class GetHighScores : MonoBehaviour
             }
         }
         
-        if (difficulty == "Hard" && diff.highScore >= 980000)
+        if (difficulty == "Hard" && diff.highScore >= 950000)
         {
             GetSong(songName).extremeLock = true;
         }

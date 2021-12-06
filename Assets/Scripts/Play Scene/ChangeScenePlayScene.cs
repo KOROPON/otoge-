@@ -52,7 +52,7 @@ public class ChangeScenePlayScene : MonoBehaviour
             Shutter.blChange = "ToSFrP";
             Shutter.blShutterChange = "Close";
             RhythmGamePresenter.tutorial = false;
-            PlayerPrefs.SetInt("tutorialDebug15", 1); //int�^�̒l(1)�ŕۑ�
+            PlayerPrefs.SetInt("tutorialDebug18", 1); //int�^�̒l(1)�ŕۑ�
             PlayerPrefs.Save();
             return;
         }
