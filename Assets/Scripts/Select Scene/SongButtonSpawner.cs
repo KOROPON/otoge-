@@ -1,41 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SongButtonSpawner : MonoBehaviour
 {
-    [SerializeField]private GameObject songPrefab;
+    [SerializeField] private GameObject songPrefab;
     
     private SongDataBase _level;
     private Transform _content;
     
-    public void SpawnSongs(bool kujo)
+    public void SpawnSongs(bool kujo, List<TitleAndLevel> titleAndLevels)
     {
-        var gameObject = GameObject.Find("Reilas");
-        if (gameObject != null)
-        {
-            foreach (Transform songOb in GameObject.Find("Content").transform)
-            {
-                GameObject.Destroy(songOb.gameObject);
-            }
-        }
-        _level = LevelConverter.songData;
+        var o = GameObject.Find("Reilas");
+        
+        if (o != null) foreach (Transform songOb in GameObject.Find("Content").transform) Destroy(songOb.gameObject);
+        
         _content = GameObject.Find("Content").transform;
-        for (int i = 0; i < _level.songs.Length; i++)
+        
+        for (var i = 0; i < titleAndLevels.Count; i++)
         {
-            SongName song = _level.songs[i];
+            var song = titleAndLevels[i];
 
-            if (kujo && song.title != "Reilas") continue;
+            var songButton = Instantiate(songPrefab, _content);
 
-            GameObject songButton = Instantiate(songPrefab, _content);
-            songButton.transform.localPosition = new Vector3(400, -175 - 250 * (i - 1), 0);
+            if (kujo) songButton.transform.localPosition = new Vector3(400, -175 - 250 * 2, 0);
+            else songButton.transform.localPosition = new Vector3(400, -175 - 250 * (i - 1), 0);
+            
             songButton.name = song.title;
-            for (int j = 0; j < songButton.transform.childCount; j++)
+            
+            for (var j = 0; j < songButton.transform.childCount; j++)
             {
-                Transform songName = songButton.transform.GetChild(j);
-                if (songName.name == "SongName")
-                {
-                    songName.gameObject.GetComponent<Text>().text = song.title;
-                }
+                var songName = songButton.transform.GetChild(j);
+                if (songName.name == "SongName") songName.gameObject.GetComponent<Text>().text = song.title;
             }
         }
     }

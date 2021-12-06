@@ -1,5 +1,14 @@
+#nullable enable
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.WSA;
 
+public class TitleAndLevel
+{
+    public string title;
+    public int? level;
+}
 public class LevelConverter : MonoBehaviour
 {
     private TextAsset _jsonFile;
@@ -8,10 +17,20 @@ public class LevelConverter : MonoBehaviour
 
     private void Start()
     {
-        _jsonFile = Resources.Load<TextAsset>("Level/SongDataBase"); //テキストは取得可能
-        songData = JsonUtility.FromJson<SongDataBase>(_jsonFile.text); // SongDataBase にすると破損
+        _jsonFile = Resources.Load<TextAsset>("Level/SongDataBase");
+        songData = JsonUtility.FromJson<SongDataBase>(_jsonFile.text);
     }
 
+    public static List<TitleAndLevel> GetGameObject(string difficulty)
+    {
+        return (from song in songData.songs
+            select song.title
+            into title
+            let level = GetLevel(title, difficulty)
+            where level != 0
+            select new TitleAndLevel {title = title, level = level}).OrderBy(level => level.level).ToList();
+    }
+    
     public static int? GetLevel(string songName, string difficulty)
     {
         foreach (var song in songData.songs)
@@ -32,29 +51,22 @@ public class LevelConverter : MonoBehaviour
 
     public static string? GetNoteEditor(string songName, string difficulty)
     {
-        foreach (var song in songData.songs)
-        {
-            if (song.title != songName) continue;
-            var noteDesiner = song.noteDesiner;
-            return difficulty switch
+        return (from song in songData.songs
+            where song.title == songName
+            select song.noteDesiner
+            into noteDesigner
+            select difficulty switch
             {
-                "Easy" => noteDesiner.easyDesiner,
-                "Hard" => noteDesiner.hardDesiner,
-                "Extreme" => noteDesiner.extremeDesiner,
-                "Kujo" => noteDesiner.kujoDesiner,
+                "Easy" => noteDesigner.easyDesiner,
+                "Hard" => noteDesigner.hardDesiner,
+                "Extreme" => noteDesigner.extremeDesiner,
+                "Kujo" => noteDesigner.kujoDesiner,
                 _ => null
-            };
-        }
-        return null;
+            }).FirstOrDefault();
     }
 
     public static string? GetComposer(string songName)
     {
-        foreach (var song in songData.songs)
-        {
-            if (song.title != songName) continue;
-            return song.composer;
-        }
-        return null;
+        return (from song in songData.songs where song.title == songName select song.composer).FirstOrDefault();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
@@ -218,32 +219,32 @@ public class MusicNumManage : MonoBehaviour
     }
     public void Difficulty(string diff)
     {
-        bool blKujo = false;
-        if (diff == "Extreme" && isExtreme)
+        var blKujo = false;
+        
+        switch (diff)
         {
-            Debug.Log("sang");
-            blKujo = true;
-            StartCoroutine("ExchangeDifficultyToKujo");
-            diff = "Kujo";
-        }
-        else if (diff == "Kujo")
-        {
-            Debug.Log("baaba");
-            StartCoroutine("ExchangeDifficultyToExtreme");
-            diff = "Extreme";
-        }
-        else if (diff == "Extreme" && _kujo.activeSelf)
-        {
-            Debug.Log("daaadda");
-            isExtreme = true ;
-        }
-        else
-        {
-            Debug.Log("klklklk");
-            isExtreme = false;
+            case "Extreme" when isExtreme:
+                Debug.Log("sang");
+                blKujo = true;
+                StartCoroutine("ExchangeDifficultyToKujo");
+                diff = "Kujo";
+                break;
+            case "Kujo":
+                Debug.Log("baaba");
+                StartCoroutine("ExchangeDifficultyToExtreme");
+                diff = "Extreme";
+                break;
+            case "Extreme" when _kujo.activeSelf:
+                Debug.Log("daaadda");
+                isExtreme = true ;
+                break;
+            default:
+                Debug.Log("klklklk");
+                isExtreme = false;
+                break;
         }
 
-        GetComponent<SongButtonSpawner>().SpawnSongs(blKujo);
+        GetComponent<SongButtonSpawner>().SpawnSongs(blKujo, LevelConverter.GetGameObject(diff));
         PlayerPrefs.SetString("difficulty", diff);
         RhythmGamePresenter.dif = PlayerPrefs.GetString("difficulty");
         highScore.text = $"{_getHighScores.GetHighScore(_songName, diff),9: 0,000,000}";
@@ -259,7 +260,9 @@ public class MusicNumManage : MonoBehaviour
             var determineButton = song.GetComponent<Button>();
             var clearGuage = song.GetComponentsInChildren<Image>()[3];
             var allowedLevel = song.GetComponentsInChildren<Text>()[1];
-            clearGuage.sprite = _getHighScores.GetClear(song.name, diff) != null ? Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff)) : Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
+            clearGuage.sprite = _getHighScores.GetClear(song.name, diff) != null
+                ? Resources.Load<Sprite>("ClearGuage/ClearGuage_" + _getHighScores.GetClear(song.name, diff))
+                : Resources.Load<Sprite>("ClearGuage/ClearGuage_Failed");
             if (diff == "Extreme" && !_getHighScores.GetLock(song.name))
             {
                 songLock.enabled = true;
@@ -291,7 +294,7 @@ public class MusicNumManage : MonoBehaviour
             }
             if (diff == "Extreme" && song.name == "Reilas" && PlayerPrefs.HasKey("解禁状況") && !_getHighScores.GetKujoLock("Reilas"))
             {
-                allowedLevel.text = PlayerPrefs.GetFloat("解禁状況").ToString() + " %";
+                allowedLevel.text = PlayerPrefs.GetFloat("解禁状況") + " %";
             }
             if(diff == "Kujo") GameObject.Find("Reilas").GetComponentsInChildren<Text>()[2].text = "10";
         }
@@ -339,8 +342,8 @@ public class MusicNumManage : MonoBehaviour
             }
             if (trueDifT.x > 1640)
             {
-                trueDifT = new Vector2(trueDifT.x - 1, (float)(trueDifT.y - 1));
-                falseDifT = new Vector2(falseDifT.x + 1, (float)(falseDifT.y + 1));
+                trueDifT = new Vector2(trueDifT.x - 1, trueDifT.y - 1);
+                falseDifT = new Vector2(falseDifT.x + 1, falseDifT.y + 1);
                 continue;
             }
             trueDifT = new Vector3(1640, 75);
@@ -352,10 +355,6 @@ public class MusicNumManage : MonoBehaviour
     }
     public IEnumerator ExchangeDifficultyToKujo()
     {
-        Debug.Log("aaaa");
-        int i = 0;
-        Transform transT;
-        Transform transF;
         var trueDif = _kujo;
         var falseDif = _extreme;
         trueDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(1670, 105);
@@ -364,10 +363,9 @@ public class MusicNumManage : MonoBehaviour
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            if (trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x == 1655)
-            {
+            if (Math.Abs(trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x - 1655) < 0)
                 trueDif.transform.SetAsLastSibling();
-            }
+            
             if (trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x > 1640)
             {
                 trueDif.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(trueDif.transform.GetComponent<RectTransform>().anchoredPosition.x - 1, (float)(trueDif.transform.GetComponent<RectTransform>().anchoredPosition.y - 1));
