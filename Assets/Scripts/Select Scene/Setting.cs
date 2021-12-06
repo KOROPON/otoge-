@@ -31,14 +31,14 @@ namespace Reilas
             _changePath = new Dictionary<string, List<float>>();
             if (PlayerPrefs.HasKey("rate"))
             {
-                _changePath.Add("ノーツ速度", new List<float>() { 0.1f, 0.1f, 10f, PlayerPrefs.GetFloat("rate") });
+                _changePath.Add("ノーツ速度", new List<float>() { 0.1f, 1f, 10f, PlayerPrefs.GetFloat("rate") });
                 _changePath.Add("音", new List<float>() { 1f, -999f, 999f, PlayerPrefs.GetFloat("audiogap") });
                 _changePath.Add("判定", new List<float>() { 1f, -999f, 999f, PlayerPrefs.GetFloat("judgegap") });
                 _changePath.Add("音量", new List<float>() { 1f, 0f, 100f, PlayerPrefs.GetFloat("volume") });
             }
             else
             {
-                _changePath.Add("ノーツ速度", new List<float>() { 0.1f, 0.1f, 10f, 5f });
+                _changePath.Add("ノーツ速度", new List<float>() { 0.1f, 1f, 10f, 3f });
                 _changePath.Add("音", new List<float>() { 1f, -999f, 999f, 0f });
                 _changePath.Add("判定", new List<float>() { 1f, -999f, 999f, 0f });
                 _changePath.Add("音量", new List<float>() { 1f, 0f, 100f, 80f });

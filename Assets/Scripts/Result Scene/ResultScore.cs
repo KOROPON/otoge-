@@ -41,7 +41,17 @@ public class ResultScore : MonoBehaviour
         _getHighScores = gameObject.AddComponent<GetHighScores>();
         _score = ChangeScenePlayScene.score;
         _previousScore = ChangeScenePlayScene.previousHighScore;
-        _scoreRank = _getHighScores.GetRank(RhythmGamePresenter.musicName, RhythmGamePresenter.dif);
+        _scoreRank = _score switch
+        {
+            var n when n >= 995000 => "R",
+            var n when n >= 990000 => "P",
+            var n when n >= 980000 => "S",
+            var n when n >= 950000 => "A",
+            var n when n >= 900000 => "B",
+            var n when n >= 800000 => "C",
+            var n when n >= 0 => "D",
+            _ => ""
+        };
         _backBool = true;
         _retryBool = true;
         _scoreInResult = GameObject.Find("Score").GetComponent<Text>();

@@ -11,6 +11,7 @@ namespace ShutterScene
         [SerializeField] private GameObject com;
         [SerializeField] private GameObject des;
         [SerializeField] private GameObject dif;
+        [SerializeField] private GameObject pan;
 
         [SerializeField] private new GameObject name;
 
@@ -20,6 +21,7 @@ namespace ShutterScene
         private Text _composer;
         private Text _noteDesigner;
         private Text _difficulty;
+        private Image _panel;
         private RhythmGamePresenter _presenter;
 
         private static AllJudgeService _judgeService;
@@ -42,19 +44,22 @@ namespace ShutterScene
             com.SetActive(true);
             des.SetActive(true);
             dif.SetActive(true);
-            
+            pan.SetActive(true);
+
             _jacket = jack.GetComponent<Image>();
             _title = name.GetComponent<Text>();
             _composer = com.GetComponent<Text>();
             _noteDesigner = des.GetComponent<Text>();
             _difficulty = dif.GetComponent<Text>();
-            
+            _panel = pan.GetComponent<Image>();
+
             jack.SetActive(false);
             name.SetActive(false);
             des.SetActive(false);
             com.SetActive(false);
             dif.SetActive(false);
-            
+            pan.SetActive(true);
+
             _musicM = gameObject.GetComponent<AudioSource>();
             _judgeService = gameObject.AddComponent<AllJudgeService>();
 
@@ -84,7 +89,7 @@ namespace ShutterScene
                     com.SetActive(true);
                     des.SetActive(true);
                     dif.SetActive(true);
-                    
+                    pan.SetActive(true);
                     var songName = RhythmGamePresenter.musicName;
                     var difficulty = RhythmGamePresenter.dif;
                     
@@ -93,6 +98,7 @@ namespace ShutterScene
                     _composer.text = "Composer:" + LevelConverter.GetComposer(songName);
                     _noteDesigner.text = "NoteDesigner:" + LevelConverter.GetNoteEditor(songName, difficulty);
                     _difficulty.text = LevelConverter.GetLevel(songName, difficulty).ToString();
+                    _panel.sprite = Resources.Load<Sprite>("Frame/Square");
                     _difficulty.color = difficulty switch
                     {
                         "Easy" => new Color32(0, 255, 50, 255),
@@ -101,7 +107,14 @@ namespace ShutterScene
                         "Kujo" => new Color32(140, 180, 175, 255),
                         _ => _difficulty.color
                     };
-                    
+                    if (_title.text == "")
+                    {
+                       _title.text = "Tutorial";
+                       _jacket.sprite = Resources.Load<Sprite>("Jacket/IconMain");
+                       _panel.sprite = Resources.Load<Sprite>("Jacket/IconMain");
+                    }
+                    _anim.SetBool("blToPlay", true);
+                    break;
                     _anim.SetBool("blToPlay", true);
                     
                     break;
