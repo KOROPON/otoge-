@@ -135,6 +135,7 @@ public class MusicNumManage : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(Application.persistentDataPath + "/SongInformation.json");
         _tutorial = GameObject.Find("Tutorial");
         _selectBool = true;
         _kujo = GameObject.Find("Kujo");

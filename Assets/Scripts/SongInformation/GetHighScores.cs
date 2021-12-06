@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GetHighScores : MonoBehaviour
 {
@@ -57,6 +56,7 @@ public class GetHighScores : MonoBehaviour
         Array.Resize(ref _highScore.songs, _highScore.songs.Length + 1);
         _highScore.songs[_highScore.songs.Length - 1] = emptySong;
         emptySong.title = title;
+        StreamWrite();
         return emptySong;
     }
 
@@ -128,6 +128,7 @@ public class GetHighScores : MonoBehaviour
     public void SetHighScore(string songName, string difficulty, int score, string clear)
     {
         var diff = GetDiff(songName, difficulty) ?? new Difficulty();
+        StreamWrite();
         diff.highScore = score;
         diff.rank = RankCalculator(score);
         switch (clear)
