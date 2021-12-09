@@ -94,7 +94,8 @@ namespace Reilas
                         }
                     case JudgeResultType.Bad:
                         {
-                            currentCombo++;
+                            if (highCombo < currentCombo) highCombo = currentCombo;
+                            currentCombo = 0;
                             _score += 1;
                             sumBad++;
                             _gaugeCombo++;
