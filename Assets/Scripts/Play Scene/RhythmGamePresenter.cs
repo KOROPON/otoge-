@@ -228,7 +228,7 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Awake()
     {
-        
+        Application.targetFrameRate = 60;
         jumpToKujo = false;
         _isAllowed = gameObject.AddComponent<GetHighScores>().GetKujoLock("Reilas");
         _longPerfect = GameObject.Find("LongPerfect").GetComponent<AudioSource>();
