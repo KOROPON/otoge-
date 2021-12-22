@@ -19,9 +19,11 @@ namespace Reilas
 
         private float _noteSpeed;
         public float aboveTapTime;
+        public bool _kujo;
 
-        public void Initialize(ReilasNoteEntity entity)
+        public void Initialize(ReilasNoteEntity entity, bool kujo)
         {
+            _kujo = kujo;
             _noteSpeed = entity.Speed;
             aboveTapTime = entity.JudgeTime;
             _entity = entity;

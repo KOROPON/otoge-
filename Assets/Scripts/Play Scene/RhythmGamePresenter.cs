@@ -21,6 +21,8 @@ public class ReilasNoteEntityToGameObject
 
 public class RhythmGamePresenter : MonoBehaviour
 {
+    public Text fpsDebug;
+
     [SerializeField] private TapNote tapNotePrefab = null!;
     [SerializeField] private HoldNote holdNotePrefab = null!;
     [SerializeField] private AboveTapNote aboveTapNotePrefab = null!;
@@ -107,7 +109,7 @@ public class RhythmGamePresenter : MonoBehaviour
     //Reilas移行判定
     public static bool jumpToKujo;
     public bool alreadyChangeKujo;
-    private bool _isAllowed;
+    public bool _isAllowed;
     private BossGimmicks? _boss;
 
     public static readonly bool[,] LaneTapStates = new bool[36, 2];
@@ -167,6 +169,9 @@ public class RhythmGamePresenter : MonoBehaviour
     private static void GetLanes(ReilasNoteEntityToGameObject note, bool boss)
     {
         var noteLanePosition = GetLane(note.note);
+
+        if (boss && note.note.JudgeTime < 103.04f && note.note.JudgeTime > 92.98f) return;
+
         if (noteLanePosition < 4)
         {
             if(boss) TapKujoNoteLanes[noteLanePosition].Add(note);
@@ -508,7 +513,7 @@ public class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(tapNotePrefab);
-            tapNote.Initialize(note);
+            tapNote.Initialize(note, bosNotes);
             
             GetLanes(new ReilasNoteEntityToGameObject
             {
@@ -533,7 +538,7 @@ public class RhythmGamePresenter : MonoBehaviour
         foreach (var note in notes)
         {
             var tapNote = Instantiate(aboveTapNotePrefab);
-            tapNote.Initialize(note);
+            tapNote.Initialize(note, bosNotes);
             
             GetLanes(new ReilasNoteEntityToGameObject
             {
@@ -747,6 +752,8 @@ public class RhythmGamePresenter : MonoBehaviour
 
     private void Update()
     {
+        fpsDebug.text = "FPS = " + (1f / Time.deltaTime).ToString();
+
         if (_audioSource == null) return;
 
         InputService.AboveLaneTapStates.Clear();
@@ -812,7 +819,7 @@ public class RhythmGamePresenter : MonoBehaviour
             judgeTime += PlayerPrefs.GetFloat("audiogap") / 1000;
         }
 
-        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null && !_isAllowed) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0.7f;
+        if (musicName == "Reilas" && dif == "Extreme" && !alreadyChangeKujo && _scoreComboCalculator != null && !_isAllowed) jumpToKujo = _scoreComboCalculator.slider.fillAmount >= 0f;
         
         for (var keyIndex = _allKeyBeam.Count - 1; keyIndex >= 0; keyIndex--)
         {
@@ -863,9 +870,15 @@ public class RhythmGamePresenter : MonoBehaviour
         {
             if (_boss != null)
             {
-                if (!_boss.kujoJudgeSwitch) _judgeService.Judge(judgeTime);
+                if (!_boss.kujoJudgeSwitch)
+                {
+                    _judgeService.Judge(judgeTime);
+                }
             }
-            else _judgeService.Judge(judgeTime);
+            else
+            {
+                _judgeService.Judge(judgeTime);
+            }
         }
 
         if (alreadyChangeKujo) return;

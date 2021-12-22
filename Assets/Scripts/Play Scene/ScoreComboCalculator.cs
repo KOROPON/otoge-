@@ -131,6 +131,8 @@ namespace Reilas
                 _gaugeCombo -= _comboDataBase[_difficulty];
             }
 
+            Debug.Log(_gaugeMiss);
+
             slider.fillAmount -= missamount * _gaugeMiss;
             _gaugeMiss = 0;
             if (slider.fillAmount < 0) slider.fillAmount = 0;
@@ -148,9 +150,9 @@ namespace Reilas
         {
             slider.sprite = bossGauge;
             missamount = 0.1f;
+            slider.fillAmount = 1;
             _difficulty = "Kujo";
             bossGimmick = true;
-            slider.fillAmount = 1;
         }
     }
 }
