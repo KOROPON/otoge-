@@ -260,7 +260,6 @@ public class AllJudgeService : MonoBehaviour
             ////here
             //Debug.Log(timeDifference);
             if (timeDifference > _judgeSeconds["Internal"]) break;
-            if (timeDifference < 0f) continue;
 
             //Debug.Log(CheckIfTapped(internalNotes[i]));
 
